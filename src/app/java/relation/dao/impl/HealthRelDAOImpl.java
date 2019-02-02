@@ -41,14 +41,8 @@ public class HealthRelDAOImpl implements HealthRelDAO {
 
                 // cu cat hurtsRate este mai mic, cu atat este mai bine
                 health = infrastructureRate * staffRate * foodConsRate
-                        * lifeExpectancyRate * reversedHurtsRate;
-
-                // daca naturalGrowthRate > 0, influenteaza negativ (se calculeaza produsul)
-                // altfel, influenteaza negativ (se divide health la naturalGrowthRate)
-                if (naturalGrowthRate > 0)
-                    health = health * naturalGrowthRate;
-                else
-                    health = health / (-1 * naturalGrowthRate);
+                        * lifeExpectancyRate * reversedHurtsRate
+                        * naturalGrowthRate;
             }
         }
 
@@ -201,6 +195,10 @@ public class HealthRelDAOImpl implements HealthRelDAO {
 
         lifeIndexDAO.printDimensionInfo(item.getYear(), itemRegion,
                 Constants.DIMENSION.HEALTH, Constants.TYPES.NATURAL_POP_GROWTH_RATE);
+
+        // daca naturalGrowthRate > 0, influenteaza negativ (se calculeaza produsul)
+        // altfel, influenteaza negativ (se divide health la naturalGrowthRate)
+        natPopGrowthRate = 10 + natPopGrowthRate;
 
         return natPopGrowthRate;
     }
