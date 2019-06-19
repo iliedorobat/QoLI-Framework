@@ -1,14 +1,14 @@
 package app.java.relation.dao.impl;
 
 import app.java.index.dao.LifeIndexDAO;
+import app.java.parser.local.dao.impl.MainActivityDAOImpl;
 import app.java.index.dao.impl.LifeIndexDAOImpl;
 import app.java.relation.dao.CommonRelDAO;
 import app.java.relation.dao.MainActivityRelDAO;
-import app.java.parser.dao.MainActivityDAO;
+import app.java.parser.local.dao.MainActivityDAO;
 import app.java.commons.Constants;
 import app.java.commons.MathUtils;
-import app.java.parser.dao.impl.MainActivityDAOImpl;
-import app.java.parser.model.MainActivityObject;
+import app.java.parser.local.model.MainActivityObject;
 
 import java.util.ArrayList;
 
@@ -94,6 +94,7 @@ public class MainActivityRelDAOImpl implements MainActivityRelDAO {
         lifeIndexDAO.printDimensionInfo(item.getYear(), itemRegion,
                 Constants.DIMENSION.MAIN_ACTIVITY, Constants.TYPES.UNEMP_RATE);
 
+        //TODO: * 100?
         return empRate / unempRate;
     }
 }

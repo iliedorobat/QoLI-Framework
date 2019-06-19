@@ -1,17 +1,14 @@
 package app.java.commons;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class TextUtils {
     /**
-     * Read data from file
+     * Read data from the disc
      * @param path <b>String</b>: the path to the desired file
      * @return <b>StringBuilder</b>
      */
-    public StringBuilder readFile(String path) {
+    public static StringBuilder readFile(String path) {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
 
@@ -36,8 +33,32 @@ public class TextUtils {
         }
 
         // Remove the last new line
-        sb = sb.deleteCharAt(sb.length()-1);
+        sb = sb.deleteCharAt(sb.length() - 1);
 
         return sb;
+    }
+
+    /**
+     * Write data to the disc
+     * @param sb <b>StringBuilder</b>: the data to be written
+     * @param path <b>String</b>: the path to the desired file
+     */
+    public static void writeToFile(StringBuilder sb, String path) {
+        FileWriter fw = null;
+
+        try {
+            fw = new FileWriter(path);
+            fw.write(sb.toString());
+            System.out.println("The records have been written.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fw.close();
+            } catch (IOException e) {
+                System.err.println("The file " + path + " could not be closed."
+                        + "\n" + e.getMessage());
+            }
+        }
     }
 }

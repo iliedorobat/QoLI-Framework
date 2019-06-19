@@ -1,15 +1,15 @@
 package app.java.relation.dao.impl;
 
-import app.java.commons.Utils;
 import app.java.index.dao.LifeIndexDAO;
+import app.java.commons.Utils;
 import app.java.index.dao.impl.LifeIndexDAOImpl;
 import app.java.relation.dao.CommonRelDAO;
 import app.java.relation.dao.HealthRelDAO;
-import app.java.parser.model.HealthObject;
+import app.java.parser.local.model.HealthObject;
 import app.java.commons.Constants;
 import app.java.commons.MathUtils;
-import app.java.parser.dao.HealthDAO;
-import app.java.parser.dao.impl.HealthDAOImpl;
+import app.java.parser.local.dao.HealthDAO;
+import app.java.parser.local.dao.impl.HealthDAOImpl;
 
 import java.util.ArrayList;
 
@@ -182,6 +182,7 @@ public class HealthRelDAOImpl implements HealthRelDAO {
 
         double hurts = (workHurts + trafficHurts) / residents * Constants.REPORT_NO_1;
 
+        //TODO: reversed = 1/hurts
         return utils.getReversedRate(hurts);
     }
 
@@ -198,6 +199,7 @@ public class HealthRelDAOImpl implements HealthRelDAO {
 
         // daca naturalGrowthRate > 0, influenteaza negativ (se calculeaza produsul)
         // altfel, influenteaza negativ (se divide health la naturalGrowthRate)
+        //TODO: a better formula for negative numbers
         natPopGrowthRate = 5 + natPopGrowthRate;
 
         return natPopGrowthRate;
