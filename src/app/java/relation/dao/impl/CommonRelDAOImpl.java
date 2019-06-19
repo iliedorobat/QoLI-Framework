@@ -1,12 +1,12 @@
 package app.java.relation.dao.impl;
 
+import app.java.commons.Constants;
 import app.java.index.dao.LifeIndexDAO;
 import app.java.index.dao.impl.LifeIndexDAOImpl;
+import app.java.parser.local.dao.CommonDAO;
+import app.java.parser.local.dao.impl.CommonDAOImpl;
+import app.java.parser.local.model.CommonObject;
 import app.java.relation.dao.CommonRelDAO;
-import app.java.commons.Constants;
-import app.java.parser.dao.impl.CommonDAOImpl;
-import app.java.parser.model.CommonObject;
-import app.java.parser.dao.CommonDAO;
 
 import java.util.ArrayList;
 

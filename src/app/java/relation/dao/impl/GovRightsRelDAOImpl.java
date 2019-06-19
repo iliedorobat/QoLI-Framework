@@ -1,13 +1,13 @@
 package app.java.relation.dao.impl;
 
-import app.java.index.dao.LifeIndexDAO;
-import app.java.index.dao.impl.LifeIndexDAOImpl;
-import app.java.relation.dao.GovRightsRelDAO;
-import app.java.commons.MathUtils;
-import app.java.parser.dao.GovRightsDAO;
-import app.java.parser.model.GovRightsObject;
 import app.java.commons.Constants;
-import app.java.parser.dao.impl.GovRightsDAOImpl;
+import app.java.index.dao.LifeIndexDAO;
+import app.java.parser.local.dao.impl.GovRightsDAOImpl;
+import app.java.parser.local.model.GovRightsObject;
+import app.java.relation.dao.GovRightsRelDAO;
+import app.java.index.dao.impl.LifeIndexDAOImpl;
+import app.java.commons.MathUtils;
+import app.java.parser.local.dao.GovRightsDAO;
 
 import java.util.ArrayList;
 

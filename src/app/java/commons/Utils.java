@@ -1,12 +1,10 @@
 package app.java.commons;
 
-import app.java.parser.model.InsseObject;
+import app.java.parser.local.model.InsseObject;
 
 import java.util.ArrayList;
 
 public class Utils {
-    private static TextUtils textUtils = new TextUtils();
-
     /**
      * Get the list with Romanian economic development regions
      * @return <b>String[]</b>
@@ -116,7 +114,7 @@ public class Utils {
      * @return <b>String[]</b>
      */
     public String[] getStringList(String filePath) {
-        StringBuilder sb = textUtils.readFile(filePath);
+        StringBuilder sb = TextUtils.readFile(filePath);
         String str = sb.toString();
         return str.split("\\n");
     }

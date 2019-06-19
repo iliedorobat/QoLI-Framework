@@ -1,15 +1,15 @@
 package app.java.relation.dao.impl;
 
+import app.java.commons.Constants;
 import app.java.commons.Utils;
 import app.java.index.dao.LifeIndexDAO;
-import app.java.index.dao.impl.LifeIndexDAOImpl;
+import app.java.parser.local.model.MaterialLifeObject;
 import app.java.relation.dao.CommonRelDAO;
 import app.java.relation.dao.MaterialLifeRelDAO;
-import app.java.parser.dao.impl.MaterialLifeDAOImpl;
-import app.java.parser.model.MaterialLifeObject;
-import app.java.commons.Constants;
+import app.java.index.dao.impl.LifeIndexDAOImpl;
+import app.java.parser.local.dao.impl.MaterialLifeDAOImpl;
 import app.java.commons.MathUtils;
-import app.java.parser.dao.MaterialLifeDAO;
+import app.java.parser.local.dao.MaterialLifeDAO;
 
 import java.util.ArrayList;
 
@@ -40,6 +40,8 @@ public class MaterialLifeRelDAOImpl implements MaterialLifeRelDAO {
                 double venueRate = getVenueRate(lists, item);
                 double poorRate = getPoorRate(lists, item);
                 material = venueRate / poorRate;
+
+//                System.out.println(year + " " + region + " venueRate: " + venueRate);
             }
         }
 
@@ -62,6 +64,7 @@ public class MaterialLifeRelDAOImpl implements MaterialLifeRelDAO {
             avgIncome = item.getAvgRate(lists, itemRegion, Constants.TYPES.AVG_TOTAL_INCOME);
 
         double moneyRate = avgIncome / avgSpend * 100;
+        //TODO: de eliminat incomeRate sau avgNetSalary
         double incomeRate = avgIncome/ avgNetSalary * 100;
         double venueRate = avgNetSalary * moneyRate * incomeRate;
 

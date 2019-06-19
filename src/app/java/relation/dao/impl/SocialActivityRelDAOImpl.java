@@ -1,14 +1,14 @@
 package app.java.relation.dao.impl;
 
+import app.java.commons.Constants;
 import app.java.index.dao.LifeIndexDAO;
 import app.java.index.dao.impl.LifeIndexDAOImpl;
+import app.java.parser.local.dao.impl.SocialActivityDAOImpl;
+import app.java.parser.local.model.SocialActivityObject;
 import app.java.relation.dao.CommonRelDAO;
 import app.java.relation.dao.SocialActivityRelDAO;
 import app.java.commons.MathUtils;
-import app.java.parser.dao.SocialActivityDAO;
-import app.java.parser.dao.impl.SocialActivityDAOImpl;
-import app.java.parser.model.SocialActivityObject;
-import app.java.commons.Constants;
+import app.java.parser.local.dao.SocialActivityDAO;
 
 import java.util.ArrayList;
 
@@ -55,6 +55,7 @@ public class SocialActivityRelDAOImpl implements SocialActivityRelDAO {
                 double museumsRate = museums / residents * Constants.REPORT_NO_10;
                 double showsRate = shows / residents / 12 * Constants.REPORT_NO_10;
                 double sportsRate = sports / residents * Constants.REPORT_NO_10;
+                //TODO: radacina patrata de ordinul 3 din produsul celor 3?
                 social = museumsRate + showsRate + sportsRate;
             }
         }

@@ -4,8 +4,8 @@ import app.java.commons.Constants;
 import app.java.commons.MathUtils;
 import app.java.commons.Utils;
 import app.java.index.dao.LifeIndexDAO;
-import app.java.parser.dao.*;
-import app.java.parser.dao.impl.*;
+import app.java.parser.local.dao.*;
+import app.java.parser.local.dao.impl.*;
 import app.java.relation.dao.*;
 import app.java.relation.dao.impl.*;
 
@@ -34,6 +34,19 @@ public class LifeIndexDAOImpl implements LifeIndexDAO {
         double materialLifeRate = materialLifeRelDAO.getMaterialLifeRate(region, year);
         double safetyRate = safetyRelDAO.getSafetyRate(region, year);
         double socialActivityRate = socialActivityRelDAO.getSocialActivityRate(region, year);
+
+//        if (region.equals("Regiunea NORD-EST") || region.equals("Regiunea VEST")) {
+//            System.out.println(year + " " + region + " edu " + educationRate);
+//            System.out.println(year + " " + region + " env " + environmentRate);
+//            System.out.println(year + " " + region + " gov " + govRightsRate);
+//            System.out.println(year + " " + region + " health " + healthRate);
+//            System.out.println(year + " " + region + " main " + mainActivityRate);
+//            System.out.println(year + " " + region + " material " + materialLifeRate);
+//            System.out.println(year + " " + region + " safety " + safetyRate);
+//            System.out.println(year + " " + region + " social " + socialActivityRate);
+//        }
+//
+//        System.out.println("HEALTH|" + year + "|" + region + "|" + healthRate);
 
         double index = educationRate * environmentRate * govRightsRate * healthRate
                 * mainActivityRate * materialLifeRate * safetyRate * socialActivityRate;
@@ -74,7 +87,7 @@ public class LifeIndexDAOImpl implements LifeIndexDAO {
                 double lifeIndex = getLifeIndex(region, year);
 
                 if (Constants.PRINT_DIMENSION_VALUE)
-                    System.out.println(region + ", " + year + ", " + df2.format(lifeIndex));
+                    System.out.println(region + ", " + year + ", " + df2.format(lifeIndex) + "\n");
             }
         }
     }

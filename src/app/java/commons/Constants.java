@@ -12,7 +12,7 @@ public class Constants {
     public static final String ENVIRONMENT_PATH = DATASET_PATH + "environment/";
 
     public static final boolean PRINT_DIMENSION_IFO = false;
-    public static final boolean PRINT_DIMENSION_VALUE = false;
+    public static final boolean PRINT_DIMENSION_VALUE = true;
     public static final boolean PRINT_DIMENSION_MISSING = false; //true;
     public static final boolean PRINT_AMPLITUDE = true;
 
@@ -23,7 +23,7 @@ public class Constants {
     public static final double HA_TO_M = 10000;
 
     public static final short MIN_YEAR = 2007;
-    public static final short MAX_YEAR = 2016;
+    public static final short MAX_YEAR = 2017;
 
     public static final String B_IF_REGION = "Regiunea BUCURESTI - ILFOV";
     public static final String CENTER_REGION = "Regiunea CENTRU";

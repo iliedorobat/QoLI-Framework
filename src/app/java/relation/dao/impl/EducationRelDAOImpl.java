@@ -1,15 +1,15 @@
 package app.java.relation.dao.impl;
 
-import app.java.commons.Utils;
 import app.java.index.dao.LifeIndexDAO;
+import app.java.parser.local.model.EducationObject;
+import app.java.commons.Utils;
 import app.java.index.dao.impl.LifeIndexDAOImpl;
 import app.java.relation.dao.CommonRelDAO;
 import app.java.relation.dao.EducationRelDAO;
-import app.java.parser.dao.impl.EducationDAOImpl;
+import app.java.parser.local.dao.impl.EducationDAOImpl;
 import app.java.commons.Constants;
 import app.java.commons.MathUtils;
-import app.java.parser.dao.EducationDAO;
-import app.java.parser.model.EducationObject;
+import app.java.parser.local.dao.EducationDAO;
 
 import java.util.ArrayList;
 
