@@ -1,6 +1,8 @@
 package app.java.commons;
 
 public class Constants {
+    public static final boolean IS_TESTING = true;
+
     public static final String DATASET_PATH = "files/dataset/";
     public static final String MATERIAL_LIFE_PATH = DATASET_PATH + "material-life/";
     public static final String MAIN_ACTIVITY_PATH = DATASET_PATH + "main-activity/";
