@@ -21,9 +21,6 @@ public class EducationDAOImpl implements EducationDAO {
         return DataFetcher.fetchData("educ_uoe_perp04", params);
     }
 
-
-
-
     public StringBuilder getStudentsRatioJSON2012() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("indic_ed", "R04_1");

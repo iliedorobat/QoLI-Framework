@@ -2,7 +2,7 @@ package app.java.parser.http.dao;
 
 public interface EducationDAO {
     /**
-     * Ratio of pupils and students to teachers for primary and secondary education (levels 1-3)<br/><br/>
+     * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
@@ -14,7 +14,7 @@ public interface EducationDAO {
     StringBuilder getPupilsRatio2012();
 
     /**
-     * Ratio of pupils and students to teachers for primary and secondary education (levels 1-3)<br/><br/>
+     * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
