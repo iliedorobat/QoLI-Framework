@@ -1,7 +1,5 @@
 package app.java.parser.http.dao;
 
-import java.util.Map;
-
 public interface EducationDAO {
     /**
      * Ratio of pupils and students to teachers for primary and secondary education (levels 1-3)<br/><br/>
