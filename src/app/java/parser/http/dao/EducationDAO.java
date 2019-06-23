@@ -2,6 +2,18 @@ package app.java.parser.http.dao;
 
 public interface EducationDAO {
     /**
+     * Participation in early childhood education<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: educ_uoe_enra10<br/>
+     * Years: 1998-2017
+     *
+     * @return
+     */
+    StringBuilder getEarlyEducationRatioJSON();
+
+    /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
      *
      * Aggregation: country<br/>
@@ -11,7 +23,7 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getPupilsRatio2012();
+    StringBuilder getPupilsRatioJSON2012();
 
     /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
@@ -23,7 +35,7 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getPupilsRatio2013();
+    StringBuilder getPupilsRatioJSON2013();
 
     /**
      * Ratio of the proportion of students (ISCED 5-6) over the proportion of the population<br/><br/>

@@ -8,13 +8,20 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class EducationDAOImpl implements EducationDAO {
-    public StringBuilder getPupilsRatio2012() {
+    public StringBuilder getEarlyEducationRatioJSON() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("educ_uoe_enra10", params);
+    }
+
+    public StringBuilder getPupilsRatioJSON2012() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("indic_ed", "ST1_1");
         return DataFetcher.fetchData("educ_iste", params);
     }
 
-    public StringBuilder getPupilsRatio2013() {
+    public StringBuilder getPupilsRatioJSON2013() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("isced11", "ED1-3");
         params.put("unit", "RT");
