@@ -48,4 +48,16 @@ public interface EnvironmentDAO {
      * @return
      */
     StringBuilder getHighSatisfactionRatio();
+
+    /**
+     * Population connected to public water supply<br/><br/>
+     *
+     * Aggregation: NUTS 2 regions <br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: env_watpop_r2<br/>
+     * Years: 2000-2013
+     *
+     * @return
+     */
+    StringBuilder getWaterSupplyRatio();
 }

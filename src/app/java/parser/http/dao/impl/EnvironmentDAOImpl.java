@@ -28,4 +28,12 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         CommonDAO commonDAO = new CommonDAOImpl();
         return commonDAO.getSatisfactionRatio("HIGH", "LIVENVSAT");
     }
+
+    public StringBuilder getWaterSupplyRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("nace_r2", "TOTAL");
+        params.put("wat_proc", "POP_PWS");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("env_watpop_r2", params);
+    }
 }
