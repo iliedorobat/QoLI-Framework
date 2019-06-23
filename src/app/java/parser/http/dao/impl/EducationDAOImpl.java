@@ -1,5 +1,6 @@
 package app.java.parser.http.dao.impl;
 
+import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.EducationDAO;
@@ -8,13 +9,22 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class EducationDAOImpl implements EducationDAO {
-    public StringBuilder getPupilsRatio2012() {
+    private static final String[] EDU_LEVELS = {"ED5-8", "ED3_4", "ED3-8", "ED0-2"};
+
+    public StringBuilder getEarlyEducationRatioJSON() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("educ_uoe_enra10", params);
+    }
+
+    public StringBuilder getPupilsRatioJSON2012() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("indic_ed", "ST1_1");
         return DataFetcher.fetchData("educ_iste", params);
     }
 
-    public StringBuilder getPupilsRatio2013() {
+    public StringBuilder getPupilsRatioJSON2013() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("isced11", "ED1-3");
         params.put("unit", "RT");
@@ -52,13 +62,8 @@ public class EducationDAOImpl implements EducationDAO {
     }
 
     public StringBuilder getEducationRatioJSON(String education) {
-        String[] educationLevels = {"ED5-8", "ED3_4", "ED3-8", "ED0-2"};
-
         try {
-            if (Arrays.asList(educationLevels).indexOf(education) == -1) {
-                throw new Exception("The passed education level is not one of the accepted ones" +
-                        "\n (" + Arrays.toString(educationLevels) + ")");
-            }
+            Errors.throwNewError(EDU_LEVELS, education, "education levels");
 
             Map<String, String> params = ParserUtils.getGeneralHttpParams();
             params.put("age", "Y25-64");

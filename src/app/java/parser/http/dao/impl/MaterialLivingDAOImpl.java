@@ -32,4 +32,21 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         params.put("unit", "PC");
         return DataFetcher.fetchData("ilc_li41", params);
     }
+
+    public StringBuilder getLackOfBathsRatioJSON() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("age", "TOTAL");
+        params.put("hhtyp", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("ilc_mdho05", params);
+    }
+
+    public StringBuilder getPublicWaterRatioJSON() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("wat_proc", "POP_PWS");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("env_wat_pop", params);
+    }
 }

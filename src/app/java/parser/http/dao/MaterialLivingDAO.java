@@ -49,4 +49,28 @@ public interface MaterialLivingDAO {
      * @return
      */
     StringBuilder getPovertyRateJSON();
+
+    /**
+     * Population having neither a bath, nor a shower, nor indoor flushing toilet in their household<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_mdho05<br/>
+     * Years: 2003-2018
+     *
+     * @return
+     */
+    StringBuilder getLackOfBathsRatioJSON();
+
+    /**
+     * Population connected to public water supply<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: env_wat_pop<br/>
+     * Years: 2000-2015
+     *
+     * @return
+     */
+    StringBuilder getPublicWaterRatioJSON();
 }
