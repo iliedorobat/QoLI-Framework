@@ -1,5 +1,6 @@
 package app.java.parser.http.dao.impl;
 
+import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.EducationDAO;
@@ -8,6 +9,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class EducationDAOImpl implements EducationDAO {
+    private static final String[] EDU_LEVELS = {"ED5-8", "ED3_4", "ED3-8", "ED0-2"};
+
     public StringBuilder getEarlyEducationRatioJSON() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("sex", "T");
@@ -59,13 +62,8 @@ public class EducationDAOImpl implements EducationDAO {
     }
 
     public StringBuilder getEducationRatioJSON(String education) {
-        String[] educationLevels = {"ED5-8", "ED3_4", "ED3-8", "ED0-2"};
-
         try {
-            if (Arrays.asList(educationLevels).indexOf(education) == -1) {
-                throw new Exception("The passed education level is not one of the accepted ones" +
-                        "\n (" + Arrays.toString(educationLevels) + ")");
-            }
+            Errors.throwNewError(EDU_LEVELS, education, "education levels");
 
             Map<String, String> params = ParserUtils.getGeneralHttpParams();
             params.put("age", "Y25-64");
