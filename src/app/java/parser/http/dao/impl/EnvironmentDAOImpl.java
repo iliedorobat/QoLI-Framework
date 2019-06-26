@@ -24,6 +24,7 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         return DataFetcher.fetchData("ilc_mddw02", params);
     }
 
+    //TODO: remove (in SocialActivity should be calculated overall life satisfaction)
     public StringBuilder getHighSatisfactionRatio() {
         CommonDAO commonDAO = new CommonDAOImpl();
         return commonDAO.getSatisfactionRatio("HIGH", "LIVENVSAT");

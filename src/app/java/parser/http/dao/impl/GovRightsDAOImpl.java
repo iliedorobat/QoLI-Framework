@@ -2,22 +2,20 @@ package app.java.parser.http.dao.impl;
 
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
+import app.java.parser.http.dao.CommonDAO;
 import app.java.parser.http.dao.GovRightsDAO;
 
 import java.util.Map;
 
 public class GovRightsDAOImpl implements GovRightsDAO {
+    private static CommonDAO commonDAO = new CommonDAOImpl();
+
     //TODO: download the table "Population with confidence in EU institutions by institution (source: DG COMM) (sdg_16_60)"
     // https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&language=en&pcode=sdg_16_60&plugin=1
 
     public StringBuilder getActiveCitizenship() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("acl00", "AC43A");
-        params.put("age", "Y_GE16");
-        params.put("isced11", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
-        return DataFetcher.fetchData("ilc_scp19", params);
+        String[] activities = {"AC43A"};
+        return commonDAO.getActivePeopleRatio(activities);
     }
 
     public StringBuilder getPopulationTrustRatio() {
