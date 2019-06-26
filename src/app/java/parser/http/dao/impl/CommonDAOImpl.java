@@ -25,6 +25,11 @@ public class CommonDAOImpl implements CommonDAO {
             "RELSAT",
             "TIMESAT"
     };
+    public static final String[] ACTIVITIES_TYPE = {
+            "AC41A",
+            "AC42A",
+            "AC43A"
+    };
 
     public StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
         try {
@@ -40,6 +45,26 @@ public class CommonDAOImpl implements CommonDAO {
             params.put("unit", "PC");
 
             return DataFetcher.fetchData("ilc_pw05", params);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public StringBuilder getActivePeopleRatio(String[] activity) {
+        try {
+            Errors.throwNewError(ACTIVITIES_TYPE, activity, "type of people activities");
+
+            //TODO: check
+            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            for (int i = 0; i < activity.length; i++) {
+                params.put("acl00", activity[i]);
+            }
+            params.put("age", "Y_GE16");
+            params.put("isced11", "TOTAL");
+            params.put("sex", "T");
+            params.put("unit", "PC");
+
+            return DataFetcher.fetchData("ilc_scp19", params);
         } catch (Exception e) {
             return null;
         }

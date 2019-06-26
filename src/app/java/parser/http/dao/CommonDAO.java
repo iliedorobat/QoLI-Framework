@@ -29,4 +29,22 @@ public interface CommonDAO {
      * @return
      */
     StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing);
+
+    /**
+     * Participation in formal or informal voluntary activities or active citizenship<br/>
+     * People aged 16 years or over<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_scp19<br/>
+     * Years: 2015
+     *
+     * @param activity The activity types:<br/>
+     *                 - AC41A: Formal volontary activities;<br/>
+     *                 - AC42A: Informal volontary activities;<br/>
+     *                 - AC43A: Active citizenship.
+     *
+     * @return
+     */
+    StringBuilder getActivePeopleRatio(String[] activity);
 }
