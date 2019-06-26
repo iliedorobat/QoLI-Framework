@@ -2,7 +2,8 @@ package app.java.parser.http.dao;
 
 public interface GovRightsDAO {
     /**
-     * Participation (16 years or over) in formal or informal voluntary activities or active citizenship<br/><br/>
+     * Active citizenship participation<br/>
+     * People aged 16 years or over<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
