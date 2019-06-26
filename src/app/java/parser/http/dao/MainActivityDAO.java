@@ -13,6 +13,7 @@ public interface MainActivityDAO {
      */
     StringBuilder getAvgPopulationJSON();
 
+    //TODO: emplyment under 20 - 64 (EVERYWHERE) !!!
     /**
      * Average number of usual weekly hours of work in main job (15 years or over)<br/><br/>
      *
