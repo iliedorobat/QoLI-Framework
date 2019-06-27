@@ -30,6 +30,22 @@ public class CommonDAOImpl implements CommonDAO {
             "AC42A",
             "AC43A"
     };
+    public static final String[] SUPPORTIVE_API_NAMES = {
+            "ilc_scp15",
+            "ilc_scp17"
+    };
+
+    /**
+     * Add new parameters into the params list
+     * @param params The params list
+     * @param values The list with values that should be added
+     * @param propertyName The name of the added property
+     */
+    public static void addParams(Map<String, String> params, String[] values, String propertyName) {
+        for (int i = 0; i < values.length; i++) {
+            params.put(propertyName, values[i]);
+        }
+    }
 
     public StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
         try {
@@ -55,6 +71,7 @@ public class CommonDAOImpl implements CommonDAO {
             Errors.throwNewError(ACTIVITIES_TYPE, activity, "type of people activities");
 
             //TODO: check
+            //TODO: use addParams
             Map<String, String> params = ParserUtils.getGeneralHttpParams();
             for (int i = 0; i < activity.length; i++) {
                 params.put("acl00", activity[i]);
@@ -65,6 +82,21 @@ public class CommonDAOImpl implements CommonDAO {
             params.put("unit", "PC");
 
             return DataFetcher.fetchData("ilc_scp19", params);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public StringBuilder getSupportiveRatio(String apiName) {
+        try {
+            Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
+
+            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            params.put("age", "Y_GE16");
+            params.put("isced11", "TOTAL");
+            params.put("set", "T");
+            params.put("unit", "PC");
+            return DataFetcher.fetchData(apiName, params);
         } catch (Exception e) {
             return null;
         }

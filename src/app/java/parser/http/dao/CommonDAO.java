@@ -47,4 +47,20 @@ public interface CommonDAO {
      * @return
      */
     StringBuilder getActivePeopleRatio(String[] activity);
+
+    /**
+     * Get the ratio of persons (16 years or over) who have someone to ask for help
+     * or to discuss personal matters<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_scp15 / ilc_scp17<br/>
+     * Years: 2013; 2015
+     *
+     * @param apiName The API name:<br/>
+     *                - ilc_scp15;<br/>
+     *                - ilc_scp17.
+     * @return
+     */
+    StringBuilder getSupportiveRatio(String apiName);
 }
