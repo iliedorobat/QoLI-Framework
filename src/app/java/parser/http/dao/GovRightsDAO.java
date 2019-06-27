@@ -1,6 +1,12 @@
 package app.java.parser.http.dao;
 
+/**
+ * Factors which influence the life of population from the perspective
+ * of the governing, law making and equality of opportunity
+ */
 public interface GovRightsDAO {
+    //TODO: add the (local) Parliamentary voter turnout ratio: https://www.idea.int/data-tools/data/voter-turnout
+
     /**
      * Active citizenship participation<br/>
      * People aged 16 years or over<br/><br/>
@@ -37,6 +43,7 @@ public interface GovRightsDAO {
      *
      * @return
      */
+    //TODO: Gender employment gap = male ratio - female ratio
     StringBuilder getEmploymentGap();
 
     /**

@@ -10,9 +10,6 @@ import java.util.Map;
 public class GovRightsDAOImpl implements GovRightsDAO {
     private static CommonDAO commonDAO = new CommonDAOImpl();
 
-    //TODO: download the table "Population with confidence in EU institutions by institution (source: DG COMM) (sdg_16_60)"
-    // https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&language=en&pcode=sdg_16_60&plugin=1
-
     public StringBuilder getActiveCitizenship() {
         String[] activities = {"AC43A"};
         return commonDAO.getActivePeopleRatio(activities);
@@ -30,8 +27,6 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         return DataFetcher.fetchData("ilc_pw03", params);
     }
 
-    //TODO: Gender employment gap = male ratio - female ratio
-    // <b>GREATER IS WORSE!</b>
     public StringBuilder getEmploymentGap() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("age", "Y20-64");
