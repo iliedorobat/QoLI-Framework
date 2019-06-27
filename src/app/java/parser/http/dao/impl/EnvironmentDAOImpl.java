@@ -8,14 +8,6 @@ import app.java.parser.http.dao.EnvironmentDAO;
 import java.util.Map;
 
 public class EnvironmentDAOImpl implements EnvironmentDAO {
-    public StringBuilder getNoiseRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("hhtyp", "TOTAL");
-        params.put("incgrp", "TOTAL");
-        params.put("unit", "PC");
-        return DataFetcher.fetchData("ilc_mddw01", params);
-    }
-
     public StringBuilder getPollutionRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("hhtyp", "TOTAL");
@@ -24,7 +16,14 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         return DataFetcher.fetchData("ilc_mddw02", params);
     }
 
-    //TODO: remove (in SocialActivity should be calculated overall life satisfaction)
+    public StringBuilder getNoiseRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("hhtyp", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("ilc_mddw01", params);
+    }
+
     public StringBuilder getHighSatisfactionRatio() {
         CommonDAO commonDAO = new CommonDAOImpl();
         return commonDAO.getSatisfactionRatio("HIGH", "LIVENVSAT");
@@ -32,9 +31,8 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
 
     public StringBuilder getWaterSupplyRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("nace_r2", "TOTAL");
         params.put("wat_proc", "POP_PWS");
         params.put("unit", "PC");
-        return DataFetcher.fetchData("env_watpop_r2", params);
+        return DataFetcher.fetchData("env_wat_pop", params);
     }
 }
