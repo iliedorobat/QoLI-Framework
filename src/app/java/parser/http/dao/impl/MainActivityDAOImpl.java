@@ -1,5 +1,6 @@
 package app.java.parser.http.dao.impl;
 
+import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.MainActivityDAO;
@@ -7,75 +8,102 @@ import app.java.parser.http.dao.MainActivityDAO;
 import java.util.Map;
 
 public class MainActivityDAOImpl implements MainActivityDAO {
-    //TODO: Income (wage) and benefits
-    //TODO: Health and safety at work (accidental injuries at work)
-
-    public StringBuilder getAvgPopulationJSON() {
+    public StringBuilder getEmploymentRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("unit", "THS");
-        return DataFetcher.fetchData("nama_10r_3popgdp", params);
-    }
-
-    //TODO: avg free hours per week (Work-life balance)
-    public StringBuilder getAvgWorkHoursJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "Y_GE15");
-        params.put("sex", "T");
-        params.put("unit", "HR");
-        return DataFetcher.fetchData("lfst_r_lfe2ehour", params);
-    }
-
-    public StringBuilder getActivePopulationJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "Y_GE15");
-        params.put("sex", "T");
-        params.put("unit", "THS");
-        return DataFetcher.fetchData("lfst_r_lfp2act", params);
-    }
-
-    public StringBuilder getEmploymentJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "Y_GE15");
-        params.put("sex", "T");
-        params.put("unit", "THS");
-        return DataFetcher.fetchData("lfst_r_lfe2emp", params);
-    }
-
-    public StringBuilder getEmploymentRateJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "Y_GE15");
+        params.put("age", "Y15-64");
+        params.put("isced11", "TOTAL");
         params.put("sex", "T");
         params.put("unit", "PC");
-        return DataFetcher.fetchData("lfst_r_lfe2emprt", params);
+        return DataFetcher.fetchData("lfsa_ergaed", params);
     }
 
-    //TODO: The long-term unemployment rate = the ratio of people who have been
-    // unemployed for at least a year to the total size of the labour force
-    // = getLongTermUnmployment / getActivePopulation * 100
-    public StringBuilder getLongTermUnemploymentJSON() {
+    public StringBuilder getTemporaryEmploymentRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("unit", "THS");
-        return DataFetcher.fetchData("lfst_r_lfu2ltu", params);
+        params.put("age", "Y15-64");
+        params.put("sex", "T");
+        params.put("unit", "PC_EMP");
+        params.put("worktime", "TEMP");
+        return DataFetcher.fetchData("lfsi_pt_a", params);
     }
 
-    public StringBuilder getUnemploymentRateJSON() {
+    public StringBuilder getInvoluntaryPartTimeRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "Y_GE15");
+        params.put("age", "Y15-64");
+        params.put("sex", "T");
+        params.put("unit", "PC_EMP");
+        return DataFetcher.fetchData("lfsa_eppgai", params);
+    }
+
+    public StringBuilder getOverQualifiedRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("age", "Y15-64");
+        params.put("isced11", "TOTAL");
+        params.put("mgstatus", "TOTAL");
         params.put("sex", "T");
         params.put("unit", "PC");
-        return DataFetcher.fetchData("lfst_r_lfu3rt", params);
+        return DataFetcher.fetchData("lfso_14loq", params);
     }
 
-    //TODO: GDP per capita = getGDP / getAvgPopulation
-    public StringBuilder getGdpJSON() {
+    public StringBuilder getAvgWorkHours(String activity) {
+        String[] ACTIVITIES = {"nace_r1", "nace_r2"};
+
+        try {
+            Errors.throwNewError(ACTIVITIES, activity, "classification of economic activities");
+
+            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            params.put(activity, "TOTAL");
+            params.put("age", "Y15-64");
+            params.put("sex", "T");
+            params.put("unit", "HR");
+            params.put("worktime", "FT");
+            params.put("wstatus", "EMP");
+            return DataFetcher.fetchData("lfst_r_lfe2ehour", params);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public StringBuilder getNightsRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("unit", "EUR_HAB");
-        return DataFetcher.fetchData("nama_10r_2gdp", params);
+        params.put("age", "Y15-64");
+        params.put("frequenc", "USU");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        params.put("wstatus", "EMP");
+        return DataFetcher.fetchData("lfsa_ewpnig", params);
+    }
+
+    public StringBuilder getUnemploymentRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("age", "Y15-74");
+        params.put("isced11", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("lfsa_urgaed", params);
+    }
+
+    public StringBuilder getLongTermUnemploymentRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("age", "Y15-74");
+        params.put("indic_em", "LTU");
+        params.put("sex", "T");
+        params.put("unit", "PC_ACT");
+        return DataFetcher.fetchData("une_ltu_a", params);
+    }
+
+    public StringBuilder getActivePopulation() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("age", "Y15-64");
+        params.put("indic_em", "ACT");
+        params.put("sex", "T");
+        params.put("unit", "PC_POP");
+        return DataFetcher.fetchData("lfsi_emp_a", params);
     }
 
     public StringBuilder getPurchasingRateJSON() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("unit", "PPS_HAB_EU");
+        params.put("na_item", "B1GQ");
+        params.put("unit", "CP_PPS_HAB");
         return DataFetcher.fetchData("nama_10r_2gdp", params);
     }
 }
