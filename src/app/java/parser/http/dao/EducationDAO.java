@@ -2,7 +2,30 @@ package app.java.parser.http.dao;
 
 public interface EducationDAO {
     /**
-     * Participation in early childhood education<br/><br/>
+     * Population (from 15 to 64 years) by educational attainment level<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: edat_lfs_9903<br/>
+     * Years: 2004-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => edat_lfse_04
+     *
+     * @param eduLevel The list of education levels:<br/>
+     *              - ED5-8: Tertiary education (levels 5-8);<br/>
+     *              - ED3_4: Upper secondary and post-secondary non-tertiary education (levels 3 and 4);<br/>
+     *              - ED0-2: Less than primary, primary and lower secondary education (levels 0-2).
+     *
+     * @return
+     */
+    StringBuilder getEducationRatio(String[] eduLevel);
+
+    //TODO: Average adult literacy scores:
+    // Programme for the International Assessment of Adult Competencies (PIAAC), OECD
+
+    /**
+     * Participation in early childhood education:<br/> pupils aged between
+     * 4 years old and the starting age of compulsory education<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
@@ -11,7 +34,75 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getEarlyEducationRatioJSON();
+    StringBuilder getEarlyEducationRatio();
+
+    /**
+     * Early leavers (from 18 to 24 years) from education and training<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: edat_lfse_14<br/>
+     * Years: 2000-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getLeaversRatioJSON();
+
+    /**
+     * Young people (from 18 to 24 years) neither in employment nor in education and training<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: NEET rates (%)<br/>
+     * Dataset: edat_lfse_20<br/>
+     * Years: 2000-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => edat_lfse_22<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getExcludedRatio();
+
+    /**
+     * Participation rate in education and training (last 4 weeks - from 25 to 64 years)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: trng_lfs_02<br/>
+     * Years: 2004-2018
+     *
+     * @return
+     */
+    StringBuilder getTrainingRatio();
+
+    /**
+     * Individuals (aged 16-74) who have basic or above basic overall digital skills by sex<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: tepsr_sp410<br/>
+     * Years: 2015-2017
+     *
+     * @return
+     */
+    StringBuilder getDigitalSkillsRatio();
+
+    /**
+     * Proportion of people (from 25 to 64 years) who don't know any foreign language (self-reported)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: edat_aes_l22<br/>
+     * Years: 2007; 2011; 2016
+     *
+     * @return
+     */
+    StringBuilder getZeroForeignLangRatioJSON();
 
     /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
@@ -23,7 +114,7 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getPupilsRatioJSON2012();
+    StringBuilder getPupilsRatio2012();
 
     /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
@@ -35,94 +126,5 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getPupilsRatioJSON2013();
-
-    /**
-     * Ratio of the proportion of students (ISCED 5-6) over the proportion of the population<br/><br/>
-     *
-     * Aggregation: NUTS 2 regions<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: educ_regind<br/>
-     * Years: 1998-2012
-     *
-     * @return
-     */
-    StringBuilder getStudentsRatioJSON2012();
-
-    /**
-     * Ratio of the proportion of tertiary students over the proportion of the population<br/><br/>
-     *
-     * Aggregation: NUTS2 regions<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: educ_uoe_enrt05<br/>
-     * Years: 2013-2017
-     *
-     * @return
-     */
-    StringBuilder getStudentsRatioJSON2013();
-
-    /**
-     * Young people (from 18 to 24 years) neither in employment nor in education and training<br/><br/>
-     *
-     * Aggregation: NUTS 2 regions<br/>
-     * Data type: NEET rates (%)<br/>
-     * Dataset: edat_lfse_22<br/>
-     * Years: 2000-2018
-     *
-     * @return
-     */
-    StringBuilder getExcludedRatioJSON();
-
-    /**
-     * Early leavers (from 18 to 24 years) from education and training<br/><br/>
-     *
-     * Aggregation: NUTS 2 regions<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: edat_lfse_16<br/>
-     * Years: 2000-2018
-     *
-     * @return
-     */
-    StringBuilder getLeaversRatioJSON();
-
-    /**
-     * Population aged 25-64 by the attended education level<br/><br/>
-     *
-     * Aggregation: NUTS 2 regions<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: edat_lfse_04<br/>
-     * Years: 2000-2018
-     *
-     * @param education The education level according to ISCED 2011:<br/>
-     *              - ED5-8: Tertiary education (levels 5-8);<br/>
-     *              - ED3_4: Upper secondary and post-secondary non-tertiary education (levels 3 and 4);<br/>
-     *              - ED3-8: Upper secondary, post-secondary non-tertiary and tertiary education (levels 3-8);<br/>
-     *              - ED0-2: Less than primary, primary and lower secondary education (levels 0-2).
-     * @return
-     */
-    StringBuilder getEducationRatioJSON(String education);
-
-    /**
-     * Participation rate in education and training (last 4 weeks - from 25 to 64 years)<br/><br/>
-     *
-     * Aggregation: countries<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: trng_lfs_02<br/>
-     * Years: 2004-2018
-     *
-     * @return
-     */
-    StringBuilder getTrainingRatioJSON();
-
-    /**
-     * Proportion of people (from 25 to 64 years) who don't know any foreign language (self-reported)<br/><br/>
-     *
-     * Aggregation: countries<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: edat_aes_l22<br/>
-     * Years: 2007; 2011; 2016
-     *
-     * @return
-     */
-    StringBuilder getZeroForeignLangRatioJSON();
+    StringBuilder getPupilsRatio2013();
 }
