@@ -1,5 +1,8 @@
 package app.java.parser.http.dao;
 
+/**
+ * Education level
+ */
 public interface EducationDAO {
     /**
      * Population (from 15 to 64 years) by educational attainment level<br/><br/>
@@ -42,7 +45,7 @@ public interface EducationDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_14<br/>
-     * Years: 2000-2018<br/><br/>
+     * Years: 1992-2018<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
      *
