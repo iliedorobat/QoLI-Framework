@@ -99,11 +99,4 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         params.put("unit", "PC_POP");
         return DataFetcher.fetchData("lfsi_emp_a", params);
     }
-
-    public StringBuilder getPurchasingRateJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("na_item", "B1GQ");
-        params.put("unit", "CP_PPS_HAB");
-        return DataFetcher.fetchData("nama_10r_2gdp", params);
-    }
 }

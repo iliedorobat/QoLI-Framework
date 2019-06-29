@@ -145,18 +145,4 @@ public interface MainActivityDAO {
      * @return
      */
     StringBuilder getActivePopulation();
-
-    /**
-     * Purchasing power standard (PPS) per inhabitant<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: euro per capita (number)<br/>
-     * Dataset: nama_10_pc<br/>
-     * Years: 1975-2018
-     *
-     * Comments: NUTS 2 regions => nama_10r_2gdp
-     *
-     * @return
-     */
-    StringBuilder getPurchasingRateJSON();
 }
