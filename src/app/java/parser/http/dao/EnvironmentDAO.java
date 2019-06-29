@@ -1,12 +1,29 @@
 package app.java.parser.http.dao;
 
+/**
+ * Measurements for calculation of the quality of the environment
+ */
 public interface EnvironmentDAO {
+    /**
+     * Pollution, grime or other environmental problems - EU-SILC survey<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_mddw02<br/>
+     * Years: 2003-2018<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getPollutionRatio();
+
 //    /**
 //     * Exposure to air pollution by particulate matter (source: EEA) (sdg_11_50)
 //     *
 //     * @return
 //     */
-//    //TODO: download CSV table:
+//    //TODO: download the CSV table:
 //    StringBuilder getAirPollutionRatio();
 
     /**
@@ -24,38 +41,14 @@ public interface EnvironmentDAO {
     StringBuilder getNoiseRatio();
 
     /**
-     * Pollution, grime or other environmental problems - EU-SILC survey<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_mddw02<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getPollutionRatio();
-
-    /**
-     * Percentage of the population rating their environment satisfaction as high<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013
-     *
-     * @return
-     */
-    StringBuilder getHighSatisfactionRatio();
-
-    /**
      * Population connected to public water supply<br/><br/>
      *
-     * Aggregation: NUTS 2 regions <br/>
+     * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: env_watpop_r2<br/>
-     * Years: 2000-2013
+     * Dataset: env_wat_pop<br/>
+     * Years: 2000-2013<br/><br/>
+     *
+     * Comment: NUTS 2 regions => env_watpop_r2
      *
      * @return
      */

@@ -17,4 +17,19 @@ public class Errors {
                     "\nPlease choose one of the following ones: " + Arrays.toString(acceptedData) + ")");
         }
     }
+
+    /**
+     * Throw new Error if the input data is not found in acceptedData
+     *
+     * @param acceptedData The list of accepted input
+     * @param inputData The list of input data
+     * @param inputType The input type
+     * @throws new Error
+     */
+    public static void throwNewError(String[] acceptedData, String inputData[], String inputType) {
+        if (Arrays.asList(acceptedData).indexOf(inputData) == -1) {
+            throw new Error(Arrays.toString(inputData) + " is not one of the accepted " + inputType +
+                    "\nPlease choose one of the following ones: " + Arrays.toString(acceptedData) + ")");
+        }
+    }
 }
