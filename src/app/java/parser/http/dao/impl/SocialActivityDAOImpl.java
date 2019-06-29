@@ -2,14 +2,13 @@ package app.java.parser.http.dao.impl;
 
 import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
+import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
-import app.java.parser.http.dao.CommonDAO;
 import app.java.parser.http.dao.SocialActivityDAO;
 
 import java.util.Map;
 
 public class SocialActivityDAOImpl implements SocialActivityDAO {
-    private static CommonDAO commonDAO = new CommonDAOImpl();
     public static final String[] REASONS = {"FIN", "NNB"};
 
     public StringBuilder getSocialActivitiesRatio() {
@@ -33,7 +32,7 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
 //        params.put("acl00", "AC525");  // Sports events
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
-            CommonDAOImpl.addParams(params, reasons, "reason");
+            Common.addParams(params, reasons, "reason");
             params.put("sex", "T");
             params.put("unit", "PC");
             return DataFetcher.fetchData("ilc_scp05", params);
@@ -56,14 +55,14 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
 
     public StringBuilder getVoluntaryActivitiesRatio() {
         String[] activities = {"AC41A", "AC42A"};
-        return commonDAO.getActivePeopleRatio(activities);
+        return Common.getActivePeopleRatio(activities);
     }
 
     public StringBuilder getAskingRatio() {
-        return commonDAO.getSupportiveRatio("ilc_scp15");
+        return Common.getSupportiveRatio("ilc_scp15");
     }
 
     public StringBuilder getDiscussionRatio() {
-        return commonDAO.getSupportiveRatio("ilc_scp17");
+        return Common.getSupportiveRatio("ilc_scp17");
     }
 }

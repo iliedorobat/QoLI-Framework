@@ -1,13 +1,11 @@
-package app.java.parser.http.dao.impl;
+package app.java.parser.http;
 
 import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
-import app.java.parser.http.DataFetcher;
-import app.java.parser.http.dao.CommonDAO;
 
 import java.util.Map;
 
-public class CommonDAOImpl implements CommonDAO {
+public class Common {
     public static final String[] SATIS_LEVEL = {
             "HIGH",
             "MED",
@@ -37,7 +35,7 @@ public class CommonDAOImpl implements CommonDAO {
 
     /**
      * Add new parameters into the params list
-     * @param params The params list
+     * @param params The parameters list
      * @param values The list with values that should be added
      * @param propertyName The name of the added property
      */
@@ -47,7 +45,34 @@ public class CommonDAOImpl implements CommonDAO {
         }
     }
 
-    public StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
+    /**
+     * Percentage of the population rating their satisfaction as high, medium or low<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_pw05<br/>
+     * Years: 2013
+     *
+     * @param satisLevel The satisfaction level:<br/>
+     *                   - HIGH: high;<br/>
+     *                   - MED: medium;<br/>
+     *                   - LOW: low;
+     *
+     * @param wellBeing The type of calculated well being:<br/>
+     *                  - ACCSAT: Satisfaction with accommodation;<br/>
+     *                  - COMSAT: Satisfaction with commuting time;<br/>
+     *                  - FINSAT: Satisfaction with financial situation;<br/>
+     *                  - GREENSAT: Satisfaction with recreational and green areas;<br/>
+     *                  - JOBSAT: Job satisfaction;<br/>
+     *                  - LIFESAT: Overall life satisfaction;<br/>
+     *                  - LIVENVSAT: Satisfaction with living environment;<br/>
+     *                  - MEANLIFE: Meaning of life;<br/>
+     *                  - RELSAT: Satisfaction with personal relationships;<br/>
+     *                  - TIMESAT: Satisfaction with time use;
+     *
+     * @return
+     */
+    public static StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
         try {
             Errors.throwNewError(SATIS_LEVEL, satisLevel, "satisfaction levels");
             Errors.throwNewError(WEL_BEING_TYPE, wellBeing, "well being levels");
@@ -66,7 +91,23 @@ public class CommonDAOImpl implements CommonDAO {
         }
     }
 
-    public StringBuilder getActivePeopleRatio(String[] activity) {
+    /**
+     * Participation in formal or informal voluntary activities or active citizenship<br/>
+     * People aged 16 years or over<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_scp19<br/>
+     * Years: 2015
+     *
+     * @param activity The activity types:<br/>
+     *                 - AC41A: Formal volontary activities;<br/>
+     *                 - AC42A: Informal volontary activities;<br/>
+     *                 - AC43A: Active citizenship.
+     *
+     * @return
+     */
+    public static StringBuilder getActivePeopleRatio(String[] activity) {
         try {
             Errors.throwNewError(ACTIVITIES_TYPE, activity, "type of people activities");
 
@@ -87,7 +128,21 @@ public class CommonDAOImpl implements CommonDAO {
         }
     }
 
-    public StringBuilder getSupportiveRatio(String apiName) {
+    /**
+     * Get the ratio of persons (16 years or over) who have someone to ask for help
+     * or to discuss personal matters<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_scp15 / ilc_scp17<br/>
+     * Years: 2013; 2015
+     *
+     * @param apiName The API name:<br/>
+     *                - ilc_scp15;<br/>
+     *                - ilc_scp17.
+     * @return
+     */
+    public static StringBuilder getSupportiveRatio(String apiName) {
         try {
             Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
 

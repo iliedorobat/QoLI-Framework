@@ -1,18 +1,16 @@
 package app.java.parser.http.dao.impl;
 
 import app.java.parser.ParserUtils;
+import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
-import app.java.parser.http.dao.CommonDAO;
 import app.java.parser.http.dao.GovRightsDAO;
 
 import java.util.Map;
 
 public class GovRightsDAOImpl implements GovRightsDAO {
-    private static CommonDAO commonDAO = new CommonDAOImpl();
-
     public StringBuilder getActiveCitizenship() {
         String[] activities = {"AC43A"};
-        return commonDAO.getActivePeopleRatio(activities);
+        return Common.getActivePeopleRatio(activities);
     }
 
     public StringBuilder getPopulationTrustRatio() {

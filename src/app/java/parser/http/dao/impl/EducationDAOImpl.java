@@ -2,6 +2,7 @@ package app.java.parser.http.dao.impl;
 
 import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
+import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.EducationDAO;
 
@@ -19,7 +20,7 @@ public class EducationDAOImpl implements EducationDAO {
             Errors.throwNewError(EDUCATION_LEVEL, eduLevel, "education levels");
 
             Map<String, String> params = ParserUtils.getGeneralHttpParams();
-            CommonDAOImpl.addParams(params, eduLevel, "isced11");
+            Common.addParams(params, eduLevel, "isced11");
             params.put("age", "Y15-64");
             params.put("sex", "T");
             params.put("unit", "PC");

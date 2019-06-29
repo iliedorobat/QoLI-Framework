@@ -1,6 +1,6 @@
 package app.java.parser.http.dao.impl;
 
-import app.java.parser.http.dao.CommonDAO;
+import app.java.parser.http.Common;
 import app.java.parser.http.dao.OverallExperienceDAO;
 
 public class OverallExperienceDAOImpl implements OverallExperienceDAO {
@@ -15,7 +15,6 @@ public class OverallExperienceDAOImpl implements OverallExperienceDAO {
      * @return
      */
     public StringBuilder getHighSatisfactionRatio() {
-        CommonDAO commonDAO = new CommonDAOImpl();
-        return commonDAO.getSatisfactionRatio("HIGH", "LIFESAT");
+        return Common.getSatisfactionRatio("HIGH", "LIFESAT");
     }
 }
