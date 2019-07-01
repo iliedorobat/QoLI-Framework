@@ -67,29 +67,14 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return DataFetcher.fetchData("ilc_mdes09", params);
     }
 
-    /**
-     * Share of people living in under-occupied / overcrowding dwellings
-     *
-     * @param dataset The under-occupied / overcrowding dataset:<br/>
-     *                - ilc_lvho50a: under-occupied;<br/>
-     *                - ilc_lvho05a: overcrowding.
-     * @return
-     */
-    private StringBuilder getOccupiedRatio(String dataset) {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
-        params.put("age", "TOTAL");
-        params.put("incgrp", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
-        return DataFetcher.fetchData(dataset, params);
-    }
-
     public StringBuilder getUnderOccupiedRatio() {
-        return getOccupiedRatio("ilc_lvho50a");
+        Map<String, String> params = ParserUtils.getWorkOccupationParams();
+        return DataFetcher.fetchData("ilc_lvho50a", params);
     }
 
     public StringBuilder getOverOccupiedRatio() {
-        return getOccupiedRatio("ilc_lvho05a");
+        Map<String, String> params = ParserUtils.getWorkOccupationParams();
+        return DataFetcher.fetchData("ilc_lvho05a", params);
     }
 
     public StringBuilder getDwellingIssuesRatio() {
