@@ -87,7 +87,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return DataFetcher.fetchData("ilc_mdho01", params);
     }
 
-    public StringBuilder getLackOfBathsRatioJSON() {
+    public StringBuilder getLackOfBathsRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("age", "TOTAL");
         params.put("hhtyp", "TOTAL");
@@ -105,7 +105,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return DataFetcher.fetchData("ilc_lvhl11", params);
     }
 
-    public StringBuilder getPublicWaterRatioJSON() {
+    public StringBuilder getPublicWaterRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("wat_proc", "POP_PWS");
         params.put("unit", "PC");

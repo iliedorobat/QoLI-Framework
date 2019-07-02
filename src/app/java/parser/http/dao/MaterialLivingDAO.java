@@ -161,7 +161,7 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getLackOfBathsRatioJSON();
+    StringBuilder getLackOfBathsRatio();
 
     /**
      * People living in households with very low work intensity<br/><br/>
@@ -189,5 +189,5 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getPublicWaterRatioJSON();
+    StringBuilder getPublicWaterRatio();
 }
