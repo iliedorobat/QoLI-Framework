@@ -99,4 +99,13 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         params.put("unit", "PC_POP");
         return DataFetcher.fetchData("lfsi_emp_a", params);
     }
+
+    public StringBuilder getResearchers() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("prof_pos", "TOTAL");
+        params.put("sectperf", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "FTE");
+        return DataFetcher.fetchData("rd_p_persocc", params);
+    }
 }

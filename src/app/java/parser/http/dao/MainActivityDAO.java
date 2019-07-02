@@ -36,7 +36,8 @@ public interface MainActivityDAO {
     StringBuilder getTemporaryEmploymentRatio();
 
     /**
-     * Involuntary part-time employment<br/><br/>
+     * Involuntary part-time employment<br/>
+     * Proxy for underemployment (working less than one is able and willing)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage of the total part-time employment aged 15-64 years (%)<br/>
@@ -145,4 +146,19 @@ public interface MainActivityDAO {
      * @return
      */
     StringBuilder getActivePopulation();
+
+    /**
+     * Total researchers full-time equivalent<br/>
+     * FTE (Full-time equivalent) corresponds to one year's work by one person
+     * (for example, a person who devotes 40 % of his time to R&D is counted as 0.4 FTE<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: count (number)<br/>
+     * Dataset: rd_p_persocc<br/>
+     * Years: 1980-2017
+     *
+     * @return
+     */
+    //TODO: researchers ratio = researchers / active population * 10.000
+    StringBuilder getResearchers();
 }
