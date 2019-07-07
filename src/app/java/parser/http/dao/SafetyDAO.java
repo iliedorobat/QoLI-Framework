@@ -15,10 +15,11 @@ public interface SafetyDAO {
      *
      * @return
      */
+    //TODO: PPS instead of percentage of GDP ???
     StringBuilder getPensionRatio();
 
     /**
-     * Expenditure on social protection
+     * Expenditure on social protection<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage of GDP (%)<br/>
