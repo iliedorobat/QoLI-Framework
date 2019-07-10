@@ -1,4 +1,4 @@
-package app.java.commons;
+package app.java.parser.http;
 
 public class JSONUtils {
     public static final String[] EU28_MEMBERS = {
