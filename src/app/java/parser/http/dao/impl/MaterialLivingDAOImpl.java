@@ -7,10 +7,11 @@ import app.java.parser.http.dao.MaterialLivingDAO;
 import java.util.Map;
 
 public class MaterialLivingDAOImpl implements MaterialLivingDAO {
-    public StringBuilder getPurchasingRate() {
+    public StringBuilder getPurchasingRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("na_item", "B1GQ");
-        params.put("unit", "CP_PPS_HAB");
+//        params.put("unit", "CP_PPS_HAB");
+        params.put("unit", "PC_EU28_HAB_MEUR_CP");
         return DataFetcher.fetchData("nama_10r_2gdp", params);
     }
 
