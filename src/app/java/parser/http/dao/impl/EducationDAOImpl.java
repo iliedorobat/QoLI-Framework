@@ -9,15 +9,15 @@ import app.java.parser.http.dao.EducationDAO;
 import java.util.Map;
 
 public class EducationDAOImpl implements EducationDAO {
-    public static final String[] EDUCATION_LEVEL = {
-            "ED5-8",
-            "ED3_4",
-            "ED0-2"
+    public static final String[] EDUCATION_LEVELS = {
+            "ED5-8", // Tertiary education (levels 5-8)
+            "ED3_4", // Upper secondary and post-secondary non-tertiary education (levels 3 and 4)
+            "ED0-2"  // Less than primary, primary and lower secondary education (levels 0-2)
     };
 
     public StringBuilder getEducationRatio(String[] eduLevel) {
         try {
-            Errors.throwNewError(EDUCATION_LEVEL, eduLevel, "education levels");
+            Errors.throwNewError(EDUCATION_LEVELS, eduLevel, "education levels");
 
             Map<String, String> params = ParserUtils.getGeneralHttpParams();
             Common.addParams(params, eduLevel, "isced11");
