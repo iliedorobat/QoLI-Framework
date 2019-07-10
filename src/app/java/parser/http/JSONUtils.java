@@ -2,6 +2,7 @@ package app.java.commons;
 
 public class JSONUtils {
     public static final String[] EU28_MEMBERS = {
+            "EU28", // European Union - 28 countries
             "AT", // Austria
             "BE", // Belgium
             "BG", // Bulgaria

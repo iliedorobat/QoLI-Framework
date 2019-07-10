@@ -1,11 +1,10 @@
 package app.java.parser.http.dao;
 
-import java.util.Map;
-
+/**
+ * Health status<br/>
+ * Data information: https://ec.europa.eu/eurostat/web/health/data
+ */
 public interface HealthDAO {
-    //TODO: https://ec.europa.eu/eurostat/web/health/data
-    //TODO: alcohol consumption
-
     /**
      * Life expectancy at birth (the number of remaining years a person
      * is expected to live at birth or at a certain age)<br/><br/>
@@ -121,6 +120,20 @@ public interface HealthDAO {
     StringBuilder getSmokersRatio();
 
     /**
+     * Daily alcohol consumption<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: hlth_ehis_al1b<br/>
+     * Years: 2014<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getAlcoholicRatio();
+
+    /**
      * Daily consumption of fruit and vegetables<br/><br/>
      *
      * Aggregation: country<br/>
@@ -176,11 +189,6 @@ public interface HealthDAO {
     //TODO: accidents / employee * 1000
     StringBuilder getWorkAccidents();
 
-
-
-
-
-
     /**
      * Health personnel: Medical doctors; Nurses and midwives; Dentists; Pharmacists; Physiotherapists<br/><br/>
      *
@@ -191,5 +199,6 @@ public interface HealthDAO {
      *
      * @return
      */
+    //
     StringBuilder getHealthPersonnelJSON();
 }

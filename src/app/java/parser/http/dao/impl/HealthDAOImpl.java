@@ -1,6 +1,8 @@
 package app.java.parser.http.dao.impl;
 
+import app.java.parser.http.JSONUtils;
 import app.java.parser.ParserUtils;
+import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.HealthDAO;
 
@@ -66,13 +68,31 @@ public class HealthDAOImpl implements HealthDAO {
 
     public StringBuilder getSmokersRatio() {
         Map<String, String> params = ParserUtils.getConsumptionParams();
+        params.put("age", "TOTAL");
+        params.put("quantile", "TOTAL");
+        params.put("sex", "T");
         params.put("smoking", "TOTAL");
+        params.put("unit", "PC");
         return DataFetcher.fetchData("hlth_ehis_sk3i", params);
+    }
+
+    public StringBuilder getAlcoholicRatio() {
+        Map<String, String> params = ParserUtils.getConsumptionParams();
+        params.put("age", "TOTAL");
+        params.put("c_birth", "NAT");
+        params.put("frequenc", "DAY");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return DataFetcher.fetchData("hlth_ehis_al1b", params);
     }
 
     public StringBuilder getFVRatio() {
         Map<String, String> params = ParserUtils.getConsumptionParams();
+        params.put("age", "TOTAL");
         params.put("n_portion", "GE5");
+        params.put("quantile", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
         return DataFetcher.fetchData("hlth_ehis_fv3i", params);
     }
 
@@ -101,15 +121,10 @@ public class HealthDAOImpl implements HealthDAO {
         return DataFetcher.fetchData("hsw_mi07", params);
     }
 
-
-
-
-
-
-    //TODO:
     public StringBuilder getHealthPersonnelJSON() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("unit", "P_HTHAB");
+        Common.addParams(params, JSONUtils.EU28_MEMBERS, "geo");
         return DataFetcher.fetchData("hlth_rs_prsrg", params);
     }
 }
