@@ -4,9 +4,6 @@ package app.java.parser.http.dao;
  * Professional life
  */
 public interface MainActivityDAO {
-    //TODO: Unemployment rate by educational level ???
-    //TODO: Health and safety at work (accidental injuries at work) ???
-
     /**
      * Employment rates<br/><br/>
      *
