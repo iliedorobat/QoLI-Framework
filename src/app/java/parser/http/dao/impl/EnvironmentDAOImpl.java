@@ -15,6 +15,12 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         return DataFetcher.fetchData("ilc_mddw02", params);
     }
 
+    public StringBuilder getAirPollutionRatio() {
+        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        params.put("airpol", "PM10");
+        return DataFetcher.fetchData("sdg_11_50", params);
+    }
+
     public StringBuilder getNoiseRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("hhtyp", "TOTAL");
