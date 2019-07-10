@@ -7,20 +7,18 @@ import app.java.parser.http.dao.SafetyDAO;
 import java.util.Map;
 
 public class SafetyDAOImpl implements SafetyDAO {
-    //TODO: change to "Purshing Power Standard (PPS) per inhabitant"???
     public StringBuilder getPensionRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("spdepb", "TOTAL");
         params.put("spdepm", "TOTAL");
-        params.put("unit", "PC_GDP");
+        params.put("unit", "PPS_HAB");
         return DataFetcher.fetchData("spr_exp_pens", params);
     }
 
-    //TODO: change to "Purshing Power Standard (PPS) per inhabitant"???
     public StringBuilder getSocialProtectionRatio() {
         Map<String, String> params = ParserUtils.getGeneralHttpParams();
         params.put("spdeps", "SPBENEFNOREROUTE");
-        params.put("unit", "PC_GDP");
+        params.put("unit", "PPS_HAB");
         return DataFetcher.fetchData("spr_exp_sum", params);
     }
 

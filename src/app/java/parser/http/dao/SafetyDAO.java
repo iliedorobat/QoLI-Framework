@@ -5,24 +5,23 @@ package app.java.parser.http.dao;
  */
 public interface SafetyDAO {
     /**
-     * Expenditure on pensions<br/><br/>
+     * Pensions expenditure level<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percentage of GDP (%)<br/>
+     * Data type: PPS per inhabitant (number)<br/>
      * Dataset: spr_exp_pens<br/>
      * Table: tps00103<br/>
      * Years: 1990-2016
      *
      * @return
      */
-    //TODO: PPS instead of percentage of GDP ???
     StringBuilder getPensionRatio();
 
     /**
-     * Expenditure on social protection<br/><br/>
+     * Social protection expenditure level<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percentage of GDP (%)<br/>
+     * Data type: PPS per inhabitant (number)<br/>
      * Dataset: spr_exp_sum<br/>
      * Table: tps00098<br/>
      * Years: 1990-2016
