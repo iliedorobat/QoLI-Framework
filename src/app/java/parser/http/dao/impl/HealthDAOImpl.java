@@ -3,7 +3,6 @@ package app.java.parser.http.dao.impl;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.DataUtils;
-import app.java.parser.http.JSONUtils;
 import app.java.parser.http.dao.HealthDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
@@ -123,7 +122,7 @@ public class HealthDAOImpl implements HealthDAO {
     public StringBuilder getHealthPersonnelJSON() {
         MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("unit", "P_HTHAB");
-        ParserUtils.addParams(params, JSONUtils.EU28_MEMBERS, "geo");
+        ParserUtils.addParams(params, DataUtils.EU28_MEMBERS, "geo");
         return DataFetcher.fetchData("hlth_rs_prsrg", params);
     }
 }
