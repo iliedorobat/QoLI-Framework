@@ -4,12 +4,11 @@ import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.MainActivityDAO;
-
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
 
 public class MainActivityDAOImpl implements MainActivityDAO {
     public StringBuilder getEmploymentRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("isced11", "TOTAL");
         params.put("sex", "T");
@@ -18,7 +17,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getTemporaryEmploymentRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("sex", "T");
         params.put("unit", "PC_EMP");
@@ -27,7 +26,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getInvoluntaryPartTimeRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("sex", "T");
         params.put("unit", "PC_EMP");
@@ -35,7 +34,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getOverQualifiedRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("isced11", "TOTAL");
         params.put("mgstatus", "TOTAL");
@@ -50,7 +49,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         try {
             Errors.throwNewError(ACTIVITIES, activity, "classification of economic activities");
 
-            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
             params.put(activity, "TOTAL");
             params.put("age", "Y15-64");
             params.put("sex", "T");
@@ -64,7 +63,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getNightsRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("frequenc", "USU");
         params.put("sex", "T");
@@ -74,7 +73,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getUnemploymentRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-74");
         params.put("isced11", "TOTAL");
         params.put("sex", "T");
@@ -83,7 +82,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getLongTermUnemploymentRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-74");
         params.put("indic_em", "LTU");
         params.put("sex", "T");
@@ -92,11 +91,20 @@ public class MainActivityDAOImpl implements MainActivityDAO {
     }
 
     public StringBuilder getActivePopulation() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("indic_em", "ACT");
         params.put("sex", "T");
         params.put("unit", "PC_POP");
         return DataFetcher.fetchData("lfsi_emp_a", params);
+    }
+
+    public StringBuilder getResearchers() {
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        params.put("prof_pos", "TOTAL");
+        params.put("sectperf", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "FTE");
+        return DataFetcher.fetchData("rd_p_persocc", params);
     }
 }

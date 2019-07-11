@@ -18,13 +18,19 @@ public interface EnvironmentDAO {
      */
     StringBuilder getPollutionRatio();
 
-//    /**
-//     * Exposure to air pollution by particulate matter (source: EEA) (sdg_11_50)
-//     *
-//     * @return
-//     */
-//    //TODO: download the CSV table:
-//    StringBuilder getAirPollutionRatio();
+    /**
+     * Exposure to air pollution (Particulates < 10µm)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: sdg_11_50<br/>
+     * Years: 2000-2017<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getAirPollutionRatio();
 
     /**
      * Noise from neighbours or from the street - EU-SILC survey<br/><br/>

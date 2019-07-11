@@ -1,5 +1,6 @@
 package app.java.parser.http;
 
+import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -14,10 +15,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.charset.Charset;
-import java.util.Map;
 
 public class DataFetcher {
-    public static StringBuilder fetchData(String dataset, Map<String, String> params) {
+    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> params) {
         StringBuilder result = new StringBuilder();
         URI uri = URIGenerator.generateURI(dataset, params);
 

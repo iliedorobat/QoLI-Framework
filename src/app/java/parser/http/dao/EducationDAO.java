@@ -23,9 +23,6 @@ public interface EducationDAO {
      */
     StringBuilder getEducationRatio(String[] eduLevel);
 
-    //TODO: Average adult literacy scores:
-    // Programme for the International Assessment of Adult Competencies (PIAAC), OECD
-
     /**
      * Participation in early childhood education:<br/> pupils aged between
      * 4 years old and the starting age of compulsory education<br/><br/>

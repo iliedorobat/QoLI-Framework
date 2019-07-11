@@ -2,17 +2,16 @@ package app.java.parser.http.dao.impl;
 
 import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
-import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
+import app.java.parser.http.DataUtils;
 import app.java.parser.http.dao.SocialActivityDAO;
-
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
 
 public class SocialActivityDAOImpl implements SocialActivityDAO {
     public static final String[] REASONS = {"FIN", "NNB"};
 
     public StringBuilder getSocialActivitiesRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("deg_urb", "TOTAL");
         params.put("frequenc", "GE1");
         params.put("hhtyp", "TOTAL");
@@ -25,14 +24,14 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
         try {
             Errors.throwNewError(REASONS, reasons, "reason");
 
-            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
 //        params.put("acl00", "AC521");  // Cinema
 //        params.put("acl00", "AC522A"); // Live performances
 //        params.put("acl00", "AC523H"); // Cultural sites
 //        params.put("acl00", "AC525");  // Sports events
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
-            Common.addParams(params, reasons, "reason");
+            ParserUtils.addParams(params, reasons, "reason");
             params.put("sex", "T");
             params.put("unit", "PC");
             return DataFetcher.fetchData("ilc_scp05", params);
@@ -42,7 +41,7 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
     }
 
     public StringBuilder getGettingTogetherRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y_GE16");
         params.put("frequenc", "WEEK");
         params.put("isced11", "TOTAL");
@@ -55,14 +54,14 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
 
     public StringBuilder getVoluntaryActivitiesRatio() {
         String[] activities = {"AC41A", "AC42A"};
-        return Common.getActivePeopleRatio(activities);
+        return DataUtils.getActivePeopleRatio(activities);
     }
 
     public StringBuilder getAskingRatio() {
-        return Common.getSupportiveRatio("ilc_scp15");
+        return DataUtils.getSupportiveRatio("ilc_scp15");
     }
 
     public StringBuilder getDiscussionRatio() {
-        return Common.getSupportiveRatio("ilc_scp17");
+        return DataUtils.getSupportiveRatio("ilc_scp17");
     }
 }

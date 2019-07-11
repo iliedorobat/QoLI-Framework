@@ -64,7 +64,8 @@ public interface SocialActivityDAO {
     StringBuilder getVoluntaryActivitiesRatio();
 
     /**
-     * Persons (16 years or over) who have someone to ask for help<br/><br/>
+     * Persons (16 years or over) who have someone to ask for help
+     * (moral, material or financial) from family, relatives, friends or neighbours<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>

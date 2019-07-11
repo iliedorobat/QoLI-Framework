@@ -5,7 +5,8 @@ package app.java.parser.http.dao;
  * of the governing, law making and equality of opportunity
  */
 public interface GovRightsDAO {
-    //TODO: add the (local) Parliamentary voter turnout ratio: https://www.idea.int/data-tools/data/voter-turnout
+    //TODO: this dataset should be manually downloaded
+    // add the (local) Parliamentary voter turnout ratio: https://www.idea.int/data-tools/data/voter-turnout
 
     /**
      * Active citizenship participation<br/>
@@ -27,6 +28,7 @@ public interface GovRightsDAO {
      * Data type: rating (number 0-10)<br/>
      * Dataset: ilc_pw03<br/>
      * Years: 2013
+     *
      * @return
      */
     StringBuilder getPopulationTrustRatio();

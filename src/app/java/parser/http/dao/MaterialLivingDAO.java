@@ -5,10 +5,10 @@ package app.java.parser.http.dao;
  */
 public interface MaterialLivingDAO {
     /**
-     * Purchasing power standard (PPS) per inhabitant<br/><br/>
+     * Purchasing Power Standard (PPS)<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: euro per capita (number)<br/>
+     * Data type: percent of the EU28 countries (number)<br/>
      * Dataset: nama_10_pc<br/>
      * Years: 1975-2018
      *
@@ -16,7 +16,7 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getPurchasingRate();
+    StringBuilder getPurchasingRatio();
 
     /**
      * Median income<br/><br/>
@@ -27,6 +27,8 @@ public interface MaterialLivingDAO {
      * Years: 1995-2018<br/><br/>
      *
      * Comments: NUTS 2 regions => nama_10r_2hhinc
+     *
+     * @deprecated use the getPurchasingRatio
      *
      * @return
      */
@@ -161,7 +163,7 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getLackOfBathsRatioJSON();
+    StringBuilder getLackOfBathsRatio();
 
     /**
      * People living in households with very low work intensity<br/><br/>
@@ -189,5 +191,5 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getPublicWaterRatioJSON();
+    StringBuilder getPublicWaterRatio();
 }
