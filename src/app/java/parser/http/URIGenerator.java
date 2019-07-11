@@ -1,11 +1,16 @@
 package app.java.parser.http;
 
+import app.java.commons.MapUtils;
+import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 public class URIGenerator {
@@ -24,7 +29,7 @@ public class URIGenerator {
      * @param params The parameters used in search path
      * @return
      */
-    public static URI generateURI(String dataset, Map<String, String> params) {
+    public static URI generateURI(String dataset, MultiValuedMap<String, String> params) {
         String path = URI_SERVICE
                 + URI_SEPARATOR + URI_SERVICE_VERSION
                 + URI_SEPARATOR + URI_FORMAT
@@ -36,15 +41,26 @@ public class URIGenerator {
                 .setHost(URI_HOST_NAME)
                 .setPath(path);
 
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            try {
-                uriBuilder.addParameter(
-                        URLEncoder.encode(entry.getKey(), ENCODING_SCHEME),
-                        URLEncoder.encode(entry.getValue(), ENCODING_SCHEME)
-                );
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                return null;
+        ArrayList<String> keysList = MapUtils.getUniqueKeys(params);
+        Map<String, Collection<String>> map = params.asMap();
+
+        for (int i = 0; i < keysList.size(); i++) {
+            String key = keysList.get(i);
+            Collection<String> values = map.get(key);
+            Iterator iterator = values.iterator();
+
+            while (iterator.hasNext()) {
+                String value = (String) iterator.next();
+
+                try {
+                    uriBuilder.addParameter(
+                            URLEncoder.encode(key, ENCODING_SCHEME),
+                            URLEncoder.encode(value, ENCODING_SCHEME)
+                    );
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
         }
 

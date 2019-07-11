@@ -1,6 +1,7 @@
 package app.java.commons;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Errors {
     /**
@@ -27,9 +28,14 @@ public class Errors {
      * @throws new Error
      */
     public static void throwNewError(String[] acceptedData, String inputData[], String inputType) {
-        if (Arrays.asList(acceptedData).indexOf(inputData) == -1) {
-            throw new Error(Arrays.toString(inputData) + " is not one of the accepted " + inputType +
-                    "\nPlease choose one of the following ones: " + Arrays.toString(acceptedData) + ")");
+        List acceptedList = Arrays.asList(acceptedData);
+
+        for (int i = 0; i < inputData.length; i++) {
+            if (acceptedList.indexOf(inputData[i]) == -1) {
+                throw new Error("one of the input data (" + Arrays.toString(inputData) + ") " +
+                        "is not one of the accepted " + inputType +
+                        "\nPlease choose one of the following ones: " + Arrays.toString(acceptedData) + ")");
+            }
         }
     }
 }

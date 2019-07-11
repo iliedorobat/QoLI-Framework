@@ -3,12 +3,11 @@ package app.java.parser.http.dao.impl;
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
 import app.java.parser.http.dao.SafetyDAO;
-
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
 
 public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getPensionRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("spdepb", "TOTAL");
         params.put("spdepm", "TOTAL");
         params.put("unit", "PPS_HAB");
@@ -16,14 +15,14 @@ public class SafetyDAOImpl implements SafetyDAO {
     }
 
     public StringBuilder getSocialProtectionRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("spdeps", "SPBENEFNOREROUTE");
         params.put("unit", "PPS_HAB");
         return DataFetcher.fetchData("spr_exp_sum", params);
     }
 
     public StringBuilder getUnexpectedRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("unit", "PC");
@@ -31,7 +30,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     }
 
     public StringBuilder getUnpaidRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("unit", "PC");
@@ -39,7 +38,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     }
 
     public StringBuilder getOffences() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("iccs", "ICCS02011");  // Assault
         params.put("iccs", "ICCS020221"); // Kidnapping
         params.put("iccs", "ICCS0301");   // Sexual violence
@@ -52,7 +51,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     }
 
     public StringBuilder getCrimeRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("unit", "PC");

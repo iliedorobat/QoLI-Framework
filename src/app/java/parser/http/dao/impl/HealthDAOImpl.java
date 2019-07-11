@@ -1,16 +1,15 @@
 package app.java.parser.http.dao.impl;
 
-import app.java.parser.http.JSONUtils;
 import app.java.parser.ParserUtils;
-import app.java.parser.http.Common;
 import app.java.parser.http.DataFetcher;
+import app.java.parser.http.DataUtils;
+import app.java.parser.http.JSONUtils;
 import app.java.parser.http.dao.HealthDAO;
-
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
 
 public class HealthDAOImpl implements HealthDAO {
     public StringBuilder getLifeExpectancy() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         // Life expectancy for people less than 1 year
         params.put("age", "Y_LT1");
         params.put("sex", "T");
@@ -19,7 +18,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getHealthyLifeYears() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         // Healthy life years in absolute value at birth
         params.put("indic_he", "F_0_DFLE");
         params.put("indic_he", "M_0_DFLE");
@@ -27,7 +26,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getHealthyLifeRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y_GE16");
         params.put("levels", "VG_G");
         params.put("quantile", "TOTAL");
@@ -37,7 +36,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getLongHealthIssueRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y_GE16");
         params.put("quantile", "TOTAL");
         params.put("sex", "T");
@@ -46,17 +45,17 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getUnmetMedicalStatus() {
-        Map<String, String> params = ParserUtils.getUnmetHealthParams();
+        MultiValuedMap<String, String> params = DataUtils.getUnmetHealthParams();
         return DataFetcher.fetchData("hlth_silc_08", params);
     }
 
     public StringBuilder getUnmetDentalStatus() {
-        Map<String, String> params = ParserUtils.getUnmetHealthParams();
+        MultiValuedMap<String, String> params = DataUtils.getUnmetHealthParams();
         return DataFetcher.fetchData("hlth_silc_09", params);
     }
 
     public StringBuilder getBodyMassIndex() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("bmi", "BMI_GE25"); // Overweight
         params.put("bmi", "BMI_GE30"); // Obese
@@ -67,7 +66,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getSmokersRatio() {
-        Map<String, String> params = ParserUtils.getConsumptionParams();
+        MultiValuedMap<String, String> params = DataUtils.getConsumptionParams();
         params.put("age", "TOTAL");
         params.put("quantile", "TOTAL");
         params.put("sex", "T");
@@ -77,7 +76,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getAlcoholicRatio() {
-        Map<String, String> params = ParserUtils.getConsumptionParams();
+        MultiValuedMap<String, String> params = DataUtils.getConsumptionParams();
         params.put("age", "TOTAL");
         params.put("c_birth", "NAT");
         params.put("frequenc", "DAY");
@@ -87,7 +86,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getFVRatio() {
-        Map<String, String> params = ParserUtils.getConsumptionParams();
+        MultiValuedMap<String, String> params = DataUtils.getConsumptionParams();
         params.put("age", "TOTAL");
         params.put("n_portion", "GE5");
         params.put("quantile", "TOTAL");
@@ -97,7 +96,7 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getPhysicalActivities() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("isced11", "TOTAL");
         params.put("physact", "MV_AERO_MSC");
@@ -107,14 +106,14 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getHospitalBeds() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("facility", "HBEDT");
         params.put("unit", "P_HTHAB");
         return DataFetcher.fetchData("hlth_rs_bds", params);
     }
 
     public StringBuilder getWorkAccidents() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("injury", "TOTAL");
         params.put("severity", "D_GE4");
         params.put("unit", "NR");
@@ -122,9 +121,9 @@ public class HealthDAOImpl implements HealthDAO {
     }
 
     public StringBuilder getHealthPersonnelJSON() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("unit", "P_HTHAB");
-        Common.addParams(params, JSONUtils.EU28_MEMBERS, "geo");
+        ParserUtils.addParams(params, JSONUtils.EU28_MEMBERS, "geo");
         return DataFetcher.fetchData("hlth_rs_prsrg", params);
     }
 }

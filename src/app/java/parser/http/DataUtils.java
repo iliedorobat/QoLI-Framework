@@ -2,10 +2,9 @@ package app.java.parser.http;
 
 import app.java.commons.Errors;
 import app.java.parser.ParserUtils;
+import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.Map;
-
-public class Common {
+public class DataUtils {
     public static final String[] SATIS_LEVEL = {
             "HIGH",
             "MED",
@@ -34,15 +33,46 @@ public class Common {
     };
 
     /**
-     * Add new parameters into the params list
-     * @param params The parameters list
-     * @param values The list with values that should be added
-     * @param propertyName The name of the added property
+     * Get general parameters for consumption dataset (smokers; fruits and vegetables)
+     *
+     * @return
      */
-    public static void addParams(Map<String, String> params, String[] values, String propertyName) {
-        for (int i = 0; i < values.length; i++) {
-            params.put(propertyName, values[i]);
-        }
+    public static MultiValuedMap<String, String> getConsumptionParams() {
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        params.put("age", "TOTAL");
+        params.put("quantile", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return params;
+    }
+
+    /**
+     * Get general parameters for self-reported unmet needs for medical/dental examination
+     *
+     * @return
+     */
+    public static MultiValuedMap<String, String> getUnmetHealthParams() {
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        params.put("age", "Y_GE16");
+        params.put("quantile", "TOTAL");
+        params.put("reason", "TOOEFW");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return params;
+    }
+
+    /**
+     * Get general parameters for work occupation (under/over occupied ratio)
+     *
+     * @return
+     */
+    public static MultiValuedMap<String, String> getWorkOccupationParams() {
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        params.put("age", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return params;
     }
 
     /**
@@ -77,7 +107,7 @@ public class Common {
             Errors.throwNewError(SATIS_LEVEL, satisLevel, "satisfaction levels");
             Errors.throwNewError(WEL_BEING_TYPE, wellBeing, "well being levels");
 
-            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("indic_wb", wellBeing);
             params.put("isced11", "TOTAL");
@@ -100,23 +130,19 @@ public class Common {
      * Dataset: ilc_scp19<br/>
      * Years: 2015
      *
-     * @param activity The activity types:<br/>
+     * @param activities The activity types:<br/>
      *                 - AC41A: Formal volontary activities;<br/>
      *                 - AC42A: Informal volontary activities;<br/>
      *                 - AC43A: Active citizenship.
      *
      * @return
      */
-    public static StringBuilder getActivePeopleRatio(String[] activity) {
+    public static StringBuilder getActivePeopleRatio(String[] activities) {
         try {
-            Errors.throwNewError(ACTIVITIES_TYPE, activity, "type of people activities");
-
-            //TODO: check
-            //TODO: use addParams
-            Map<String, String> params = ParserUtils.getGeneralHttpParams();
-            for (int i = 0; i < activity.length; i++) {
-                params.put("acl00", activity[i]);
-            }
+            Errors.throwNewError(ACTIVITIES_TYPE, activities, "type of people activities");
+            
+            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+            ParserUtils.addParams(params, activities, "acl00");
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
             params.put("sex", "T");
@@ -146,7 +172,7 @@ public class Common {
         try {
             Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
 
-            Map<String, String> params = ParserUtils.getGeneralHttpParams();
+            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
             params.put("set", "T");

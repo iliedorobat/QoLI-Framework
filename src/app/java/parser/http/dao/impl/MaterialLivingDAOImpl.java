@@ -2,13 +2,13 @@ package app.java.parser.http.dao.impl;
 
 import app.java.parser.ParserUtils;
 import app.java.parser.http.DataFetcher;
+import app.java.parser.http.DataUtils;
 import app.java.parser.http.dao.MaterialLivingDAO;
-
-import java.util.Map;
+import org.apache.commons.collections4.MultiValuedMap;
 
 public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     public StringBuilder getPurchasingRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("na_item", "B1GQ");
 //        params.put("unit", "CP_PPS_HAB");
         params.put("unit", "PC_EU28_HAB_MEUR_CP");
@@ -16,7 +16,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getMedianIncome() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("indic_il", "MED_E");
         params.put("sex", "T");
@@ -25,7 +25,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getIncomeQuintileRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("age", "Y_GE65");
         params.put("age", "Y_LT65");
@@ -35,14 +35,14 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getPovertyRiskRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("indic_il", "LI_R_MD60");
         return DataFetcher.fetchData("ilc_li03", params);
     }
 
     public StringBuilder getHighIncomeRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("indic_il", "LI_GE130MD");
         params.put("sex", "T");
@@ -51,7 +51,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getMaterialDeprivationRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("sex", "T");
         params.put("unit", "PC");
@@ -59,7 +59,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getEndMeetInabilityRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("subjnmon", "EM_GD"); // households making ends meet with great difficulty
@@ -69,17 +69,17 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getUnderOccupiedRatio() {
-        Map<String, String> params = ParserUtils.getWorkOccupationParams();
+        MultiValuedMap<String, String> params = DataUtils.getWorkOccupationParams();
         return DataFetcher.fetchData("ilc_lvho50a", params);
     }
 
     public StringBuilder getOverOccupiedRatio() {
-        Map<String, String> params = ParserUtils.getWorkOccupationParams();
+        MultiValuedMap<String, String> params = DataUtils.getWorkOccupationParams();
         return DataFetcher.fetchData("ilc_lvho05a", params);
     }
 
     public StringBuilder getDwellingIssuesRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
@@ -89,7 +89,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getLackOfBathsRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
@@ -99,7 +99,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getWorkIntensityRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("age", "Y_LT60");
         params.put("sex", "T");
         params.put("unit", "PC_Y_LT60");
@@ -107,7 +107,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     }
 
     public StringBuilder getPublicWaterRatio() {
-        Map<String, String> params = ParserUtils.getGeneralHttpParams();
+        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
         params.put("wat_proc", "POP_PWS");
         params.put("unit", "PC");
         return DataFetcher.fetchData("env_wat_pop", params);
