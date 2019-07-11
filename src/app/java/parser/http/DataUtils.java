@@ -140,7 +140,7 @@ public class DataUtils {
     public static StringBuilder getActivePeopleRatio(String[] activities) {
         try {
             Errors.throwNewError(ACTIVITIES_TYPE, activities, "type of people activities");
-            
+
             MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
             ParserUtils.addParams(params, activities, "acl00");
             params.put("age", "Y_GE16");
