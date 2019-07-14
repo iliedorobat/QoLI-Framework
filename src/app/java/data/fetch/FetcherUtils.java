@@ -1,10 +1,11 @@
-package app.java.parser.http;
+package app.java.data.fetch;
 
+import app.java.commons.Constants;
 import app.java.commons.Errors;
-import app.java.parser.ParserUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-public class DataUtils {
+public class FetcherUtils {
     public static final String[] EU28_MEMBERS = {
             "EU28", // European Union - 28 countries
             "AT", // Austria
@@ -78,12 +79,41 @@ public class DataUtils {
     }
 
     /**
+     * Add new parameters into the params list
+     * @param params The parameters list
+     * @param values The list with values that should be added
+     * @param propertyName The name of the added property
+     */
+    public static void addParams(MultiValuedMap<String, String> params, String[] values, String propertyName) {
+        for (int i = 0; i < values.length; i++) {
+            params.put(propertyName, values[i]);
+        }
+    }
+
+    /**
+     * Get main parameters
+     *
+     * @return
+     */
+    public static MultiValuedMap<String, String> getMainHttpParams() {
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
+        params.put("lang", "en");
+
+        if (Constants.IS_TESTING) {
+            params.put("geo", "RO");
+            params.put("time", "2015");
+        }
+
+        return params;
+    }
+
+    /**
      * Get general parameters for consumption dataset (smokers; fruits and vegetables)
      *
      * @return
      */
     public static MultiValuedMap<String, String> getConsumptionParams() {
-        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        MultiValuedMap<String, String> params = getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("quantile", "TOTAL");
         params.put("sex", "T");
@@ -97,7 +127,7 @@ public class DataUtils {
      * @return
      */
     public static MultiValuedMap<String, String> getUnmetHealthParams() {
-        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        MultiValuedMap<String, String> params = getMainHttpParams();
         params.put("age", "Y_GE16");
         params.put("quantile", "TOTAL");
         params.put("reason", "TOOEFW");
@@ -112,7 +142,7 @@ public class DataUtils {
      * @return
      */
     public static MultiValuedMap<String, String> getWorkOccupationParams() {
-        MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+        MultiValuedMap<String, String> params = getMainHttpParams();
         params.put("age", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("sex", "T");
@@ -152,7 +182,7 @@ public class DataUtils {
             Errors.throwNewError(SATIS_LEVEL, satisLevel, "satisfaction levels");
             Errors.throwNewError(WEL_BEING_TYPE, wellBeing, "well being levels");
 
-            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+            MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("indic_wb", wellBeing);
             params.put("isced11", "TOTAL");
@@ -160,7 +190,7 @@ public class DataUtils {
             params.put("sex", "T");
             params.put("unit", "PC");
 
-            return DataFetcher.fetchData("ilc_pw05", params);
+            return Fetcher.fetchData("ilc_pw05", params);
         } catch (Exception e) {
             return null;
         }
@@ -186,14 +216,14 @@ public class DataUtils {
         try {
             Errors.throwNewError(ACTIVITIES_TYPE, activities, "type of people activities");
 
-            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
-            ParserUtils.addParams(params, activities, "acl00");
+            MultiValuedMap<String, String> params = getMainHttpParams();
+            addParams(params, activities, "acl00");
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
             params.put("sex", "T");
             params.put("unit", "PC");
 
-            return DataFetcher.fetchData("ilc_scp19", params);
+            return Fetcher.fetchData("ilc_scp19", params);
         } catch (Exception e) {
             return null;
         }
@@ -217,12 +247,12 @@ public class DataUtils {
         try {
             Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
 
-            MultiValuedMap<String, String> params = ParserUtils.getMainHttpParams();
+            MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
             params.put("set", "T");
             params.put("unit", "PC");
-            return DataFetcher.fetchData(apiName, params);
+            return Fetcher.fetchData(apiName, params);
         } catch (Exception e) {
             return null;
         }

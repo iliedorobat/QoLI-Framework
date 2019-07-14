@@ -1,7 +1,7 @@
 package app.java;
 
-import app.java.parser.http.DataUtils;
-import app.java.parser.http.URIGenerator;
+import app.java.data.fetch.Fetcher;
+import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
@@ -21,13 +21,13 @@ public class Main {
         params.put("sex", "T");
         params.put("unit", "PC");
 
-        for (int i = 0; i < DataUtils.EU28_MEMBERS.length; i++) {
-            params.put("geo", DataUtils.EU28_MEMBERS[i]);
+        for (int i = 0; i < FetcherUtils.EU28_MEMBERS.length; i++) {
+            params.put("geo", FetcherUtils.EU28_MEMBERS[i]);
         }
 
-        URI uri = URIGenerator.generateURI("educ_uoe_enra10", params);
+        URI uri = Fetcher.generateURI("educ_uoe_enra10", params);
         System.out.println(uri.toString());
 
-        System.out.println(DataUtils.getGeoParams());
+        System.out.println(FetcherUtils.getGeoParams());
     }
 }

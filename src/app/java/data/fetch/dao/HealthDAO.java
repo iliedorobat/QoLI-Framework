@@ -1,4 +1,4 @@
-package app.java.parser.http.dao;
+package app.java.data.fetch.dao;
 
 /**
  * Health status<br/>

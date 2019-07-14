@@ -1,7 +1,7 @@
-package app.java.parser.http.dao.impl;
+package app.java.data.fetch.dao.impl;
 
-import app.java.parser.http.DataUtils;
-import app.java.parser.http.dao.OverallExperienceDAO;
+import app.java.data.fetch.dao.OverallExperienceDAO;
+import app.java.data.fetch.FetcherUtils;
 
 public class OverallExperienceDAOImpl implements OverallExperienceDAO {
     /**
@@ -15,6 +15,6 @@ public class OverallExperienceDAOImpl implements OverallExperienceDAO {
      * @return
      */
     public StringBuilder getHighSatisfactionRatio() {
-        return DataUtils.getSatisfactionRatio("HIGH", "LIFESAT");
+        return FetcherUtils.getSatisfactionRatio("HIGH", "LIFESAT");
     }
 }

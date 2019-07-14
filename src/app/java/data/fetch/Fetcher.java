@@ -1,19 +1,31 @@
-package app.java.parser.http;
+package app.java.data.fetch;
 
 import app.java.commons.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
-public class URIGenerator {
+public class Fetcher {
     private static final String ENCODING_SCHEME = "UTF-8";
     private static final String URI_PROTOCOL_NAME = "http";
     private static final String URI_HOST_NAME = "ec.europa.eu/eurostat/wdds";
@@ -22,6 +34,35 @@ public class URIGenerator {
     private static final String URI_FORMAT = "json";
     private static final String URI_LANGUAGE = "en";
     private static final String URI_SEPARATOR = "/";
+
+    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> params) {
+        StringBuilder result = new StringBuilder();
+        URI uri = generateURI(dataset, params);
+
+        CloseableHttpClient client = HttpClients.createDefault();
+        HttpClientContext context = HttpClientContext.create();
+        HttpGet request = new HttpGet(uri);
+
+        try {
+            HttpResponse response = client.execute(request, context);
+            StatusLine statusLine = response.getStatusLine();
+            HttpEntity entity = response.getEntity();
+            ContentType contentType = ContentType.getOrDefault(entity);
+            Charset charset = contentType.getCharset();
+
+            InputStreamReader is = new InputStreamReader(entity.getContent(), charset);
+            BufferedReader br = new BufferedReader(is);
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                result.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
     /**
      * Generate the URI used to extract data
