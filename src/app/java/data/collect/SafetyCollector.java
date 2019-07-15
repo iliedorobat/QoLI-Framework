@@ -1,6 +1,7 @@
 package app.java.data.collect;
 
-import app.java.commons.Constants;
+import app.java.commons.constants.FileNameConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.TextUtils;
 import app.java.data.fetch.dao.SafetyDAO;
 import app.java.data.fetch.dao.impl.SafetyDAOImpl;
@@ -16,11 +17,11 @@ public class SafetyCollector {
                 offences = safetyDAO.getOffences(),
                 crimeRatio = safetyDAO.getCrimeRatio();
 
-        TextUtils.writeToJSONFile(pensionRatio, Constants.SAFETY_PATH + "pensionRatio");
-        TextUtils.writeToJSONFile(socialProtectionRatio, Constants.SAFETY_PATH + "socialProtectionRatio");
-        TextUtils.writeToJSONFile(unexpectedRatio, Constants.SAFETY_PATH + "unexpectedRatio");
-        TextUtils.writeToJSONFile(unpaidRatio, Constants.SAFETY_PATH + "unpaidRatio");
-        TextUtils.writeToJSONFile(offences, Constants.SAFETY_PATH + "offences");
-        TextUtils.writeToJSONFile(crimeRatio, Constants.SAFETY_PATH + "crimeRatio");
+        TextUtils.writeToJSONFile(pensionRatio, FilePathConst.SAFETY_PATH + FileNameConst.PENSION_RATIO);
+        TextUtils.writeToJSONFile(socialProtectionRatio, FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO);
+        TextUtils.writeToJSONFile(unexpectedRatio, FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO);
+        TextUtils.writeToJSONFile(unpaidRatio, FilePathConst.SAFETY_PATH + FileNameConst.UNPAID_RATIO);
+        TextUtils.writeToJSONFile(offences, FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES);
+        TextUtils.writeToJSONFile(crimeRatio, FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO);
     }
 }

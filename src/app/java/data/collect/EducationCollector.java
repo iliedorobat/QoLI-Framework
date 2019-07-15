@@ -1,6 +1,7 @@
 package app.java.data.collect;
 
-import app.java.commons.Constants;
+import app.java.commons.constants.FileNameConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.TextUtils;
 import app.java.data.fetch.dao.EducationDAO;
 import app.java.data.fetch.dao.impl.EducationDAOImpl;
@@ -20,14 +21,14 @@ public class EducationCollector {
                 pupilsRatio2012 = educationDAO.getPupilsRatio2012(),
                 pupilsRatio2013 = educationDAO.getPupilsRatio2013();
 
-        TextUtils.writeToJSONFile(educationRatio, Constants.EDUCATION_PATH + "educationRatio");
-        TextUtils.writeToJSONFile(earlyEducationRatio, Constants.EDUCATION_PATH + "earlyEducationRatio");
-        TextUtils.writeToJSONFile(leaversRatio, Constants.EDUCATION_PATH + "leaversRatio");
-        TextUtils.writeToJSONFile(excludedRatio, Constants.EDUCATION_PATH + "excludedRatio");
-        TextUtils.writeToJSONFile(trainingRatio, Constants.EDUCATION_PATH + "trainingRatio");
-        TextUtils.writeToJSONFile(digitalSkillsRatio, Constants.EDUCATION_PATH + "digitalSkillsRatio");
-        TextUtils.writeToJSONFile(zeroForeignLangRatio, Constants.EDUCATION_PATH + "zeroForeignLangRatio");
-        TextUtils.writeToJSONFile(pupilsRatio2012, Constants.EDUCATION_PATH + "pupilsRatio2012");
-        TextUtils.writeToJSONFile(pupilsRatio2013, Constants.EDUCATION_PATH + "pupilsRatio2013");
+        TextUtils.writeToJSONFile(educationRatio, FilePathConst.EDUCATION_PATH + FileNameConst.EDU_RATIO);
+        TextUtils.writeToJSONFile(earlyEducationRatio, FilePathConst.EDUCATION_PATH + FileNameConst.EARLY_EDU_RATIO);
+        TextUtils.writeToJSONFile(leaversRatio, FilePathConst.EDUCATION_PATH + FileNameConst.LEAVERS_RATIO);
+        TextUtils.writeToJSONFile(excludedRatio, FilePathConst.EDUCATION_PATH + FileNameConst.EXCLUDED_RATIO);
+        TextUtils.writeToJSONFile(trainingRatio, FilePathConst.EDUCATION_PATH + FileNameConst.TRAINING_RATIO);
+        TextUtils.writeToJSONFile(digitalSkillsRatio, FilePathConst.EDUCATION_PATH + FileNameConst.DIGITAL_SKILLS_RATIO);
+        TextUtils.writeToJSONFile(zeroForeignLangRatio, FilePathConst.EDUCATION_PATH + FileNameConst.ZERO_FOREIGN_LANG_RATIO);
+        TextUtils.writeToJSONFile(pupilsRatio2012, FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2012);
+        TextUtils.writeToJSONFile(pupilsRatio2013, FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2013);
     }
 }

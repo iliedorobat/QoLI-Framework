@@ -1,6 +1,7 @@
 package app.java.data.collect;
 
-import app.java.commons.Constants;
+import app.java.commons.constants.FileNameConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.TextUtils;
 import app.java.data.fetch.dao.EnvironmentDAO;
 import app.java.data.fetch.dao.impl.EnvironmentDAOImpl;
@@ -14,9 +15,9 @@ public class EnvironmentCollector {
                 noisePollutionRatio = environmentDAO.getNoisePollutionRatio(),
                 waterSupplyRatio = environmentDAO.getWaterSupplyRatio();
 
-        TextUtils.writeToJSONFile(pollutionRatio, Constants.ENVIRONMENT_PATH + "pollutionRatio");
-        TextUtils.writeToJSONFile(airPollutionRatio, Constants.ENVIRONMENT_PATH + "airPollutionRatio");
-        TextUtils.writeToJSONFile(noisePollutionRatio, Constants.ENVIRONMENT_PATH + "noisePollutionRatio");
-        TextUtils.writeToJSONFile(waterSupplyRatio, Constants.ENVIRONMENT_PATH + "waterSupplyRatio");
+        TextUtils.writeToJSONFile(pollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.POLLUTION_RATIO);
+        TextUtils.writeToJSONFile(airPollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO);
+        TextUtils.writeToJSONFile(noisePollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.NOISE_POLLUTION_RATIO);
+        TextUtils.writeToJSONFile(waterSupplyRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO);
     }
 }

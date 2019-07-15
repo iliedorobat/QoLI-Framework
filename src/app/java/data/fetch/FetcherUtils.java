@@ -1,6 +1,6 @@
 package app.java.data.fetch;
 
-import app.java.commons.Constants;
+import app.java.commons.constants.Constants;
 import app.java.commons.Errors;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
