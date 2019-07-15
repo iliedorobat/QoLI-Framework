@@ -12,6 +12,6 @@ public class OverallExperienceCollector {
     public static void dataCollector() {
         StringBuilder highSatisfactionRatio = overallExperienceDAO.getHighSatisfactionRatio();
 
-        TextUtils.writeToJSONFile(highSatisfactionRatio, FilePathConst.OVERAL_EXPERIENCE_PATH + FileNameConst.HIGH_SATISFACTION_RATIO);
+        TextUtils.writeToJSONFile(highSatisfactionRatio, FilePathConst.OVERALL_EXPERIENCE_PATH + FileNameConst.HIGH_SATISFACTION_RATIO);
     }
 }
