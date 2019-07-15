@@ -20,7 +20,7 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         return Fetcher.fetchData("sdg_11_50", params);
     }
 
-    public StringBuilder getNoiseRatio() {
+    public StringBuilder getNoisePollutionRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");

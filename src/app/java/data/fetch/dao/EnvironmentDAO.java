@@ -44,7 +44,7 @@ public interface EnvironmentDAO {
      *
      * @return
      */
-    StringBuilder getNoiseRatio();
+    StringBuilder getNoisePollutionRatio();
 
     /**
      * Population connected to public water supply<br/><br/>

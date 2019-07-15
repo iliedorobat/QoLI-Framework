@@ -1,12 +1,20 @@
 package app.java.data.fetch.dao.impl;
 
-import app.java.commons.Errors;
 import app.java.data.fetch.Fetcher;
 import app.java.data.fetch.FetcherUtils;
 import app.java.data.fetch.dao.MainActivityDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class MainActivityDAOImpl implements MainActivityDAO {
+    public static final String[] WORK_ACTIVITIES = {
+            "nace_r1", // "lfsa_ewhuna" dataset
+            "nace_r2"  // "lfsa_ewhun2" dataset
+    };
+    public static final String[] WORK_DATASET = {
+            "lfsa_ewhuna", // 1983-2008
+            "lfsa_ewhun2"  // 2008-2018
+    };
+
     public StringBuilder getEmploymentRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y15-64");
@@ -43,23 +51,12 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         return Fetcher.fetchData("lfso_14loq", params);
     }
 
-    public StringBuilder getAvgWorkHours(String activity) {
-        String[] ACTIVITIES = {"nace_r1", "nace_r2"};
+    public StringBuilder getAvgWorkHours2007() {
+        return FetcherUtils.getAvgWorkHours(WORK_DATASET[0]);
+    }
 
-        try {
-            Errors.throwNewError(ACTIVITIES, activity, "classification of economic activities");
-
-            MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-            params.put(activity, "TOTAL");
-            params.put("age", "Y15-64");
-            params.put("sex", "T");
-            params.put("unit", "HR");
-            params.put("worktime", "FT");
-            params.put("wstatus", "EMP");
-            return Fetcher.fetchData("lfst_r_lfe2ehour", params);
-        } catch (Exception e) {
-            return null;
-        }
+    public StringBuilder getAvgWorkHours2008() {
+        return FetcherUtils.getAvgWorkHours(WORK_DATASET[1]);
     }
 
     public StringBuilder getNightsRatio() {

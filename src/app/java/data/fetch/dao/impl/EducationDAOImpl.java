@@ -36,7 +36,7 @@ public class EducationDAOImpl implements EducationDAO {
         return Fetcher.fetchData("educ_uoe_enra10", params);
     }
 
-    public StringBuilder getLeaversRatioJSON() {
+    public StringBuilder getLeaversRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y18-24");
         params.put("sex", "T");
@@ -72,7 +72,7 @@ public class EducationDAOImpl implements EducationDAO {
         return Fetcher.fetchData("tepsr_sp410", params);
     }
 
-    public StringBuilder getZeroForeignLangRatioJSON() {
+    public StringBuilder getZeroForeignLangRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y25-64");
         params.put("n_lang", "0");

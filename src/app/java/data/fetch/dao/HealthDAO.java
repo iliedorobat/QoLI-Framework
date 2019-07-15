@@ -200,5 +200,5 @@ public interface HealthDAO {
      * @return
      */
     //
-    StringBuilder getHealthPersonnelJSON();
+    StringBuilder getHealthPersonnel();
 }

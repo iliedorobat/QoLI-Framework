@@ -118,7 +118,7 @@ public class HealthDAOImpl implements HealthDAO {
         return Fetcher.fetchData("hsw_mi07", params);
     }
 
-    public StringBuilder getHealthPersonnelJSON() {
+    public StringBuilder getHealthPersonnel() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("unit", "P_HTHAB");
         FetcherUtils.addParams(params, FetcherUtils.EU28_MEMBERS, "geo");

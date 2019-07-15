@@ -50,7 +50,7 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getLeaversRatioJSON();
+    StringBuilder getLeaversRatio();
 
     /**
      * Young people (from 18 to 24 years) neither in employment nor in education and training<br/><br/>
@@ -102,7 +102,7 @@ public interface EducationDAO {
      *
      * @return
      */
-    StringBuilder getZeroForeignLangRatioJSON();
+    StringBuilder getZeroForeignLangRatio();
 
     /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>

@@ -67,21 +67,36 @@ public interface MainActivityDAO {
      *
      * Aggregation: country<br/>
      * Data type: hours (number)<br/>
-     * Dataset: lfsa_ewhuna | lfsa_ewhun2<br/>
-     * Years: 1983-2018<br/><br/>
+     * Dataset: lfsa_ewhuna<br/>
+     * Years: 1983-2008<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
-     * @param activity The classification of economic activities<br/>
-     *                 - NACE_R1: for years between 1983-2008;<br/>
-     *                 - NACE_R2: for years between 2008-2018.
+     * @return
+     */
+    //TODO: avg free hours per week (Work-life balance)
+    StringBuilder getAvgWorkHours2007();
+
+
+    /**
+     * Average number of usual weekly hours of work in main job
+     * worked by full-time employed persons aged 15 years or over<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: hours (number)<br/>
+     * Dataset: lfsa_ewhun2<br/>
+     * Years: 2008-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
     //TODO: avg free hours per week (Work-life balance)
-    StringBuilder getAvgWorkHours(String activity);
+    StringBuilder getAvgWorkHours2008();
 
     /**
      * Employed persons working at nights<br/><br/>

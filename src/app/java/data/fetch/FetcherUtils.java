@@ -2,6 +2,7 @@ package app.java.data.fetch;
 
 import app.java.commons.Constants;
 import app.java.commons.Errors;
+import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
@@ -253,6 +254,52 @@ public class FetcherUtils {
             params.put("set", "T");
             params.put("unit", "PC");
             return Fetcher.fetchData(apiName, params);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Average number of usual weekly hours of work in main job
+     * worked by full-time employed persons aged 15 years or over<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: hours (number)<br/>
+     * Dataset: lfsa_ewhuna | lfsa_ewhun2<br/>
+     * Years: 1983-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @param dataset The dataset name<br/>
+     *                 - lfsa_ewhuna: for years between 1983-2008;<br/>
+     *                 - lfsa_ewhun2: for years between 2008-2018.
+     *
+     * @return
+     */
+    public static StringBuilder getAvgWorkHours(String dataset) {
+        try {
+            Errors.throwNewError(
+                    MainActivityDAOImpl.WORK_ACTIVITIES,
+                    dataset,
+                    "dataset name"
+            );
+
+            String activity = "";
+            if (dataset.equals(MainActivityDAOImpl.WORK_DATASET[0]))
+                activity = MainActivityDAOImpl.WORK_ACTIVITIES[0];
+            if (dataset.equals(MainActivityDAOImpl.WORK_DATASET[1]))
+                activity = MainActivityDAOImpl.WORK_ACTIVITIES[1];
+
+            MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+            params.put(activity, "TOTAL");
+            params.put("age", "Y15-64");
+            params.put("sex", "T");
+            params.put("unit", "HR");
+            params.put("worktime", "FT");
+            params.put("wstatus", "EMP");
+            return Fetcher.fetchData(dataset, params);
         } catch (Exception e) {
             return null;
         }
