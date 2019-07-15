@@ -12,6 +12,7 @@ public class Constants {
     public static final String SAFETY_PATH = DATASET_PATH + "safety/";
     public static final String GOV_RIGHTS_PATH = DATASET_PATH + "gov-rights/";
     public static final String ENVIRONMENT_PATH = DATASET_PATH + "environment/";
+    public static final String OVERAL_EXPERIENCE_PATH = DATASET_PATH + "overall-experience/";
 
     public static final boolean PRINT_DIMENSION_IFO = false;
     public static final boolean PRINT_DIMENSION_VALUE = true;

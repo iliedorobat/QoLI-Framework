@@ -3,6 +3,8 @@ package app.java.commons;
 import java.io.*;
 
 public class TextUtils {
+    public static final String JSON_EXTENSION = ".json";
+
     /**
      * Read data from the disc
      * @param path <b>String</b>: the path to the desired file
@@ -60,5 +62,15 @@ public class TextUtils {
                         + "\n" + e.getMessage());
             }
         }
+    }
+
+    /**
+     * Write JSON data to disc
+     * @param sb <b>StringBuilder</b>: the data to be written
+     * @param path <b>String</b>: the path to the desired file
+     */
+    //TODO: check if it is a valid JSON
+    public static void writeToJSONFile(StringBuilder sb, String path) {
+        writeToFile(sb, path + JSON_EXTENSION);
     }
 }
