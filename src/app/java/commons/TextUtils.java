@@ -51,7 +51,7 @@ public class TextUtils {
         try {
             fw = new FileWriter(path);
             fw.write(sb.toString());
-            System.out.println("The records have been written.");
+            System.out.println("The records has been written.");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

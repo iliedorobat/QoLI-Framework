@@ -1,7 +1,7 @@
 package app.java.commons.constants;
 
 public class Constants {
-    public static final boolean IS_TESTING = true;
+    public static final boolean IS_TESTING = false;
 
     public static final boolean PRINT_DIMENSION_IFO = false;
     public static final boolean PRINT_DIMENSION_VALUE = true;

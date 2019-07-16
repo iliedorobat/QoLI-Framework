@@ -103,6 +103,14 @@ public class FetcherUtils {
         if (Constants.IS_TESTING) {
             params.put("geo", "RO");
             params.put("time", "2015");
+        } else {
+            for (int i = 0; i < EU28_MEMBERS.length; i++) {
+                params.put("geo", EU28_MEMBERS[i]);
+            }
+
+            for (int i = Constants.MIN_YEAR; i <= Constants.MAX_YEAR; i++) {
+                params.put("time", String.valueOf(i));
+            }
         }
 
         return params;
@@ -281,7 +289,7 @@ public class FetcherUtils {
     public static StringBuilder getAvgWorkHours(String dataset) {
         try {
             Errors.throwNewError(
-                    MainActivityDAOImpl.WORK_ACTIVITIES,
+                    MainActivityDAOImpl.WORK_DATASET,
                     dataset,
                     "dataset name"
             );
