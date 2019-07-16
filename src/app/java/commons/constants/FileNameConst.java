@@ -23,6 +23,7 @@ public class FileNameConst {
     public static final String EMPLOYMENT_GAP = "employmentGap";
     public static final String GENDER_PAY_GAP = "genderPayGap";
     public static final String POPULATION_TRUST_RATIO = "populationTrustRatio";
+    public static final String VOTER_TURNOUT = "voterTurnout";
 
     // Health
     public static final String ALCOHOLIC_RATIO = "alcoholicRatio";
@@ -63,6 +64,7 @@ public class FileNameConst {
     public static final String MEDIAN_INCOME = "medianIncome";
     public static final String OVER_OCCUPIED_RATIO = "overOccupiedRatio";
     public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
+    //TODO: check the difference between PUBLIC_WATER_RATIO and WATER_SUPPLY_RATIO
     public static final String PUBLIC_WATER_RATIO = "publicWaterRatio";
     public static final String PURCHASING_RATIO = "purchasingRatio";
     public static final String UNDER_OCCUPIED_RATIO = "underOccupiedRatio";
