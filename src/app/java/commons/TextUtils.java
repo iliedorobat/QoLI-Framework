@@ -51,7 +51,7 @@ public class TextUtils {
         try {
             fw = new FileWriter(path);
             fw.write(sb.toString());
-            System.out.println("The file " + path + " has been written on the disk.");
+            System.out.println("The file " + path + " was written on the disk.");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
