@@ -2,7 +2,7 @@ package app.java.commons;
 
 import java.io.*;
 
-public class TextUtils {
+public class FileUtils {
     public static final String JSON_EXTENSION = ".json";
 
     /**
