@@ -1,43 +1,14 @@
 package app.java.data.fetch;
 
-import app.java.commons.constants.Constants;
 import app.java.commons.Errors;
+import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class FetcherUtils {
-    public static final String[] EU28_MEMBERS = {
-            "EU28", // European Union - 28 countries
-            "AT", // Austria
-            "BE", // Belgium
-            "BG", // Bulgaria
-            "CY", // Cyprus
-            "CZ", // Czechia
-            "DE", // Germany (until 1990 former territory of the FRG)
-            "DK", // Denmark
-            "EE", // Estonia
-            "EL", // Greece
-            "ES", // Spain
-            "FI", // Finland
-            "FR", // France
-            "HR", // Croatia
-            "HU", // Hungary
-            "IE", // Ireland
-            "IT", // Italy
-            "LT", // Lithuania
-            "LU", // Luxembourg
-            "LV", // Latvia
-            "MT", // Malta
-            "NL", // Netherlands
-            "PL", // Poland
-            "PT", // Portugal
-            "RO", // Romania
-            "SE", // Sweden
-            "SI", // Slovenia
-            "SK", // Slovakia
-            "UK"  // United Kingdom
-    };
+    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
     public static final String[] SATIS_LEVEL = {
             "HIGH",
             "MED",
@@ -100,15 +71,12 @@ public class FetcherUtils {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
         params.put("lang", "en");
 
-        if (Constants.IS_TESTING) {
+        if (EnvConst.IS_TESTING) {
             params.put("geo", "RO");
             params.put("time", "2015");
         } else {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                params.put("geo", EU28_MEMBERS[i]);
-            }
-
-            for (int i = Constants.MIN_YEAR; i <= Constants.MAX_YEAR; i++) {
+            addParams(params, Constants.EU28_MEMBERS, "geo");
+            for (int i = EnvConst.MIN_YEAR; i <= EnvConst.MAX_YEAR; i++) {
                 params.put("time", String.valueOf(i));
             }
         }
