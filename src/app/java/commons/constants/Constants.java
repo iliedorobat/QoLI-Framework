@@ -10,4 +10,6 @@ public class Constants {
 
     public static final short MIN_YEAR = 2007;
     public static final short MAX_YEAR = 2017;
+
+    public static final String JSON_EXTENSION = ".json";
 }
