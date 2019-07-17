@@ -1,0 +1,86 @@
+package app.java.data.measurement;
+
+import app.java.commons.constants.HttpParams;
+import app.java.data.parse.LocalParser;
+
+import java.util.*;
+
+public class MeasureUtils {
+    /**
+     * Filter the result based on the set of parameters values<br/>
+     * E.g.:<br/>
+     * - from:
+     *  {
+     *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2015]=64,
+     *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2016]=65,
+     *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2017]=67,
+     *      [I_DSK_BAB, IND_TOTAL, PC_IND, BE, 2015]=60,
+     *      ...
+     *  }<br/>
+     * - to:
+     *  {
+     *      AT_2015=64,
+     *      AT_2016=65,
+     *      AT_2017=67,
+     *      BE_2015=60,
+     *      ...
+     *  }
+     *
+     * @param globalParamsValues The global allowed query values (the allowed query values
+     *                           excepting the year and the country code)
+     * @param filePath The full access path to the desired file
+     * @return Consolidated list with COUNTRY-CODE_YEAR as key
+     */
+    public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
+        Map<String, Number> consolidatedList = new TreeMap<>();
+        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
+
+        Set<String> dim = LocalParser.getDimensionsOrder(filePath);
+        List<String> dimList = new ArrayList<>(dim);
+        int countryIndex = dimList.indexOf(HttpParams.GEO);
+        int yearIndex = dimList.indexOf(HttpParams.TIME);
+
+        for (Map.Entry<List<String>, Number> entry : entries.entrySet()) {
+            // queryValues = the query values for parameters
+            // Example:
+            //      parameters: [unit, sex, isced11, age, geo, time]
+            //      query values: [PC, T, ED5-8, Y15-64, UK, 2017]
+            List<String> queryValues = entry.getKey();
+            Number value = entry.getValue();
+
+            String country = queryValues.get(countryIndex);
+            int year = Integer.valueOf(queryValues.get(yearIndex));
+
+            if (isValidQuery(globalParamsValues, queryValues)) {
+                consolidatedList.put(country + "_" + year, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    /**
+     * Check if all of the parameters are in the keys list (the query is valid)
+     *
+     * @param params The list of query parameters
+     * @param keys The list of parsed keys
+     * @return
+     */
+    private static boolean isValidQuery(String[] params, List<String> keys) {
+        for (int i = 0; i < params.length; i++) {
+            if (keys.indexOf(params[i]) == -1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void print(String filePath) {
+        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
+        System.out.println(entries);
+
+        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
+        System.out.println(dimensions);
+    }
+}
