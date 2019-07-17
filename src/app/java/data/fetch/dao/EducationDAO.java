@@ -21,6 +21,7 @@ public interface EducationDAO {
      *
      * @return
      */
+    //TODO: remove the parameter
     StringBuilder getEducationRatio(String[] eduLevel);
 
     /**
