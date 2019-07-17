@@ -11,7 +11,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         params.put("na_item", "B1GQ");
 //        params.put("unit", "CP_PPS_HAB");
         params.put("unit", "PC_EU28_HAB_MEUR_CP");
-        return Fetcher.fetchData("nama_10r_2gdp", params);
+        return Fetcher.fetchData("nama_10_pc", params);
     }
 
     public StringBuilder getMedianIncome() {
