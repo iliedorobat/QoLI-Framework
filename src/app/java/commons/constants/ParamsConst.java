@@ -1,6 +1,6 @@
 package app.java.commons.constants;
 
-public class HttpParams {
+public class ParamsConst {
     public static final String AGE = "age";
     public static final String ACL_00 = "acl00";
     public static final String AIRPOL = "airpol";

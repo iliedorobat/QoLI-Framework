@@ -55,8 +55,23 @@ public class FetcherUtils {
      * @param params The parameters list
      * @param values The list with values that should be added
      * @param propertyName The name of the added property
+     * @deprecated
+     * TODO: remove
      */
     public static void addParams(MultiValuedMap<String, String> params, String[] values, String propertyName) {
+        for (int i = 0; i < values.length; i++) {
+            params.put(propertyName, values[i]);
+        }
+    }
+
+
+    /**
+     * Add new parameters into the params list
+     * @param params The parameters list
+     * @param values The list with values that should be added
+     * @param propertyName The name of the added property
+     */
+    public static void addParams(MultiValuedMap<String, String> params, String propertyName, String[] values) {
         for (int i = 0; i < values.length; i++) {
             params.put(propertyName, values[i]);
         }
@@ -227,7 +242,7 @@ public class FetcherUtils {
             MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
-            params.put("set", "T");
+            params.put("sex", "T");
             params.put("unit", "PC");
             return Fetcher.fetchData(apiName, params);
         } catch (Exception e) {
