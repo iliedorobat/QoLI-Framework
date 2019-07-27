@@ -39,6 +39,7 @@ public class ParamsConst {
     public static final String SPDEPB = "spdepb";
     public static final String SPDEPM = "spdepm";
     public static final String SPDEPS = "spdeps";
+    public static final String SUBJNMON = "subjnmon";
     public static final String TIME = "time";
     public static final String UNIT = "unit";
     public static final String WAT_PROC = "wat_proc";

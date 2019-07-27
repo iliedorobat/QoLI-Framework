@@ -9,10 +9,20 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class FetcherUtils {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+
+    public static final String[] ACTIVITIES_TYPE = {
+            "AC41A", // Formal voluntary activities
+            "AC42A", // Informal voluntary activities
+            "AC43A"  // Active citizenship
+    };
     public static final String[] SATISFACTION_LEVELS = {
             "HIGH",
             "MED",
             "LOW"
+    };
+    public static final String[] SUPPORTIVE_API_NAMES = {
+            "ilc_scp15",
+            "ilc_scp17"
     };
     public static final String[] WEL_BEING_TYPES = {
             "ACCSAT",    // Satisfaction with accommodation
@@ -25,15 +35,6 @@ public class FetcherUtils {
             "MEANLIFE",  // Meaning of lifE
             "RELSAT",    // Satisfaction with personal relationships
             "TIMESAT"    // Satisfaction with time use
-    };
-    public static final String[] ACTIVITIES_TYPE = {
-            "AC41A", // Formal voluntary activities
-            "AC42A", // Informal voluntary activities
-            "AC43A"  // Active citizenship
-    };
-    public static final String[] SUPPORTIVE_API_NAMES = {
-            "ilc_scp15",
-            "ilc_scp17"
     };
 
     public static String getGeoParams() {
@@ -136,6 +137,21 @@ public class FetcherUtils {
     public static MultiValuedMap<String, String> getWorkOccupationParams() {
         MultiValuedMap<String, String> params = getMainHttpParams();
         params.put("age", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return params;
+    }
+
+    /**
+     * Get general parameters for home conditions
+     *
+     * @return
+     */
+    public static MultiValuedMap<String, String> getHomeConditionsParams() {
+        MultiValuedMap<String, String> params = getMainHttpParams();
+        params.put("age", "TOTAL");
+        params.put("hhtyp", "TOTAL");
         params.put("incgrp", "TOTAL");
         params.put("sex", "T");
         params.put("unit", "PC");
