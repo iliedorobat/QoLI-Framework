@@ -7,7 +7,18 @@ import app.java.data.fetch.dao.SocialActivityDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class SocialActivityDAOImpl implements SocialActivityDAO {
-    public static final String[] REASONS = {"FIN", "NNB"};
+    private static final String[] REASONS = {
+            "FIN",  // Financial reasons
+            "NINT", // No interest
+            "NNB",  // None in the neighbourhood
+            "OTH"   // Other
+    };
+    private static final String[] ACTIVITIES_TYPES = {
+            "AC521",  // Cinema
+            "AC522A", // Live performances (theatre, concerts, ballet)
+            "AC523H", // Cultural sites (historical monuments, museums, art galleries or archaeological sites)
+            "AC525"   // Sports events
+    };
 
     public StringBuilder getSocialActivitiesRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
@@ -19,24 +30,15 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
         return Fetcher.fetchData("ilc_scp02", params);
     }
 
-    public StringBuilder getNonParticipationRatio(String[] reasons) {
-        try {
-            Errors.throwNewError(REASONS, reasons, "reason");
-
-            MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-//        params.put("acl00", "AC521");  // Cinema
-//        params.put("acl00", "AC522A"); // Live performances
-//        params.put("acl00", "AC523H"); // Cultural sites
-//        params.put("acl00", "AC525");  // Sports events
-            params.put("age", "Y_GE16");
-            params.put("isced11", "TOTAL");
-            FetcherUtils.addParams(params, reasons, "reason");
-            params.put("sex", "T");
-            params.put("unit", "PC");
-            return Fetcher.fetchData("ilc_scp05", params);
-        } catch (Exception e) {
-            return null;
-        }
+    public StringBuilder getNonParticipationRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        FetcherUtils.addParams(params, ACTIVITIES_TYPES, "acl00");
+        params.put("age", "Y_GE16");
+        params.put("isced11", "TOTAL");
+        FetcherUtils.addParams(params, REASONS, "reason");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return Fetcher.fetchData("ilc_scp05", params);
     }
 
     public StringBuilder getGettingTogetherRatio() {

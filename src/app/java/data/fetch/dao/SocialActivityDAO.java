@@ -31,12 +31,9 @@ public interface SocialActivityDAO {
      *
      * <b>GREATER IS WORSE!</b>
      *
-     * @param reasons The list of reasons for non-participation:<br/>
-     *               - FIN: Financial reasons;<br/>
-     *               - NNB: None in the neighbourhood.
      * @return
      */
-    StringBuilder getNonParticipationRatio(String[] reasons);
+    StringBuilder getNonParticipationRatio();
 
     /**
      * People (16 years or over) getting together with friends at least once a week<br/><br/>
