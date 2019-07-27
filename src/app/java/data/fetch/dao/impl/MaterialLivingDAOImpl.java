@@ -7,14 +7,14 @@ import app.java.data.fetch.dao.MaterialLivingDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class MaterialLivingDAOImpl implements MaterialLivingDAO {
+    private static final String[] END_MEET_DIFFICULTIES = {
+            "EM_GD",    // households making ends meet with great difficulty
+            "EM_D"      // households making ends meet with difficulty
+    };
     private static final String[] QUINTILE_AGES = {
             "TOTAL",
             "Y_GE65",
             "Y_LT65"
-    };
-    private static final String[] END_MEET_DIFFICULTIES = {
-            "EM_GD",    // households making ends meet with great difficulty
-            "EM_D"      // households making ends meet with difficulty
     };
     
     public StringBuilder getPurchasingRatio() {
