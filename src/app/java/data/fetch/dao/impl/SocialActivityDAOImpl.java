@@ -1,6 +1,5 @@
 package app.java.data.fetch.dao.impl;
 
-import app.java.commons.Errors;
 import app.java.data.fetch.Fetcher;
 import app.java.data.fetch.FetcherUtils;
 import app.java.data.fetch.dao.SocialActivityDAO;
