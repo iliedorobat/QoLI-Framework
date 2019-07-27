@@ -11,6 +11,7 @@ public class ParamsConst {
     public static final String FREQUENC = "frequenc";
     public static final String GEO = "geo";
     public static final String HHTYP = "hhtyp";
+    public static final String ICCS = "iccs";
     public static final String INCGRP = "incgrp";
     public static final String IND_TYPE = "ind_type";
     public static final String INDIC_EM = "indic_em";
