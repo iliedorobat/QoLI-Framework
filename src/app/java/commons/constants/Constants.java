@@ -3,6 +3,7 @@ package app.java.commons.constants;
 public class Constants {
     public static final String JSON_EXTENSION = ".json";
     public static final String CSV_EXTENSION = ".csv";
+    public static final String KEY_SEPARATOR = "_";
 
     public static final String[] EU28_MEMBERS = {
             "EU28", // European Union - 28 countries

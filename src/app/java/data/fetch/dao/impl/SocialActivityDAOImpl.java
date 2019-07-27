@@ -6,17 +6,21 @@ import app.java.data.fetch.dao.SocialActivityDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class SocialActivityDAOImpl implements SocialActivityDAO {
-    private static final String[] REASONS = {
+    private static final String[] RECREATIONAL_ACTIVITIES = {
+            "AC521",  // Cinema
+            "AC522A", // Live performances (theatre, concerts, ballet)
+            "AC523H", // Cultural sites (historical monuments, museums, art galleries or archaeological sites)
+            "AC525"   // Sports events
+    };
+    private static final String[] RECREATIONAL_REASONS = {
             "FIN",  // Financial reasons
             "NINT", // No interest
             "NNB",  // None in the neighbourhood
             "OTH"   // Other
     };
-    private static final String[] ACTIVITIES_TYPES = {
-            "AC521",  // Cinema
-            "AC522A", // Live performances (theatre, concerts, ballet)
-            "AC523H", // Cultural sites (historical monuments, museums, art galleries or archaeological sites)
-            "AC525"   // Sports events
+    private static final String[] VOLUNTARY_ACTIVITIES = {
+            "AC41A", // Formal voluntary activities
+            "AC42A"  // Informal voluntary activities
     };
 
     public StringBuilder getSocialActivitiesRatio() {
@@ -31,10 +35,10 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
 
     public StringBuilder getNonParticipationRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        FetcherUtils.addParams(params, ACTIVITIES_TYPES, "acl00");
+        FetcherUtils.addParams(params, RECREATIONAL_ACTIVITIES, "acl00");
         params.put("age", "Y_GE16");
         params.put("isced11", "TOTAL");
-        FetcherUtils.addParams(params, REASONS, "reason");
+        FetcherUtils.addParams(params, RECREATIONAL_REASONS, "reason");
         params.put("sex", "T");
         params.put("unit", "PC");
         return Fetcher.fetchData("ilc_scp05", params);
@@ -53,8 +57,7 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
     }
 
     public StringBuilder getVoluntaryActivitiesRatio() {
-        String[] activities = {"AC41A", "AC42A"};
-        return FetcherUtils.getActivePeopleRatio(activities);
+        return FetcherUtils.getActivePeopleRatio(VOLUNTARY_ACTIVITIES);
     }
 
     public StringBuilder getAskingRatio() {

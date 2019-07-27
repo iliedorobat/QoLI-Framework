@@ -9,27 +9,27 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class FetcherUtils {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-    public static final String[] SATIS_LEVEL = {
+    public static final String[] SATISFACTION_LEVELS = {
             "HIGH",
             "MED",
             "LOW"
     };
-    public static final String[] WEL_BEING_TYPE = {
-            "ACCSAT",
-            "COMSAT",
-            "FINSAT",
-            "JOBSAT",
-            "GREENSAT",
-            "LIFESAT",
-            "LIVENVSAT",
-            "MEANLIFE",
-            "RELSAT",
-            "TIMESAT"
+    public static final String[] WEL_BEING_TYPES = {
+            "ACCSAT",    // Satisfaction with accommodation
+            "COMSAT",    // Satisfaction with commuting time
+            "FINSAT",    // Satisfaction with financial situation
+            "JOBSAT",    // Job satisfaction
+            "GREENSAT",  // Satisfaction with recreational and green areas
+            "LIFESAT",   // Overall life satisfaction
+            "LIVENVSAT", // Satisfaction with living environment
+            "MEANLIFE",  // Meaning of lifE
+            "RELSAT",    // Satisfaction with personal relationships
+            "TIMESAT"    // Satisfaction with time use
     };
     public static final String[] ACTIVITIES_TYPE = {
-            "AC41A",
-            "AC42A",
-            "AC43A"
+            "AC41A", // Formal voluntary activities
+            "AC42A", // Informal voluntary activities
+            "AC43A"  // Active citizenship
     };
     public static final String[] SUPPORTIVE_API_NAMES = {
             "ilc_scp15",
@@ -135,7 +135,7 @@ public class FetcherUtils {
      * Dataset: ilc_pw05<br/>
      * Years: 2013
      *
-     * @param satisLevel The satisfaction level:<br/>
+     * @param satisfactionLevel The satisfaction level:<br/>
      *                   - HIGH: high;<br/>
      *                   - MED: medium;<br/>
      *                   - LOW: low;
@@ -154,16 +154,16 @@ public class FetcherUtils {
      *
      * @return
      */
-    public static StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
+    public static StringBuilder getSatisfactionRatio(String satisfactionLevel, String wellBeing) {
         try {
-            Errors.throwNewError(SATIS_LEVEL, satisLevel, "satisfaction levels");
-            Errors.throwNewError(WEL_BEING_TYPE, wellBeing, "well being levels");
+            Errors.throwNewError(SATISFACTION_LEVELS, satisfactionLevel, "satisfaction levels");
+            Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well being levels");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("indic_wb", wellBeing);
             params.put("isced11", "TOTAL");
-            params.put("lev_satis", satisLevel);
+            params.put("lev_satis", satisfactionLevel);
             params.put("sex", "T");
             params.put("unit", "PC");
 

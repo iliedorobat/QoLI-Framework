@@ -1,23 +1,36 @@
 package app.java.data.measurement;
 
+import app.java.commons.constants.Constants;
 import app.java.commons.constants.HttpParams;
 import app.java.data.parse.LocalParser;
 
 import java.util.*;
 
 public class MeasureUtils {
+    // For testing
+    //TODO: delete
+    public static void print(String filePath) {
+        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
+        System.out.println(entries);
+
+        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
+        System.out.println(dimensions);
+    }
+
     /**
      * Filter the result based on the set of parameters values<br/>
-     * E.g.:<br/>
-     * - from:
+     * E.g.:
+     * <pre>
      *  {
      *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2015]=64,
      *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2016]=65,
      *      [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2017]=67,
      *      [I_DSK_BAB, IND_TOTAL, PC_IND, BE, 2015]=60,
      *      ...
-     *  }<br/>
-     * - to:
+     *  }
+     * </pre>
+     * will be processed to:
+     * <pre>
      *  {
      *      AT_2015=64,
      *      AT_2016=65,
@@ -25,14 +38,15 @@ public class MeasureUtils {
      *      BE_2015=60,
      *      ...
      *  }
+     * </pre>
      *
      * @param globalParamsValues The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
-     * @return Consolidated list with COUNTRY-CODE_YEAR as key
+     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
     public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
-        Map<String, Number> consolidatedList = new TreeMap<>();
+        Map<String, Number> consolidatedList = new LinkedHashMap<>();
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
         Set<String> dim = LocalParser.getDimensionsOrder(filePath);
@@ -52,7 +66,7 @@ public class MeasureUtils {
             int year = Integer.valueOf(queryValues.get(yearIndex));
 
             if (isValidQuery(globalParamsValues, queryValues)) {
-                consolidatedList.put(country + "_" + year, value);
+                consolidatedList.put(country + Constants.KEY_SEPARATOR + year, value);
             }
         }
 
@@ -60,15 +74,15 @@ public class MeasureUtils {
     }
 
     /**
-     * Check if all of the parameters are in the keys list (the query is valid)
+     * Check if all of the queried values are in the parameters list (the query is valid)
      *
      * @param params The list of query parameters
-     * @param keys The list of parsed keys
+     * @param queryValues The list of parsed keys
      * @return
      */
-    private static boolean isValidQuery(String[] params, List<String> keys) {
+    private static boolean isValidQuery(String[] params, List<String> queryValues) {
         for (int i = 0; i < params.length; i++) {
-            if (keys.indexOf(params[i]) == -1) {
+            if (queryValues.indexOf(params[i]) == -1) {
                 return false;
             }
         }
@@ -76,11 +90,8 @@ public class MeasureUtils {
         return true;
     }
 
-    public static void print(String filePath) {
-        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
-        System.out.println(entries);
-
-        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
-        System.out.println(dimensions);
+    //TODO: move it in a better place
+    public static String generateKey(String code, Number year) {
+        return code + Constants.KEY_SEPARATOR + year;
     }
 }
