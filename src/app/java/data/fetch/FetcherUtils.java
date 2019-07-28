@@ -3,6 +3,7 @@ package app.java.data.fetch;
 import app.java.commons.Errors;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
@@ -91,10 +92,7 @@ public class FetcherUtils {
             params.put("geo", "RO");
             params.put("time", "2015");
         } else {
-            addParams(params, Constants.EU28_MEMBERS, "geo");
-            for (int i = EnvConst.MIN_YEAR; i <= EnvConst.MAX_YEAR; i++) {
-                params.put("time", String.valueOf(i));
-            }
+            addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS);
         }
 
         return params;
