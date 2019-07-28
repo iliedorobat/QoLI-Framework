@@ -14,15 +14,9 @@ public interface EducationDAO {
      *
      * Comments: NUTS 2 regions => edat_lfse_04
      *
-     * @param eduLevel The list of education levels:<br/>
-     *              - ED5-8: Tertiary education (levels 5-8);<br/>
-     *              - ED3_4: Upper secondary and post-secondary non-tertiary education (levels 3 and 4);<br/>
-     *              - ED0-2: Less than primary, primary and lower secondary education (levels 0-2).
-     *
      * @return
      */
-    //TODO: remove the parameter
-    StringBuilder getEducationRatio(String[] eduLevel);
+    StringBuilder getEducationRatio();
 
     /**
      * Participation in early childhood education:<br/> pupils aged between

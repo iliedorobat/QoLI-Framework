@@ -14,9 +14,11 @@ public class ParamsConst {
     public static final String ICCS = "iccs";
     public static final String INCGRP = "incgrp";
     public static final String IND_TYPE = "ind_type";
+    public static final String INDIC_ED = "indic_ed";
     public static final String INDIC_EM = "indic_em";
     public static final String INDIC_HE = "indic_he";
     public static final String INDIC_IL = "indic_il";
+    public static final String INDIC_IS = "indic_is";
     public static final String INDIC_WB = "indic_wb";
     public static final String INJURY = "injury";
     public static final String ISCED_11 = "isced11";
@@ -24,6 +26,7 @@ public class ParamsConst {
     public static final String LEV_SATIS = "lev_satis";
     public static final String LEVELS = "levels";
     public static final String MGSTATUS = "mgstatus";
+    public static final String N_LANG = "n_lang";
     public static final String N_PORTION = "n_portion";
     public static final String NA_ITEM = "na_item";
     public static final String NACE_R1 = "nace_r1";
@@ -41,6 +44,7 @@ public class ParamsConst {
     public static final String SPDEPS = "spdeps";
     public static final String SUBJNMON = "subjnmon";
     public static final String TIME = "time";
+    public static final String TYPTRAI = "typtrai";
     public static final String UNIT = "unit";
     public static final String WAT_PROC = "wat_proc";
     public static final String WORKTIME = "worktime";
