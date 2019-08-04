@@ -1,10 +1,12 @@
 package app.java.data.measurement.dao.impl;
 
+import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.MeasureUtils;
 import app.java.data.measurement.dao.OverallExperienceStatsDAO;
+import app.java.data.measurement.preparation.Initializer;
+import app.java.data.measurement.preparation.Preparation;
 
 import java.util.Map;
 
@@ -18,10 +20,19 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
             + FileNameConst.HIGH_SATISFACTION_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            highSatisfactionRatio = MeasureUtils.consolidateList(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
+            initHighSatisfactionRatio = Initializer.initConsolidatedList(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
 
-    public void print() {
-//        System.out.println(zeroForeignLangRatio);
-        MeasureUtils.print(highSatisfactionRatioPath);
+    public double calculateIndex() {
+        Map<String, Number> highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
+
+        Print.print(initHighSatisfactionRatio, false);
+
+        return 0;
     }
 }
+
+/*
+ * initHighSatisfactionRatio
+ *      -> ALL
+ *          - 2013
+ */
