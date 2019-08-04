@@ -15,11 +15,16 @@ import no.ssb.jsonstat.v2.Dimension;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class LocalParser {
+//    public static Map<String, Number> simplifiedMap(String filePath) {
+//        Map<String, Number> output = new HashMap<>();
+//        Map<List<String>, Number> data = readJSONFile(filePath);
+//
+//
+//    }
+
     public static Map<List<String>, Number> readJSONFile(String filePath) {
         Dataset build = getDataset(filePath);
         Map<List<String>, Number> listListMap = build.asMap();

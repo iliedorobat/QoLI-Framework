@@ -1,8 +1,8 @@
 package app.java.data.collect;
 
+import app.java.commons.FileUtils;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.commons.FileUtils;
 import app.java.data.fetch.dao.EducationDAO;
 import app.java.data.fetch.dao.impl.EducationDAOImpl;
 
@@ -11,7 +11,7 @@ public class EducationCollector {
 
     public static void dataCollector() {
         StringBuilder
-                educationRatio = educationDAO.getEducationRatio(EducationDAOImpl.EDUCATION_LEVELS),
+                educationRatio = educationDAO.getEducationRatio(),
                 earlyEducationRatio = educationDAO.getEarlyEducationRatio(),
                 leaversRatio = educationDAO.getLeaversRatio(),
                 excludedRatio = educationDAO.getExcludedRatio(),

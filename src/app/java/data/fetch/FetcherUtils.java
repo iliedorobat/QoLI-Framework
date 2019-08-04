@@ -1,68 +1,41 @@
 package app.java.data.fetch;
 
-import app.java.commons.constants.Constants;
 import app.java.commons.Errors;
+import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class FetcherUtils {
-    public static final String[] EU28_MEMBERS = {
-            "EU28", // European Union - 28 countries
-            "AT", // Austria
-            "BE", // Belgium
-            "BG", // Bulgaria
-            "CY", // Cyprus
-            "CZ", // Czechia
-            "DE", // Germany (until 1990 former territory of the FRG)
-            "DK", // Denmark
-            "EE", // Estonia
-            "EL", // Greece
-            "ES", // Spain
-            "FI", // Finland
-            "FR", // France
-            "HR", // Croatia
-            "HU", // Hungary
-            "IE", // Ireland
-            "IT", // Italy
-            "LT", // Lithuania
-            "LU", // Luxembourg
-            "LV", // Latvia
-            "MT", // Malta
-            "NL", // Netherlands
-            "PL", // Poland
-            "PT", // Portugal
-            "RO", // Romania
-            "SE", // Sweden
-            "SI", // Slovenia
-            "SK", // Slovakia
-            "UK"  // United Kingdom
+    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+
+    public static final String[] ACTIVITIES_TYPE = {
+            "AC41A", // Formal voluntary activities
+            "AC42A", // Informal voluntary activities
+            "AC43A"  // Active citizenship
     };
-    public static final String[] SATIS_LEVEL = {
+    public static final String[] SATISFACTION_LEVELS = {
             "HIGH",
             "MED",
             "LOW"
     };
-    public static final String[] WEL_BEING_TYPE = {
-            "ACCSAT",
-            "COMSAT",
-            "FINSAT",
-            "JOBSAT",
-            "GREENSAT",
-            "LIFESAT",
-            "LIVENVSAT",
-            "MEANLIFE",
-            "RELSAT",
-            "TIMESAT"
-    };
-    public static final String[] ACTIVITIES_TYPE = {
-            "AC41A",
-            "AC42A",
-            "AC43A"
-    };
     public static final String[] SUPPORTIVE_API_NAMES = {
             "ilc_scp15",
             "ilc_scp17"
+    };
+    public static final String[] WEL_BEING_TYPES = {
+            "ACCSAT",    // Satisfaction with accommodation
+            "COMSAT",    // Satisfaction with commuting time
+            "FINSAT",    // Satisfaction with financial situation
+            "JOBSAT",    // Job satisfaction
+            "GREENSAT",  // Satisfaction with recreational and green areas
+            "LIFESAT",   // Overall life satisfaction
+            "LIVENVSAT", // Satisfaction with living environment
+            "MEANLIFE",  // Meaning of lifE
+            "RELSAT",    // Satisfaction with personal relationships
+            "TIMESAT"    // Satisfaction with time use
     };
 
     public static String getGeoParams() {
@@ -84,8 +57,23 @@ public class FetcherUtils {
      * @param params The parameters list
      * @param values The list with values that should be added
      * @param propertyName The name of the added property
+     * @deprecated
+     * TODO: remove
      */
     public static void addParams(MultiValuedMap<String, String> params, String[] values, String propertyName) {
+        for (int i = 0; i < values.length; i++) {
+            params.put(propertyName, values[i]);
+        }
+    }
+
+
+    /**
+     * Add new parameters into the params list
+     * @param params The parameters list
+     * @param values The list with values that should be added
+     * @param propertyName The name of the added property
+     */
+    public static void addParams(MultiValuedMap<String, String> params, String propertyName, String[] values) {
         for (int i = 0; i < values.length; i++) {
             params.put(propertyName, values[i]);
         }
@@ -100,17 +88,11 @@ public class FetcherUtils {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
         params.put("lang", "en");
 
-        if (Constants.IS_TESTING) {
+        if (EnvConst.IS_TESTING) {
             params.put("geo", "RO");
             params.put("time", "2015");
         } else {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                params.put("geo", EU28_MEMBERS[i]);
-            }
-
-            for (int i = Constants.MIN_YEAR; i <= Constants.MAX_YEAR; i++) {
-                params.put("time", String.valueOf(i));
-            }
+            addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS);
         }
 
         return params;
@@ -160,6 +142,21 @@ public class FetcherUtils {
     }
 
     /**
+     * Get general parameters for home conditions
+     *
+     * @return
+     */
+    public static MultiValuedMap<String, String> getHomeConditionsParams() {
+        MultiValuedMap<String, String> params = getMainHttpParams();
+        params.put("age", "TOTAL");
+        params.put("hhtyp", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return params;
+    }
+
+    /**
      * Percentage of the population rating their satisfaction as high, medium or low<br/><br/>
      *
      * Aggregation: country<br/>
@@ -167,7 +164,7 @@ public class FetcherUtils {
      * Dataset: ilc_pw05<br/>
      * Years: 2013
      *
-     * @param satisLevel The satisfaction level:<br/>
+     * @param satisfactionLevel The satisfaction level:<br/>
      *                   - HIGH: high;<br/>
      *                   - MED: medium;<br/>
      *                   - LOW: low;
@@ -186,16 +183,16 @@ public class FetcherUtils {
      *
      * @return
      */
-    public static StringBuilder getSatisfactionRatio(String satisLevel, String wellBeing) {
+    public static StringBuilder getSatisfactionRatio(String satisfactionLevel, String wellBeing) {
         try {
-            Errors.throwNewError(SATIS_LEVEL, satisLevel, "satisfaction levels");
-            Errors.throwNewError(WEL_BEING_TYPE, wellBeing, "well being levels");
+            Errors.throwNewError(SATISFACTION_LEVELS, satisfactionLevel, "satisfaction levels");
+            Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well being levels");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("indic_wb", wellBeing);
             params.put("isced11", "TOTAL");
-            params.put("lev_satis", satisLevel);
+            params.put("lev_satis", satisfactionLevel);
             params.put("sex", "T");
             params.put("unit", "PC");
 
@@ -259,7 +256,7 @@ public class FetcherUtils {
             MultiValuedMap<String, String> params = getMainHttpParams();
             params.put("age", "Y_GE16");
             params.put("isced11", "TOTAL");
-            params.put("set", "T");
+            params.put("sex", "T");
             params.put("unit", "PC");
             return Fetcher.fetchData(apiName, params);
         } catch (Exception e) {

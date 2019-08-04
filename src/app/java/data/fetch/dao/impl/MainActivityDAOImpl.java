@@ -37,7 +37,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y15-64");
         params.put("sex", "T");
-        params.put("unit", "PC_EMP");
+        params.put("unit", "PC");
         return Fetcher.fetchData("lfsa_eppgai", params);
     }
 

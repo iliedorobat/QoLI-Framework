@@ -1,5 +1,6 @@
 package app.java.data.fetch.dao.impl;
 
+import app.java.commons.constants.Constants;
 import app.java.data.fetch.Fetcher;
 import app.java.data.fetch.FetcherUtils;
 import app.java.data.fetch.dao.HealthDAO;
@@ -121,7 +122,6 @@ public class HealthDAOImpl implements HealthDAO {
     public StringBuilder getHealthPersonnel() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("unit", "P_HTHAB");
-        FetcherUtils.addParams(params, FetcherUtils.EU28_MEMBERS, "geo");
         return Fetcher.fetchData("hlth_rs_prsrg", params);
     }
 }

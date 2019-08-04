@@ -11,7 +11,7 @@ public class SocialActivityCollector {
 
     public static void dataCollector() {
         StringBuilder socialActivitiesRatio = socialActivityDAO.getSocialActivitiesRatio(),
-                nonParticipationRatio = socialActivityDAO.getNonParticipationRatio(SocialActivityDAOImpl.REASONS),
+                nonParticipationRatio = socialActivityDAO.getNonParticipationRatio(),
                 gettingTogetherRatio = socialActivityDAO.getGettingTogetherRatio(),
                 voluntaryActivitiesRatio = socialActivityDAO.getVoluntaryActivitiesRatio(),
                 askingRatio = socialActivityDAO.getAskingRatio(),

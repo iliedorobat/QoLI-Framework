@@ -1,12 +1,11 @@
 package app.java.data;
 
 import app.java.data.collect.*;
-import app.java.data.fetch.dao.EducationDAO;
-import app.java.data.fetch.dao.impl.EducationDAOImpl;
 
+/**
+ * Collect the data from Eurostat portal and save it to json files
+ */
 public class DataCollector {
-    private static EducationDAO educationDAO = new EducationDAOImpl();
-
     public static void main(String[] args) {
         EducationCollector.dataCollector();
         EnvironmentCollector.dataCollector();
