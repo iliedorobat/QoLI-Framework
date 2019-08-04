@@ -69,9 +69,6 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             initNpNnbSportRatio = Initializer.initConsolidatedList(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
     public Map<String, Number> calculateDimension() {
-//        Print.printVariation(Statistics.generateVariation(askingRatio, true));
-//        Print.print(askingRatio, true);
-
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 askingRatio = Preparation.prepareData(initAskingRatio),
@@ -86,16 +83,19 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
-                double product = askingRatio.get(key).doubleValue()
-                        * discussionRatio.get(key).doubleValue()
-                        * socialActivitiesRatio.get(key).doubleValue()
-                        * voluntaryActivitiesRatio.get(key).doubleValue()
-                        * gettingTogetherRatio.get(key).doubleValue()
-                        * nonParticipationRatio.get(key).doubleValue();
+                double product = MapUtils.getDoubleValue(askingRatio, key)
+                        * MapUtils.getDoubleValue(discussionRatio, key)
+                        * MapUtils.getDoubleValue(socialActivitiesRatio, key)
+                        * MapUtils.getDoubleValue(voluntaryActivitiesRatio, key)
+                        * MapUtils.getDoubleValue(gettingTogetherRatio, key)
+                        / MapUtils.getDoubleValue(nonParticipationRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
         }
+
+//        Print.printVariation(Statistics.generateVariation(askingRatio, true));
+//        Print.print(askingRatio, true);
 
         return consolidatedList;
     }
@@ -115,8 +115,8 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
-                double product = gettingTogetherFamRatio.get(key).doubleValue()
-                        * gettingTogetherFrdRatio.get(key).doubleValue();
+                double product = MapUtils.getDoubleValue(gettingTogetherFamRatio, key)
+                        * MapUtils.getDoubleValue(gettingTogetherFrdRatio, key);
                 Number value = MathUtils.getSquareValue(product, 2);
                 consolidatedList.put(key, value);
             }
@@ -147,14 +147,14 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
-                double product = npFinCinRatio.get(key).doubleValue()
-                        * npFinLiveRatio.get(key).doubleValue()
-                        * npFinCultRatio.get(key).doubleValue()
-                        * npFinSportRatio.get(key).doubleValue()
-                        * npNnbCinRatio.get(key).doubleValue()
-                        * npNnbLiveRatio.get(key).doubleValue()
-                        * npNnbCultRatio.get(key).doubleValue()
-                        * npNnbSportRatio.get(key).doubleValue();
+                double product = MapUtils.getDoubleValue(npFinCinRatio, key)
+                        * MapUtils.getDoubleValue(npFinLiveRatio, key)
+                        * MapUtils.getDoubleValue(npFinCultRatio, key)
+                        * MapUtils.getDoubleValue(npFinSportRatio, key)
+                        * MapUtils.getDoubleValue(npNnbCinRatio, key)
+                        * MapUtils.getDoubleValue(npNnbLiveRatio, key)
+                        * MapUtils.getDoubleValue(npNnbCultRatio, key)
+                        * MapUtils.getDoubleValue(npNnbSportRatio, key);
                 Number value = MathUtils.getSquareValue(product, 8);
                 consolidatedList.put(key, value);
             }
