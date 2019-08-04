@@ -70,7 +70,6 @@ public interface SafetyDAO {
      *
      * @return
      */
-    //TODO: offences rate
     StringBuilder getOffences();
 
     /**

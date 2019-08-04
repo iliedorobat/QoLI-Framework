@@ -73,6 +73,24 @@ public class Preparation {
         return filterMap(preparedMap);
     }
 
+    // used for offences ratio
+    public static Map<String, Number> prepareData(Map<String, Number> mainMap, String[] countries) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
+            preparedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        //TODO: for EU28 make a real average
+        for (int i = 0; i < countries.length; i++) {
+            String code = countries[i];
+            replaceRightNullValues(preparedMap, code);
+            replaceLeftNullValues(preparedMap, code);
+        }
+
+        return filterMap(preparedMap);
+    }
+
     /**
      * Add values for the next years that have null values for a specified country code<br/>
      * E.g.:
@@ -109,7 +127,7 @@ public class Preparation {
         Number prevValue = null;
 
         for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
-            String key = MeasureUtils.generateKey(code, year);
+            String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
             addKeyValue(preparedMap, key, value, prevValue);
@@ -155,7 +173,7 @@ public class Preparation {
         Number lastValue = null;
 
         for (int year = EnvConst.INIT_MAP_MAX_YEAR; year >= EnvConst.INIT_MAP_MIN_YEAR; year--) {
-            String key = MeasureUtils.generateKey(code, year);
+            String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
             addKeyValue(preparedMap, key, value, lastValue);

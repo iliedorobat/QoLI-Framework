@@ -90,9 +90,4 @@ public class MeasureUtils {
 
         return true;
     }
-
-    //TODO: move it in a better place
-    public static String generateKey(String code, Number year) {
-        return code + Constants.KEY_SEPARATOR + year;
-    }
 }

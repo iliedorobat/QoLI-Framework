@@ -23,6 +23,7 @@ public class ParamsConst {
     public static final String INJURY = "injury";
     public static final String ISCED_11 = "isced11";
     public static final String ISCO_08 = "isco08";
+    public static final String LANG = "lang";
     public static final String LEV_SATIS = "lev_satis";
     public static final String LEVELS = "levels";
     public static final String MGSTATUS = "mgstatus";

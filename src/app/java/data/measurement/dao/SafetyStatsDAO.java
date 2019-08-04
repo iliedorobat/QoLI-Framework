@@ -1,5 +1,7 @@
 package app.java.data.measurement.dao;
 
+import java.util.Map;
+
 public interface SafetyStatsDAO {
-    void print();
+    Map<String, Number> calculateDimension();
 }
