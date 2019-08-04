@@ -27,6 +27,10 @@ public class MapUtils {
         return keysList;
     }
 
+    public static String generateKey(String code, Number year) {
+        return code + Constants.KEY_SEPARATOR + year;
+    }
+
     public static String getEntryCode(Map.Entry<String, Number> entry) {
         String[] keyList = entry.getKey()
                 .split(Constants.KEY_SEPARATOR);

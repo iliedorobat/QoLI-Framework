@@ -109,7 +109,7 @@ public class Preparation {
         Number prevValue = null;
 
         for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
-            String key = MeasureUtils.generateKey(code, year);
+            String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
             addKeyValue(preparedMap, key, value, prevValue);
@@ -155,7 +155,7 @@ public class Preparation {
         Number lastValue = null;
 
         for (int year = EnvConst.INIT_MAP_MAX_YEAR; year >= EnvConst.INIT_MAP_MIN_YEAR; year--) {
-            String key = MeasureUtils.generateKey(code, year);
+            String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
             addKeyValue(preparedMap, key, value, lastValue);

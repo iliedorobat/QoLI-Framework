@@ -1,6 +1,7 @@
 package app.java.data.measurement.preparation;
 
 import app.java.commons.MapOrder;
+import app.java.commons.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.data.measurement.MeasureUtils;
@@ -68,7 +69,7 @@ public class Initializer {
             String code,
             int year
     ) {
-        String key = MeasureUtils.generateKey(code, year);
+        String key = MapUtils.generateKey(code, year);
 
         for (Map.Entry<String, Number> entry : originalMap.entrySet()) {
             String entryKey = entry.getKey();
