@@ -33,11 +33,11 @@ public class Statistics {
             // Start from second record
             for (int j = 1; j < entries.length; j++) {
                 Map.Entry<String, Number> entry = (Map.Entry<String, Number>) entries[j];
-                String entryCode = getEntryCode(entry);
+                String entryCode = MapUtils.getEntryCode(entry);
                 Number entryValue = entry.getValue();
 
                 Map.Entry<String, Number> prevEntry = (Map.Entry<String, Number>) entries[j-1];
-                String prevEntryCode = getEntryCode(prevEntry);
+                String prevEntryCode = MapUtils.getEntryCode(prevEntry);
                 Number prevEntryValue = prevEntry.getValue();
 
                 if (entryCode.equals(code) && prevEntryCode.equals(code)) {
@@ -80,27 +80,5 @@ public class Statistics {
         }
 
         return deviation;
-    }
-
-    //TODO: move it in a better place
-    public static String getEntryCode(Map.Entry<String, Number> entry) {
-        String[] keyList = entry.getKey()
-                .split(Constants.KEY_SEPARATOR);
-
-        if (keyList.length == 2)
-            return keyList[0];
-
-        return null;
-    }
-
-    //TODO: move it in a better place
-    public static Integer getEntryYear(Map.Entry<String, Number> entry) {
-        String[] keyList = entry.getKey()
-                .split(Constants.KEY_SEPARATOR);
-
-        if (keyList.length == 2)
-            return Integer.parseInt(keyList[1]);
-
-        return null;
     }
 }

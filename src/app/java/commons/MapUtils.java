@@ -1,5 +1,6 @@
 package app.java.commons;
 
+import app.java.commons.constants.Constants;
 import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.MultiValuedMap;
 
@@ -24,5 +25,25 @@ public class MapUtils {
         }
 
         return keysList;
+    }
+
+    public static String getEntryCode(Map.Entry<String, Number> entry) {
+        String[] keyList = entry.getKey()
+                .split(Constants.KEY_SEPARATOR);
+
+        if (keyList.length == 2)
+            return keyList[0];
+
+        return null;
+    }
+
+    public static Integer getEntryYear(Map.Entry<String, Number> entry) {
+        String[] keyList = entry.getKey()
+                .split(Constants.KEY_SEPARATOR);
+
+        if (keyList.length == 2)
+            return Integer.parseInt(keyList[1]);
+
+        return null;
     }
 }

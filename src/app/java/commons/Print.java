@@ -11,7 +11,7 @@ public class Print {
 
         for (Map.Entry<String, Number> entry : entries.entrySet()) {
             // Print an empty line if the country code is different than the previous one
-            String code = Statistics.getEntryCode(entry);
+            String code = MapUtils.getEntryCode(entry);
             if (prevCode != null && !prevCode.equals(code))
                 System.out.println();
             prevCode = code;

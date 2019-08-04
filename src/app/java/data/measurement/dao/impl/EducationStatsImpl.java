@@ -1,6 +1,7 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
+import app.java.commons.MapUtils;
 import app.java.commons.Statistics;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.FileNameConst;
@@ -105,7 +106,7 @@ public class EducationStatsImpl implements EducationStatsDAO {
                 Map<String, Number> map = mapsList.get(j);
 
                 for (Map.Entry<String, Number> entry : map.entrySet()) {
-                    String entryCode = Statistics.getEntryCode(entry);
+                    String entryCode = MapUtils.getEntryCode(entry);
                     String entryKey = entry.getKey();
                     Number entryValue = entry.getValue();
 
