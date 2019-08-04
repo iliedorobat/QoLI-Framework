@@ -84,8 +84,6 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             }
         }
 
-        System.out.println(Math.log(30) + " " + Math.log(70) + "    " + Math.log(100));
-
 //        Print.printVariation(Statistics.generateVariation(askingRatio, true));
 //        Print.print(initUnpaidRatio, false);
 
