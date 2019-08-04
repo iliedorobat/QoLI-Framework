@@ -1,7 +1,8 @@
 package app.java.data.measurement;
 
+import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
-import app.java.commons.constants.HttpParams;
+import app.java.commons.constants.ParamsConst;
 import app.java.data.parse.LocalParser;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class MeasureUtils {
     }
 
     /**
-     * Filter the result based on the set of parameters values<br/>
+     * Prepare data based on the set of parameters values (change the key name)<br/>
      * E.g.:
      * <pre>
      *  {
@@ -46,13 +47,13 @@ public class MeasureUtils {
      * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
     public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
-        Map<String, Number> consolidatedList = new LinkedHashMap<>();
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
         Set<String> dim = LocalParser.getDimensionsOrder(filePath);
         List<String> dimList = new ArrayList<>(dim);
-        int countryIndex = dimList.indexOf(HttpParams.GEO);
-        int yearIndex = dimList.indexOf(HttpParams.TIME);
+        int countryIndex = dimList.indexOf(ParamsConst.GEO);
+        int yearIndex = dimList.indexOf(ParamsConst.TIME);
 
         for (Map.Entry<List<String>, Number> entry : entries.entrySet()) {
             // queryValues = the query values for parameters
@@ -78,7 +79,7 @@ public class MeasureUtils {
      *
      * @param params The list of query parameters
      * @param queryValues The list of parsed keys
-     * @return
+     * @return The result of the validation of the query
      */
     private static boolean isValidQuery(String[] params, List<String> queryValues) {
         for (int i = 0; i < params.length; i++) {

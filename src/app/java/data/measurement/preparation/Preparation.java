@@ -1,6 +1,7 @@
 package app.java.data.measurement.preparation;
 
 import app.java.commons.MapOrder;
+import app.java.commons.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.data.measurement.MeasureUtils;
@@ -58,14 +59,18 @@ public class Preparation {
     public static Map<String, Number> prepareData(Map<String, Number> mainMap) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
+        for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
+            preparedMap.put(entry.getKey(), entry.getValue());
+        }
+
         //TODO: for EU28 make a real average
         for (int i = 0; i < EU28_MEMBERS.length; i++) {
             String code = EU28_MEMBERS[i];
-            replaceRightNullValues(mainMap, preparedMap, code);
-            replaceLeftNullValues(preparedMap, preparedMap, code);
+            replaceRightNullValues(preparedMap, code);
+            replaceLeftNullValues(preparedMap, code);
         }
 
-        return preparedMap;
+        return filterMap(preparedMap);
     }
 
     /**
@@ -94,13 +99,10 @@ public class Preparation {
      *      EU28_2017=94.4
      *  }
      * </pre>
-     * @param mainMap The initialized map (see Initializer.initMap) if it's at the first processing
-     *                or the prepared map
      * @param preparedMap
      * @param code The country code for which is made the processing
      */
     private static void replaceRightNullValues(
-            Map<String, Number> mainMap,
             Map<String, Number> preparedMap,
             String code
     ) {
@@ -108,9 +110,9 @@ public class Preparation {
 
         for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
             String key = MeasureUtils.generateKey(code, year);
-            Number value = mainMap.get(key);
+            Number value = preparedMap.get(key);
 
-            addKeyValue(mainMap, preparedMap, key, year, value, prevValue);
+            addKeyValue(preparedMap, key, value, prevValue);
 
             if (value != null)
                 prevValue = value;
@@ -143,13 +145,10 @@ public class Preparation {
      *      EU28_2017=null
      *  }
      * </pre>
-     * @param mainMap The initialized map (see Initializer.initMap) if it's at the first processing
-     *                or the prepared map
      * @param preparedMap
      * @param code The country code for which is made the processing
      */
     private static void replaceLeftNullValues(
-            Map<String, Number> mainMap,
             Map<String, Number> preparedMap,
             String code
     ) {
@@ -157,31 +156,54 @@ public class Preparation {
 
         for (int year = EnvConst.INIT_MAP_MAX_YEAR; year >= EnvConst.INIT_MAP_MIN_YEAR; year--) {
             String key = MeasureUtils.generateKey(code, year);
-            Number value = mainMap.get(key);
+            Number value = preparedMap.get(key);
 
-            addKeyValue(mainMap, preparedMap, key, year, value, lastValue);
+            addKeyValue(preparedMap, key, value, lastValue);
 
             if (value != null)
                 lastValue = value;
         }
     }
 
-    private static void addKeyValue(
-            Map<String, Number> mainMap,
-            Map<String, Number> preparedMap,
-            String key,
-            int year,
-            Number value,
-            Number prevValue
-    ) {
-        // Fill the output map only with data for analyzed period
-        if (year >= EnvConst.MIN_YEAR & year <= EnvConst.MAX_YEAR) {
-            if (mainMap.get(key) == null) {
-                if (value != null)
-                    preparedMap.put(key, value);
-                else if (prevValue != null)
-                    preparedMap.put(key, prevValue);
+    /**
+     * Fill the output map only with data for the analyzed period
+     * @param preparedMap The prepared map with all the entries
+     * @return Filtered map by the analyzed period
+     */
+    private static Map<String, Number> filterMap(Map<String, Number> preparedMap) {
+        Map<String, Number> filteredMap = new TreeMap<>(new MapOrder());
+
+        for (Map.Entry<String, Number> entry : preparedMap.entrySet()) {
+            int year = MapUtils.getEntryYear(entry);
+
+            if (year >= EnvConst.MIN_YEAR & year <= EnvConst.MAX_YEAR) {
+                filteredMap.put(entry.getKey(), entry.getValue());
             }
+        }
+
+        return filteredMap;
+    }
+
+    /**
+     * Add an entry in the analyzed map if it's missing
+     * @param map The map
+     * @param key The key
+     * @param value The value
+     * @param savedValue A buffer value:<br/>
+     *                  * the previous value for the case of "replaceRightNullValues";<br/>
+     *                  * the last value for the case of "replaceLeftNullValues"
+     */
+    private static void addKeyValue(
+            Map<String, Number> map,
+            String key,
+            Number value,
+            Number savedValue
+    ) {
+        if (map.get(key) == null) {
+            if (value != null)
+                map.put(key, value);
+            else if (savedValue != null)
+                map.put(key, savedValue);
         }
     }
 }
