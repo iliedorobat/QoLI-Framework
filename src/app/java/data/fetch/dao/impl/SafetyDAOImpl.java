@@ -1,10 +1,13 @@
 package app.java.data.fetch.dao.impl;
 
+import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.Fetcher;
 import app.java.data.fetch.FetcherUtils;
 import app.java.data.fetch.dao.SafetyDAO;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getPensionRatio() {
@@ -39,7 +42,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     }
 
     public StringBuilder getOffences() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        MultiValuedMap<String, String> params = getOffencesMainHttpParams();
         params.put(ParamsConst.ICCS, "ICCS02011");  // Assault
         params.put(ParamsConst.ICCS, "ICCS020221"); // Kidnapping
         params.put(ParamsConst.ICCS, "ICCS0301");   // Sexual violence
@@ -57,5 +60,24 @@ public class SafetyDAOImpl implements SafetyDAO {
         params.put(ParamsConst.INCGRP, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mddw03", params);
+    }
+
+    /**
+     * Get main parameters
+     *
+     * @return
+     */
+    private static MultiValuedMap<String, String> getOffencesMainHttpParams() {
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
+        params.put(ParamsConst.LANG, "en");
+
+        if (EnvConst.IS_TESTING) {
+            params.put(ParamsConst.GEO, "RO");
+            params.put(ParamsConst.TIME, "2015");
+        } else {
+            FetcherUtils.addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS_OFFENCES);
+        }
+
+        return params;
     }
 }
