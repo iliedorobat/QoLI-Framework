@@ -75,7 +75,7 @@ public class SafetyDAOImpl implements SafetyDAO {
             params.put(ParamsConst.GEO, "RO");
             params.put(ParamsConst.TIME, "2015");
         } else {
-            FetcherUtils.addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS_OFFENCES);
+            FetcherUtils.addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS_EXTENDED);
         }
 
         return params;
