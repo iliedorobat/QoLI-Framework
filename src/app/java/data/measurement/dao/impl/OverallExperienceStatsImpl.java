@@ -1,7 +1,9 @@
 package app.java.data.measurement.dao.impl;
 
-import app.java.commons.Print;
+import app.java.commons.MapOrder;
+import app.java.commons.MapUtils;
 import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.measurement.dao.OverallExperienceStatsDAO;
@@ -9,8 +11,11 @@ import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
+    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+
     // The list of queried values
     private static final String[]
             HIGH_SATISFACTION_RATIO = {"PC", "HIGH", "TOTAL", "LIFESAT", "T", "Y_GE16"};
@@ -22,17 +27,21 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
     private static final Map<String, Number>
             initHighSatisfactionRatio = Initializer.initConsolidatedList(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
 
-    public double calculateIndex() {
+    public Map<String, Number> calculateDimension() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number> highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
-        Print.print(initHighSatisfactionRatio, false);
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < EU28_MEMBERS.length; i++) {
+                String code = EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+                double product = 1
+                        * MapUtils.getSafetyDouble(highSatisfactionRatio, key);
+                Number value = Math.log(product);
+                consolidatedList.put(key, value);
+            }
+        }
 
-        return 0;
+        return consolidatedList;
     }
 }
-
-/*
- * initHighSatisfactionRatio
- *      -> ALL
- *          - 2013
- */
