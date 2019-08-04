@@ -51,7 +51,7 @@ public class MapUtils {
         return null;
     }
 
-    public static double getDoubleValue(Map<String, Number> map, String key) {
+    public static double getSafetyDouble(Map<String, Number> map, String key) {
         return map.get(key).doubleValue() + Constants.SAFETY_VALUE;
     }
 }

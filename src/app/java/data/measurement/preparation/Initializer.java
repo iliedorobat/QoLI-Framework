@@ -28,7 +28,17 @@ public class Initializer {
      */
     public static Map<String, Number> initConsolidatedList(String[] globalParamsValues, String filePath) {
         Map<String, Number> consolidatedList = MeasureUtils.consolidateList(globalParamsValues, filePath);
-        return initMap(consolidatedList);
+        return initMap(consolidatedList, EU28_MEMBERS);
+    }
+
+    // used for offences ratio
+    public static Map<String, Number> initConsolidatedList(
+            String[] globalParamsValues,
+            String filePath,
+            String[] countries
+    ) {
+        Map<String, Number> consolidatedList = MeasureUtils.consolidateList(globalParamsValues, filePath);
+        return initMap(consolidatedList, countries);
     }
 
     /**
@@ -39,13 +49,14 @@ public class Initializer {
      * A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
      *
      * @param originalMap The original input map
+     * @param countries The list of countries code
      * @return A new sorted map with no missing keys
      */
-    public static Map<String, Number> initMap(Map<String, Number> originalMap) {
+    public static Map<String, Number> initMap(Map<String, Number> originalMap, String[] countries) {
         Map<String, Number> initMap = new TreeMap<>(new MapOrder());
 
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
+        for (int i = 0; i < countries.length; i++) {
+            String code = countries[i];
 
             for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
                 initEmptyData(originalMap, initMap, code, year);

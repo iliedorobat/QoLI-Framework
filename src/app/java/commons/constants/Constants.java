@@ -7,7 +7,7 @@ public class Constants {
     public static final int SAFETY_VALUE = 1;
 
     public static final String[] EU28_MEMBERS = {
-            "EU28", // European Union - 28 countries
+//            "EU28", // European Union - 28 countries
             "AT", // Austria
             "BE", // Belgium
             "BG", // Bulgaria
@@ -38,8 +38,9 @@ public class Constants {
             "UK"  // United Kingdom
     };
 
-    public static final String[] EU28_MEMBERS_OFFENCES = {
-            "EU28", // European Union - 28 countries
+    // used for offences ratio
+    public static final String[] EU28_MEMBERS_EXTENDED = {
+//            "EU28", // European Union - 28 countries
             "AT", // Austria
             "BE", // Belgium
             "BG", // Bulgaria
@@ -67,8 +68,7 @@ public class Constants {
             "SE", // Sweden
             "SI", // Slovenia
             "SK", // Slovakia
-            "UK",  // United Kingdom
-            // The offences rate for UK is split in three
+            // The offences rate for United Kingdom (UK) is split in three
             "UKC-L",// England and Wales
             "UKM",  // Scotland
             "UKN"   // Northern Ireland (UK)
