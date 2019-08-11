@@ -51,7 +51,36 @@ public class MapUtils {
         return null;
     }
 
+    /**
+     *
+     * @param map
+     * @param key
+     * @deprecated use the MathUtils
+     * @return
+     */
     public static double getSafetyDouble(Map<String, Number> map, String key) {
-        return map.get(key).doubleValue() + Constants.SAFETY_VALUE;
+        return map.get(key).doubleValue() + Constants.PERCENTAGE_SAFETY_THRESHOLD;
+    }
+
+    /**
+     *
+     * @param map
+     * @param key
+     * @deprecated use the MathUtils
+     * @return
+     */
+    public static double getSafetyReverseRatio(Map<String, Number> map, String key) {
+        return getReverseRatio(map, key) + Constants.PERCENTAGE_SAFETY_THRESHOLD;
+    }
+
+    /**
+     *
+     * @param map
+     * @param key
+     * @deprecated use the MathUtils
+     * @return
+     */
+    public static double getReverseRatio(Map<String, Number> map, String key) {
+        return 100 - map.get(key).doubleValue();
     }
 }

@@ -4,7 +4,19 @@ public class Constants {
     public static final String JSON_EXTENSION = ".json";
     public static final String CSV_EXTENSION = ".csv";
     public static final String KEY_SEPARATOR = "_";
-    public static final int SAFETY_VALUE = 1;
+
+    /**
+     * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied
+     */
+    public static final int PERCENTAGE_MIN_VALUE = -100;
+    /**
+     * A value that should be added to a percentage value in order to avoid the
+     * multiplication or division by 0<br/>
+     * E.g.:<br/>
+     *      * percent = 0 => output = 0 + 101 = 101
+     *      * percent = -100 => output = -100 + 101 = 1
+     */
+    public static final int PERCENTAGE_SAFETY_THRESHOLD = 101;
 
     public static final String[] EU28_MEMBERS = {
 //            "EU28", // European Union - 28 countries
@@ -38,7 +50,7 @@ public class Constants {
             "UK"  // United Kingdom
     };
 
-    // used for offences ratio
+    // In the offences ratio the UK is composed by England and Wales, Scotland and Northern Ireland
     public static final String[] EU28_MEMBERS_EXTENDED = {
 //            "EU28", // European Union - 28 countries
             "AT", // Austria
