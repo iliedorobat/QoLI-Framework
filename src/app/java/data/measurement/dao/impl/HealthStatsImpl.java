@@ -1,12 +1,16 @@
 package app.java.data.measurement.dao.impl;
 
+import app.java.commons.*;
 import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.MeasureUtils;
 import app.java.data.measurement.dao.HealthStatsDAO;
+import app.java.data.measurement.preparation.Initializer;
+import app.java.data.measurement.preparation.Preparation;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public class HealthStatsImpl implements HealthStatsDAO {
     // The lists of queried values
@@ -46,25 +50,81 @@ public class HealthStatsImpl implements HealthStatsDAO {
             workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + JSON_EXT;
 
     private static final Map<String, Number>
-            alcoholicRatio = MeasureUtils.consolidateList(ALCOHOLIC_RATIO, alcoholicRatioPath),
-            bodyMassIndexOverweight = MeasureUtils.consolidateList(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
-            bodyMassIndexObese = MeasureUtils.consolidateList(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
-            fruitsVegetablesRatio = MeasureUtils.consolidateList(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
-            healthPersonnel = MeasureUtils.consolidateList(HEALTH_PERSONNEL, healthPersonnelPath),
-            healthyLifeRatio = MeasureUtils.consolidateList(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
-            healthyLifeYearsFemale = MeasureUtils.consolidateList(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
-            healthyLifeYearsMale = MeasureUtils.consolidateList(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
-            hospitalBeds = MeasureUtils.consolidateList(HOSPITAL_BEDS, hospitalBedsPath),
-            lifeExpectancy = MeasureUtils.consolidateList(LIFE_EXPECTANCY, lifeExpectancyPath),
-            longHealthIssueRatio = MeasureUtils.consolidateList(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
-            physicalActivities = MeasureUtils.consolidateList(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
-            smokersRatio = MeasureUtils.consolidateList(SMOKERS_RATIO, smokersRatioPath),
-            unmetDentalStatus = MeasureUtils.consolidateList(UNMET_DENTAL_STATUS, unmetDentalStatusPath),
-            unmetMedicalStatus = MeasureUtils.consolidateList(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
-            workAccidents = MeasureUtils.consolidateList(WORK_ACCIDENTS, workAccidentsPath);
+            initAlcoholicRatio = Initializer.initConsolidatedList(ALCOHOLIC_RATIO, alcoholicRatioPath),
+            initBodyMassIndexOverweight = Initializer.initConsolidatedList(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
+            initBodyMassIndexObese = Initializer.initConsolidatedList(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
+            initFruitsVegetablesRatio = Initializer.initConsolidatedList(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
+            initHealthPersonnel = Initializer.initConsolidatedList(HEALTH_PERSONNEL, healthPersonnelPath),
+            initHealthyLifeRatio = Initializer.initConsolidatedList(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
+            initHealthyLifeYearsFemale = Initializer.initConsolidatedList(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
+            initHealthyLifeYearsMale = Initializer.initConsolidatedList(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
+            initHospitalBeds = Initializer.initConsolidatedList(HOSPITAL_BEDS, hospitalBedsPath),
+            initLifeExpectancy = Initializer.initConsolidatedList(LIFE_EXPECTANCY, lifeExpectancyPath),
+            initLongHealthIssueRatio = Initializer.initConsolidatedList(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
+            initPhysicalActivities = Initializer.initConsolidatedList(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
+            initSmokersRatio = Initializer.initConsolidatedList(SMOKERS_RATIO, smokersRatioPath),
+            initUnmetDentalStatus = Initializer.initConsolidatedList(UNMET_DENTAL_STATUS, unmetDentalStatusPath),
+            initUnmetMedicalStatus = Initializer.initConsolidatedList(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
+            initWorkAccidents = Initializer.initConsolidatedList(WORK_ACCIDENTS, workAccidentsPath);
 
-    public void print() {
-//        System.out.println(alcoholicRatio);
-        MeasureUtils.print(healthyLifeYearsPath);
+    public void calculateIndex() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number>
+//                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
+                bodyMassIndexOverweight = Preparation.prepareData(initBodyMassIndexOverweight), // not used
+                bodyMassIndexObese = Preparation.prepareData(initBodyMassIndexObese),
+                fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
+                healthPersonnel = Preparation.prepareData(initHealthPersonnel),
+                healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
+                healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
+                healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
+                hospitalBeds = Preparation.prepareData(initHospitalBeds),
+                lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
+                longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
+//                physicalActivities = Preparation.prepareData(initPhysicalActivities),
+                smokersRatio = Preparation.prepareData(initSmokersRatio),
+                unmetDentalStatus = Preparation.prepareData(initUnmetDentalStatus),
+                unmetMedicalStatus = Preparation.prepareData(initUnmetMedicalStatus),
+                workAccidents = Preparation.prepareData(initWorkAccidents);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+
+                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bodyMassIndexObese, key);
+                double reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key);
+                double reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key);
+                double reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalStatus, key);
+                double reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalStatus, key);
+                double personnel = hundredThousandToMillion(healthPersonnel, key);
+                double beds = hundredThousandToMillion(hospitalBeds, key);
+
+                double product = 1
+                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
+                        * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
+                        * MathUtils.percentageSafetyDouble(personnel)
+                        * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
+                        * MathUtils.percentageSafetyDouble(healthyLifeYearsFemale, key)
+                        * MathUtils.percentageSafetyDouble(healthyLifeYearsMale, key)
+                        * MathUtils.percentageSafetyDouble(beds)
+                        * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
+                        * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
+                        * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
+                        * MathUtils.percentageSafetyDouble(reversedUnmetDentalStatus)
+                        * MathUtils.percentageSafetyDouble(reversedUnmetMedicalStatus)
+                        //TODO: workAccidents / 1000 inhabitants
+                        ;
+                Number value = Math.log(product);
+                consolidatedList.put(key, value);
+            }
+        }
+
+//        Print.printVariation(Statistics.generateVariation(workAccidents, true));
+//        Print.print(hospitalBeds, true);
+    }
+
+    private static double hundredThousandToMillion(Map<String, Number> map, String key) {
+        return map.get(key).doubleValue() / 10;
     }
 }
