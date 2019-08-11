@@ -57,8 +57,6 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    //TODO: income inequality by age group => age = Y_GE65 / age = Y_LT65 * 100
-    // (65 years or over / Less than 65 years * 100)
     StringBuilder getIncomeQuintileRatio();
 
     /**
@@ -71,6 +69,7 @@ public interface MaterialLivingDAO {
      *
      * <b>GREATER IS WORSE!</b>
      *
+     * @deprecated no dataset: SE
      * @return
      */
     StringBuilder getLackOfBathsRatio();
@@ -101,8 +100,7 @@ public interface MaterialLivingDAO {
      *
      * Comments: NUTS 2 regions => nama_10r_2hhinc
      *
-     * @deprecated use the getPurchasingRatio
-     *
+     * @deprecated deprecated in favour of getPurchasingRatio
      * @return
      */
     StringBuilder getMedianIncome();
@@ -119,7 +117,6 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    //TODO: getUnderOccupiedRatio / getOverOccupiedRatio * 100
     StringBuilder getOverOccupiedRatio();
 
     /**
@@ -146,6 +143,7 @@ public interface MaterialLivingDAO {
      * Dataset: env_wat_pop<br/>
      * Years: 1990; 1995; 2000-2015
      *
+     * @deprecated no dataset: IT; LV; SI; UK
      * @return
      */
     StringBuilder getPublicWaterRatio();
@@ -154,7 +152,7 @@ public interface MaterialLivingDAO {
      * Purchasing Power Standard (PPS)<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percent of the EU28 countries (number)<br/>
+     * Data type: percent of the EU28 countries (%)<br/>
      * Dataset: nama_10_pc<br/>
      * Years: 1975-2018
      *
@@ -174,7 +172,6 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    //TODO: getUnderOccupiedRatio / getOverOccupiedRatio * 100
     StringBuilder getUnderOccupiedRatio();
 
     /**

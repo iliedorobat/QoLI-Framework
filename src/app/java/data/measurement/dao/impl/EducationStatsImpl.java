@@ -72,9 +72,9 @@ public class EducationStatsImpl implements EducationStatsDAO {
                 String code = Constants.EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedExcludedRatio = MathUtils.percentageReverseRatio(excludedRatio, key);
-                double reversedLeaversRatio = MathUtils.percentageReverseRatio(leaversRatio, key);
-                double reversedZeroForeignLangRatio = MathUtils.percentageReverseRatio(zeroForeignLangRatio, key);
+                double reversedExcludedRatio = MathUtils.percentageReverseRatio(excludedRatio, key),
+                        reversedLeaversRatio = MathUtils.percentageReverseRatio(leaversRatio, key),
+                        reversedZeroForeignLangRatio = MathUtils.percentageReverseRatio(zeroForeignLangRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
