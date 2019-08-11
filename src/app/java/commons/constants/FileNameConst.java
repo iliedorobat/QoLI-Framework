@@ -1,6 +1,9 @@
 package app.java.commons.constants;
 
 public class FileNameConst {
+    // General
+    public static final String POPULATION = "population";
+
     // Education
     public static final String DIGITAL_SKILLS_RATIO = "digitalSkillsRatio";
     public static final String EARLY_EDU_RATIO = "earlyEducationRatio";
