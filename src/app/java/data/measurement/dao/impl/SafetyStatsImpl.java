@@ -7,6 +7,7 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.data.measurement.dao.GeneralStats;
 import app.java.data.measurement.dao.SafetyStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SafetyStatsImpl implements SafetyStatsDAO {
+    private static final int THOUSAND_VALUE = 1000;
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
     private static final String[] EU28_MEMBERS_EXTENDED = Constants.EU28_MEMBERS_EXTENDED;
 
@@ -58,7 +60,7 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             initTheftOffences = Initializer.initConsolidatedList(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
             initUnlawfulOffences = Initializer.initConsolidatedList(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
 
-    public Map<String, Number> calculateDimension() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 crimeRatio = Preparation.prepareData(initCrimeRatio),
@@ -72,30 +74,44 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             for (int i = 0; i < EU28_MEMBERS.length; i++) {
                 String code = EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
+
+                double reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
+                        reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
+                        // reduce the number of the whole part of a decimal number from 3 to 2
+                        correctedPensionPower = pensionPower.get(key).doubleValue() / 10,
+                        // reduce the number of the whole part of a decimal number from 4 to 2
+                        correctedSocialProtectionPower = socialProtectionPower.get(key).doubleValue() / 100,
+                        reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key),
+                        reversedUnpaidRatio = MathUtils.percentageReverseRatio(unpaidRatio, key);
+
                 double product = 1
-                        / MapUtils.getSafetyDouble(crimeRatio, key)
-                        / MapUtils.getSafetyDouble(offencesRatio, key)
-                        * MapUtils.getSafetyDouble(pensionPower, key) / 1000
-                        * MapUtils.getSafetyDouble(socialProtectionPower, key) / 1000
-                        / MapUtils.getSafetyDouble(unexpectedRatio, key)
-                        / MapUtils.getSafetyDouble(unpaidRatio, key);
+                        * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
+                        * MathUtils.percentageSafetyDouble(correctedPensionPower)
+                        * MathUtils.percentageSafetyDouble(correctedSocialProtectionPower)
+                        * MathUtils.percentageSafetyDouble(reversedUnexpectedRatio)
+                        * MathUtils.percentageSafetyDouble(reversedUnpaidRatio)
+                        * MathUtils.percentageSafetyDouble(reversedOffencesRatio);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(askingRatio, true));
-//        Print.print(initUnpaidRatio, false);
+//        Print.printVariation(Statistics.generateVariation(offencesRatio, true));
+//        Print.print(offencesRatio, true);
 
         return consolidatedList;
     }
 
+    /**
+     * Aggregate all the offences types into the total offences index
+     *
+     * @return A new sorted map which contains the consolidated indicator
+     */
     private Map<String, Number> consolidateOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
-                // burglaryOffences - no data for Italy and Estonia
-                burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED),
+                burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED), // no data
                 robberyOffences = Preparation.prepareData(initRobberyOffences, EU28_MEMBERS_EXTENDED),
                 sexualOffences = Preparation.prepareData(initSexualOffences, EU28_MEMBERS_EXTENDED),
                 theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
@@ -109,25 +125,39 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
                 String code = EU28_MEMBERS_EXTENDED[i];
                 String key = MapUtils.generateKey(code, year);
 
-                double product = assaultOffences.get(key).doubleValue()
-//                        * burglaryOffences.get(key).doubleValue()
-                        * robberyOffences.get(key).doubleValue()
-                        * sexualOffences.get(key).doubleValue()
-                        * theftOffences.get(key).doubleValue()
-                        * unlawfulOffences.get(key).doubleValue();
-                Number value = MathUtils.getSquareValue(product, 6);
+                double sum = assaultOffences.get(key).doubleValue()
+//                        + burglaryOffences.get(key).doubleValue()
+                        + robberyOffences.get(key).doubleValue()
+                        + sexualOffences.get(key).doubleValue()
+                        + theftOffences.get(key).doubleValue()
+                        + unlawfulOffences.get(key).doubleValue();
 
                 if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
-                    ukSum += value.doubleValue();
+                    ukSum += sum;
                 } else {
+                    Number value = generateThousands(key, sum);
                     consolidatedList.put(key, value);
                 }
             }
 
-            Number ukValue = ukSum / 3;
+            String key = MapUtils.generateKey("UK", year);
+            Number ukValue = generateThousands(key, ukSum);
             consolidatedList.put(MapUtils.generateKey("UK", year), ukValue);
         }
 
         return consolidatedList;
     }
+
+    /**
+     * Transform the value into a value per thousand inhabitants
+     *
+     * @param key The key used to extract the total population
+     * @param value The initial value
+     * @return The value per thousand inhabitants
+     */
+    private static Number generateThousands(String key, double value) {
+        double population = GeneralStats.population.get(key).doubleValue();
+        return value / population * THOUSAND_VALUE;
+    }
+
 }
