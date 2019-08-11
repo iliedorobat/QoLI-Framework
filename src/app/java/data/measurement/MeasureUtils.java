@@ -1,6 +1,7 @@
 package app.java.data.measurement;
 
 import app.java.commons.MapOrder;
+import app.java.commons.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.parse.LocalParser;
@@ -46,6 +47,7 @@ public class MeasureUtils {
      * @param filePath The full access path to the desired file
      * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
+    //TODO: rename to consolidateMap
     public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
@@ -72,6 +74,36 @@ public class MeasureUtils {
         }
 
         return consolidatedList;
+    }
+
+    /**
+     * Consolidate a list of maps into a single map
+     *
+     * @param mapsList The list of maps
+     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+     */
+    public static Map<String, Number> consolidateMaps(ArrayList<Map<String, Number>> mapsList) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
+        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+            String code = Constants.EU28_MEMBERS[i];
+
+            for (int j = 0; j < mapsList.size(); j++) {
+                Map<String, Number> map = mapsList.get(j);
+
+                for (Map.Entry<String, Number> entry : map.entrySet()) {
+                    String entryCode = MapUtils.getEntryCode(entry);
+                    String entryKey = entry.getKey();
+                    Number entryValue = entry.getValue();
+
+                    if (code.equals(entryCode) && !preparedMap.containsKey(entryKey))
+                        preparedMap.put(entryKey, entryValue);
+                }
+            }
+        }
+
+        return preparedMap;
     }
 
     /**

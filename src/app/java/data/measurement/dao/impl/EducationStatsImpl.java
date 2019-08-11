@@ -44,6 +44,11 @@ public class EducationStatsImpl implements EducationStatsDAO {
     private static final Map<String, Number>
             consolidatedPupilsRatio2012 = MeasureUtils.consolidateList(PUPILS_RATIO_2012, pupilsRatio2012Path),
             consolidatedPupilsRatio2013 = MeasureUtils.consolidateList(PUPILS_RATIO_2013, pupilsRatio2013Path);
+    private static final ArrayList<Map<String, Number>> pupilsRatioList = new ArrayList<>();
+    static {
+        pupilsRatioList.add(consolidatedPupilsRatio2012);
+        pupilsRatioList.add(consolidatedPupilsRatio2013);
+    }
 
     private static final Map<String, Number>
             initDigitalSkillsRatio = Initializer.initConsolidatedList(DIGITAL_SKILLS, digitalSkillsRatioPath),
@@ -51,7 +56,7 @@ public class EducationStatsImpl implements EducationStatsDAO {
             initEducationRatio = Initializer.initConsolidatedList(EDUCATION_RATIO, educationRatioPath),
             initExcludedRatio = Initializer.initConsolidatedList(EXCLUDED_RATIO, excludedRatioPath),
             initLeaversRatio = Initializer.initConsolidatedList(LEAVERS_RATIO, leaversRatioPath),
-            initPupilsRatio = initConsolidatedPupilsRatio(),
+            initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
             initTrainingRatio = Initializer.initConsolidatedList(TRAINING_RATIO, trainingRatioPath),
             initZeroForeignLangRatio = Initializer.initConsolidatedList(ZERO_FOREIGN_LANG_RATIO, zeroForeignLangRatioPath);
 
@@ -91,56 +96,8 @@ public class EducationStatsImpl implements EducationStatsDAO {
         }
 
 //        Print.printVariation(Statistics.generateVariation(pupilsRatio, true));
-//        Print.print(pupilsRatio, false);
+//        Print.print(initPupilsRatio, false);
 
         return consolidatedList;
-    }
-
-    /**
-     * Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
-     * PERIOD OF TIME<br/>
-     * <b>A LEVERAGE PERIOD OF TIME is an extended period of the analyzed period</b> (required
-     * if in the analyzed period there is no data for a country code)<br/>
-     * If the key is missing form the original map, set a default value (<b>null</b>)<br/>
-     * A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
-     *
-     * @return A new sorted map with no missing keys
-     */
-    private static Map<String, Number> initConsolidatedPupilsRatio() {
-        Map<String, Number> consolidatedList = consolidatePupilsRatio();
-        return Initializer.initMap(consolidatedList, Constants.EU28_MEMBERS);
-    }
-
-    /**
-     * Consolidate the lists of values for pupils ratio before 2012 and after 2013 into a single list
-     *
-     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
-     */
-    private static Map<String, Number> consolidatePupilsRatio() {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        ArrayList<Map<String, Number>> mapsList = new ArrayList<>();
-        mapsList.add(consolidatedPupilsRatio2012);
-        mapsList.add(consolidatedPupilsRatio2013);
-
-        // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
-        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-            String code = Constants.EU28_MEMBERS[i];
-
-            for (int j = 0; j < mapsList.size(); j++) {
-                Map<String, Number> map = mapsList.get(j);
-
-                for (Map.Entry<String, Number> entry : map.entrySet()) {
-                    String entryCode = MapUtils.getEntryCode(entry);
-                    String entryKey = entry.getKey();
-                    Number entryValue = entry.getValue();
-
-                    if (code.equals(entryCode) && !preparedMap.containsKey(entryKey))
-                        preparedMap.put(entryKey, entryValue);
-                }
-            }
-        }
-
-        return preparedMap;
     }
 }
