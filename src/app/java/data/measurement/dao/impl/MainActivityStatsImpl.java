@@ -74,7 +74,7 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
             initTemporaryEmploymentRatio = Initializer.initConsolidatedList(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
             initUnemploymentRatio = Initializer.initConsolidatedList(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
 
-    public Map<String, Number> print() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 activePopulation = Preparation.prepareData(initActivePopulation), // not used
