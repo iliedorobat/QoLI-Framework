@@ -1,8 +1,6 @@
 package app.java.data.measurement.dao.impl;
 
-import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.*;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -38,10 +36,10 @@ public class EnvironmentStatsImpl implements EnvironmentStatsDAO {
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-//                airPollutionRatio = Preparation.prepareData(initAirPollutionRatio),
+                airPollutionRatio = Preparation.prepareData(initAirPollutionRatio),  // no data
                 noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
-                pollutionRatio = Preparation.prepareData(initPollutionRatio);
-//                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio)
+                pollutionRatio = Preparation.prepareData(initPollutionRatio),
+                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio); // no data
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
