@@ -68,7 +68,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             initNpNnbLiveRatio = Initializer.initConsolidatedList(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
             initNpNnbSportRatio = Initializer.initConsolidatedList(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
-    public Map<String, Number> calculateDimension() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 askingRatio = Preparation.prepareData(initAskingRatio),
@@ -78,24 +78,26 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
                 voluntaryActivitiesRatio = Preparation.prepareData(initVoluntaryActivitiesRatio);
 
-
-
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < EU28_MEMBERS.length; i++) {
                 String code = EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
+                double reversedNonParticipationRatio = MathUtils.percentageReverseRatio(nonParticipationRatio, key);
+
                 double product = 1
-                        * MapUtils.getSafetyDouble(askingRatio, key)
-                        * MapUtils.getSafetyDouble(discussionRatio, key)
-                        * MapUtils.getSafetyDouble(socialActivitiesRatio, key)
-                        * MapUtils.getSafetyDouble(voluntaryActivitiesRatio, key)
-                        * MapUtils.getSafetyDouble(gettingTogetherRatio, key)
-                        / MapUtils.getSafetyDouble(nonParticipationRatio, key);
+                        * MathUtils.percentageSafetyDouble(askingRatio, key)
+                        * MathUtils.percentageSafetyDouble(discussionRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedNonParticipationRatio)
+                        * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
+                        * MathUtils.percentageSafetyDouble(voluntaryActivitiesRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
         }
+
+        System.out.println(consolidatedList);
 
 //        Print.printVariation(Statistics.generateVariation(askingRatio, true));
 //        Print.print(askingRatio, true);
@@ -105,6 +107,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
     /**
      * Aggregate the "Getting Together Ratios" into a single ratio
+     *
      * @return An ordered map with aggregated data
      */
     private Map<String, Number> consolidateGettingTogetherRatio() {
@@ -119,8 +122,8 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
-                        * MapUtils.getSafetyDouble(gettingTogetherFamRatio, key)
-                        * MapUtils.getSafetyDouble(gettingTogetherFrdRatio, key);
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key);
                 Number value = MathUtils.getSquareValue(product, 2);
                 consolidatedList.put(key, value);
             }
@@ -131,6 +134,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
     /**
      * Aggregate the "Non Participation Ratios" into a single ratio
+     *
      * @return An ordered map with aggregated data
      */
     private Map<String, Number> consolidateNonParticipationRatio() {
@@ -152,15 +156,15 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
-                        * MapUtils.getSafetyDouble(npFinCinRatio, key)
-                        * MapUtils.getSafetyDouble(npFinCultRatio, key)
-                        * MapUtils.getSafetyDouble(npFinLiveRatio, key)
-                        * MapUtils.getSafetyDouble(npFinSportRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinCinRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinCultRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinLiveRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinSportRatio, key)
 
-                        * MapUtils.getSafetyDouble(npNnbCinRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbCultRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbLiveRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbSportRatio, key);
+                        * MathUtils.percentageSafetyDouble(npNnbCinRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbCultRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbLiveRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbSportRatio, key);
                 Number value = MathUtils.getSquareValue(product, 8);
                 consolidatedList.put(key, value);
             }

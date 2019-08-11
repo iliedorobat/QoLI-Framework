@@ -126,8 +126,8 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
     }
 
     /**
-     * Consolidate the end meet inability "standard" ratio and the end meet inability
-     * "gread difficulty" ratio in a single indicator (the sum of these).
+     * Aggregate the end meet inability "standard" ratio and the end meet inability
+     * "great difficulty" ratio into a single indicator (the sum of these).
      *
      * @return A new sorted map which contains the consolidated indicator
      */
