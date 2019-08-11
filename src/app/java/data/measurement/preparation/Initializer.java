@@ -44,7 +44,7 @@ public class Initializer {
     /**
      * Create a new sorted map with values for all the possible keys for a LEVERAGE PERIOD OF TIME<br/>
      * <b>A LEVERAGE PERIOD OF TIME is an extended period of the analyzed period</b> (required if in the
-     * analyzed period there are any data for a country code)<br/>
+     * analyzed period there is no data for a country code)<br/>
      * If the key is missing form the original map, set a default value (<b>null</b>)<br/>
      * A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
      *

@@ -1,9 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
-import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.Statistics;
+import app.java.commons.*;
 import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.measurement.MeasureUtils;
@@ -16,8 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class EducationStatsImpl implements EducationStatsDAO {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-
     // The lists of queried values
     private static final String[]
             DIGITAL_SKILLS = {"I_DSK_BAB", "IND_TOTAL", "PC_IND"},
@@ -58,7 +55,8 @@ public class EducationStatsImpl implements EducationStatsDAO {
             initTrainingRatio = Initializer.initConsolidatedList(TRAINING_RATIO, trainingRatioPath),
             initZeroForeignLangRatio = Initializer.initConsolidatedList(ZERO_FOREIGN_LANG_RATIO, zeroForeignLangRatioPath);
 
-    public double calculateIndex() {
+    public Map<String, Number> generateDimensionList() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
                 earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
@@ -69,25 +67,52 @@ public class EducationStatsImpl implements EducationStatsDAO {
                 trainingRatio = Preparation.prepareData(initTrainingRatio),
                 zeroForeignLangRatio = Preparation.prepareData(initZeroForeignLangRatio);
 
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+
+                double reversedExcludedRatio = MathUtils.percentageReverseRatio(excludedRatio, key);
+                double reversedLeaversRatio = MathUtils.percentageReverseRatio(leaversRatio, key);
+                double reversedZeroForeignLangRatio = MathUtils.percentageReverseRatio(zeroForeignLangRatio, key);
+
+                double product = 1
+                        * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
+                        * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
+                        * MathUtils.percentageSafetyDouble(educationRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedExcludedRatio)
+                        * MathUtils.percentageSafetyDouble(reversedLeaversRatio)
+                        * MathUtils.percentageSafetyDouble(pupilsRatio, key)
+                        * MathUtils.percentageSafetyDouble(trainingRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedZeroForeignLangRatio);
+                Number value = Math.log(product);
+                consolidatedList.put(key, value);
+            }
+        }
+
 //        Print.printVariation(Statistics.generateVariation(pupilsRatio, true));
 //        Print.print(pupilsRatio, false);
 
-        return 0;
+        return consolidatedList;
     }
 
-
     /**
-     * Generate an initialized consolidated pupils ratio list
+     * Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
+     * PERIOD OF TIME<br/>
+     * <b>A LEVERAGE PERIOD OF TIME is an extended period of the analyzed period</b> (required
+     * if in the analyzed period there is no data for a country code)<br/>
+     * If the key is missing form the original map, set a default value (<b>null</b>)<br/>
+     * A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
      *
-     * @return
+     * @return A new sorted map with no missing keys
      */
     private static Map<String, Number> initConsolidatedPupilsRatio() {
         Map<String, Number> consolidatedList = consolidatePupilsRatio();
-        return Initializer.initMap(consolidatedList);
+        return Initializer.initMap(consolidatedList, Constants.EU28_MEMBERS);
     }
 
     /**
-     * Consolidate the lists of values for pupils ratio before 2012 and after 2013
+     * Consolidate the lists of values for pupils ratio before 2012 and after 2013 into a single list
      *
      * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
@@ -99,8 +124,8 @@ public class EducationStatsImpl implements EducationStatsDAO {
         mapsList.add(consolidatedPupilsRatio2013);
 
         // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
+        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+            String code = Constants.EU28_MEMBERS[i];
 
             for (int j = 0; j < mapsList.size(); j++) {
                 Map<String, Number> map = mapsList.get(j);
@@ -119,28 +144,3 @@ public class EducationStatsImpl implements EducationStatsDAO {
         return preparedMap;
     }
 }
-
-/*
- * initDigitalSkillsRatio
- *      -> ALL: 2015 - 2017
- *      -> IT: 2015 - 2016
- *      => setPrevNextYearsValue
- *
- * initZeroForeignLangRatio
- *      -> ALL 2007; 2011; 2016
- *      => setPrevNextYearsValue
- *
- * initEarlyEducationRatio
- *      -> IT, PT, RO, SE, SI, SK: 2007 - 2012
- *      -> UK, AT, EL, HR, HU: with some exceptions
- *      -> small variations (with some exceptions)
- *      => setPrevNextYearsValue
- *
- * initPupilsRatio
- *      -> DK: 2014
- *      -> EL: 2007; 2012 - 2017
- *      -> IE: 2007-2013
- *      -> MT: 2008 - 2017
- *      -> NL: 2007 - 2012; 2015 - 2017
- *      => setPrevNextYearsValue
- */

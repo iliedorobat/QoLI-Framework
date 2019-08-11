@@ -1,5 +1,7 @@
 package app.java.data.measurement.dao;
 
+import java.util.Map;
+
 public interface EducationStatsDAO {
-    double calculateIndex();
+    Map<String, Number> generateDimensionList();
 }

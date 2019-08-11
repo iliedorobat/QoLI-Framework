@@ -19,7 +19,7 @@ public class MeasureUtils {
     }
 
     /**
-     * Prepare data based on the set of parameters values (change the key name)<br/>
+     * Prepare data based on a set of parameters values (change the key name)<br/>
      * E.g.:
      * <pre>
      *  {
