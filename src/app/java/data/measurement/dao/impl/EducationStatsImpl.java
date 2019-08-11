@@ -42,8 +42,8 @@ public class EducationStatsImpl implements EducationStatsDAO {
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
-            consolidatedPupilsRatio2012 = MeasureUtils.consolidateList(PUPILS_RATIO_2012, pupilsRatio2012Path),
-            consolidatedPupilsRatio2013 = MeasureUtils.consolidateList(PUPILS_RATIO_2013, pupilsRatio2013Path);
+            consolidatedPupilsRatio2012 = MeasureUtils.consolidateMap(PUPILS_RATIO_2012, pupilsRatio2012Path),
+            consolidatedPupilsRatio2013 = MeasureUtils.consolidateMap(PUPILS_RATIO_2013, pupilsRatio2013Path);
     private static final ArrayList<Map<String, Number>> pupilsRatioList = new ArrayList<>();
     static {
         pupilsRatioList.add(consolidatedPupilsRatio2012);

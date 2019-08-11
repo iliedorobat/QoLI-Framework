@@ -56,20 +56,7 @@ public class Preparation {
      * @return Prepared map without null values
      */
     public static Map<String, Number> prepareData(Map<String, Number> mainMap) {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
-            preparedMap.put(entry.getKey(), entry.getValue());
-        }
-
-        //TODO: for EU28 make a real average
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
-            replaceRightNullValues(preparedMap, code);
-            replaceLeftNullValues(preparedMap, code);
-        }
-
-        return filterMap(preparedMap);
+        return prepareData(mainMap, EU28_MEMBERS);
     }
 
     // used for offences ratio
@@ -80,7 +67,7 @@ public class Preparation {
             preparedMap.put(entry.getKey(), entry.getValue());
         }
 
-        //TODO: for EU28 make a real average
+        //TODO: make a real average for EU28
         for (int i = 0; i < countries.length; i++) {
             String code = countries[i];
             replaceRightNullValues(preparedMap, code);

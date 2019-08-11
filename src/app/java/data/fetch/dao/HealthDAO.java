@@ -200,6 +200,5 @@ public interface HealthDAO {
      *
      * @return
      */
-    //TODO: accidents / employee * 1000
     StringBuilder getWorkAccidents();
 }

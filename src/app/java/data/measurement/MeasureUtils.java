@@ -45,10 +45,9 @@ public class MeasureUtils {
      * @param globalParamsValues The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
-     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+     * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
-    //TODO: rename to consolidateMap
-    public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
+    public static Map<String, Number> consolidateMap(String[] globalParamsValues, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
@@ -80,7 +79,7 @@ public class MeasureUtils {
      * Consolidate a list of maps into a single map
      *
      * @param mapsList The list of maps
-     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+     * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
     public static Map<String, Number> consolidateMaps(ArrayList<Map<String, Number>> mapsList) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());

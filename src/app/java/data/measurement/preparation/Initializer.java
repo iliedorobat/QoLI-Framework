@@ -45,18 +45,18 @@ public class Initializer {
      */
     //TODO: rename to initConsolidatedMap
     public static Map<String, Number> initConsolidatedList(String[] globalParamsValues, String filePath) {
-        Map<String, Number> consolidatedList = MeasureUtils.consolidateList(globalParamsValues, filePath);
+        Map<String, Number> consolidatedList = MeasureUtils.consolidateMap(globalParamsValues, filePath);
         return initMap(consolidatedList, EU28_MEMBERS);
     }
 
     // used for offences ratio
-    //TODO: rename to initConsolidatedList
+    //TODO: rename to initConsolidatedMap
     public static Map<String, Number> initConsolidatedList(
             String[] globalParamsValues,
             String filePath,
             String[] countries
     ) {
-        Map<String, Number> consolidatedList = MeasureUtils.consolidateList(globalParamsValues, filePath);
+        Map<String, Number> consolidatedList = MeasureUtils.consolidateMap(globalParamsValues, filePath);
         return initMap(consolidatedList, countries);
     }
 

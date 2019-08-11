@@ -3,13 +3,11 @@ package app.java.data.measurement.dao.impl;
 import app.java.commons.MapOrder;
 import app.java.commons.MapUtils;
 import app.java.commons.MathUtils;
-import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.measurement.MeasureUtils;
-import app.java.data.measurement.dao.GeneralStats;
 import app.java.data.measurement.dao.MainActivityStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
@@ -54,8 +52,8 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
-            avgWorkHours2007 = MeasureUtils.consolidateList(AVG_WORK_HOURS_2007, avgWorkHours2007Path),
-            avgWorkHours2008 = MeasureUtils.consolidateList(AVG_WORK_HOURS_2008, avgWorkHours2008Path);
+            avgWorkHours2007 = MeasureUtils.consolidateMap(AVG_WORK_HOURS_2007, avgWorkHours2007Path),
+            avgWorkHours2008 = MeasureUtils.consolidateMap(AVG_WORK_HOURS_2008, avgWorkHours2008Path);
     private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>();
     static {
         avgWorkHoursList.add(avgWorkHours2007);

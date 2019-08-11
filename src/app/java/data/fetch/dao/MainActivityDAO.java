@@ -139,7 +139,6 @@ public interface MainActivityDAO {
      *
      * @return
      */
-    //TODO: researchers ratio = researchers / active population * 10.000
     StringBuilder getResearchers();
 
     /**
