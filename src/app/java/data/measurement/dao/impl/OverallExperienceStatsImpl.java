@@ -2,6 +2,7 @@ package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
 import app.java.commons.MapUtils;
+import app.java.commons.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -27,7 +28,7 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
     private static final Map<String, Number>
             initHighSatisfactionRatio = Initializer.initConsolidatedList(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
 
-    public Map<String, Number> calculateDimension() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number> highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
@@ -35,8 +36,9 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
             for (int i = 0; i < EU28_MEMBERS.length; i++) {
                 String code = EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
+
                 double product = 1
-                        * MapUtils.getSafetyDouble(highSatisfactionRatio, key);
+                        * MathUtils.percentageSafetyDouble(highSatisfactionRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
