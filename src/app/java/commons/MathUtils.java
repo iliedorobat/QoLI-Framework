@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class MathUtils {
     private static final int THOUSAND_VALUE = 1000;
+    private static final int TEN_THOUSAND_VALUE = 10000;
 
     /**
      * Returns the value of a specific square
@@ -112,5 +113,17 @@ public class MathUtils {
     public static Number generateThousandPerInhabitant(String key, Number value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value.doubleValue() / population * THOUSAND_VALUE;
+    }
+
+    /**
+     * Transform the value into a value per thousand inhabitants
+     *
+     * @param key The key used to extract the total population
+     * @param value The initial value
+     * @return The value per thousand inhabitants
+     */
+    public static Number generateTenThousandPerInhabitant(String key, double value) {
+        double population = GeneralStats.population.get(key).doubleValue();
+        return value / population * TEN_THOUSAND_VALUE;
     }
 }

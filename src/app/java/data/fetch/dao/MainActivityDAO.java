@@ -33,7 +33,6 @@ public interface MainActivityDAO {
      *
      * @return
      */
-    //TODO: avg free hours per week (Work-life balance)
     StringBuilder getAvgWorkHours2007();
 
     /**
@@ -51,7 +50,6 @@ public interface MainActivityDAO {
      *
      * @return
      */
-    //TODO: avg free hours per week (Work-life balance)
     StringBuilder getAvgWorkHours2008();
 
     /**
@@ -124,6 +122,7 @@ public interface MainActivityDAO {
      *
      * <b>GREATER IS WORSE!</b>
      *
+     * @deprecated no dataset: DK; IE; NL
      * @return
      */
     StringBuilder getOverQualifiedRatio();
