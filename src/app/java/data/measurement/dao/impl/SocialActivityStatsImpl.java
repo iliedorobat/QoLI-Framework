@@ -97,8 +97,6 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             }
         }
 
-        System.out.println(consolidatedList);
-
 //        Print.printVariation(Statistics.generateVariation(askingRatio, true));
 //        Print.print(askingRatio, true);
 
