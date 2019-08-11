@@ -101,8 +101,6 @@ public class HealthStatsImpl implements HealthStatsDAO {
                         beds = generateTensThousand(hospitalBeds, key),
                         reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
 
-//                System.out.println(workAccidents);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
