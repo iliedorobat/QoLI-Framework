@@ -15,6 +15,23 @@ public class MainActivityDAOImpl implements MainActivityDAO {
             "lfsa_ewhun2"  // 2008-2018
     };
 
+    public StringBuilder getActivePopulation() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put("age", "Y15-64");
+        params.put("indic_em", "ACT");
+        params.put("sex", "T");
+        params.put("unit", "PC_POP");
+        return Fetcher.fetchData("lfsi_emp_a", params);
+    }
+
+    public StringBuilder getAvgWorkHours2007() {
+        return FetcherUtils.getAvgWorkHours(WORK_DATASET[0]);
+    }
+
+    public StringBuilder getAvgWorkHours2008() {
+        return FetcherUtils.getAvgWorkHours(WORK_DATASET[1]);
+    }
+
     public StringBuilder getEmploymentRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y15-64");
@@ -22,15 +39,6 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         params.put("sex", "T");
         params.put("unit", "PC");
         return Fetcher.fetchData("lfsa_ergaed", params);
-    }
-
-    public StringBuilder getTemporaryEmploymentRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("age", "Y15-64");
-        params.put("sex", "T");
-        params.put("unit", "PC_EMP");
-        params.put("worktime", "TEMP");
-        return Fetcher.fetchData("lfsi_pt_a", params);
     }
 
     public StringBuilder getInvoluntaryPartTimeRatio() {
@@ -41,22 +49,13 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         return Fetcher.fetchData("lfsa_eppgai", params);
     }
 
-    public StringBuilder getOverQualifiedRatio() {
+    public StringBuilder getLongTermUnemploymentRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("age", "Y15-64");
-        params.put("isced11", "TOTAL");
-        params.put("mgstatus", "TOTAL");
+        params.put("age", "Y15-74");
+        params.put("indic_em", "LTU");
         params.put("sex", "T");
-        params.put("unit", "PC");
-        return Fetcher.fetchData("lfso_14loq", params);
-    }
-
-    public StringBuilder getAvgWorkHours2007() {
-        return FetcherUtils.getAvgWorkHours(WORK_DATASET[0]);
-    }
-
-    public StringBuilder getAvgWorkHours2008() {
-        return FetcherUtils.getAvgWorkHours(WORK_DATASET[1]);
+        params.put("unit", "PC_ACT");
+        return Fetcher.fetchData("une_ltu_a", params);
     }
 
     public StringBuilder getNightsRatio() {
@@ -69,31 +68,14 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         return Fetcher.fetchData("lfsa_ewpnig", params);
     }
 
-    public StringBuilder getUnemploymentRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("age", "Y15-74");
-        params.put("isced11", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
-        return Fetcher.fetchData("lfsa_urgaed", params);
-    }
-
-    public StringBuilder getLongTermUnemploymentRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("age", "Y15-74");
-        params.put("indic_em", "LTU");
-        params.put("sex", "T");
-        params.put("unit", "PC_ACT");
-        return Fetcher.fetchData("une_ltu_a", params);
-    }
-
-    public StringBuilder getActivePopulation() {
+    public StringBuilder getOverQualifiedRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y15-64");
-        params.put("indic_em", "ACT");
+        params.put("isced11", "TOTAL");
+        params.put("mgstatus", "TOTAL");
         params.put("sex", "T");
-        params.put("unit", "PC_POP");
-        return Fetcher.fetchData("lfsi_emp_a", params);
+        params.put("unit", "PC");
+        return Fetcher.fetchData("lfso_14loq", params);
     }
 
     public StringBuilder getResearchers() {
@@ -103,5 +85,23 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         params.put("sex", "T");
         params.put("unit", "FTE");
         return Fetcher.fetchData("rd_p_persocc", params);
+    }
+
+    public StringBuilder getTemporaryEmploymentRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put("age", "Y15-64");
+        params.put("sex", "T");
+        params.put("unit", "PC_EMP");
+        params.put("worktime", "TEMP");
+        return Fetcher.fetchData("lfsi_pt_a", params);
+    }
+
+    public StringBuilder getUnemploymentRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put("age", "Y15-74");
+        params.put("isced11", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "PC");
+        return Fetcher.fetchData("lfsa_urgaed", params);
     }
 }

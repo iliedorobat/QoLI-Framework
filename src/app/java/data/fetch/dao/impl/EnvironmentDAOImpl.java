@@ -6,14 +6,6 @@ import app.java.data.fetch.dao.EnvironmentDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class EnvironmentDAOImpl implements EnvironmentDAO {
-    public StringBuilder getPollutionRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("hhtyp", "TOTAL");
-        params.put("incgrp", "TOTAL");
-        params.put("unit", "PC");
-        return Fetcher.fetchData("ilc_mddw02", params);
-    }
-
     public StringBuilder getAirPollutionRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("airpol", "PM10");
@@ -26,6 +18,14 @@ public class EnvironmentDAOImpl implements EnvironmentDAO {
         params.put("incgrp", "TOTAL");
         params.put("unit", "PC");
         return Fetcher.fetchData("ilc_mddw01", params);
+    }
+
+    public StringBuilder getPollutionRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put("hhtyp", "TOTAL");
+        params.put("incgrp", "TOTAL");
+        params.put("unit", "PC");
+        return Fetcher.fetchData("ilc_mddw02", params);
     }
 
     public StringBuilder getWaterSupplyRatio() {

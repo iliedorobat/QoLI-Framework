@@ -5,34 +5,45 @@ package app.java.data.fetch.dao;
  */
 public interface MaterialLivingDAO {
     /**
-     * Purchasing Power Standard (PPS)<br/><br/>
+     * Population living in a dwelling with a leaking roof, damp walls, floors
+     * or foundation, or rot in window frames of floor<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percent of the EU28 countries (number)<br/>
-     * Dataset: nama_10_pc<br/>
-     * Years: 1975-2018
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_mdho01<br/>
+     * Years: 2003-2018<br/><br/>
      *
-     * Comments: NUTS 2 regions => nama_10r_2gdp
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
-    StringBuilder getPurchasingRatio();
+    StringBuilder getDwellingIssuesRatio();
 
     /**
-     * Median income<br/><br/>
+     * Inability to make ends meet<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: Purchasing Power Standard (number)<br/>
-     * Dataset: ilc_di03<br/>
-     * Years: 1995-2018<br/><br/>
+     * Data type: proportion of the population living in households, by difficulty of making ends meet (%)<br/>
+     * Dataset: ilc_mdes09<br/>
+     * Years: 2003-2018<br/><br/>
      *
-     * Comments: NUTS 2 regions => nama_10r_2hhinc
-     *
-     * @deprecated use the getPurchasingRatio
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
-    StringBuilder getMedianIncome();
+    StringBuilder getEndMeetInabilityRatio();
+
+    /**
+     * Proportion of the population having income of 130% of median income or more<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_di20<br/>
+     * Years: 2003-2018
+     *
+     * @return
+     */
+    StringBuilder getHighIncomeRatio();
 
     /**
      * Inequality of income distribution (S80/S20 income quintile share ratio) by selected age group<br/><br/>
@@ -51,32 +62,18 @@ public interface MaterialLivingDAO {
     StringBuilder getIncomeQuintileRatio();
 
     /**
-     * At-risk-of-poverty rate (cut-off point: 60% of median equivalised income after social transfers)<br/><br/>
+     * Population having neither a bath, nor a shower, nor indoor flushing toilet in their household<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_li03<br/>
-     * Years: 1995-2018<br/><br/>
-     *
-     * Comments: NUTS regions => ilc_li41<br/><br/>
+     * Dataset: ilc_mdho05<br/>
+     * Years: 2003-2018<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
-    StringBuilder getPovertyRiskRatio();
-
-    /**
-     * Proportion of the population having income of 130% of median income or more<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_di20<br/>
-     * Years: 2003-2018
-     *
-     * @return
-     */
-    StringBuilder getHighIncomeRatio();
+    StringBuilder getLackOfBathsRatio();
 
     /**
      * Severe material deprivation rate<br/><br/>
@@ -95,31 +92,20 @@ public interface MaterialLivingDAO {
     StringBuilder getMaterialDeprivationRatio();
 
     /**
-     * Inability to make ends meet<br/><br/>
+     * Median income<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: proportion of the population living in households, by difficulty of making ends meet (%)<br/>
-     * Dataset: ilc_mdes09<br/>
-     * Years: 2003-2018<br/><br/>
+     * Data type: Purchasing Power Standard (number)<br/>
+     * Dataset: ilc_di03<br/>
+     * Years: 1995-2018<br/><br/>
      *
-     * <b>GREATER IS WORSE!</b>
+     * Comments: NUTS 2 regions => nama_10r_2hhinc
+     *
+     * @deprecated use the getPurchasingRatio
      *
      * @return
      */
-    StringBuilder getEndMeetInabilityRatio();
-
-    /**
-     * Share of people living in under-occupied dwellings<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_lvho50a<br/>
-     * Years: 2003-2018
-     *
-     * @return
-     */
-    //TODO: getUnderOccupiedRatio / getOverOccupiedRatio * 100
-    StringBuilder getUnderOccupiedRatio();
+    StringBuilder getMedianIncome();
 
     /**
      * Overcrowding rate<br/><br/>
@@ -137,33 +123,59 @@ public interface MaterialLivingDAO {
     StringBuilder getOverOccupiedRatio();
 
     /**
-     * Population living in a dwelling with a leaking roof, damp walls, floors
-     * or foundation, or rot in window frames of floor<br/><br/>
+     * At-risk-of-poverty rate (cut-off point: 60% of median equivalised income after social transfers)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_mdho01<br/>
-     * Years: 2003-2018<br/><br/>
+     * Dataset: ilc_li03<br/>
+     * Years: 1995-2018<br/><br/>
+     *
+     * Comments: NUTS regions => ilc_li41<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
-    StringBuilder getDwellingIssuesRatio();
+    StringBuilder getPovertyRiskRatio();
 
     /**
-     * Population having neither a bath, nor a shower, nor indoor flushing toilet in their household<br/><br/>
+     * Population connected to public water supply<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_mdho05<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Dataset: env_wat_pop<br/>
+     * Years: 1990; 1995; 2000-2015
      *
      * @return
      */
-    StringBuilder getLackOfBathsRatio();
+    StringBuilder getPublicWaterRatio();
+
+    /**
+     * Purchasing Power Standard (PPS)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percent of the EU28 countries (number)<br/>
+     * Dataset: nama_10_pc<br/>
+     * Years: 1975-2018
+     *
+     * Comments: NUTS 2 regions => nama_10r_2gdp
+     *
+     * @return
+     */
+    StringBuilder getPurchasingRatio();
+
+    /**
+     * Share of people living in under-occupied dwellings<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_lvho50a<br/>
+     * Years: 2003-2018
+     *
+     * @return
+     */
+    //TODO: getUnderOccupiedRatio / getOverOccupiedRatio * 100
+    StringBuilder getUnderOccupiedRatio();
 
     /**
      * People living in households with very low work intensity<br/><br/>
@@ -180,16 +192,4 @@ public interface MaterialLivingDAO {
      * @return
      */
     StringBuilder getWorkIntensityRatio();
-
-    /**
-     * Population connected to public water supply<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: env_wat_pop<br/>
-     * Years: 1990; 1995; 2000-2015
-     *
-     * @return
-     */
-    StringBuilder getPublicWaterRatio();
 }

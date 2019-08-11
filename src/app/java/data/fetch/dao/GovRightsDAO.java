@@ -22,18 +22,6 @@ public interface GovRightsDAO {
     StringBuilder getActiveCitizenship();
 
     /**
-     * Average rating of population trust (16 years or over) in police, legal system and political system<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: rating (number 0-10)<br/>
-     * Dataset: ilc_pw03<br/>
-     * Years: 2013
-     *
-     * @return
-     */
-    StringBuilder getPopulationTrustRatio();
-
-    /**
      * Employment (from 20 to 64 years) by sex - annual data<br/><br/>
      *
      * Aggregation: country<br/>
@@ -62,4 +50,16 @@ public interface GovRightsDAO {
      * @return
      */
     StringBuilder getGenderPayGap();
+
+    /**
+     * Average rating of population trust (16 years or over) in police, legal system and political system<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: rating (number 0-10)<br/>
+     * Dataset: ilc_pw03<br/>
+     * Years: 2013
+     *
+     * @return
+     */
+    StringBuilder getPopulationTrustRatio();
 }

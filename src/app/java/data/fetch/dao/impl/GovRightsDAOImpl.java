@@ -11,18 +11,6 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         return FetcherUtils.getActivePeopleRatio(activities);
     }
 
-    public StringBuilder getPopulationTrustRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put("age", "Y_GE16");
-        params.put("indic_wb", "LEGTST"); // legal system
-        params.put("indic_wb", "PLCTST"); // police
-        params.put("indic_wb", "PLTTST"); // political system
-        params.put("isced11", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "RTG");
-        return Fetcher.fetchData("ilc_pw03", params);
-    }
-
     public StringBuilder getEmploymentGap() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y20-64");
@@ -38,5 +26,17 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         params.put("nace_r2", "B-S_X_O");
         params.put("unit", "PC");
         return Fetcher.fetchData("earn_gr_gpgr2", params);
+    }
+
+    public StringBuilder getPopulationTrustRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put("age", "Y_GE16");
+        params.put("indic_wb", "LEGTST"); // legal system
+        params.put("indic_wb", "PLCTST"); // police
+        params.put("indic_wb", "PLTTST"); // political system
+        params.put("isced11", "TOTAL");
+        params.put("sex", "T");
+        params.put("unit", "RTG");
+        return Fetcher.fetchData("ilc_pw03", params);
     }
 }

@@ -10,6 +10,27 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class SafetyDAOImpl implements SafetyDAO {
+    public StringBuilder getCrimeRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.HHTYP, "TOTAL");
+        params.put(ParamsConst.INCGRP, "TOTAL");
+        params.put(ParamsConst.UNIT, "PC");
+        return Fetcher.fetchData("ilc_mddw03", params);
+    }
+
+    public StringBuilder getOffences() {
+        MultiValuedMap<String, String> params = getOffencesMainHttpParams();
+        params.put(ParamsConst.ICCS, "ICCS02011");  // Assault
+        params.put(ParamsConst.ICCS, "ICCS020221"); // Kidnapping
+        params.put(ParamsConst.ICCS, "ICCS0301");   // Sexual violence
+        params.put(ParamsConst.ICCS, "ICCS0401");   // Robbery
+        params.put(ParamsConst.ICCS, "ICCS0501");   // Burglary
+        params.put(ParamsConst.ICCS, "ICCS0502");   // Theft
+        params.put(ParamsConst.ICCS, "ICCS0601");   // Unlawful acts involving controlled drugs or precursors
+        params.put(ParamsConst.UNIT, "NR");
+        return Fetcher.fetchData("crim_off_cat", params);
+    }
+
     public StringBuilder getPensionRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.SPDEPB, "TOTAL");
@@ -41,29 +62,8 @@ public class SafetyDAOImpl implements SafetyDAO {
         return Fetcher.fetchData("ilc_mdes05", params);
     }
 
-    public StringBuilder getOffences() {
-        MultiValuedMap<String, String> params = getOffencesMainHttpParams();
-        params.put(ParamsConst.ICCS, "ICCS02011");  // Assault
-        params.put(ParamsConst.ICCS, "ICCS020221"); // Kidnapping
-        params.put(ParamsConst.ICCS, "ICCS0301");   // Sexual violence
-        params.put(ParamsConst.ICCS, "ICCS0401");   // Robbery
-        params.put(ParamsConst.ICCS, "ICCS0501");   // Burglary
-        params.put(ParamsConst.ICCS, "ICCS0502");   // Theft
-        params.put(ParamsConst.ICCS, "ICCS0601");   // Unlawful acts involving controlled drugs or precursors
-        params.put(ParamsConst.UNIT, "NR");
-        return Fetcher.fetchData("crim_off_cat", params);
-    }
-
-    public StringBuilder getCrimeRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INCGRP, "TOTAL");
-        params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("ilc_mddw03", params);
-    }
-
     /**
-     * Get main parameters
+     * Get main parameters for the offences
      *
      * @return
      */
