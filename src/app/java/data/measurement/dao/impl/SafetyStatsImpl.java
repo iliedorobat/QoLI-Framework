@@ -7,7 +7,6 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.dao.GeneralStats;
 import app.java.data.measurement.dao.SafetyStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
@@ -16,7 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SafetyStatsImpl implements SafetyStatsDAO {
-    private static final int THOUSAND_VALUE = 1000;
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
     private static final String[] EU28_MEMBERS_EXTENDED = Constants.EU28_MEMBERS_EXTENDED;
 
@@ -135,29 +133,16 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
                 if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
                     ukSum += sum;
                 } else {
-                    Number value = generateThousands(key, sum);
+                    Number value = MathUtils.generateThousandPerInhabitant(key, sum);
                     consolidatedList.put(key, value);
                 }
             }
 
             String key = MapUtils.generateKey("UK", year);
-            Number ukValue = generateThousands(key, ukSum);
+            Number ukValue = MathUtils.generateThousandPerInhabitant(key, ukSum);
             consolidatedList.put(MapUtils.generateKey("UK", year), ukValue);
         }
 
         return consolidatedList;
     }
-
-    /**
-     * Transform the value into a value per thousand inhabitants
-     *
-     * @param key The key used to extract the total population
-     * @param value The initial value
-     * @return The value per thousand inhabitants
-     */
-    private static Number generateThousands(String key, double value) {
-        double population = GeneralStats.population.get(key).doubleValue();
-        return value / population * THOUSAND_VALUE;
-    }
-
 }

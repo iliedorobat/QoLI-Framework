@@ -67,10 +67,10 @@ public class HealthStatsImpl implements HealthStatsDAO {
             initUnmetMedicalStatus = Initializer.initConsolidatedList(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
             initWorkAccidents = Initializer.initConsolidatedList(WORK_ACCIDENTS, workAccidentsPath);
 
-    public void calculateIndex() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-//                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
+                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio), // no data
                 bodyMassIndexOverweight = Preparation.prepareData(initBodyMassIndexOverweight), // not used
                 bodyMassIndexObese = Preparation.prepareData(initBodyMassIndexObese),
                 fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
@@ -81,24 +81,27 @@ public class HealthStatsImpl implements HealthStatsDAO {
                 hospitalBeds = Preparation.prepareData(initHospitalBeds),
                 lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
                 longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
-//                physicalActivities = Preparation.prepareData(initPhysicalActivities),
+                physicalActivities = Preparation.prepareData(initPhysicalActivities), // no data
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalStatus = Preparation.prepareData(initUnmetDentalStatus),
                 unmetMedicalStatus = Preparation.prepareData(initUnmetMedicalStatus),
-                workAccidents = Preparation.prepareData(initWorkAccidents);
+                workAccidents = consolidateWorkAccidents();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
                 String code = Constants.EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bodyMassIndexObese, key);
-                double reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key);
-                double reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key);
-                double reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalStatus, key);
-                double reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalStatus, key);
-                double personnel = hundredThousandToMillion(healthPersonnel, key);
-                double beds = hundredThousandToMillion(hospitalBeds, key);
+                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bodyMassIndexObese, key),
+                        reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key),
+                        reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
+                        reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalStatus, key),
+                        reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalStatus, key),
+                        personnel = generateTensThousand(healthPersonnel, key),
+                        beds = generateTensThousand(hospitalBeds, key),
+                        reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
+
+//                System.out.println(workAccidents);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
@@ -113,18 +116,47 @@ public class HealthStatsImpl implements HealthStatsDAO {
                         * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnmetDentalStatus)
                         * MathUtils.percentageSafetyDouble(reversedUnmetMedicalStatus)
-                        //TODO: workAccidents / 1000 inhabitants
-                        ;
+                        * MathUtils.percentageSafetyDouble(reversedWorkAccidents);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
         }
 
 //        Print.printVariation(Statistics.generateVariation(workAccidents, true));
-//        Print.print(hospitalBeds, true);
+//        Print.print(consolidatedList, true);
+
+        return consolidatedList;
     }
 
-    private static double hundredThousandToMillion(Map<String, Number> map, String key) {
+    /**
+     * Transform all of the values expressed as hundred thousand into tens thousand
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> consolidateWorkAccidents() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number> workAccidents = Preparation.prepareData(initWorkAccidents);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+                Number value = MathUtils.generateThousandPerInhabitant(key, workAccidents.get(key));
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    /**
+     * Transform a value expressed as hundred thousand into tens thousand
+     *
+     * @param map The related map
+     * @param key The key
+     * @return The tens thousand value
+     */
+    private static double generateTensThousand(Map<String, Number> map, String key) {
         return map.get(key).doubleValue() / 10;
     }
 }
