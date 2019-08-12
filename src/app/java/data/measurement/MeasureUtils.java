@@ -1,6 +1,7 @@
 package app.java.data.measurement;
 
 import app.java.commons.MapOrder;
+import app.java.commons.utils.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.parse.LocalParser;
@@ -8,18 +9,8 @@ import app.java.data.parse.LocalParser;
 import java.util.*;
 
 public class MeasureUtils {
-    // For testing
-    //TODO: delete
-    public static void print(String filePath) {
-        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
-        System.out.println(entries);
-
-        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
-        System.out.println(dimensions);
-    }
-
     /**
-     * Prepare data based on the set of parameters values (change the key name)<br/>
+     * Prepare data based on a set of parameters values (change the key name)<br/>
      * E.g.:
      * <pre>
      *  {
@@ -44,9 +35,9 @@ public class MeasureUtils {
      * @param globalParamsValues The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
-     * @return Sorted list with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+     * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
-    public static Map<String, Number> consolidateList(String[] globalParamsValues, String filePath) {
+    public static Map<String, Number> consolidateMap(String[] globalParamsValues, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
@@ -72,6 +63,36 @@ public class MeasureUtils {
         }
 
         return consolidatedList;
+    }
+
+    /**
+     * Consolidate a list of maps into a single map
+     *
+     * @param mapsList The list of maps
+     * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+     */
+    public static Map<String, Number> consolidateMaps(ArrayList<Map<String, Number>> mapsList) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
+        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+            String code = Constants.EU28_MEMBERS[i];
+
+            for (int j = 0; j < mapsList.size(); j++) {
+                Map<String, Number> map = mapsList.get(j);
+
+                for (Map.Entry<String, Number> entry : map.entrySet()) {
+                    String entryCode = MapUtils.getEntryCode(entry);
+                    String entryKey = entry.getKey();
+                    Number entryValue = entry.getValue();
+
+                    if (code.equals(entryCode) && !preparedMap.containsKey(entryKey))
+                        preparedMap.put(entryKey, entryValue);
+                }
+            }
+        }
+
+        return preparedMap;
     }
 
     /**

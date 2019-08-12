@@ -1,14 +1,27 @@
 package app.java.data.measurement.dao.impl;
 
+import app.java.commons.MapOrder;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.measurement.MeasureUtils;
 import app.java.data.measurement.dao.MainActivityStatsDAO;
+import app.java.data.measurement.preparation.Initializer;
+import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MainActivityStatsImpl implements MainActivityStatsDAO {
+    /**
+     * 12 hours * 7 days
+     */
+    private static final int CORRECTION_WORKING_HOURS = 12 * 7;
+
     // The lists of queried values
     private static final String[]
             ACTIVE_POPULATION = {"Y15-64", "PC_POP", "T", "ACT"},
@@ -37,21 +50,96 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
             temporaryEmploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.TEMPORARY_EMPLOYMENT_RATIO + JSON_EXT,
             unemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO + JSON_EXT;
 
+    // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
-            activePopulation = MeasureUtils.consolidateList(ACTIVE_POPULATION, activePopulationPath),
-            avgWorkHours2007 = MeasureUtils.consolidateList(AVG_WORK_HOURS_2007, avgWorkHours2007Path),
-            avgWorkHours2008 = MeasureUtils.consolidateList(AVG_WORK_HOURS_2008, avgWorkHours2008Path),
-            employmentRatio = MeasureUtils.consolidateList(EMPLOYMENT_RATIO, employmentRatioPath),
-            involuntaryPartTimeRatio = MeasureUtils.consolidateList(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatioPath),
-            longTermUnemploymentRatio = MeasureUtils.consolidateList(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatioPath),
-            nightsRatio = MeasureUtils.consolidateList(NIGHTS_RATIO, nightsRatioPath),
-            overQualifiedRatio = MeasureUtils.consolidateList(OVER_QUALIFIED_RATIO, overQualifiedRatioPath),
-            researchers = MeasureUtils.consolidateList(RESEARCHERS, researchersPath),
-            temporaryEmploymentRatio = MeasureUtils.consolidateList(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
-            unemploymentRatio = MeasureUtils.consolidateList(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
+            avgWorkHours2007 = MeasureUtils.consolidateMap(AVG_WORK_HOURS_2007, avgWorkHours2007Path),
+            avgWorkHours2008 = MeasureUtils.consolidateMap(AVG_WORK_HOURS_2008, avgWorkHours2008Path);
+    private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>();
+    static {
+        avgWorkHoursList.add(avgWorkHours2007);
+        avgWorkHoursList.add(avgWorkHours2008);
+    }
 
-    public void print() {
-//        System.out.println(zeroForeignLangRatio);
-        MeasureUtils.print(involuntaryPartTimeRatioPath);
+    private static final Map<String, Number>
+            initActivePopulation = Initializer.initConsolidatedMap(ACTIVE_POPULATION, activePopulationPath),
+            initAvgWorkHoursList = Initializer.initConsolidatedMaps(avgWorkHoursList),
+            initEmploymentRatio = Initializer.initConsolidatedMap(EMPLOYMENT_RATIO, employmentRatioPath),
+            initInvoluntaryPartTimeRatio = Initializer.initConsolidatedMap(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatioPath),
+            initLongTermUnemploymentRatio = Initializer.initConsolidatedMap(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatioPath),
+            initNightsRatio = Initializer.initConsolidatedMap(NIGHTS_RATIO, nightsRatioPath),
+            initOverQualifiedRatio = Initializer.initConsolidatedMap(OVER_QUALIFIED_RATIO, overQualifiedRatioPath),
+            initResearchers = Initializer.initConsolidatedMap(RESEARCHERS, researchersPath),
+            initTemporaryEmploymentRatio = Initializer.initConsolidatedMap(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
+            initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
+
+    public Map<String, Number> generateDimensionList() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number>
+                activePopulation = Preparation.prepareData(initActivePopulation), // not used
+                avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
+                employmentRatio = Preparation.prepareData(initEmploymentRatio),
+                involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
+                longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
+                nightsRatio = Preparation.prepareData(initNightsRatio),
+                overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // no data
+                researchersRatio = getResearcherRatio(),
+                temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
+                unemploymentRatio = Preparation.prepareData(initUnemploymentRatio);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+
+                double correctedAvgWorkHours = CORRECTION_WORKING_HOURS - avgWorkHours.get(key).doubleValue(),
+                        reversedInvoluntaryPartTimeRatio = MathUtils.percentageReverseRatio(involuntaryPartTimeRatio, key),
+                        reversedLongTermUnemploymentRatio = MathUtils.percentageReverseRatio(longTermUnemploymentRatio, key),
+                        reversedNightsRatio = MathUtils.percentageReverseRatio(nightsRatio, key),
+                        reversedTemporaryEmploymentRatio = MathUtils.percentageReverseRatio(temporaryEmploymentRatio, key),
+                        reversedUnemploymentRatio = MathUtils.percentageReverseRatio(unemploymentRatio, key);
+
+                double product = 1
+                        * MathUtils.percentageSafetyDouble(correctedAvgWorkHours)
+                        * MathUtils.percentageSafetyDouble(employmentRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedInvoluntaryPartTimeRatio)
+                        * MathUtils.percentageSafetyDouble(reversedLongTermUnemploymentRatio)
+                        * MathUtils.percentageSafetyDouble(reversedNightsRatio)
+                        * MathUtils.percentageSafetyDouble(researchersRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedTemporaryEmploymentRatio)
+                        * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio);
+                Number value = Math.log(product);
+                consolidatedList.put(key, value);
+            }
+        }
+
+//        Print.printVariation(Statistics.generateVariation(pupilsRatio, true));
+//        Print.print(initPupilsRatio, false);
+
+        return consolidatedList;
+    }
+
+    /**
+     * Transform the number of researchers into researchers ratio indicator
+     * (the number of researchers per ten thousand inhabitant)
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> getResearcherRatio() {
+        Map<String, Number> researchersRatio = new TreeMap<>(new MapOrder());
+        Map<String, Number> researchersMap = Preparation.prepareData(initResearchers);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+
+                double researchers = researchersMap.get(key).doubleValue();
+
+                Number value = MathUtils.generateTenThousandPerInhabitant(key, researchers);
+                researchersRatio.put(key, value);
+            }
+        }
+
+        return researchersRatio;
     }
 }

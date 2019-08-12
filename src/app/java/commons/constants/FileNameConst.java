@@ -1,6 +1,9 @@
 package app.java.commons.constants;
 
 public class FileNameConst {
+    // General
+    public static final String POPULATION = "population";
+
     // Education
     public static final String DIGITAL_SKILLS_RATIO = "digitalSkillsRatio";
     public static final String EARLY_EDU_RATIO = "earlyEducationRatio";
@@ -20,7 +23,7 @@ public class FileNameConst {
 
     // Government and Basic Rights
     public static final String ACTIVE_CITIZENSHIP = "activeCitizenship";
-    public static final String EMPLOYMENT_GAP = "employmentGap";
+    public static final String EMPLOYMENT = "employment";
     public static final String GENDER_PAY_GAP = "genderPayGap";
     public static final String POPULATION_TRUST_RATIO = "populationTrustRatio";
     public static final String VOTER_TURNOUT = "voterTurnout";

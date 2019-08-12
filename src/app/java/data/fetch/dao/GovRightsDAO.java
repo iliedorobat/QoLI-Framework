@@ -22,31 +22,16 @@ public interface GovRightsDAO {
     StringBuilder getActiveCitizenship();
 
     /**
-     * Average rating of population trust (16 years or over) in police, legal system and political system<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: rating (number 0-10)<br/>
-     * Dataset: ilc_pw03<br/>
-     * Years: 2013
-     *
-     * @return
-     */
-    StringBuilder getPopulationTrustRatio();
-
-    /**
      * Employment (from 20 to 64 years) by sex - annual data<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Years: 1992-2018
      *
      * @return
      */
-    //TODO: Gender employment gap = male ratio - female ratio
-    StringBuilder getEmploymentGap();
+    StringBuilder getEmployment();
 
     /**
      * Gender pay gap in unadjusted form by NACE Rev. 2 activity - structure of earnings survey methodology<br/>
@@ -62,4 +47,16 @@ public interface GovRightsDAO {
      * @return
      */
     StringBuilder getGenderPayGap();
+
+    /**
+     * Average rating of population trust (16 years or over) in police, legal system and political system<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: rating (number 0-10)<br/>
+     * Dataset: ilc_pw03<br/>
+     * Years: 2013
+     *
+     * @return
+     */
+    StringBuilder getPopulationTrustRatio();
 }

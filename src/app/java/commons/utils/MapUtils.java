@@ -1,4 +1,4 @@
-package app.java.commons;
+package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import org.apache.commons.collections4.MultiSet;
@@ -49,9 +49,5 @@ public class MapUtils {
             return Integer.parseInt(keyList[1]);
 
         return null;
-    }
-
-    public static double getSafetyDouble(Map<String, Number> map, String key) {
-        return map.get(key).doubleValue() + Constants.SAFETY_VALUE;
     }
 }

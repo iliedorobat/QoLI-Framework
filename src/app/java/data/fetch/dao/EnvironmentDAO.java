@@ -5,20 +5,6 @@ package app.java.data.fetch.dao;
  */
 public interface EnvironmentDAO {
     /**
-     * Pollution, grime or other environmental problems - EU-SILC survey<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_mddw02<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getPollutionRatio();
-
-    /**
      * Exposure to air pollution (Particulates < 10µm)<br/><br/>
      *
      * Aggregation: country<br/>
@@ -28,6 +14,7 @@ public interface EnvironmentDAO {
      *
      * <b>GREATER IS WORSE!</b>
      *
+     * @deprecated no dataset: MT
      * @return
      */
     StringBuilder getAirPollutionRatio();
@@ -47,6 +34,20 @@ public interface EnvironmentDAO {
     StringBuilder getNoisePollutionRatio();
 
     /**
+     * Pollution, grime or other environmental problems - EU-SILC survey<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_mddw02<br/>
+     * Years: 2003-2018<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getPollutionRatio();
+
+    /**
      * Population connected to public water supply<br/><br/>
      *
      * Aggregation: country<br/>
@@ -56,6 +57,7 @@ public interface EnvironmentDAO {
      *
      * Comment: NUTS 2 regions => env_watpop_r2
      *
+     * @deprecated no dataset: IT; LV; SI; UK
      * @return
      */
     StringBuilder getWaterSupplyRatio();

@@ -3,5 +3,5 @@ package app.java.data.measurement.dao;
 import java.util.Map;
 
 public interface SafetyStatsDAO {
-    Map<String, Number> calculateDimension();
+    Map<String, Number> generateDimensionList();
 }

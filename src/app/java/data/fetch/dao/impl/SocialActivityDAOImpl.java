@@ -28,14 +28,23 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
             "FRD"       // Friends
     };
 
-    public StringBuilder getSocialActivitiesRatio() {
+    public StringBuilder getAskingRatio() {
+        return FetcherUtils.getSupportiveRatio("ilc_scp15");
+    }
+
+    public StringBuilder getDiscussionRatio() {
+        return FetcherUtils.getSupportiveRatio("ilc_scp17");
+    }
+
+    public StringBuilder getGettingTogetherRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.DEG_URB, "TOTAL");
-        params.put(ParamsConst.FREQUENC, "GE1");
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.QUANTILE, "TOTAL");
+        params.put(ParamsConst.AGE, "Y_GE16");
+        params.put(ParamsConst.FREQUENCY, "WEEK");
+        FetcherUtils.addParams(params, ParamsConst.IND_TYPE, GROUPS);
+        params.put(ParamsConst.ISCED_11, "TOTAL");
+        params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("ilc_scp02", params);
+        return Fetcher.fetchData("ilc_scp09", params);
     }
 
     public StringBuilder getNonParticipationRatio() {
@@ -49,26 +58,17 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
         return Fetcher.fetchData("ilc_scp05", params);
     }
 
-    public StringBuilder getGettingTogetherRatio() {
+    public StringBuilder getSocialActivitiesRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.FREQUENC, "WEEK");
-        FetcherUtils.addParams(params, ParamsConst.IND_TYPE, GROUPS);
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.DEG_URB, "TOTAL");
+        params.put(ParamsConst.FREQUENCY, "GE1");
+        params.put(ParamsConst.HHTYP, "TOTAL");
+        params.put(ParamsConst.QUANTILE, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("ilc_scp09", params);
+        return Fetcher.fetchData("ilc_scp02", params);
     }
 
     public StringBuilder getVoluntaryActivitiesRatio() {
         return FetcherUtils.getActivePeopleRatio(VOLUNTARY_ACTIVITIES);
-    }
-
-    public StringBuilder getAskingRatio() {
-        return FetcherUtils.getSupportiveRatio("ilc_scp15");
-    }
-
-    public StringBuilder getDiscussionRatio() {
-        return FetcherUtils.getSupportiveRatio("ilc_scp17");
     }
 }

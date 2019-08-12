@@ -5,6 +5,34 @@ package app.java.data.fetch.dao;
  */
 public interface SafetyDAO {
     /**
+     * Share of the population who perceived there was crime, violence or vandalism in the area where they live<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: ilc_mddw03<br/>
+     * Years: 2003-2018<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getCrimeRatio();
+
+    /**
+     * Recorded offences by offence category - police data (Assault, Robbery, Burglary, Theft)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: count (number)<br/>
+     * Dataset: crim_off_cat<br/>
+     * Years: 2008-2016<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getOffences();
+
+    /**
      * Pensions expenditure level<br/><br/>
      *
      * Aggregation: country<br/>
@@ -57,32 +85,4 @@ public interface SafetyDAO {
      * @return
      */
     StringBuilder getUnpaidRatio();
-
-    /**
-     * Recorded offences by offence category - police data (Assault, Robbery, Burglary, Theft)<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: count (number)<br/>
-     * Dataset: crim_off_cat<br/>
-     * Years: 2008-2016<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getOffences();
-
-    /**
-     * Share of the population who perceived there was crime, violence or vandalism in the area where they live<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_mddw03<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getCrimeRatio();
 }

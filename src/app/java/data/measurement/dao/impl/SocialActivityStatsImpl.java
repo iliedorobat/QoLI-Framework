@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -47,28 +47,28 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initAskingRatio = Initializer.initConsolidatedList(ASKING_RATIO, askingRatioPath),
-            initDiscussionRatio = Initializer.initConsolidatedList(DISCUSSION_RATIO, discussionRatioPath),
-            initSocialActivitiesRatio = Initializer.initConsolidatedList(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatioPath),
-            initVoluntaryActivitiesRatio = Initializer.initConsolidatedList(VOLUNTARY_ACTIVITIES_RATIO, voluntaryActivitiesRatioPath),
+            initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
+            initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_RATIO, discussionRatioPath),
+            initSocialActivitiesRatio = Initializer.initConsolidatedMap(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatioPath),
+            initVoluntaryActivitiesRatio = Initializer.initConsolidatedMap(VOLUNTARY_ACTIVITIES_RATIO, voluntaryActivitiesRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initGettingTogetherFamRatio = Initializer.initConsolidatedList(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
-            initGettingTogetherFrdRatio = Initializer.initConsolidatedList(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
+            initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
+            initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initNpFinCinRatio = Initializer.initConsolidatedList(NP_FIN_CIN_RATIO, nonParticipationRatioPath),
-            initNpFinCultRatio = Initializer.initConsolidatedList(NP_FIN_CULT_RATIO, nonParticipationRatioPath),
-            initNpFinLiveRatio = Initializer.initConsolidatedList(NP_FIN_LIVE_RATIO, nonParticipationRatioPath),
-            initNpFinSportRatio = Initializer.initConsolidatedList(NP_FIN_SPORT_RATIO, nonParticipationRatioPath),
+            initNpFinCinRatio = Initializer.initConsolidatedMap(NP_FIN_CIN_RATIO, nonParticipationRatioPath),
+            initNpFinCultRatio = Initializer.initConsolidatedMap(NP_FIN_CULT_RATIO, nonParticipationRatioPath),
+            initNpFinLiveRatio = Initializer.initConsolidatedMap(NP_FIN_LIVE_RATIO, nonParticipationRatioPath),
+            initNpFinSportRatio = Initializer.initConsolidatedMap(NP_FIN_SPORT_RATIO, nonParticipationRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initNpNnbCinRatio = Initializer.initConsolidatedList(NP_NNB_CIN_RATIO, nonParticipationRatioPath),
-            initNpNnbCultRatio = Initializer.initConsolidatedList(NP_NNB_CULT_RATIO, nonParticipationRatioPath),
-            initNpNnbLiveRatio = Initializer.initConsolidatedList(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
-            initNpNnbSportRatio = Initializer.initConsolidatedList(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
+            initNpNnbCinRatio = Initializer.initConsolidatedMap(NP_NNB_CIN_RATIO, nonParticipationRatioPath),
+            initNpNnbCultRatio = Initializer.initConsolidatedMap(NP_NNB_CULT_RATIO, nonParticipationRatioPath),
+            initNpNnbLiveRatio = Initializer.initConsolidatedMap(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
+            initNpNnbSportRatio = Initializer.initConsolidatedMap(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
-    public Map<String, Number> calculateDimension() {
+    public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 askingRatio = Preparation.prepareData(initAskingRatio),
@@ -78,20 +78,20 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
                 voluntaryActivitiesRatio = Preparation.prepareData(initVoluntaryActivitiesRatio);
 
-
-
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < EU28_MEMBERS.length; i++) {
                 String code = EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
+                double reversedNonParticipationRatio = MathUtils.percentageReverseRatio(nonParticipationRatio, key);
+
                 double product = 1
-                        * MapUtils.getSafetyDouble(askingRatio, key)
-                        * MapUtils.getSafetyDouble(discussionRatio, key)
-                        * MapUtils.getSafetyDouble(socialActivitiesRatio, key)
-                        * MapUtils.getSafetyDouble(voluntaryActivitiesRatio, key)
-                        * MapUtils.getSafetyDouble(gettingTogetherRatio, key)
-                        / MapUtils.getSafetyDouble(nonParticipationRatio, key);
+                        * MathUtils.percentageSafetyDouble(askingRatio, key)
+                        * MathUtils.percentageSafetyDouble(discussionRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedNonParticipationRatio)
+                        * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
+                        * MathUtils.percentageSafetyDouble(voluntaryActivitiesRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -105,6 +105,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
     /**
      * Aggregate the "Getting Together Ratios" into a single ratio
+     *
      * @return An ordered map with aggregated data
      */
     private Map<String, Number> consolidateGettingTogetherRatio() {
@@ -119,8 +120,8 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
-                        * MapUtils.getSafetyDouble(gettingTogetherFamRatio, key)
-                        * MapUtils.getSafetyDouble(gettingTogetherFrdRatio, key);
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key);
                 Number value = MathUtils.getSquareValue(product, 2);
                 consolidatedList.put(key, value);
             }
@@ -131,6 +132,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
     /**
      * Aggregate the "Non Participation Ratios" into a single ratio
+     *
      * @return An ordered map with aggregated data
      */
     private Map<String, Number> consolidateNonParticipationRatio() {
@@ -152,15 +154,15 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
-                        * MapUtils.getSafetyDouble(npFinCinRatio, key)
-                        * MapUtils.getSafetyDouble(npFinCultRatio, key)
-                        * MapUtils.getSafetyDouble(npFinLiveRatio, key)
-                        * MapUtils.getSafetyDouble(npFinSportRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinCinRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinCultRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinLiveRatio, key)
+                        * MathUtils.percentageSafetyDouble(npFinSportRatio, key)
 
-                        * MapUtils.getSafetyDouble(npNnbCinRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbCultRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbLiveRatio, key)
-                        * MapUtils.getSafetyDouble(npNnbSportRatio, key);
+                        * MathUtils.percentageSafetyDouble(npNnbCinRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbCultRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbLiveRatio, key)
+                        * MathUtils.percentageSafetyDouble(npNnbSportRatio, key);
                 Number value = MathUtils.getSquareValue(product, 8);
                 consolidatedList.put(key, value);
             }

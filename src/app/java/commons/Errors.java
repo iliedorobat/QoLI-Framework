@@ -1,5 +1,7 @@
 package app.java.commons;
 
+import app.java.commons.constants.Constants;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,4 +40,11 @@ public class Errors {
             }
         }
     }
+
+//    public static void throwLowerPercentageValue(double value) {
+//        if (value < Constants.PERCENTAGE_MIN_VALUE) {
+//            throw new Error("The value (" + value + ") is lower than " + Constants.PERCENTAGE_MIN_VALUE
+//                    + " and the current safety threshold can not be applied.");
+//        }
+//    }
 }

@@ -57,21 +57,6 @@ public class FetcherUtils {
      * @param params The parameters list
      * @param values The list with values that should be added
      * @param propertyName The name of the added property
-     * @deprecated
-     * TODO: remove
-     */
-    public static void addParams(MultiValuedMap<String, String> params, String[] values, String propertyName) {
-        for (int i = 0; i < values.length; i++) {
-            params.put(propertyName, values[i]);
-        }
-    }
-
-
-    /**
-     * Add new parameters into the params list
-     * @param params The parameters list
-     * @param values The list with values that should be added
-     * @param propertyName The name of the added property
      */
     public static void addParams(MultiValuedMap<String, String> params, String propertyName, String[] values) {
         for (int i = 0; i < values.length; i++) {
@@ -86,11 +71,11 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getMainHttpParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
-        params.put("lang", "en");
+        params.put(ParamsConst.LANG, "en");
 
         if (EnvConst.IS_TESTING) {
-            params.put("geo", "RO");
-            params.put("time", "2015");
+            params.put(ParamsConst.GEO, "RO");
+            params.put(ParamsConst.TIME, "2015");
         } else {
             addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS);
         }
@@ -105,10 +90,10 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getConsumptionParams() {
         MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put("age", "TOTAL");
-        params.put("quantile", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
+        params.put(ParamsConst.AGE, "TOTAL");
+        params.put(ParamsConst.QUANTILE, "TOTAL");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
         return params;
     }
 
@@ -119,11 +104,11 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getUnmetHealthParams() {
         MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put("age", "Y_GE16");
-        params.put("quantile", "TOTAL");
-        params.put("reason", "TOOEFW");
-        params.put("sex", "T");
-        params.put("unit", "PC");
+        params.put(ParamsConst.AGE, "Y_GE16");
+        params.put(ParamsConst.QUANTILE, "TOTAL");
+        params.put(ParamsConst.REASON, "TOOEFW");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
         return params;
     }
 
@@ -134,10 +119,10 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getWorkOccupationParams() {
         MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put("age", "TOTAL");
-        params.put("incgrp", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
+        params.put(ParamsConst.AGE, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
         return params;
     }
 
@@ -148,11 +133,11 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getHomeConditionsParams() {
         MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put("age", "TOTAL");
-        params.put("hhtyp", "TOTAL");
-        params.put("incgrp", "TOTAL");
-        params.put("sex", "T");
-        params.put("unit", "PC");
+        params.put(ParamsConst.AGE, "TOTAL");
+        params.put(ParamsConst.HHTYP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
         return params;
     }
 
@@ -189,12 +174,12 @@ public class FetcherUtils {
             Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well being levels");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
-            params.put("age", "Y_GE16");
-            params.put("indic_wb", wellBeing);
-            params.put("isced11", "TOTAL");
-            params.put("lev_satis", satisfactionLevel);
-            params.put("sex", "T");
-            params.put("unit", "PC");
+            params.put(ParamsConst.AGE, "Y_GE16");
+            params.put(ParamsConst.INDIC_WB, wellBeing);
+            params.put(ParamsConst.ISCED_11, "TOTAL");
+            params.put(ParamsConst.LEV_SATIS, satisfactionLevel);
+            params.put(ParamsConst.SEX, "T");
+            params.put(ParamsConst.UNIT, "PC");
 
             return Fetcher.fetchData("ilc_pw05", params);
         } catch (Exception e) {
@@ -223,11 +208,11 @@ public class FetcherUtils {
             Errors.throwNewError(ACTIVITIES_TYPE, activities, "type of people activities");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
-            addParams(params, activities, "acl00");
-            params.put("age", "Y_GE16");
-            params.put("isced11", "TOTAL");
-            params.put("sex", "T");
-            params.put("unit", "PC");
+            addParams(params, ParamsConst.ACL_00, activities);
+            params.put(ParamsConst.AGE, "Y_GE16");
+            params.put(ParamsConst.ISCED_11, "TOTAL");
+            params.put(ParamsConst.SEX, "T");
+            params.put(ParamsConst.UNIT, "PC");
 
             return Fetcher.fetchData("ilc_scp19", params);
         } catch (Exception e) {
@@ -254,10 +239,10 @@ public class FetcherUtils {
             Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
-            params.put("age", "Y_GE16");
-            params.put("isced11", "TOTAL");
-            params.put("sex", "T");
-            params.put("unit", "PC");
+            params.put(ParamsConst.AGE, "Y_GE16");
+            params.put(ParamsConst.ISCED_11, "TOTAL");
+            params.put(ParamsConst.SEX, "T");
+            params.put(ParamsConst.UNIT, "PC");
             return Fetcher.fetchData(apiName, params);
         } catch (Exception e) {
             return null;
@@ -286,9 +271,7 @@ public class FetcherUtils {
     public static StringBuilder getAvgWorkHours(String dataset) {
         try {
             Errors.throwNewError(
-                    MainActivityDAOImpl.WORK_DATASET,
-                    dataset,
-                    "dataset name"
+                    MainActivityDAOImpl.WORK_DATASET, dataset, "dataset name"
             );
 
             String activity = "";
@@ -299,11 +282,11 @@ public class FetcherUtils {
 
             MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
             params.put(activity, "TOTAL");
-            params.put("age", "Y15-64");
-            params.put("sex", "T");
-            params.put("unit", "HR");
-            params.put("worktime", "FT");
-            params.put("wstatus", "EMP");
+            params.put(ParamsConst.AGE, "Y15-64");
+            params.put(ParamsConst.SEX, "T");
+            params.put(ParamsConst.UNIT, "HR");
+            params.put(ParamsConst.WORK_TIME, "FT");
+            params.put(ParamsConst.WORKING_STATUS, "EMP");
             return Fetcher.fetchData(dataset, params);
         } catch (Exception e) {
             return null;
