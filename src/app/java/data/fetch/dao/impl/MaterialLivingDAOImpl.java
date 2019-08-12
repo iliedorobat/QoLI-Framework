@@ -25,7 +25,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     public StringBuilder getEndMeetInabilityRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INCGRP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
         FetcherUtils.addParams(params, ParamsConst.SUBJNMON, END_MEET_DIFFICULTIES);
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mdes09", params);

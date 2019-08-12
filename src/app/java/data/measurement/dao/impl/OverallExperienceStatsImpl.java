@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -26,7 +26,7 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
             + FileNameConst.HIGH_SATISFACTION_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initHighSatisfactionRatio = Initializer.initConsolidatedList(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
+            initHighSatisfactionRatio = Initializer.initConsolidatedMap(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

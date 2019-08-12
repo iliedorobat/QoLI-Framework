@@ -17,7 +17,7 @@ public class GeneralStats {
             populationPath = FilePathConst.DATASET_PATH + FileNameConst.POPULATION + JSON_EXT;
 
     private static final Map<String, Number>
-            initPopulation = Initializer.initConsolidatedList(POPULATION, populationPath);
+            initPopulation = Initializer.initConsolidatedMap(POPULATION, populationPath);
 
     public static final Map<String, Number>
             population = Preparation.prepareData(initPopulation);

@@ -5,6 +5,8 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.dao.HealthStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
@@ -50,22 +52,22 @@ public class HealthStatsImpl implements HealthStatsDAO {
             workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + JSON_EXT;
 
     private static final Map<String, Number>
-            initAlcoholicRatio = Initializer.initConsolidatedList(ALCOHOLIC_RATIO, alcoholicRatioPath),
-            initBodyMassIndexOverweight = Initializer.initConsolidatedList(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
-            initBodyMassIndexObese = Initializer.initConsolidatedList(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
-            initFruitsVegetablesRatio = Initializer.initConsolidatedList(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
-            initHealthPersonnel = Initializer.initConsolidatedList(HEALTH_PERSONNEL, healthPersonnelPath),
-            initHealthyLifeRatio = Initializer.initConsolidatedList(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
-            initHealthyLifeYearsFemale = Initializer.initConsolidatedList(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
-            initHealthyLifeYearsMale = Initializer.initConsolidatedList(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
-            initHospitalBeds = Initializer.initConsolidatedList(HOSPITAL_BEDS, hospitalBedsPath),
-            initLifeExpectancy = Initializer.initConsolidatedList(LIFE_EXPECTANCY, lifeExpectancyPath),
-            initLongHealthIssueRatio = Initializer.initConsolidatedList(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
-            initPhysicalActivities = Initializer.initConsolidatedList(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
-            initSmokersRatio = Initializer.initConsolidatedList(SMOKERS_RATIO, smokersRatioPath),
-            initUnmetDentalStatus = Initializer.initConsolidatedList(UNMET_DENTAL_STATUS, unmetDentalStatusPath),
-            initUnmetMedicalStatus = Initializer.initConsolidatedList(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
-            initWorkAccidents = Initializer.initConsolidatedList(WORK_ACCIDENTS, workAccidentsPath);
+            initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO, alcoholicRatioPath),
+            initBodyMassIndexOverweight = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
+            initBodyMassIndexObese = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
+            initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
+            initHealthPersonnel = Initializer.initConsolidatedMap(HEALTH_PERSONNEL, healthPersonnelPath),
+            initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
+            initHealthyLifeYearsFemale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
+            initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
+            initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS, hospitalBedsPath),
+            initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY, lifeExpectancyPath),
+            initLongHealthIssueRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
+            initPhysicalActivities = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
+            initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO, smokersRatioPath),
+            initUnmetDentalStatus = Initializer.initConsolidatedMap(UNMET_DENTAL_STATUS, unmetDentalStatusPath),
+            initUnmetMedicalStatus = Initializer.initConsolidatedMap(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
+            initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS, workAccidentsPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

@@ -39,7 +39,7 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
     public StringBuilder getGettingTogetherRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.FREQUENC, "WEEK");
+        params.put(ParamsConst.FREQUENCY, "WEEK");
         FetcherUtils.addParams(params, ParamsConst.IND_TYPE, GROUPS);
         params.put(ParamsConst.ISCED_11, "TOTAL");
         params.put(ParamsConst.SEX, "T");
@@ -61,7 +61,7 @@ public class SocialActivityDAOImpl implements SocialActivityDAO {
     public StringBuilder getSocialActivitiesRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.DEG_URB, "TOTAL");
-        params.put(ParamsConst.FREQUENC, "GE1");
+        params.put(ParamsConst.FREQUENCY, "GE1");
         params.put(ParamsConst.HHTYP, "TOTAL");
         params.put(ParamsConst.QUANTILE, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");

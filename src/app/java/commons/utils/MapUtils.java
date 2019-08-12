@@ -1,4 +1,4 @@
-package app.java.commons;
+package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import org.apache.commons.collections4.MultiSet;

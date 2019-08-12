@@ -43,7 +43,7 @@ public class EducationDAOImpl implements EducationDAO {
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.TYPTRAI, "NO_FED_NFE");
         params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WSTATUS, "NEMP");
+        params.put(ParamsConst.WORKING_STATUS, "NEMP");
         return Fetcher.fetchData("edat_lfse_20", params);
     }
 
@@ -52,7 +52,7 @@ public class EducationDAOImpl implements EducationDAO {
         params.put(ParamsConst.AGE, "Y18-24");
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WSTATUS, "POP");
+        params.put(ParamsConst.WORKING_STATUS, "POP");
         return Fetcher.fetchData("edat_lfse_14", params);
     }
 

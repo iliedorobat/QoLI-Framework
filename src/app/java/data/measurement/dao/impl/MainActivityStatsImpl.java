@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -61,16 +61,16 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
     }
 
     private static final Map<String, Number>
-            initActivePopulation = Initializer.initConsolidatedList(ACTIVE_POPULATION, activePopulationPath),
+            initActivePopulation = Initializer.initConsolidatedMap(ACTIVE_POPULATION, activePopulationPath),
             initAvgWorkHoursList = Initializer.initConsolidatedMaps(avgWorkHoursList),
-            initEmploymentRatio = Initializer.initConsolidatedList(EMPLOYMENT_RATIO, employmentRatioPath),
-            initInvoluntaryPartTimeRatio = Initializer.initConsolidatedList(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatioPath),
-            initLongTermUnemploymentRatio = Initializer.initConsolidatedList(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatioPath),
-            initNightsRatio = Initializer.initConsolidatedList(NIGHTS_RATIO, nightsRatioPath),
-            initOverQualifiedRatio = Initializer.initConsolidatedList(OVER_QUALIFIED_RATIO, overQualifiedRatioPath),
-            initResearchers = Initializer.initConsolidatedList(RESEARCHERS, researchersPath),
-            initTemporaryEmploymentRatio = Initializer.initConsolidatedList(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
-            initUnemploymentRatio = Initializer.initConsolidatedList(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
+            initEmploymentRatio = Initializer.initConsolidatedMap(EMPLOYMENT_RATIO, employmentRatioPath),
+            initInvoluntaryPartTimeRatio = Initializer.initConsolidatedMap(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatioPath),
+            initLongTermUnemploymentRatio = Initializer.initConsolidatedMap(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatioPath),
+            initNightsRatio = Initializer.initConsolidatedMap(NIGHTS_RATIO, nightsRatioPath),
+            initOverQualifiedRatio = Initializer.initConsolidatedMap(OVER_QUALIFIED_RATIO, overQualifiedRatioPath),
+            initResearchers = Initializer.initConsolidatedMap(RESEARCHERS, researchersPath),
+            initTemporaryEmploymentRatio = Initializer.initConsolidatedMap(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
+            initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

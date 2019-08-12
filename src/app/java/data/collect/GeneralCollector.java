@@ -1,6 +1,6 @@
 package app.java.data.collect;
 
-import app.java.commons.FileUtils;
+import app.java.commons.utils.FileUtils;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.fetch.dao.GeneralDAO;

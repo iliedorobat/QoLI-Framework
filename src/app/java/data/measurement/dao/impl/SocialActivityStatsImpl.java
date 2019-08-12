@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -47,26 +47,26 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initAskingRatio = Initializer.initConsolidatedList(ASKING_RATIO, askingRatioPath),
-            initDiscussionRatio = Initializer.initConsolidatedList(DISCUSSION_RATIO, discussionRatioPath),
-            initSocialActivitiesRatio = Initializer.initConsolidatedList(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatioPath),
-            initVoluntaryActivitiesRatio = Initializer.initConsolidatedList(VOLUNTARY_ACTIVITIES_RATIO, voluntaryActivitiesRatioPath),
+            initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
+            initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_RATIO, discussionRatioPath),
+            initSocialActivitiesRatio = Initializer.initConsolidatedMap(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatioPath),
+            initVoluntaryActivitiesRatio = Initializer.initConsolidatedMap(VOLUNTARY_ACTIVITIES_RATIO, voluntaryActivitiesRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initGettingTogetherFamRatio = Initializer.initConsolidatedList(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
-            initGettingTogetherFrdRatio = Initializer.initConsolidatedList(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
+            initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
+            initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initNpFinCinRatio = Initializer.initConsolidatedList(NP_FIN_CIN_RATIO, nonParticipationRatioPath),
-            initNpFinCultRatio = Initializer.initConsolidatedList(NP_FIN_CULT_RATIO, nonParticipationRatioPath),
-            initNpFinLiveRatio = Initializer.initConsolidatedList(NP_FIN_LIVE_RATIO, nonParticipationRatioPath),
-            initNpFinSportRatio = Initializer.initConsolidatedList(NP_FIN_SPORT_RATIO, nonParticipationRatioPath),
+            initNpFinCinRatio = Initializer.initConsolidatedMap(NP_FIN_CIN_RATIO, nonParticipationRatioPath),
+            initNpFinCultRatio = Initializer.initConsolidatedMap(NP_FIN_CULT_RATIO, nonParticipationRatioPath),
+            initNpFinLiveRatio = Initializer.initConsolidatedMap(NP_FIN_LIVE_RATIO, nonParticipationRatioPath),
+            initNpFinSportRatio = Initializer.initConsolidatedMap(NP_FIN_SPORT_RATIO, nonParticipationRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initNpNnbCinRatio = Initializer.initConsolidatedList(NP_NNB_CIN_RATIO, nonParticipationRatioPath),
-            initNpNnbCultRatio = Initializer.initConsolidatedList(NP_NNB_CULT_RATIO, nonParticipationRatioPath),
-            initNpNnbLiveRatio = Initializer.initConsolidatedList(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
-            initNpNnbSportRatio = Initializer.initConsolidatedList(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
+            initNpNnbCinRatio = Initializer.initConsolidatedMap(NP_NNB_CIN_RATIO, nonParticipationRatioPath),
+            initNpNnbCultRatio = Initializer.initConsolidatedMap(NP_NNB_CULT_RATIO, nonParticipationRatioPath),
+            initNpNnbLiveRatio = Initializer.initConsolidatedMap(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
+            initNpNnbSportRatio = Initializer.initConsolidatedMap(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

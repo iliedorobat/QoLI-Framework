@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -43,18 +43,18 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
-            initEmploymentFemaleRatio = Initializer.initConsolidatedList(EMPLOYMENT_FEMALE_RATIO, employmentRatioPath),
-            initEmploymentMaleRatio = Initializer.initConsolidatedList(EMPLOYMENT_MALE_RATIO, employmentRatioPath),
-            initPopulationLegtstTrustRatio = Initializer.initConsolidatedList(POPULATION_LEGTST_TRUST_RATIO, populationTrustRatioPath),
-            initPopulationPlctstTrustRatio = Initializer.initConsolidatedList(POPULATION_PLCTST_TRUST_RATIO, populationTrustRatioPath),
-            initPopulationPlttstTrustRatio = Initializer.initConsolidatedList(POPULATION_PLTTST_TRUST_RATIO, populationTrustRatioPath);
+            initEmploymentFemaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_FEMALE_RATIO, employmentRatioPath),
+            initEmploymentMaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_MALE_RATIO, employmentRatioPath),
+            initPopulationLegtstTrustRatio = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST_RATIO, populationTrustRatioPath),
+            initPopulationPlctstTrustRatio = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST_RATIO, populationTrustRatioPath),
+            initPopulationPlttstTrustRatio = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST_RATIO, populationTrustRatioPath);
     private static final ArrayList<Map<String, Number>> voterTurnoutList = new ArrayList<>() {{
         add(voterTurnoutCsvToMap(voterTurnoutPath));
     }};
 
     private static final Map<String, Number>
-            initActiveCitizenship = Initializer.initConsolidatedList(ACTIVE_CITIZENSHIP, activeCitizenshipPath),
-            initGenderPayGap = Initializer.initConsolidatedList(GENDER_PAY_GAP, genderPayGapPath),
+            initActiveCitizenship = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP, activeCitizenshipPath),
+            initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP, genderPayGapPath),
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 
     public Map<String, Number> generateDimensionList() {

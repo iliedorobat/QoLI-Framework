@@ -1,6 +1,6 @@
 package app.java.data.fetch;
 
-import app.java.commons.MapUtils;
+import app.java.commons.utils.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

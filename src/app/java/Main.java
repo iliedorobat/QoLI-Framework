@@ -1,33 +1,39 @@
 package app.java;
 
-import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
-import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
+import app.java.data.measurement.dao.*;
+import app.java.data.measurement.dao.impl.*;
+import app.java.data.parse.LocalParser;
 
-import java.net.URI;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-//TODO: see printRelativeAmplitude from release/1.0
 public class Main {
-    public static void main(String[] args) throws Exception {
-//        MaterialLivingDAO materialLivingDAO = new MaterialLivingDAOImpl();
-//        StringBuilder result = materialLivingDAO.getPovertyRiskRatio();
-//        String path = "files/testing/tt.json";
-//        TextUtils.writeToFile(result, path);
+    public static void main(String[] args) {
+//        EducationStatsDAO statsDAO = new EducationStatsImpl();
+//        EnvironmentStatsDAO statsDAO = new EnvironmentStatsImpl();
+        GovRightsStatsDAO statsDAO = new GovRightsStatsImpl();
+//        HealthStatsDAO statsDAO = new HealthStatsImpl();
+//        MainActivityStatsDAO statsDAO = new MainActivityStatsImpl();
+//        MaterialLivingStatsDAO statsDAO = new MaterialLivingStatsImpl();
+//        SafetyStatsDAO statsDAO = new SafetyStatsImpl();
+//        SocialActivityStatsDAO statsDAO = new SocialActivityStatsImpl();
+//        OverallExperienceStatsDAO statsDAO = new OverallExperienceStatsImpl();
+        statsDAO.generateDimensionList();
 
-        // Example
-        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
-        params.put("time", "2015");
-        params.put("sex", "T");
-        params.put("unit", "PC");
 
-        for (int i = 0; i < FetcherUtils.EU28_MEMBERS.length; i++) {
-            params.put("geo", FetcherUtils.EU28_MEMBERS[i]);
-        }
+        
+//        GeneralDAO dao = new GeneralDAOImpl();
+//        StringBuilder sb = dao.getPopulation();
+//        FileUtils.writeToJSONFile(sb, FilePathConst.DATASET_PATH + FileNameConst.POPULATION);
+    }
 
-        URI uri = Fetcher.generateURI("educ_uoe_enra10", params);
-        System.out.println(uri.toString());
+    // For testing
+    public static void print(String filePath) {
+        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
+        System.out.println(entries);
 
-        System.out.println(FetcherUtils.getGeoParams());
+        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
+        System.out.println(dimensions);
     }
 }

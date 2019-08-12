@@ -5,6 +5,8 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.dao.EnvironmentStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
@@ -28,10 +30,10 @@ public class EnvironmentStatsImpl implements EnvironmentStatsDAO {
             waterSupplyRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initAirPollutionRatio = Initializer.initConsolidatedList(AIR_POLLUTION_RATIO, airPollutionRatioPath),
-            initNoisePollutionRatio = Initializer.initConsolidatedList(NOISE_POLLUTION_RATIO, noisePollutionRatioPath),
-            initPollutionRatio = Initializer.initConsolidatedList(POLLUTION_RATIO, pollutionRatioPath),
-            initWaterSupplyRatio = Initializer.initConsolidatedList(WATER_SUPPLY_RATIO, waterSupplyRatioPath);
+            initAirPollutionRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_RATIO, airPollutionRatioPath),
+            initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO, noisePollutionRatioPath),
+            initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO, pollutionRatioPath),
+            initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO, waterSupplyRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

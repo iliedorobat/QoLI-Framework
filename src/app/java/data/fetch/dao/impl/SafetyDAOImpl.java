@@ -13,7 +13,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getCrimeRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INCGRP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mddw03", params);
     }
@@ -49,7 +49,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getUnexpectedRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INCGRP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mdes04", params);
     }
@@ -57,7 +57,7 @@ public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getUnpaidRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INCGRP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mdes05", params);
     }

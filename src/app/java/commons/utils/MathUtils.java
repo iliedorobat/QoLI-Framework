@@ -1,4 +1,4 @@
-package app.java.commons;
+package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import app.java.data.measurement.dao.GeneralStats;

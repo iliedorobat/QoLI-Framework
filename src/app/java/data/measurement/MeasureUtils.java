@@ -1,7 +1,7 @@
 package app.java.data.measurement;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
+import app.java.commons.utils.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.parse.LocalParser;
@@ -9,16 +9,6 @@ import app.java.data.parse.LocalParser;
 import java.util.*;
 
 public class MeasureUtils {
-    // For testing
-    //TODO: delete
-    public static void print(String filePath) {
-        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
-        System.out.println(entries);
-
-        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
-        System.out.println(dimensions);
-    }
-
     /**
      * Prepare data based on a set of parameters values (change the key name)<br/>
      * E.g.:

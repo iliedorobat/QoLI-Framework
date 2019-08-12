@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -44,19 +44,19 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             unpaidRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNPAID_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initCrimeRatio = Initializer.initConsolidatedList(CRIME_RATIO, crimeRatioPath),
-            initPensionPower = Initializer.initConsolidatedList(PENSION_POWER, pensionPowerPath),
-            initSocialProtectionPower = Initializer.initConsolidatedList(SOCIAL_PROTECTION_POWER, socialProtectionPowerPath),
-            initUnexpectedRatio = Initializer.initConsolidatedList(UNEXPECTED_RATIO, unexpectedRatioPath),
-            initUnpaidRatio = Initializer.initConsolidatedList(UNPAID_RATIO, unpaidRatioPath),
+            initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO, crimeRatioPath),
+            initPensionPower = Initializer.initConsolidatedMap(PENSION_POWER, pensionPowerPath),
+            initSocialProtectionPower = Initializer.initConsolidatedMap(SOCIAL_PROTECTION_POWER, socialProtectionPowerPath),
+            initUnexpectedRatio = Initializer.initConsolidatedMap(UNEXPECTED_RATIO, unexpectedRatioPath),
+            initUnpaidRatio = Initializer.initConsolidatedMap(UNPAID_RATIO, unpaidRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
-            initAssaultOffences = Initializer.initConsolidatedList(OFFENCES_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
-            initBurglaryOffences = Initializer.initConsolidatedList(OFFENCES_BURGLARY, offencesPath, EU28_MEMBERS_EXTENDED),
-            initRobberyOffences = Initializer.initConsolidatedList(OFFENCES_ROBBERY, offencesPath, EU28_MEMBERS_EXTENDED),
-            initSexualOffences = Initializer.initConsolidatedList(OFFENCES_SEXUAL, offencesPath, EU28_MEMBERS_EXTENDED),
-            initTheftOffences = Initializer.initConsolidatedList(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
-            initUnlawfulOffences = Initializer.initConsolidatedList(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
+            initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
+            initBurglaryOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY, offencesPath, EU28_MEMBERS_EXTENDED),
+            initRobberyOffences = Initializer.initConsolidatedMap(OFFENCES_ROBBERY, offencesPath, EU28_MEMBERS_EXTENDED),
+            initSexualOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL, offencesPath, EU28_MEMBERS_EXTENDED),
+            initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
+            initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

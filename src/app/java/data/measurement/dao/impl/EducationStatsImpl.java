@@ -5,6 +5,8 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.MeasureUtils;
 import app.java.data.measurement.dao.EducationStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
@@ -51,14 +53,14 @@ public class EducationStatsImpl implements EducationStatsDAO {
     }
 
     private static final Map<String, Number>
-            initDigitalSkillsRatio = Initializer.initConsolidatedList(DIGITAL_SKILLS, digitalSkillsRatioPath),
-            initEarlyEducationRatio = Initializer.initConsolidatedList(EARLY_EDUCATION_RATIO, earlyEducationRatioPath),
-            initEducationRatio = Initializer.initConsolidatedList(EDUCATION_RATIO, educationRatioPath),
-            initExcludedRatio = Initializer.initConsolidatedList(EXCLUDED_RATIO, excludedRatioPath),
-            initLeaversRatio = Initializer.initConsolidatedList(LEAVERS_RATIO, leaversRatioPath),
+            initDigitalSkillsRatio = Initializer.initConsolidatedMap(DIGITAL_SKILLS, digitalSkillsRatioPath),
+            initEarlyEducationRatio = Initializer.initConsolidatedMap(EARLY_EDUCATION_RATIO, earlyEducationRatioPath),
+            initEducationRatio = Initializer.initConsolidatedMap(EDUCATION_RATIO, educationRatioPath),
+            initExcludedRatio = Initializer.initConsolidatedMap(EXCLUDED_RATIO, excludedRatioPath),
+            initLeaversRatio = Initializer.initConsolidatedMap(LEAVERS_RATIO, leaversRatioPath),
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
-            initTrainingRatio = Initializer.initConsolidatedList(TRAINING_RATIO, trainingRatioPath),
-            initZeroForeignLangRatio = Initializer.initConsolidatedList(ZERO_FOREIGN_LANG_RATIO, zeroForeignLangRatioPath);
+            initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO, trainingRatioPath),
+            initZeroForeignLangRatio = Initializer.initConsolidatedMap(ZERO_FOREIGN_LANG_RATIO, zeroForeignLangRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

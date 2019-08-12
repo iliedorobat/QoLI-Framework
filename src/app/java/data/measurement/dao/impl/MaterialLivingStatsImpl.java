@@ -1,8 +1,8 @@
 package app.java.data.measurement.dao.impl;
 
 import app.java.commons.MapOrder;
-import app.java.commons.MapUtils;
-import app.java.commons.MathUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -11,7 +11,6 @@ import app.java.data.measurement.dao.MaterialLivingStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -54,22 +53,22 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             workIntensityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.WORK_INTENSITY_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
-            initDwellingIssuesRatio = Initializer.initConsolidatedList(DWELLING_ISSUES_RATIO, dwellingIssuesRatioPath),
-            initEndMeetInabilityRatio = Initializer.initConsolidatedList(END_MEET_INABILITY_RATIO, endMeetInabilityRatioPath),
-            initEndMeetInabilityGdRatio = Initializer.initConsolidatedList(END_MEET_INABILITY_GD_RATIO, endMeetInabilityRatioPath),
-            initHighIncomeRatio = Initializer.initConsolidatedList(HIGH_INCOME_RATIO, highIncomeRatioPath),
-            initIncomeQuintileRatio = Initializer.initConsolidatedList(INCOME_QUINTILE_RATIO, incomeQuintileRatioPath),
-            initIncomeQuintileLess65Ratio = Initializer.initConsolidatedList(INCOME_QUINTILE_LESS_65_RATIO, incomeQuintileRatioPath),
-            initIncomeQuintileOver65Ratio = Initializer.initConsolidatedList(INCOME_QUINTILE_OVER_65_RATIO, incomeQuintileRatioPath),
-            initLackOfBathsRatio = Initializer.initConsolidatedList(LACK_OF_BATHS_RATIO, lackOfBathsRatioPath),
-            initMaterialDeprivationRatio = Initializer.initConsolidatedList(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatioPath),
-            initMedianIncome = Initializer.initConsolidatedList(MEDIAN_INCOME, medianIncomePath),
-            initOverOccupiedRatio = Initializer.initConsolidatedList(OVER_OCCUPIED_RATIO, overOccupiedRatioPath),
-            initPovertyRiskRatio = Initializer.initConsolidatedList(POVERTY_RISK_RATIO, povertyRiskRatioPath),
-            initPublicWaterRatio = Initializer.initConsolidatedList(PUBLIC_WATER_RATIO, publicWaterRatioPath),
-            initPurchasingRatio = Initializer.initConsolidatedList(PURCHASING_RATIO, purchasingRatioPath),
-            initUnderOccupiedRatio = Initializer.initConsolidatedList(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath),
-            initWorkIntensityRatio = Initializer.initConsolidatedList(WORK_INTENSITY_RATIO, workIntensityRatioPath);
+            initDwellingIssuesRatio = Initializer.initConsolidatedMap(DWELLING_ISSUES_RATIO, dwellingIssuesRatioPath),
+            initEndMeetInabilityRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_RATIO, endMeetInabilityRatioPath),
+            initEndMeetInabilityGdRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_GD_RATIO, endMeetInabilityRatioPath),
+            initHighIncomeRatio = Initializer.initConsolidatedMap(HIGH_INCOME_RATIO, highIncomeRatioPath),
+            initIncomeQuintileRatio = Initializer.initConsolidatedMap(INCOME_QUINTILE_RATIO, incomeQuintileRatioPath),
+            initIncomeQuintileLess65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_LESS_65_RATIO, incomeQuintileRatioPath),
+            initIncomeQuintileOver65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_OVER_65_RATIO, incomeQuintileRatioPath),
+            initLackOfBathsRatio = Initializer.initConsolidatedMap(LACK_OF_BATHS_RATIO, lackOfBathsRatioPath),
+            initMaterialDeprivationRatio = Initializer.initConsolidatedMap(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatioPath),
+            initMedianIncome = Initializer.initConsolidatedMap(MEDIAN_INCOME, medianIncomePath),
+            initOverOccupiedRatio = Initializer.initConsolidatedMap(OVER_OCCUPIED_RATIO, overOccupiedRatioPath),
+            initPovertyRiskRatio = Initializer.initConsolidatedMap(POVERTY_RISK_RATIO, povertyRiskRatioPath),
+            initPublicWaterRatio = Initializer.initConsolidatedMap(PUBLIC_WATER_RATIO, publicWaterRatioPath),
+            initPurchasingRatio = Initializer.initConsolidatedMap(PURCHASING_RATIO, purchasingRatioPath),
+            initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath),
+            initWorkIntensityRatio = Initializer.initConsolidatedMap(WORK_INTENSITY_RATIO, workIntensityRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
