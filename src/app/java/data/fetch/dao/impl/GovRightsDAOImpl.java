@@ -11,7 +11,7 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         return FetcherUtils.getActivePeopleRatio(activities);
     }
 
-    public StringBuilder getEmploymentGap() {
+    public StringBuilder getEmployment() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put("age", "Y20-64");
         params.put("indic_em", "EMP_LFS");

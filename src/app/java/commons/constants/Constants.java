@@ -1,5 +1,8 @@
 package app.java.commons.constants;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Constants {
     public static final String JSON_EXTENSION = ".json";
     public static final String CSV_EXTENSION = ".csv";
@@ -49,6 +52,38 @@ public class Constants {
             "SK", // Slovakia
             "UK"  // United Kingdom
     };
+
+    public static final Map<String, String> EU28_MEMBERS_NAME = new TreeMap<>();
+    static {
+        EU28_MEMBERS_NAME.put("AT", "Austria");
+        EU28_MEMBERS_NAME.put("BE", "Belgium");
+        EU28_MEMBERS_NAME.put("BG", "Bulgaria");
+        EU28_MEMBERS_NAME.put("CY", "Cyprus");
+        EU28_MEMBERS_NAME.put("CZ", "Czech Republic");
+        EU28_MEMBERS_NAME.put("DE", "Germany");
+        EU28_MEMBERS_NAME.put("DK", "Denmark");
+        EU28_MEMBERS_NAME.put("EE", "Estonia");
+        EU28_MEMBERS_NAME.put("EL", "Greece");
+        EU28_MEMBERS_NAME.put("ES", "Spain");
+        EU28_MEMBERS_NAME.put("FI", "Finland");
+        EU28_MEMBERS_NAME.put("FR", "France");
+        EU28_MEMBERS_NAME.put("HR", "Croatia");
+        EU28_MEMBERS_NAME.put("HU", "Hungary");
+        EU28_MEMBERS_NAME.put("IE", "Ireland");
+        EU28_MEMBERS_NAME.put("IT", "Italy");
+        EU28_MEMBERS_NAME.put("LT", "Lithuania");
+        EU28_MEMBERS_NAME.put("LU", "Luxembourg");
+        EU28_MEMBERS_NAME.put("LV", "Latvia");
+        EU28_MEMBERS_NAME.put("MT", "Malta");
+        EU28_MEMBERS_NAME.put("NL", "Netherlands");
+        EU28_MEMBERS_NAME.put("PL", "Poland");
+        EU28_MEMBERS_NAME.put("PT", "Portugal");
+        EU28_MEMBERS_NAME.put("RO", "Romania");
+        EU28_MEMBERS_NAME.put("SE", "Sweden");
+        EU28_MEMBERS_NAME.put("SI", "Slovenia");
+        EU28_MEMBERS_NAME.put("SK", "Slovakia");
+        EU28_MEMBERS_NAME.put("UK", "United Kingdom");
+    }
 
     // In the offences ratio the UK is composed by England and Wales, Scotland and Northern Ireland
     public static final String[] EU28_MEMBERS_EXTENDED = {

@@ -237,6 +237,20 @@
 
     genderPayGap
         -> ALL: 2007 - 2017 (cu mici exceptii)
+
+    /* * * * * * * * * * * * * *
+     * Percentage:
+     * * * * * * * * * * * * * *
+     *      activeCitizenship
+     *      voterTurnout
+     *
+     * * * * * * * * * * * * * *
+     * Number:
+     * * * * * * * * * * * * * *
+     *      employmentGenderGap
+     *      genderPayGap
+     *      populationTrust
+     * * * * * * * * * * * * * */
 ------------------------------------------------------
 
 

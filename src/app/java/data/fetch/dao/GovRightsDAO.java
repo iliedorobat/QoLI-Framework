@@ -27,14 +27,11 @@ public interface GovRightsDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Years: 1992-2018
      *
      * @return
      */
-    //TODO: Gender employment gap = male ratio - female ratio
-    StringBuilder getEmploymentGap();
+    StringBuilder getEmployment();
 
     /**
      * Gender pay gap in unadjusted form by NACE Rev. 2 activity - structure of earnings survey methodology<br/>
