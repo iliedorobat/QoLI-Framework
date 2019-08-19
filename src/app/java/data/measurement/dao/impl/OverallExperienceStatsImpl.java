@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.OverallExperienceStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -45,5 +46,11 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
         }
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        return new ArrayList<>() {{
+            add(initHighSatisfactionRatio);
+        }};
     }
 }

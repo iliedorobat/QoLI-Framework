@@ -6,6 +6,7 @@ import java.util.TreeMap;
 public class Constants {
     public static final String JSON_EXTENSION = ".json";
     public static final String CSV_EXTENSION = ".csv";
+    public static final String CSV_SEPARATOR = ";";
     public static final String KEY_SEPARATOR = "_";
 
     /**

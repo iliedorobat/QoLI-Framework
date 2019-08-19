@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.EnvironmentStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -63,5 +64,13 @@ public class EnvironmentStatsImpl implements EnvironmentStatsDAO {
 //        Print.print(initAirPollutionRatio, true);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        //TODO: initAirPollutionRatio and initWaterSupplyRatio are not used
+        return new ArrayList<>() {{
+            add(initNoisePollutionRatio);
+            add(initPollutionRatio);
+        }};
     }
 }

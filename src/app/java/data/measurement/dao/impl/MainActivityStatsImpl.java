@@ -30,11 +30,11 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
             EMPLOYMENT_RATIO = {"PC", "T", "Y15-64", "TOTAL"},
             INVOLUNTARY_PART_TIME_RATIO = {"PC", "T", "Y15-64"},
             LONG_TERM_UNEMPLOYMENT_RATIO = {"LTU", "Y15-74", "T", "PC_ACT"},
-            NIGHTS_RATIO = {"PC", "T", "Y15-64", "EMP", "USU"},
             OVER_QUALIFIED_RATIO = {"PC", "TOTAL", "TOTAL", "Y15-64", "T"},
             RESEARCHERS = {"TOTAL", "TOTAL", "T", "FTE"},
             TEMPORARY_EMPLOYMENT_RATIO = {"TEMP", "Y15-64", "PC_EMP", "T"},
-            UNEMPLOYMENT_RATIO = {"PC", "T", "Y15-74", "TOTAL"};
+            UNEMPLOYMENT_RATIO = {"PC", "T", "Y15-74", "TOTAL"},
+            WORKING_NIGHTS_RATIO = {"PC", "T", "Y15-64", "EMP", "USU"};
 
     private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
@@ -44,11 +44,11 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
             employmentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.EMPLOYMENT_RATIO + JSON_EXT,
             involuntaryPartTimeRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.INVOLUNTARY_PART_TIME_RATIO + JSON_EXT,
             longTermUnemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.LONG_TERM_UNEMPLOYMENT_RATIO + JSON_EXT,
-            nightsRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.NIGHTS_RATIO + JSON_EXT,
             overQualifiedRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.OVER_QUALIFIED_RATIO + JSON_EXT,
             researchersPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.RESEARCHERS + JSON_EXT,
             temporaryEmploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.TEMPORARY_EMPLOYMENT_RATIO + JSON_EXT,
-            unemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO + JSON_EXT;
+            unemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO + JSON_EXT,
+            workingNightsRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.WORKING_NIGHTS_RATIO + JSON_EXT;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
@@ -66,11 +66,11 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
             initEmploymentRatio = Initializer.initConsolidatedMap(EMPLOYMENT_RATIO, employmentRatioPath),
             initInvoluntaryPartTimeRatio = Initializer.initConsolidatedMap(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatioPath),
             initLongTermUnemploymentRatio = Initializer.initConsolidatedMap(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatioPath),
-            initNightsRatio = Initializer.initConsolidatedMap(NIGHTS_RATIO, nightsRatioPath),
             initOverQualifiedRatio = Initializer.initConsolidatedMap(OVER_QUALIFIED_RATIO, overQualifiedRatioPath),
             initResearchers = Initializer.initConsolidatedMap(RESEARCHERS, researchersPath),
             initTemporaryEmploymentRatio = Initializer.initConsolidatedMap(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatioPath),
-            initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO, unemploymentRatioPath);
+            initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO, unemploymentRatioPath),
+            initWorkingNightsRatio = Initializer.initConsolidatedMap(WORKING_NIGHTS_RATIO, workingNightsRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -80,11 +80,11 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
                 employmentRatio = Preparation.prepareData(initEmploymentRatio),
                 involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
                 longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
-                nightsRatio = Preparation.prepareData(initNightsRatio),
                 overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // no data
                 researchersRatio = getResearcherRatio(),
                 temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
-                unemploymentRatio = Preparation.prepareData(initUnemploymentRatio);
+                unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
+                workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
@@ -94,19 +94,19 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
                 double correctedAvgWorkHours = CORRECTION_WORKING_HOURS - avgWorkHours.get(key).doubleValue(),
                         reversedInvoluntaryPartTimeRatio = MathUtils.percentageReverseRatio(involuntaryPartTimeRatio, key),
                         reversedLongTermUnemploymentRatio = MathUtils.percentageReverseRatio(longTermUnemploymentRatio, key),
-                        reversedNightsRatio = MathUtils.percentageReverseRatio(nightsRatio, key),
                         reversedTemporaryEmploymentRatio = MathUtils.percentageReverseRatio(temporaryEmploymentRatio, key),
-                        reversedUnemploymentRatio = MathUtils.percentageReverseRatio(unemploymentRatio, key);
+                        reversedUnemploymentRatio = MathUtils.percentageReverseRatio(unemploymentRatio, key),
+                        reversedWorkingNightsRatio = MathUtils.percentageReverseRatio(workingNightsRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(correctedAvgWorkHours)
                         * MathUtils.percentageSafetyDouble(employmentRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedInvoluntaryPartTimeRatio)
                         * MathUtils.percentageSafetyDouble(reversedLongTermUnemploymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedNightsRatio)
-                        * MathUtils.percentageSafetyDouble(researchersRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedTemporaryEmploymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio);
+                        * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio)
+                        * MathUtils.percentageSafetyDouble(reversedWorkingNightsRatio)
+                        * MathUtils.percentageSafetyDouble(researchersRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -116,6 +116,20 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
 //        Print.print(initPupilsRatio, false);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        //TODO: initActivePopulation and initOverQualifiedRatio are not used
+        return new ArrayList<>() {{
+            add(initAvgWorkHoursList);
+            add(initEmploymentRatio);
+            add(initInvoluntaryPartTimeRatio);
+            add(initLongTermUnemploymentRatio);
+            add(initWorkingNightsRatio);
+            add(initResearchers);
+            add(initTemporaryEmploymentRatio);
+            add(initUnemploymentRatio);
+        }};
     }
 
     /**

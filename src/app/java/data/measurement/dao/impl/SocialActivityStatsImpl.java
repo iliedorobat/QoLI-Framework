@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.SocialActivityStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -101,6 +102,25 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 //        Print.print(askingRatio, true);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        return new ArrayList<>() {{
+            add(initAskingRatio);
+            add(initDiscussionRatio);
+            add(initGettingTogetherFamRatio);
+            add(initGettingTogetherFrdRatio);
+            add(initNpFinCinRatio);
+            add(initNpFinCultRatio);
+            add(initNpFinLiveRatio);
+            add(initNpFinSportRatio);
+            add(initNpNnbCinRatio);
+            add(initNpNnbCultRatio);
+            add(initNpNnbLiveRatio);
+            add(initNpNnbSportRatio);
+            add(initSocialActivitiesRatio);
+            add(initVoluntaryActivitiesRatio);
+        }};
     }
 
     /**

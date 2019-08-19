@@ -100,20 +100,6 @@ public interface HealthDAO {
     StringBuilder getHospitalBeds();
 
     /**
-     * People (aged 16 years or over) having a long-standing illness or health problem<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: hlth_silc_11<br/>
-     * Years: 2008-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getLongHealthIssueRatio();
-
-    /**
      * Life expectancy at birth (the number of remaining years a person
      * is expected to live at birth or at a certain age)<br/><br/>
      *
@@ -127,6 +113,20 @@ public interface HealthDAO {
      * @return
      */
     StringBuilder getLifeExpectancy();
+
+    /**
+     * People (aged 16 years or over) having a long-standing illness or health problem<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: hlth_silc_11<br/>
+     * Years: 2008-2018<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getLongHealthIssueRatio();
 
     /**
      * Proportion of the population aged 15 and over who did aerobic
@@ -170,7 +170,7 @@ public interface HealthDAO {
      *
      * @return
      */
-    StringBuilder getUnmetDentalStatus();
+    StringBuilder getUnmetDentalRatio();
 
     /**
      * Self-reported unmet needs for medical examination<br/>
@@ -186,7 +186,7 @@ public interface HealthDAO {
      *
      * @return
      */
-    StringBuilder getUnmetMedicalStatus();
+    StringBuilder getUnmetMedicalRatio();
 
     /**
      * Accidents at work (severity = 4 days or over)<br/><br/>

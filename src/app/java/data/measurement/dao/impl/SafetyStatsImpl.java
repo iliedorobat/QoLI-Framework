@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.SafetyStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,10 +22,10 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
     // The lists of queried values
     private static final String[]
             CRIME_RATIO = {"TOTAL", "TOTAL", "PC"},
-            PENSION_POWER = {"TOTAL", "TOTAL", "PPS_HAB"},
-            SOCIAL_PROTECTION_POWER = {"SPBENEFNOREROUTE", "PPS_HAB"},
+            NON_PAYMENT_RATIO = {"TOTAL", "TOTAL", "PC"},
+            PENSION_PPS = {"TOTAL", "TOTAL", "PPS_HAB"},
+            SOCIAL_PROTECTION_PPS = {"SPBENEFNOREROUTE", "PPS_HAB"},
             UNEXPECTED_RATIO = {"TOTAL", "TOTAL", "PC"},
-            UNPAID_RATIO = {"TOTAL", "TOTAL", "PC"},
 
             //UK = UKC-L + UKM + UKN (England and Wales + Scotland + Northern Ireland)
             OFFENCES_ASSAULT = {"ICCS02011", "NR"},
@@ -37,18 +38,18 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
     private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
             crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + JSON_EXT,
+            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + JSON_EXT,
             offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + JSON_EXT,
-            pensionPowerPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_RATIO + JSON_EXT,
-            socialProtectionPowerPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + JSON_EXT,
-            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + JSON_EXT,
-            unpaidRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNPAID_RATIO + JSON_EXT;
+            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + JSON_EXT,
+            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + JSON_EXT,
+            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + JSON_EXT;
 
     private static final Map<String, Number>
             initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO, crimeRatioPath),
-            initPensionPower = Initializer.initConsolidatedMap(PENSION_POWER, pensionPowerPath),
-            initSocialProtectionPower = Initializer.initConsolidatedMap(SOCIAL_PROTECTION_POWER, socialProtectionPowerPath),
+            initNonPaymentRatio = Initializer.initConsolidatedMap(NON_PAYMENT_RATIO, nonPaymentRatioPath),
+            initPensionPps = Initializer.initConsolidatedMap(PENSION_PPS, pensionPpsPath),
+            initSocialProtectionPps = Initializer.initConsolidatedMap(SOCIAL_PROTECTION_PPS, socialProtectionPpsPath),
             initUnexpectedRatio = Initializer.initConsolidatedMap(UNEXPECTED_RATIO, unexpectedRatioPath),
-            initUnpaidRatio = Initializer.initConsolidatedMap(UNPAID_RATIO, unpaidRatioPath),
 
             // Intermediate data which should be consolidated into a single indicator
             initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
@@ -62,10 +63,10 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 crimeRatio = Preparation.prepareData(initCrimeRatio),
-                pensionPower = Preparation.prepareData(initPensionPower),
-                socialProtectionPower = Preparation.prepareData(initSocialProtectionPower),
+                nonPaymentRatio = Preparation.prepareData(initNonPaymentRatio),
+                pensionPps = Preparation.prepareData(initPensionPps),
+                socialProtectionPps = Preparation.prepareData(initSocialProtectionPps),
                 unexpectedRatio = Preparation.prepareData(initUnexpectedRatio),
-                unpaidRatio = Preparation.prepareData(initUnpaidRatio),
                 offencesRatio = consolidateOffencesRatio();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -76,18 +77,18 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
                 double reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
                         // reduce the number of the whole part of a decimal number from 3 to 2
-                        correctedPensionPower = pensionPower.get(key).doubleValue() / 10,
+                        correctedPensionPps = pensionPps.get(key).doubleValue() / 10,
                         // reduce the number of the whole part of a decimal number from 4 to 2
-                        correctedSocialProtectionPower = socialProtectionPower.get(key).doubleValue() / 100,
-                        reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key),
-                        reversedUnpaidRatio = MathUtils.percentageReverseRatio(unpaidRatio, key);
+                        correctedSocialProtectionPps = socialProtectionPps.get(key).doubleValue() / 100,
+                        reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
+                        reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
-                        * MathUtils.percentageSafetyDouble(correctedPensionPower)
-                        * MathUtils.percentageSafetyDouble(correctedSocialProtectionPower)
+                        * MathUtils.percentageSafetyDouble(correctedPensionPps)
+                        * MathUtils.percentageSafetyDouble(correctedSocialProtectionPps)
+                        * MathUtils.percentageSafetyDouble(reversedNonPaymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnexpectedRatio)
-                        * MathUtils.percentageSafetyDouble(reversedUnpaidRatio)
                         * MathUtils.percentageSafetyDouble(reversedOffencesRatio);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
@@ -98,6 +99,22 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
 //        Print.print(offencesRatio, true);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        //TODO: initBurglaryOffences is not used
+        return new ArrayList<>() {{
+            add(initCrimeRatio);
+            add(initPensionPps);
+            add(initSocialProtectionPps);
+            add(initUnexpectedRatio);
+            add(initNonPaymentRatio);
+            add(initAssaultOffences);
+            add(initRobberyOffences);
+            add(initSexualOffences);
+            add(initTheftOffences);
+            add(initUnlawfulOffences);
+        }};
     }
 
     /**

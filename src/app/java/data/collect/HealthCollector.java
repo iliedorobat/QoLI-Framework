@@ -15,8 +15,8 @@ public class HealthCollector {
                 healthyLifeYears = healthDAO.getHealthyLifeYears(),
                 healthyLifeRatio = healthDAO.getHealthyLifeRatio(),
                 longHealthIssueRatio = healthDAO.getLongHealthIssueRatio(),
-                unmetMedicalStatus = healthDAO.getUnmetMedicalStatus(),
-                unmetDentalStatus = healthDAO.getUnmetDentalStatus(),
+                unmetMedicalStatus = healthDAO.getUnmetMedicalRatio(),
+                unmetDentalStatus = healthDAO.getUnmetDentalRatio(),
                 bodyMassIndex = healthDAO.getBodyMassIndex(),
                 smokersRatio = healthDAO.getSmokersRatio(),
                 alcoholicRatio = healthDAO.getAlcoholicRatio(),
@@ -30,8 +30,8 @@ public class HealthCollector {
         FileUtils.writeToJSONFile(healthyLifeYears, FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_YEARS);
         FileUtils.writeToJSONFile(healthyLifeRatio, FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_RATIO);
         FileUtils.writeToJSONFile(longHealthIssueRatio, FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUE_RATIO);
-        FileUtils.writeToJSONFile(unmetMedicalStatus, FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_STATUS);
-        FileUtils.writeToJSONFile(unmetDentalStatus, FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_STATUS);
+        FileUtils.writeToJSONFile(unmetMedicalStatus, FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO);
+        FileUtils.writeToJSONFile(unmetDentalStatus, FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO);
         FileUtils.writeToJSONFile(bodyMassIndex, FilePathConst.HEALTH_PATH + FileNameConst.BODY_MASS_INDEX);
         FileUtils.writeToJSONFile(smokersRatio, FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO);
         FileUtils.writeToJSONFile(alcoholicRatio, FilePathConst.HEALTH_PATH + FileNameConst.ALCOHOLIC_RATIO);

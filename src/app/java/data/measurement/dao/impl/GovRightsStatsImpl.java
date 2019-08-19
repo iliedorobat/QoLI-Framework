@@ -95,6 +95,19 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
         return consolidatedList;
     }
 
+    public ArrayList<Map<String, Number>> getInitList() {
+        return new ArrayList<>() {{
+            add(initActiveCitizenship);
+            add(initEmploymentFemaleRatio);
+            add(initEmploymentMaleRatio);
+            add(initGenderPayGap);
+            add(initPopulationLegtstTrustRatio);
+            add(initPopulationPlctstTrustRatio);
+            add(initPopulationPlttstTrustRatio);
+            add(initVoterTurnout);
+        }};
+    }
+
     /**
      * Convert the voter turnout data from csv into Java Map
      *

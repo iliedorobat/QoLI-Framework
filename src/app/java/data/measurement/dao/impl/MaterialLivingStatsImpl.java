@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.MaterialLivingStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,14 +28,14 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             INCOME_QUINTILE_LESS_65_RATIO = {"S80_S20", "Y_LT65", "T"},
             INCOME_QUINTILE_OVER_65_RATIO = {"S80_S20", "Y_GE65", "T"},
             LACK_OF_BATHS_RATIO = {"PC", "TOTAL", "TOTAL", "T", "TOTAL"},
+            LOW_WORK_INTENSITY_RATIO = {"PC_Y_LT60", "Y_LT60", "T"},
             MATERIAL_DEPRIVATION_RATIO = {"PC", "TOTAL", "T"},
             MEDIAN_INCOME = {"TOTAL", "T", "MED_E", "PPS"},
             OVER_OCCUPIED_RATIO = {"PC", "TOTAL", "TOTAL", "T"},
             POVERTY_RISK_RATIO = {"LI_R_MD60", "TOTAL"},
             PUBLIC_WATER_RATIO = {"POP_PWS", "PC"},
-            PURCHASING_RATIO = {"PC_EU28_HAB_MEUR_CP", "B1GQ"},
-            UNDER_OCCUPIED_RATIO = {"PC", "TOTAL", "T", "TOTAL"},
-            WORK_INTENSITY_RATIO = {"PC_Y_LT60", "Y_LT60", "T"};
+            PPS_RATIO = {"PC_EU28_HAB_MEUR_CP", "B1GQ"},
+            UNDER_OCCUPIED_RATIO = {"PC", "TOTAL", "T", "TOTAL"};
 
     private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
@@ -48,7 +49,7 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             overOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.OVER_OCCUPIED_RATIO + JSON_EXT,
             povertyRiskRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.POVERTY_RISK_RATIO + JSON_EXT,
             publicWaterRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PUBLIC_WATER_RATIO + JSON_EXT,
-            purchasingRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PURCHASING_RATIO + JSON_EXT,
+            ppsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PPS_RATIO + JSON_EXT,
             underOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.UNDER_OCCUPIED_RATIO + JSON_EXT,
             workIntensityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.WORK_INTENSITY_RATIO + JSON_EXT;
 
@@ -61,14 +62,14 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             initIncomeQuintileLess65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_LESS_65_RATIO, incomeQuintileRatioPath),
             initIncomeQuintileOver65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_OVER_65_RATIO, incomeQuintileRatioPath),
             initLackOfBathsRatio = Initializer.initConsolidatedMap(LACK_OF_BATHS_RATIO, lackOfBathsRatioPath),
+            initLowWorkIntensityRatio = Initializer.initConsolidatedMap(LOW_WORK_INTENSITY_RATIO, workIntensityRatioPath),
             initMaterialDeprivationRatio = Initializer.initConsolidatedMap(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatioPath),
             initMedianIncome = Initializer.initConsolidatedMap(MEDIAN_INCOME, medianIncomePath),
             initOverOccupiedRatio = Initializer.initConsolidatedMap(OVER_OCCUPIED_RATIO, overOccupiedRatioPath),
             initPovertyRiskRatio = Initializer.initConsolidatedMap(POVERTY_RISK_RATIO, povertyRiskRatioPath),
             initPublicWaterRatio = Initializer.initConsolidatedMap(PUBLIC_WATER_RATIO, publicWaterRatioPath),
-            initPurchasingRatio = Initializer.initConsolidatedMap(PURCHASING_RATIO, purchasingRatioPath),
-            initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath),
-            initWorkIntensityRatio = Initializer.initConsolidatedMap(WORK_INTENSITY_RATIO, workIntensityRatioPath);
+            initPpsRatio = Initializer.initConsolidatedMap(PPS_RATIO, ppsRatioPath),
+            initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -80,14 +81,14 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
                 incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio), // not used
                 incomeQuintileOver65Ratio = Preparation.prepareData(initIncomeQuintileOver65Ratio), // not used
                 lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio), // no data
+                lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
                 materialDeprivationRatio = Preparation.prepareData(initMaterialDeprivationRatio),
                 medianIncome = Preparation.prepareData(initMedianIncome), // highIncomeRatio is a better index
                 overOccupiedRatio = Preparation.prepareData(initOverOccupiedRatio),
                 povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
                 publicWaterRatio = Preparation.prepareData(initPublicWaterRatio), // no data
-                purchasingRatio = Preparation.prepareData(initPurchasingRatio),
-                underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio),
-                workIntensityRatio = Preparation.prepareData(initWorkIntensityRatio);
+                ppsRatio = Preparation.prepareData(initPpsRatio),
+                underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < EU28_MEMBERS.length; i++) {
@@ -97,22 +98,22 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
                 double reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
                         reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
                         reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
+                        reverseLowWorkIntensityRatio = MathUtils.percentageReverseRatio(lowWorkIntensityRatio, key),
                         reverseMaterialDeprivationRatio = MathUtils.percentageReverseRatio(materialDeprivationRatio, key),
                         reverseOverOccupiedRatio = MathUtils.percentageReverseRatio(overOccupiedRatio, key),
-                        reversePovertyRiskRatio = MathUtils.percentageReverseRatio(povertyRiskRatio, key),
-                        reverseWorkIntensityRatio = MathUtils.percentageReverseRatio(workIntensityRatio, key);
+                        reversePovertyRiskRatio = MathUtils.percentageReverseRatio(povertyRiskRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
                         * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityRatio)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
                         * MathUtils.percentageSafetyDouble(reverseIncomeQuintileRatio)
+                        * MathUtils.percentageSafetyDouble(reverseLowWorkIntensityRatio)
                         * MathUtils.percentageSafetyDouble(reverseMaterialDeprivationRatio)
                         * MathUtils.percentageSafetyDouble(reverseOverOccupiedRatio)
                         * MathUtils.percentageSafetyDouble(reversePovertyRiskRatio)
-                        * MathUtils.percentageSafetyDouble(purchasingRatio, key)
-                        * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
-                        * MathUtils.percentageSafetyDouble(reverseWorkIntensityRatio);
+                        * MathUtils.percentageSafetyDouble(ppsRatio, key)
+                        * MathUtils.percentageSafetyDouble(underOccupiedRatio, key);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -122,6 +123,24 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
 //        Print.print(purchasingRatio, true);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        //TODO: initIncomeQuintileLess65Ratio, initIncomeQuintileOver65Ratio
+        // initLackOfBathsRatio, initMedianIncome, initPublicWaterRatio are not used
+        return new ArrayList<>() {{
+            add(initDwellingIssuesRatio);
+            add(initEndMeetInabilityRatio);
+            add(initEndMeetInabilityGdRatio);
+            add(initHighIncomeRatio);
+            add(initIncomeQuintileRatio);
+            add(initMaterialDeprivationRatio);
+            add(initOverOccupiedRatio);
+            add(initPovertyRiskRatio);
+            add(initPpsRatio);
+            add(initUnderOccupiedRatio);
+            add(initLowWorkIntensityRatio);
+        }};
     }
 
     /**

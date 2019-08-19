@@ -19,6 +19,20 @@ public interface SafetyDAO {
     StringBuilder getCrimeRatio();
 
     /**
+     * Share of the population in arrears on mortgage or rent, utility bills or hire purchase<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Dataset: ilc_mdes05<br/>
+     * Data type: percentage (%)<br/>
+     * Years: 2003-2018<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getNonPaymentRatio();
+
+    /**
      * Recorded offences by offence category - police data (Assault, Robbery, Burglary, Theft)<br/><br/>
      *
      * Aggregation: country<br/>
@@ -43,7 +57,7 @@ public interface SafetyDAO {
      *
      * @return
      */
-    StringBuilder getPensionRatio();
+    StringBuilder getPensionPps();
 
     /**
      * Social protection expenditure level<br/><br/>
@@ -56,7 +70,7 @@ public interface SafetyDAO {
      *
      * @return
      */
-    StringBuilder getSocialProtectionRatio();
+    StringBuilder getSocialProtectionPps();
 
     /**
      * Share of the population unable to face unexpected financial expenses<br/><br/>
@@ -71,18 +85,4 @@ public interface SafetyDAO {
      * @return StringBuilder
      */
     StringBuilder getUnexpectedRatio();
-
-    /**
-     * Share of the population in arrears on mortgage or rent, utility bills or hire purchase<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Dataset: ilc_mdes05<br/>
-     * Data type: percentage (%)<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getUnpaidRatio();
 }

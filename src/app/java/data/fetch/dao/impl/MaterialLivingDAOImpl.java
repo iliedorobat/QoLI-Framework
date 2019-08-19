@@ -53,6 +53,14 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return Fetcher.fetchData("ilc_mdho05", params);
     }
 
+    public StringBuilder getLowWorkIntensityRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "Y_LT60");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC_Y_LT60");
+        return Fetcher.fetchData("ilc_lvhl11", params);
+    }
+
     public StringBuilder getMaterialDeprivationRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "TOTAL");
@@ -89,7 +97,7 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return Fetcher.fetchData("env_wat_pop", params);
     }
 
-    public StringBuilder getPurchasingRatio() {
+    public StringBuilder getPpsRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.NA_ITEM, "B1GQ");
         params.put(ParamsConst.UNIT, "PC_EU28_HAB_MEUR_CP");
@@ -99,13 +107,5 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     public StringBuilder getUnderOccupiedRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getWorkOccupationParams();
         return Fetcher.fetchData("ilc_lvho50a", params);
-    }
-
-    public StringBuilder getWorkIntensityRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_LT60");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC_Y_LT60");
-        return Fetcher.fetchData("ilc_lvhl11", params);
     }
 }

@@ -41,6 +41,7 @@ public interface EducationDAO {
      *
      * @return
      */
+    //TODO: rename to getStudentsRatio
     StringBuilder getEducationRatio();
 
     /**
@@ -60,20 +61,16 @@ public interface EducationDAO {
     StringBuilder getExcludedRatio();
 
     /**
-     * Early leavers (from 18 to 24 years) from education and training<br/><br/>
+     * Proportion of people (from 25 to 64 years) who don't know any foreign language (self-reported)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: edat_lfse_14<br/>
-     * Years: 1992-2018<br/><br/>
-     *
-     * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Dataset: edat_aes_l22<br/>
+     * Years: 2007; 2011; 2016
      *
      * @return
      */
-    StringBuilder getLeaversRatio();
+    StringBuilder getNoKnownForeignLangRatio();
 
     /**
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
@@ -100,6 +97,22 @@ public interface EducationDAO {
     StringBuilder getPupilsRatio2013();
 
     /**
+     * Early leavers (from 18 to 24 years) from education and training<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: edat_lfse_14<br/>
+     * Years: 1992-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getSchoolDropoutRatio();
+
+    /**
      * Participation rate in education and training (last 4 weeks - from 25 to 64 years)<br/><br/>
      *
      * Aggregation: country<br/>
@@ -110,16 +123,4 @@ public interface EducationDAO {
      * @return
      */
     StringBuilder getTrainingRatio();
-
-    /**
-     * Proportion of people (from 25 to 64 years) who don't know any foreign language (self-reported)<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: edat_aes_l22<br/>
-     * Years: 2007; 2011; 2016
-     *
-     * @return
-     */
-    StringBuilder getZeroForeignLangRatio();
 }

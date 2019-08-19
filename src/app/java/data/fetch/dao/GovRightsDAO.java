@@ -31,6 +31,7 @@ public interface GovRightsDAO {
      *
      * @return
      */
+    //TODO: rename to getEmploymentRatio
     StringBuilder getEmployment();
 
     /**
@@ -58,5 +59,6 @@ public interface GovRightsDAO {
      *
      * @return
      */
+    //TODO: rename to getPopulationTrust
     StringBuilder getPopulationTrustRatio();
 }
