@@ -132,19 +132,19 @@ public class HealthStatsImpl implements HealthStatsDAO {
     public ArrayList<Map<String, Number>> getInitList() {
         //TODO: initAlcoholicRatio, initBodyMassIndexOverweight and initPhysicalActivities are not used
         return new ArrayList<>() {{
-            add(initBmiObeseRatio);
-            add(initFruitsVegetablesRatio);
-            add(initHealthPersonnel);
-            add(initHealthyLifeRatio);
-            add(initHealthyLifeYearsFemale);
-            add(initHealthyLifeYearsMale);
-            add(initHospitalBeds);
-            add(initLifeExpectancy);
-            add(initLongHealthIssueRatio);
-            add(initSmokersRatio);
-            add(initUnmetDentalRatio);
-            add(initUnmetMedicalRatio);
-            add(initWorkAccidents);
+            add(Preparation.filterMap(initBmiObeseRatio));
+            add(Preparation.filterMap(initFruitsVegetablesRatio));
+            add(Preparation.filterMap(initHealthPersonnel));
+            add(Preparation.filterMap(initHealthyLifeRatio));
+            add(Preparation.filterMap(initHealthyLifeYearsFemale));
+            add(Preparation.filterMap(initHealthyLifeYearsMale));
+            add(Preparation.filterMap(initHospitalBeds));
+            add(Preparation.filterMap(initLifeExpectancy));
+            add(Preparation.filterMap(initLongHealthIssueRatio));
+            add(Preparation.filterMap(initSmokersRatio));
+            add(Preparation.filterMap(initUnmetDentalRatio));
+            add(Preparation.filterMap(initUnmetMedicalRatio));
+            add(Preparation.filterMap(initWorkAccidents));
         }};
     }
 

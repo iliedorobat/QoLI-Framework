@@ -106,20 +106,20 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
 
     public ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
-            add(initAskingRatio);
-            add(initDiscussionRatio);
-            add(initGettingTogetherFamRatio);
-            add(initGettingTogetherFrdRatio);
-            add(initNpFinCinRatio);
-            add(initNpFinCultRatio);
-            add(initNpFinLiveRatio);
-            add(initNpFinSportRatio);
-            add(initNpNnbCinRatio);
-            add(initNpNnbCultRatio);
-            add(initNpNnbLiveRatio);
-            add(initNpNnbSportRatio);
-            add(initSocialActivitiesRatio);
-            add(initVoluntaryActivitiesRatio);
+            add(Preparation.filterMap(initAskingRatio));
+            add(Preparation.filterMap(initDiscussionRatio));
+            add(Preparation.filterMap(initGettingTogetherFamRatio));
+            add(Preparation.filterMap(initGettingTogetherFrdRatio));
+            add(Preparation.filterMap(initNpFinCinRatio));
+            add(Preparation.filterMap(initNpFinCultRatio));
+            add(Preparation.filterMap(initNpFinLiveRatio));
+            add(Preparation.filterMap(initNpFinSportRatio));
+            add(Preparation.filterMap(initNpNnbCinRatio));
+            add(Preparation.filterMap(initNpNnbCultRatio));
+            add(Preparation.filterMap(initNpNnbLiveRatio));
+            add(Preparation.filterMap(initNpNnbSportRatio));
+            add(Preparation.filterMap(initSocialActivitiesRatio));
+            add(Preparation.filterMap(initVoluntaryActivitiesRatio));
         }};
     }
 

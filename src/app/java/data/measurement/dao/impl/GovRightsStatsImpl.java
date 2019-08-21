@@ -97,14 +97,14 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
 
     public ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
-            add(initActiveCitizenship);
-            add(initEmploymentFemaleRatio);
-            add(initEmploymentMaleRatio);
-            add(initGenderPayGap);
-            add(initPopulationLegtstTrustRatio);
-            add(initPopulationPlctstTrustRatio);
-            add(initPopulationPlttstTrustRatio);
-            add(initVoterTurnout);
+            add(Preparation.filterMap(initActiveCitizenship));
+            add(Preparation.filterMap(initEmploymentFemaleRatio));
+            add(Preparation.filterMap(initEmploymentMaleRatio));
+            add(Preparation.filterMap(initGenderPayGap));
+            add(Preparation.filterMap(initPopulationLegtstTrustRatio));
+            add(Preparation.filterMap(initPopulationPlctstTrustRatio));
+            add(Preparation.filterMap(initPopulationPlttstTrustRatio));
+            add(Preparation.filterMap(initVoterTurnout));
         }};
     }
 

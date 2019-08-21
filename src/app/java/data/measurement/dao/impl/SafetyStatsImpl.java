@@ -104,16 +104,16 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
     public ArrayList<Map<String, Number>> getInitList() {
         //TODO: initBurglaryOffences is not used
         return new ArrayList<>() {{
-            add(initCrimeRatio);
-            add(initPensionPps);
-            add(initSocialProtectionPps);
-            add(initUnexpectedRatio);
-            add(initNonPaymentRatio);
-            add(initAssaultOffences);
-            add(initRobberyOffences);
-            add(initSexualOffences);
-            add(initTheftOffences);
-            add(initUnlawfulOffences);
+            add(Preparation.filterMap(initCrimeRatio));
+            add(Preparation.filterMap(initPensionPps));
+            add(Preparation.filterMap(initSocialProtectionPps));
+            add(Preparation.filterMap(initUnexpectedRatio));
+            add(Preparation.filterMap(initNonPaymentRatio));
+            add(Preparation.filterMap(initAssaultOffences));
+            add(Preparation.filterMap(initRobberyOffences));
+            add(Preparation.filterMap(initSexualOffences));
+            add(Preparation.filterMap(initTheftOffences));
+            add(Preparation.filterMap(initUnlawfulOffences));
         }};
     }
 

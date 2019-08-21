@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-
     // The list of queried values
     private static final String[]
             HIGH_SATISFACTION_RATIO = {"PC", "HIGH", "TOTAL", "LIFESAT", "T", "Y_GE16"};
@@ -34,8 +32,8 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
         Map<String, Number> highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                String code = EU28_MEMBERS[i];
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -50,7 +48,7 @@ public class OverallExperienceStatsImpl implements OverallExperienceStatsDAO {
 
     public ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
-            add(initHighSatisfactionRatio);
+            add(Preparation.filterMap(initHighSatisfactionRatio));
         }};
     }
 }

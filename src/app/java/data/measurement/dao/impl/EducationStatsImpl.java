@@ -105,14 +105,14 @@ public class EducationStatsImpl implements EducationStatsDAO {
 
     public ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
-            add(initDigitalSkillsRatio);
-            add(initEarlyEducationRatio);
-            add(initExcludedRatio);
-            add(initSchoolDropoutRatio);
-            add(initPupilsRatio);
-            add(initStudentsRatio);
-            add(initTrainingRatio);
-            add(initNoKnownForeignLangRatio);
+            add(Preparation.filterMap(initDigitalSkillsRatio));
+            add(Preparation.filterMap(initEarlyEducationRatio));
+            add(Preparation.filterMap(initExcludedRatio));
+            add(Preparation.filterMap(initSchoolDropoutRatio));
+            add(Preparation.filterMap(initPupilsRatio));
+            add(Preparation.filterMap(initStudentsRatio));
+            add(Preparation.filterMap(initTrainingRatio));
+            add(Preparation.filterMap(initNoKnownForeignLangRatio));
         }};
     }
 }

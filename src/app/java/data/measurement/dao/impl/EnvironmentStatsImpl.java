@@ -69,8 +69,8 @@ public class EnvironmentStatsImpl implements EnvironmentStatsDAO {
     public ArrayList<Map<String, Number>> getInitList() {
         //TODO: initAirPollutionRatio and initWaterSupplyRatio are not used
         return new ArrayList<>() {{
-            add(initNoisePollutionRatio);
-            add(initPollutionRatio);
+            add(Preparation.filterMap(initNoisePollutionRatio));
+            add(Preparation.filterMap(initPollutionRatio));
         }};
     }
 }

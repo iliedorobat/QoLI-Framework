@@ -129,17 +129,17 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
         //TODO: initIncomeQuintileLess65Ratio, initIncomeQuintileOver65Ratio
         // initLackOfBathsRatio, initMedianIncome, initPublicWaterRatio are not used
         return new ArrayList<>() {{
-            add(initDwellingIssuesRatio);
-            add(initEndMeetInabilityRatio);
-            add(initEndMeetInabilityGdRatio);
-            add(initHighIncomeRatio);
-            add(initIncomeQuintileRatio);
-            add(initMaterialDeprivationRatio);
-            add(initOverOccupiedRatio);
-            add(initPovertyRiskRatio);
-            add(initPpsRatio);
-            add(initUnderOccupiedRatio);
-            add(initLowWorkIntensityRatio);
+            add(Preparation.filterMap(initDwellingIssuesRatio));
+            add(Preparation.filterMap(initEndMeetInabilityRatio));
+            add(Preparation.filterMap(initEndMeetInabilityGdRatio));
+            add(Preparation.filterMap(initHighIncomeRatio));
+            add(Preparation.filterMap(initIncomeQuintileRatio));
+            add(Preparation.filterMap(initMaterialDeprivationRatio));
+            add(Preparation.filterMap(initOverOccupiedRatio));
+            add(Preparation.filterMap(initPovertyRiskRatio));
+            add(Preparation.filterMap(initPpsRatio));
+            add(Preparation.filterMap(initUnderOccupiedRatio));
+            add(Preparation.filterMap(initLowWorkIntensityRatio));
         }};
     }
 

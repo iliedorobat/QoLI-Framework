@@ -156,16 +156,16 @@ public class Preparation {
             Map<String, Number> preparedMap,
             String code
     ) {
-        Number lastValue = null;
+        Number nextValue = null;
 
         for (int year = EnvConst.INIT_MAP_MAX_YEAR; year >= EnvConst.INIT_MAP_MIN_YEAR; year--) {
             String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
-            addKeyValue(preparedMap, key, value, lastValue);
+            addKeyValue(preparedMap, key, value, nextValue);
 
             if (value != null)
-                lastValue = value;
+                nextValue = value;
         }
     }
 
@@ -174,7 +174,7 @@ public class Preparation {
      * @param preparedMap The prepared map with all the entries
      * @return Filtered map by the analyzed period
      */
-    private static Map<String, Number> filterMap(Map<String, Number> preparedMap) {
+    public static Map<String, Number> filterMap(Map<String, Number> preparedMap) {
         Map<String, Number> filteredMap = new TreeMap<>(new MapOrder());
 
         for (Map.Entry<String, Number> entry : preparedMap.entrySet()) {

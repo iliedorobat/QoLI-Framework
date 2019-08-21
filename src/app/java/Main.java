@@ -1,6 +1,8 @@
 package app.java;
 
 import app.java.commons.Print;
+import app.java.data.measurement.dao.OverallExperienceStatsDAO;
+import app.java.data.measurement.dao.impl.OverallExperienceStatsImpl;
 import app.java.data.parse.LocalParser;
 
 import java.util.List;
@@ -27,7 +29,8 @@ public class Main {
 //        SafetyStatsDAO statsDAO = new SafetyStatsImpl();
 //        SocialActivityStatsDAO statsDAO = new SocialActivityStatsImpl();
 //        OverallExperienceStatsDAO statsDAO = new OverallExperienceStatsImpl();
-//        statsDAO.generateDimensionList();
+//        Map<String, Number> dimensionList = statsDAO.generateDimensionList();
+//        Print.print(dimensionList, true);
 
 //        Map<String, Number> qoliList = QOLI.generateIndicatorList();
 ////        Print.print(qoliList, true);

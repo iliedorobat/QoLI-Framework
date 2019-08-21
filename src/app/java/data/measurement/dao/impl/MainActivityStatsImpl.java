@@ -121,14 +121,14 @@ public class MainActivityStatsImpl implements MainActivityStatsDAO {
     public ArrayList<Map<String, Number>> getInitList() {
         //TODO: initActivePopulation and initOverQualifiedRatio are not used
         return new ArrayList<>() {{
-            add(initAvgWorkHoursList);
-            add(initEmploymentRatio);
-            add(initInvoluntaryPartTimeRatio);
-            add(initLongTermUnemploymentRatio);
-            add(initWorkingNightsRatio);
-            add(initResearchers);
-            add(initTemporaryEmploymentRatio);
-            add(initUnemploymentRatio);
+            add(Preparation.filterMap(initAvgWorkHoursList));
+            add(Preparation.filterMap(initEmploymentRatio));
+            add(Preparation.filterMap(initInvoluntaryPartTimeRatio));
+            add(Preparation.filterMap(initLongTermUnemploymentRatio));
+            add(Preparation.filterMap(initWorkingNightsRatio));
+            add(Preparation.filterMap(initResearchers));
+            add(Preparation.filterMap(initTemporaryEmploymentRatio));
+            add(Preparation.filterMap(initUnemploymentRatio));
         }};
     }
 
