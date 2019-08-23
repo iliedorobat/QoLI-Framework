@@ -15,14 +15,14 @@ import java.util.Map;
 public class Print {
     private static String CSV_SEPARATOR = Constants.CSV_SEPARATOR;
 
-    public static void printCSV(Map<String, Number> entries) {
-        System.out.println("Country" + CSV_SEPARATOR + "Year" + CSV_SEPARATOR + "QOLI");
+    public static void printCSV(Map<String, Number> entries, String dimensionName) {
+        System.out.println("dimension name" + CSV_SEPARATOR + "country code" + CSV_SEPARATOR + "year" + CSV_SEPARATOR + "value");
 
         for (Map.Entry<String, Number> entry : entries.entrySet()) {
             String code = MapUtils.getEntryCode(entry);
             Integer year = MapUtils.getEntryYear(entry);
             Number value = entry.getValue();
-            System.out.println(code + CSV_SEPARATOR + year + CSV_SEPARATOR + value);
+            System.out.println(dimensionName + CSV_SEPARATOR + code + CSV_SEPARATOR + year + CSV_SEPARATOR + formatNumber(value.doubleValue()));
         }
     }
 
@@ -110,13 +110,16 @@ public class Print {
     }
 
     private static String formatNumber(double number) {
-        Locale locale = new Locale("en", "UK");
+        Locale locale = new Locale("en", "US");
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
-        symbols.setDecimalSeparator(',');
-        symbols.setGroupingSeparator('.');
+        symbols.setDecimalSeparator('.');
+        symbols.setGroupingSeparator(',');
 
-        String pattern = "#,###.000000";
+//        symbols.setDecimalSeparator(',');
+//        symbols.setGroupingSeparator('.');
+
+        String pattern = "#,###.0000";
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
 
         return decimalFormat.format(number);
