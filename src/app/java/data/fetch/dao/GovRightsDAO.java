@@ -5,8 +5,8 @@ package app.java.data.fetch.dao;
  * of the governing, law making and equality of opportunity
  */
 public interface GovRightsDAO {
-    //TODO: this dataset should be manually downloaded
-    // add the (local) Parliamentary voter turnout ratio: https://www.idea.int/data-tools/data/voter-turnout
+    //TODO: this dataset should be manually downloaded from
+    // https://www.idea.int/data-tools/data/voter-turnout
 
     /**
      * Active citizenship participation<br/>
@@ -31,7 +31,7 @@ public interface GovRightsDAO {
      *
      * @return
      */
-    StringBuilder getEmployment();
+    StringBuilder getEmploymentRatio();
 
     /**
      * Gender pay gap in unadjusted form by NACE Rev. 2 activity - structure of earnings survey methodology<br/>
@@ -58,5 +58,5 @@ public interface GovRightsDAO {
      *
      * @return
      */
-    StringBuilder getPopulationTrustRatio();
+    StringBuilder getPopulationTrust();
 }

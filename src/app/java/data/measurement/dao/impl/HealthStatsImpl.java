@@ -11,6 +11,7 @@ import app.java.data.measurement.dao.HealthStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -30,8 +31,8 @@ public class HealthStatsImpl implements HealthStatsDAO {
             LONG_HEALTH_ISSUE_RATIO = {"PC", "TOTAL", "Y_GE16", "T"},
             PHYSICAL_ACTIVITIES = {"PC", "MV_AERO_MSC", "TOTAL", "T", "TOTAL"},
             SMOKERS_RATIO = {"PC", "TOTAL", "TOTAL", "T", "TOTAL"},
-            UNMET_DENTAL_STATUS = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
-            UNMET_MEDICAL_STATUS = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
+            UNMET_DENTAL_RATIO = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
+            UNMET_MEDICAL_RATIO = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
             WORK_ACCIDENTS = {"NR", "TOTAL", "D_GE4"};
 
     private static final String JSON_EXT = Constants.JSON_EXTENSION;
@@ -47,14 +48,14 @@ public class HealthStatsImpl implements HealthStatsDAO {
             longHealthIssueRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUE_RATIO + JSON_EXT,
             physicalActivitiesPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES + JSON_EXT,
             smokersRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO + JSON_EXT,
-            unmetDentalStatusPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_STATUS + JSON_EXT,
-            unmetMedicalStatusPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_STATUS + JSON_EXT,
+            unmetDentalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO + JSON_EXT,
+            unmetMedicalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO + JSON_EXT,
             workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + JSON_EXT;
 
     private static final Map<String, Number>
             initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO, alcoholicRatioPath),
-            initBodyMassIndexOverweight = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
-            initBodyMassIndexObese = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
+            initBmiOverweightRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
+            initBmiObeseRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
             initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
             initHealthPersonnel = Initializer.initConsolidatedMap(HEALTH_PERSONNEL, healthPersonnelPath),
             initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
@@ -65,16 +66,16 @@ public class HealthStatsImpl implements HealthStatsDAO {
             initLongHealthIssueRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
             initPhysicalActivities = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
             initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO, smokersRatioPath),
-            initUnmetDentalStatus = Initializer.initConsolidatedMap(UNMET_DENTAL_STATUS, unmetDentalStatusPath),
-            initUnmetMedicalStatus = Initializer.initConsolidatedMap(UNMET_MEDICAL_STATUS, unmetMedicalStatusPath),
+            initUnmetDentalRatio = Initializer.initConsolidatedMap(UNMET_DENTAL_RATIO, unmetDentalRatioPath),
+            initUnmetMedicalRatio = Initializer.initConsolidatedMap(UNMET_MEDICAL_RATIO, unmetMedicalRatioPath),
             initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS, workAccidentsPath);
 
     public Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 alcoholicRatio = Preparation.prepareData(initAlcoholicRatio), // no data
-                bodyMassIndexOverweight = Preparation.prepareData(initBodyMassIndexOverweight), // not used
-                bodyMassIndexObese = Preparation.prepareData(initBodyMassIndexObese),
+                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio), // not used
+                bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
                 fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
                 healthPersonnel = Preparation.prepareData(initHealthPersonnel),
                 healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
@@ -85,8 +86,8 @@ public class HealthStatsImpl implements HealthStatsDAO {
                 longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
                 physicalActivities = Preparation.prepareData(initPhysicalActivities), // no data
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
-                unmetDentalStatus = Preparation.prepareData(initUnmetDentalStatus),
-                unmetMedicalStatus = Preparation.prepareData(initUnmetMedicalStatus),
+                unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
+                unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
                 workAccidents = consolidateWorkAccidents();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -94,11 +95,11 @@ public class HealthStatsImpl implements HealthStatsDAO {
                 String code = Constants.EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bodyMassIndexObese, key),
+                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
                         reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
-                        reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalStatus, key),
-                        reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalStatus, key),
+                        reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
+                        reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalRatio, key),
                         personnel = generateTensThousand(healthPersonnel, key),
                         beds = generateTensThousand(hospitalBeds, key),
                         reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
@@ -128,8 +129,27 @@ public class HealthStatsImpl implements HealthStatsDAO {
         return consolidatedList;
     }
 
+    public ArrayList<Map<String, Number>> getInitList() {
+        //TODO: initAlcoholicRatio, initBodyMassIndexOverweight and initPhysicalActivities are not used
+        return new ArrayList<>() {{
+            add(Preparation.filterMap(initBmiObeseRatio));
+            add(Preparation.filterMap(initFruitsVegetablesRatio));
+            add(Preparation.filterMap(initHealthPersonnel));
+            add(Preparation.filterMap(initHealthyLifeRatio));
+            add(Preparation.filterMap(initHealthyLifeYearsFemale));
+            add(Preparation.filterMap(initHealthyLifeYearsMale));
+            add(Preparation.filterMap(initHospitalBeds));
+            add(Preparation.filterMap(initLifeExpectancy));
+            add(Preparation.filterMap(initLongHealthIssueRatio));
+            add(Preparation.filterMap(initSmokersRatio));
+            add(Preparation.filterMap(initUnmetDentalRatio));
+            add(Preparation.filterMap(initUnmetMedicalRatio));
+            add(Preparation.filterMap(initWorkAccidents));
+        }};
+    }
+
     /**
-     * Transform all of the values expressed as hundred thousand into tens thousand
+     * Transform all of the values expressed as hundred thousand into ten thousand
      *
      * @return An ordered map with aggregated data
      */
@@ -156,6 +176,7 @@ public class HealthStatsImpl implements HealthStatsDAO {
      * @param key The key
      * @return The tens thousand value
      */
+    //TODO: rename to generatePerTenThousandInhabitants
     private static double generateTensThousand(Map<String, Number> map, String key) {
         return map.get(key).doubleValue() / 10;
     }

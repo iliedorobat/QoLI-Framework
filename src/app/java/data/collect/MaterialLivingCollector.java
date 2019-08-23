@@ -10,7 +10,7 @@ public class MaterialLivingCollector {
     private static MaterialLivingDAO materialLivingDAO = new MaterialLivingDAOImpl();
 
     public static void dataCollector() {
-        StringBuilder purchasingRatio = materialLivingDAO.getPurchasingRatio(),
+        StringBuilder purchasingRatio = materialLivingDAO.getPpsRatio(),
                 medianIncome = materialLivingDAO.getMedianIncome(),
                 incomeQuintileRatio = materialLivingDAO.getIncomeQuintileRatio(),
                 povertyRiskRatio = materialLivingDAO.getPovertyRiskRatio(),
@@ -21,10 +21,10 @@ public class MaterialLivingCollector {
                 overOccupiedRatio = materialLivingDAO.getOverOccupiedRatio(),
                 dwellingIssuesRatio = materialLivingDAO.getDwellingIssuesRatio(),
                 lackOfBathsRatio = materialLivingDAO.getLackOfBathsRatio(),
-                workIntensityRatio = materialLivingDAO.getWorkIntensityRatio(),
+                workIntensityRatio = materialLivingDAO.getLowWorkIntensityRatio(),
                 publicWaterRatio = materialLivingDAO.getPublicWaterRatio();
 
-        FileUtils.writeToJSONFile(purchasingRatio, FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PURCHASING_RATIO);
+        FileUtils.writeToJSONFile(purchasingRatio, FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PPS_RATIO);
         FileUtils.writeToJSONFile(medianIncome, FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MEDIAN_INCOME);
         FileUtils.writeToJSONFile(incomeQuintileRatio, FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.INCOME_QUINTILE_RATIO);
         FileUtils.writeToJSONFile(povertyRiskRatio, FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.POVERTY_RISK_RATIO);

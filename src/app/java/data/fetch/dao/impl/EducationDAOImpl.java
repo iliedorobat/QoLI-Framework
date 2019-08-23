@@ -47,13 +47,12 @@ public class EducationDAOImpl implements EducationDAO {
         return Fetcher.fetchData("edat_lfse_20", params);
     }
 
-    public StringBuilder getLeaversRatio() {
+    public StringBuilder getNoKnownForeignLangRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y18-24");
-        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.AGE, "Y25-64");
+        params.put(ParamsConst.N_LANG, "0");
         params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WORKING_STATUS, "POP");
-        return Fetcher.fetchData("edat_lfse_14", params);
+        return Fetcher.fetchData("edat_aes_l22", params);
     }
 
     public StringBuilder getPupilsRatio2012() {
@@ -69,6 +68,15 @@ public class EducationDAOImpl implements EducationDAO {
         return Fetcher.fetchData("educ_uoe_perp04", params);
     }
 
+    public StringBuilder getSchoolDropoutRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "Y18-24");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
+        params.put(ParamsConst.WORKING_STATUS, "POP");
+        return Fetcher.fetchData("edat_lfse_14", params);
+    }
+
     public StringBuilder getTrainingRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y25-64");
@@ -76,13 +84,5 @@ public class EducationDAOImpl implements EducationDAO {
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("trng_lfs_02", params);
-    }
-
-    public StringBuilder getZeroForeignLangRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y25-64");
-        params.put(ParamsConst.N_LANG, "0");
-        params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("edat_aes_l22", params);
     }
 }

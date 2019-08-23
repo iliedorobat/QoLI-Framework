@@ -12,7 +12,7 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         return FetcherUtils.getActivePeopleRatio(activities);
     }
 
-    public StringBuilder getEmployment() {
+    public StringBuilder getEmploymentRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y20-64");
         params.put(ParamsConst.INDIC_EM, "EMP_LFS");
@@ -29,7 +29,7 @@ public class GovRightsDAOImpl implements GovRightsDAO {
         return Fetcher.fetchData("earn_gr_gpgr2", params);
     }
 
-    public StringBuilder getPopulationTrustRatio() {
+    public StringBuilder getPopulationTrust() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y_GE16");
         params.put(ParamsConst.INDIC_WB, "LEGTST"); // legal system

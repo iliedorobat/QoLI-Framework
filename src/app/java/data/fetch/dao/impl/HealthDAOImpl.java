@@ -97,12 +97,12 @@ public class HealthDAOImpl implements HealthDAO {
         return Fetcher.fetchData("hlth_ehis_sk3i", params);
     }
 
-    public StringBuilder getUnmetDentalStatus() {
+    public StringBuilder getUnmetDentalRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getUnmetHealthParams();
         return Fetcher.fetchData("hlth_silc_09", params);
     }
 
-    public StringBuilder getUnmetMedicalStatus() {
+    public StringBuilder getUnmetMedicalRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getUnmetHealthParams();
         return Fetcher.fetchData("hlth_silc_08", params);
     }

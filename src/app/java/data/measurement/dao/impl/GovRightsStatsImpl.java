@@ -28,9 +28,9 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
             EMPLOYMENT_FEMALE_RATIO = {"Y20-64", "PC_POP", "F", "EMP_LFS"},
             EMPLOYMENT_MALE_RATIO = {"Y20-64", "PC_POP", "M", "EMP_LFS"},
             GENDER_PAY_GAP = {"PC", "B-S_X_O"},
-            POPULATION_LEGTST_TRUST_RATIO = {"RTG", "TOTAL", "LEGTST", "T", "Y_GE16"},
-            POPULATION_PLCTST_TRUST_RATIO = {"RTG", "TOTAL", "PLCTST", "T", "Y_GE16"},
-            POPULATION_PLTTST_TRUST_RATIO = {"RTG", "TOTAL", "PLTTST", "T", "Y_GE16"};
+            POPULATION_LEGTST_TRUST = {"RTG", "TOTAL", "LEGTST", "T", "Y_GE16"},
+            POPULATION_PLCTST_TRUST = {"RTG", "TOTAL", "PLCTST", "T", "Y_GE16"},
+            POPULATION_PLTTST_TRUST = {"RTG", "TOTAL", "PLTTST", "T", "Y_GE16"};
 
     private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String CSV_EXT = Constants.CSV_EXTENSION;
@@ -38,16 +38,16 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
             activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + JSON_EXT,
             employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + JSON_EXT,
             genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + JSON_EXT,
-            populationTrustRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST_RATIO + JSON_EXT,
+            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + JSON_EXT,
             voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + CSV_EXT;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
             initEmploymentFemaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_FEMALE_RATIO, employmentRatioPath),
             initEmploymentMaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_MALE_RATIO, employmentRatioPath),
-            initPopulationLegtstTrustRatio = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST_RATIO, populationTrustRatioPath),
-            initPopulationPlctstTrustRatio = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST_RATIO, populationTrustRatioPath),
-            initPopulationPlttstTrustRatio = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST_RATIO, populationTrustRatioPath);
+            initPopulationLegtstTrust = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST, populationTrustPath),
+            initPopulationPlctstTrust = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST, populationTrustPath),
+            initPopulationPlttstTrust = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST, populationTrustPath);
     private static final ArrayList<Map<String, Number>> voterTurnoutList = new ArrayList<>() {{
         add(voterTurnoutCsvToMap(voterTurnoutPath));
     }};
@@ -93,6 +93,19 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
 //        Print.print(populationTrust, true);
 
         return consolidatedList;
+    }
+
+    public ArrayList<Map<String, Number>> getInitList() {
+        return new ArrayList<>() {{
+            add(Preparation.filterMap(initActiveCitizenship));
+            add(Preparation.filterMap(initEmploymentFemaleRatio));
+            add(Preparation.filterMap(initEmploymentMaleRatio));
+            add(Preparation.filterMap(initGenderPayGap));
+            add(Preparation.filterMap(initPopulationLegtstTrust));
+            add(Preparation.filterMap(initPopulationPlctstTrust));
+            add(Preparation.filterMap(initPopulationPlttstTrust));
+            add(Preparation.filterMap(initVoterTurnout));
+        }};
     }
 
     /**
@@ -179,9 +192,9 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
     private Map<String, Number> consolidatePopulationTrust() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
         Map<String, Number>
-            populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrustRatio),
-            populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrustRatio),
-            populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrustRatio);
+            populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrust),
+            populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
+            populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust);
 
         for (int i = 0; i < EU28_MEMBERS.length; i++) {
             String code = EU28_MEMBERS[i];

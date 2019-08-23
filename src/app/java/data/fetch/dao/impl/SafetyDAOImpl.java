@@ -18,6 +18,14 @@ public class SafetyDAOImpl implements SafetyDAO {
         return Fetcher.fetchData("ilc_mddw03", params);
     }
 
+    public StringBuilder getNonPaymentRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.HHTYP, "TOTAL");
+        params.put(ParamsConst.INC_GRP, "TOTAL");
+        params.put(ParamsConst.UNIT, "PC");
+        return Fetcher.fetchData("ilc_mdes05", params);
+    }
+
     public StringBuilder getOffences() {
         MultiValuedMap<String, String> params = getOffencesMainHttpParams();
         params.put(ParamsConst.ICCS, "ICCS02011");  // Assault
@@ -31,7 +39,7 @@ public class SafetyDAOImpl implements SafetyDAO {
         return Fetcher.fetchData("crim_off_cat", params);
     }
 
-    public StringBuilder getPensionRatio() {
+    public StringBuilder getPensionPps() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.SPDEPB, "TOTAL");
         params.put(ParamsConst.SPDEPM, "TOTAL");
@@ -39,7 +47,7 @@ public class SafetyDAOImpl implements SafetyDAO {
         return Fetcher.fetchData("spr_exp_pens", params);
     }
 
-    public StringBuilder getSocialProtectionRatio() {
+    public StringBuilder getSocialProtectionPps() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.SPDEPS, "SPBENEFNOREROUTE");
         params.put(ParamsConst.UNIT, "PPS_HAB");
@@ -52,14 +60,6 @@ public class SafetyDAOImpl implements SafetyDAO {
         params.put(ParamsConst.INC_GRP, "TOTAL");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("ilc_mdes04", params);
-    }
-
-    public StringBuilder getUnpaidRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("ilc_mdes05", params);
     }
 
     /**

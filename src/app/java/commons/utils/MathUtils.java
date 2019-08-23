@@ -98,6 +98,7 @@ public class MathUtils {
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
+    //TODO: rename to generatePerThousandInhabitants
     public static Number generateThousandPerInhabitant(String key, double value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value / population * THOUSAND_VALUE;
@@ -110,6 +111,7 @@ public class MathUtils {
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
+    //TODO: rename to generatePerThousandInhabitants
     public static Number generateThousandPerInhabitant(String key, Number value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value.doubleValue() / population * THOUSAND_VALUE;
@@ -122,6 +124,7 @@ public class MathUtils {
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
+    //TODO: rename to generatePerTenThousandInhabitants
     public static Number generateTenThousandPerInhabitant(String key, double value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value / population * TEN_THOUSAND_VALUE;

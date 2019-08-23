@@ -75,6 +75,22 @@ public interface MaterialLivingDAO {
     StringBuilder getLackOfBathsRatio();
 
     /**
+     * People living in households with very low work intensity<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: proportion of total population aged 0 to 59 years (%)<br/>
+     * Dataset: ilc_lvhl11<br/>
+     * Years: 2003-2018<br/><br/>
+     *
+     * Comments: NUTS 2 regions => ilc_lvhl21<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    StringBuilder getLowWorkIntensityRatio();
+
+    /**
      * Severe material deprivation rate<br/><br/>
      *
      * Aggregation: country<br/>
@@ -160,7 +176,7 @@ public interface MaterialLivingDAO {
      *
      * @return
      */
-    StringBuilder getPurchasingRatio();
+    StringBuilder getPpsRatio();
 
     /**
      * Share of people living in under-occupied dwellings<br/><br/>
@@ -173,20 +189,4 @@ public interface MaterialLivingDAO {
      * @return
      */
     StringBuilder getUnderOccupiedRatio();
-
-    /**
-     * People living in households with very low work intensity<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: proportion of total population aged 0 to 59 years (%)<br/>
-     * Dataset: ilc_lvhl11<br/>
-     * Years: 2003-2018<br/><br/>
-     *
-     * Comments: NUTS 2 regions => ilc_lvhl21<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    StringBuilder getWorkIntensityRatio();
 }

@@ -29,7 +29,7 @@ public class MainActivityCollector {
         FileUtils.writeToJSONFile(overQualifiedRatio, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.OVER_QUALIFIED_RATIO);
         FileUtils.writeToJSONFile(avgWorkHours2007, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2007);
         FileUtils.writeToJSONFile(avgWorkHours2008, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2008);
-        FileUtils.writeToJSONFile(nightsRatio, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.NIGHTS_RATIO);
+        FileUtils.writeToJSONFile(nightsRatio, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.WORKING_NIGHTS_RATIO);
         FileUtils.writeToJSONFile(unemploymentRatio, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO);
         FileUtils.writeToJSONFile(longTermUnemploymentRatio, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.LONG_TERM_UNEMPLOYMENT_RATIO);
         FileUtils.writeToJSONFile(activePopulation, FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.ACTIVE_POPULATION);

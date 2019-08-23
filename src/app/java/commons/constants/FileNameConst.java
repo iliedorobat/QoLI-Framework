@@ -9,11 +9,11 @@ public class FileNameConst {
     public static final String EARLY_EDU_RATIO = "earlyEducationRatio";
     public static final String EDU_RATIO = "educationRatio";
     public static final String EXCLUDED_RATIO = "excludedRatio";
-    public static final String LEAVERS_RATIO = "leaversRatio";
+    public static final String NO_KNOWN_FOREIGN_LANG_RATIO = "zeroForeignLangRatio";
     public static final String PUPILS_RATIO_2012 = "pupilsRatio2012";
     public static final String PUPILS_RATIO_2013 = "pupilsRatio2013";
+    public static final String SCHOOL_DROPOUT_RATIO = "leaversRatio";
     public static final String TRAINING_RATIO = "trainingRatio";
-    public static final String ZERO_FOREIGN_LANG_RATIO = "zeroForeignLangRatio";
 
     // Environment
     public static final String AIR_POLLUTION_RATIO = "airPollutionRatio";
@@ -25,7 +25,7 @@ public class FileNameConst {
     public static final String ACTIVE_CITIZENSHIP = "activeCitizenship";
     public static final String EMPLOYMENT = "employment";
     public static final String GENDER_PAY_GAP = "genderPayGap";
-    public static final String POPULATION_TRUST_RATIO = "populationTrustRatio";
+    public static final String POPULATION_TRUST = "populationTrustRatio";
     public static final String VOTER_TURNOUT = "voterTurnout";
 
     // Health
@@ -40,8 +40,8 @@ public class FileNameConst {
     public static final String LONG_HEALTH_ISSUE_RATIO = "longHealthIssueRatio";
     public static final String PHYSICAL_ACTIVITIES = "physicalActivities";
     public static final String SMOKERS_RATIO = "smokersRatio";
-    public static final String UNMET_MEDICAL_STATUS = "unmetMedicalStatus";
-    public static final String UNMET_DENTAL_STATUS = "unmetDentalStatus";
+    public static final String UNMET_MEDICAL_RATIO = "unmetMedicalStatus";
+    public static final String UNMET_DENTAL_RATIO = "unmetDentalStatus";
     public static final String WORK_ACCIDENTS = "workAccidents";
 
     // Productive or Main Activity
@@ -51,11 +51,11 @@ public class FileNameConst {
     public static final String EMPLOYMENT_RATIO = "employmentRatio";
     public static final String INVOLUNTARY_PART_TIME_RATIO = "involuntaryPartTimeRatio";
     public static final String LONG_TERM_UNEMPLOYMENT_RATIO = "longTermUnemploymentRatio";
-    public static final String NIGHTS_RATIO = "nightsRatio";
     public static final String OVER_QUALIFIED_RATIO = "overQualifiedRatio";
     public static final String RESEARCHERS = "researchers";
     public static final String TEMPORARY_EMPLOYMENT_RATIO = "temporaryEmploymentRatio";
     public static final String UNEMPLOYMENT_RATIO = "unemploymentRatio";
+    public static final String WORKING_NIGHTS_RATIO = "nightsRatio";
 
     // Material and Living Conditions
     public static final String DWELLING_ISSUES_RATIO = "dwellingIssuesRatio";
@@ -66,10 +66,10 @@ public class FileNameConst {
     public static final String MATERIAL_DEPRIVATION_RATIO = "materialDeprivationRatio";
     public static final String MEDIAN_INCOME = "medianIncome";
     public static final String OVER_OCCUPIED_RATIO = "overOccupiedRatio";
-    public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
-    //TODO: check the difference between PUBLIC_WATER_RATIO and WATER_SUPPLY_RATIO
+    //TODO: check for the difference between PUBLIC_WATER_RATIO and WATER_SUPPLY_RATIO
     public static final String PUBLIC_WATER_RATIO = "publicWaterRatio";
-    public static final String PURCHASING_RATIO = "purchasingRatio";
+    public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
+    public static final String PPS_RATIO = "purchasingRatio";
     public static final String UNDER_OCCUPIED_RATIO = "underOccupiedRatio";
     public static final String WORK_INTENSITY_RATIO = "workIntensityRatio";
 
@@ -78,11 +78,11 @@ public class FileNameConst {
 
     // Safety
     public static final String CRIME_RATIO = "crimeRatio";
+    public static final String NON_PAYMENT_RATIO = "unpaidRatio";
     public static final String OFFENCES = "offences";
-    public static final String PENSION_RATIO = "pensionRatio";
+    public static final String PENSION_PPS = "pensionRatio";
     public static final String SOCIAL_PROTECTION_RATIO = "socialProtectionRatio";
     public static final String UNEXPECTED_RATIO = "unexpectedRatio";
-    public static final String UNPAID_RATIO = "unpaidRatio";
 
     // Social Activity
     public static final String ASKING_RATIO = "askingRatio";
