@@ -25,7 +25,7 @@ public class FileNameConst {
     public static final String ACTIVE_CITIZENSHIP = "activeCitizenship";
     public static final String EMPLOYMENT = "employment";
     public static final String GENDER_PAY_GAP = "genderPayGap";
-    public static final String POPULATION_TRUST_RATIO = "populationTrustRatio";
+    public static final String POPULATION_TRUST = "populationTrustRatio";
     public static final String VOTER_TURNOUT = "voterTurnout";
 
     // Health

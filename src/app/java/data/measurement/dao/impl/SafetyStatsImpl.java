@@ -77,7 +77,7 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
                 double reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
                         // reduce the number of the whole part of a decimal number from 3 to 2
-                        correctedPensionPps = pensionPps.get(key).doubleValue() / 10,
+                        correctedPensionPps = pensionPps.get(key).doubleValue() / 100,
                         // reduce the number of the whole part of a decimal number from 4 to 2
                         correctedSocialProtectionPps = socialProtectionPps.get(key).doubleValue() / 100,
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
