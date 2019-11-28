@@ -1,13 +1,18 @@
 package app.java.commons.utils;
 
+import app.java.commons.Statistics;
+import app.java.commons.constants.FilePathConst;
+
 import java.io.*;
+import java.util.Map;
 
 public class FileUtils {
+    public static final String CSV_EXTENSION = ".csv";
     public static final String JSON_EXTENSION = ".json";
 
     /**
-     * Read data from the disc
-     * @param path <b>String</b>: the path to the desired file
+     * Read data from disc
+     * @param path The path to the desired file
      * @return <b>StringBuilder</b>
      */
     public static StringBuilder readFile(String path) {
@@ -41,9 +46,9 @@ public class FileUtils {
     }
 
     /**
-     * Write data to the disc
-     * @param sb <b>StringBuilder</b>: the data to be written
-     * @param path <b>String</b>: the path to the desired file
+     * Write data to disc
+     * @param sb The data to be written
+     * @param path The path to the desired file
      */
     public static void writeToFile(StringBuilder sb, String path) {
         FileWriter fw = null;
@@ -66,11 +71,21 @@ public class FileUtils {
 
     /**
      * Write JSON data to disc
-     * @param sb <b>StringBuilder</b>: the data to be written
-     * @param path <b>String</b>: the path to the desired file
+     * @param sb The data to be written
+     * @param path The path to the desired file
      */
     //TODO: check if it is a valid JSON
     public static void writeToJSONFile(StringBuilder sb, String path) {
         writeToFile(sb, path + JSON_EXTENSION);
+    }
+
+    /**
+     * Write the prepared chart data to disc
+     * @param entries The map with target dimension data
+     * @param dimensionName The name of the target dimension
+     */
+    public static void writeChartData(Map<String, Number> entries, String dimensionName) {
+        StringBuilder sb = Statistics.generateChartData(entries, dimensionName);
+        writeToFile(sb, FilePathConst.OUTPUT_PATH + dimensionName + CSV_EXTENSION);
     }
 }

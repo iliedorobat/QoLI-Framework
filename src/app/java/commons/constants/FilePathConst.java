@@ -11,4 +11,5 @@ public class FilePathConst {
     public static final String GOV_RIGHTS_PATH = DATASET_PATH + "gov-rights/";
     public static final String ENVIRONMENT_PATH = DATASET_PATH + "environment/";
     public static final String OVERALL_EXPERIENCE_PATH = DATASET_PATH + "overall-experience/";
+    public static final String OUTPUT_PATH = "files/output/";
 }

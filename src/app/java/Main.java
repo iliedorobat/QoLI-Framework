@@ -1,14 +1,21 @@
 package app.java;
 
+import app.java.commons.MapOrder;
 import app.java.commons.Print;
+import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FileNameConst;
+import app.java.commons.constants.FilePathConst;
+import app.java.commons.utils.FileUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.data.fetch.dao.GeneralDAO;
+import app.java.data.fetch.dao.impl.GeneralDAOImpl;
 import app.java.data.measurement.QoLI;
 import app.java.data.measurement.dao.*;
 import app.java.data.measurement.dao.impl.*;
 import app.java.data.parse.LocalParser;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     private static EducationStatsDAO educationStatsDAO = new EducationStatsImpl();
@@ -26,11 +33,11 @@ public class Main {
 //        GeneralDAO dao = new GeneralDAOImpl();
 //        StringBuilder sb = dao.getPopulation();
 //        FileUtils.writeToJSONFile(sb, FilePathConst.DATASET_PATH + FileNameConst.POPULATION);
-
+//
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
-
-        // 3. Print the QoLI and the QoLI dimensions values
+//
+//        // 3. Write the QoLI and the QoLI dimensions values to disc
         Map<String, Number>
                 qoliList = QoLI.generateIndicatorList(),
                 educationStats = educationStatsDAO.generateDimensionList(),
@@ -43,17 +50,77 @@ public class Main {
                 safetyStats = safetyStatsDAO.generateDimensionList(),
                 socialActivityStats = socialActivityStatsDAO.generateDimensionList();
 
-        //TODO: write to disk
-        Print.printCSV(qoliList, "QoLI");
-//        Print.printCSV(educationStats, "Education");
-//        Print.printCSV(environmentStats, "Environment");
-//        Print.printCSV(govRightsStats, "GBR");
-//        Print.printCSV(healthStats, "Health");
-//        Print.printCSV(mainActivityStats, "PMA");
-//        Print.printCSV(materialLivingStats, "MLC");
-//        Print.printCSV(overallExperienceStats, "Overall Exp");
-//        Print.printCSV(safetyStats, "Safety");
-//        Print.printCSV(socialActivityStats, "LSI");
+//        FileUtils.writeChartData(qoliList, "QoLI");
+//        FileUtils.writeChartData(educationStats, "Education");
+//        FileUtils.writeChartData(environmentStats, "Environment");
+//        FileUtils.writeChartData(govRightsStats, "GBR");
+//        FileUtils.writeChartData(healthStats, "Health");
+//        FileUtils.writeChartData(mainActivityStats, "PMA");
+//        FileUtils.writeChartData(materialLivingStats, "MLC");
+//        FileUtils.writeChartData(overallExperienceStats, "Overall Exp");
+//        FileUtils.writeChartData(safetyStats, "Safety");
+//        FileUtils.writeChartData(socialActivityStats, "LSI");
+//
+//        // 4. Print the QoLI and the QoLI dimensions values
+//        Print.printChartData(qoliList, "QoLI");
+//        Print.printChartData(educationStats, "Education");
+//        Print.printChartData(environmentStats, "Environment");
+//        Print.printChartData(govRightsStats, "GBR");
+//        Print.printChartData(healthStats, "Health");
+//        Print.printChartData(mainActivityStats, "PMA");
+//        Print.printChartData(materialLivingStats, "MLC");
+//        Print.printChartData(overallExperienceStats, "Overall Exp");
+//        Print.printChartData(safetyStats, "Safety");
+//        Print.printChartData(socialActivityStats, "LSI");
+//
+//        printRegions(qoliList);
+    }
+
+    private static void printRegions(Map<String, Number> entries) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            double easternCounter = 0,
+                    northernCounter = 0,
+                    southernCounter = 0,
+                    westernCounter = 0;
+            double easternSum = 0,
+                    northernSum = 0,
+                    southernSum = 0,
+                    westernSum = 0;
+
+            for (Map.Entry<String, Number> entry : entries.entrySet()) {
+                String entryCode = MapUtils.getEntryCode(entry);
+                Integer entryYear = MapUtils.getEntryYear(entry);
+                Number entryValue = entry.getValue();
+
+                if (entryYear == year) {
+                    if (Arrays.asList(Constants.EU_EASTERN_MEMBERS).indexOf(entryCode) != -1) {
+                        easternSum += entryValue.doubleValue();
+                        easternCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_NORTHERN_MEMBERS).indexOf(entryCode) != -1) {
+                        northernSum += entryValue.doubleValue();
+                        northernCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_SOUTHERN_MEMBERS).indexOf(entryCode) != -1) {
+                        southernSum += entryValue.doubleValue();
+                        southernCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_WESTERN_MEMBERS).indexOf(entryCode) != -1) {
+                        westernSum += entryValue.doubleValue();
+                        westernCounter++;
+                    }
+                }
+            }
+
+            consolidatedList.put(MapUtils.generateKey("EASTERN", year), easternSum / easternCounter);
+            consolidatedList.put(MapUtils.generateKey("NORTHERN", year), northernSum / northernCounter);
+            consolidatedList.put(MapUtils.generateKey("SOUTHERN", year), southernSum / southernCounter);
+            consolidatedList.put(MapUtils.generateKey("WESTERN", year), westernSum / westernCounter);
+        }
+
+        Print.printChartData(consolidatedList, "regions");
     }
 
     // For testing

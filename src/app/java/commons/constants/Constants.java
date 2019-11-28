@@ -22,6 +22,23 @@ public class Constants {
      */
     public static final int PERCENTAGE_SAFETY_THRESHOLD = 101;
 
+    public static final String[] EU_EASTERN_MEMBERS = {
+            "BG", "CZ", "HU", "PL", "RO", "SK"
+    };
+    public static final String[] EU_NORTHERN_MEMBERS = {
+            "DK", "EE", "FI", "IE", "LV", "LT", "SE", "UK"
+    };
+    public static final String[] EU_SOUTHERN_MEMBERS = {
+            "HR", "EL", "IT", "MT", "PT", "SI", "ES", "CY"
+    };
+    public static final String[] EU_WESTERN_MEMBERS = {
+            "AT", "BE", "FR", "DE", "LU", "NL"
+    };
+
+    // Eastern: BG; CZ; HU; PL; RO; SK
+    // Northern: DK; EE; FI; IE; LV; LT; SE; UK
+    // Southern: HR; EL; IT; MT; PT; SI; ES; CY
+    // Western: AT; BE; FR; DE; LU; NL
     public static final String[] EU28_MEMBERS = {
 //            "EU28", // European Union - 28 countries
             "AT", // Austria

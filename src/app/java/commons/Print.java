@@ -13,17 +13,9 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Print {
-    private static String CSV_SEPARATOR = Constants.CSV_SEPARATOR;
-
-    public static void printCSV(Map<String, Number> entries, String dimensionName) {
-        System.out.println("dimension name" + CSV_SEPARATOR + "country code" + CSV_SEPARATOR + "year" + CSV_SEPARATOR + "value");
-
-        for (Map.Entry<String, Number> entry : entries.entrySet()) {
-            String code = MapUtils.getEntryCode(entry);
-            Integer year = MapUtils.getEntryYear(entry);
-            Number value = entry.getValue();
-            System.out.println(dimensionName + CSV_SEPARATOR + code + CSV_SEPARATOR + year + CSV_SEPARATOR + formatNumber(value.doubleValue()));
-        }
+    public static void printChartData(Map<String, Number> entries, String dimensionName) {
+        StringBuilder output = Statistics.generateChartData(entries, dimensionName);
+        System.out.println(output);
     }
 
     public static void print(Map<String, Number> entries, boolean printNull) {
@@ -109,7 +101,7 @@ public class Print {
                 + "\n\tExpected: " + expected);
     }
 
-    private static String formatNumber(double number) {
+    public static String formatNumber(double number) {
         Locale locale = new Locale("en", "US");
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
