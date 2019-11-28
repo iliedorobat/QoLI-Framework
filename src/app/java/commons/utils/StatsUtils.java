@@ -1,13 +1,14 @@
-package app.java.commons;
+package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.MathUtils;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-public class Statistics {
+public class StatsUtils {
     private static final int EU28_MEMBERS_LENGTH = Constants.EU28_MEMBERS.length;
     private static final int ROUNDING_PLACES = 2;
 

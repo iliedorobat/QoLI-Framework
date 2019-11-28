@@ -1,13 +1,12 @@
-package app.java.data.measurement.dao.impl;
+package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.dao.SocialActivityStatsDAO;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
+public class SocialActivityStats {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
 
     // The lists of queried values
@@ -38,14 +37,13 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             NP_NNB_LIVE_RATIO = {"NNB", "AC522A", "TOTAL", "Y_GE16", "T", "PC"},
             NP_NNB_SPORT_RATIO = {"NNB", "AC525", "TOTAL", "Y_GE16", "T", "PC"};
 
-    private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
-            askingRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.ASKING_RATIO + JSON_EXT,
-            discussionRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.DISCUSSION_RATIO + JSON_EXT,
-            gettingTogetherRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.GETTING_TOGETHER_RATIO + JSON_EXT,
-            nonParticipationRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.NON_PARTICIPATION_RATIO + JSON_EXT,
-            socialActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.SOCIAL_ACTIVITIES_RATIO + JSON_EXT,
-            voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + JSON_EXT;
+            askingRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.ASKING_RATIO + Constants.JSON_EXTENSION,
+            discussionRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.DISCUSSION_RATIO + Constants.JSON_EXTENSION,
+            gettingTogetherRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.GETTING_TOGETHER_RATIO + Constants.JSON_EXTENSION,
+            nonParticipationRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.NON_PARTICIPATION_RATIO + Constants.JSON_EXTENSION,
+            socialActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.SOCIAL_ACTIVITIES_RATIO + Constants.JSON_EXTENSION,
+            voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + Constants.JSON_EXTENSION;
 
     private static final Map<String, Number>
             initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
@@ -69,7 +67,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
             initNpNnbLiveRatio = Initializer.initConsolidatedMap(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
             initNpNnbSportRatio = Initializer.initConsolidatedMap(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
-    public Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 askingRatio = Preparation.prepareData(initAskingRatio),
@@ -104,7 +102,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
         return consolidatedList;
     }
 
-    public ArrayList<Map<String, Number>> getInitList() {
+    public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
             add(Preparation.filterMap(initAskingRatio));
             add(Preparation.filterMap(initDiscussionRatio));
@@ -128,7 +126,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
      *
      * @return An ordered map with aggregated data
      */
-    private Map<String, Number> consolidateGettingTogetherRatio() {
+    private static Map<String, Number> consolidateGettingTogetherRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
@@ -155,7 +153,7 @@ public class SocialActivityStatsImpl implements SocialActivityStatsDAO {
      *
      * @return An ordered map with aggregated data
      */
-    private Map<String, Number> consolidateNonParticipationRatio() {
+    private static Map<String, Number> consolidateNonParticipationRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 npFinCinRatio = Preparation.prepareData(initNpFinCinRatio),

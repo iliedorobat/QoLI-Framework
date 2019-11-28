@@ -4,30 +4,14 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.utils.FileUtils;
 import app.java.commons.utils.MapUtils;
-import app.java.data.fetch.dao.GeneralDAO;
-import app.java.data.fetch.dao.impl.GeneralDAOImpl;
-import app.java.data.measurement.QoLI;
-import app.java.data.measurement.dao.*;
-import app.java.data.measurement.dao.impl.*;
+import app.java.data.measurement.statistics.QoLIStats;
+import app.java.data.measurement.statistics.*;
 import app.java.data.parse.LocalParser;
 
 import java.util.*;
 
 public class Main {
-    private static EducationStatsDAO educationStatsDAO = new EducationStatsImpl();
-    private static EnvironmentStatsDAO environmentStatsDAO= new EnvironmentStatsImpl();
-    private static GovRightsStatsDAO govRightsStatsDAO = new GovRightsStatsImpl();
-    private static HealthStatsDAO healthStatsDAO = new HealthStatsImpl();
-    private static MainActivityStatsDAO mainActivityStatsDAO = new MainActivityStatsImpl();
-    private static MaterialLivingStatsDAO materialLivingStatsDAO = new MaterialLivingStatsImpl();
-    private static OverallExperienceStatsDAO overallExperienceStatsDAO = new OverallExperienceStatsImpl();
-    private static SafetyStatsDAO safetyStatsDAO = new SafetyStatsImpl();
-    private static SocialActivityStatsDAO socialActivityStatsDAO = new SocialActivityStatsImpl();
-
     public static void main(String[] args) {
 //        // 1. Write a file to disk
 //        GeneralDAO dao = new GeneralDAOImpl();
@@ -36,20 +20,21 @@ public class Main {
 //
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
-//
-//        // 3. Write the QoLI and the QoLI dimensions values to disc
-        Map<String, Number>
-                qoliList = QoLI.generateIndicatorList(),
-                educationStats = educationStatsDAO.generateDimensionList(),
-                environmentStats = environmentStatsDAO.generateDimensionList(),
-                govRightsStats = govRightsStatsDAO.generateDimensionList(),
-                healthStats = healthStatsDAO.generateDimensionList(),
-                mainActivityStats = mainActivityStatsDAO.generateDimensionList(),
-                materialLivingStats = materialLivingStatsDAO.generateDimensionList(),
-                overallExperienceStats = overallExperienceStatsDAO.generateDimensionList(),
-                safetyStats = safetyStatsDAO.generateDimensionList(),
-                socialActivityStats = socialActivityStatsDAO.generateDimensionList();
 
+        // 3. Get QoLI and the QoLI dimensions statistics
+        Map<String, Number>
+                qoliList = QoLIStats.generateIndicatorList(),
+                educationStats = EducationStats.generateDimensionList(),
+                environmentStats = EnvironmentStats.generateDimensionList(),
+                govRightsStats = GovRightsStats.generateDimensionList(),
+                healthStats = HealthStats.generateDimensionList(),
+                mainActivityStats = MainActivityStats.generateDimensionList(),
+                materialLivingStats = MaterialLivingStats.generateDimensionList(),
+                overallExperienceStats = OverallExperienceStats.generateDimensionList(),
+                safetyStats = SafetyStats.generateDimensionList(),
+                socialActivityStats = SocialActivityStats.generateDimensionList();
+
+//        // 4. Write the QoLI and the QoLI dimensions values to disc
 //        FileUtils.writeChartData(qoliList, "QoLI");
 //        FileUtils.writeChartData(educationStats, "Education");
 //        FileUtils.writeChartData(environmentStats, "Environment");
@@ -61,8 +46,8 @@ public class Main {
 //        FileUtils.writeChartData(safetyStats, "Safety");
 //        FileUtils.writeChartData(socialActivityStats, "LSI");
 //
-//        // 4. Print the QoLI and the QoLI dimensions values
-//        Print.printChartData(qoliList, "QoLI");
+//        // 5. Print the QoLI and the QoLI dimensions values
+        Print.printChartData(qoliList, "QoLI");
 //        Print.printChartData(educationStats, "Education");
 //        Print.printChartData(environmentStats, "Environment");
 //        Print.printChartData(govRightsStats, "GBR");

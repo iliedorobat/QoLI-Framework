@@ -1,6 +1,5 @@
 package app.java.commons.utils;
 
-import app.java.commons.Statistics;
 import app.java.commons.constants.FilePathConst;
 
 import java.io.*;
@@ -85,7 +84,7 @@ public class FileUtils {
      * @param dimensionName The name of the target dimension
      */
     public static void writeChartData(Map<String, Number> entries, String dimensionName) {
-        StringBuilder sb = Statistics.generateChartData(entries, dimensionName);
+        StringBuilder sb = StatsUtils.generateChartData(entries, dimensionName);
         writeToFile(sb, FilePathConst.OUTPUT_PATH + dimensionName + CSV_EXTENSION);
     }
 }
