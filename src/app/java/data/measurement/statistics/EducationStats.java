@@ -1,6 +1,6 @@
-package app.java.data.measurement.dao.impl;
+package app.java.data.measurement.statistics;
 
-import app.java.commons.*;
+import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -8,7 +8,6 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.MeasureUtils;
-import app.java.data.measurement.dao.EducationStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class EducationStatsImpl implements EducationStatsDAO {
+public class EducationStats {
     // The lists of queried values
     private static final String[]
             DIGITAL_SKILLS = {"I_DSK_BAB", "IND_TOTAL", "PC_IND"},
@@ -30,17 +29,16 @@ public class EducationStatsImpl implements EducationStatsDAO {
             PUPILS_RATIO_2012 = {"ST1_1"},
             PUPILS_RATIO_2013 = {"RT", "ED1-3"};
 
-    private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
-            digitalSkillsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.DIGITAL_SKILLS_RATIO + JSON_EXT,
-            earlyEducationRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EARLY_EDU_RATIO + JSON_EXT,
-            excludedRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EXCLUDED_RATIO + JSON_EXT,
-            noKnownForeignLangRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.NO_KNOWN_FOREIGN_LANG_RATIO + JSON_EXT,
-            pupilsRatio2012Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2012 + JSON_EXT,
-            pupilsRatio2013Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2013 + JSON_EXT,
-            schoolDropoutRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.SCHOOL_DROPOUT_RATIO + JSON_EXT,
-            studentsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EDU_RATIO + JSON_EXT,
-            trainingRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.TRAINING_RATIO + JSON_EXT;
+            digitalSkillsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.DIGITAL_SKILLS_RATIO + Constants.JSON_EXTENSION,
+            earlyEducationRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EARLY_EDU_RATIO + Constants.JSON_EXTENSION,
+            excludedRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EXCLUDED_RATIO + Constants.JSON_EXTENSION,
+            noKnownForeignLangRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.NO_KNOWN_FOREIGN_LANG_RATIO + Constants.JSON_EXTENSION,
+            pupilsRatio2012Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2012 + Constants.JSON_EXTENSION,
+            pupilsRatio2013Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2013 + Constants.JSON_EXTENSION,
+            schoolDropoutRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.SCHOOL_DROPOUT_RATIO + Constants.JSON_EXTENSION,
+            studentsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EDU_RATIO + Constants.JSON_EXTENSION,
+            trainingRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.TRAINING_RATIO + Constants.JSON_EXTENSION;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
@@ -62,7 +60,7 @@ public class EducationStatsImpl implements EducationStatsDAO {
             initStudentsRatio = Initializer.initConsolidatedMap(STUDENTS_RATIO, studentsRatioPath),
             initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO, trainingRatioPath);
 
-    public Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
@@ -103,7 +101,7 @@ public class EducationStatsImpl implements EducationStatsDAO {
         return consolidatedList;
     }
 
-    public ArrayList<Map<String, Number>> getInitList() {
+    public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
             add(Preparation.filterMap(initDigitalSkillsRatio));
             add(Preparation.filterMap(initEarlyEducationRatio));

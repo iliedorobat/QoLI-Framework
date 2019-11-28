@@ -1,4 +1,4 @@
-package app.java.data.measurement.dao.impl;
+package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
 import app.java.commons.utils.MapUtils;
@@ -7,7 +7,6 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.dao.SafetyStatsDAO;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SafetyStatsImpl implements SafetyStatsDAO {
+public class SafetyStats {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
     private static final String[] EU28_MEMBERS_EXTENDED = Constants.EU28_MEMBERS_EXTENDED;
 
@@ -35,14 +34,13 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             OFFENCES_THEFT = {"ICCS0502", "NR"},
             OFFENCES_UNLAWFUL = {"ICCS0601", "NR"};
 
-    private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
-            crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + JSON_EXT,
-            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + JSON_EXT,
-            offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + JSON_EXT,
-            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + JSON_EXT,
-            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + JSON_EXT,
-            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + JSON_EXT;
+            crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + Constants.JSON_EXTENSION,
+            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + Constants.JSON_EXTENSION,
+            offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + Constants.JSON_EXTENSION,
+            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + Constants.JSON_EXTENSION,
+            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + Constants.JSON_EXTENSION,
+            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + Constants.JSON_EXTENSION;
 
     private static final Map<String, Number>
             initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO, crimeRatioPath),
@@ -59,7 +57,7 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
             initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
             initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
 
-    public Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 crimeRatio = Preparation.prepareData(initCrimeRatio),
@@ -101,7 +99,7 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
         return consolidatedList;
     }
 
-    public ArrayList<Map<String, Number>> getInitList() {
+    public static ArrayList<Map<String, Number>> getInitList() {
         //TODO: initBurglaryOffences is not used
         return new ArrayList<>() {{
             add(Preparation.filterMap(initCrimeRatio));
@@ -122,7 +120,7 @@ public class SafetyStatsImpl implements SafetyStatsDAO {
      *
      * @return A new sorted map which contains the consolidated indicator
      */
-    private Map<String, Number> consolidateOffencesRatio() {
+    private static Map<String, Number> consolidateOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),

@@ -1,13 +1,15 @@
-package app.java.commons;
+package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.MathUtils;
+import app.java.commons.constants.EnvConst;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-public class Statistics {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+public class StatsUtils {
+    private static final int EU28_MEMBERS_LENGTH = Constants.EU28_MEMBERS.length;
     private static final int ROUNDING_PLACES = 2;
 
     /**
@@ -27,8 +29,8 @@ public class Statistics {
     ) {
         Map<String, List<Number>> deviationList = new LinkedHashMap<>();
 
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
+        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+            String code = Constants.EU28_MEMBERS[i];
             List<Number> countryDeviationList = new LinkedList<>();
             Object[] entries = mainMap.entrySet().toArray();
 
@@ -54,6 +56,43 @@ public class Statistics {
         }
 
         return deviationList;
+    }
+
+    /**
+     * Generate CSV data that can be imported into Word charts
+     * @param entries The map with target dimension data
+     * @param dimensionName The name of the target dimension
+     */
+    public static StringBuilder generateChartData(Map<String, Number> entries, String dimensionName) {
+        String header = "--- " + dimensionName + " ---" +
+                "\nYears" + Constants.CSV_SEPARATOR;
+        StringBuilder output = new StringBuilder(header);
+
+        for (int i = 0; i < EU28_MEMBERS_LENGTH; i++) {
+            String code = Constants.EU28_MEMBERS[i];
+            output.append(code);
+
+            if (i < EU28_MEMBERS_LENGTH - 1)
+                output.append(Constants.CSV_SEPARATOR);
+        }
+        output.append("\n");
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            StringBuilder line = new StringBuilder(year + Constants.CSV_SEPARATOR);
+            for (int i = 0; i < EU28_MEMBERS_LENGTH; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = code + "_" + year;
+                Number value = entries.get(key);
+
+                line.append(value);
+
+                if (i < EU28_MEMBERS_LENGTH - 1)
+                    line.append(Constants.CSV_SEPARATOR);
+            }
+            output.append(line).append("\n");
+        }
+
+        return output;
     }
 
     /**

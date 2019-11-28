@@ -1,13 +1,12 @@
-package app.java.data.measurement.dao.impl;
+package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.dao.MaterialLivingStatsDAO;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
+public class MaterialLivingStats {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
 
     // The lists of queried values
@@ -37,21 +36,20 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             PPS_RATIO = {"PC_EU28_HAB_MEUR_CP", "B1GQ"},
             UNDER_OCCUPIED_RATIO = {"PC", "TOTAL", "T", "TOTAL"};
 
-    private static final String JSON_EXT = Constants.JSON_EXTENSION;
     private static final String
-            dwellingIssuesRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.DWELLING_ISSUES_RATIO + JSON_EXT,
-            endMeetInabilityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.END_MEET_INABILITY_RATIO + JSON_EXT,
-            highIncomeRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.HIGH_INCOME_RATIO + JSON_EXT,
-            incomeQuintileRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.INCOME_QUINTILE_RATIO + JSON_EXT,
-            lackOfBathsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.LACK_OF_BATHS_RATIO + JSON_EXT,
-            materialDeprivationRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MATERIAL_DEPRIVATION_RATIO + JSON_EXT,
-            medianIncomePath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MEDIAN_INCOME + JSON_EXT,
-            overOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.OVER_OCCUPIED_RATIO + JSON_EXT,
-            povertyRiskRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.POVERTY_RISK_RATIO + JSON_EXT,
-            publicWaterRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PUBLIC_WATER_RATIO + JSON_EXT,
-            ppsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PPS_RATIO + JSON_EXT,
-            underOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.UNDER_OCCUPIED_RATIO + JSON_EXT,
-            workIntensityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.WORK_INTENSITY_RATIO + JSON_EXT;
+            dwellingIssuesRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.DWELLING_ISSUES_RATIO + Constants.JSON_EXTENSION,
+            endMeetInabilityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.END_MEET_INABILITY_RATIO + Constants.JSON_EXTENSION,
+            highIncomeRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.HIGH_INCOME_RATIO + Constants.JSON_EXTENSION,
+            incomeQuintileRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.INCOME_QUINTILE_RATIO + Constants.JSON_EXTENSION,
+            lackOfBathsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.LACK_OF_BATHS_RATIO + Constants.JSON_EXTENSION,
+            materialDeprivationRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MATERIAL_DEPRIVATION_RATIO + Constants.JSON_EXTENSION,
+            medianIncomePath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MEDIAN_INCOME + Constants.JSON_EXTENSION,
+            overOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.OVER_OCCUPIED_RATIO + Constants.JSON_EXTENSION,
+            povertyRiskRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.POVERTY_RISK_RATIO + Constants.JSON_EXTENSION,
+            publicWaterRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PUBLIC_WATER_RATIO + Constants.JSON_EXTENSION,
+            ppsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.PPS_RATIO + Constants.JSON_EXTENSION,
+            underOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.UNDER_OCCUPIED_RATIO + Constants.JSON_EXTENSION,
+            workIntensityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.WORK_INTENSITY_RATIO + Constants.JSON_EXTENSION;
 
     private static final Map<String, Number>
             initDwellingIssuesRatio = Initializer.initConsolidatedMap(DWELLING_ISSUES_RATIO, dwellingIssuesRatioPath),
@@ -71,7 +69,7 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
             initPpsRatio = Initializer.initConsolidatedMap(PPS_RATIO, ppsRatioPath),
             initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath);
 
-    public Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
@@ -125,7 +123,7 @@ public class MaterialLivingStatsImpl implements MaterialLivingStatsDAO {
         return consolidatedList;
     }
 
-    public ArrayList<Map<String, Number>> getInitList() {
+    public static ArrayList<Map<String, Number>> getInitList() {
         //TODO: initIncomeQuintileLess65Ratio, initIncomeQuintileOver65Ratio
         // initLackOfBathsRatio, initMedianIncome, initPublicWaterRatio are not used
         return new ArrayList<>() {{

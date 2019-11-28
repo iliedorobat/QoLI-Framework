@@ -2,8 +2,8 @@ package app.java.commons;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.utils.MapUtils;
-import app.java.data.measurement.dao.*;
-import app.java.data.measurement.dao.impl.*;
+import app.java.commons.utils.StatsUtils;
+import app.java.data.measurement.statistics.*;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -13,17 +13,9 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Print {
-    private static String CSV_SEPARATOR = Constants.CSV_SEPARATOR;
-
-    public static void printCSV(Map<String, Number> entries, String dimensionName) {
-        System.out.println("dimension name" + CSV_SEPARATOR + "country code" + CSV_SEPARATOR + "year" + CSV_SEPARATOR + "value");
-
-        for (Map.Entry<String, Number> entry : entries.entrySet()) {
-            String code = MapUtils.getEntryCode(entry);
-            Integer year = MapUtils.getEntryYear(entry);
-            Number value = entry.getValue();
-            System.out.println(dimensionName + CSV_SEPARATOR + code + CSV_SEPARATOR + year + CSV_SEPARATOR + formatNumber(value.doubleValue()));
-        }
+    public static void printChartData(Map<String, Number> entries, String dimensionName) {
+        StringBuilder output = StatsUtils.generateChartData(entries, dimensionName);
+        System.out.println(output);
     }
 
     public static void print(Map<String, Number> entries, boolean printNull) {
@@ -55,25 +47,15 @@ public class Print {
     }
 
     public static void printDataInconsistencies() {
-        EducationStatsDAO educationStatsDAO = new EducationStatsImpl();
-        EnvironmentStatsDAO environmentStatsDAO = new EnvironmentStatsImpl();
-        GovRightsStatsDAO govRightsStatsDAO = new GovRightsStatsImpl();
-        HealthStatsDAO healthStatsDAO = new HealthStatsImpl();
-        MainActivityStatsDAO mainActivityStatsDAO = new MainActivityStatsImpl();
-        MaterialLivingStatsDAO materialLivingStatsDAO = new MaterialLivingStatsImpl();
-        SafetyStatsDAO safetyStatsDAO = new SafetyStatsImpl();
-        SocialActivityStatsDAO socialActivityStatsDAO = new SocialActivityStatsImpl();
-        OverallExperienceStatsDAO overallExperienceStatsDAO = new OverallExperienceStatsImpl();
-
-        printDimensionStatus(materialLivingStatsDAO.getInitList(), "MLC");
-        printDimensionStatus(mainActivityStatsDAO.getInitList(), "PMA");
-        printDimensionStatus(healthStatsDAO.getInitList(), "Health");
-        printDimensionStatus(educationStatsDAO.getInitList(), "Education");
-        printDimensionStatus(socialActivityStatsDAO.getInitList(), "LSI");
-        printDimensionStatus(safetyStatsDAO.getInitList(), "Safety");
-        printDimensionStatus(govRightsStatsDAO.getInitList(), "GBR");
-        printDimensionStatus(environmentStatsDAO.getInitList(), "Environment");
-        printDimensionStatus(overallExperienceStatsDAO.getInitList(), "Overall Exp");
+        printDimensionStatus(MaterialLivingStats.getInitList(), "MLC");
+        printDimensionStatus(MainActivityStats.getInitList(), "PMA");
+        printDimensionStatus(HealthStats.getInitList(), "Health");
+        printDimensionStatus(EducationStats.getInitList(), "Education");
+        printDimensionStatus(SocialActivityStats.getInitList(), "LSI");
+        printDimensionStatus(SafetyStats.getInitList(), "Safety");
+        printDimensionStatus(GovRightsStats.getInitList(), "GBR");
+        printDimensionStatus(EnvironmentStats.getInitList(), "Environment");
+        printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp");
         printDimensionStatus(GeneralStats.getInitList(), "General info");
     }
 
@@ -109,7 +91,7 @@ public class Print {
                 + "\n\tExpected: " + expected);
     }
 
-    private static String formatNumber(double number) {
+    public static String formatNumber(double number) {
         Locale locale = new Locale("en", "US");
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);

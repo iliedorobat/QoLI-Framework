@@ -1,13 +1,12 @@
-package app.java.data.measurement.dao.impl;
+package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
-import app.java.data.measurement.dao.GovRightsStatsDAO;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.MathUtils;
 import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.preparation.Preparation;
 
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class GovRightsStatsImpl implements GovRightsStatsDAO {
+public class GovRightsStats {
     private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
 
     // The lists of queried values
@@ -32,14 +31,12 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
             POPULATION_PLCTST_TRUST = {"RTG", "TOTAL", "PLCTST", "T", "Y_GE16"},
             POPULATION_PLTTST_TRUST = {"RTG", "TOTAL", "PLTTST", "T", "Y_GE16"};
 
-    private static final String JSON_EXT = Constants.JSON_EXTENSION;
-    private static final String CSV_EXT = Constants.CSV_EXTENSION;
     private static final String
-            activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + JSON_EXT,
-            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + JSON_EXT,
-            genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + JSON_EXT,
-            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + JSON_EXT,
-            voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + CSV_EXT;
+            activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + Constants.JSON_EXTENSION,
+            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + Constants.JSON_EXTENSION,
+            genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + Constants.JSON_EXTENSION,
+            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + Constants.JSON_EXTENSION,
+            voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + Constants.CSV_EXTENSION;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
@@ -57,7 +54,7 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
             initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP, genderPayGapPath),
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 
-    public Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 activeCitizenship = Preparation.prepareData(initActiveCitizenship),
@@ -95,7 +92,7 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
         return consolidatedList;
     }
 
-    public ArrayList<Map<String, Number>> getInitList() {
+    public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
             add(Preparation.filterMap(initActiveCitizenship));
             add(Preparation.filterMap(initEmploymentFemaleRatio));
@@ -163,7 +160,7 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
      *
      * @return An ordered map with prepared data
      */
-    private Map<String, Number> consolidateEmploymentGenderGap() {
+    private static Map<String, Number> consolidateEmploymentGenderGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
@@ -189,7 +186,7 @@ public class GovRightsStatsImpl implements GovRightsStatsDAO {
      *
      * @return An ordered map with aggregated data
      */
-    private Map<String, Number> consolidatePopulationTrust() {
+    private static Map<String, Number> consolidatePopulationTrust() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
         Map<String, Number>
             populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrust),

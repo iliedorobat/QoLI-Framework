@@ -1,4 +1,4 @@
-package app.java.data.measurement.dao;
+package app.java.data.measurement.statistics;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.FileNameConst;
