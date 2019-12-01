@@ -81,7 +81,7 @@ public class Preparation {
     }
 
     /**
-     * Transform the value into a value per thousand inhabitants
+     * Transform all values into values per ten thousand inhabitants
      *
      * @param initMap The initialized map (see Initializer.initMap)
      * @return An ordered map with aggregated data
