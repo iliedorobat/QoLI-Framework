@@ -9,7 +9,7 @@ import app.java.data.measurement.preparation.Preparation;
 import java.util.ArrayList;
 import java.util.Map;
 
-//TODO: change the "ratio" to "rate" in all over the app
+//TODO: change the "ratio" to "rate" all over the app
 public class GeneralStats {
     private static final String[]
             POPULATION = {"TOTAL", "T", "NR"};

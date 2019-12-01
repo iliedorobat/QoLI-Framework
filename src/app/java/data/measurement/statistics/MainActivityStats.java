@@ -77,7 +77,7 @@ public class MainActivityStats {
                 involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
                 longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
                 overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // no data
-                researchersRatio = getResearcherRatio(),
+                researchersRatio = Preparation.preparePerTenThousandInhabitants(initResearchers),
                 temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
                 unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
                 workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
@@ -126,30 +126,5 @@ public class MainActivityStats {
             add(Preparation.filterMap(initTemporaryEmploymentRatio));
             add(Preparation.filterMap(initUnemploymentRatio));
         }};
-    }
-
-    /**
-     * Transform the number of researchers into researchers ratio indicator
-     * (the number of researchers per ten thousand inhabitant)
-     *
-     * @return An ordered map with aggregated data
-     */
-    private static Map<String, Number> getResearcherRatio() {
-        Map<String, Number> researchersRatio = new TreeMap<>(new MapOrder());
-        Map<String, Number> researchersMap = Preparation.prepareData(initResearchers);
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
-                String key = MapUtils.generateKey(code, year);
-
-                double researchers = researchersMap.get(key).doubleValue();
-
-                Number value = MathUtils.generateTenThousandPerInhabitant(key, researchers);
-                researchersRatio.put(key, value);
-            }
-        }
-
-        return researchersRatio;
     }
 }

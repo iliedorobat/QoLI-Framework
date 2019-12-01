@@ -75,18 +75,18 @@ public class HealthStats {
                 bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio), // not used
                 bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
                 fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
-                healthPersonnel = Preparation.prepareData(initHealthPersonnel),
+                healthPersonnel = transformHundredThousandToTenThousand(initHealthPersonnel),
                 healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
                 healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
                 healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
-                hospitalBeds = Preparation.prepareData(initHospitalBeds),
+                hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
                 lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
                 longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
                 physicalActivities = Preparation.prepareData(initPhysicalActivities), // no data
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
                 unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
-                workAccidents = consolidateWorkAccidents();
+                workAccidents = Preparation.preparePerThousandInhabitant(initWorkAccidents);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
@@ -98,18 +98,16 @@ public class HealthStats {
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
                         reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalRatio, key),
-                        personnel = generateTensThousand(healthPersonnel, key),
-                        beds = generateTensThousand(hospitalBeds, key),
                         reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
-                        * MathUtils.percentageSafetyDouble(personnel)
+                        * MathUtils.percentageSafetyDouble(healthPersonnel, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeYearsFemale, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeYearsMale, key)
-                        * MathUtils.percentageSafetyDouble(beds)
+                        * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
                         * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
                         * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
@@ -147,35 +145,24 @@ public class HealthStats {
     }
 
     /**
-     * Transform all of the values expressed as hundred thousand into ten thousand
+     * Transform all values per hundred thousand inhabitants into values per ten thousand inhabitants
      *
+     * @param initMap The initialized map (see Initializer.initMap)
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> consolidateWorkAccidents() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number> workAccidents = Preparation.prepareData(initWorkAccidents);
+    private static Map<String, Number> transformHundredThousandToTenThousand(Map<String, Number> initMap) {
+        Map<String, Number> generatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
                 String code = Constants.EU28_MEMBERS[i];
                 String key = MapUtils.generateKey(code, year);
-                Number value = MathUtils.generateThousandPerInhabitant(key, workAccidents.get(key));
-                consolidatedList.put(key, value);
+                Number value = preparedMap.get(key).doubleValue() / 10;
+                generatedList.put(key, value);
             }
         }
 
-        return consolidatedList;
-    }
-
-    /**
-     * Transform a value expressed as hundred thousand into tens thousand
-     *
-     * @param map The related map
-     * @param key The key
-     * @return The tens thousand value
-     */
-    //TODO: rename to generatePerTenThousandInhabitants
-    private static double generateTensThousand(Map<String, Number> map, String key) {
-        return map.get(key).doubleValue() / 10;
+        return generatedList;
     }
 }
