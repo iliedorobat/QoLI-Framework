@@ -1,6 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
@@ -181,7 +182,9 @@ public class SocialActivityStats {
                         * MathUtils.percentageSafetyDouble(npNnbCultRatio, key)
                         * MathUtils.percentageSafetyDouble(npNnbLiveRatio, key)
                         * MathUtils.percentageSafetyDouble(npNnbSportRatio, key);
-                Number value = MathUtils.getSquareValue(product, 8);
+
+                // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
+                Number value = MathUtils.getSquareValue(product, 8) - Constants.PERCENTAGE_SAFETY_THRESHOLD;
                 consolidatedList.put(key, value);
             }
         }
