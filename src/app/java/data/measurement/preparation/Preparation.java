@@ -4,13 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.utils.MathUtils;
 
 import java.util.Map;
 import java.util.TreeMap;
 
 public class Preparation {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-
     /**
      * Add values for the years that have null values<br/>
      *
@@ -56,7 +55,51 @@ public class Preparation {
      * @return Prepared map without null values
      */
     public static Map<String, Number> prepareData(Map<String, Number> mainMap) {
-        return prepareData(mainMap, EU28_MEMBERS);
+        return prepareData(mainMap, Constants.EU28_MEMBERS);
+    }
+
+    /**
+     * Transform all values into values per thousand inhabitants
+     *
+     * @param initMap The initialized map (see Initializer.initMap)
+     * @return An ordered map with aggregated data
+     */
+    public static Map<String, Number> preparePerThousandInhabitant(Map<String, Number> initMap) {
+        Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
+        Map<String, Number> preparedMap = Preparation.prepareData(initMap);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+                Number value = MathUtils.generateThousandPerInhabitant(key, preparedMap.get(key).doubleValue());
+                generatedMap.put(key, value);
+            }
+        }
+
+        return generatedMap;
+    }
+
+    /**
+     * Transform all values into values per ten thousand inhabitants
+     *
+     * @param initMap The initialized map (see Initializer.initMap)
+     * @return An ordered map with aggregated data
+     */
+    public static Map<String, Number> preparePerTenThousandInhabitants(Map<String, Number> initMap) {
+        Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
+        Map<String, Number> preparedMap = prepareData(initMap);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
+                String code = Constants.EU28_MEMBERS[i];
+                String key = MapUtils.generateKey(code, year);
+                Number value = MathUtils.generateTenThousandPerInhabitant(key, preparedMap.get(key).doubleValue());
+                generatedMap.put(key, value);
+            }
+        }
+
+        return generatedMap;
     }
 
     // used for offences ratio

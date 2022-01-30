@@ -1,9 +1,13 @@
 package app.java.commons.utils;
 
+import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
+import app.java.commons.constants.EnvConst;
+import app.java.data.measurement.preparation.Preparation;
 import app.java.data.measurement.statistics.GeneralStats;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MathUtils {
     private static final int THOUSAND_VALUE = 1000;
@@ -102,19 +106,6 @@ public class MathUtils {
     public static Number generateThousandPerInhabitant(String key, double value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value / population * THOUSAND_VALUE;
-    }
-
-    /**
-     * Transform the value into a value per thousand inhabitants
-     *
-     * @param key The key used to extract the total population
-     * @param value The initial value
-     * @return The value per thousand inhabitants
-     */
-    //TODO: rename to generatePerThousandInhabitants
-    public static Number generateThousandPerInhabitant(String key, Number value) {
-        double population = GeneralStats.population.get(key).doubleValue();
-        return value.doubleValue() / population * THOUSAND_VALUE;
     }
 
     /**
