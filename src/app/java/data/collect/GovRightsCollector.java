@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.GovRightsDAO;
 import app.java.data.fetch.dao.impl.GovRightsDAOImpl;
 
 public class GovRightsCollector {
-    private static GovRightsDAO govRightsDAO = new GovRightsDAOImpl();
+    private static final GovRightsDAO govRightsDAO = new GovRightsDAOImpl();
 
     public static void dataCollector() {
         StringBuilder activeCitizenship = govRightsDAO.getActiveCitizenship(),

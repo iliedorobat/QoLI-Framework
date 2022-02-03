@@ -1,7 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.constants.Constants;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -13,6 +13,9 @@ import app.java.data.measurement.preparation.Preparation;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthStats {
     // The lists of queried values
@@ -35,20 +38,20 @@ public class HealthStats {
             WORK_ACCIDENTS = {"NR", "TOTAL", "D_GE4"};
 
     private static final String
-            alcoholicRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.ALCOHOLIC_RATIO + Constants.JSON_EXTENSION,
-            bodyMassIndexPath = FilePathConst.HEALTH_PATH + FileNameConst.BODY_MASS_INDEX + Constants.JSON_EXTENSION,
-            fruitsVegetablesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.FRUITS_VEGETABLES_RATIO + Constants.JSON_EXTENSION,
-            healthPersonnelPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTH_PERSONNEL + Constants.JSON_EXTENSION,
-            healthyLifeRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_RATIO + Constants.JSON_EXTENSION,
-            healthyLifeYearsPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_YEARS + Constants.JSON_EXTENSION,
-            hospitalBedsPath = FilePathConst.HEALTH_PATH + FileNameConst.HOSPITAL_BEDS + Constants.JSON_EXTENSION,
-            lifeExpectancyPath = FilePathConst.HEALTH_PATH + FileNameConst.LIFE_EXPECTANCY + Constants.JSON_EXTENSION,
-            longHealthIssueRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUE_RATIO + Constants.JSON_EXTENSION,
-            physicalActivitiesPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES + Constants.JSON_EXTENSION,
-            smokersRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO + Constants.JSON_EXTENSION,
-            unmetDentalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO + Constants.JSON_EXTENSION,
-            unmetMedicalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO + Constants.JSON_EXTENSION,
-            workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + Constants.JSON_EXTENSION;
+            alcoholicRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.ALCOHOLIC_RATIO + JSON_EXTENSION,
+            bodyMassIndexPath = FilePathConst.HEALTH_PATH + FileNameConst.BODY_MASS_INDEX + JSON_EXTENSION,
+            fruitsVegetablesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.FRUITS_VEGETABLES_RATIO + JSON_EXTENSION,
+            healthPersonnelPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTH_PERSONNEL + JSON_EXTENSION,
+            healthyLifeRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_RATIO + JSON_EXTENSION,
+            healthyLifeYearsPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_YEARS + JSON_EXTENSION,
+            hospitalBedsPath = FilePathConst.HEALTH_PATH + FileNameConst.HOSPITAL_BEDS + JSON_EXTENSION,
+            lifeExpectancyPath = FilePathConst.HEALTH_PATH + FileNameConst.LIFE_EXPECTANCY + JSON_EXTENSION,
+            longHealthIssueRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUE_RATIO + JSON_EXTENSION,
+            physicalActivitiesPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES + JSON_EXTENSION,
+            smokersRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO + JSON_EXTENSION,
+            unmetDentalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO + JSON_EXTENSION,
+            unmetMedicalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO + JSON_EXTENSION,
+            workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + JSON_EXTENSION;
 
     private static final Map<String, Number>
             initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO, alcoholicRatioPath),
@@ -89,8 +92,7 @@ public class HealthStats {
                 workAccidents = Preparation.preparePerThousandInhabitant(initWorkAccidents);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
@@ -119,7 +121,7 @@ public class HealthStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(workAccidents, true));
+//        Print.printVariation(StatsUtils.generateVariation(workAccidents, true));
 //        Print.print(consolidatedList, true);
 
         return consolidatedList;
@@ -155,8 +157,7 @@ public class HealthStats {
         Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 Number value = preparedMap.get(key).doubleValue() / 10;
                 generatedList.put(key, value);

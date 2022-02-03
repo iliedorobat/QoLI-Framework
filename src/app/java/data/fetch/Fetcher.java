@@ -22,7 +22,6 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Fetcher {
@@ -68,7 +67,7 @@ public class Fetcher {
      * Generate the URI used to extract data
      * @param dataset The search path ("nama_10r_2hhinc")
      * @param params The parameters used in search path
-     * @return
+     * @return URI
      */
     public static URI generateURI(String dataset, MultiValuedMap<String, String> params) {
         String path = URI_SERVICE
@@ -85,14 +84,9 @@ public class Fetcher {
         ArrayList<String> keysList = MapUtils.getUniqueKeys(params);
         Map<String, Collection<String>> map = params.asMap();
 
-        for (int i = 0; i < keysList.size(); i++) {
-            String key = keysList.get(i);
+        for (String key : keysList) {
             Collection<String> values = map.get(key);
-            Iterator iterator = values.iterator();
-
-            while (iterator.hasNext()) {
-                String value = (String) iterator.next();
-
+            for (String value : values) {
                 try {
                     uriBuilder.addParameter(
                             URLEncoder.encode(key, ENCODING_SCHEME),

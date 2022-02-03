@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.SafetyDAO;
 import app.java.data.fetch.dao.impl.SafetyDAOImpl;
 
 public class SafetyCollector {
-    private static SafetyDAO safetyDAO = new SafetyDAOImpl();
+    private static final SafetyDAO safetyDAO = new SafetyDAOImpl();
 
     public static void dataCollector() {
         StringBuilder pensionRatio = safetyDAO.getPensionPps(),

@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.SocialActivityDAO;
 import app.java.data.fetch.dao.impl.SocialActivityDAOImpl;
 
 public class SocialActivityCollector {
-    private static SocialActivityDAO socialActivityDAO = new SocialActivityDAOImpl();
+    private static final SocialActivityDAO socialActivityDAO = new SocialActivityDAOImpl();
 
     public static void dataCollector() {
         StringBuilder socialActivitiesRatio = socialActivityDAO.getSocialActivitiesRatio(),

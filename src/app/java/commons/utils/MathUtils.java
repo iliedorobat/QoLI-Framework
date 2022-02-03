@@ -1,13 +1,9 @@
 package app.java.commons.utils;
 
-import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
-import app.java.commons.constants.EnvConst;
-import app.java.data.measurement.preparation.Preparation;
 import app.java.data.measurement.statistics.GeneralStats;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 public class MathUtils {
     private static final int THOUSAND_VALUE = 1000;
@@ -102,8 +98,7 @@ public class MathUtils {
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    //TODO: rename to generatePerThousandInhabitants
-    public static Number generateThousandPerInhabitant(String key, double value) {
+    public static Number generatePerThousandInhabitants(String key, double value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value / population * THOUSAND_VALUE;
     }
@@ -115,8 +110,7 @@ public class MathUtils {
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    //TODO: rename to generatePerTenThousandInhabitants
-    public static Number generateTenThousandPerInhabitant(String key, double value) {
+    public static Number generatePerTenThousandInhabitants(String key, double value) {
         double population = GeneralStats.population.get(key).doubleValue();
         return value / population * TEN_THOUSAND_VALUE;
     }

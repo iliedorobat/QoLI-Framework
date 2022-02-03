@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.HealthDAO;
 import app.java.data.fetch.dao.impl.HealthDAOImpl;
 
 public class HealthCollector {
-    private static HealthDAO healthDAO = new HealthDAOImpl();
+    private static final HealthDAO healthDAO = new HealthDAOImpl();
 
     public static void dataCollector() {
         StringBuilder

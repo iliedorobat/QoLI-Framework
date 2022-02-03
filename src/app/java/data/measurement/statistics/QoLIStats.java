@@ -1,13 +1,14 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.constants.Constants;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.utils.MapUtils;
-import app.java.data.measurement.statistics.*;
 
 import java.util.Map;
 import java.util.TreeMap;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class QoLIStats {
     public static Map<String, Number> generateIndicatorList() {
@@ -24,8 +25,7 @@ public class QoLIStats {
                 socialActivityStats = SocialActivityStats.generateDimensionList();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double education = educationStats.get(key).doubleValue();
@@ -53,7 +53,7 @@ public class QoLIStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(consolidatedList, true));
+//        Print.printVariation(StatsUtils.generateVariation(consolidatedList, true));
 //        Print.print(consolidatedList, false);
 
         return consolidatedList;

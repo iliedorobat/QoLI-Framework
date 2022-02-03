@@ -1,7 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.constants.Constants;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
+
 public class EnvironmentStats {
     // The lists of queried values
     private static final String[]
@@ -23,10 +26,10 @@ public class EnvironmentStats {
             WATER_SUPPLY_RATIO = {"POP_PWS", "PC"};
 
     private static final String
-            airPollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO + Constants.JSON_EXTENSION,
-            noisePollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.NOISE_POLLUTION_RATIO + Constants.JSON_EXTENSION,
-            pollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.POLLUTION_RATIO + Constants.JSON_EXTENSION,
-            waterSupplyRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO + Constants.JSON_EXTENSION;
+            airPollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO + JSON_EXTENSION,
+            noisePollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.NOISE_POLLUTION_RATIO + JSON_EXTENSION,
+            pollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.POLLUTION_RATIO + JSON_EXTENSION,
+            waterSupplyRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO + JSON_EXTENSION;
 
     private static final Map<String, Number>
             initAirPollutionRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_RATIO, airPollutionRatioPath),
@@ -43,8 +46,7 @@ public class EnvironmentStats {
                 waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio); // no data
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double reversedNoisePollutionRatio = MathUtils.percentageReverseRatio(noisePollutionRatio, key);
@@ -58,7 +60,7 @@ public class EnvironmentStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(initAirPollutionRatio, true));
+//        Print.printVariation(StatsUtils.generateVariation(initAirPollutionRatio, true));
 //        Print.print(initAirPollutionRatio, true);
 
         return consolidatedList;

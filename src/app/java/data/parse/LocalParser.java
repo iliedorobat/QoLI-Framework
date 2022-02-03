@@ -18,17 +18,9 @@ import java.io.InputStream;
 import java.util.*;
 
 public class LocalParser {
-//    public static Map<String, Number> simplifiedMap(String filePath) {
-//        Map<String, Number> output = new HashMap<>();
-//        Map<List<String>, Number> data = readJSONFile(filePath);
-//
-//
-//    }
-
     public static Map<List<String>, Number> readJSONFile(String filePath) {
         Dataset build = getDataset(filePath);
-        Map<List<String>, Number> listListMap = build.asMap();
-        return listListMap;
+        return build.asMap();
     }
 
     public static void printJSONEntries(Map<List<String>, Number> listListMap) {
@@ -40,8 +32,7 @@ public class LocalParser {
     public static Set<String> getDimensionsOrder(String filePath) {
         Dataset build = getDataset(filePath);
         Map<String, Dimension> dimension = build.getDimension();
-        Set<String> keys = dimension.keySet();
-        return keys;
+        return dimension.keySet();
     }
 
     private static Dataset getDataset(String filePath) {

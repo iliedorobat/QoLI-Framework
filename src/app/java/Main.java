@@ -34,7 +34,7 @@ public class Main {
                 safetyStats = SafetyStats.generateDimensionList(),
                 socialActivityStats = SocialActivityStats.generateDimensionList();
 
-//        // 4. Write the QoLI and the QoLI dimensions values to disc
+//        // 4. Write the QoLI and the QoLI dimensions values to disk
 //        FileUtils.writeChartData(qoliList, "QoLI");
 //        FileUtils.writeChartData(educationStats, "Education");
 //        FileUtils.writeChartData(environmentStats, "Environment");

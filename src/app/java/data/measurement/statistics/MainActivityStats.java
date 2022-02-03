@@ -1,7 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.constants.Constants;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -14,6 +14,9 @@ import app.java.data.measurement.preparation.Preparation;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MainActivityStats {
     /** 12 hours * 7 days */
@@ -34,17 +37,17 @@ public class MainActivityStats {
             WORKING_NIGHTS_RATIO = {"PC", "T", "Y15-64", "EMP", "USU"};
 
     private static final String
-            activePopulationPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.ACTIVE_POPULATION + Constants.JSON_EXTENSION,
-            avgWorkHours2007Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2007 + Constants.JSON_EXTENSION,
-            avgWorkHours2008Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2008 + Constants.JSON_EXTENSION,
-            employmentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.EMPLOYMENT_RATIO + Constants.JSON_EXTENSION,
-            involuntaryPartTimeRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.INVOLUNTARY_PART_TIME_RATIO + Constants.JSON_EXTENSION,
-            longTermUnemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.LONG_TERM_UNEMPLOYMENT_RATIO + Constants.JSON_EXTENSION,
-            overQualifiedRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.OVER_QUALIFIED_RATIO + Constants.JSON_EXTENSION,
-            researchersPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.RESEARCHERS + Constants.JSON_EXTENSION,
-            temporaryEmploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.TEMPORARY_EMPLOYMENT_RATIO + Constants.JSON_EXTENSION,
-            unemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO + Constants.JSON_EXTENSION,
-            workingNightsRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.WORKING_NIGHTS_RATIO + Constants.JSON_EXTENSION;
+            activePopulationPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.ACTIVE_POPULATION + JSON_EXTENSION,
+            avgWorkHours2007Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2007 + JSON_EXTENSION,
+            avgWorkHours2008Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2008 + JSON_EXTENSION,
+            employmentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.EMPLOYMENT_RATIO + JSON_EXTENSION,
+            involuntaryPartTimeRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.INVOLUNTARY_PART_TIME_RATIO + JSON_EXTENSION,
+            longTermUnemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.LONG_TERM_UNEMPLOYMENT_RATIO + JSON_EXTENSION,
+            overQualifiedRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.OVER_QUALIFIED_RATIO + JSON_EXTENSION,
+            researchersPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.RESEARCHERS + JSON_EXTENSION,
+            temporaryEmploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.TEMPORARY_EMPLOYMENT_RATIO + JSON_EXTENSION,
+            unemploymentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.UNEMPLOYMENT_RATIO + JSON_EXTENSION,
+            workingNightsRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.WORKING_NIGHTS_RATIO + JSON_EXTENSION;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
@@ -83,8 +86,7 @@ public class MainActivityStats {
                 workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double correctedAvgWorkHours = CORRECTION_WORKING_HOURS - avgWorkHours.get(key).doubleValue(),
@@ -108,7 +110,7 @@ public class MainActivityStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(pupilsRatio, true));
+//        Print.printVariation(StatsUtils.generateVariation(pupilsRatio, true));
 //        Print.print(initPupilsRatio, false);
 
         return consolidatedList;

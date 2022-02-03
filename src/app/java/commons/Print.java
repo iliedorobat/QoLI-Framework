@@ -76,13 +76,12 @@ public class Print {
         int expected = 0;
         int available = 0;
 
-        for (int i = 0; i < list.size(); i++) {
-            Map<String, Number> entries = list.get(i);
+        for (Map<String, Number> entries : list) {
             for (Map.Entry<String, Number> entry : entries.entrySet()) {
                 Number value = entry.getValue();
                 expected += 1;
                 if (value != null)
-                    available +=1;
+                    available += 1;
             }
         }
 

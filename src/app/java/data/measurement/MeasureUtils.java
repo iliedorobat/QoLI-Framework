@@ -1,12 +1,14 @@
 package app.java.data.measurement;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.ParamsConst;
+import app.java.commons.utils.MapUtils;
 import app.java.data.parse.LocalParser;
 
 import java.util.*;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class MeasureUtils {
     /**
@@ -55,7 +57,7 @@ public class MeasureUtils {
             Number value = entry.getValue();
 
             String country = queryValues.get(countryIndex);
-            int year = Integer.valueOf(queryValues.get(yearIndex));
+            int year = Integer.parseInt(queryValues.get(yearIndex));
 
             if (isValidQuery(globalParamsValues, queryValues)) {
                 consolidatedList.put(country + Constants.KEY_SEPARATOR + year, value);
@@ -75,12 +77,8 @@ public class MeasureUtils {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
-        for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-            String code = Constants.EU28_MEMBERS[i];
-
-            for (int j = 0; j < mapsList.size(); j++) {
-                Map<String, Number> map = mapsList.get(j);
-
+        for (String code : EU28_MEMBERS) {
+            for (Map<String, Number> map : mapsList) {
                 for (Map.Entry<String, Number> entry : map.entrySet()) {
                     String entryCode = MapUtils.getEntryCode(entry);
                     String entryKey = entry.getKey();
@@ -103,8 +101,8 @@ public class MeasureUtils {
      * @return The result of the validation of the query
      */
     private static boolean isValidQuery(String[] params, List<String> queryValues) {
-        for (int i = 0; i < params.length; i++) {
-            if (queryValues.indexOf(params[i]) == -1) {
+        for (String param : params) {
+            if (!queryValues.contains(param)) {
                 return false;
             }
         }

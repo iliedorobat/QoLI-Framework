@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.MaterialLivingDAO;
 import app.java.data.fetch.dao.impl.MaterialLivingDAOImpl;
 
 public class MaterialLivingCollector {
-    private static MaterialLivingDAO materialLivingDAO = new MaterialLivingDAOImpl();
+    private static final MaterialLivingDAO materialLivingDAO = new MaterialLivingDAOImpl();
 
     public static void dataCollector() {
         StringBuilder purchasingRatio = materialLivingDAO.getPpsRatio(),

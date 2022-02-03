@@ -5,7 +5,6 @@ import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,17 +16,10 @@ public class MapUtils {
      * @return The list of unique keys
      */
     public static ArrayList<String> getUniqueKeys(MultiValuedMap<String, String> params) {
-        ArrayList<String> keysList = new ArrayList<>();
-
         MultiSet<String> multiSet = params.keys();
-        Set<String> keys = multiSet.uniqueSet();
-        Iterator iterator = keys.iterator();
+        Set<String> uniqueKeys = multiSet.uniqueSet();
 
-        while (iterator.hasNext()) {
-            keysList.add(iterator.next().toString());
-        }
-
-        return keysList;
+        return new ArrayList<>(uniqueKeys);
     }
 
     public static String generateKey(String code, Number year) {

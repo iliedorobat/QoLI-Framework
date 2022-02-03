@@ -1,13 +1,14 @@
 package app.java.data.measurement.preparation;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 
 import java.util.Map;
 import java.util.TreeMap;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class Preparation {
     /**
@@ -55,7 +56,7 @@ public class Preparation {
      * @return Prepared map without null values
      */
     public static Map<String, Number> prepareData(Map<String, Number> mainMap) {
-        return prepareData(mainMap, Constants.EU28_MEMBERS);
+        return prepareData(mainMap, EU28_MEMBERS);
     }
 
     /**
@@ -69,10 +70,9 @@ public class Preparation {
         Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
-                Number value = MathUtils.generateThousandPerInhabitant(key, preparedMap.get(key).doubleValue());
+                Number value = MathUtils.generatePerThousandInhabitants(key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
             }
         }
@@ -91,10 +91,9 @@ public class Preparation {
         Map<String, Number> preparedMap = prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
-                Number value = MathUtils.generateTenThousandPerInhabitant(key, preparedMap.get(key).doubleValue());
+                Number value = MathUtils.generatePerTenThousandInhabitants(key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
             }
         }
@@ -111,8 +110,7 @@ public class Preparation {
         }
 
         //TODO: make a real average for EU28
-        for (int i = 0; i < countries.length; i++) {
-            String code = countries[i];
+        for (String code : countries) {
             replaceRightNullValues(preparedMap, code);
             replaceLeftNullValues(preparedMap, code);
         }

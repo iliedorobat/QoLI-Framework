@@ -2,7 +2,6 @@ package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -15,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SocialActivityStats {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.constants.Constants.PERCENTAGE_SAFETY_THRESHOLD;
 
+public class SocialActivityStats {
     // The lists of queried values
     private static final String[]
             ASKING_RATIO = {"TOTAL", "Y_GE16", "T", "PC"},
@@ -27,7 +28,7 @@ public class SocialActivityStats {
 
             GETTING_TOGETHER_FAM_RATIO = {"WEEK", "FAM", "TOTAL", "Y_GE16", "T", "PC"},
             GETTING_TOGETHER_FRD_RATIO = {"WEEK", "FRD", "TOTAL", "Y_GE16", "T", "PC"},
-    
+
             NP_FIN_CIN_RATIO = {"FIN", "AC521", "TOTAL", "Y_GE16", "T", "PC"},
             NP_FIN_CULT_RATIO = {"FIN", "AC523H", "TOTAL", "Y_GE16", "T", "PC"},
             NP_FIN_LIVE_RATIO = {"FIN", "AC522A", "TOTAL", "Y_GE16", "T", "PC"},
@@ -39,12 +40,12 @@ public class SocialActivityStats {
             NP_NNB_SPORT_RATIO = {"NNB", "AC525", "TOTAL", "Y_GE16", "T", "PC"};
 
     private static final String
-            askingRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.ASKING_RATIO + Constants.JSON_EXTENSION,
-            discussionRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.DISCUSSION_RATIO + Constants.JSON_EXTENSION,
-            gettingTogetherRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.GETTING_TOGETHER_RATIO + Constants.JSON_EXTENSION,
-            nonParticipationRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.NON_PARTICIPATION_RATIO + Constants.JSON_EXTENSION,
-            socialActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.SOCIAL_ACTIVITIES_RATIO + Constants.JSON_EXTENSION,
-            voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + Constants.JSON_EXTENSION;
+            askingRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.ASKING_RATIO + JSON_EXTENSION,
+            discussionRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.DISCUSSION_RATIO + JSON_EXTENSION,
+            gettingTogetherRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.GETTING_TOGETHER_RATIO + JSON_EXTENSION,
+            nonParticipationRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.NON_PARTICIPATION_RATIO + JSON_EXTENSION,
+            socialActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.SOCIAL_ACTIVITIES_RATIO + JSON_EXTENSION,
+            voluntaryActivitiesRatioPath = FilePathConst.SOCIALIZING_PATH + FileNameConst.VOLUNTARY_ACTIVITIES_RATIO + JSON_EXTENSION;
 
     private static final Map<String, Number>
             initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
@@ -79,8 +80,7 @@ public class SocialActivityStats {
                 voluntaryActivitiesRatio = Preparation.prepareData(initVoluntaryActivitiesRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                String code = EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double reversedNonParticipationRatio = MathUtils.percentageReverseRatio(nonParticipationRatio, key);
@@ -97,7 +97,7 @@ public class SocialActivityStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(askingRatio, true));
+//        Print.printVariation(StatsUtils.generateVariation(askingRatio, true));
 //        Print.print(askingRatio, true);
 
         return consolidatedList;
@@ -134,8 +134,7 @@ public class SocialActivityStats {
                 gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                String code = EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -168,8 +167,7 @@ public class SocialActivityStats {
                 npNnbSportRatio = Preparation.prepareData(initNpNnbSportRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                String code = EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -184,7 +182,7 @@ public class SocialActivityStats {
                         * MathUtils.percentageSafetyDouble(npNnbSportRatio, key);
 
                 // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
-                Number value = MathUtils.getSquareValue(product, 8) - Constants.PERCENTAGE_SAFETY_THRESHOLD;
+                Number value = MathUtils.getSquareValue(product, 8) - PERCENTAGE_SAFETY_THRESHOLD;
                 consolidatedList.put(key, value);
             }
         }

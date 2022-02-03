@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.EducationDAO;
 import app.java.data.fetch.dao.impl.EducationDAOImpl;
 
 public class EducationCollector {
-    private static EducationDAO educationDAO = new EducationDAOImpl();
+    private static final EducationDAO educationDAO = new EducationDAOImpl();
 
     public static void dataCollector() {
         StringBuilder

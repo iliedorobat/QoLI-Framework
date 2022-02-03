@@ -1,21 +1,20 @@
 package app.java.data.measurement.preparation;
 
 import app.java.commons.MapOrder;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.utils.MapUtils;
 import app.java.data.measurement.MeasureUtils;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+
 /**
  * Basic methods for initializing lists (add "null" value for the missing keys)
  */
 public class Initializer {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-
     /**
      * Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
      * PERIOD OF TIME<br/>
@@ -29,7 +28,7 @@ public class Initializer {
      */
     public static Map<String, Number> initConsolidatedMaps(ArrayList<Map<String, Number>> mapsList) {
         Map<String, Number> consolidatedList = MeasureUtils.consolidateMaps(mapsList);
-        return Initializer.initMap(consolidatedList, Constants.EU28_MEMBERS);
+        return Initializer.initMap(consolidatedList, EU28_MEMBERS);
     }
 
     /**
@@ -85,9 +84,7 @@ public class Initializer {
     public static Map<String, Number> initMap(Map<String, Number> originalMap, String[] countries) {
         Map<String, Number> initMap = new TreeMap<>(new MapOrder());
 
-        for (int i = 0; i < countries.length; i++) {
-            String code = countries[i];
-
+        for (String code : countries) {
             for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
                 initEmptyData(originalMap, initMap, code, year);
             }

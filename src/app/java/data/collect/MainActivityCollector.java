@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.MainActivityDAO;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 
 public class MainActivityCollector {
-    private static MainActivityDAO mainActivityDAO = new MainActivityDAOImpl();
+    private static final MainActivityDAO mainActivityDAO = new MainActivityDAOImpl();
 
     public static void dataCollector() {
         StringBuilder

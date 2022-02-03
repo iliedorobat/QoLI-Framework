@@ -35,10 +35,6 @@ public class Constants {
             "AT", "BE", "FR", "DE", "LU", "NL"
     };
 
-    // Eastern: BG; CZ; HU; PL; RO; SK
-    // Northern: DK; EE; FI; IE; LV; LT; SE; UK
-    // Southern: HR; EL; IT; MT; PT; SI; ES; CY
-    // Western: AT; BE; FR; DE; LU; NL
     public static final String[] EU28_MEMBERS = {
 //            "EU28", // European Union - 28 countries
             "AT", // Austria
@@ -103,7 +99,6 @@ public class Constants {
         EU28_MEMBERS_NAME.put("UK", "United Kingdom");
     }
 
-    // In the offences ratio the UK is composed by England and Wales, Scotland and Northern Ireland
     public static final String[] EU28_MEMBERS_EXTENDED = {
 //            "EU28", // European Union - 28 countries
             "AT", // Austria
@@ -133,7 +128,7 @@ public class Constants {
             "SE", // Sweden
             "SI", // Slovenia
             "SK", // Slovakia
-            // The offences rate for United Kingdom (UK) is split in three
+            // The offence ratio of the UK is split in 3 entries: England and Wales, Scotland and Northern Ireland
             "UKC-L",// England and Wales
             "UKM",  // Scotland
             "UKN"   // Northern Ireland (UK)

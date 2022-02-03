@@ -1,9 +1,9 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SafetyStats {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
-    private static final String[] EU28_MEMBERS_EXTENDED = Constants.EU28_MEMBERS_EXTENDED;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
+public class SafetyStats {
     // The lists of queried values
     private static final String[]
             CRIME_RATIO = {"TOTAL", "TOTAL", "PC"},
@@ -35,12 +36,12 @@ public class SafetyStats {
             OFFENCES_UNLAWFUL = {"ICCS0601", "NR"};
 
     private static final String
-            crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + Constants.JSON_EXTENSION,
-            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + Constants.JSON_EXTENSION,
-            offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + Constants.JSON_EXTENSION,
-            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + Constants.JSON_EXTENSION,
-            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + Constants.JSON_EXTENSION,
-            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + Constants.JSON_EXTENSION;
+            crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + JSON_EXTENSION,
+            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + JSON_EXTENSION,
+            offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + JSON_EXTENSION,
+            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + JSON_EXTENSION,
+            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + JSON_EXTENSION,
+            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + JSON_EXTENSION;
 
     private static final Map<String, Number>
             initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO, crimeRatioPath),
@@ -68,13 +69,12 @@ public class SafetyStats {
                 offencesRatio = consolidateOffencesRatio();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < EU28_MEMBERS.length; i++) {
-                String code = EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
-                        // reduce the number of the whole part of a decimal number from 3 to 2
+                        // reduce the number of the whole part of a decimal number from 4 to 2
                         correctedPensionPps = pensionPps.get(key).doubleValue() / 100,
                         // reduce the number of the whole part of a decimal number from 4 to 2
                         correctedSocialProtectionPps = socialProtectionPps.get(key).doubleValue() / 100,
@@ -93,7 +93,7 @@ public class SafetyStats {
             }
         }
 
-//        Print.printVariation(Statistics.generateVariation(offencesRatio, true));
+//        Print.printVariation(StatsUtils.generateVariation(offencesRatio, true));
 //        Print.print(offencesRatio, true);
 
         return consolidatedList;
@@ -134,8 +134,7 @@ public class SafetyStats {
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             double ukSum = 0;
 
-            for (int i = 0; i < EU28_MEMBERS_EXTENDED.length; i++) {
-                String code = EU28_MEMBERS_EXTENDED[i];
+            for (String code : EU28_MEMBERS_EXTENDED) {
                 String key = MapUtils.generateKey(code, year);
 
                 double sum = assaultOffences.get(key).doubleValue()
@@ -148,13 +147,13 @@ public class SafetyStats {
                 if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
                     ukSum += sum;
                 } else {
-                    Number value = MathUtils.generateThousandPerInhabitant(key, sum);
+                    Number value = MathUtils.generatePerThousandInhabitants(key, sum);
                     consolidatedList.put(key, value);
                 }
             }
 
             String key = MapUtils.generateKey("UK", year);
-            Number ukValue = MathUtils.generateThousandPerInhabitant(key, ukSum);
+            Number ukValue = MathUtils.generatePerThousandInhabitants(key, ukSum);
             consolidatedList.put(MapUtils.generateKey("UK", year), ukValue);
         }
 

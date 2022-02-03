@@ -1,7 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.constants.Constants;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -18,9 +18,12 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class GovRightsStats {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS_NAME;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.constants.Constants.CSV_EXTENSION;
 
+public class GovRightsStats {
     // The lists of queried values
     private static final String[]
             ACTIVE_CITIZENSHIP = {"TOTAL", "AC43A", "Y_GE16", "T", "PC"},
@@ -32,11 +35,11 @@ public class GovRightsStats {
             POPULATION_PLTTST_TRUST = {"RTG", "TOTAL", "PLTTST", "T", "Y_GE16"};
 
     private static final String
-            activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + Constants.JSON_EXTENSION,
-            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + Constants.JSON_EXTENSION,
-            genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + Constants.JSON_EXTENSION,
-            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + Constants.JSON_EXTENSION,
-            voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + Constants.CSV_EXTENSION;
+            activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + JSON_EXTENSION,
+            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + JSON_EXTENSION,
+            genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + JSON_EXTENSION,
+            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + JSON_EXTENSION,
+            voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + CSV_EXTENSION;
 
     // Intermediate data which should be consolidated into a single indicator
     private static final Map<String, Number>
@@ -64,8 +67,7 @@ public class GovRightsStats {
                 voterTurnout = Preparation.prepareData(initVoterTurnout);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (int i = 0; i < Constants.EU28_MEMBERS.length; i++) {
-                String code = Constants.EU28_MEMBERS[i];
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 // Transform the "male - female" difference into "female - male"
@@ -86,7 +88,7 @@ public class GovRightsStats {
         }
 
 
-//        Print.printVariation(Statistics.generateVariation(populationTrust, true));
+//        Print.printVariation(StatsUtils.generateVariation(populationTrust, true));
 //        Print.print(populationTrust, true);
 
         return consolidatedList;
@@ -129,7 +131,7 @@ public class GovRightsStats {
                     int year = Integer.parseInt(items[2].trim());
                     Number value = Double.parseDouble(items[3].trim());
 
-                    for (Map.Entry<String, String> entry : Constants.EU28_MEMBERS_NAME.entrySet()) {
+                    for (Map.Entry<String, String> entry : EU28_MEMBERS_NAME.entrySet()) {
                         String entryKey = entry.getKey();
                         String entryValue = entry.getValue();
 
@@ -166,9 +168,7 @@ public class GovRightsStats {
                 employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
                 employmentMaleRatio = Preparation.prepareData(initEmploymentMaleRatio);
 
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
-
+        for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
                 double femaleRatio = employmentFemaleRatio.get(key).doubleValue();
@@ -193,9 +193,7 @@ public class GovRightsStats {
             populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
             populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust);
 
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            String code = EU28_MEMBERS[i];
-
+        for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
                 Number numberLegtst = populationLegtstTrustRatio.get(key),
@@ -211,7 +209,7 @@ public class GovRightsStats {
                 preparedMap.put(key, value);
             }
         }
-        
+
         return preparedMap;
     }
 }

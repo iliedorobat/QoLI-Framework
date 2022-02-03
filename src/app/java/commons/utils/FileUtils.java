@@ -1,16 +1,14 @@
 package app.java.commons.utils;
 
+import app.java.commons.constants.Constants;
 import app.java.commons.constants.FilePathConst;
 
 import java.io.*;
 import java.util.Map;
 
 public class FileUtils {
-    public static final String CSV_EXTENSION = ".csv";
-    public static final String JSON_EXTENSION = ".json";
-
     /**
-     * Read data from disc
+     * Read the data from disk
      * @param path The path to the desired file
      * @return <b>StringBuilder</b>
      */
@@ -32,9 +30,10 @@ public class FileUtils {
             System.err.println("Error at reading the file " + path + " from the disk.");
         } finally {
             try {
+                assert br != null : "The file " + path + " has already been closed.";
                 br.close();
             } catch (IOException e) {
-                System.err.println("The file 'Buffered Reader' could not be closed.");
+                System.err.println("The file " + path + " could not be closed.");
             }
         }
 
@@ -45,7 +44,7 @@ public class FileUtils {
     }
 
     /**
-     * Write data to disc
+     * Write the data to disk
      * @param sb The data to be written
      * @param path The path to the desired file
      */
@@ -60,6 +59,7 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
+                assert fw != null : "The file " + path + " has already been closed.";
                 fw.close();
             } catch (IOException e) {
                 System.err.println("The file " + path + " could not be closed."
@@ -69,22 +69,21 @@ public class FileUtils {
     }
 
     /**
-     * Write JSON data to disc
+     * Export the data to a JSON file
      * @param sb The data to be written
      * @param path The path to the desired file
      */
-    //TODO: check if it is a valid JSON
     public static void writeToJSONFile(StringBuilder sb, String path) {
-        writeToFile(sb, path + JSON_EXTENSION);
+        writeToFile(sb, path + Constants.JSON_EXTENSION);
     }
 
     /**
-     * Write the prepared chart data to disc
+     * Export the prepared chart data to a CSV file
      * @param entries The map with target dimension data
      * @param dimensionName The name of the target dimension
      */
     public static void writeChartData(Map<String, Number> entries, String dimensionName) {
         StringBuilder sb = StatsUtils.generateChartData(entries, dimensionName);
-        writeToFile(sb, FilePathConst.OUTPUT_PATH + dimensionName + CSV_EXTENSION);
+        writeToFile(sb, FilePathConst.OUTPUT_PATH + dimensionName + Constants.CSV_EXTENSION);
     }
 }

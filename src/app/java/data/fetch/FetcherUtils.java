@@ -1,16 +1,15 @@
 package app.java.data.fetch;
 
 import app.java.commons.Errors;
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-public class FetcherUtils {
-    private static final String[] EU28_MEMBERS = Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
+public class FetcherUtils {
     public static final String[] ACTIVITIES_TYPE = {
             "AC41A", // Formal voluntary activities
             "AC42A", // Informal voluntary activities
@@ -59,8 +58,8 @@ public class FetcherUtils {
      * @param propertyName The name of the added property
      */
     public static void addParams(MultiValuedMap<String, String> params, String propertyName, String[] values) {
-        for (int i = 0; i < values.length; i++) {
-            params.put(propertyName, values[i]);
+        for (String value : values) {
+            params.put(propertyName, value);
         }
     }
 
@@ -77,7 +76,7 @@ public class FetcherUtils {
             params.put(ParamsConst.GEO, "RO");
             params.put(ParamsConst.TIME, "2015");
         } else {
-            addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS);
+            addParams(params, ParamsConst.GEO, EU28_MEMBERS);
         }
 
         return params;

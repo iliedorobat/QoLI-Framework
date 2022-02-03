@@ -7,7 +7,7 @@ import app.java.data.fetch.dao.EnvironmentDAO;
 import app.java.data.fetch.dao.impl.EnvironmentDAOImpl;
 
 public class EnvironmentCollector {
-    private static EnvironmentDAO environmentDAO = new EnvironmentDAOImpl();
+    private static final EnvironmentDAO environmentDAO = new EnvironmentDAOImpl();
 
     public static void dataCollector() {
         StringBuilder pollutionRatio = environmentDAO.getPollutionRatio(),
