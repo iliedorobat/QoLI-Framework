@@ -11,6 +11,8 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
             "EM_GD",    // households making ends meet with great difficulty
             "EM_D"      // households making ends meet with difficulty
     };
+    private static final String FINANCIAL_SATIS = "FINSAT";
+    private static final String HIGH_SATIS_LEVEL = "HIGH";
     private static final String[] QUINTILE_AGES = {
             "TOTAL",
             "Y_GE65",
@@ -31,6 +33,10 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
         return Fetcher.fetchData("ilc_mdes09", params);
     }
 
+    public StringBuilder getFinancialSatisfaction() {
+        return FetcherUtils.getSatisfactionRatio(HIGH_SATIS_LEVEL, FINANCIAL_SATIS);
+    }
+
     public StringBuilder getHighIncomeRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "TOTAL");
@@ -43,8 +49,8 @@ public class MaterialLivingDAOImpl implements MaterialLivingDAO {
     public StringBuilder getIncomeQuintileRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         FetcherUtils.addParams(params, ParamsConst.AGE, QUINTILE_AGES);
-        params.put(ParamsConst.INDIC_IL, "S80_S20");
         params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "RAT");
         return Fetcher.fetchData("ilc_di11", params);
     }
 

@@ -7,9 +7,14 @@ import app.java.data.fetch.dao.EnvironmentDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class EnvironmentDAOImpl implements EnvironmentDAO {
+    private static final String[] PARTICLES_DIAMETERS = {
+            "PM2_5",
+            "PM10"
+    };
+
     public StringBuilder getAirPollutionRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AIR_POLLUTION, "PM10");
+        FetcherUtils.addParams(params, ParamsConst.AIR_POLLUTION, PARTICLES_DIAMETERS);
         return Fetcher.fetchData("sdg_11_50", params);
     }
 

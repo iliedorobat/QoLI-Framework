@@ -19,7 +19,7 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class SafetyStats {
-    // The lists of queried values
+    // Queried params values
     private static final String[]
             CRIME_RATIO = {"TOTAL", "TOTAL", "PC"},
             NON_PAYMENT_RATIO = {"TOTAL", "TOTAL", "PC"},
@@ -29,9 +29,10 @@ public class SafetyStats {
 
             //UK = UKC-L + UKM + UKN (England and Wales + Scotland + Northern Ireland)
             OFFENCES_ASSAULT = {"ICCS02011", "NR"},
-            OFFENCES_SEXUAL = {"ICCS0301", "NR"},
-            OFFENCES_ROBBERY = {"ICCS0401", "NR"},
             OFFENCES_BURGLARY = {"ICCS0501", "NR"},
+            OFFENCES_KIDNAPPING = {"ICCS020221", "NR"},
+            OFFENCES_ROBBERY = {"ICCS0401", "NR"},
+            OFFENCES_SEXUAL = {"ICCS0301", "NR"},
             OFFENCES_THEFT = {"ICCS0502", "NR"},
             OFFENCES_UNLAWFUL = {"ICCS0601", "NR"};
 
@@ -53,6 +54,7 @@ public class SafetyStats {
             // Intermediate data which should be consolidated into a single indicator
             initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
             initBurglaryOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY, offencesPath, EU28_MEMBERS_EXTENDED),
+            initKidnappingOffences = Initializer.initConsolidatedMap(OFFENCES_KIDNAPPING, offencesPath, EU28_MEMBERS_EXTENDED),
             initRobberyOffences = Initializer.initConsolidatedMap(OFFENCES_ROBBERY, offencesPath, EU28_MEMBERS_EXTENDED),
             initSexualOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL, offencesPath, EU28_MEMBERS_EXTENDED),
             initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
@@ -72,19 +74,20 @@ public class SafetyStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
+                double
+                        reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
                         // reduce the number of the whole part of a decimal number from 4 to 2
-                        correctedPensionPps = pensionPps.get(key).doubleValue() / 100,
+                        correctedPensionPps = pensionPps.get(key).doubleValue() / 100, // FIXME: check the dataset
                         // reduce the number of the whole part of a decimal number from 4 to 2
-                        correctedSocialProtectionPps = socialProtectionPps.get(key).doubleValue() / 100,
+                        correctedSocialProtectionPps = socialProtectionPps.get(key).doubleValue() / 100, // FIXME: check the dataset
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
                         reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
                         * MathUtils.percentageSafetyDouble(correctedPensionPps)
                         * MathUtils.percentageSafetyDouble(correctedSocialProtectionPps)
+                        * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
                         * MathUtils.percentageSafetyDouble(reversedNonPaymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnexpectedRatio)
                         * MathUtils.percentageSafetyDouble(reversedOffencesRatio);
@@ -108,6 +111,7 @@ public class SafetyStats {
             add(Preparation.filterMap(initUnexpectedRatio));
             add(Preparation.filterMap(initNonPaymentRatio));
             add(Preparation.filterMap(initAssaultOffences));
+            add(Preparation.filterMap(initKidnappingOffences));
             add(Preparation.filterMap(initRobberyOffences));
             add(Preparation.filterMap(initSexualOffences));
             add(Preparation.filterMap(initTheftOffences));
@@ -124,7 +128,8 @@ public class SafetyStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
-                burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED), // no data
+                burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED), // FIXME: no data
+                kidnappingOffences = Preparation.prepareData(initKidnappingOffences, EU28_MEMBERS_EXTENDED), // FIXME: check the data
                 robberyOffences = Preparation.prepareData(initRobberyOffences, EU28_MEMBERS_EXTENDED),
                 sexualOffences = Preparation.prepareData(initSexualOffences, EU28_MEMBERS_EXTENDED),
                 theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
@@ -139,6 +144,7 @@ public class SafetyStats {
 
                 double sum = assaultOffences.get(key).doubleValue()
 //                        + burglaryOffences.get(key).doubleValue()
+//                        + kidnappingOffences.get(key).doubleValue()
                         + robberyOffences.get(key).doubleValue()
                         + sexualOffences.get(key).doubleValue()
                         + theftOffences.get(key).doubleValue()

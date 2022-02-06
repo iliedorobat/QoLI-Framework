@@ -52,7 +52,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Add new parameters into the params list
+     * Add new parameters to the params list
      * @param params The parameters list
      * @param values The list with values that should be added
      * @param propertyName The name of the added property
@@ -64,7 +64,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Get main parameters
+     * Get the main parameters
      *
      * @return
      */
@@ -83,7 +83,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Get general parameters for consumption dataset (smokers; fruits and vegetables)
+     * Get the general parameters for consumption dataset (smokers; fruits and vegetables)
      *
      * @return
      */
@@ -97,7 +97,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Get general parameters for self-reported unmet needs for medical/dental examination
+     * Get the general parameters for self-reported unmet needs for medical/dental examination
      *
      * @return
      */
@@ -112,7 +112,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Get general parameters for work occupation (under/over occupied ratio)
+     * Get the general parameters for work occupation (under/over occupied ratio)
      *
      * @return
      */
@@ -126,7 +126,7 @@ public class FetcherUtils {
     }
 
     /**
-     * Get general parameters for home conditions
+     * Get the general parameters for home conditions
      *
      * @return
      */
@@ -153,7 +153,7 @@ public class FetcherUtils {
      *                   - MED: medium;<br/>
      *                   - LOW: low;
      *
-     * @param wellBeing The type of calculated well being:<br/>
+     * @param wellBeing The type of calculated well-being:<br/>
      *                  - ACCSAT: Satisfaction with accommodation;<br/>
      *                  - COMSAT: Satisfaction with commuting time;<br/>
      *                  - FINSAT: Satisfaction with financial situation;<br/>
@@ -170,7 +170,7 @@ public class FetcherUtils {
     public static StringBuilder getSatisfactionRatio(String satisfactionLevel, String wellBeing) {
         try {
             Errors.throwNewError(SATISFACTION_LEVELS, satisfactionLevel, "satisfaction levels");
-            Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well being levels");
+            Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well-being levels");
 
             MultiValuedMap<String, String> params = getMainHttpParams();
             params.put(ParamsConst.AGE, "Y_GE16");
@@ -290,5 +290,23 @@ public class FetcherUtils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Population on 1 January<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: count (number)<br/>
+     * Dataset: demo_pjan<br/>
+     * Years: 1960 - 2018
+     *
+     * @return
+     */
+    public static StringBuilder getPopulation() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "TOTAL");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "NR");
+        return Fetcher.fetchData("demo_pjan", params);
     }
 }

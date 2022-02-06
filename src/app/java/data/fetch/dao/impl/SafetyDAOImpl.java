@@ -1,6 +1,5 @@
 package app.java.data.fetch.dao.impl;
 
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.Fetcher;
@@ -8,6 +7,8 @@ import app.java.data.fetch.FetcherUtils;
 import app.java.data.fetch.dao.SafetyDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
+
+import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
 
 public class SafetyDAOImpl implements SafetyDAO {
     public StringBuilder getCrimeRatio() {
@@ -75,7 +76,7 @@ public class SafetyDAOImpl implements SafetyDAO {
             params.put(ParamsConst.GEO, "RO");
             params.put(ParamsConst.TIME, "2015");
         } else {
-            FetcherUtils.addParams(params, ParamsConst.GEO, Constants.EU28_MEMBERS_EXTENDED);
+            FetcherUtils.addParams(params, ParamsConst.GEO, EU28_MEMBERS_EXTENDED);
         }
 
         return params;

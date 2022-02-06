@@ -7,6 +7,9 @@ import app.java.data.fetch.dao.MainActivityDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class MainActivityDAOImpl implements MainActivityDAO {
+    private static final String HIGH_SATIS_LEVEL = "HIGH";
+    private static final String JOB_SATIS = "JOBSAT";
+
     public static final String[] WORK_ACTIVITIES = {
             "nace_r1", // "lfsa_ewhuna" dataset
             "nace_r2"  // "lfsa_ewhun2" dataset
@@ -16,7 +19,7 @@ public class MainActivityDAOImpl implements MainActivityDAO {
             "lfsa_ewhun2"  // 2008-2018
     };
 
-    public StringBuilder getActivePopulation() {
+    public StringBuilder getActivePopulationRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y15-64");
         params.put(ParamsConst.INDIC_EM, "ACT");
@@ -42,12 +45,24 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         return Fetcher.fetchData("lfsa_ergaed", params);
     }
 
+    public StringBuilder getInactivePopulationRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "Y15-64");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC_POP");
+        return Fetcher.fetchData("lfsi_emp_a", params);
+    }
+
     public StringBuilder getInvoluntaryPartTimeRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y15-64");
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("lfsa_eppgai", params);
+    }
+
+    public StringBuilder getJobSatisfaction() {
+        return FetcherUtils.getSatisfactionRatio(HIGH_SATIS_LEVEL, JOB_SATIS);
     }
 
     public StringBuilder getLongTermUnemploymentRatio() {
@@ -59,14 +74,12 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         return Fetcher.fetchData("une_ltu_a", params);
     }
 
-    public StringBuilder getNightsRatio() {
+    public StringBuilder getLowWageEarnersRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y15-64");
-        params.put(ParamsConst.FREQUENCY, "USU");
-        params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WORKING_STATUS, "EMP");
-        return Fetcher.fetchData("lfsa_ewpnig", params);
+        params.put(ParamsConst.AGE, "TOTAL");
+//        params.put(ParamsConst.SIZECLAS, "GE10");
+        return Fetcher.fetchData("earn_ses_pub1a", params);
     }
 
     public StringBuilder getOverQualifiedRatio() {
@@ -104,5 +117,15 @@ public class MainActivityDAOImpl implements MainActivityDAO {
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "PC");
         return Fetcher.fetchData("lfsa_urgaed", params);
+    }
+
+    public StringBuilder getWorkingNightsRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "Y15-64");
+        params.put(ParamsConst.FREQUENCY, "USU");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
+        params.put(ParamsConst.WORKING_STATUS, "EMP");
+        return Fetcher.fetchData("lfsa_ewpnig", params);
     }
 }

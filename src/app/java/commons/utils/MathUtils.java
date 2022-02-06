@@ -81,7 +81,10 @@ public class MathUtils {
      * @return The reversed ratio
      */
     public static double percentageReverseRatio(Map<String, Number> map, String key) {
-        double value = map.get(key).doubleValue();
+        Number number = map.get(key);
+        double value = number != null
+            ? map.get(key).doubleValue()
+            : 0;
         return 100 - value;
     }
 

@@ -17,7 +17,7 @@ public class HealthDAOImpl implements HealthDAO {
         return Fetcher.fetchData("hlth_ehis_al1b", params);
     }
 
-    public StringBuilder getBodyMassIndex() {
+    public StringBuilder getBodyMassIndexRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "TOTAL");
         params.put(ParamsConst.BMI, "BMI_GE25"); // Overweight
@@ -38,7 +38,7 @@ public class HealthDAOImpl implements HealthDAO {
         return Fetcher.fetchData("hlth_ehis_fv3i", params);
     }
 
-    public StringBuilder getHealthPersonnel() {
+    public StringBuilder getHealthPersonnelRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.UNIT, "P_HTHAB");
         return Fetcher.fetchData("hlth_rs_prsrg", params);
@@ -57,12 +57,13 @@ public class HealthDAOImpl implements HealthDAO {
     public StringBuilder getHealthyLifeYears() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         // Healthy life years in absolute value at birth
-        params.put(ParamsConst.INDIC_HE, "F_0_DFLE");
-        params.put(ParamsConst.INDIC_HE, "M_0_DFLE");
+        params.put(ParamsConst.INDIC_HE, "HLY_0");
+        params.put(ParamsConst.SEX, "F");
+        params.put(ParamsConst.SEX, "M");
         return Fetcher.fetchData("hlth_hlye", params);
     }
 
-    public StringBuilder getHospitalBeds() {
+    public StringBuilder getHospitalBedsRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.FACILITY, "HBEDT");
         params.put(ParamsConst.UNIT, "P_HTHAB");
@@ -87,6 +88,16 @@ public class HealthDAOImpl implements HealthDAO {
         return Fetcher.fetchData("hlth_silc_11", params);
     }
 
+    public StringBuilder getPhysicalActivitiesRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "TOTAL");
+        params.put(ParamsConst.ISCED_11, "TOTAL");
+        params.put(ParamsConst.PHYSICAL_ACTIVITY, "MV_AERO_MSC");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
+        return Fetcher.fetchData("hlth_ehis_pe9e", params);
+    }
+
     public StringBuilder getSmokersRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getConsumptionParams();
         params.put(ParamsConst.AGE, "TOTAL");
@@ -105,16 +116,6 @@ public class HealthDAOImpl implements HealthDAO {
     public StringBuilder getUnmetMedicalRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getUnmetHealthParams();
         return Fetcher.fetchData("hlth_silc_08", params);
-    }
-
-    public StringBuilder getPhysicalActivities() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.PHYSICAL_ACTIVITY, "MV_AERO_MSC");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return Fetcher.fetchData("hlth_ehis_pe9e", params);
     }
 
     public StringBuilder getWorkAccidents() {

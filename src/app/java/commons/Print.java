@@ -51,7 +51,8 @@ public class Print {
         printDimensionStatus(MainActivityStats.getInitList(), "PMA");
         printDimensionStatus(HealthStats.getInitList(), "Health");
         printDimensionStatus(EducationStats.getInitList(), "Education");
-        printDimensionStatus(SocialActivityStats.getInitList(), "LSI");
+        printDimensionStatus(InteractionsStats.getInitList(), "Interactions");
+        printDimensionStatus(LeisureStats.getInitList(), "Leisure");
         printDimensionStatus(SafetyStats.getInitList(), "Safety");
         printDimensionStatus(GovRightsStats.getInitList(), "GBR");
         printDimensionStatus(EnvironmentStats.getInitList(), "Environment");

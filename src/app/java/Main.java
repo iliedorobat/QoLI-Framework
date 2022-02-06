@@ -4,35 +4,45 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FileNameConst;
+import app.java.commons.constants.FilePathConst;
+import app.java.commons.utils.FileUtils;
 import app.java.commons.utils.MapUtils;
+import app.java.data.DataCollector;
+import app.java.data.collect.GeneralCollector;
+import app.java.data.fetch.dao.HealthDAO;
+import app.java.data.fetch.dao.impl.HealthDAOImpl;
+import app.java.data.measurement.preparation.Initializer;
 import app.java.data.measurement.statistics.QoLIStats;
 import app.java.data.measurement.statistics.*;
 import app.java.data.parse.LocalParser;
 
 import java.util.*;
 
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
+
 public class Main {
     public static void main(String[] args) {
-//        // 1. Write a file to disk
-//        GeneralDAO dao = new GeneralDAOImpl();
-//        StringBuilder sb = dao.getPopulation();
-//        FileUtils.writeToJSONFile(sb, FilePathConst.DATASET_PATH + FileNameConst.POPULATION);
-//
+//        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
+//        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
+//        DataCollector.collectData();
+
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
 
-        // 3. Get QoLI and the QoLI dimensions statistics
+        // 4. Get QoLI and the QoLI dimensions statistics
         Map<String, Number>
                 qoliList = QoLIStats.generateIndicatorList(),
                 educationStats = EducationStats.generateDimensionList(),
                 environmentStats = EnvironmentStats.generateDimensionList(),
                 govRightsStats = GovRightsStats.generateDimensionList(),
                 healthStats = HealthStats.generateDimensionList(),
+                interactionsStats = InteractionsStats.generateDimensionList(),
+                leisureStats = LeisureStats.generateDimensionList(),
                 mainActivityStats = MainActivityStats.generateDimensionList(),
                 materialLivingStats = MaterialLivingStats.generateDimensionList(),
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
-                safetyStats = SafetyStats.generateDimensionList(),
-                socialActivityStats = SocialActivityStats.generateDimensionList();
+                safetyStats = SafetyStats.generateDimensionList();
 
 //        // 4. Write the QoLI and the QoLI dimensions values to disk
 //        FileUtils.writeChartData(qoliList, "QoLI");
@@ -40,23 +50,25 @@ public class Main {
 //        FileUtils.writeChartData(environmentStats, "Environment");
 //        FileUtils.writeChartData(govRightsStats, "GBR");
 //        FileUtils.writeChartData(healthStats, "Health");
+//        FileUtils.writeChartData(interactionsStats, "Interactions");
+//        FileUtils.writeChartData(leisureStats, "Leisure");
 //        FileUtils.writeChartData(mainActivityStats, "PMA");
 //        FileUtils.writeChartData(materialLivingStats, "MLC");
 //        FileUtils.writeChartData(overallExperienceStats, "Overall Exp");
 //        FileUtils.writeChartData(safetyStats, "Safety");
-//        FileUtils.writeChartData(socialActivityStats, "LSI");
-//
+
 //        // 5. Print the QoLI and the QoLI dimensions values
-        Print.printChartData(qoliList, "QoLI");
+//        Print.printChartData(qoliList, "QoLI");
 //        Print.printChartData(educationStats, "Education");
 //        Print.printChartData(environmentStats, "Environment");
 //        Print.printChartData(govRightsStats, "GBR");
 //        Print.printChartData(healthStats, "Health");
+//        Print.printChartData(interactionsStats, "Interactions");
+//        Print.printChartData(leisureStats, "Leisure");
 //        Print.printChartData(mainActivityStats, "PMA");
 //        Print.printChartData(materialLivingStats, "MLC");
 //        Print.printChartData(overallExperienceStats, "Overall Exp");
 //        Print.printChartData(safetyStats, "Safety");
-//        Print.printChartData(socialActivityStats, "LSI");
 //
 //        printRegions(qoliList);
     }

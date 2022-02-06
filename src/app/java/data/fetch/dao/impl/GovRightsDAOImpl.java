@@ -7,6 +7,12 @@ import app.java.data.fetch.dao.GovRightsDAO;
 import org.apache.commons.collections4.MultiValuedMap;
 
 public class GovRightsDAOImpl implements GovRightsDAO {
+    public static final String[] POPULATION_TRUST = {
+            "LEGTST", // legal system
+            "PLCTST", // police
+            "PLTTST"  // political system
+    };
+
     public StringBuilder getActiveCitizenship() {
         String[] activities = {"AC43A"};
         return FetcherUtils.getActivePeopleRatio(activities);
@@ -32,9 +38,7 @@ public class GovRightsDAOImpl implements GovRightsDAO {
     public StringBuilder getPopulationTrust() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.INDIC_WB, "LEGTST"); // legal system
-        params.put(ParamsConst.INDIC_WB, "PLCTST"); // police
-        params.put(ParamsConst.INDIC_WB, "PLTTST"); // political system
+        FetcherUtils.addParams(params, ParamsConst.AIR_POLLUTION, POPULATION_TRUST);
         params.put(ParamsConst.ISCED_11, "TOTAL");
         params.put(ParamsConst.SEX, "T");
         params.put(ParamsConst.UNIT, "RTG");

@@ -10,18 +10,19 @@ public class SafetyCollector {
     private static final SafetyDAO safetyDAO = new SafetyDAOImpl();
 
     public static void dataCollector() {
-        StringBuilder pensionRatio = safetyDAO.getPensionPps(),
+        StringBuilder
+                crimeRatio = safetyDAO.getCrimeRatio(),
+                offences = safetyDAO.getOffences(),
+                pensionRatio = safetyDAO.getPensionPps(),
                 socialProtectionRatio = safetyDAO.getSocialProtectionPps(),
                 unexpectedRatio = safetyDAO.getUnexpectedRatio(),
-                unpaidRatio = safetyDAO.getNonPaymentRatio(),
-                offences = safetyDAO.getOffences(),
-                crimeRatio = safetyDAO.getCrimeRatio();
+                unpaidRatio = safetyDAO.getNonPaymentRatio();
 
-        FileUtils.writeToJSONFile(pensionRatio, FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS);
-        FileUtils.writeToJSONFile(socialProtectionRatio, FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO);
-        FileUtils.writeToJSONFile(unexpectedRatio, FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO);
-        FileUtils.writeToJSONFile(unpaidRatio, FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO);
-        FileUtils.writeToJSONFile(offences, FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES);
-        FileUtils.writeToJSONFile(crimeRatio, FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO);
+        FileUtils.writeToJSONFile(crimeRatio, FilePathConst.SAFETY_PATH, FileNameConst.CRIME_RATIO);
+        FileUtils.writeToJSONFile(offences, FilePathConst.SAFETY_PATH, FileNameConst.OFFENCES);
+        FileUtils.writeToJSONFile(pensionRatio, FilePathConst.SAFETY_PATH, FileNameConst.PENSION_PPS);
+        FileUtils.writeToJSONFile(socialProtectionRatio, FilePathConst.SAFETY_PATH, FileNameConst.SOCIAL_PROTECTION_RATIO);
+        FileUtils.writeToJSONFile(unexpectedRatio, FilePathConst.SAFETY_PATH, FileNameConst.UNEXPECTED_RATIO);
+        FileUtils.writeToJSONFile(unpaidRatio, FilePathConst.SAFETY_PATH, FileNameConst.NON_PAYMENT_RATIO);
     }
 }

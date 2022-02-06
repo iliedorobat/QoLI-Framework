@@ -5,8 +5,8 @@ package app.java.data.fetch.dao;
  * of the governing, law making and equality of opportunity
  */
 public interface GovRightsDAO {
-    //TODO: this dataset should be manually downloaded from
-    // https://www.idea.int/data-tools/data/voter-turnout
+    // TODO: The Voter Turnout dataset needs to be manually downloaded from (Parliamentary)
+    //  https://www.idea.int/data-tools/data/voter-turnout
 
     /**
      * Active citizenship participation<br/>
@@ -27,7 +27,7 @@ public interface GovRightsDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2018
+     * Years: 1992-2020
      *
      * @return
      */
@@ -40,9 +40,7 @@ public interface GovRightsDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: earn_gr_gpgr2<br/>
-     * Years: 2007-2017<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Years: 2007-2019<br/><br/>
      *
      * @return
      */

@@ -47,22 +47,30 @@ public class FileUtils {
      * Write the data to disk
      * @param sb The data to be written
      * @param path The path to the desired file
+     * @param fileName The name of the output file
+     * @param extension The extension of the output file
      */
-    public static void writeToFile(StringBuilder sb, String path) {
+    public static void writeToFile(StringBuilder sb, String path, String fileName, String extension) {
+        String fullPath = path + fileName + extension;
         FileWriter fw = null;
 
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
         try {
-            fw = new FileWriter(path);
+            fw = new FileWriter(fullPath);
             fw.write(sb.toString());
-            System.out.println("The file " + path + " was written on the disk.");
+            System.out.println("The file " + fullPath + " was written on the disk.");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                assert fw != null : "The file " + path + " has already been closed.";
+                assert fw != null : "The file " + fullPath +" has already been closed.";
                 fw.close();
             } catch (IOException e) {
-                System.err.println("The file " + path + " could not be closed."
+                System.err.println("The file " + fullPath +" could not be closed."
                         + "\n" + e.getMessage());
             }
         }
@@ -71,10 +79,11 @@ public class FileUtils {
     /**
      * Export the data to a JSON file
      * @param sb The data to be written
+     * @param fileName The name of the output file
      * @param path The path to the desired file
      */
-    public static void writeToJSONFile(StringBuilder sb, String path) {
-        writeToFile(sb, path + Constants.JSON_EXTENSION);
+    public static void writeToJSONFile(StringBuilder sb, String path, String fileName) {
+        writeToFile(sb, path, fileName, Constants.JSON_EXTENSION);
     }
 
     /**
@@ -84,6 +93,6 @@ public class FileUtils {
      */
     public static void writeChartData(Map<String, Number> entries, String dimensionName) {
         StringBuilder sb = StatsUtils.generateChartData(entries, dimensionName);
-        writeToFile(sb, FilePathConst.OUTPUT_PATH + dimensionName + Constants.CSV_EXTENSION);
+        writeToFile(sb, FilePathConst.OUTPUT_PATH, dimensionName, Constants.CSV_EXTENSION);
     }
 }

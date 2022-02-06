@@ -5,12 +5,12 @@ package app.java.data.fetch.dao;
  */
 public interface EnvironmentDAO {
     /**
-     * Exposure to air pollution (Particulates < 10µm)<br/><br/>
+     * Exposure to air pollution (Particulates < 2.5 µm & Particulates < 10 µm)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: sdg_11_50<br/>
-     * Years: 2000-2017<br/><br/>
+     * Years: 2000-2019<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -25,7 +25,7 @@ public interface EnvironmentDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw01<br/>
-     * Years: 2003-2018<br/><br/>
+     * Years: 2003-2020<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -39,7 +39,7 @@ public interface EnvironmentDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw02<br/>
-     * Years: 2003-2018<br/><br/>
+     * Years: 2003-2020<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

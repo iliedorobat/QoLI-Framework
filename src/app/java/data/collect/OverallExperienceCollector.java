@@ -10,8 +10,11 @@ public class OverallExperienceCollector {
     private static final OverallExperienceDAO overallExperienceDAO = new OverallExperienceDAOImpl();
 
     public static void dataCollector() {
-        StringBuilder highSatisfactionRatio = overallExperienceDAO.getHighSatisfactionRatio();
+        StringBuilder
+                happinessRatio = overallExperienceDAO.getHappinessRatio(),
+                highSatisfactionRatio = overallExperienceDAO.getHighSatisfactionRatio();
 
-        FileUtils.writeToJSONFile(highSatisfactionRatio, FilePathConst.OVERALL_EXPERIENCE_PATH + FileNameConst.HIGH_SATISFACTION_RATIO);
+        FileUtils.writeToJSONFile(happinessRatio, FilePathConst.OVERALL_EXPERIENCE_PATH, FileNameConst.HAPPINESS_RATIO);
+        FileUtils.writeToJSONFile(highSatisfactionRatio, FilePathConst.OVERALL_EXPERIENCE_PATH, FileNameConst.HIGH_SATISFACTION_RATIO);
     }
 }

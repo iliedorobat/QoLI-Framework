@@ -1,7 +1,7 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.Print;
+import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -24,7 +24,7 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 import static app.java.commons.constants.Constants.CSV_EXTENSION;
 
 public class GovRightsStats {
-    // The lists of queried values
+    // Queried params values
     private static final String[]
             ACTIVE_CITIZENSHIP = {"TOTAL", "AC43A", "Y_GE16", "T", "PC"},
             EMPLOYMENT_FEMALE_RATIO = {"Y20-64", "PC_POP", "F", "EMP_LFS"},
@@ -70,7 +70,6 @@ public class GovRightsStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                // Transform the "male - female" difference into "female - male"
                 double employmentGap = - employmentGenderGap.get(key).doubleValue();
                 double genderGap = - genderPayGap.get(key).doubleValue();
                 // Transform the 1-10 notes into 1-100 notes
@@ -115,7 +114,7 @@ public class GovRightsStats {
      */
     private static Map<String, Number> voterTurnoutCsvToMap(String voterTurnoutPath) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        String csvHeader = "Country;Election type;Year;Voter Turnout (%)";
+        String csvHeader = "Country;Election type;Year;Voter Turnout";
         BufferedReader br = null;
 
         try {
@@ -129,15 +128,19 @@ public class GovRightsStats {
                     String country = items[0].trim();
                     String voterType = items[1].trim();
                     int year = Integer.parseInt(items[2].trim());
-                    Number value = Double.parseDouble(items[3].trim());
+                    String valueStr = items[3].replace("%", "").trim();
 
-                    for (Map.Entry<String, String> entry : EU28_MEMBERS_NAME.entrySet()) {
-                        String entryKey = entry.getKey();
-                        String entryValue = entry.getValue();
+                    if (valueStr.length() > 0) {
+                        Number value = Double.parseDouble(valueStr);
 
-                        if (country.equals(entryValue)) {
-                            String key = MapUtils.generateKey(entryKey, year);
-                            preparedMap.put(key, value);
+                        for (Map.Entry<String, String> entry : EU28_MEMBERS_NAME.entrySet()) {
+                            String entryKey = entry.getKey();
+                            String entryValue = entry.getValue();
+
+                            if (country.equals(entryValue)) {
+                                String key = MapUtils.generateKey(entryKey, year);
+                                preparedMap.put(key, value);
+                            }
                         }
                     }
                 }
@@ -196,14 +199,11 @@ public class GovRightsStats {
         for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
-                Number numberLegtst = populationLegtstTrustRatio.get(key),
-                        numberPlctst = populationPlctstTrustRatio.get(key),
-                        numberPlttst = populationPlttstTrustRatio.get(key);
 
-                // Get the EU average for HR (HR doesn't have data for PLCTST - police)
-                double valueLegtst = numberLegtst != null ? numberLegtst.doubleValue() : 4.6;
-                double valuePlctst = numberPlctst != null ? numberPlctst.doubleValue() : 5.9;
-                double valuePlttst = numberPlttst != null ? numberPlttst.doubleValue() : 3.5;
+                // Get the EU average if it is missing from the country's dataset
+                double valueLegtst = populationLegtstTrustRatio.get(key).doubleValue();
+                double valuePlctst = populationPlctstTrustRatio.get(key).doubleValue();
+                double valuePlttst = populationPlttstTrustRatio.get(key).doubleValue();
 
                 Number value = (valueLegtst + valuePlctst + valuePlttst) / 3;
                 preparedMap.put(key, value);

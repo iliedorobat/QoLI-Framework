@@ -36,7 +36,7 @@ public class Fetcher {
 
     public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> params) {
         StringBuilder result = new StringBuilder();
-        URI uri = generateURI(dataset, params);
+        URI uri = buildURI(dataset, params);
 
         CloseableHttpClient client = HttpClients.createDefault();
         HttpClientContext context = HttpClientContext.create();
@@ -65,11 +65,11 @@ public class Fetcher {
 
     /**
      * Generate the URI used to extract data
-     * @param dataset The search path ("nama_10r_2hhinc")
+     * @param dataset The search path (E.g.: "nama_10r_2hhinc")
      * @param params The parameters used in search path
      * @return URI
      */
-    public static URI generateURI(String dataset, MultiValuedMap<String, String> params) {
+    public static URI buildURI(String dataset, MultiValuedMap<String, String> params) {
         String path = URI_SERVICE
                 + URI_SEPARATOR + URI_SERVICE_VERSION
                 + URI_SEPARATOR + URI_FORMAT

@@ -1,7 +1,6 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -19,13 +18,13 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EducationStats {
-    // The lists of queried values
+    // Queried params values
     private static final String[]
             DIGITAL_SKILLS = {"I_DSK_BAB", "IND_TOTAL", "PC_IND"},
+            DROPOUT_RATIO = {"T", "POP", "Y18-24", "PC"},
             EARLY_EDUCATION_RATIO = {"T", "PC"},
-            EXCLUDED_RATIO = {"T", "Y18-24", "NO_FED_NFE", "NEMP", "PC"},
+            INACTIVE_YOUNG_RATIO = {"T", "Y18-24", "NO_FE_NO_NFE", "NEMP", "PC"},
             NO_KNOWN_FOREIGN_LANG_RATIO = {"0", "PC", "Y25-64"},
-            SCHOOL_DROPOUT_RATIO = {"T", "POP", "Y18-24", "PC"},
             STUDENTS_RATIO = {"PC", "T", "ED5-8", "Y15-64"},
             TRAINING_RATIO = {"PC", "TOTAL", "T", "Y25-64"},
 
@@ -34,12 +33,12 @@ public class EducationStats {
 
     private static final String
             digitalSkillsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.DIGITAL_SKILLS_RATIO + JSON_EXTENSION,
+            dropoutRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.DROPOUT_RATIO + JSON_EXTENSION,
             earlyEducationRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EARLY_EDU_RATIO + JSON_EXTENSION,
-            excludedRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EXCLUDED_RATIO + JSON_EXTENSION,
+            inactiveYoungRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.INACTIVE_YOUNG_RATIO + JSON_EXTENSION,
             noKnownForeignLangRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.NO_KNOWN_FOREIGN_LANG_RATIO + JSON_EXTENSION,
             pupilsRatio2012Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2012 + JSON_EXTENSION,
             pupilsRatio2013Path = FilePathConst.EDUCATION_PATH + FileNameConst.PUPILS_RATIO_2013 + JSON_EXTENSION,
-            schoolDropoutRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.SCHOOL_DROPOUT_RATIO + JSON_EXTENSION,
             studentsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.EDU_RATIO + JSON_EXTENSION,
             trainingRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.TRAINING_RATIO + JSON_EXTENSION;
 
@@ -55,11 +54,11 @@ public class EducationStats {
 
     private static final Map<String, Number>
             initDigitalSkillsRatio = Initializer.initConsolidatedMap(DIGITAL_SKILLS, digitalSkillsRatioPath),
+            initDropoutRatio = Initializer.initConsolidatedMap(DROPOUT_RATIO, dropoutRatioPath),
             initEarlyEducationRatio = Initializer.initConsolidatedMap(EARLY_EDUCATION_RATIO, earlyEducationRatioPath),
-            initExcludedRatio = Initializer.initConsolidatedMap(EXCLUDED_RATIO, excludedRatioPath),
+            initInactiveYoungRatio = Initializer.initConsolidatedMap(INACTIVE_YOUNG_RATIO, inactiveYoungRatioPath),
             initNoKnownForeignLangRatio = Initializer.initConsolidatedMap(NO_KNOWN_FOREIGN_LANG_RATIO, noKnownForeignLangRatioPath),
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
-            initSchoolDropoutRatio = Initializer.initConsolidatedMap(SCHOOL_DROPOUT_RATIO, schoolDropoutRatioPath),
             initStudentsRatio = Initializer.initConsolidatedMap(STUDENTS_RATIO, studentsRatioPath),
             initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO, trainingRatioPath);
 
@@ -67,11 +66,11 @@ public class EducationStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
+                dropoutRatio = Preparation.prepareData(initDropoutRatio),
                 earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
-                excludedRatio = Preparation.prepareData(initExcludedRatio),
+                inactiveYoungRatio = Preparation.prepareData(initInactiveYoungRatio),
                 noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
                 pupilsRatio = Preparation.prepareData(initPupilsRatio),
-                schoolDropoutRatio = Preparation.prepareData(initSchoolDropoutRatio),
                 studentsRatio = Preparation.prepareData(initStudentsRatio),
                 trainingRatio = Preparation.prepareData(initTrainingRatio);
 
@@ -79,19 +78,20 @@ public class EducationStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedExcludedRatio = MathUtils.percentageReverseRatio(excludedRatio, key),
-                        reversedNoKnownForeignLangRatio = MathUtils.percentageReverseRatio(noKnownForeignLangRatio, key),
-                        reversedSchoolDropoutRatio = MathUtils.percentageReverseRatio(schoolDropoutRatio, key);
+                double
+                        reversedDropoutRatio = MathUtils.percentageReverseRatio(dropoutRatio, key),
+                        reversedInactiveYoungRatio = MathUtils.percentageReverseRatio(inactiveYoungRatio, key),
+                        reversedNoKnownForeignLangRatio = MathUtils.percentageReverseRatio(noKnownForeignLangRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
                         * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
                         * MathUtils.percentageSafetyDouble(pupilsRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedExcludedRatio)
-                        * MathUtils.percentageSafetyDouble(reversedNoKnownForeignLangRatio)
-                        * MathUtils.percentageSafetyDouble(reversedSchoolDropoutRatio)
                         * MathUtils.percentageSafetyDouble(studentsRatio, key)
-                        * MathUtils.percentageSafetyDouble(trainingRatio, key);
+                        * MathUtils.percentageSafetyDouble(trainingRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedDropoutRatio)
+                        * MathUtils.percentageSafetyDouble(reversedInactiveYoungRatio)
+                        * MathUtils.percentageSafetyDouble(reversedNoKnownForeignLangRatio);
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -106,13 +106,13 @@ public class EducationStats {
     public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
             add(Preparation.filterMap(initDigitalSkillsRatio));
+            add(Preparation.filterMap(initDropoutRatio));
             add(Preparation.filterMap(initEarlyEducationRatio));
-            add(Preparation.filterMap(initExcludedRatio));
-            add(Preparation.filterMap(initSchoolDropoutRatio));
+            add(Preparation.filterMap(initInactiveYoungRatio));
+            add(Preparation.filterMap(initNoKnownForeignLangRatio));
             add(Preparation.filterMap(initPupilsRatio));
             add(Preparation.filterMap(initStudentsRatio));
             add(Preparation.filterMap(initTrainingRatio));
-            add(Preparation.filterMap(initNoKnownForeignLangRatio));
         }};
     }
 }

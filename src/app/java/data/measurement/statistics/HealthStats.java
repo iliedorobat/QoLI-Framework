@@ -18,16 +18,17 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthStats {
-    // The lists of queried values
+    // Queried params values
     private static final String[]
             ALCOHOLIC_RATIO = {"PC", "DAY", "T", "TOTAL", "NAT"},
             BODY_MASS_INDEX_OVERWEIGHT = {"PC", "BMI_GE25", "TOTAL", "T", "TOTAL"},
             BODY_MASS_INDEX_OBESE = {"PC", "BMI_GE30", "TOTAL", "T", "TOTAL"},
             FRUITS_VEGETABLES_RATIO = {"PC", "GE5", "TOTAL", "T", "TOTAL"},
+            // FIXME: P_HTHAB = doctors
             HEALTH_PERSONNEL = {"P_HTHAB", "OC221"},
             HEALTHY_LIFE_RATIO = {"PC", "TOTAL", "Y_GE16", "T", "VG_G"},
-            HEALTHY_LIFE_YEARS_FEMALE = {"F_0_DFLE"},
-            HEALTHY_LIFE_YEARS_MALE = {"M_0_DFLE"},
+            HEALTHY_LIFE_YEARS_FEMALE = {"F", "HLY_0"},
+            HEALTHY_LIFE_YEARS_MALE = {"M", "HLY_0"},
             HOSPITAL_BEDS = {"P_HTHAB", "HBEDT"},
             LIFE_EXPECTANCY = {"YR", "T", "Y_LT1"},
             LONG_HEALTH_ISSUE_RATIO = {"PC", "TOTAL", "Y_GE16", "T"},
@@ -74,8 +75,8 @@ public class HealthStats {
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio), // no data
-                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio), // not used
+                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio), // FIXME: no data
+                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio), // FIXME: not used
                 bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
                 fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
                 healthPersonnel = transformHundredThousandToTenThousand(initHealthPersonnel),
@@ -85,7 +86,7 @@ public class HealthStats {
                 hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
                 lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
                 longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
-                physicalActivities = Preparation.prepareData(initPhysicalActivities), // no data
+                physicalActivities = Preparation.prepareData(initPhysicalActivities), // FIXME: no data
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
                 unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
@@ -95,7 +96,8 @@ public class HealthStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
+                double
+                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
                         reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
@@ -103,14 +105,15 @@ public class HealthStats {
                         reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
+                        * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
                         * MathUtils.percentageSafetyDouble(healthPersonnel, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
-                        * MathUtils.percentageSafetyDouble(healthyLifeYearsFemale, key)
-                        * MathUtils.percentageSafetyDouble(healthyLifeYearsMale, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
-                        * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
+                        // TODO: gender gap healthy years (healthyLifeYearsFemale/healthyLifeYearsMale)
+//                        * MathUtils.percentageSafetyDouble(healthyLifeYearsFemale, key)
+//                        * MathUtils.percentageSafetyDouble(healthyLifeYearsMale, key)
+                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
                         * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnmetDentalStatus)

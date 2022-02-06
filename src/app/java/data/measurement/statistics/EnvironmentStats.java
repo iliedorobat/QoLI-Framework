@@ -1,7 +1,6 @@
 package app.java.data.measurement.statistics;
 
 import app.java.commons.MapOrder;
-import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
@@ -18,10 +17,11 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EnvironmentStats {
-    // The lists of queried values
+    // Queried params values
     private static final String[]
-            AIR_POLLUTION_RATIO = {"PM10"},
             NOISE_POLLUTION_RATIO = {"TOTAL", "TOTAL", "PC"},
+            PM2_5_POLLUTION_RATIO = {"PM2_5"},
+            PM10_POLLUTION_RATIO = {"PM10"},
             POLLUTION_RATIO = {"TOTAL", "TOTAL", "PC"},
             WATER_SUPPLY_RATIO = {"POP_PWS", "PC"};
 
@@ -32,18 +32,20 @@ public class EnvironmentStats {
             waterSupplyRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO + JSON_EXTENSION;
 
     private static final Map<String, Number>
-            initAirPollutionRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_RATIO, airPollutionRatioPath),
             initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO, noisePollutionRatioPath),
+            initPm2_5PollutionRatio = Initializer.initConsolidatedMap(PM2_5_POLLUTION_RATIO, airPollutionRatioPath),
+            initPm10PollutionRatio = Initializer.initConsolidatedMap(PM10_POLLUTION_RATIO, airPollutionRatioPath),
             initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO, pollutionRatioPath),
             initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO, waterSupplyRatioPath);
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                airPollutionRatio = Preparation.prepareData(initAirPollutionRatio),  // no data
                 noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
+                pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),  // FIXME: no data
+                pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),  // FIXME: no data
                 pollutionRatio = Preparation.prepareData(initPollutionRatio),
-                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio); // no data
+                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio); // FIXME: no data
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {

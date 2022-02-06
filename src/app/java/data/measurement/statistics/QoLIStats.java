@@ -18,11 +18,12 @@ public class QoLIStats {
                 environmentStats = EnvironmentStats.generateDimensionList(),
                 govRightsStats = GovRightsStats.generateDimensionList(),
                 healthStats = HealthStats.generateDimensionList(),
+                interactionsStats = InteractionsStats.generateDimensionList(),
+                leisureStats = LeisureStats.generateDimensionList(),
                 mainActivityStats = MainActivityStats.generateDimensionList(),
                 materialLivingStats = MaterialLivingStats.generateDimensionList(),
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
-                safetyStats = SafetyStats.generateDimensionList(),
-                socialActivityStats = SocialActivityStats.generateDimensionList();
+                safetyStats = SafetyStats.generateDimensionList();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -32,22 +33,24 @@ public class QoLIStats {
                 double environment = environmentStats.get(key).doubleValue();
                 double govRights = govRightsStats.get(key).doubleValue();
                 double health = healthStats.get(key).doubleValue();
+                double interactions = interactionsStats.get(key).doubleValue();
+                double leisure = leisureStats.get(key).doubleValue();
                 double mainActivity = mainActivityStats.get(key).doubleValue();
                 double materialLiving = materialLivingStats.get(key).doubleValue();
                 double overallExperience = overallExperienceStats.get(key).doubleValue();
                 double safety = safetyStats.get(key).doubleValue();
-                double socialActivity = socialActivityStats.get(key).doubleValue();
 
                 double product = 1
                         * education
                         * environment
                         * govRights
                         * health
+                        * interactions
+                        * leisure
                         * mainActivity
                         * materialLiving
                         * overallExperience
-                        * safety
-                        * socialActivity;
+                        * safety;
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }

@@ -26,13 +26,13 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_bm1i<br/>
-     * Years: 2014<br/><br/>
+     * Years: 2014; 2019<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
-    StringBuilder getBodyMassIndex();
+    StringBuilder getBodyMassIndexRatio();
 
     /**
      * Daily consumption of fruit and vegetables<br/><br/>
@@ -40,7 +40,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_fv3i<br/>
-     * Years: 2014
+     * Years: 2014; 2019
      *
      * @return
      */
@@ -52,11 +52,11 @@ public interface HealthDAO {
      * Aggregation: NUTS 2 regions<br/>
      * Dataset: hlth_rs_prsrg<br/>
      * Value type: per hundred thousand inhabitants (number)<br/>
-     * Years: 1993-2017
+     * Years: 1993-2020
      *
      * @return
      */
-    StringBuilder getHealthPersonnel();
+    StringBuilder getHealthPersonnelRatio();
 
     /**
      * Self-perceived very-good or good health<br/>
@@ -65,7 +65,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_10<br/>
-     * Years: 2005-2018
+     * Years: 2005-2020
      *
      * @return
      */
@@ -77,7 +77,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
      * Dataset: hlth_hlye<br/>
-     * Years: 2004-2017
+     * Years: 2004-2019
      *
      * @return Male & Female statistics
      */
@@ -91,13 +91,13 @@ public interface HealthDAO {
      * Dataset: hlth_rs_bds<br/>
      * Info: Hospital beds provide information on health care capacities,
      * i.e. on the maximum number of patients who can be treated by hospitals<br/>
-     * Years: 1960-2017<br/><br/>
+     * Years: 1960-2020<br/><br/>
      *
      * Comments: NUTS 2 regions => hlth_rs_bdsrg
      *
      * @return
      */
-    StringBuilder getHospitalBeds();
+    StringBuilder getHospitalBedsRatio();
 
     /**
      * Life expectancy at birth (the number of remaining years a person
@@ -106,7 +106,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: years (number)<br/>
      * Dataset: demo_mlexpec<br/>
-     * Years: 1960-2017<br/><br/>
+     * Years: 1960-2020<br/><br/>
      *
      * Comments: NUTS 2 regions => demo_r_mlifexp
      *
@@ -120,7 +120,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_11<br/>
-     * Years: 2008-2018<br/><br/>
+     * Years: 2008-2020<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -140,7 +140,7 @@ public interface HealthDAO {
      * @deprecated no dataset: BE; NL
      * @return
      */
-    StringBuilder getPhysicalActivities();
+    StringBuilder getPhysicalActivitiesRatio();
 
     /**
      * Daily smokers of cigarettes<br/><br/>
@@ -148,7 +148,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_sk3i<br/>
-     * Years: 2014<br/><br/>
+     * Years: 2014; 2019<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -164,7 +164,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_09<br/>
-     * Years: 2008-2018<br/><br/>
+     * Years: 2008-2020<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -180,7 +180,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_08<br/>
-     * Years: 2008-2018<br/><br/>
+     * Years: 2008-2020<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -194,7 +194,7 @@ public interface HealthDAO {
      * Aggregation: country<br/>
      * Data type: number<br/>
      * Dataset: hsw_mi07<br/>
-     * Years: 2008-2017<br/><br/>
+     * Years: 2008-2019<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

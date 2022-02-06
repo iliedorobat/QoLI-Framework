@@ -109,13 +109,45 @@ public class Preparation {
             preparedMap.put(entry.getKey(), entry.getValue());
         }
 
-        //TODO: make a real average for EU28
         for (String code : countries) {
-            replaceRightNullValues(preparedMap, code);
-            replaceLeftNullValues(preparedMap, code);
+            fillRightNullValues(preparedMap, code);
+            fillLeftNullValues(preparedMap, code);
+            fillNullValues(mainMap, preparedMap, code);
         }
 
         return filterMap(preparedMap);
+    }
+
+    // TODO: documentation
+    private static void fillNullValues(
+            Map<String, Number> mainMap,
+            Map<String, Number> preparedMap,
+            String code
+    ) {
+        double euAverage = calculateEuAverage(mainMap);
+
+        for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
+            String key = MapUtils.generateKey(code, year);
+            Number value = preparedMap.get(key);
+            addKeyValue(preparedMap, key, value, euAverage);
+        }
+    }
+
+    // TODO: documentation
+    // Calculate the average of EU
+    private static double calculateEuAverage(Map<String, Number> mainMap) {
+        int count = 0;
+        double sum = 0;
+
+        for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
+            Number value = entry.getValue();
+            if (value != null) {
+                sum += value.doubleValue();
+                count ++;
+            }
+        }
+
+        return sum / count;
     }
 
     /**
@@ -147,7 +179,7 @@ public class Preparation {
      * @param preparedMap
      * @param code The country code for which is made the processing
      */
-    private static void replaceRightNullValues(
+    private static void fillRightNullValues(
             Map<String, Number> preparedMap,
             String code
     ) {
@@ -193,7 +225,7 @@ public class Preparation {
      * @param preparedMap
      * @param code The country code for which is made the processing
      */
-    private static void replaceLeftNullValues(
+    private static void fillLeftNullValues(
             Map<String, Number> preparedMap,
             String code
     ) {
@@ -235,8 +267,8 @@ public class Preparation {
      * @param key The key
      * @param value The value
      * @param savedValue A buffer value:<br/>
-     *                  * the previous value for the case of "replaceRightNullValues";<br/>
-     *                  * the last value for the case of "replaceLeftNullValues"
+     *                  * the previous value for the case of "fillRightNullValues";<br/>
+     *                  * the last value for the case of "fillLeftNullValues"
      */
     private static void addKeyValue(
             Map<String, Number> map,

@@ -1,9 +1,9 @@
 package app.java.data.fetch.dao;
 
 /**
- * Social interactions in environmental areas
+ * Social interactions
  */
-public interface SocialActivityDAO {
+public interface InteractionsDAO {
     /**
      * Persons (16 years or over) who have someone to ask for help
      * (moral, material or financial) from family, relatives, friends or neighbours<br/><br/>
@@ -58,30 +58,14 @@ public interface SocialActivityDAO {
     StringBuilder getNonParticipationRatio();
 
     /**
-     * Participation in any cultural or sport activities in the last 12 months<br/>
-     * Population aged 16 years or over<br/><br/>
+     * Percentage of the population rating their personal relationships' satisfaction as high<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp02<br/>
-     * Years: 2006; 2015<br/><br/>
-     *
-     * Comments: NUTS 2 regions => ilc_scp01
+     * Dataset: ilc_pw05<br/>
+     * Years: 2013; 2018
      *
      * @return
      */
-    StringBuilder getSocialActivitiesRatio();
-
-    /**
-     * Participation in formal or informal voluntary activities<br/>
-     * People aged 16 years or over<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp19<br/>
-     * Years: 2015
-     *
-     * @return
-     */
-    StringBuilder getVoluntaryActivitiesRatio();
+    StringBuilder getRelationshipsSatisfaction();
 }

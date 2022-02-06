@@ -21,6 +21,15 @@ public class EducationDAOImpl implements EducationDAO {
         return Fetcher.fetchData("tepsr_sp410", params);
     }
 
+    public StringBuilder getDropoutRatio() {
+        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+        params.put(ParamsConst.AGE, "Y18-24");
+        params.put(ParamsConst.SEX, "T");
+        params.put(ParamsConst.UNIT, "PC");
+        params.put(ParamsConst.WORKING_STATUS, "POP");
+        return Fetcher.fetchData("edat_lfse_14", params);
+    }
+
     public StringBuilder getEarlyEducationRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.SEX, "T");
@@ -37,11 +46,11 @@ public class EducationDAOImpl implements EducationDAO {
             return Fetcher.fetchData("edat_lfs_9903", params);
     }
 
-    public StringBuilder getExcludedRatio() {
+    public StringBuilder getInactiveYoungRatio() {
         MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
         params.put(ParamsConst.AGE, "Y18-24");
         params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.TYPTRAI, "NO_FED_NFE");
+        params.put(ParamsConst.TYPTRAI, "NO_FE_NO_NFE");
         params.put(ParamsConst.UNIT, "PC");
         params.put(ParamsConst.WORKING_STATUS, "NEMP");
         return Fetcher.fetchData("edat_lfse_20", params);
@@ -66,15 +75,6 @@ public class EducationDAOImpl implements EducationDAO {
         params.put(ParamsConst.ISCED_11, "ED1-3");
         params.put(ParamsConst.UNIT, "RT");
         return Fetcher.fetchData("educ_uoe_perp04", params);
-    }
-
-    public StringBuilder getSchoolDropoutRatio() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y18-24");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WORKING_STATUS, "POP");
-        return Fetcher.fetchData("edat_lfse_14", params);
     }
 
     public StringBuilder getTrainingRatio() {

@@ -10,14 +10,15 @@ public class EnvironmentCollector {
     private static final EnvironmentDAO environmentDAO = new EnvironmentDAOImpl();
 
     public static void dataCollector() {
-        StringBuilder pollutionRatio = environmentDAO.getPollutionRatio(),
+        StringBuilder
                 airPollutionRatio = environmentDAO.getAirPollutionRatio(),
                 noisePollutionRatio = environmentDAO.getNoisePollutionRatio(),
+                pollutionRatio = environmentDAO.getPollutionRatio(),
                 waterSupplyRatio = environmentDAO.getWaterSupplyRatio();
 
-        FileUtils.writeToJSONFile(pollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.POLLUTION_RATIO);
-        FileUtils.writeToJSONFile(airPollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO);
-        FileUtils.writeToJSONFile(noisePollutionRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.NOISE_POLLUTION_RATIO);
-        FileUtils.writeToJSONFile(waterSupplyRatio, FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO);
+        FileUtils.writeToJSONFile(airPollutionRatio, FilePathConst.ENVIRONMENT_PATH, FileNameConst.AIR_POLLUTION_RATIO);
+        FileUtils.writeToJSONFile(noisePollutionRatio, FilePathConst.ENVIRONMENT_PATH, FileNameConst.NOISE_POLLUTION_RATIO);
+        FileUtils.writeToJSONFile(pollutionRatio, FilePathConst.ENVIRONMENT_PATH, FileNameConst.POLLUTION_RATIO);
+        FileUtils.writeToJSONFile(waterSupplyRatio, FilePathConst.ENVIRONMENT_PATH, FileNameConst.WATER_SUPPLY_RATIO);
     }
 }
