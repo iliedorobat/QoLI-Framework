@@ -4,45 +4,45 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.utils.FileUtils;
 import app.java.commons.utils.MapUtils;
-import app.java.data.DataCollector;
-import app.java.data.collect.GeneralCollector;
-import app.java.data.fetch.dao.HealthDAO;
-import app.java.data.fetch.dao.impl.HealthDAOImpl;
-import app.java.data.measurement.preparation.Initializer;
-import app.java.data.measurement.statistics.QoLIStats;
-import app.java.data.measurement.statistics.*;
-import app.java.data.parse.LocalParser;
+import app.java.commons.dimesntions.education.EducationStats;
+import app.java.commons.dimesntions.environment.EnvironmentStats;
+import app.java.commons.dimesntions.gov.GovRightsStats;
+import app.java.commons.dimesntions.health.HealthStats;
+import app.java.commons.dimesntions.interactions.InteractionsStats;
+import app.java.commons.dimesntions.leisure.LeisureStats;
+import app.java.commons.dimesntions.mainActivity.MainActivityStats;
+import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
+import app.java.commons.dimesntions.QoLIStats;
+import app.java.data.LocalParser;
+import app.java.commons.dimesntions.overall.OverallExperienceStats;
+import app.java.commons.dimesntions.safety.SafetyStats;
+import app.java.data.fetch.DataCollector;
 
 import java.util.*;
-
-import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class Main {
     public static void main(String[] args) {
 //        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
 //        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
-//        DataCollector.collectData();
+        // DataCollector.collectData();
 
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
 
-        // 4. Get QoLI and the QoLI dimensions statistics
-        Map<String, Number>
-                qoliList = QoLIStats.generateIndicatorList(),
-                educationStats = EducationStats.generateDimensionList(),
-                environmentStats = EnvironmentStats.generateDimensionList(),
-                govRightsStats = GovRightsStats.generateDimensionList(),
-                healthStats = HealthStats.generateDimensionList(),
-                interactionsStats = InteractionsStats.generateDimensionList(),
-                leisureStats = LeisureStats.generateDimensionList(),
-                mainActivityStats = MainActivityStats.generateDimensionList(),
-                materialLivingStats = MaterialLivingStats.generateDimensionList(),
-                overallExperienceStats = OverallExperienceStats.generateDimensionList(),
-                safetyStats = SafetyStats.generateDimensionList();
+       // 4. Get QoLI and the QoLI dimensions statistics
+       Map<String, Number>
+               qoliList = QoLIStats.generateIndicatorList(),
+               educationStats = EducationStats.generateDimensionList(),
+               environmentStats = EnvironmentStats.generateDimensionList(),
+               govRightsStats = GovRightsStats.generateDimensionList(),
+               healthStats = HealthStats.generateDimensionList(),
+               interactionsStats = InteractionsStats.generateDimensionList(),
+               leisureStats = LeisureStats.generateDimensionList(),
+               mainActivityStats = MainActivityStats.generateDimensionList(),
+               materialLivingStats = MaterialLivingStats.generateDimensionList(),
+               overallExperienceStats = OverallExperienceStats.generateDimensionList(),
+               safetyStats = SafetyStats.generateDimensionList();
 
 //        // 4. Write the QoLI and the QoLI dimensions values to disk
 //        FileUtils.writeChartData(qoliList, "QoLI");

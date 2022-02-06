@@ -3,7 +3,17 @@ package app.java.commons;
 import app.java.commons.constants.Constants;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.StatsUtils;
-import app.java.data.measurement.statistics.*;
+import app.java.commons.dimesntions.common.CommonStats;
+import app.java.commons.dimesntions.education.EducationStats;
+import app.java.commons.dimesntions.environment.EnvironmentStats;
+import app.java.commons.dimesntions.gov.GovRightsStats;
+import app.java.commons.dimesntions.health.HealthStats;
+import app.java.commons.dimesntions.interactions.InteractionsStats;
+import app.java.commons.dimesntions.leisure.LeisureStats;
+import app.java.commons.dimesntions.mainActivity.MainActivityStats;
+import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
+import app.java.commons.dimesntions.overall.OverallExperienceStats;
+import app.java.commons.dimesntions.safety.SafetyStats;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -47,6 +57,7 @@ public class Print {
     }
 
     public static void printDataInconsistencies() {
+        printDimensionStatus(CommonStats.getInitList(), "Common info");
         printDimensionStatus(MaterialLivingStats.getInitList(), "MLC");
         printDimensionStatus(MainActivityStats.getInitList(), "PMA");
         printDimensionStatus(HealthStats.getInitList(), "Health");
@@ -57,7 +68,6 @@ public class Print {
         printDimensionStatus(GovRightsStats.getInitList(), "GBR");
         printDimensionStatus(EnvironmentStats.getInitList(), "Environment");
         printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp");
-        printDimensionStatus(GeneralStats.getInitList(), "General info");
     }
 
     public static void printVariation(Map<String, List<Number>> entries) {

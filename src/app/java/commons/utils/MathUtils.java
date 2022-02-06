@@ -1,7 +1,7 @@
 package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
-import app.java.data.measurement.statistics.GeneralStats;
+import app.java.commons.dimesntions.common.CommonStats;
 
 import java.util.Map;
 
@@ -102,7 +102,7 @@ public class MathUtils {
      * @return The value per thousand inhabitants
      */
     public static Number generatePerThousandInhabitants(String key, double value) {
-        double population = GeneralStats.population.get(key).doubleValue();
+        double population = CommonStats.population.get(key).doubleValue();
         return value / population * THOUSAND_VALUE;
     }
 
@@ -114,7 +114,7 @@ public class MathUtils {
      * @return The value per thousand inhabitants
      */
     public static Number generatePerTenThousandInhabitants(String key, double value) {
-        double population = GeneralStats.population.get(key).doubleValue();
+        double population = CommonStats.population.get(key).doubleValue();
         return value / population * TEN_THOUSAND_VALUE;
     }
 }

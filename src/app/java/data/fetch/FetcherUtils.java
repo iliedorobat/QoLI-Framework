@@ -1,42 +1,14 @@
 package app.java.data.fetch;
 
-import app.java.commons.Errors;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.dao.impl.MainActivityDAOImpl;
+import app.java.data.fetch.Fetcher;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class FetcherUtils {
-    public static final String[] ACTIVITIES_TYPE = {
-            "AC41A", // Formal voluntary activities
-            "AC42A", // Informal voluntary activities
-            "AC43A"  // Active citizenship
-    };
-    public static final String[] SATISFACTION_LEVELS = {
-            "HIGH",
-            "MED",
-            "LOW"
-    };
-    public static final String[] SUPPORTIVE_API_NAMES = {
-            "ilc_scp15",
-            "ilc_scp17"
-    };
-    public static final String[] WEL_BEING_TYPES = {
-            "ACCSAT",    // Satisfaction with accommodation
-            "COMSAT",    // Satisfaction with commuting time
-            "FINSAT",    // Satisfaction with financial situation
-            "JOBSAT",    // Job satisfaction
-            "GREENSAT",  // Satisfaction with recreational and green areas
-            "LIFESAT",   // Overall life satisfaction
-            "LIVENVSAT", // Satisfaction with living environment
-            "MEANLIFE",  // Meaning of lifE
-            "RELSAT",    // Satisfaction with personal relationships
-            "TIMESAT"    // Satisfaction with time use
-    };
-
     public static String getGeoParams() {
         String output = "";
 
@@ -83,64 +55,6 @@ public class FetcherUtils {
     }
 
     /**
-     * Get the general parameters for consumption dataset (smokers; fruits and vegetables)
-     *
-     * @return
-     */
-    public static MultiValuedMap<String, String> getConsumptionParams() {
-        MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.QUANTILE, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
-    }
-
-    /**
-     * Get the general parameters for self-reported unmet needs for medical/dental examination
-     *
-     * @return
-     */
-    public static MultiValuedMap<String, String> getUnmetHealthParams() {
-        MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.QUANTILE, "TOTAL");
-        params.put(ParamsConst.REASON, "TOOEFW");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
-    }
-
-    /**
-     * Get the general parameters for work occupation (under/over occupied ratio)
-     *
-     * @return
-     */
-    public static MultiValuedMap<String, String> getWorkOccupationParams() {
-        MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
-    }
-
-    /**
-     * Get the general parameters for home conditions
-     *
-     * @return
-     */
-    public static MultiValuedMap<String, String> getHomeConditionsParams() {
-        MultiValuedMap<String, String> params = getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
-    }
-
-    /**
      * Percentage of the population rating their satisfaction as high, medium or low<br/><br/>
      *
      * Aggregation: country<br/>
@@ -148,42 +62,10 @@ public class FetcherUtils {
      * Dataset: ilc_pw05<br/>
      * Years: 2013
      *
-     * @param satisfactionLevel The satisfaction level:<br/>
-     *                   - HIGH: high;<br/>
-     *                   - MED: medium;<br/>
-     *                   - LOW: low;
-     *
-     * @param wellBeing The type of calculated well-being:<br/>
-     *                  - ACCSAT: Satisfaction with accommodation;<br/>
-     *                  - COMSAT: Satisfaction with commuting time;<br/>
-     *                  - FINSAT: Satisfaction with financial situation;<br/>
-     *                  - GREENSAT: Satisfaction with recreational and green areas;<br/>
-     *                  - JOBSAT: Job satisfaction;<br/>
-     *                  - LIFESAT: Overall life satisfaction;<br/>
-     *                  - LIVENVSAT: Satisfaction with living environment;<br/>
-     *                  - MEANLIFE: Meaning of life;<br/>
-     *                  - RELSAT: Satisfaction with personal relationships;<br/>
-     *                  - TIMESAT: Satisfaction with time use;
-     *
      * @return
      */
-    public static StringBuilder getSatisfactionRatio(String satisfactionLevel, String wellBeing) {
-        try {
-            Errors.throwNewError(SATISFACTION_LEVELS, satisfactionLevel, "satisfaction levels");
-            Errors.throwNewError(WEL_BEING_TYPES, wellBeing, "well-being levels");
-
-            MultiValuedMap<String, String> params = getMainHttpParams();
-            params.put(ParamsConst.AGE, "Y_GE16");
-            params.put(ParamsConst.INDIC_WB, wellBeing);
-            params.put(ParamsConst.ISCED_11, "TOTAL");
-            params.put(ParamsConst.LEV_SATIS, satisfactionLevel);
-            params.put(ParamsConst.SEX, "T");
-            params.put(ParamsConst.UNIT, "PC");
-
-            return Fetcher.fetchData("ilc_pw05", params);
-        } catch (Exception e) {
-            return null;
-        }
+    public static StringBuilder getSatisfactionRatio(MultiValuedMap<String, String> params) {
+        return Fetcher.fetchData("ilc_pw05", params);
     }
 
     /**
@@ -195,118 +77,9 @@ public class FetcherUtils {
      * Dataset: ilc_scp19<br/>
      * Years: 2015
      *
-     * @param activities The activity types:<br/>
-     *                 - AC41A: Formal volontary activities;<br/>
-     *                 - AC42A: Informal volontary activities;<br/>
-     *                 - AC43A: Active citizenship.
-     *
-     * @return
      */
-    public static StringBuilder getActivePeopleRatio(String[] activities) {
-        try {
-            Errors.throwNewError(ACTIVITIES_TYPE, activities, "type of people activities");
-
-            MultiValuedMap<String, String> params = getMainHttpParams();
-            addParams(params, ParamsConst.ACL_00, activities);
-            params.put(ParamsConst.AGE, "Y_GE16");
-            params.put(ParamsConst.ISCED_11, "TOTAL");
-            params.put(ParamsConst.SEX, "T");
-            params.put(ParamsConst.UNIT, "PC");
-
-            return Fetcher.fetchData("ilc_scp19", params);
-        } catch (Exception e) {
-            return null;
-        }
+    public static StringBuilder getActivePeopleRatio(MultiValuedMap<String, String> params) {
+        return Fetcher.fetchData("ilc_scp19", params);
     }
 
-    /**
-     * Get the ratio of persons (16 years or over) who have someone to ask for help
-     * or to discuss personal matters<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp15 / ilc_scp17<br/>
-     * Years: 2013; 2015
-     *
-     * @param apiName The API name:<br/>
-     *                - ilc_scp15;<br/>
-     *                - ilc_scp17.
-     * @return
-     */
-    public static StringBuilder getSupportiveRatio(String apiName) {
-        try {
-            Errors.throwNewError(SUPPORTIVE_API_NAMES, apiName, "API names");
-
-            MultiValuedMap<String, String> params = getMainHttpParams();
-            params.put(ParamsConst.AGE, "Y_GE16");
-            params.put(ParamsConst.ISCED_11, "TOTAL");
-            params.put(ParamsConst.SEX, "T");
-            params.put(ParamsConst.UNIT, "PC");
-            return Fetcher.fetchData(apiName, params);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Average number of usual weekly hours of work in main job
-     * worked by full-time employed persons aged 15 years or over<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: hours (number)<br/>
-     * Dataset: lfsa_ewhuna | lfsa_ewhun2<br/>
-     * Years: 1983-2018<br/><br/>
-     *
-     * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @param dataset The dataset name<br/>
-     *                 - lfsa_ewhuna: for years between 1983-2008;<br/>
-     *                 - lfsa_ewhun2: for years between 2008-2018.
-     *
-     * @return
-     */
-    public static StringBuilder getAvgWorkHours(String dataset) {
-        try {
-            Errors.throwNewError(
-                    MainActivityDAOImpl.WORK_DATASET, dataset, "dataset name"
-            );
-
-            String activity = "";
-            if (dataset.equals(MainActivityDAOImpl.WORK_DATASET[0]))
-                activity = MainActivityDAOImpl.WORK_ACTIVITIES[0];
-            if (dataset.equals(MainActivityDAOImpl.WORK_DATASET[1]))
-                activity = MainActivityDAOImpl.WORK_ACTIVITIES[1];
-
-            MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-            params.put(activity, "TOTAL");
-            params.put(ParamsConst.AGE, "Y15-64");
-            params.put(ParamsConst.SEX, "T");
-            params.put(ParamsConst.UNIT, "HR");
-            params.put(ParamsConst.WORK_TIME, "FT");
-            params.put(ParamsConst.WORKING_STATUS, "EMP");
-            return Fetcher.fetchData(dataset, params);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Population on 1 January<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: count (number)<br/>
-     * Dataset: demo_pjan<br/>
-     * Years: 1960 - 2018
-     *
-     * @return
-     */
-    public static StringBuilder getPopulation() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "NR");
-        return Fetcher.fetchData("demo_pjan", params);
-    }
 }
