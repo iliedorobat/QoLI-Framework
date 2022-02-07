@@ -121,7 +121,7 @@ public class MainActivityParams {
             put(ParamsConst.AGE, "Y15-64");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC_EMP");
-            put(ParamsConst.WORK_TIME, "TEMP");
+            put(ParamsConst.WORKING_STATUS, "EMP_TEMP");
         }};
     }
 
