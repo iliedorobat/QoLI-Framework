@@ -9,6 +9,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -22,21 +23,21 @@ public class MainActivityStats {
     private static final int CORRECTION_WORKING_HOURS = 12 * 7;
 
     // Queried params values
-    private static final String[]
-            ACTIVE_POPULATION_RATIO = {"Y15-64", "PC_POP", "T", "ACT"},
-            AVG_WORK_HOURS_2007 = {"HR", "T", "FT", "EMP", "TOTAL"}, // FIXME: Y15-64?
-            AVG_WORK_HOURS_2008 = {"HR", "T", "FT", "EMP", "TOTAL"}, // FIXME: Y15-64?
-            EMPLOYMENT_RATIO = {"PC", "T", "Y15-64", "TOTAL"},
-            INACTIVE_POPULATION_RATIO = {"PC_POP", "T", "Y15-64"}, // FIXME: check if the order matters
-            INVOLUNTARY_PART_TIME_RATIO = {"PC", "T", "Y15-64"},
-            JOB_SATISFACTION = {"PC", "HIGH", "TOTAL", "JOBSAT", "T", "Y_GE16"},
-            LONG_TERM_UNEMPLOYMENT_RATIO = {"LTU", "Y15-74", "T", "PC_ACT"},
-            LOW_WAGE_EARNINGS_RATIO = {"TOTAL", "PC"}, // FIXME: check if the order matters
-            OVER_QUALIFIED_RATIO = {"PC", "TOTAL", "TOTAL", "Y15-64", "T"},
-            RESEARCHERS = {"TOTAL", "TOTAL", "T", "FTE"},
-            TEMPORARY_EMPLOYMENT_RATIO = {"TEMP", "Y15-64", "PC_EMP", "T"},
-            UNEMPLOYMENT_RATIO = {"PC", "T", "Y15-74", "TOTAL"},
-            WORKING_NIGHTS_RATIO = {"PC", "T", "Y15-64", "EMP", "USU"};
+    private static final MultiValuedMap<String, String>
+            ACTIVE_POPULATION_RATIO = MainActivityParams.getActivePopulationParams(),
+            AVG_WORK_HOURS_2007 = MainActivityParams.getAvgWorkHoursParams2007(),
+            AVG_WORK_HOURS_2008 = MainActivityParams.getAvgWorkHoursParams2008(),
+            EMPLOYMENT_RATIO = MainActivityParams.getEmploymentParams(),
+            INACTIVE_POPULATION_RATIO = MainActivityParams.getInactivePopulationParams(),
+            INVOLUNTARY_PART_TIME_RATIO = MainActivityParams.getInvoluntaryPartTimeParams(),
+            JOB_SATISFACTION = MainActivityParams.getJobSatisfactionParams(),
+            LONG_TERM_UNEMPLOYMENT_RATIO = MainActivityParams.getLongTermUnemploymentParams(),
+            LOW_WAGE_EARNINGS_RATIO = MainActivityParams.getLowWageEarnersParams(),
+            OVER_QUALIFIED_RATIO = MainActivityParams.getOverQualifiedParams(),
+            RESEARCHERS = MainActivityParams.getResearchersParams(),
+            TEMPORARY_EMPLOYMENT_RATIO = MainActivityParams.getTemporaryEmploymentParams(),
+            UNEMPLOYMENT_RATIO = MainActivityParams.getUnemploymentParams(),
+            WORKING_NIGHTS_RATIO = MainActivityParams.getWorkingNightsParams();
 
     private static final String
             activePopulationRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.ACTIVE_POPULATION_RATIO + JSON_EXTENSION,

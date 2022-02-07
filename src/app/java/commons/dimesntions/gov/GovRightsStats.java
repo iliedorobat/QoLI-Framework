@@ -4,10 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,21 +19,19 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.EU28_MEMBERS_NAME;
-import static app.java.commons.constants.Constants.JSON_EXTENSION;
-import static app.java.commons.constants.Constants.CSV_EXTENSION;
+import static app.java.commons.constants.Constants.*;
 
 public class GovRightsStats {
     // Queried params values
-    private static final String[]
-            ACTIVE_CITIZENSHIP = {"TOTAL", "AC43A", "Y_GE16", "T", "PC"},
-            EMPLOYMENT_FEMALE_RATIO = {"Y20-64", "PC_POP", "F", "EMP_LFS"},
-            EMPLOYMENT_MALE_RATIO = {"Y20-64", "PC_POP", "M", "EMP_LFS"},
-            GENDER_PAY_GAP = {"PC", "B-S_X_O"},
-            POPULATION_LEGTST_TRUST = {"RTG", "TOTAL", "LEGTST", "T", "Y_GE16"},
-            POPULATION_PLCTST_TRUST = {"RTG", "TOTAL", "PLCTST", "T", "Y_GE16"},
-            POPULATION_PLTTST_TRUST = {"RTG", "TOTAL", "PLTTST", "T", "Y_GE16"};
+    private static final MultiValuedMap<String, String>
+            ACTIVE_CITIZENSHIP = GovRightsParams.getActiveCitizenshipParams(),
+            EMPLOYMENT_FEMALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("female")),
+            EMPLOYMENT_MALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("male")),
+            GENDER_PAY_GAP = GovRightsParams.getGenderPayGapParams(),
+            POPULATION_LEGTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
+            POPULATION_PLCTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
+            POPULATION_PLTTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
+            POPULATION_OTHERS_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others")); // TODO:
 
     private static final String
             activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + JSON_EXTENSION,

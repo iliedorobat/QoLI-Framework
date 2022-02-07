@@ -1,21 +1,21 @@
 package app.java.commons.dimesntions.overall;
 
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.FetcherUtils;
 import app.java.commons.dimesntions.common.CommonParams;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class OverallExperienceParams {
     public static MultiValuedMap<String, String> getHappinessParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.SEX, "T");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.UNIT, "PC");
+            put(ParamsConst.SEX, "T");
+        }};
     }
 
     public static MultiValuedMap<String, String> getHighSatisfactionParams() {

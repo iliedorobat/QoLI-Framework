@@ -1,46 +1,64 @@
 package app.java.commons.dimesntions.gov;
 
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.FetcherUtils;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonParams;
+import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class GovRightsParams {
-    public static final String[] POPULATION_TRUST = {
-            "LEGTST", // legal system
-            "PLCTST", // police
-            "PLTTST"  // political system
-    };
-
     public static MultiValuedMap<String, String> getActiveCitizenshipParams() {
-        String[] activities = {"AC43A"};
+        String[] activities = {
+                ParamsValues.ACL00_LEISURE.get("citizenship")
+        };
         return CommonParams.getActivePeopleParams(activities);
     }
 
     public static MultiValuedMap<String, String> getEmploymentParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y20-64");
-        params.put(ParamsConst.INDIC_EM, "EMP_LFS");
-        params.put(ParamsConst.SEX, "F");
-        params.put(ParamsConst.SEX, "M");
-        params.put(ParamsConst.UNIT, "PC_POP");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y20-64");
+            put(ParamsConst.INDIC_EM, "EMP_LFS");
+            put(ParamsConst.SEX, ParamsValues.SEX.get("female"));
+            put(ParamsConst.SEX, ParamsValues.SEX.get("male"));
+            put(ParamsConst.UNIT, "PC_POP");
+        }};
+    }
+
+    public static MultiValuedMap<String, String> getEmploymentParams(String sex) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y20-64");
+            put(ParamsConst.INDIC_EM, "EMP_LFS");
+            put(ParamsConst.SEX, sex);
+            put(ParamsConst.UNIT, "PC_POP");
+        }};
     }
 
     public static MultiValuedMap<String, String> getGenderPayGapParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.NACE_R2, "B-S_X_O");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.NACE_R2, "B-S_X_O");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getPopulationTrustParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        FetcherUtils.addParams(params, ParamsConst.AIR_POLLUTION, POPULATION_TRUST);
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "RTG");
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.SEX, ParamsValues.SEX.get("total"));
+            put(ParamsConst.UNIT, "RTG");
+        }};
+        FetcherUtils.addParams(params, ParamsConst.INDIC_WB, ParamsValues.INDIC_WB);
         return params;
+    }
+
+    public static MultiValuedMap<String, String> getPopulationTrustParams(String trustSystem) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.INDIC_WB, trustSystem);
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.SEX, ParamsValues.SEX.get("total"));
+            put(ParamsConst.UNIT, "RTG");
+        }};
     }
 }

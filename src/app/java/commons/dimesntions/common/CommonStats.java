@@ -4,6 +4,7 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -12,12 +13,11 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 //TODO: change the "ratio" to "rate" all over the app
 public class CommonStats {
-    private static final String[]
-            POPULATION = {"TOTAL", "T", "NR"};
+    private static final MultiValuedMap<String, String>
+            POPULATION = CommonParams.getPopulationParams();
 
-    private static final String JSON_EXT = JSON_EXTENSION;
     private static final String
-            populationPath = FilePathConst.DATASET_PATH + FileNameConst.POPULATION + JSON_EXT;
+            populationPath = FilePathConst.DATASET_PATH + FileNameConst.POPULATION + JSON_EXTENSION;
 
     private static final Map<String, Number>
             initPopulation = Initializer.initConsolidatedMap(POPULATION, populationPath);

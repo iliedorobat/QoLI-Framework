@@ -1,41 +1,33 @@
 package app.java.commons.dimesntions.materialLiving;
 
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.FetcherUtils;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonParams;
+import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class MaterialLivingParams {
-    private static final String[] END_MEET_DIFFICULTIES = {
-            "EM_GD",    // households making ends meet with great difficulty
-            "EM_D"      // households making ends meet with difficulty
-    };
-    private static final String[] QUINTILE_AGES = {
-            "TOTAL",
-            "Y_GE65",
-            "Y_LT65"
-    };
-
-    public static MultiValuedMap<String, String> getDwellingsOccupationParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+    private static MultiValuedMap<String, String> getDwellingsOccupationParams() {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.INC_GRP, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     private static MultiValuedMap<String, String> getHomeConditionsParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.HHTYP, "TOTAL");
+            put(ParamsConst.INC_GRP, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getDwellingIssuesParams() {
@@ -43,12 +35,22 @@ public class MaterialLivingParams {
     }
 
     public static MultiValuedMap<String, String> getEndMeetInabilityParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INC_GRP, "TOTAL");
-        FetcherUtils.addParams(params, ParamsConst.SUBJNMON, END_MEET_DIFFICULTIES);
-        params.put(ParamsConst.UNIT, "PC");
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsConst.HHTYP, "TOTAL");
+            put(ParamsConst.INC_GRP, "TOTAL");
+            put(ParamsConst.UNIT, "PC");
+        }};
+        FetcherUtils.addParams(params, ParamsConst.SUBJNMON, ParamsValues.SUBJNMON);
         return params;
+    }
+
+    public static MultiValuedMap<String, String> getEndMeetInabilityParams(String difficulty) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.HHTYP, "TOTAL");
+            put(ParamsConst.INC_GRP, "TOTAL");
+            put(ParamsConst.SUBJNMON, difficulty);
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getFinancialSatisfactionParams() {
@@ -59,20 +61,29 @@ public class MaterialLivingParams {
     }
 
     public static MultiValuedMap<String, String> getHighIncomeParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.INDIC_IL, "LI_GE130MD");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.INDIC_IL, "LI_GE130MD");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getIncomeQuintileParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        FetcherUtils.addParams(params, ParamsConst.AGE, QUINTILE_AGES);
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "RAT");
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "RAT");
+        }};
+        FetcherUtils.addParams(params, ParamsConst.AGE, ParamsValues.AGE);
         return params;
+    }
+
+    public static MultiValuedMap<String, String> getIncomeQuintileParams(String age) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, age);
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "RAT");
+        }};
     }
 
     public static MultiValuedMap<String, String> getLackOfBathsParams() {
@@ -80,28 +91,28 @@ public class MaterialLivingParams {
     }
 
     public static MultiValuedMap<String, String> getLowWorkIntensityParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_LT60");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC_Y_LT60");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_LT60");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC_Y_LT60");
+        }};
     }
 
     public static MultiValuedMap<String, String> getMaterialDeprivationParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getMedianIncome() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.INDIC_IL, "MED_E");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PPS");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.INDIC_IL, "MED_E");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PPS");
+        }};
     }
 
     public static MultiValuedMap<String, String> getOverOccupiedParams() {
@@ -109,24 +120,24 @@ public class MaterialLivingParams {
     }
 
     public static MultiValuedMap<String, String> getPovertyRiskParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.INDIC_IL, "LI_R_MD60");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.HHTYP, "TOTAL");
+            put(ParamsConst.INDIC_IL, "LI_R_MD60");
+        }};
     }
 
     public static MultiValuedMap<String, String> getPublicWaterParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.UNIT, "PC");
-        params.put(ParamsConst.WAT_PROC, "POP_PWS");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.UNIT, "PC");
+            put(ParamsConst.WAT_PROC, "POP_PWS");
+        }};
     }
 
     public static MultiValuedMap<String, String> getPpsParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.NA_ITEM, "B1GQ");
-        params.put(ParamsConst.UNIT, "PC_EU28_HAB_MEUR_CP");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.NA_ITEM, "B1GQ");
+            put(ParamsConst.UNIT, "PC_EU28_HAB_MEUR_CP");
+        }};
     }
 
     public static MultiValuedMap<String, String> getUnderOccupiedParams() {

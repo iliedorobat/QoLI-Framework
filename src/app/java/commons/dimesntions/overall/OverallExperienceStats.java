@@ -8,6 +8,7 @@ import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,10 +18,10 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class OverallExperienceStats {
-    // The list of queried values
-    private static final String[]
-            HAPPINESS_RATIO = {"Y_GE16", "TOTAL", "PC", "T"}, // TODO: check if the order matter
-            HIGH_SATISFACTION_RATIO = {"PC", "HIGH", "TOTAL", "LIFESAT", "T", "Y_GE16"};
+    // Queried params values
+    private static final MultiValuedMap<String, String>
+            HAPPINESS_RATIO = OverallExperienceParams.getHappinessParams(),
+            HIGH_SATISFACTION_RATIO = OverallExperienceParams.getHighSatisfactionParams();
 
     private static final String
             happinessRatioPath = FilePathConst.OVERALL_EXPERIENCE_PATH + FileNameConst.HAPPINESS_RATIO + JSON_EXTENSION,

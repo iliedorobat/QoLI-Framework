@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.util.*;
 
 public class LocalParser {
+    // TODO: documentation:
+
     public static Map<List<String>, Number> readJSONFile(String filePath) {
         Dataset build = getDataset(filePath);
         return build.asMap();
@@ -29,10 +31,11 @@ public class LocalParser {
         }
     }
 
-    public static Set<String> getDimensionsOrder(String filePath) {
+    public static ArrayList<String> getDimensionOrderedKeys(String filePath) {
         Dataset build = getDataset(filePath);
         Map<String, Dimension> dimension = build.getDimension();
-        return dimension.keySet();
+        Set<String> keys = dimension.keySet();
+        return new ArrayList<>(keys);
     }
 
     private static Dataset getDataset(String filePath) {

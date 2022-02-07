@@ -4,10 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,12 +20,12 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EnvironmentStats {
     // Queried params values
-    private static final String[]
-            NOISE_POLLUTION_RATIO = {"TOTAL", "TOTAL", "PC"},
-            PM2_5_POLLUTION_RATIO = {"PM2_5"},
-            PM10_POLLUTION_RATIO = {"PM10"},
-            POLLUTION_RATIO = {"TOTAL", "TOTAL", "PC"},
-            WATER_SUPPLY_RATIO = {"POP_PWS", "PC"};
+    private static final MultiValuedMap<String, String>
+            NOISE_POLLUTION_RATIO = EnvironmentParams.getNoisePollutionParams(),
+            PM2_5_POLLUTION_RATIO = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM2_5")),
+            PM10_POLLUTION_RATIO = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM10")),
+            POLLUTION_RATIO = EnvironmentParams.getPollutionParams(),
+            WATER_SUPPLY_RATIO = EnvironmentParams.getWaterSupplyParams();
 
     private static final String
             airPollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO + JSON_EXTENSION,

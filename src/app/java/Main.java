@@ -4,6 +4,8 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.ParamsConst;
+import app.java.commons.utils.FileUtils;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.dimesntions.education.EducationStats;
 import app.java.commons.dimesntions.environment.EnvironmentStats;
@@ -25,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
 //        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
 //        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
-        // DataCollector.collectData();
+//         DataCollector.collectData();
 
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
@@ -125,7 +127,7 @@ public class Main {
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
         System.out.println(entries);
 
-        Set<String> dimensions = LocalParser.getDimensionsOrder(filePath);
-        System.out.println(dimensions);
+        ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(filePath);
+        System.out.println(localKeys);
     }
 }

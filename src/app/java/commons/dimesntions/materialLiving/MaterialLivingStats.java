@@ -4,10 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,24 +20,24 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MaterialLivingStats {
     // Queried params values
-    private static final String[]
-            DWELLING_ISSUES_RATIO = {"TOTAL", "TOTAL", "PC", "T", "TOTAL"},
-            END_MEET_INABILITY_RATIO = {"PC", "EM_D", "TOTAL", "TOTAL"}, // with difficulty
-            END_MEET_INABILITY_GD_RATIO = {"PC", "EM_GD", "TOTAL", "TOTAL"}, // with great difficulty
-            FINANCIAL_SATISFACTION = {"PC", "HIGH", "TOTAL", "FINSAT", "T", "Y_GE16"},
-            HIGH_INCOME_RATIO = {"PC", "LI_GE130MD", "T", "TOTAL"},
-            INCOME_QUINTILE_RATIO = {"RAT", "TOTAL", "T"},
-            INCOME_QUINTILE_LESS_65_RATIO = {"RAT", "Y_LT65", "T"},
-            INCOME_QUINTILE_OVER_65_RATIO = {"RAT", "Y_GE65", "T"},
-            LACK_OF_BATHS_RATIO = {"PC", "TOTAL", "TOTAL", "T", "TOTAL"},
-            LOW_WORK_INTENSITY_RATIO = {"PC_Y_LT60", "Y_LT60", "T"},
-            MATERIAL_DEPRIVATION_RATIO = {"PC", "TOTAL", "T"},
-            MEDIAN_INCOME = {"TOTAL", "T", "MED_E", "PPS"},
-            OVER_OCCUPIED_RATIO = {"PC", "TOTAL", "TOTAL", "T"},
-            POVERTY_RISK_RATIO = {"LI_R_MD60", "TOTAL"},
-            PUBLIC_WATER_RATIO = {"POP_PWS", "PC"},
-            PPS_RATIO = {"PC_EU28_HAB_MEUR_CP", "B1GQ"}, // TODO: check the data
-            UNDER_OCCUPIED_RATIO = {"PC", "TOTAL", "T", "TOTAL"};
+    private static final MultiValuedMap<String, String>
+            DWELLING_ISSUES_RATIO = MaterialLivingParams.getDwellingIssuesParams(),
+            END_MEET_INABILITY_RATIO = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
+            END_MEET_INABILITY_GD_RATIO = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty")),
+            FINANCIAL_SATISFACTION = MaterialLivingParams.getFinancialSatisfactionParams(),
+            HIGH_INCOME_RATIO = MaterialLivingParams.getHighIncomeParams(),
+            INCOME_QUINTILE_RATIO = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("total")),
+            INCOME_QUINTILE_LESS_65_RATIO = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("lower_65")),
+            INCOME_QUINTILE_OVER_65_RATIO = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("over_65")),
+            LACK_OF_BATHS_RATIO = MaterialLivingParams.getLackOfBathsParams(),
+            LOW_WORK_INTENSITY_RATIO = MaterialLivingParams.getLowWorkIntensityParams(),
+            MATERIAL_DEPRIVATION_RATIO = MaterialLivingParams.getMaterialDeprivationParams(),
+            MEDIAN_INCOME = MaterialLivingParams.getMedianIncome(),
+            OVER_OCCUPIED_RATIO = MaterialLivingParams.getOverOccupiedParams(),
+            POVERTY_RISK_RATIO = MaterialLivingParams.getPovertyRiskParams(),
+            PUBLIC_WATER_RATIO = MaterialLivingParams.getPublicWaterParams(),
+            PPS_RATIO = MaterialLivingParams.getPpsParams(), // TODO: check the data
+            UNDER_OCCUPIED_RATIO = MaterialLivingParams.getUnderOccupiedParams();
 
     private static final String
             dwellingIssuesRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.DWELLING_ISSUES_RATIO + JSON_EXTENSION,
@@ -121,9 +123,6 @@ public class MaterialLivingStats {
                         * MathUtils.percentageSafetyDouble(reverseOverOccupiedRatio)
                         * MathUtils.percentageSafetyDouble(reversePovertyRiskRatio);
                 Number value = Math.log(product);
-                if (Double.isNaN((Double) value)) {
-                    System.err.println(code);
-                }
                 consolidatedList.put(key, value);
             }
         }

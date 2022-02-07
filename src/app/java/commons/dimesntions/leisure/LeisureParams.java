@@ -1,27 +1,28 @@
 package app.java.commons.dimesntions.leisure;
 
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.FetcherUtils;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonParams;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class LeisureParams {
     public static final String[] VOLUNTARY_ACTIVITIES = {
-            "AC41A",    // Formal voluntary activities
-            "AC42A"     // Informal voluntary activities
+            ParamsValues.ACL00_LEISURE.get("formal"),
+            ParamsValues.ACL00_LEISURE.get("informal")
     };
 
     public static MultiValuedMap<String, String> getSocialActivitiesParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.DEG_URB, "TOTAL");
-        params.put(ParamsConst.FREQUENCY, "GE1");
-        params.put(ParamsConst.HHTYP, "TOTAL");
-        params.put(ParamsConst.QUANTILE, "TOTAL");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.DEG_URB, "TOTAL");
+            put(ParamsConst.FREQUENCY, "GE1");
+            put(ParamsConst.HHTYP, "TOTAL");
+            put(ParamsConst.QUANTILE, "TOTAL");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getTimeSpentSatisfactionParams() {
@@ -32,6 +33,11 @@ public class LeisureParams {
     }
 
     public static MultiValuedMap<String, String> getVoluntaryActivitiesParams() {
+        return CommonParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES);
+    }
+
+    public static MultiValuedMap<String, String> getVoluntaryActivitiesParams(String activity) {
+        String[] VOLUNTARY_ACTIVITIES = { activity };
         return CommonParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES);
     }
 }

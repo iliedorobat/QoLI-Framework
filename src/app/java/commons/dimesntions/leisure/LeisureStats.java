@@ -4,24 +4,27 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class LeisureStats {
     // Queried params values
-    private static final String[]
-            FORMAL_VOLUNTARY_RATIO = {"TOTAL", "AC41A", "Y_GE16", "T", "PC"},
-            INFORMAL_VOLUNTARY_RATIO = {"TOTAL", "AC41A", "Y_GE16", "T", "PC"},
-            SATISFACTION_RATIO = {"PC", "HIGH", "TOTAL", "TIMESAT", "T", "Y_GE16"},
-            SOCIAL_ACTIVITIES_RATIO = {"GE1", "TOTAL", "TOTAL", "TOTAL", "PC"};
+    private static final MultiValuedMap<String, String>
+            FORMAL_VOLUNTARY_RATIO = LeisureParams.getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("formal")),
+            INFORMAL_VOLUNTARY_RATIO = LeisureParams.getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("informal")),
+            SATISFACTION_RATIO = LeisureParams.getTimeSpentSatisfactionParams(),
+            SOCIAL_ACTIVITIES_RATIO = LeisureParams.getSocialActivitiesParams();
 
     private static final String
             satisfactionRatioPath = FilePathConst.LEISURE_PATH + FileNameConst.TIME_SPENT_SATISFACTION + JSON_EXTENSION,

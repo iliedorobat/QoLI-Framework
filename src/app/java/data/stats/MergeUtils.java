@@ -5,6 +5,8 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.ParamsConst;
 import app.java.commons.utils.MapUtils;
 import app.java.data.LocalParser;
+import app.java.data.fetch.FetcherUtils;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.*;
 
@@ -34,38 +36,49 @@ public class MergeUtils {
      *  }
      * </pre>
      *
-     * @param globalParamsValues The global allowed query values (the allowed query values
+     * @param params The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
      * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
-    // TODO: globalParamsValues => Map
-    public static Map<String, Number> consolidateMap(String[] globalParamsValues, String filePath) {
+    public static Map<String, Number> consolidateMap(MultiValuedMap<String, String> params, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
-        Set<String> dim = LocalParser.getDimensionsOrder(filePath);
-        List<String> dimList = new ArrayList<>(dim);
-        int countryIndex = dimList.indexOf(ParamsConst.GEO);
-        int yearIndex = dimList.indexOf(ParamsConst.TIME);
+        ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(filePath);
+        int countryIndex = localKeys.indexOf(ParamsConst.GEO);
+        int yearIndex = localKeys.indexOf(ParamsConst.TIME);
 
         for (Map.Entry<List<String>, Number> entry : entries.entrySet()) {
-            // queryValues = the query values for parameters
+            // entryValues = the queried values for parameters
             // Example:
             //      parameters: [unit, sex, isced11, age, geo, time]
-            //      query values: [PC, T, ED5-8, Y15-64, UK, 2017]
-            List<String> queryValues = entry.getKey();
+            //      queryEntries: [PC, T, ED5-8, Y15-64, UK, 2017]
+            ArrayList<String> queryValues = new ArrayList<>(entry.getKey());
             Number value = entry.getValue();
 
             String country = queryValues.get(countryIndex);
             int year = Integer.parseInt(queryValues.get(yearIndex));
 
-            if (isValidQuery(globalParamsValues, queryValues)) {
+            if (isParamIncluded(params, queryValues)) {
                 consolidatedList.put(country + Constants.KEY_SEPARATOR + year, value);
             }
         }
 
         return consolidatedList;
+    }
+
+    // TODO: documentation: Check if the current iterated entry (queryValues) includes params values
+    private static boolean isParamIncluded(MultiValuedMap<String, String> params, ArrayList<String> queryValues) {
+        ArrayList<String> paramsKeys = FetcherUtils.getFilteredParamsKeys(params);
+
+        for (String paramKey : paramsKeys) {
+            String paramValue = params.get(paramKey).iterator().next();
+            if (!queryValues.contains(paramValue))
+                return false;
+        }
+
+        return true;
     }
 
     /**
@@ -92,22 +105,5 @@ public class MergeUtils {
         }
 
         return preparedMap;
-    }
-
-    /**
-     * Check if all the queried values are in the parameters list (the query is valid)
-     *
-     * @param params The list of query parameters
-     * @param queryValues The list of parsed keys
-     * @return The result of the validation of the query
-     */
-    private static boolean isValidQuery(String[] params, List<String> queryValues) {
-        for (String param : params) {
-            if (!queryValues.contains(param)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

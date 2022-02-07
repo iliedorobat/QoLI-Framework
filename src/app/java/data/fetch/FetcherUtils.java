@@ -2,27 +2,14 @@ package app.java.data.fetch;
 
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.Fetcher;
+import app.java.commons.utils.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FetcherUtils {
-    public static String getGeoParams() {
-        String output = "";
-
-        for (int i = 0; i < EU28_MEMBERS.length; i++) {
-            output += "geo=" + EU28_MEMBERS[i];
-
-            if (i < EU28_MEMBERS.length - 1) {
-                output += "&";
-            }
-        }
-
-        return output;
-    }
-
     /**
      * Add new parameters to the params list
      * @param params The parameters list
@@ -35,12 +22,28 @@ public class FetcherUtils {
         }
     }
 
+    // TODO: documentation:
+    public static void addParams(MultiValuedMap<String, String> params, String propertyName, HashMap<String, String> valuesMap) {
+        ArrayList<String> values = new ArrayList<>(valuesMap.values());
+        for (String value : values) {
+            params.put(propertyName, value);
+        }
+    }
+
+    // TODO: documentation: Filter the keys added by getMainHttpParams and return the list of unique keys
+    public static ArrayList<String> getFilteredParamsKeys(MultiValuedMap<String, String> params) {
+        ArrayList<String> paramsKeys = MapUtils.getUniqueKeys(params);
+        paramsKeys.remove(ParamsConst.LANG);
+        paramsKeys.remove(ParamsConst.GEO);
+        return paramsKeys;
+    }
+
     /**
      * Get the main parameters
      *
      * @return
      */
-    public static MultiValuedMap<String, String> getMainHttpParams() {
+    public static MultiValuedMap<String, String> getMainHttpParams(String[] countries) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
         params.put(ParamsConst.LANG, "en");
 
@@ -48,10 +51,17 @@ public class FetcherUtils {
             params.put(ParamsConst.GEO, "RO");
             params.put(ParamsConst.TIME, "2015");
         } else {
-            addParams(params, ParamsConst.GEO, EU28_MEMBERS);
+            addParams(params, ParamsConst.GEO, countries);
         }
 
         return params;
+    }
+
+    // TODO: documentation:
+    public static MultiValuedMap<String, String> consolidateHttpParams(MultiValuedMap<String, String> indicatorParams, String[] countries) {
+        MultiValuedMap<String, String> httpParams = getMainHttpParams(countries);
+        httpParams.putAll(indicatorParams);
+        return httpParams;
     }
 
     /**

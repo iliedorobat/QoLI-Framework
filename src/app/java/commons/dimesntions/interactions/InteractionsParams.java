@@ -1,31 +1,16 @@
 package app.java.commons.dimesntions.interactions;
 
 import app.java.commons.constants.ParamsConst;
-import app.java.data.fetch.FetcherUtils;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonParams;
+import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class InteractionsParams {
-    private static final String[] GROUPS = {
-            "FAM",      // Family and relatives
-            "FRD"       // Friends
-    };
-    private static final String[] RECREATIONAL_ACTIVITIES = {
-            "AC521",    // Cinema
-            "AC522A",   // Live performances (theatre, concerts, ballet)
-            "AC523H",   // Cultural sites (historical monuments, museums, art galleries or archaeological sites)
-            "AC525"     // Sports events
-    };
-    private static final String[] RECREATIONAL_REASONS = {
-            "FIN",      // Financial reasons
-            "NINT",     // No interest
-            "NNB",      // None in the neighbourhood
-            "OTH"       // Other
-    };
-
     public static MultiValuedMap<String, String> getAskingParams() {
         return CommonParams.getSupportiveParams();
     }
@@ -35,25 +20,49 @@ public class InteractionsParams {
     }
 
     public static MultiValuedMap<String, String> getGettingTogetherParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        FetcherUtils.addParams(params, ParamsConst.IND_TYPE, GROUPS);
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.FREQUENCY, "WEEK");
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQUENCY, "WEEK");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
+        FetcherUtils.addParams(params, ParamsConst.IND_TYPE, ParamsValues.IND_TYPE);
         return params;
     }
 
+    public static MultiValuedMap<String, String> getGettingTogetherParams(String type) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQUENCY, "WEEK");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.IND_TYPE, type);
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
+    }
+
     public static MultiValuedMap<String, String> getNonParticipationParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        FetcherUtils.addParams(params, ParamsConst.ACL_00, RECREATIONAL_ACTIVITIES);
-        FetcherUtils.addParams(params, ParamsConst.REASON, RECREATIONAL_REASONS);
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
+        FetcherUtils.addParams(params, ParamsConst.ACL_00, ParamsValues.ACL00_INTERACTIONS);
+        FetcherUtils.addParams(params, ParamsConst.REASON, ParamsValues.REASON);
         return params;
+    }
+
+    public static MultiValuedMap<String, String> getNonParticipationParams(String type, String reason) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.ACL_00, type);
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.REASON, reason);
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getRelationshipsSatisfactionParams() {

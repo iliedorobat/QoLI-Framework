@@ -5,6 +5,8 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
+
 public class SafetyCollector {
     public static void fetchData() {
         FileUtils.writeToJSONFile(getCrimeRatio(), FilePathConst.SAFETY_PATH, FileNameConst.CRIME_RATIO);
@@ -60,7 +62,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getOffences() {
-        return Fetcher.fetchData("crim_off_cat", SafetyParams.getOffencesParams());
+        return Fetcher.fetchData("crim_off_cat", SafetyParams.getOffencesParams(), EU28_MEMBERS_EXTENDED);
     }
 
     /**

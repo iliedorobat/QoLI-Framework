@@ -3,6 +3,7 @@ package app.java.data.stats;
 import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.utils.MapUtils;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -25,7 +26,9 @@ public class Initializer {
      * @param mapsList The list of maps
      * @return A new sorted map with no missing keys
      */
-    public static Map<String, Number> initConsolidatedMaps(ArrayList<Map<String, Number>> mapsList) {
+    public static Map<String, Number> initConsolidatedMaps(
+            ArrayList<Map<String, Number>> mapsList
+    ) {
         Map<String, Number> consolidatedList = MergeUtils.consolidateMaps(mapsList);
         return Initializer.initMap(consolidatedList, EU28_MEMBERS);
     }
@@ -36,14 +39,16 @@ public class Initializer {
      * <b>A LEVERAGE PERIOD OF TIME is an extended period of the analyzed period</b> (required
      * if in the analyzed period there are any data for a country code)<br/>
      *
-     * @param globalParamsValues The global allowed query values (the allowed query values
+     * @param params The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
      * @return A new sorted consolidated map with no missing keys
      */
-    public static Map<String, Number> initConsolidatedMap(String[] globalParamsValues, String filePath) {
-        Map<String, Number> consolidatedList = MergeUtils.consolidateMap(globalParamsValues, filePath);
-        return initMap(consolidatedList, EU28_MEMBERS);
+    public static Map<String, Number> initConsolidatedMap(
+            MultiValuedMap<String, String> params,
+            String filePath
+    ) {
+        return initConsolidatedMap(params, filePath, EU28_MEMBERS);
     }
 
     /**
@@ -54,18 +59,18 @@ public class Initializer {
      * <b>A LEVERAGE PERIOD OF TIME is an extended period of the analyzed period</b> (required
      * if in the analyzed period there are any data for a country code)<br/>
      *
-     * @param globalParamsValues The global allowed query values (the allowed query values
+     * @param params The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
      * @param countries The countries code list
      * @return A new sorted consolidated map with no missing keys
      */
     public static Map<String, Number> initConsolidatedMap(
-            String[] globalParamsValues,
+            MultiValuedMap<String, String> params,
             String filePath,
             String[] countries
     ) {
-        Map<String, Number> consolidatedList = MergeUtils.consolidateMap(globalParamsValues, filePath);
+        Map<String, Number> consolidatedList = MergeUtils.consolidateMap(params, filePath);
         return initMap(consolidatedList, countries);
     }
 
@@ -80,7 +85,10 @@ public class Initializer {
      * @param countries The list of countries code
      * @return A new sorted map with no missing keys
      */
-    public static Map<String, Number> initMap(Map<String, Number> originalMap, String[] countries) {
+    public static Map<String, Number> initMap(
+            Map<String, Number> originalMap,
+            String[] countries
+    ) {
         Map<String, Number> initMap = new TreeMap<>(new MapOrder());
 
         for (String code : countries) {

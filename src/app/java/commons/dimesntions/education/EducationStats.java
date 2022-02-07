@@ -9,6 +9,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,17 +20,16 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EducationStats {
     // Queried params values
-    private static final String[]
-            DIGITAL_SKILLS = {"I_DSK_BAB", "IND_TOTAL", "PC_IND"},
-            DROPOUT_RATIO = {"T", "POP", "Y18-24", "PC"},
-            EARLY_EDUCATION_RATIO = {"T", "PC"},
-            INACTIVE_YOUNG_RATIO = {"T", "Y18-24", "NO_FE_NO_NFE", "NEMP", "PC"},
-            NO_KNOWN_FOREIGN_LANG_RATIO = {"0", "PC", "Y25-64"},
-            STUDENTS_RATIO = {"PC", "T", "ED5-8", "Y15-64"},
-            TRAINING_RATIO = {"PC", "TOTAL", "T", "Y25-64"},
-
-            PUPILS_RATIO_2012 = {"ST1_1"},
-            PUPILS_RATIO_2013 = {"RT", "ED1-3"};
+    private static final MultiValuedMap<String, String>
+            DIGITAL_SKILLS = EducationParams.getDigitalSkillsParams(),
+            DROPOUT_RATIO = EducationParams.getDropoutParams(),
+            EARLY_EDUCATION_RATIO = EducationParams.getEarlyEducationParams(),
+            INACTIVE_YOUNG_RATIO = EducationParams.getInactiveYoungParams(),
+            NO_KNOWN_FOREIGN_LANG_RATIO = EducationParams.getNoKnownForeignLangParams(),
+            PUPILS_RATIO_2012 = EducationParams.getPupilsParams2012(),
+            PUPILS_RATIO_2013 = EducationParams.getPupilsParams2013(),
+            STUDENTS_RATIO = EducationParams.getEducationParams(),
+            TRAINING_RATIO = EducationParams.getTrainingParams();
 
     private static final String
             digitalSkillsRatioPath = FilePathConst.EDUCATION_PATH + FileNameConst.DIGITAL_SKILLS_RATIO + JSON_EXTENSION,

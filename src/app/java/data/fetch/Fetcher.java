@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+
 public class Fetcher {
     private static final String ENCODING_SCHEME = "UTF-8";
     private static final String URI_PROTOCOL_NAME = "http";
@@ -34,7 +36,14 @@ public class Fetcher {
     private static final String URI_LANGUAGE = "en";
     private static final String URI_SEPARATOR = "/";
 
-    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> params) {
+    // TODO: documentation:
+    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams) {
+        return fetchData(dataset, inputParams, EU28_MEMBERS);
+    }
+
+    // TODO: documentation:
+    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams, String[] countries) {
+        MultiValuedMap<String, String> params = FetcherUtils.consolidateHttpParams(inputParams, countries);
         StringBuilder result = new StringBuilder();
         URI uri = buildURI(dataset, params);
 

@@ -1,6 +1,7 @@
 package app.java.commons.dimesntions.safety;
 
 import app.java.commons.MapOrder;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.commons.constants.EnvConst;
@@ -8,6 +9,7 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,21 +21,21 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class SafetyStats {
     // Queried params values
-    private static final String[]
-            CRIME_RATIO = {"TOTAL", "TOTAL", "PC"},
-            NON_PAYMENT_RATIO = {"TOTAL", "TOTAL", "PC"},
-            PENSION_PPS = {"TOTAL", "TOTAL", "PPS_HAB"},
-            SOCIAL_PROTECTION_PPS = {"SPBENEFNOREROUTE", "PPS_HAB"},
-            UNEXPECTED_RATIO = {"TOTAL", "TOTAL", "PC"},
+    private static final MultiValuedMap<String, String>
+            CRIME_RATIO = SafetyParams.getCrimeParams(),
+            NON_PAYMENT_RATIO = SafetyParams.getNonPaymentParams(),
+            PENSION_PPS = SafetyParams.getPensionPpsParams(),
+            SOCIAL_PROTECTION_PPS = SafetyParams.getSocialProtectionPpsParams(),
+            UNEXPECTED_RATIO = SafetyParams.getUnexpectedParams(),
 
             //UK = UKC-L + UKM + UKN (England and Wales + Scotland + Northern Ireland)
-            OFFENCES_ASSAULT = {"ICCS02011", "NR"},
-            OFFENCES_BURGLARY = {"ICCS0501", "NR"},
-            OFFENCES_KIDNAPPING = {"ICCS020221", "NR"},
-            OFFENCES_ROBBERY = {"ICCS0401", "NR"},
-            OFFENCES_SEXUAL = {"ICCS0301", "NR"},
-            OFFENCES_THEFT = {"ICCS0502", "NR"},
-            OFFENCES_UNLAWFUL = {"ICCS0601", "NR"};
+            OFFENCES_ASSAULT = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("assault")),
+            OFFENCES_BURGLARY = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("burglary")),
+            OFFENCES_KIDNAPPING = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("kidnapping")),
+            OFFENCES_ROBBERY = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("robbery")),
+            OFFENCES_SEXUAL = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("sexualViolence")),
+            OFFENCES_THEFT = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("theft")),
+            OFFENCES_UNLAWFUL = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("narcotics"));
 
     private static final String
             crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + JSON_EXTENSION,

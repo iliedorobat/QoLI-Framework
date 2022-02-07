@@ -4,10 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,24 +20,23 @@ import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthStats {
     // Queried params values
-    private static final String[]
-            ALCOHOLIC_RATIO = {"PC", "DAY", "T", "TOTAL", "NAT"},
-            BODY_MASS_INDEX_OVERWEIGHT = {"PC", "BMI_GE25", "TOTAL", "T", "TOTAL"},
-            BODY_MASS_INDEX_OBESE = {"PC", "BMI_GE30", "TOTAL", "T", "TOTAL"},
-            FRUITS_VEGETABLES_RATIO = {"PC", "GE5", "TOTAL", "T", "TOTAL"},
-            // FIXME: P_HTHAB = doctors
-            HEALTH_PERSONNEL = {"P_HTHAB", "OC221"},
-            HEALTHY_LIFE_RATIO = {"PC", "TOTAL", "Y_GE16", "T", "VG_G"},
-            HEALTHY_LIFE_YEARS_FEMALE = {"F", "HLY_0"},
-            HEALTHY_LIFE_YEARS_MALE = {"M", "HLY_0"},
-            HOSPITAL_BEDS = {"P_HTHAB", "HBEDT"},
-            LIFE_EXPECTANCY = {"YR", "T", "Y_LT1"},
-            LONG_HEALTH_ISSUE_RATIO = {"PC", "TOTAL", "Y_GE16", "T"},
-            PHYSICAL_ACTIVITIES = {"PC", "MV_AERO_MSC", "TOTAL", "T", "TOTAL"},
-            SMOKERS_RATIO = {"PC", "TOTAL", "TOTAL", "T", "TOTAL"},
-            UNMET_DENTAL_RATIO = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
-            UNMET_MEDICAL_RATIO = {"PC", "TOTAL", "TOOEFW", "Y_GE16", "T"},
-            WORK_ACCIDENTS = {"NR", "TOTAL", "D_GE4"};
+    private static final MultiValuedMap<String, String>
+            ALCOHOLIC_RATIO = HealthParams.getAlcoholicParams(),
+            BODY_MASS_INDEX_OVERWEIGHT = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("overweight")),
+            BODY_MASS_INDEX_OBESE = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("obese")),
+            FRUITS_VEGETABLES_RATIO = HealthParams.getFVParams(),
+            HEALTH_PERSONNEL = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")), // FIXME: Get data not only for doctors
+            HEALTHY_LIFE_RATIO = HealthParams.getHealthyLifeParams(),
+            HEALTHY_LIFE_YEARS_FEMALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("female")),
+            HEALTHY_LIFE_YEARS_MALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("male")),
+            HOSPITAL_BEDS = HealthParams.getHospitalBedsParams(),
+            LIFE_EXPECTANCY = HealthParams.getLifeExpectancyParams(),
+            LONG_HEALTH_ISSUE_RATIO = HealthParams.getLongHealthIssueParams(),
+            PHYSICAL_ACTIVITIES = HealthParams.getPhysicalActivitiesParams(),
+            SMOKERS_RATIO = HealthParams.getSmokersParams(),
+            UNMET_DENTAL_RATIO = HealthParams.getUnmetDentalParams(),
+            UNMET_MEDICAL_RATIO = HealthParams.getUnmetMedicalParams(),
+            WORK_ACCIDENTS = HealthParams.getWorkAccidentsParams();
 
     private static final String
             alcoholicRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.ALCOHOLIC_RATIO + JSON_EXTENSION,

@@ -4,6 +4,7 @@ import app.java.commons.Errors;
 import app.java.commons.constants.ParamsConst;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
@@ -41,12 +42,13 @@ public class CommonParams {
         try {
             Errors.throwNewError(ACTIVITIES_TYPES, activities, "type of people activities");
 
-            MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
+            MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+                put(ParamsConst.AGE, "Y_GE16");
+                put(ParamsConst.ISCED_11, "TOTAL");
+                put(ParamsConst.SEX, "T");
+                put(ParamsConst.UNIT, "PC");
+            }};
             FetcherUtils.addParams(params, ParamsConst.ACL_00, activities);
-            params.put(ParamsConst.AGE, "Y_GE16");
-            params.put(ParamsConst.ISCED_11, "TOTAL");
-            params.put(ParamsConst.SEX, "T");
-            params.put(ParamsConst.UNIT, "PC");
             return params;
         } catch (Exception e) {
             return null;
@@ -54,11 +56,11 @@ public class CommonParams {
     }
 
     public static MultiValuedMap<String, String> getPopulationParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "NR");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "NR");
+        }};
     }
 
     /**
@@ -82,22 +84,22 @@ public class CommonParams {
      * @return
      */
     public static MultiValuedMap<String, String> getSatisfactionParams(String satisfactionLevel, String wellBeing) {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.INDIC_WB, wellBeing);
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.LEV_SATIS, satisfactionLevel);
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.INDIC_WB, wellBeing);
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.LEV_SATIS, satisfactionLevel);
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 
     public static MultiValuedMap<String, String> getSupportiveParams() {
-        MultiValuedMap<String, String> params = FetcherUtils.getMainHttpParams();
-        params.put(ParamsConst.AGE, "Y_GE16");
-        params.put(ParamsConst.ISCED_11, "TOTAL");
-        params.put(ParamsConst.SEX, "T");
-        params.put(ParamsConst.UNIT, "PC");
-        return params;
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.ISCED_11, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
+        }};
     }
 }

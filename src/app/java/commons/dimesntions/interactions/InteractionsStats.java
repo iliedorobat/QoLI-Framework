@@ -4,10 +4,12 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.ParamsValues;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
+import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,22 +19,22 @@ import static app.java.commons.constants.Constants.*;
 
 public class InteractionsStats {
     // Queried params values
-    private static final String[]
-            ASKING_RATIO = {"TOTAL", "Y_GE16", "T", "PC"},
-            DISCUSSION_RATIO = {"TOTAL", "Y_GE16", "T", "PC"},
-            GETTING_TOGETHER_FAM_RATIO = {"WEEK", "FAM", "TOTAL", "Y_GE16", "T", "PC"},
-            GETTING_TOGETHER_FRD_RATIO = {"WEEK", "FRD", "TOTAL", "Y_GE16", "T", "PC"},
-            SATISFACTION_RATIO = {"PC", "HIGH", "TOTAL", "RELSAT", "T", "Y_GE16"},
+    private static final MultiValuedMap<String, String>
+            ASKING_RATIO = InteractionsParams.getAskingParams(),
+            DISCUSSION_RATIO = InteractionsParams.getDiscussionParams(),
+            GETTING_TOGETHER_FAM_RATIO = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
+            GETTING_TOGETHER_FRD_RATIO = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
+            SATISFACTION_RATIO = InteractionsParams.getRelationshipsSatisfactionParams(),
 
-            NP_FIN_CIN_RATIO = {"FIN", "AC521", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_FIN_CULT_RATIO = {"FIN", "AC523H", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_FIN_LIVE_RATIO = {"FIN", "AC522A", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_FIN_SPORT_RATIO = {"FIN", "AC525", "TOTAL", "Y_GE16", "T", "PC"},
+            NP_FIN_CIN_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("cinema"), ParamsValues.REASON.get("financial")),
+            NP_FIN_CULT_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("culture"), ParamsValues.REASON.get("financial")),
+            NP_FIN_LIVE_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("live"), ParamsValues.REASON.get("financial")),
+            NP_FIN_SPORT_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("sports"), ParamsValues.REASON.get("financial")),
 
-            NP_NNB_CIN_RATIO = {"NNB", "AC521", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_NNB_CULT_RATIO = {"NNB", "AC523H", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_NNB_LIVE_RATIO = {"NNB", "AC522A", "TOTAL", "Y_GE16", "T", "PC"},
-            NP_NNB_SPORT_RATIO = {"NNB", "AC525", "TOTAL", "Y_GE16", "T", "PC"};
+            NP_NNB_CIN_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("cinema"), ParamsValues.REASON.get("away")),
+            NP_NNB_CULT_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("culture"), ParamsValues.REASON.get("away")),
+            NP_NNB_LIVE_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("live"), ParamsValues.REASON.get("away")),
+            NP_NNB_SPORT_RATIO = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("sports"), ParamsValues.REASON.get("away"));
 
     private static final String
             askingRatioPath = FilePathConst.INTERACTIONS_PATH + FileNameConst.ASKING_RATIO + JSON_EXTENSION,
