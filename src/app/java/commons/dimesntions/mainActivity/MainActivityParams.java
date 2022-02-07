@@ -30,13 +30,21 @@ public class MainActivityParams {
 
     public static MultiValuedMap<String, String> getAvgWorkHoursParams2007() {
         return new HashSetValuedHashMap<>() {{
-            put("nace_r1", "TOTAL");
+            put(ParamsConst.NACE_R1, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "HR");
+            put(ParamsConst.WORK_TIME, "TOTAL");
+            put(ParamsConst.WORKING_STATUS, "EMP");
         }};
     }
 
     public static MultiValuedMap<String, String> getAvgWorkHoursParams2008() {
         return new HashSetValuedHashMap<>() {{
-            put("nace_r2", "TOTAL");
+            put(ParamsConst.NACE_R2, "TOTAL");
+            put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "HR");
+            put(ParamsConst.WORK_TIME, "TOTAL");
+            put(ParamsConst.WORKING_STATUS, "EMP");
         }};
     }
 
@@ -85,8 +93,7 @@ public class MainActivityParams {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.UNIT, "PC");
             put(ParamsConst.AGE, "TOTAL");
-            // TODO: check the SIZECLAS param
-//            put(ParamsConst.SIZECLAS, "GE10");
+            put(ParamsConst.SIZECLAS, "GE10");
         }};
     }
 
