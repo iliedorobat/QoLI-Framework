@@ -31,8 +31,8 @@ public class HealthStats {
             HEALTHY_LIFE_YEARS_MALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("male")),
             HOSPITAL_BEDS = HealthParams.getHospitalBedsParams(),
             LIFE_EXPECTANCY = HealthParams.getLifeExpectancyParams(),
-            LONG_HEALTH_ISSUE_RATIO = HealthParams.getLongHealthIssueParams(),
-            PHYSICAL_ACTIVITIES = HealthParams.getPhysicalActivitiesParams(),
+            LONG_HEALTH_ISSUE_RATIO = HealthParams.getLongHealthIssuesParams(),
+            PHYSICAL_ACTIVITIES_RATIO = HealthParams.getPhysicalActivitiesParams(),
             SMOKERS_RATIO = HealthParams.getSmokersParams(),
             UNMET_DENTAL_RATIO = HealthParams.getUnmetDentalParams(),
             UNMET_MEDICAL_RATIO = HealthParams.getUnmetMedicalParams(),
@@ -47,8 +47,8 @@ public class HealthStats {
             healthyLifeYearsPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_YEARS + JSON_EXTENSION,
             hospitalBedsPath = FilePathConst.HEALTH_PATH + FileNameConst.HOSPITAL_BEDS + JSON_EXTENSION,
             lifeExpectancyPath = FilePathConst.HEALTH_PATH + FileNameConst.LIFE_EXPECTANCY + JSON_EXTENSION,
-            longHealthIssueRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUE_RATIO + JSON_EXTENSION,
-            physicalActivitiesPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES + JSON_EXTENSION,
+            longHealthIssuesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUES_RATIO + JSON_EXTENSION,
+            physicalActivitiesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES_RATIO + JSON_EXTENSION,
             smokersRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO + JSON_EXTENSION,
             unmetDentalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO + JSON_EXTENSION,
             unmetMedicalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO + JSON_EXTENSION,
@@ -65,8 +65,8 @@ public class HealthStats {
             initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
             initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS, hospitalBedsPath),
             initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY, lifeExpectancyPath),
-            initLongHealthIssueRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssueRatioPath),
-            initPhysicalActivities = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES, physicalActivitiesPath),
+            initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssuesRatioPath),
+            initPhysicalActivitiesRatio = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatioPath),
             initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO, smokersRatioPath),
             initUnmetDentalRatio = Initializer.initConsolidatedMap(UNMET_DENTAL_RATIO, unmetDentalRatioPath),
             initUnmetMedicalRatio = Initializer.initConsolidatedMap(UNMET_MEDICAL_RATIO, unmetMedicalRatioPath),
@@ -85,8 +85,8 @@ public class HealthStats {
                 healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
                 hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
                 lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
-                longHealthIssueRatio = Preparation.prepareData(initLongHealthIssueRatio),
-                physicalActivities = Preparation.prepareData(initPhysicalActivities), // FIXME: no data
+                longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
+                physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio), // FIXME: no data
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
                 unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
@@ -98,7 +98,7 @@ public class HealthStats {
 
                 double
                         reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
-                        reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssueRatio, key),
+                        reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssuesRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
                         reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalRatio, key),
@@ -131,7 +131,7 @@ public class HealthStats {
     }
 
     public static ArrayList<Map<String, Number>> getInitList() {
-        //TODO: initAlcoholicRatio, initBodyMassIndexOverweight and initPhysicalActivities are not used
+        //TODO: initAlcoholicRatio, initBodyMassIndexOverweight and initPhysicalActivitiesRatio are not used
         return new ArrayList<>() {{
             add(Preparation.filterMap(initBmiObeseRatio));
             add(Preparation.filterMap(initFruitsVegetablesRatio));
@@ -141,7 +141,7 @@ public class HealthStats {
             add(Preparation.filterMap(initHealthyLifeYearsMale));
             add(Preparation.filterMap(initHospitalBeds));
             add(Preparation.filterMap(initLifeExpectancy));
-            add(Preparation.filterMap(initLongHealthIssueRatio));
+            add(Preparation.filterMap(initLongHealthIssuesRatio));
             add(Preparation.filterMap(initSmokersRatio));
             add(Preparation.filterMap(initUnmetDentalRatio));
             add(Preparation.filterMap(initUnmetMedicalRatio));

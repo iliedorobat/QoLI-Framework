@@ -19,11 +19,11 @@ public class FileNameConst {
     public static final String AIR_POLLUTION_RATIO = "airPollutionRatio";
     public static final String NOISE_POLLUTION_RATIO = "noisePollutionRatio";
     public static final String POLLUTION_RATIO = "pollutionRatio";
-    public static final String WATER_SUPPLY_RATIO = "waterSupplyRatio";
+    public static final String WATER_SUPPLY_RATIO = "waterSupplyRatio"; // same with PUBLIC_WATER_RATIO
 
     // Government and Basic Rights
-    public static final String ACTIVE_CITIZENSHIP = "activeCitizenship";
-    public static final String EMPLOYMENT = "employment";
+    public static final String CITIZENSHIP_RATIO = "citizenshipRatio";
+    public static final String EMPLOYMENT_RATIO_BY_SEX = "employmentRatioBySex";
     public static final String GENDER_PAY_GAP = "genderPayGap";
     public static final String POPULATION_TRUST = "populationTrustRatio";
     public static final String VOTER_TURNOUT = "voterTurnout";
@@ -37,8 +37,8 @@ public class FileNameConst {
     public static final String HEALTHY_LIFE_YEARS = "healthyLifeYears";
     public static final String HOSPITAL_BEDS = "hospitalBeds";
     public static final String LIFE_EXPECTANCY = "lifeExpectancy";
-    public static final String LONG_HEALTH_ISSUE_RATIO = "longHealthIssueRatio";
-    public static final String PHYSICAL_ACTIVITIES = "physicalActivities";
+    public static final String LONG_HEALTH_ISSUES_RATIO = "longHealthIssuesRatio";
+    public static final String PHYSICAL_ACTIVITIES_RATIO = "physicalActivitiesRatio";
     public static final String SMOKERS_RATIO = "smokersRatio";
     public static final String UNMET_MEDICAL_RATIO = "unmetMedicalStatus";
     public static final String UNMET_DENTAL_RATIO = "unmetDentalStatus";
@@ -56,15 +56,14 @@ public class FileNameConst {
     public static final String HIGH_INCOME_RATIO = "highIncomeRatio";
     public static final String INCOME_QUINTILE_RATIO = "incomeQuintileRatio";
     public static final String LACK_OF_BATHS_RATIO = "lackOfBathsRatio";
+    public static final String LOW_WORK_INTENSITY_RATIO = "lowWorkIntensityRatio";
     public static final String MATERIAL_DEPRIVATION_RATIO = "materialDeprivationRatio";
     public static final String MEDIAN_INCOME = "medianIncome";
     public static final String OVER_OCCUPIED_RATIO = "overOccupiedRatio";
-    //TODO: check for the difference between PUBLIC_WATER_RATIO and WATER_SUPPLY_RATIO
-    public static final String PUBLIC_WATER_RATIO = "publicWaterRatio";
+    public static final String PUBLIC_WATER_RATIO = "publicWaterRatio"; // same with WATER_SUPPLY_RATIO
     public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
     public static final String PPS_RATIO = "purchasingRatio";
     public static final String UNDER_OCCUPIED_RATIO = "underOccupiedRatio";
-    public static final String WORK_INTENSITY_RATIO = "workIntensityRatio";
 
     // Productive or Main Activity
     public static final String ACTIVE_POPULATION_RATIO = "activePopulationRatio";

@@ -122,8 +122,7 @@ public class HealthParams {
         }};
     }
 
-    // TODO: issue => issues
-    public static MultiValuedMap<String, String> getLongHealthIssueParams() {
+    public static MultiValuedMap<String, String> getLongHealthIssuesParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
             put(ParamsConst.QUANTILE, "TOTAL");

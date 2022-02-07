@@ -11,12 +11,12 @@ public class HealthCollector {
         FileUtils.writeToJSONFile(getBodyMassIndexRatio(), FilePathConst.HEALTH_PATH, FileNameConst.BODY_MASS_INDEX);
         FileUtils.writeToJSONFile(getFVRatio(), FilePathConst.HEALTH_PATH, FileNameConst.FRUITS_VEGETABLES_RATIO);
         FileUtils.writeToJSONFile(getLifeExpectancy(), FilePathConst.HEALTH_PATH, FileNameConst.LIFE_EXPECTANCY);
-        FileUtils.writeToJSONFile(getLongHealthIssueRatio(), FilePathConst.HEALTH_PATH, FileNameConst.LONG_HEALTH_ISSUE_RATIO);
+        FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), FilePathConst.HEALTH_PATH, FileNameConst.LONG_HEALTH_ISSUES_RATIO);
         FileUtils.writeToJSONFile(getHealthPersonnelRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTH_PERSONNEL);
         FileUtils.writeToJSONFile(getHealthyLifeRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTHY_LIFE_RATIO);
         FileUtils.writeToJSONFile(getHealthyLifeYears(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTHY_LIFE_YEARS);
         FileUtils.writeToJSONFile(getHospitalBedsRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HOSPITAL_BEDS);
-        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), FilePathConst.HEALTH_PATH, FileNameConst.PHYSICAL_ACTIVITIES);
+        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), FilePathConst.HEALTH_PATH, FileNameConst.PHYSICAL_ACTIVITIES_RATIO);
         FileUtils.writeToJSONFile(getSmokersRatio(), FilePathConst.HEALTH_PATH, FileNameConst.SMOKERS_RATIO);
         FileUtils.writeToJSONFile(getUnmetDentalRatio(), FilePathConst.HEALTH_PATH, FileNameConst.UNMET_DENTAL_RATIO);
         FileUtils.writeToJSONFile(getUnmetMedicalRatio(), FilePathConst.HEALTH_PATH, FileNameConst.UNMET_MEDICAL_RATIO);
@@ -160,8 +160,8 @@ public class HealthCollector {
      *
      * @return
      */
-    private static StringBuilder getLongHealthIssueRatio() {
-        return Fetcher.fetchData("hlth_silc_11", HealthParams.getLongHealthIssueParams());
+    private static StringBuilder getLongHealthIssuesRatio() {
+        return Fetcher.fetchData("hlth_silc_11", HealthParams.getLongHealthIssuesParams());
     }
 
     /**

@@ -24,7 +24,7 @@ import static app.java.commons.constants.Constants.*;
 public class GovRightsStats {
     // Queried params values
     private static final MultiValuedMap<String, String>
-            ACTIVE_CITIZENSHIP = GovRightsParams.getActiveCitizenshipParams(),
+            ACTIVE_CITIZENSHIP_RATIO = GovRightsParams.getCitizenshipParams(),
             EMPLOYMENT_FEMALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("female")),
             EMPLOYMENT_MALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("male")),
             GENDER_PAY_GAP = GovRightsParams.getGenderPayGapParams(),
@@ -34,8 +34,8 @@ public class GovRightsStats {
             POPULATION_OTHERS_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others")); // TODO:
 
     private static final String
-            activeCitizenshipPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.ACTIVE_CITIZENSHIP + JSON_EXTENSION,
-            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT + JSON_EXTENSION,
+            citizenshipRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.CITIZENSHIP_RATIO + JSON_EXTENSION,
+            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT_RATIO_BY_SEX + JSON_EXTENSION,
             genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + JSON_EXTENSION,
             populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + JSON_EXTENSION,
             voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + CSV_EXTENSION;
@@ -52,14 +52,14 @@ public class GovRightsStats {
     }};
 
     private static final Map<String, Number>
-            initActiveCitizenship = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP, activeCitizenshipPath),
+            initCitizenshipRatio = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP_RATIO, citizenshipRatioPath),
             initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP, genderPayGapPath),
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                activeCitizenship = Preparation.prepareData(initActiveCitizenship),
+                citizenship = Preparation.prepareData(initCitizenshipRatio),
                 employmentGenderGap = consolidateEmploymentGenderGap(),
                 genderPayGap = Preparation.prepareData(initGenderPayGap),
                 populationTrust = consolidatePopulationTrust(),
@@ -75,7 +75,7 @@ public class GovRightsStats {
                 double trust = populationTrust.get(key).doubleValue() * 10;
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(activeCitizenship, key)
+                        * MathUtils.percentageSafetyDouble(citizenship, key)
                         * MathUtils.percentageSafetyDouble(employmentGap)
                         * MathUtils.percentageSafetyDouble(genderGap)
                         * MathUtils.percentageSafetyDouble(trust)
@@ -94,7 +94,7 @@ public class GovRightsStats {
 
     public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
-            add(Preparation.filterMap(initActiveCitizenship));
+            add(Preparation.filterMap(initCitizenshipRatio));
             add(Preparation.filterMap(initEmploymentFemaleRatio));
             add(Preparation.filterMap(initEmploymentMaleRatio));
             add(Preparation.filterMap(initGenderPayGap));

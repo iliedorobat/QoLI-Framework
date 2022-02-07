@@ -8,7 +8,7 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class GovRightsParams {
-    public static MultiValuedMap<String, String> getActiveCitizenshipParams() {
+    public static MultiValuedMap<String, String> getCitizenshipParams() {
         String[] activities = {
                 ParamsValues.ACL00_LEISURE.get("citizenship")
         };

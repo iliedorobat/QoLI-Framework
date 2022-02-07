@@ -12,8 +12,8 @@ import org.apache.commons.collections4.MultiValuedMap;
  */
 public class GovRightsCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getActiveCitizenship(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.ACTIVE_CITIZENSHIP);
-        FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.EMPLOYMENT);
+        FileUtils.writeToJSONFile(getCitizenshipRatio(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.CITIZENSHIP_RATIO);
+        FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.EMPLOYMENT_RATIO_BY_SEX);
         FileUtils.writeToJSONFile(getGenderPayGap(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.GENDER_PAY_GAP);
         FileUtils.writeToJSONFile(getPopulationTrust(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.POPULATION_TRUST);
     }
@@ -32,8 +32,8 @@ public class GovRightsCollector {
      *
      * @return
      */
-    private static StringBuilder getActiveCitizenship() {
-        MultiValuedMap<String, String> params = GovRightsParams.getActiveCitizenshipParams();
+    private static StringBuilder getCitizenshipRatio() {
+        MultiValuedMap<String, String> params = GovRightsParams.getCitizenshipParams();
         return Fetcher.fetchData("ilc_scp19", params);
     }
 
