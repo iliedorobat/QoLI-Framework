@@ -142,4 +142,7 @@ public class Constants {
             "EU_SOUTHERN",
             "EU_WESTERN"
     };
+
+    public static final String SERIES_TYPE_COUNTRY = "country";
+    public static final String SERIES_TYPE_REGION = "region";
 }

@@ -1,14 +1,12 @@
 package app.java.commons.utils;
 
+import app.java.commons.MapOrder;
+import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static app.java.commons.constants.Constants.CSV_SEPARATOR;
-import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.*;
 
 public class StatsUtils {
     private static final int ROUNDING_PLACES = 2;
@@ -127,5 +125,52 @@ public class StatsUtils {
         }
 
         return deviation;
+    }
+
+    public static Map<String, Number> aggregateRegions(Map<String, Number> entries) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            double easternCounter = 0,
+                    northernCounter = 0,
+                    southernCounter = 0,
+                    westernCounter = 0;
+            double easternSum = 0,
+                    northernSum = 0,
+                    southernSum = 0,
+                    westernSum = 0;
+
+            for (Map.Entry<String, Number> entry : entries.entrySet()) {
+                String entryCode = MapUtils.getEntryCode(entry);
+                Integer entryYear = MapUtils.getEntryYear(entry);
+                Number entryValue = entry.getValue();
+
+                if (entryYear == year) {
+                    if (Arrays.asList(Constants.EU_EASTERN_MEMBERS).contains(entryCode)) {
+                        easternSum += entryValue.doubleValue();
+                        easternCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_NORTHERN_MEMBERS).contains(entryCode)) {
+                        northernSum += entryValue.doubleValue();
+                        northernCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_SOUTHERN_MEMBERS).contains(entryCode)) {
+                        southernSum += entryValue.doubleValue();
+                        southernCounter++;
+                    }
+                    if (Arrays.asList(Constants.EU_WESTERN_MEMBERS).contains(entryCode)) {
+                        westernSum += entryValue.doubleValue();
+                        westernCounter++;
+                    }
+                }
+            }
+
+            consolidatedList.put(MapUtils.generateKey("EU_EASTERN", year), easternSum / easternCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_NORTHERN", year), northernSum / northernCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_SOUTHERN", year), southernSum / southernCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_WESTERN", year), westernSum / westernCounter);
+        }
+
+       return consolidatedList;
     }
 }

@@ -6,6 +6,8 @@ import app.java.commons.constants.FilePathConst;
 import java.io.*;
 import java.util.Map;
 
+import static app.java.commons.constants.Constants.SERIES_TYPE_REGION;
+
 public class FileUtils {
     /**
      * Read the data from disk
@@ -90,10 +92,30 @@ public class FileUtils {
      * Export the prepared chart data to a CSV file
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
+     * @param seriesType The type of series ("country" or "region")
      * @param dimensionName The name of the target dimension
      */
-    public static void writeChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
+    public static void writeChartData(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName
+    ) {
         StringBuilder sb = StatsUtils.generateChartData(entries, membersList, dimensionName);
-        writeToFile(sb, FilePathConst.OUTPUT_PATH, dimensionName, Constants.CSV_EXTENSION);
+        String seriesDirectory = getSeriesDirectory(seriesType);
+        String fullPath = FilePathConst.OUTPUT_PATH + seriesDirectory + "/";
+        writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);
+    }
+
+    /**
+     * Get the directory name of the input series type
+     * @param seriesType The series type
+     * @return The directory name of the input series type
+     */
+    private static String getSeriesDirectory(String seriesType) {
+        if (seriesType.equals(SERIES_TYPE_REGION)) {
+            return "regions";
+        }
+        return "countries";
     }
 }

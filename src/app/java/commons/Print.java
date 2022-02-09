@@ -1,8 +1,6 @@
 package app.java.commons;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.StatsUtils;
 import app.java.commons.dimesntions.common.CommonStats;
 import app.java.commons.dimesntions.education.EducationStats;
 import app.java.commons.dimesntions.environment.EnvironmentStats;
@@ -14,6 +12,8 @@ import app.java.commons.dimesntions.mainActivity.MainActivityStats;
 import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
 import app.java.commons.dimesntions.overall.OverallExperienceStats;
 import app.java.commons.dimesntions.safety.SafetyStats;
+import app.java.commons.utils.MapUtils;
+import app.java.commons.utils.StatsUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -23,7 +23,12 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Print {
-    public static void printChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
+    public static void printChartData(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName
+    ) {
         StringBuilder output = StatsUtils.generateChartData(entries, membersList, dimensionName);
         System.out.println(output);
     }
@@ -83,7 +88,7 @@ public class Print {
         }
     }
 
-    private static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimension) {
+    private static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimensionName) {
         int expected = 0;
         int available = 0;
 
@@ -96,7 +101,7 @@ public class Print {
             }
         }
 
-        System.out.println(dimension + ":"
+        System.out.println(dimensionName + ":"
                 + "\n\tAvailable: " + available
                 + "\n\tExpected: " + expected);
     }
