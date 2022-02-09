@@ -135,4 +135,11 @@ public class Constants {
             "UKM",  // Scotland
             "UKN"   // Northern Ireland (UK)
     };
+
+    public static final String[] EU28_REGIONS = {
+            "EU_EASTERN",
+            "EU_NORTHERN",
+            "EU_SOUTHERN",
+            "EU_WESTERN"
+    };
 }

@@ -31,7 +31,7 @@ public class GovRightsStats {
             POPULATION_LEGTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
             POPULATION_PLCTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
             POPULATION_PLTTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
-            POPULATION_OTHERS_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others")); // TODO:
+            POPULATION_OTHERS_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
 
     private static final String
             citizenshipRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.CITIZENSHIP_RATIO + JSON_EXTENSION,
@@ -45,6 +45,7 @@ public class GovRightsStats {
             initEmploymentFemaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_FEMALE_RATIO, employmentRatioPath),
             initEmploymentMaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_MALE_RATIO, employmentRatioPath),
             initPopulationLegtstTrust = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST, populationTrustPath),
+            initPopulationOthersTrust = Initializer.initConsolidatedMap(POPULATION_OTHERS_TRUST, populationTrustPath),
             initPopulationPlctstTrust = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST, populationTrustPath),
             initPopulationPlttstTrust = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST, populationTrustPath);
     private static final ArrayList<Map<String, Number>> voterTurnoutList = new ArrayList<>() {{
@@ -69,10 +70,11 @@ public class GovRightsStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double employmentGap = - employmentGenderGap.get(key).doubleValue();
-                double genderGap = - genderPayGap.get(key).doubleValue();
-                // Transform the 1-10 notes into 1-100 notes
-                double trust = populationTrust.get(key).doubleValue() * 10;
+                double
+                        employmentGap = - employmentGenderGap.get(key).doubleValue(),
+                        genderGap = - genderPayGap.get(key).doubleValue(),
+                        // Transform the 1-10 notes into 1-100 notes
+                        trust = populationTrust.get(key).doubleValue() * 10;
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(citizenship, key)
@@ -80,6 +82,7 @@ public class GovRightsStats {
                         * MathUtils.percentageSafetyDouble(genderGap)
                         * MathUtils.percentageSafetyDouble(trust)
                         * MathUtils.percentageSafetyDouble(voterTurnout, key);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -99,6 +102,7 @@ public class GovRightsStats {
             add(Preparation.filterMap(initEmploymentMaleRatio));
             add(Preparation.filterMap(initGenderPayGap));
             add(Preparation.filterMap(initPopulationLegtstTrust));
+            add(Preparation.filterMap(initPopulationOthersTrust));
             add(Preparation.filterMap(initPopulationPlctstTrust));
             add(Preparation.filterMap(initPopulationPlttstTrust));
             add(Preparation.filterMap(initVoterTurnout));
@@ -192,6 +196,7 @@ public class GovRightsStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
         Map<String, Number>
             populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrust),
+            populationOthersTrustRatio = Preparation.prepareData(initPopulationOthersTrust),
             populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
             populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust);
 
@@ -201,10 +206,11 @@ public class GovRightsStats {
 
                 // Get the EU average if it is missing from the country's dataset
                 double valueLegtst = populationLegtstTrustRatio.get(key).doubleValue();
+                double valueOthers = populationOthersTrustRatio.get(key).doubleValue();
                 double valuePlctst = populationPlctstTrustRatio.get(key).doubleValue();
                 double valuePlttst = populationPlttstTrustRatio.get(key).doubleValue();
 
-                Number value = (valueLegtst + valuePlctst + valuePlttst) / 3;
+                Number value = (valueLegtst + valueOthers + valuePlctst + valuePlttst) / 4;
                 preparedMap.put(key, value);
             }
         }

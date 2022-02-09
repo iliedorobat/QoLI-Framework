@@ -6,7 +6,7 @@ import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
 public class CommonCollector {
-    public static void dataCollector() {
+    public static void fetchData() {
         FileUtils.writeToJSONFile(getPopulation(), FilePathConst.DATASET_PATH, FileNameConst.POPULATION);
     }
 

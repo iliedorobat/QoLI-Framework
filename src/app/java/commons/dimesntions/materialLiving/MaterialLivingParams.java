@@ -126,20 +126,6 @@ public class MaterialLivingParams {
         }};
     }
 
-    public static MultiValuedMap<String, String> getPublicWaterParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.UNIT, "PC");
-            put(ParamsConst.WAT_PROC, "POP_PWS");
-        }};
-    }
-
-    public static MultiValuedMap<String, String> getPpsParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.NA_ITEM, "B1GQ");
-            put(ParamsConst.UNIT, "PC_EU28_HAB_MEUR_CP");
-        }};
-    }
-
     public static MultiValuedMap<String, String> getUnderOccupiedParams() {
         return getDwellingsOccupationParams();
     }

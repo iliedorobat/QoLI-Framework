@@ -34,18 +34,18 @@ public class ParamsValues {
 
     public static HashMap<String, String> ICCS = new HashMap<>() {{
         put("assault", "ICCS02011");            // Assault
-//        put("attemptedHomicide", "ICCS0102");   // Attempted intentional homicide
+        put("attemptedHomicide", "ICCS0102");   // Attempted intentional homicide
         put("burglary", "ICCS0501");            // Burglary
-//        put("burglaryPrivate", "ICCS05012");    // Burglary of private residential premises
-//        put("homicide", "ICCS0101");            // Intentional homicide
+        put("burglaryPrivate", "ICCS05012");    // Burglary of private residential premises
+        put("homicide", "ICCS0101");            // Intentional homicide
         put("kidnapping", "ICCS020221");        // Kidnapping
         put("narcotics", "ICCS0601");           // Unlawful acts involving controlled drugs or precursors
-//        put("rape", "ICCS03011");               // Rape
+        put("rape", "ICCS03011");               // Rape
         put("robbery", "ICCS0401");             // Robbery
+        put("sexualAssault", "ICCS03012");         // Sexual assault
         put("sexualViolence", "ICCS0301");      // Sexual violence
-//        put("sexualRape", "ICCS03012");         // Sexual assault
         put("theft", "ICCS0502");               // Theft
-//        put("theftVehicle", "ICCS050211");      // Theft of a motorized land vehicle
+        put("theftVehicle", "ICCS050211");      // Theft of a motorized land vehicle
     }};
 
     public static HashMap<String, String> IND_TYPE = new HashMap<>() {{

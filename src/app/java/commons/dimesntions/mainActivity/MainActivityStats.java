@@ -6,8 +6,8 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
-import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Initializer;
+import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
@@ -24,7 +24,6 @@ public class MainActivityStats {
 
     // Queried params values
     private static final MultiValuedMap<String, String>
-            ACTIVE_POPULATION_RATIO = MainActivityParams.getActivePopulationParams(),
             AVG_WORK_HOURS_2007 = MainActivityParams.getAvgWorkHoursParams2007(),
             AVG_WORK_HOURS_2008 = MainActivityParams.getAvgWorkHoursParams2008(),
             EMPLOYMENT_RATIO = MainActivityParams.getEmploymentParams(),
@@ -40,7 +39,6 @@ public class MainActivityStats {
             WORKING_NIGHTS_RATIO = MainActivityParams.getWorkingNightsParams();
 
     private static final String
-            activePopulationRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.ACTIVE_POPULATION_RATIO + JSON_EXTENSION,
             avgWorkHours2007Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2007 + JSON_EXTENSION,
             avgWorkHours2008Path = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.AVG_WORK_HOURS_2008 + JSON_EXTENSION,
             employmentRatioPath = FilePathConst.MAIN_ACTIVITY_PATH + FileNameConst.EMPLOYMENT_RATIO + JSON_EXTENSION,
@@ -66,7 +64,6 @@ public class MainActivityStats {
     }
 
     private static final Map<String, Number>
-            initActivePopulationRatio = Initializer.initConsolidatedMap(ACTIVE_POPULATION_RATIO, activePopulationRatioPath),
             initAvgWorkHoursList = Initializer.initConsolidatedMaps(avgWorkHoursList),
             initEmploymentRatio = Initializer.initConsolidatedMap(EMPLOYMENT_RATIO, employmentRatioPath),
             initInactivePopulationRatio = Initializer.initConsolidatedMap(INACTIVE_POPULATION_RATIO, inactivePopulationRatioPath),
@@ -83,7 +80,6 @@ public class MainActivityStats {
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                activePopulationRatio = Preparation.prepareData(initActivePopulationRatio), // FIXME: not used
                 avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
                 employmentRatio = Preparation.prepareData(initEmploymentRatio),
                 inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
@@ -91,7 +87,7 @@ public class MainActivityStats {
                 jobSatisfaction = Preparation.prepareData(initJobSatisfaction),
                 longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
                 lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
-                overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: no data
+                overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: NaN
                 researchersRatio = Preparation.preparePerTenThousandInhabitants(initResearchers),
                 temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
                 unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
@@ -123,6 +119,7 @@ public class MainActivityStats {
                         * MathUtils.percentageSafetyDouble(reversedTemporaryEmploymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedWorkingNightsRatio);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -135,7 +132,6 @@ public class MainActivityStats {
     }
 
     public static ArrayList<Map<String, Number>> getInitList() {
-        //TODO: initActivePopulation and initOverQualifiedRatio are not used
         return new ArrayList<>() {{
             add(Preparation.filterMap(initAvgWorkHoursList));
             add(Preparation.filterMap(initEmploymentRatio));
@@ -144,7 +140,7 @@ public class MainActivityStats {
             add(Preparation.filterMap(initJobSatisfaction));
             add(Preparation.filterMap(initLongTermUnemploymentRatio));
             add(Preparation.filterMap(initLowWageEarningsRatio));
-            add(Preparation.filterMap(initOverQualifiedRatio));
+//            add(Preparation.filterMap(initOverQualifiedRatio));
             add(Preparation.filterMap(initResearchers));
             add(Preparation.filterMap(initTemporaryEmploymentRatio));
             add(Preparation.filterMap(initUnemploymentRatio));

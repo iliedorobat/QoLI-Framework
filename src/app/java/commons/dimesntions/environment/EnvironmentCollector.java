@@ -21,9 +21,8 @@ public class EnvironmentCollector {
      * Dataset: sdg_11_50<br/>
      * Years: 2000-2019<br/><br/>
      *
+     * <b>Lack of data: MT</b><br/><br/>
      * <b>GREATER IS WORSE!</b>
-     *
-     * @deprecated no dataset: MT
      * @return
      */
     private static StringBuilder getAirPollutionRatio() {
@@ -68,11 +67,10 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: env_wat_pop<br/>
-     * Years: 2000-2013<br/><br/>
+     * Years: 1990; 1995; 2000-2019<br/><br/>
      *
-     * Comment: NUTS 2 regions => env_watpop_r2
-     *
-     * @deprecated no dataset: IT; LV; SI; UK
+     * Comment: NUTS 2 regions => env_watpop_r2<br/>
+     * <b>Lack of data: IT; LV; SI; UK</b>
      * @return
      */
     private static StringBuilder getWaterSupplyRatio() {

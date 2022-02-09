@@ -11,7 +11,6 @@ import static app.java.commons.constants.Constants.CSV_SEPARATOR;
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class StatsUtils {
-    private static final int EU28_MEMBERS_LENGTH = EU28_MEMBERS.length;
     private static final int ROUNDING_PLACES = 2;
 
     /**
@@ -64,33 +63,36 @@ public class StatsUtils {
     /**
      * Generate CSV data that can be imported into Word charts
      * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
      * @param dimensionName The name of the target dimension
      * @return Data prepared for use in Word charts
      */
-    public static StringBuilder generateChartData(Map<String, Number> entries, String dimensionName) {
+    public static StringBuilder generateChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
         String header = "--- " + dimensionName + " ---" +
                 "\nYears" + CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
+        int length = membersList.length;
 
-        for (int i = 0; i < EU28_MEMBERS_LENGTH; i++) {
-            String code = EU28_MEMBERS[i];
+        for (int i = 0; i < length; i++) {
+            String code = membersList[i];
             output.append(code);
 
-            if (i < EU28_MEMBERS_LENGTH - 1)
+            if (i < length - 1)
                 output.append(CSV_SEPARATOR);
         }
         output.append("\n");
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             StringBuilder line = new StringBuilder(year + CSV_SEPARATOR);
-            for (int i = 0; i < EU28_MEMBERS_LENGTH; i++) {
-                String code = EU28_MEMBERS[i];
+
+            for (int i = 0; i < length; i++) {
+                String code = membersList[i];
                 String key = code + "_" + year;
                 Number value = entries.get(key);
 
                 line.append(value);
 
-                if (i < EU28_MEMBERS_LENGTH - 1)
+                if (i < length - 1)
                     line.append(CSV_SEPARATOR);
             }
             output.append(line).append("\n");

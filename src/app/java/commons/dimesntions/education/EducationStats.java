@@ -6,8 +6,8 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
-import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Initializer;
+import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
@@ -92,6 +92,7 @@ public class EducationStats {
                         * MathUtils.percentageSafetyDouble(reversedDropoutRatio)
                         * MathUtils.percentageSafetyDouble(reversedInactiveYoungRatio)
                         * MathUtils.percentageSafetyDouble(reversedNoKnownForeignLangRatio);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }

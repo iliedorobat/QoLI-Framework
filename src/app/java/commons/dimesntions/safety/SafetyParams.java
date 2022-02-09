@@ -1,13 +1,10 @@
 package app.java.commons.dimesntions.safety;
 
-import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.ParamsConst;
 import app.java.commons.constants.ParamsValues;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
-
-import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
 
 public class SafetyParams {
     public static MultiValuedMap<String, String> getCrimeParams() {

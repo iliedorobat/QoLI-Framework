@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.KEY_SEPARATOR;
 
 public class Preparation {
     /**
@@ -124,28 +125,39 @@ public class Preparation {
             Map<String, Number> preparedMap,
             String code
     ) {
-        double euAverage = calculateEuAverage(mainMap);
-
         for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
             String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
+            Double euAverage = calculateEuAverage(mainMap, year);
             addKeyValue(preparedMap, key, value, euAverage);
         }
+
+        // E.g.: Health => alcoholic ratio
+        fillRightNullValues(preparedMap, code);
+        fillLeftNullValues(preparedMap, code);
     }
 
     // TODO: documentation
     // Calculate the average of EU
-    private static double calculateEuAverage(Map<String, Number> mainMap) {
+    public static Double calculateEuAverage(Map<String, Number> mainMap, int year) {
         int count = 0;
         double sum = 0;
 
         for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
-            Number value = entry.getValue();
-            if (value != null) {
-                sum += value.doubleValue();
+            Number entryValue = entry.getValue();
+            String entryKey = entry.getKey();
+            String entryYear = entryKey != null
+                    ? entryKey.split(KEY_SEPARATOR)[1]
+                    : null;
+
+            if (entryValue != null && Integer.parseInt(entryYear) == year) {
+                sum += entryValue.doubleValue();
                 count ++;
             }
         }
+
+        if (count == 0)
+            return null;
 
         return sum / count;
     }

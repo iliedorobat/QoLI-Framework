@@ -44,21 +44,28 @@ public class EnvironmentStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
                 noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
-                pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),  // FIXME: no data
-                pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),  // FIXME: no data
+                pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),
+                pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),
                 pollutionRatio = Preparation.prepareData(initPollutionRatio),
-                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio); // FIXME: no data
+                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedNoisePollutionRatio = MathUtils.percentageReverseRatio(noisePollutionRatio, key);
-                double reversedPollutionRatio = MathUtils.percentageReverseRatio(pollutionRatio, key);
+                double
+                        reversedNoisePollutionRatio = MathUtils.percentageReverseRatio(noisePollutionRatio, key),
+                        reversedPm2_5PollutionRatio = MathUtils.percentageReverseRatio(pm2_5PollutionRatio, key),
+                        reversedPm10PollutionRatio = MathUtils.percentageReverseRatio(pm10PollutionRatio, key),
+                        reversedPollutionRatio = MathUtils.percentageReverseRatio(pollutionRatio, key);
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(reversedNoisePollutionRatio)
-                        * MathUtils.percentageSafetyDouble(reversedPollutionRatio);
+                        * MathUtils.percentageSafetyDouble(reversedPm2_5PollutionRatio)
+                        * MathUtils.percentageSafetyDouble(reversedPm10PollutionRatio)
+                        * MathUtils.percentageSafetyDouble(reversedPollutionRatio)
+                        * MathUtils.percentageSafetyDouble(waterSupplyRatio, key);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -71,10 +78,12 @@ public class EnvironmentStats {
     }
 
     public static ArrayList<Map<String, Number>> getInitList() {
-        //TODO: initAirPollutionRatio and initWaterSupplyRatio are not used
         return new ArrayList<>() {{
             add(Preparation.filterMap(initNoisePollutionRatio));
+            add(Preparation.filterMap(initPm2_5PollutionRatio));
+            add(Preparation.filterMap(initPm10PollutionRatio));
             add(Preparation.filterMap(initPollutionRatio));
+            add(Preparation.filterMap(initWaterSupplyRatio));
         }};
     }
 }

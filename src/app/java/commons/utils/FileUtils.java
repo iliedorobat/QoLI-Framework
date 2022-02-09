@@ -89,10 +89,11 @@ public class FileUtils {
     /**
      * Export the prepared chart data to a CSV file
      * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
      * @param dimensionName The name of the target dimension
      */
-    public static void writeChartData(Map<String, Number> entries, String dimensionName) {
-        StringBuilder sb = StatsUtils.generateChartData(entries, dimensionName);
+    public static void writeChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
+        StringBuilder sb = StatsUtils.generateChartData(entries, membersList, dimensionName);
         writeToFile(sb, FilePathConst.OUTPUT_PATH, dimensionName, Constants.CSV_EXTENSION);
     }
 }

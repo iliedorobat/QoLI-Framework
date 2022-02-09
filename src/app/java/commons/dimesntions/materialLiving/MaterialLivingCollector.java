@@ -19,8 +19,6 @@ public class MaterialLivingCollector {
         FileUtils.writeToJSONFile(getMedianIncome(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.MEDIAN_INCOME);
         FileUtils.writeToJSONFile(getOverOccupiedRatio(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.OVER_OCCUPIED_RATIO);
         FileUtils.writeToJSONFile(getPovertyRiskRatio(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.POVERTY_RISK_RATIO);
-        FileUtils.writeToJSONFile(getPublicWaterRatio(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.PUBLIC_WATER_RATIO);
-        FileUtils.writeToJSONFile(getPpsRatio(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.PPS_RATIO);
         FileUtils.writeToJSONFile(getUnderOccupiedRatio(), FilePathConst.MATERIAL_LIVING_PATH, FileNameConst.UNDER_OCCUPIED_RATIO);
     }
 
@@ -163,7 +161,7 @@ public class MaterialLivingCollector {
      *
      * Comments: NUTS 2 regions => nama_10r_2hhinc
      *
-     * @deprecated deprecated in favour of getPurchasingRatio
+     * @deprecated deprecated in favour of getHighIncomeRatio
      * @return
      */
     private static StringBuilder getMedianIncome() {
@@ -202,37 +200,6 @@ public class MaterialLivingCollector {
      */
     private static StringBuilder getPovertyRiskRatio() {
         return Fetcher.fetchData("ilc_li03", MaterialLivingParams.getPovertyRiskParams());
-    }
-
-    /**
-     * Population connected to public water supply<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: env_wat_pop<br/>
-     * Years: 1990; 1995; 2000-2019
-     *
-     * @deprecated no dataset: IT; LV; SI; UK
-     * @return
-     */
-    private static StringBuilder getPublicWaterRatio() {
-        return Fetcher.fetchData("env_wat_pop", MaterialLivingParams.getPublicWaterParams());
-    }
-
-    /**
-     * Purchasing Power Standard (PPS)<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percent of the EU28 countries (%)<br/>
-     * Dataset: nama_10_pc<br/>
-     * Years: 1975-2021
-     *
-     * Comments: NUTS 2 regions => nama_10r_2gdp
-     *
-     * @return
-     */
-    private static StringBuilder getPpsRatio() {
-        return Fetcher.fetchData("nama_10_pc", MaterialLivingParams.getPpsParams());
     }
 
     /**

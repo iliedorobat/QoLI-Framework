@@ -4,9 +4,7 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.ParamsConst;
-import app.java.commons.utils.FileUtils;
-import app.java.commons.utils.MapUtils;
+import app.java.commons.dimesntions.QoLIStats;
 import app.java.commons.dimesntions.education.EducationStats;
 import app.java.commons.dimesntions.environment.EnvironmentStats;
 import app.java.commons.dimesntions.gov.GovRightsStats;
@@ -15,64 +13,91 @@ import app.java.commons.dimesntions.interactions.InteractionsStats;
 import app.java.commons.dimesntions.leisure.LeisureStats;
 import app.java.commons.dimesntions.mainActivity.MainActivityStats;
 import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
-import app.java.commons.dimesntions.QoLIStats;
-import app.java.data.LocalParser;
 import app.java.commons.dimesntions.overall.OverallExperienceStats;
 import app.java.commons.dimesntions.safety.SafetyStats;
+import app.java.commons.utils.FileUtils;
+import app.java.commons.utils.MapUtils;
+import app.java.data.LocalParser;
 import app.java.data.fetch.DataCollector;
 
 import java.util.*;
 
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_REGIONS;
+
 public class Main {
     public static void main(String[] args) {
-//        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
-//        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
-//         DataCollector.collectData();
+        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
+        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
+         DataCollector.collectData();
 
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
 
-       // 4. Get QoLI and the QoLI dimensions statistics
-       Map<String, Number>
-               qoliList = QoLIStats.generateIndicatorList(),
-               educationStats = EducationStats.generateDimensionList(),
-               environmentStats = EnvironmentStats.generateDimensionList(),
-               govRightsStats = GovRightsStats.generateDimensionList(),
-               healthStats = HealthStats.generateDimensionList(),
-               interactionsStats = InteractionsStats.generateDimensionList(),
-               leisureStats = LeisureStats.generateDimensionList(),
-               mainActivityStats = MainActivityStats.generateDimensionList(),
-               materialLivingStats = MaterialLivingStats.generateDimensionList(),
-               overallExperienceStats = OverallExperienceStats.generateDimensionList(),
-               safetyStats = SafetyStats.generateDimensionList();
+        // 4. Write the QoLI and the QoLI dimensions values to disk
+        writeChartData();
 
-//        // 4. Write the QoLI and the QoLI dimensions values to disk
-//        FileUtils.writeChartData(qoliList, "QoLI");
-//        FileUtils.writeChartData(educationStats, "Education");
-//        FileUtils.writeChartData(environmentStats, "Environment");
-//        FileUtils.writeChartData(govRightsStats, "GBR");
-//        FileUtils.writeChartData(healthStats, "Health");
-//        FileUtils.writeChartData(interactionsStats, "Interactions");
-//        FileUtils.writeChartData(leisureStats, "Leisure");
-//        FileUtils.writeChartData(mainActivityStats, "PMA");
-//        FileUtils.writeChartData(materialLivingStats, "MLC");
-//        FileUtils.writeChartData(overallExperienceStats, "Overall Exp");
-//        FileUtils.writeChartData(safetyStats, "Safety");
+        // 5. Print the QoLI and the QoLI dimensions values
+        printCountries();
 
-//        // 5. Print the QoLI and the QoLI dimensions values
-//        Print.printChartData(qoliList, "QoLI");
-//        Print.printChartData(educationStats, "Education");
-//        Print.printChartData(environmentStats, "Environment");
-//        Print.printChartData(govRightsStats, "GBR");
-//        Print.printChartData(healthStats, "Health");
-//        Print.printChartData(interactionsStats, "Interactions");
-//        Print.printChartData(leisureStats, "Leisure");
-//        Print.printChartData(mainActivityStats, "PMA");
-//        Print.printChartData(materialLivingStats, "MLC");
-//        Print.printChartData(overallExperienceStats, "Overall Exp");
-//        Print.printChartData(safetyStats, "Safety");
-//
-//        printRegions(qoliList);
+        Map<String, Number> qoliList = QoLIStats.generateIndicatorList();
+        printRegions(qoliList);
+    }
+
+    private static void writeChartData() {
+        Map<String, Number>
+                qoliList = QoLIStats.generateIndicatorList(),
+                educationStats = EducationStats.generateDimensionList(),
+                environmentStats = EnvironmentStats.generateDimensionList(),
+                govRightsStats = GovRightsStats.generateDimensionList(),
+                healthStats = HealthStats.generateDimensionList(),
+                interactionsStats = InteractionsStats.generateDimensionList(),
+                leisureStats = LeisureStats.generateDimensionList(),
+                mainActivityStats = MainActivityStats.generateDimensionList(),
+                materialLivingStats = MaterialLivingStats.generateDimensionList(),
+                overallExperienceStats = OverallExperienceStats.generateDimensionList(),
+                safetyStats = SafetyStats.generateDimensionList();
+
+        FileUtils.writeChartData(qoliList, EU28_MEMBERS, "QoLI");
+        FileUtils.writeChartData(educationStats, EU28_MEMBERS, "Education");
+        FileUtils.writeChartData(environmentStats, EU28_MEMBERS, "Environment");
+        FileUtils.writeChartData(govRightsStats, EU28_MEMBERS, "GBR");
+        FileUtils.writeChartData(healthStats, EU28_MEMBERS, "Health");
+        FileUtils.writeChartData(interactionsStats, EU28_MEMBERS, "Interactions");
+        FileUtils.writeChartData(leisureStats, EU28_MEMBERS, "Leisure");
+        FileUtils.writeChartData(mainActivityStats, EU28_MEMBERS, "PMA");
+        FileUtils.writeChartData(materialLivingStats, EU28_MEMBERS, "MLC");
+        FileUtils.writeChartData(overallExperienceStats, EU28_MEMBERS, "Overall Exp");
+        FileUtils.writeChartData(safetyStats, EU28_MEMBERS, "Safety");
+    }
+
+    private static void printCountries() {
+        System.out.println("----------- COUNTRIES DATA -----------\n");
+        Map<String, Number>
+                qoliList = QoLIStats.generateIndicatorList(),
+                educationStats = EducationStats.generateDimensionList(),
+                environmentStats = EnvironmentStats.generateDimensionList(),
+                govRightsStats = GovRightsStats.generateDimensionList(),
+                healthStats = HealthStats.generateDimensionList(),
+                interactionsStats = InteractionsStats.generateDimensionList(),
+                leisureStats = LeisureStats.generateDimensionList(),
+                mainActivityStats = MainActivityStats.generateDimensionList(),
+                materialLivingStats = MaterialLivingStats.generateDimensionList(),
+                overallExperienceStats = OverallExperienceStats.generateDimensionList(),
+                safetyStats = SafetyStats.generateDimensionList();
+
+        Print.printChartData(qoliList, EU28_MEMBERS, "QoLI");
+        Print.printChartData(educationStats, EU28_MEMBERS, "Education");
+        Print.printChartData(environmentStats, EU28_MEMBERS, "Environment");
+        Print.printChartData(govRightsStats, EU28_MEMBERS, "GBR");
+        Print.printChartData(healthStats, EU28_MEMBERS, "Health");
+        Print.printChartData(interactionsStats, EU28_MEMBERS, "Interactions");
+        Print.printChartData(leisureStats, EU28_MEMBERS, "Leisure");
+        Print.printChartData(mainActivityStats, EU28_MEMBERS, "PMA");
+        Print.printChartData(materialLivingStats, EU28_MEMBERS, "MLC");
+        Print.printChartData(overallExperienceStats, EU28_MEMBERS, "Overall Exp");
+        Print.printChartData(safetyStats, EU28_MEMBERS, "Safety");
+        System.out.println("\n--------------------------------------");
     }
 
     private static void printRegions(Map<String, Number> entries) {
@@ -94,32 +119,32 @@ public class Main {
                 Number entryValue = entry.getValue();
 
                 if (entryYear == year) {
-                    if (Arrays.asList(Constants.EU_EASTERN_MEMBERS).indexOf(entryCode) != -1) {
+                    if (Arrays.asList(Constants.EU_EASTERN_MEMBERS).contains(entryCode)) {
                         easternSum += entryValue.doubleValue();
                         easternCounter++;
                     }
-                    if (Arrays.asList(Constants.EU_NORTHERN_MEMBERS).indexOf(entryCode) != -1) {
+                    if (Arrays.asList(Constants.EU_NORTHERN_MEMBERS).contains(entryCode)) {
                         northernSum += entryValue.doubleValue();
                         northernCounter++;
                     }
-                    if (Arrays.asList(Constants.EU_SOUTHERN_MEMBERS).indexOf(entryCode) != -1) {
+                    if (Arrays.asList(Constants.EU_SOUTHERN_MEMBERS).contains(entryCode)) {
                         southernSum += entryValue.doubleValue();
                         southernCounter++;
                     }
-                    if (Arrays.asList(Constants.EU_WESTERN_MEMBERS).indexOf(entryCode) != -1) {
+                    if (Arrays.asList(Constants.EU_WESTERN_MEMBERS).contains(entryCode)) {
                         westernSum += entryValue.doubleValue();
                         westernCounter++;
                     }
                 }
             }
 
-            consolidatedList.put(MapUtils.generateKey("EASTERN", year), easternSum / easternCounter);
-            consolidatedList.put(MapUtils.generateKey("NORTHERN", year), northernSum / northernCounter);
-            consolidatedList.put(MapUtils.generateKey("SOUTHERN", year), southernSum / southernCounter);
-            consolidatedList.put(MapUtils.generateKey("WESTERN", year), westernSum / westernCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_EASTERN", year), easternSum / easternCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_NORTHERN", year), northernSum / northernCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_SOUTHERN", year), southernSum / southernCounter);
+            consolidatedList.put(MapUtils.generateKey("EU_WESTERN", year), westernSum / westernCounter);
         }
 
-        Print.printChartData(consolidatedList, "regions");
+        Print.printChartData(consolidatedList, EU28_REGIONS, "regions");
     }
 
     // For testing

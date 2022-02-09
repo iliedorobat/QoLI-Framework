@@ -19,7 +19,7 @@ public class FileNameConst {
     public static final String AIR_POLLUTION_RATIO = "airPollutionRatio";
     public static final String NOISE_POLLUTION_RATIO = "noisePollutionRatio";
     public static final String POLLUTION_RATIO = "pollutionRatio";
-    public static final String WATER_SUPPLY_RATIO = "waterSupplyRatio"; // same with PUBLIC_WATER_RATIO
+    public static final String WATER_SUPPLY_RATIO = "waterSupplyRatio";
 
     // Government and Basic Rights
     public static final String CITIZENSHIP_RATIO = "citizenshipRatio";
@@ -60,13 +60,10 @@ public class FileNameConst {
     public static final String MATERIAL_DEPRIVATION_RATIO = "materialDeprivationRatio";
     public static final String MEDIAN_INCOME = "medianIncome";
     public static final String OVER_OCCUPIED_RATIO = "overOccupiedRatio";
-    public static final String PUBLIC_WATER_RATIO = "publicWaterRatio"; // same with WATER_SUPPLY_RATIO
     public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
-    public static final String PPS_RATIO = "purchasingRatio";
     public static final String UNDER_OCCUPIED_RATIO = "underOccupiedRatio";
 
     // Productive or Main Activity
-    public static final String ACTIVE_POPULATION_RATIO = "activePopulationRatio";
     public static final String AVG_WORK_HOURS_2007 = "avgWorkHours2007";
     public static final String AVG_WORK_HOURS_2008 = "avgWorkHours2008";
     public static final String EMPLOYMENT_RATIO = "employmentRatio";

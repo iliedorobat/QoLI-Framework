@@ -25,13 +25,17 @@ public class HealthStats {
             BODY_MASS_INDEX_OVERWEIGHT = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("overweight")),
             BODY_MASS_INDEX_OBESE = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("obese")),
             FRUITS_VEGETABLES_RATIO = HealthParams.getFVParams(),
-            HEALTH_PERSONNEL = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")), // FIXME: Get data not only for doctors
             HEALTHY_LIFE_RATIO = HealthParams.getHealthyLifeParams(),
             HEALTHY_LIFE_YEARS_FEMALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("female")),
             HEALTHY_LIFE_YEARS_MALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("male")),
             HOSPITAL_BEDS = HealthParams.getHospitalBedsParams(),
             LIFE_EXPECTANCY = HealthParams.getLifeExpectancyParams(),
             LONG_HEALTH_ISSUE_RATIO = HealthParams.getLongHealthIssuesParams(),
+            PERSONNEL_DENTISTS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("dentists")),
+            PERSONNEL_DOCTORS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")),
+            PERSONNEL_NURSES = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("nurses")),
+            PERSONNEL_PHARMA = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("pharmacists")),
+            PERSONNEL_THERAPISTS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists")),
             PHYSICAL_ACTIVITIES_RATIO = HealthParams.getPhysicalActivitiesParams(),
             SMOKERS_RATIO = HealthParams.getSmokersParams(),
             UNMET_DENTAL_RATIO = HealthParams.getUnmetDentalParams(),
@@ -56,16 +60,20 @@ public class HealthStats {
 
     private static final Map<String, Number>
             initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO, alcoholicRatioPath),
-            initBmiOverweightRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
             initBmiObeseRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
+            initBmiOverweightRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
             initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
-            initHealthPersonnel = Initializer.initConsolidatedMap(HEALTH_PERSONNEL, healthPersonnelPath),
             initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
             initHealthyLifeYearsFemale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
             initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
             initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS, hospitalBedsPath),
             initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY, lifeExpectancyPath),
             initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssuesRatioPath),
+            initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS, healthPersonnelPath),
+            initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS, healthPersonnelPath),
+            initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES, healthPersonnelPath),
+            initPersonnelPharma = Initializer.initConsolidatedMap(PERSONNEL_PHARMA, healthPersonnelPath),
+            initPersonnelTherapists = Initializer.initConsolidatedMap(PERSONNEL_THERAPISTS, healthPersonnelPath),
             initPhysicalActivitiesRatio = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatioPath),
             initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO, smokersRatioPath),
             initUnmetDentalRatio = Initializer.initConsolidatedMap(UNMET_DENTAL_RATIO, unmetDentalRatioPath),
@@ -75,18 +83,16 @@ public class HealthStats {
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio), // FIXME: no data
-                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio), // FIXME: not used
-                bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
+                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
+                bmiRatio = consolidateBmiRatio(),
                 fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
-                healthPersonnel = transformHundredThousandToTenThousand(initHealthPersonnel),
+                healthPersonnel = consolidatePersonnelRatio(),
                 healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
-                healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
-                healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
+                healthyLifeGenderGap = consolidateHealthyLifeGenderGap(),
                 hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
                 lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
                 longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
-                physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio), // FIXME: no data
+                physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
                 unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
@@ -97,7 +103,9 @@ public class HealthStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
+                        healthyLifeGaps = - healthyLifeGenderGap.get(key).doubleValue(),
+                        reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
+                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiRatio, key),
                         reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssuesRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
@@ -110,15 +118,16 @@ public class HealthStats {
                         * MathUtils.percentageSafetyDouble(healthPersonnel, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
-                        // TODO: gender gap healthy years (healthyLifeYearsFemale/healthyLifeYearsMale)
-//                        * MathUtils.percentageSafetyDouble(healthyLifeYearsFemale, key)
-//                        * MathUtils.percentageSafetyDouble(healthyLifeYearsMale, key)
+                        * MathUtils.percentageSafetyDouble(healthyLifeGaps)
+                        * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
+                        * MathUtils.percentageSafetyDouble(reversedAlcoholicRatio)
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
                         * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnmetDentalStatus)
                         * MathUtils.percentageSafetyDouble(reversedUnmetMedicalStatus)
                         * MathUtils.percentageSafetyDouble(reversedWorkAccidents);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }
@@ -131,22 +140,112 @@ public class HealthStats {
     }
 
     public static ArrayList<Map<String, Number>> getInitList() {
-        //TODO: initAlcoholicRatio, initBodyMassIndexOverweight and initPhysicalActivitiesRatio are not used
         return new ArrayList<>() {{
+            add(Preparation.filterMap(initAlcoholicRatio));
             add(Preparation.filterMap(initBmiObeseRatio));
+            add(Preparation.filterMap(initBmiOverweightRatio));
             add(Preparation.filterMap(initFruitsVegetablesRatio));
-            add(Preparation.filterMap(initHealthPersonnel));
             add(Preparation.filterMap(initHealthyLifeRatio));
             add(Preparation.filterMap(initHealthyLifeYearsFemale));
             add(Preparation.filterMap(initHealthyLifeYearsMale));
             add(Preparation.filterMap(initHospitalBeds));
             add(Preparation.filterMap(initLifeExpectancy));
             add(Preparation.filterMap(initLongHealthIssuesRatio));
+            add(Preparation.filterMap(initPersonnelDentists));
+            add(Preparation.filterMap(initPersonnelDoctors));
+            add(Preparation.filterMap(initPersonnelNurses));
+            add(Preparation.filterMap(initPersonnelPharma));
+            add(Preparation.filterMap(initPersonnelTherapists));
+            add(Preparation.filterMap(initPhysicalActivitiesRatio));
             add(Preparation.filterMap(initSmokersRatio));
             add(Preparation.filterMap(initUnmetDentalRatio));
             add(Preparation.filterMap(initUnmetMedicalRatio));
             add(Preparation.filterMap(initWorkAccidents));
         }};
+    }
+
+    /**
+     * Aggregate the population trust ratios into a single index (the average)
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> consolidateBmiRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number>
+                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
+                bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio);
+
+        for (String code : EU28_MEMBERS) {
+            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+                String key = MapUtils.generateKey(code, year);
+
+                double product = 1
+                        * bmiOverweightRatio.get(key).doubleValue()
+                        * bmiObeseRatio.get(key).doubleValue();
+
+                Number value = MathUtils.getSquareValue(product, 2);
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    /**
+     * Generate the healthy life years gender gap (male HLY ratio - female HLY ratio)
+     *
+     * @return An ordered map with prepared data
+     */
+    // TODO: create a generic method (see consolidateEmploymentGenderGap)
+    private static Map<String, Number> consolidateHealthyLifeGenderGap() {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+        Map<String, Number>
+                healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
+                healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale);
+
+        for (String code : EU28_MEMBERS) {
+            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+                String key = MapUtils.generateKey(code, year);
+                double femaleRatio = healthyLifeYearsFemale.get(key).doubleValue();
+                double maleRatio = healthyLifeYearsMale.get(key).doubleValue();
+                Number genderGap = maleRatio - femaleRatio;
+                preparedMap.put(key, genderGap);
+            }
+        }
+
+        return preparedMap;
+    }
+
+    private static Map<String, Number> consolidatePersonnelRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Number>
+                dentists = Preparation.prepareData(initPersonnelDentists),
+                doctors = Preparation.prepareData(initPersonnelDoctors),
+                nurses = Preparation.prepareData(initPersonnelNurses),
+                pharmacists = Preparation.prepareData(initPersonnelPharma),
+                physiotherapists = Preparation.prepareData(initPersonnelTherapists);
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                if (dentists.get(key) == null) {
+                    System.out.println();
+                }
+
+                double sum = 0
+                        + dentists.get(key).doubleValue()
+                        + doctors.get(key).doubleValue()
+                        + nurses.get(key).doubleValue()
+                        + pharmacists.get(key).doubleValue()
+                        + physiotherapists.get(key).doubleValue();
+
+                Number value = MathUtils.generatePerHundredThousandInhabitants(key, sum);
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
     }
 
     /**

@@ -44,6 +44,7 @@ public class OverallExperienceStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(happinessRatio, key)
                         * MathUtils.percentageSafetyDouble(highSatisfactionRatio, key);
+
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);
             }

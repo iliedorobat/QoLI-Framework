@@ -31,9 +31,8 @@ public class HealthCollector {
      * Dataset: hlth_ehis_al1b<br/>
      * Years: 2014<br/><br/>
      *
+     * <b>Lack of data: FR</b><br/><br/>
      * <b>GREATER IS WORSE!</b>
-     *
-     * @deprecated no dataset: FR
      * @return
      */
     private static StringBuilder getAlcoholicRatio() {
@@ -171,9 +170,9 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_pe9e<br/>
-     * Years: 2014
+     * Years: 2014<br/><br/>
      *
-     * @deprecated no dataset: BE; NL
+     * <b>Lack of data: BE; NL</b>
      * @return
      */
     private static StringBuilder getPhysicalActivitiesRatio() {

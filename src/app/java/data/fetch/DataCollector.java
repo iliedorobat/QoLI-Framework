@@ -21,7 +21,7 @@ public class DataCollector {
 
         EducationCollector.fetchData();
         EnvironmentCollector.fetchData();
-        CommonCollector.dataCollector();
+        CommonCollector.fetchData();
         GovRightsCollector.fetchData();
         HealthCollector.fetchData();
         InteractionsCollector.fetchData();

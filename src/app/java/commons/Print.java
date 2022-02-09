@@ -23,8 +23,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Print {
-    public static void printChartData(Map<String, Number> entries, String dimensionName) {
-        StringBuilder output = StatsUtils.generateChartData(entries, dimensionName);
+    public static void printChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
+        StringBuilder output = StatsUtils.generateChartData(entries, membersList, dimensionName);
         System.out.println(output);
     }
 

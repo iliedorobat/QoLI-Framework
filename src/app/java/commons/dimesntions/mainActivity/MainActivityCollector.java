@@ -8,7 +8,6 @@ import app.java.data.fetch.FetcherUtils;
 
 public class MainActivityCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getActivePopulationRatio(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.ACTIVE_POPULATION_RATIO);
         FileUtils.writeToJSONFile(getAvgWorkHours2007(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.AVG_WORK_HOURS_2007);
         FileUtils.writeToJSONFile(getAvgWorkHours2008(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.AVG_WORK_HOURS_2008);
         FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.EMPLOYMENT_RATIO);
@@ -22,22 +21,6 @@ public class MainActivityCollector {
         FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.TEMPORARY_EMPLOYMENT_RATIO);
         FileUtils.writeToJSONFile(getUnemploymentRatio(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.UNEMPLOYMENT_RATIO);
         FileUtils.writeToJSONFile(getWorkingNightsRatio(), FilePathConst.MAIN_ACTIVITY_PATH, FileNameConst.WORKING_NIGHTS_RATIO);
-    }
-
-    /**
-     * Economically active population<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage of the population aged 15-64 years who are economically active (%)<br/>
-     * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2020
-     *
-     * Comments: NUTS 2 regions => lfst_r_lfp2act
-     *
-     * @return
-     */
-    private static StringBuilder getActivePopulationRatio() {
-        return Fetcher.fetchData("lfsi_emp_a", MainActivityParams.getActivePopulationParams());
     }
 
     /**
@@ -185,12 +168,12 @@ public class MainActivityCollector {
      * Dataset: lfso_14loq<br/>
      * Years: 2014<br/><br/>
      *
+     * <b>Lack of data: DK; IE; NL</b><br/<br/>
      * <b>GREATER IS WORSE!</b>
-     *
-     * @deprecated no dataset: DK; IE; NL
      * @return
      */
     private static StringBuilder getOverQualifiedRatio() {
+        // TODO: https://ec.europa.eu/eurostat/web/experimental-statistics/skills
         return Fetcher.fetchData("lfso_14loq", MainActivityParams.getOverQualifiedParams());
     }
 

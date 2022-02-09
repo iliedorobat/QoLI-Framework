@@ -9,15 +9,6 @@ import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_LEVE
 import static app.java.commons.dimesntions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class MainActivityParams {
-    public static MultiValuedMap<String, String> getActivePopulationParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y15-64");
-            put(ParamsConst.INDIC_EM, "ACT");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC_POP");
-        }};
-    }
-
     private static MultiValuedMap<String, String> getAvgWorkHoursParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y15-64");
