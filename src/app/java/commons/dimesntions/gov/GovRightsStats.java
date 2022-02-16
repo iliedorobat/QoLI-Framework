@@ -130,7 +130,7 @@ public class GovRightsStats {
 
                     String country = items[0].trim();
                     String voterType = items[1].trim();
-                    int year = Integer.parseInt(items[2].trim());
+                    int year = (int) Double.parseDouble(items[2].trim());
                     String valueStr = items[3].replace("%", "").trim();
 
                     if (valueStr.length() > 0) {

@@ -2,13 +2,115 @@ package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.FilePathConst;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
+import java.net.URL;
+import java.util.Iterator;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.SERIES_TYPE_REGION;
 
 public class FileUtils {
+    /**
+     * Convert an XLS file to CSV
+     * @param filePath The target/destination path
+     * @param fileName The name of the target/destination file
+     * @param extension The name of the target file
+     */
+    public static void convertXlsToCsv(String filePath, String fileName, String extension) {
+        String path = filePath + fileName + extension;
+        Workbook workbook = null;
+        Row row;
+        Cell cell;
+        StringBuilder sb = new StringBuilder();
+        FileOutputStream outputStream = null;
+
+        if (extension.equals(Constants.XLS_EXTENSION)) {
+            try {
+                new FileWriter(filePath + fileName + Constants.CSV_EXTENSION, false).close();
+                outputStream = new FileOutputStream(filePath + fileName + Constants.CSV_EXTENSION, true);
+
+                boolean isHeader = true;
+                workbook = WorkbookFactory.create(new File(path));
+                Sheet firstSheet = workbook.getSheetAt(0);
+                Iterator<Row> rowIterator = firstSheet.iterator();
+
+                while (rowIterator.hasNext()) {
+                    row = rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+
+                    if (!isHeader)
+                        sb.append("\n");
+                    while (cellIterator.hasNext()) {
+                        cell = cellIterator.next();
+                        sb.append(cell);
+                        sb.append(Constants.CSV_SEPARATOR);
+                    }
+                    sb.deleteCharAt(sb.length() - 1);
+                    outputStream.write(sb.toString().getBytes());
+
+                    isHeader = false;
+                    sb = new StringBuilder();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    assert workbook != null;
+                    workbook.close();
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * Download an Excel file
+     * @param httpLink The http address
+     * @param filePath The destination path
+     * @param fileName The name of the destination file
+     * @param extension The extension of the destination file
+     */
+    public static void downloadExcelFile(String httpLink, String filePath, String fileName, String extension) {
+        BufferedInputStream in = null;
+        FileOutputStream out = null;
+
+        File directory = new File(filePath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        try {
+            URL url = new URL(httpLink);
+            in = new BufferedInputStream(url.openStream());
+            out = new FileOutputStream(filePath + fileName + extension);
+
+            byte[] dataBuffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                out.write(dataBuffer, 0, bytesRead);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert in != null;
+                in.close();
+                assert out != null;
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * Read the data from disk
      * @param path The path to the desired file

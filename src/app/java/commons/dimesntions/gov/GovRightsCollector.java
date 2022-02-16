@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.gov;
 
+import app.java.commons.constants.Constants;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 import org.apache.commons.collections4.MultiValuedMap;
+
+import java.io.File;
 
 /**
  * Factors which influence the life of the population from the perspective
@@ -16,10 +19,21 @@ public class GovRightsCollector {
         FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.EMPLOYMENT_RATIO_BY_SEX);
         FileUtils.writeToJSONFile(getGenderPayGap(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.GENDER_PAY_GAP);
         FileUtils.writeToJSONFile(getPopulationTrust(), FilePathConst.GOV_RIGHTS_PATH, FileNameConst.POPULATION_TRUST);
+        writeVoterTurnout();
     }
 
-    // TODO: The Voter Turnout dataset (Parliamentary) needs to be manually downloaded from
-    //  https://www.idea.int/data-tools/data/voter-turnout
+    // https://www.idea.int/data-tools/data/voter-turnout
+    private static void writeVoterTurnout() {
+        String FILE_URL = "https://www.idea.int/sites/default/files/tmp/idea_export_40_620c368ac79e4.xls";
+        String FILE_PATH = FilePathConst.GOV_RIGHTS_PATH;
+        String FILE_NAME = FileNameConst.VOTER_TURNOUT;
+        FileUtils.downloadExcelFile(FILE_URL, FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
+        FileUtils.convertXlsToCsv(FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
+
+        // Remove the XLS file after it has been converted to CSV
+        File file = new File(FILE_PATH + FILE_NAME + Constants.XLS_EXTENSION);
+        file.delete();
+    }
 
     /**
      * Active citizenship participation<br/>

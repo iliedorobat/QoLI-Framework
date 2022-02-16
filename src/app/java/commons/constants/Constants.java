@@ -8,6 +8,7 @@ public class Constants {
     public static final String CSV_EXTENSION = ".csv";
     public static final String CSV_SEPARATOR = ";";
     public static final String KEY_SEPARATOR = "_";
+    public static final String XLS_EXTENSION = ".xls";
 
     /**
      * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied

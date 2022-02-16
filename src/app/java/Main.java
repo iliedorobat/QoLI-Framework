@@ -1,5 +1,6 @@
 package app.java;
 
+import app.java.commons.Print;
 import app.java.commons.utils.ChartData;
 import app.java.data.LocalParser;
 import app.java.data.fetch.DataCollector;
@@ -10,20 +11,19 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Collect the datasets;   The Voter Turnout dataset needs to be manually
-        // downloaded from https://www.idea.int/data-tools/data/voter-turnout
-         DataCollector.collectData();
+       // 1. Collect the datasets;
+        DataCollector.collectData();
 
 //        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
 //        Print.printDataInconsistencies();
 
-        // 4. Write the QoLI and the QoLI dimensions values to disk
+       // 4. Write the QoLI and the QoLI dimensions values to disk
         ChartData.writeCountries();
         ChartData.writeRegions();
 
-        // 5. Print the QoLI and the QoLI dimensions values
-        ChartData.printCountries();
-        ChartData.printRegions();
+       // 5. Print the QoLI and the QoLI dimensions values
+       ChartData.printCountries();
+       ChartData.printRegions();
     }
 
     // For testing
