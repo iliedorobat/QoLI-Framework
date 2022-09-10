@@ -15,7 +15,7 @@ public class EducationParams {
 
     public static MultiValuedMap<String, String> getDigitalSkillsParams() {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.INDIC_IS, "I_DSK_BAB");
+            put(ParamsConst.INDIC_IS, "I_DSK2_BAB");
             put(ParamsConst.IND_TYPE, "IND_TOTAL");
             put(ParamsConst.UNIT, "PC_IND");
         }};

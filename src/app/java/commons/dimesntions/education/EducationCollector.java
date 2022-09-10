@@ -19,17 +19,17 @@ public class EducationCollector {
     }
 
     /**
-     * Individuals (aged 16-74) who have basic or above basic overall digital skills by sex<br/><br/>
+     * Individuals (aged 16-74) having at least basic digital skills by sex<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: tepsr_sp410<br/>
+     * Dataset: sdg_04_70<br/>
      * Years: 2015-2019
      *
      * @return
      */
     private static StringBuilder getDigitalSkillsRatio() {
-        return Fetcher.fetchData("tepsr_sp410", EducationParams.getDigitalSkillsParams());
+        return Fetcher.fetchData("sdg_04_70", EducationParams.getDigitalSkillsParams());
     }
 
     /**
