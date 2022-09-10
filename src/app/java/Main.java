@@ -1,29 +1,45 @@
 package app.java;
 
+import app.java.commons.ChartData;
 import app.java.commons.Print;
-import app.java.commons.utils.ChartData;
 import app.java.data.LocalParser;
 import app.java.data.fetch.DataCollector;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Collect the datasets;
-        DataCollector.collectData();
+        List arrayList = Arrays.asList(args);
 
-        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-        Print.printDataInconsistencies();
+        boolean collect = args.length == 0 || arrayList.contains("--collect");
+        boolean compare = arrayList.contains("--compare");
+        boolean calculate = args.length == 0 || arrayList.contains("--calculate");
+        boolean print = args.length == 0 || arrayList.contains("--print");
 
-        // 3. Write the QoLI and the QoLI dimensions values to disk
-        ChartData.writeCountries();
-        ChartData.writeRegions();
+        if (collect) {
+            // 1. Collect the datasets;
+            DataCollector.collectData();
+        }
 
-        // 4. Print the QoLI and the QoLI dimensions values
-        ChartData.printCountries();
-        ChartData.printRegions();
+        if (compare) {
+            // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
+            Print.printDataInconsistencies();
+        }
+
+        if (calculate) {
+            // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
+            ChartData.writeCountries();
+            ChartData.writeRegions();
+        }
+
+        if (print) {
+            // 4. Print the QoLI and the QoLI dimensions values
+            ChartData.printCountries();
+            ChartData.printRegions();
+        }
     }
 
     // For testing

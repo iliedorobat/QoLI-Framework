@@ -4,7 +4,6 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
 
 public class MaterialLivingCollector {
     public static void fetchData() {
@@ -66,7 +65,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getFinancialSatisfaction() {
-        return FetcherUtils.getSatisfactionRatio(MaterialLivingParams.getFinancialSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(MaterialLivingParams.getFinancialSatisfactionParams());
     }
 
     /**

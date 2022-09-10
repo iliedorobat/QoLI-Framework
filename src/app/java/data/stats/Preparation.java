@@ -63,17 +63,18 @@ public class Preparation {
     /**
      * Transform all values into values per thousand inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param initMap The initialized map (see Initializer.initMap)
      * @return An ordered map with aggregated data
      */
-    public static Map<String, Number> preparePerThousandInhabitant(Map<String, Number> initMap) {
+    public static Map<String, Number> preparePerThousandInhabitant(Map<String, Number> populationMap, Map<String, Number> initMap) {
         Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
         Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
-                Number value = MathUtils.generatePerThousandInhabitants(key, preparedMap.get(key).doubleValue());
+                Number value = MathUtils.generatePerThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
             }
         }
@@ -84,17 +85,18 @@ public class Preparation {
     /**
      * Transform all values into values per ten thousand inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param initMap The initialized map (see Initializer.initMap)
      * @return An ordered map with aggregated data
      */
-    public static Map<String, Number> preparePerTenThousandInhabitants(Map<String, Number> initMap) {
+    public static Map<String, Number> preparePerTenThousandInhabitants(Map<String, Number> populationMap, Map<String, Number> initMap) {
         Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
         Map<String, Number> preparedMap = prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
-                Number value = MathUtils.generatePerTenThousandInhabitants(key, preparedMap.get(key).doubleValue());
+                Number value = MathUtils.generatePerTenThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
             }
         }

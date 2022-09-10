@@ -63,33 +63,4 @@ public class FetcherUtils {
         httpParams.putAll(indicatorParams);
         return httpParams;
     }
-
-    /**
-     * Percentage of the population rating their satisfaction as high, medium or low<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013
-     *
-     * @return
-     */
-    public static StringBuilder getSatisfactionRatio(MultiValuedMap<String, String> params) {
-        return Fetcher.fetchData("ilc_pw05", params);
-    }
-
-    /**
-     * Participation in formal or informal voluntary activities or active citizenship<br/>
-     * People aged 16 years or over<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp19<br/>
-     * Years: 2015
-     *
-     */
-    public static StringBuilder getActivePeopleRatio(MultiValuedMap<String, String> params) {
-        return Fetcher.fetchData("ilc_scp19", params);
-    }
-
 }

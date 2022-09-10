@@ -5,6 +5,7 @@ import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.dimesntions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -96,7 +97,7 @@ public class HealthStats {
                 smokersRatio = Preparation.prepareData(initSmokersRatio),
                 unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
                 unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
-                workAccidents = Preparation.preparePerThousandInhabitant(initWorkAccidents);
+                workAccidents = Preparation.preparePerThousandInhabitant(CommonStats.population, initWorkAccidents);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -240,7 +241,7 @@ public class HealthStats {
                         + pharmacists.get(key).doubleValue()
                         + physiotherapists.get(key).doubleValue();
 
-                Number value = MathUtils.generatePerHundredThousandInhabitants(key, sum);
+                Number value = MathUtils.generatePerHundredThousandInhabitants(CommonStats.population, key, sum);
                 consolidatedList.put(key, value);
             }
         }

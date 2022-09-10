@@ -4,7 +4,6 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
 
 /**
  * Overall life satisfaction in the context of quality of life
@@ -40,6 +39,6 @@ public class OverallExperienceCollector {
      * @return
      */
     private static StringBuilder getHighSatisfactionRatio() {
-        return FetcherUtils.getSatisfactionRatio(OverallExperienceParams.getHighSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(OverallExperienceParams.getHighSatisfactionParams());
     }
 }

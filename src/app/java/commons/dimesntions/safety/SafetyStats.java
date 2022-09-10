@@ -5,6 +5,7 @@ import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.dimesntions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -195,13 +196,13 @@ public class SafetyStats {
                 if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
                     ukSum += sum;
                 } else {
-                    Number value = MathUtils.generatePerHundredInhabitants(key, sum);
+                    Number value = MathUtils.generatePerHundredInhabitants(CommonStats.population, key, sum);
                     consolidatedList.put(key, value);
                 }
             }
 
             String key = MapUtils.generateKey("UK", year);
-            Number ukValue = MathUtils.generatePerHundredInhabitants(key, ukSum);
+            Number ukValue = MathUtils.generatePerHundredInhabitants(CommonStats.population, key, ukSum);
             consolidatedList.put(MapUtils.generateKey("UK", year), ukValue);
         }
 

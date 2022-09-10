@@ -3,6 +3,7 @@ package app.java.commons.utils;
 import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 
 import java.util.*;
 
@@ -100,6 +101,25 @@ public class StatsUtils {
     }
 
     /**
+     * Export the prepared chart data to a CSV file
+     * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
+     * @param seriesType The type of series ("country" or "region")
+     * @param dimensionName The name of the target dimension
+     */
+    public static void writeChartData(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName
+    ) {
+        StringBuilder sb = StatsUtils.generateChartData(entries, membersList, dimensionName);
+        String seriesDirectory = getSeriesDirectory(seriesType);
+        String fullPath = FilePathConst.OUTPUT_PATH + seriesDirectory + "/";
+        FileUtils.writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);
+    }
+
+    /**
      * Calculate the variation between two numbers
      *
      * @param entryValue The current value
@@ -172,5 +192,17 @@ public class StatsUtils {
         }
 
        return consolidatedList;
+    }
+
+    /**
+     * Get the directory name of the input series type
+     * @param seriesType The series type
+     * @return The directory name of the input series type
+     */
+    private static String getSeriesDirectory(String seriesType) {
+        if (seriesType.equals(SERIES_TYPE_REGION)) {
+            return "regions";
+        }
+        return "countries";
     }
 }

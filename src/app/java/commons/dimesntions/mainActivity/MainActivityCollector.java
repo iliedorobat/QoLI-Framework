@@ -4,7 +4,6 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
 
 public class MainActivityCollector {
     public static void fetchData() {
@@ -122,7 +121,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getJobSatisfaction() {
-        return FetcherUtils.getSatisfactionRatio(MainActivityParams.getJobSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(MainActivityParams.getJobSatisfactionParams());
     }
 
     /**

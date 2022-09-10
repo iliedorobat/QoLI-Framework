@@ -4,6 +4,7 @@ import app.java.commons.MapOrder;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.dimesntions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -88,7 +89,7 @@ public class MainActivityStats {
                 longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
                 lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
                 overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: NaN
-                researchersRatio = Preparation.preparePerTenThousandInhabitants(initResearchers),
+                researchersRatio = Preparation.preparePerTenThousandInhabitants(CommonStats.population, initResearchers),
                 temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
                 unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
                 workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);

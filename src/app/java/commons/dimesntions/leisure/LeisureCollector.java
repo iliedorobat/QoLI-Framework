@@ -4,7 +4,6 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
 
 public class LeisureCollector {
     public static void fetchData() {
@@ -41,7 +40,7 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getTimeSpentSatisfaction() {
-        return FetcherUtils.getSatisfactionRatio(LeisureParams.getTimeSpentSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(LeisureParams.getTimeSpentSatisfactionParams());
     }
 
     /**
@@ -56,6 +55,6 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getVoluntaryActivitiesRatio() {
-        return FetcherUtils.getActivePeopleRatio(LeisureParams.getVoluntaryActivitiesParams());
+        return Fetcher.fetchActivePeopleRatio(LeisureParams.getVoluntaryActivitiesParams());
     }
 }

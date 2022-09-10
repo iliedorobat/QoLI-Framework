@@ -4,7 +4,6 @@ import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import app.java.data.fetch.FetcherUtils;
 
 public class InteractionsCollector {
     public static void fetchData() {
@@ -87,6 +86,6 @@ public class InteractionsCollector {
      * @return
      */
     private static StringBuilder getRelationshipsSatisfaction() {
-        return FetcherUtils.getSatisfactionRatio(InteractionsParams.getRelationshipsSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(InteractionsParams.getRelationshipsSatisfactionParams());
     }
 }

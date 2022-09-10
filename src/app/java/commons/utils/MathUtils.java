@@ -1,7 +1,6 @@
 package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.dimesntions.common.CommonStats;
 
 import java.util.Map;
 
@@ -102,48 +101,52 @@ public class MathUtils {
     /**
      * Transform the value into a value per hundred inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param key The key used to extract the total population
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    public static Number generatePerHundredInhabitants(String key, double value) {
-        double population = CommonStats.population.get(key).doubleValue();
+    public static Number generatePerHundredInhabitants(Map<String, Number> populationMap, String key, double value) {
+        double population = populationMap.get(key).doubleValue();
         return value / population * HUNDRED_VALUE;
     }
 
     /**
      * Transform the value into a value per thousand inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param key The key used to extract the total population
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    public static Number generatePerThousandInhabitants(String key, double value) {
-        double population = CommonStats.population.get(key).doubleValue();
+    public static Number generatePerThousandInhabitants(Map<String, Number> populationMap, String key, double value) {
+        double population = populationMap.get(key).doubleValue();
         return value / population * THOUSAND_VALUE;
     }
 
     /**
      * Transform the value into a value per ten thousand inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param key The key used to extract the total population
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    public static Number generatePerTenThousandInhabitants(String key, double value) {
-        double population = CommonStats.population.get(key).doubleValue();
+    public static Number generatePerTenThousandInhabitants(Map<String, Number> populationMap, String key, double value) {
+        double population = populationMap.get(key).doubleValue();
         return value / population * TEN_THOUSAND_VALUE;
     }
 
     /**
      * Transform the value into a value per hundred thousand inhabitants
      *
+     * @param populationMap Total population (CommonStats.population)
      * @param key The key used to extract the total population
      * @param value The initial value
      * @return The value per thousand inhabitants
      */
-    public static Number generatePerHundredThousandInhabitants(String key, double value) {
-        double population = CommonStats.population.get(key).doubleValue();
+    public static Number generatePerHundredThousandInhabitants(Map<String, Number> populationMap, String key, double value) {
+        double population = populationMap.get(key).doubleValue();
         return value / population * HUNDRED_THOUSAND_VALUE;
     }
 }
