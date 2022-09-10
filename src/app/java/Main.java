@@ -11,19 +11,19 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-       // 1. Collect the datasets;
+        // 1. Collect the datasets;
         DataCollector.collectData();
 
-//        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-//        Print.printDataInconsistencies();
+        // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
+        Print.printDataInconsistencies();
 
-       // 4. Write the QoLI and the QoLI dimensions values to disk
+        // 3. Write the QoLI and the QoLI dimensions values to disk
         ChartData.writeCountries();
         ChartData.writeRegions();
 
-       // 5. Print the QoLI and the QoLI dimensions values
-       ChartData.printCountries();
-       ChartData.printRegions();
+        // 4. Print the QoLI and the QoLI dimensions values
+        ChartData.printCountries();
+        ChartData.printRegions();
     }
 
     // For testing
