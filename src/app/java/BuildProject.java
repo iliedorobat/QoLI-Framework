@@ -12,16 +12,16 @@ public class BuildProject {
         buildParams();
         buildCollector();
         buildStats();
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/Print.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/ChartData.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/Main.java");
     }
 
     private static void buildConstants() throws Exception {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/Constants.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/DimensionNames.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/EnvConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/FileNameConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/FilePathConst.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/IndicatorNames.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsValues.java");
     }
@@ -41,6 +41,8 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/stats/MergeUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/stats/Initializer.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/stats/Preparation.java");
+
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/Print.java");
     }
 
     private static void buildCollector() throws Exception {

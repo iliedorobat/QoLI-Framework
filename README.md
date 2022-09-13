@@ -27,8 +27,16 @@ java app/java/Main --collect --calculate
 ```
 6. Print the QoLI and the QoLI dimensions:
 ```bash
-java app/java/Main --print
+java app/java/Main --print --seriesType=COUNTRY --dimension=QOLI
+java app/java/Main --print --seriesType=REGION --dimension=QOLI
 ```
+7. Print specific indicators:
+```bash
+java app/java/Main --print --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+java app/java/Main --print --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+```
+* List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/DimensionNames.java
+* List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java
 
 ## Main Database
 https://ec.europa.eu/eurostat/data/database

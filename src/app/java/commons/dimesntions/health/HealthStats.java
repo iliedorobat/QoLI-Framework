@@ -1,11 +1,14 @@
 package app.java.commons.dimesntions.health;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonStats;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -13,6 +16,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -81,32 +85,46 @@ public class HealthStats {
             initUnmetMedicalRatio = Initializer.initConsolidatedMap(UNMET_MEDICAL_RATIO, unmetMedicalRatioPath),
             initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS, workAccidentsPath);
 
+    public static final Map<String, Number>
+            alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
+            fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
+
+            bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
+            bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
+            compactBmiRatio = consolidateBmiRatio(),
+
+            dentists = Preparation.prepareData(initPersonnelDentists),
+            doctors = Preparation.prepareData(initPersonnelDoctors),
+            nurses = Preparation.prepareData(initPersonnelNurses),
+            pharmacists = Preparation.prepareData(initPersonnelPharma),
+            physiotherapists = Preparation.prepareData(initPersonnelTherapists),
+            compactHealthPersonnel = consolidatePersonnelRatio(),
+
+            healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
+            healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
+            healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
+            compactHealthyLifeGenderGap = consolidateHealthyLifeGenderGap(),
+
+            hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
+            lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
+            longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
+            physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
+            smokersRatio = Preparation.prepareData(initSmokersRatio),
+            unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
+            unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
+            workAccidents = Preparation.preparePerThousandInhabitant(CommonStats.population, initWorkAccidents);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
-                bmiRatio = consolidateBmiRatio(),
-                fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
-                healthPersonnel = consolidatePersonnelRatio(),
-                healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
-                healthyLifeGenderGap = consolidateHealthyLifeGenderGap(),
-                hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
-                lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
-                longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
-                physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
-                smokersRatio = Preparation.prepareData(initSmokersRatio),
-                unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
-                unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
-                workAccidents = Preparation.preparePerThousandInhabitant(CommonStats.population, initWorkAccidents);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        healthyLifeGaps = - healthyLifeGenderGap.get(key).doubleValue(),
+                        healthyLifeGaps = - compactHealthyLifeGenderGap.get(key).doubleValue(),
                         reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
-                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiRatio, key),
+                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(compactBmiRatio, key),
                         reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssuesRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
@@ -116,7 +134,7 @@ public class HealthStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
-                        * MathUtils.percentageSafetyDouble(healthPersonnel, key)
+                        * MathUtils.percentageSafetyDouble(compactHealthPersonnel, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeGaps)
@@ -165,6 +183,57 @@ public class HealthStats {
         }};
     }
 
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.HEALTH)) {
+            if (args.contains("--indicator=" + IndicatorNames.ALCOHOLIC_RATIO))
+                Print.printChartData(alcoholicRatio, EU28_MEMBERS, seriesType, IndicatorNames.ALCOHOLIC_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.FRUITS_VEGETABLES_RATIO))
+                Print.printChartData(fruitsVegetablesRatio, EU28_MEMBERS, seriesType, IndicatorNames.FRUITS_VEGETABLES_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.BMI_OVERWEIGHT_RATIO))
+                Print.printChartData(bmiOverweightRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OVERWEIGHT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.BMI_OBESE_RATIO))
+                Print.printChartData(bmiObeseRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OBESE_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_BMI_RATIO))
+                Print.printChartData(compactBmiRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_BMI_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.DENTISTS))
+                Print.printChartData(dentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS);
+            if (args.contains("--indicator=" + IndicatorNames.DOCTORS))
+                Print.printChartData(doctors, EU28_MEMBERS, seriesType, IndicatorNames.DOCTORS);
+            if (args.contains("--indicator=" + IndicatorNames.NURSES))
+                Print.printChartData(nurses, EU28_MEMBERS, seriesType, IndicatorNames.NURSES);
+            if (args.contains("--indicator=" + IndicatorNames.PHARMACISTS))
+                Print.printChartData(pharmacists, EU28_MEMBERS, seriesType, IndicatorNames.PHARMACISTS);
+            if (args.contains("--indicator=" + IndicatorNames.PHYSIOTHERAPISTS))
+                Print.printChartData(physiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTH_PERSONNEL))
+                Print.printChartData(compactHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTH_PERSONNEL);
+            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_RATIO))
+                Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE))
+                Print.printChartData(healthyLifeYearsFemale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE);
+            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_MALE))
+                Print.printChartData(healthyLifeYearsMale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_MALE);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP))
+                Print.printChartData(compactHealthyLifeGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP);
+            if (args.contains("--indicator=" + IndicatorNames.HOSPITAL_BEDS))
+                Print.printChartData(hospitalBeds, EU28_MEMBERS, seriesType, IndicatorNames.HOSPITAL_BEDS);
+            if (args.contains("--indicator=" + IndicatorNames.LIFE_EXPECTANCY))
+                Print.printChartData(lifeExpectancy, EU28_MEMBERS, seriesType, IndicatorNames.LIFE_EXPECTANCY);
+            if (args.contains("--indicator=" + IndicatorNames.LONG_HEALTH_ISSUES_RATIO))
+                Print.printChartData(longHealthIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.LONG_HEALTH_ISSUES_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.PHYSICAL_ACTIVITIES_RATIO))
+                Print.printChartData(physicalActivitiesRatio, EU28_MEMBERS, seriesType, IndicatorNames.PHYSICAL_ACTIVITIES_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.SMOKERS_RATIO))
+                Print.printChartData(smokersRatio, EU28_MEMBERS, seriesType, IndicatorNames.SMOKERS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.UNMET_DENTAL_RATIO))
+                Print.printChartData(unmetDentalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_DENTAL_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.UNMET_MEDICAL_RATIO))
+                Print.printChartData(unmetMedicalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_MEDICAL_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.WORK_ACCIDENTS))
+                Print.printChartData(workAccidents, EU28_MEMBERS, seriesType, IndicatorNames.WORK_ACCIDENTS);
+        }
+    }
+
     /**
      * Aggregate the population trust ratios into a single index (the average)
      *
@@ -172,9 +241,6 @@ public class HealthStats {
      */
     private static Map<String, Number> consolidateBmiRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
-                bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio);
 
         for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -200,9 +266,6 @@ public class HealthStats {
     // TODO: create a generic method (see consolidateEmploymentGenderGap)
     private static Map<String, Number> consolidateHealthyLifeGenderGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
-                healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale);
 
         for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -219,12 +282,6 @@ public class HealthStats {
 
     private static Map<String, Number> consolidatePersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                dentists = Preparation.prepareData(initPersonnelDentists),
-                doctors = Preparation.prepareData(initPersonnelDoctors),
-                nurses = Preparation.prepareData(initPersonnelNurses),
-                pharmacists = Preparation.prepareData(initPersonnelPharma),
-                physiotherapists = Preparation.prepareData(initPersonnelTherapists);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {

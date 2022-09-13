@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.interactions;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -12,6 +15,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -41,13 +45,18 @@ public class InteractionsStats {
             initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
             initSatisfactionRatio = Initializer.initConsolidatedMap(SATISFACTION_RATIO, satisfactionRatioPath);
 
+    public static final Map<String, Number>
+            askingRatio = Preparation.prepareData(initAskingRatio),
+            discussionRatio = Preparation.prepareData(initDiscussionRatio),
+
+            gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
+            gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio),
+            compactGettingTogetherRatio = consolidateGettingTogetherRatio(),
+
+            satisfactionRatio = Preparation.prepareData(initSatisfactionRatio);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                askingRatio = Preparation.prepareData(initAskingRatio),
-                discussionRatio = Preparation.prepareData(initDiscussionRatio),
-                gettingTogetherRatio = consolidateGettingTogetherRatio(),
-                satisfactionRatio = Preparation.prepareData(initSatisfactionRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -56,7 +65,7 @@ public class InteractionsStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(askingRatio, key)
                         * MathUtils.percentageSafetyDouble(discussionRatio, key)
-                        * MathUtils.percentageSafetyDouble(gettingTogetherRatio, key)
+                        * MathUtils.percentageSafetyDouble(compactGettingTogetherRatio, key)
                         * MathUtils.percentageSafetyDouble(satisfactionRatio, key);
 
                 Number value = Math.log(product);
@@ -80,6 +89,23 @@ public class InteractionsStats {
         }};
     }
 
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.INTERACTIONS)) {
+            if (args.contains("--indicator=" + IndicatorNames.ASKING_RATIO))
+                Print.printChartData(askingRatio, EU28_MEMBERS, seriesType, IndicatorNames.ASKING_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.DISCUSSION_RATIO))
+                Print.printChartData(discussionRatio, EU28_MEMBERS, seriesType, IndicatorNames.DISCUSSION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FAM_RATIO))
+                Print.printChartData(gettingTogetherFamRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FAM_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FRD_RATIO))
+                Print.printChartData(gettingTogetherFrdRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FRD_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO))
+                Print.printChartData(compactGettingTogetherRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
+                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO);
+        }
+    }
+
     /**
      * Aggregate the "Getting Together Ratios" into a single ratio
      *
@@ -87,9 +113,6 @@ public class InteractionsStats {
      */
     private static Map<String, Number> consolidateGettingTogetherRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
-                gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {

@@ -1,11 +1,14 @@
 package app.java.commons.dimesntions.safety;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimesntions.common.CommonStats;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -13,6 +16,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -72,15 +76,30 @@ public class SafetyStats {
             initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE, offencesPath, EU28_MEMBERS_EXTENDED),
             initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
 
+    public static final Map<String, Number>
+            crimeRatio = Preparation.prepareData(initCrimeRatio),
+            nonPaymentRatio = Preparation.prepareData(initNonPaymentRatio),
+            pensionPps = Preparation.prepareData(initPensionPps),
+            socialProtectionPps = Preparation.prepareData(initSocialProtectionPps),
+            unexpectedRatio = Preparation.prepareData(initUnexpectedRatio),
+
+            attemptedHomicideOffences = Preparation.prepareData(initAttemptedHomicideOffences, EU28_MEMBERS_EXTENDED),
+            assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
+            burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED),
+            burglaryPrivateOffences = Preparation.prepareData(initBurglaryPrivateOffences, EU28_MEMBERS_EXTENDED),
+            homicideOffences = Preparation.prepareData(initHomicideOffences, EU28_MEMBERS_EXTENDED),
+            kidnappingOffences = Preparation.prepareData(initKidnappingOffences, EU28_MEMBERS_EXTENDED),
+            rapeOffences = Preparation.prepareData(initRapeOffences, EU28_MEMBERS_EXTENDED),
+            robberyOffences = Preparation.prepareData(initRobberyOffences, EU28_MEMBERS_EXTENDED),
+            sexualAssaultOffences = Preparation.prepareData(initSexualAssaultOffences, EU28_MEMBERS_EXTENDED),
+            sexualViolenceOffences = Preparation.prepareData(initSexualViolenceOffences, EU28_MEMBERS_EXTENDED),
+            theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
+            theftVehicleOffences = Preparation.prepareData(initTheftVehicleOffences, EU28_MEMBERS_EXTENDED),
+            unlawfulOffences = Preparation.prepareData(initUnlawfulOffences, EU28_MEMBERS_EXTENDED),
+            compactOffencesRatio = consolidateOffencesRatio();
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                crimeRatio = Preparation.prepareData(initCrimeRatio),
-                nonPaymentRatio = Preparation.prepareData(initNonPaymentRatio),
-                pensionPps = Preparation.prepareData(initPensionPps),
-                socialProtectionPps = Preparation.prepareData(initSocialProtectionPps),
-                unexpectedRatio = Preparation.prepareData(initUnexpectedRatio),
-                offencesRatio = consolidateOffencesRatio();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -91,7 +110,7 @@ public class SafetyStats {
                         socialProtectionPpsRatio = consolidatePpsRatio(socialProtectionPps, code, year),
                         reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
-                        reversedOffencesRatio = MathUtils.percentageReverseRatio(offencesRatio, key),
+                        reversedOffencesRatio = MathUtils.percentageReverseRatio(compactOffencesRatio, key),
                         reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
 
                 double product = 1
@@ -137,6 +156,49 @@ public class SafetyStats {
         }};
     }
 
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.SAFETY)) {
+            if (args.contains("--indicator=" + IndicatorNames.CRIME_RATIO))
+                Print.printChartData(crimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.CRIME_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NON_PAYMENT_RATIO))
+                Print.printChartData(nonPaymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PAYMENT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.PENSION_PPS))
+                Print.printChartData(pensionPps, EU28_MEMBERS, seriesType, IndicatorNames.PENSION_PPS);
+            if (args.contains("--indicator=" + IndicatorNames.SOCIAL_PROTECTION_PPS))
+                Print.printChartData(socialProtectionPps, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_PROTECTION_PPS);
+            if (args.contains("--indicator=" + IndicatorNames.UNEXPECTED_RATIO))
+                Print.printChartData(unexpectedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEXPECTED_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES))
+                Print.printChartData(attemptedHomicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.ASSAULT_OFFENCES))
+                Print.printChartData(assaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.ASSAULT_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.BURGLARY_OFFENCES))
+                Print.printChartData(burglaryOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.BURGLARY_PRIVATE_OFFENCES))
+                Print.printChartData(burglaryPrivateOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_PRIVATE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.HOMICIDE_OFFENCES))
+                Print.printChartData(homicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.HOMICIDE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.KIDNAPPING_OFFENCES))
+                Print.printChartData(kidnappingOffences, EU28_MEMBERS, seriesType, IndicatorNames.KIDNAPPING_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.RAPE_OFFENCES))
+                Print.printChartData(rapeOffences, EU28_MEMBERS, seriesType, IndicatorNames.RAPE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.ROBBERY_OFFENCES))
+                Print.printChartData(robberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.ROBBERY_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_ASSAULT_OFFENCES))
+                Print.printChartData(sexualAssaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_ASSAULT_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_VIOLENCE_OFFENCES))
+                Print.printChartData(sexualViolenceOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_VIOLENCE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.THEFT_OFFENCES))
+                Print.printChartData(theftOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.THEFT_VEHICLE_OFFENCES))
+                Print.printChartData(theftVehicleOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_VEHICLE_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.UNLAWFUL_OFFENCES))
+                Print.printChartData(unlawfulOffences, EU28_MEMBERS, seriesType, IndicatorNames.UNLAWFUL_OFFENCES);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_OFFENCES_RATIO))
+                Print.printChartData(compactOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_OFFENCES_RATIO);
+        }
+    }
+
     private static Double consolidatePpsRatio(Map<String, Number> dataset, String code, int year) {
         Double euAverage = Preparation.calculateEuAverage(dataset, year);
         String key = MapUtils.generateKey(code, year);
@@ -156,20 +218,6 @@ public class SafetyStats {
      */
     private static Map<String, Number> consolidateOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                attemptedHomicideOffences = Preparation.prepareData(initAttemptedHomicideOffences, EU28_MEMBERS_EXTENDED),
-                assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
-                burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED),
-                burglaryPrivateOffences = Preparation.prepareData(initBurglaryPrivateOffences, EU28_MEMBERS_EXTENDED),
-                homicideOffences = Preparation.prepareData(initHomicideOffences, EU28_MEMBERS_EXTENDED),
-                kidnappingOffences = Preparation.prepareData(initKidnappingOffences, EU28_MEMBERS_EXTENDED),
-                rapeOffences = Preparation.prepareData(initRapeOffences, EU28_MEMBERS_EXTENDED),
-                robberyOffences = Preparation.prepareData(initRobberyOffences, EU28_MEMBERS_EXTENDED),
-                sexualAssaultOffences = Preparation.prepareData(initSexualAssaultOffences, EU28_MEMBERS_EXTENDED),
-                sexualViolenceOffences = Preparation.prepareData(initSexualViolenceOffences, EU28_MEMBERS_EXTENDED),
-                theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
-                theftVehicleOffences = Preparation.prepareData(initTheftVehicleOffences, EU28_MEMBERS_EXTENDED),
-                unlawfulOffences = Preparation.prepareData(initUnlawfulOffences, EU28_MEMBERS_EXTENDED);
 
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {

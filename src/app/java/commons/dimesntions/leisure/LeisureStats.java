@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.leisure;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimesntions.interactions.InteractionsParams;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -13,6 +16,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -60,14 +64,28 @@ public class LeisureStats {
             initNpNnbLiveRatio = Initializer.initConsolidatedMap(NP_NNB_LIVE_RATIO, nonParticipationRatioPath),
             initNpNnbSportRatio = Initializer.initConsolidatedMap(NP_NNB_SPORT_RATIO, nonParticipationRatioPath);
 
+    public static final Map<String, Number>
+            npFinCinRatio = Preparation.prepareData(initNpFinCinRatio),
+            npFinCultRatio = Preparation.prepareData(initNpFinCultRatio),
+            npFinLiveRatio = Preparation.prepareData(initNpFinLiveRatio),
+            npFinSportRatio = Preparation.prepareData(initNpFinSportRatio),
+
+            npNnbCinRatio = Preparation.prepareData(initNpNnbCinRatio),
+            npNnbCultRatio = Preparation.prepareData(initNpNnbCultRatio),
+            npNnbLiveRatio = Preparation.prepareData(initNpNnbLiveRatio),
+            npNnbSportRatio = Preparation.prepareData(initNpNnbSportRatio),
+
+            formalVoluntaryRatio = Preparation.prepareData(initFormalVoluntaryRatio),
+            informalVoluntaryRatio = Preparation.prepareData(initInformalVoluntaryRatio),
+            compactVoluntaryRatio = consolidateVoluntaryRatio(),
+
+            satisfactionRatio = Preparation.prepareData(initSatisfactionRatio),
+            socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
+            nonParticipationRatio = consolidateNonParticipationRatio();
+
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                nonParticipationRatio = consolidateNonParticipationRatio(),
-                satisfactionRatio = Preparation.prepareData(initSatisfactionRatio),
-                socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
-                voluntaryRatio = consolidateVoluntaryRatio();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -78,7 +96,7 @@ public class LeisureStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(satisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
-                        * MathUtils.percentageSafetyDouble(voluntaryRatio, key)
+                        * MathUtils.percentageSafetyDouble(compactVoluntaryRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedNonParticipationRatio);
 
                 Number value = Math.log(product);
@@ -109,6 +127,39 @@ public class LeisureStats {
         }};
     }
 
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.LEISURE)) {
+            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_CIN_RATIO))
+                Print.printChartData(npFinCinRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_CIN_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_CULT_RATIO))
+                Print.printChartData(npFinCultRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_CULT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_LIVE_RATIO))
+                Print.printChartData(npFinLiveRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_LIVE_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_SPORT_RATIO))
+                Print.printChartData(npFinSportRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_SPORT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_CIN_RATIO))
+                Print.printChartData(npNnbCinRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_CIN_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_CULT_RATIO))
+                Print.printChartData(npNnbCultRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_CULT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_LIVE_RATIO))
+                Print.printChartData(npNnbLiveRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_LIVE_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_SPORT_RATIO))
+                Print.printChartData(npNnbSportRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_SPORT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.FORMAL_VOLUNTARY_RATIO))
+                Print.printChartData(formalVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.FORMAL_VOLUNTARY_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INFORMAL_VOLUNTARY_RATIO))
+                Print.printChartData(informalVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.INFORMAL_VOLUNTARY_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
+                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.SOCIAL_ACTIVITIES_RATIO))
+                Print.printChartData(socialActivitiesRatio, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_ACTIVITIES_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NON_PARTICIPATION_RATIO))
+                Print.printChartData(nonParticipationRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PARTICIPATION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_VOLUNTARY_RATIO))
+                Print.printChartData(compactVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_VOLUNTARY_RATIO);
+        }
+    }
+
     /**
      * Aggregate the "Non Participation Ratios" into a single ratio
      *
@@ -116,16 +167,6 @@ public class LeisureStats {
      */
     private static Map<String, Number> consolidateNonParticipationRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                npFinCinRatio = Preparation.prepareData(initNpFinCinRatio),
-                npFinCultRatio = Preparation.prepareData(initNpFinCultRatio),
-                npFinLiveRatio = Preparation.prepareData(initNpFinLiveRatio),
-                npFinSportRatio = Preparation.prepareData(initNpFinSportRatio),
-
-                npNnbCinRatio = Preparation.prepareData(initNpNnbCinRatio),
-                npNnbCultRatio = Preparation.prepareData(initNpNnbCultRatio),
-                npNnbLiveRatio = Preparation.prepareData(initNpNnbLiveRatio),
-                npNnbSportRatio = Preparation.prepareData(initNpNnbSportRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -158,9 +199,6 @@ public class LeisureStats {
      */
     private static Map<String, Number> consolidateVoluntaryRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                formalVoluntaryRatio = Preparation.prepareData(initFormalVoluntaryRatio),
-                informalVoluntaryRatio = Preparation.prepareData(initInformalVoluntaryRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {

@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.environment;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -12,6 +15,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -40,14 +44,15 @@ public class EnvironmentStats {
             initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO, pollutionRatioPath),
             initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO, waterSupplyRatioPath);
 
+    public static final Map<String, Number>
+            noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
+            pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),
+            pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),
+            pollutionRatio = Preparation.prepareData(initPollutionRatio),
+            waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
-                pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),
-                pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),
-                pollutionRatio = Preparation.prepareData(initPollutionRatio),
-                waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -85,5 +90,20 @@ public class EnvironmentStats {
             add(Preparation.filterMap(initPollutionRatio));
             add(Preparation.filterMap(initWaterSupplyRatio));
         }};
+    }
+
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.ENVIRONMENT)) {
+            if (args.contains("--indicator=" + IndicatorNames.NOISE_POLLUTION_RATIO))
+                Print.printChartData(noisePollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.NOISE_POLLUTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.PM_2_5_POLLUTION_RATIO))
+                Print.printChartData(pm2_5PollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.PM_2_5_POLLUTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.PM_10_POLLUTION_RATIO))
+                Print.printChartData(pm10PollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.PM_10_POLLUTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.POLLUTION_RATIO))
+                Print.printChartData(pollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.POLLUTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.WATER_SUPPLY_RATIO))
+                Print.printChartData(waterSupplyRatio, EU28_MEMBERS, seriesType, IndicatorNames.WATER_SUPPLY_RATIO);
+        }
     }
 }

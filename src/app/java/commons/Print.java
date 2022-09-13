@@ -1,17 +1,6 @@
 package app.java.commons;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.dimesntions.common.CommonStats;
-import app.java.commons.dimesntions.education.EducationStats;
-import app.java.commons.dimesntions.environment.EnvironmentStats;
-import app.java.commons.dimesntions.gov.GovRightsStats;
-import app.java.commons.dimesntions.health.HealthStats;
-import app.java.commons.dimesntions.interactions.InteractionsStats;
-import app.java.commons.dimesntions.leisure.LeisureStats;
-import app.java.commons.dimesntions.mainActivity.MainActivityStats;
-import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
-import app.java.commons.dimesntions.overall.OverallExperienceStats;
-import app.java.commons.dimesntions.safety.SafetyStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.StatsUtils;
 
@@ -61,20 +50,6 @@ public class Print {
         }
     }
 
-    public static void printDataInconsistencies() {
-        printDimensionStatus(CommonStats.getInitList(), "Common info");
-        printDimensionStatus(MaterialLivingStats.getInitList(), "MLC");
-        printDimensionStatus(MainActivityStats.getInitList(), "PMA");
-        printDimensionStatus(HealthStats.getInitList(), "Health");
-        printDimensionStatus(EducationStats.getInitList(), "Education");
-        printDimensionStatus(InteractionsStats.getInitList(), "Interactions");
-        printDimensionStatus(LeisureStats.getInitList(), "Leisure");
-        printDimensionStatus(SafetyStats.getInitList(), "Safety");
-        printDimensionStatus(GovRightsStats.getInitList(), "GBR");
-        printDimensionStatus(EnvironmentStats.getInitList(), "Environment");
-        printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp");
-    }
-
     public static void printVariation(Map<String, List<Number>> entries) {
         for (Map.Entry<String, List<Number>> entry : entries.entrySet()) {
             System.out.println(entry);
@@ -88,7 +63,7 @@ public class Print {
         }
     }
 
-    private static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimensionName) {
+    public static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimensionName) {
         int expected = 0;
         int available = 0;
 

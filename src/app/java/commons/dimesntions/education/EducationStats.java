@@ -1,9 +1,12 @@
 package app.java.commons.dimesntions.education;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -12,6 +15,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -62,17 +66,18 @@ public class EducationStats {
             initStudentsRatio = Initializer.initConsolidatedMap(STUDENTS_RATIO, studentsRatioPath),
             initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO, trainingRatioPath);
 
+    public static final Map<String, Number>
+            digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
+            dropoutRatio = Preparation.prepareData(initDropoutRatio),
+            earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
+            inactiveYoungRatio = Preparation.prepareData(initInactiveYoungRatio),
+            noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
+            pupilsRatio = Preparation.prepareData(initPupilsRatio),
+            studentsRatio = Preparation.prepareData(initStudentsRatio),
+            trainingRatio = Preparation.prepareData(initTrainingRatio);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
-                dropoutRatio = Preparation.prepareData(initDropoutRatio),
-                earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
-                inactiveYoungRatio = Preparation.prepareData(initInactiveYoungRatio),
-                noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
-                pupilsRatio = Preparation.prepareData(initPupilsRatio),
-                studentsRatio = Preparation.prepareData(initStudentsRatio),
-                trainingRatio = Preparation.prepareData(initTrainingRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -115,5 +120,26 @@ public class EducationStats {
             add(Preparation.filterMap(initStudentsRatio));
             add(Preparation.filterMap(initTrainingRatio));
         }};
+    }
+
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.EDUCATION)) {
+            if (args.contains("--indicator=" + IndicatorNames.DIGITAL_SKILLS_RATIO))
+                Print.printChartData(digitalSkillsRatio, EU28_MEMBERS, seriesType, IndicatorNames.DIGITAL_SKILLS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.DROPOUT_RATIO))
+                Print.printChartData(dropoutRatio, EU28_MEMBERS, seriesType, IndicatorNames.DROPOUT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.EARLY_EDUCATION_RATIO))
+                Print.printChartData(earlyEducationRatio, EU28_MEMBERS, seriesType, IndicatorNames.EARLY_EDUCATION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INACTIVE_YOUNG_RATIO))
+                Print.printChartData(inactiveYoungRatio, EU28_MEMBERS, seriesType, IndicatorNames.INACTIVE_YOUNG_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO))
+                Print.printChartData(noKnownForeignLangRatio, EU28_MEMBERS, seriesType, IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.PUPILS_RATIO))
+                Print.printChartData(pupilsRatio, EU28_MEMBERS, seriesType, IndicatorNames.PUPILS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.STUDENTS_RATIO))
+                Print.printChartData(studentsRatio, EU28_MEMBERS, seriesType, IndicatorNames.STUDENTS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.TRAINING_RATIO))
+                Print.printChartData(trainingRatio, EU28_MEMBERS, seriesType, IndicatorNames.TRAINING_RATIO);
+        }
     }
 }

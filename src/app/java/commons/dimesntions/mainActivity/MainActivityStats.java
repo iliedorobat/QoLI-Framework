@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.mainActivity;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.dimesntions.common.CommonStats;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -13,6 +16,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -78,21 +82,22 @@ public class MainActivityStats {
             initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO, unemploymentRatioPath),
             initWorkingNightsRatio = Initializer.initConsolidatedMap(WORKING_NIGHTS_RATIO, workingNightsRatioPath);
 
+    public static final Map<String, Number>
+            avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
+            employmentRatio = Preparation.prepareData(initEmploymentRatio),
+            inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
+            involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
+            jobSatisfaction = Preparation.prepareData(initJobSatisfaction),
+            longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
+            lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
+            overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: NaN
+            researchersRatio = Preparation.preparePerTenThousandInhabitants(CommonStats.population, initResearchers),
+            temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
+            unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
+            workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
-                employmentRatio = Preparation.prepareData(initEmploymentRatio),
-                inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
-                involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
-                jobSatisfaction = Preparation.prepareData(initJobSatisfaction),
-                longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
-                lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
-                overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: NaN
-                researchersRatio = Preparation.preparePerTenThousandInhabitants(CommonStats.population, initResearchers),
-                temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
-                unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
-                workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -147,5 +152,34 @@ public class MainActivityStats {
             add(Preparation.filterMap(initUnemploymentRatio));
             add(Preparation.filterMap(initWorkingNightsRatio));
         }};
+    }
+
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.MAIN_ACTIVITY)) {
+            if (args.contains("--indicator=" + IndicatorNames.AVG_WORK_HOURS))
+                Print.printChartData(avgWorkHours, EU28_MEMBERS, seriesType, IndicatorNames.AVG_WORK_HOURS);
+            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_RATIO))
+                Print.printChartData(employmentRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INACTIVE_POPULATION_RATIO))
+                Print.printChartData(inactivePopulationRatio, EU28_MEMBERS, seriesType, IndicatorNames.INACTIVE_POPULATION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INVOLUNTARY_PART_TIME_RATIO))
+                Print.printChartData(involuntaryPartTimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.INVOLUNTARY_PART_TIME_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.JOB_SATISFACTION))
+                Print.printChartData(jobSatisfaction, EU28_MEMBERS, seriesType, IndicatorNames.JOB_SATISFACTION);
+            if (args.contains("--indicator=" + IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO))
+                Print.printChartData(longTermUnemploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.LOW_WAGE_EARNINGS_RATIO))
+                Print.printChartData(lowWageEarningsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WAGE_EARNINGS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.OVER_QUALIFIED_RATIO))
+                Print.printChartData(overQualifiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_QUALIFIED_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.RESEARCHERS_RATIO))
+                Print.printChartData(researchersRatio, EU28_MEMBERS, seriesType, IndicatorNames.RESEARCHERS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO))
+                Print.printChartData(temporaryEmploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.UNEMPLOYMENT_RATIO))
+                Print.printChartData(unemploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEMPLOYMENT_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.WORKING_NIGHTS_RATIO))
+                Print.printChartData(workingNightsRatio, EU28_MEMBERS, seriesType, IndicatorNames.WORKING_NIGHTS_RATIO);
+        }
     }
 }

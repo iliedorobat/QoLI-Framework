@@ -1,10 +1,13 @@
 package app.java.commons.dimesntions.materialLiving;
 
 import app.java.commons.MapOrder;
+import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.ParamsValues;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -12,6 +15,7 @@ import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -65,21 +69,29 @@ public class MaterialLivingStats {
             initPovertyRiskRatio = Initializer.initConsolidatedMap(POVERTY_RISK_RATIO, povertyRiskRatioPath),
             initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath);
 
+    public static final Map<String, Number>
+            dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
+
+            endMeetInabilityRatio = Preparation.prepareData(initEndMeetInabilityRatio),
+            endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio),
+            compactEndMeetInabilityRatio = consolidateEndMeetInabilityRatio(),
+
+            financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionPath),
+            highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
+            incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
+            incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio),
+            incomeQuintileOver65Ratio = Preparation.prepareData(initIncomeQuintileOver65Ratio),
+            compactQuintileSeniorityGap = getQuintileSeniorityGap(),
+
+            lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
+            lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
+            materialDeprivationRatio = Preparation.prepareData(initMaterialDeprivationRatio),
+            overOccupiedRatio = Preparation.prepareData(initOverOccupiedRatio),
+            povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
+            underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
-                endMeetInabilityRatio = consolidateEndMeetInabilityRatio(),
-                financialSatisfactionPath = Preparation.prepareData(initFinancialSatisfactionPath),
-                highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
-                incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
-                quintileSeniorityGap = getQuintileSeniorityGap(),
-                lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
-                lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
-                materialDeprivationRatio = Preparation.prepareData(initMaterialDeprivationRatio),
-                overOccupiedRatio = Preparation.prepareData(initOverOccupiedRatio),
-                povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
-                underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -87,17 +99,17 @@ public class MaterialLivingStats {
 
                 double
                         reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
-                        reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
+                        reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(compactEndMeetInabilityRatio, key),
                         reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
                         reverseLackOfBathsRatio = MathUtils.percentageReverseRatio(lackOfBathsRatio, key),
                         reverseLowWorkIntensityRatio = MathUtils.percentageReverseRatio(lowWorkIntensityRatio, key),
                         reverseMaterialDeprivationRatio = MathUtils.percentageReverseRatio(materialDeprivationRatio, key),
                         reverseOverOccupiedRatio = MathUtils.percentageReverseRatio(overOccupiedRatio, key),
                         reversePovertyRiskRatio = MathUtils.percentageReverseRatio(povertyRiskRatio, key),
-                        reverseQuintileSeniorityGap = MathUtils.percentageReverseRatio(quintileSeniorityGap, key);
+                        reverseQuintileSeniorityGap = MathUtils.percentageReverseRatio(compactQuintileSeniorityGap, key);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(financialSatisfactionPath, key)
+                        * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
                         * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
@@ -140,6 +152,43 @@ public class MaterialLivingStats {
         }};
     }
 
+    public static void printIndicators(List<String> args, String seriesType) {
+        if (args.contains("--dimension=" + DimensionNames.MATERIAL_LIVING_CONDITIONS)) {
+            if (args.contains("--indicator=" + IndicatorNames.DWELLING_ISSUES_RATIO))
+                Print.printChartData(dwellingIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.DWELLING_ISSUES_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_RATIO))
+                Print.printChartData(endMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_GD_RATIO))
+                Print.printChartData(endMeetInabilityGdRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_GD_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_END_MEET_INABILITY_RATIO))
+                Print.printChartData(compactEndMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_END_MEET_INABILITY_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.FINANCIAL_SATISFACTION_RATIO))
+                Print.printChartData(financialSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.FINANCIAL_SATISFACTION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.HIGH_INCOME_RATIO))
+                Print.printChartData(highIncomeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_INCOME_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_RATIO))
+                Print.printChartData(incomeQuintileRatio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO))
+                Print.printChartData(incomeQuintileLess65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO))
+                Print.printChartData(incomeQuintileOver65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.COMPACT_QUINTILE_SENIORITY_GAP))
+                Print.printChartData(compactQuintileSeniorityGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_QUINTILE_SENIORITY_GAP);
+            if (args.contains("--indicator=" + IndicatorNames.LACK_OF_BATHS_RATIO))
+                Print.printChartData(lackOfBathsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LACK_OF_BATHS_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.LOW_WORK_INTENSITY_RATIO))
+                Print.printChartData(lowWorkIntensityRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WORK_INTENSITY_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.MATERIAL_DEPRIVATION_RATIO))
+                Print.printChartData(materialDeprivationRatio, EU28_MEMBERS, seriesType, IndicatorNames.MATERIAL_DEPRIVATION_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.OVER_OCCUPIED_RATIO))
+                Print.printChartData(overOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_OCCUPIED_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.POVERTY_RISK_RATIO))
+                Print.printChartData(povertyRiskRatio, EU28_MEMBERS, seriesType, IndicatorNames.POVERTY_RISK_RATIO);
+            if (args.contains("--indicator=" + IndicatorNames.UNDER_OCCUPIED_RATIO))
+                Print.printChartData(underOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNDER_OCCUPIED_RATIO);
+        }
+    }
+
     /**
      * Aggregate the end meet inability "standard" ratio and the end meet inability
      * "great difficulty" ratio into a single indicator (the sum of these).
@@ -148,9 +197,6 @@ public class MaterialLivingStats {
      */
     private static Map<String, Number> consolidateEndMeetInabilityRatio() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                endMeetInabilityRatio = Preparation.prepareData(initEndMeetInabilityRatio),
-                endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
@@ -166,9 +212,6 @@ public class MaterialLivingStats {
 
     private static Map<String, Number> getQuintileSeniorityGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        Map<String, Number>
-                incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio),
-                incomeQuintileOver65Ratio = Preparation.prepareData(initIncomeQuintileOver65Ratio);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {

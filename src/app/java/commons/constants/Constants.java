@@ -144,6 +144,6 @@ public class Constants {
             "EU_WESTERN"
     };
 
-    public static final String SERIES_TYPE_COUNTRY = "country";
-    public static final String SERIES_TYPE_REGION = "region";
+    public static final String SERIES_TYPE_COUNTRY = "COUNTRY";
+    public static final String SERIES_TYPE_REGION = "REGION";
 }
