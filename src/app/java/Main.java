@@ -1,18 +1,18 @@
 package app.java;
 
 import app.java.commons.Print;
-import app.java.commons.dimesntions.QoLIStats;
-import app.java.commons.dimesntions.common.CommonStats;
-import app.java.commons.dimesntions.education.EducationStats;
-import app.java.commons.dimesntions.environment.EnvironmentStats;
-import app.java.commons.dimesntions.gov.GovRightsStats;
-import app.java.commons.dimesntions.health.HealthStats;
-import app.java.commons.dimesntions.interactions.InteractionsStats;
-import app.java.commons.dimesntions.leisure.LeisureStats;
-import app.java.commons.dimesntions.mainActivity.MainActivityStats;
-import app.java.commons.dimesntions.materialLiving.MaterialLivingStats;
-import app.java.commons.dimesntions.overall.OverallExperienceStats;
-import app.java.commons.dimesntions.safety.SafetyStats;
+import app.java.commons.dimensions.QoLIStats;
+import app.java.commons.dimensions.common.CommonStats;
+import app.java.commons.dimensions.education.EducationStats;
+import app.java.commons.dimensions.environment.EnvironmentStats;
+import app.java.commons.dimensions.gov.GovRightsStats;
+import app.java.commons.dimensions.health.HealthStats;
+import app.java.commons.dimensions.interactions.InteractionsStats;
+import app.java.commons.dimensions.leisure.LeisureStats;
+import app.java.commons.dimensions.mainActivity.MainActivityStats;
+import app.java.commons.dimensions.materialLiving.MaterialLivingStats;
+import app.java.commons.dimensions.overall.OverallExperienceStats;
+import app.java.commons.dimensions.safety.SafetyStats;
 import app.java.data.LocalParser;
 import app.java.data.fetch.DataCollector;
 
