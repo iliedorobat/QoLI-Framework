@@ -55,9 +55,10 @@ public class FileUtils {
                 e.printStackTrace();
             } finally {
                 try {
-                    assert workbook != null;
-                    workbook.close();
-                    outputStream.close();
+                    if (workbook != null) {
+                        workbook.close();
+                        outputStream.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -97,10 +98,10 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
-                assert in != null;
-                in.close();
-                assert out != null;
-                out.close();
+                if (in != null)
+                    in.close();
+                if (out != null)
+                    out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
