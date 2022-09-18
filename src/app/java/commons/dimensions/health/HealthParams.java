@@ -40,7 +40,7 @@ public class HealthParams {
             put(ParamsConst.AGE, "TOTAL");
             put(ParamsConst.BMI, "BMI_GE25"); // Overweight
             put(ParamsConst.BMI, "BMI_GE30"); // Obese
-            put(ParamsConst.QUANTILE, "TOTAL");
+            put(ParamsConst.QUANT_INC, "TOTAL");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC");
         }};
@@ -60,7 +60,7 @@ public class HealthParams {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "TOTAL");
             put(ParamsConst.N_PORTION, "GE5");
-            put(ParamsConst.QUANTILE, "TOTAL");
+            put(ParamsConst.QUANT_INC, "TOTAL");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC");
         }};
@@ -95,6 +95,7 @@ public class HealthParams {
             put(ParamsConst.INDIC_HE, "HLY_0");
             put(ParamsConst.SEX, ParamsValues.SEX.get("female"));
             put(ParamsConst.SEX, ParamsValues.SEX.get("male"));
+            put(ParamsConst.UNIT, "YR");
         }};
     }
 
@@ -144,7 +145,7 @@ public class HealthParams {
     public static MultiValuedMap<String, String> getSmokersParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "TOTAL");
-            put(ParamsConst.QUANTILE, "TOTAL");
+            put(ParamsConst.QUANT_INC, "TOTAL");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.SMOKING, "TOTAL");
             put(ParamsConst.UNIT, "PC");

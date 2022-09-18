@@ -13,8 +13,8 @@ public class OverallExperienceParams {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
             put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.UNIT, "PC");
             put(ParamsConst.SEX, "T");
+            put(ParamsConst.UNIT, "PC");
         }};
     }
 

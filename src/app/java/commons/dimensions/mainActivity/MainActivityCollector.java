@@ -89,7 +89,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getInactivePopulationRatio() {
-        return Fetcher.fetchData("lfsi_emp_a", MainActivityParams.getInactivePopulationParams());
+        return Fetcher.fetchData("lfsa_ipga", MainActivityParams.getInactivePopulationParams());
     }
 
     /**

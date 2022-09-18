@@ -35,6 +35,7 @@ public class ParamsConst {
     public static final String NACE_R2 = "nace_r2";
     public static final String PHYSICAL_ACTIVITY = "physact";
     public static final String PROF_POS = "prof_pos";
+    public static final String QUANT_INC = "quant_inc";
     public static final String QUANTILE = "quantile";
     public static final String REASON = "reason";
     public static final String SECT_PERF = "sectperf";
@@ -47,7 +48,7 @@ public class ParamsConst {
     public static final String SPDEPS = "spdeps";
     public static final String SUBJNMON = "subjnmon";
     public static final String TIME = "time";
-    public static final String TYPTRAI = "typtrai";
+    public static final String TRAINING = "training";
     public static final String UNIT = "unit";
     public static final String WAT_PROC = "wat_proc";
     public static final String WORK_TIME = "worktime";

@@ -52,7 +52,7 @@ public class MainActivityParams {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y15-64");
             put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC_POP");
+            put(ParamsConst.UNIT, "PC");
         }};
     }
 
@@ -82,9 +82,9 @@ public class MainActivityParams {
 
     public static MultiValuedMap<String, String> getLowWageEarnersParams() {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.UNIT, "PC");
             put(ParamsConst.AGE, "TOTAL");
             put(ParamsConst.SIZECLAS, "GE10");
+            put(ParamsConst.UNIT, "PC");
         }};
     }
 

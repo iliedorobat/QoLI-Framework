@@ -46,7 +46,8 @@ public class EnvironmentCollector {
     }
 
     /**
-     * Pollution, grime or other environmental problems - EU-SILC survey<br/><br/>
+     * Pollution, grime or other environmental problems (e.g.: smoke, dust,
+     * unpleasant smells or polluted water) - EU-SILC survey<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>

@@ -51,7 +51,7 @@ public class EducationParams {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y18-24");
             put(ParamsConst.SEX, "T");
-            put(ParamsConst.TYPTRAI, "NO_FE_NO_NFE");
+            put(ParamsConst.TRAINING, "NO_FE_NO_NFE");
             put(ParamsConst.UNIT, "PC");
             put(ParamsConst.WORKING_STATUS, "NEMP");
         }};
