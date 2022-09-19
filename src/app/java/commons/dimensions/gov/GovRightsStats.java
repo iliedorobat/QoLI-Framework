@@ -124,30 +124,40 @@ public class GovRightsStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.GOVERNMENT)) {
             if (args.contains("--indicator=" + IndicatorNames.CITIZENSHIP))
-                Print.printChartData(citizenship, EU28_MEMBERS, seriesType, IndicatorNames.CITIZENSHIP);
+                Print.printChartData(citizenship, EU28_MEMBERS, seriesType, IndicatorNames.CITIZENSHIP, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_FEMALE_RATIO))
-                Print.printChartData(employmentFemaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_FEMALE_RATIO);
+                Print.printChartData(employmentFemaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_FEMALE_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_MALE_RATIO))
-                Print.printChartData(employmentMaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_MALE_RATIO);
+                Print.printChartData(employmentMaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_MALE_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_EMPLOYMENT_GENDER_GAP))
-                Print.printChartData(compactEmploymentGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_EMPLOYMENT_GENDER_GAP);
+                Print.printChartData(compactEmploymentGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_EMPLOYMENT_GENDER_GAP, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.GENDER_PAY_GAP))
-                Print.printChartData(genderPayGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_PAY_GAP);
+                Print.printChartData(genderPayGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_PAY_GAP, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.POPULATION_LEGTST_TRUST_RATIO))
-                Print.printChartData(populationLegtstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_LEGTST_TRUST_RATIO);
+                Print.printChartData(populationLegtstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_LEGTST_TRUST_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.POPULATION_OTHERS_TRUST_RATIO))
-                Print.printChartData(populationOthersTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_OTHERS_TRUST_RATIO);
+                Print.printChartData(populationOthersTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_OTHERS_TRUST_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.POPULATION_PLCTST_TRUST_RATIO))
-                Print.printChartData(populationPlctstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLCTST_TRUST_RATIO);
+                Print.printChartData(populationPlctstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLCTST_TRUST_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.POPULATION_PLTTST_TRUST_RATIO))
-                Print.printChartData(populationPlttstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLTTST_TRUST_RATIO);
+                Print.printChartData(populationPlttstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLTTST_TRUST_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_POPULATION_TRUST))
-                Print.printChartData(compactPopulationTrust, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_POPULATION_TRUST);
+                Print.printChartData(compactPopulationTrust, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_POPULATION_TRUST, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.VOTER_TURNOUT))
-                Print.printChartData(voterTurnout, EU28_MEMBERS, seriesType, IndicatorNames.VOTER_TURNOUT);
+                Print.printChartData(voterTurnout, EU28_MEMBERS, seriesType, IndicatorNames.VOTER_TURNOUT, direction);
         }
     }
 

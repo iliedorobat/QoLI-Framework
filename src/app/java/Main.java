@@ -21,8 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static app.java.commons.constants.Constants.SERIES_TYPE_COUNTRY;
-import static app.java.commons.constants.Constants.SERIES_TYPE_REGION;
+import static app.java.commons.constants.Constants.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -55,29 +54,38 @@ public class Main {
 
         if (calculate) {
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
-            QoLIStats.writeDimensions();
+            String direction = getDirection(list);
+            QoLIStats.writeDimensions(direction);
         }
 
         if (print) {
             String seriesType = getSeriesType(list);
+            String direction = getDirection(list);
 
             if (seriesType != null) {
                 // 4. Print the QoLI and the QoLI dimensions values
-                QoLIStats.printDimensions(list, seriesType);
+                QoLIStats.printDimensions(list, seriesType, direction);
 
                 // 5. Print a specific indicator
-                EducationStats.printIndicators(list, seriesType);
-                EnvironmentStats.printIndicators(list, seriesType);
-                GovRightsStats.printIndicators(list, seriesType);
-                HealthStats.printIndicators(list, seriesType);
-                InteractionsStats.printIndicators(list, seriesType);
-                LeisureStats.printIndicators(list, seriesType);
-                MainActivityStats.printIndicators(list, seriesType);
-                MaterialLivingStats.printIndicators(list, seriesType);
-                OverallExperienceStats.printIndicators(list, seriesType);
-                SafetyStats.printIndicators(list, seriesType);
+                EducationStats.printIndicators(list, seriesType, direction);
+                EnvironmentStats.printIndicators(list, seriesType, direction);
+                GovRightsStats.printIndicators(list, seriesType, direction);
+                HealthStats.printIndicators(list, seriesType, direction);
+                InteractionsStats.printIndicators(list, seriesType, direction);
+                LeisureStats.printIndicators(list, seriesType, direction);
+                MainActivityStats.printIndicators(list, seriesType, direction);
+                MaterialLivingStats.printIndicators(list, seriesType, direction);
+                OverallExperienceStats.printIndicators(list, seriesType, direction);
+                SafetyStats.printIndicators(list, seriesType, direction);
             }
         }
+    }
+
+    private static String getDirection(List<String> args) {
+        if (args.contains("--direction=" + DIRECTION_ROW)) {
+            return DIRECTION_ROW;
+        }
+        return DIRECTION_COLUMN;
     }
 
     private static String getSeriesType(List<String> args) {

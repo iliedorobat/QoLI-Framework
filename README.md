@@ -21,19 +21,23 @@ export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/po
 javac -d ./out/production/QoLI-Framework src/app/java/BuildProject.java
 java app/java/BuildProject
 ```
-5. Collect the datasets and calculate the QoLI dimensions (only once):
+5. Collect the datasets:
 ```bash
-java app/java/Main --collect --calculate
+java app/java/Main --collect
 ```
-6. Print the QoLI and the QoLI dimensions:
+6. Calculate the QoLI dimensions (only once):
 ```bash
-java app/java/Main --print --seriesType=COUNTRY --dimension=QOLI
-java app/java/Main --print --seriesType=REGION --dimension=QOLI
+java app/java/Main --calculate --direction=COLUMN
+```
+7. Print the QoLI and the QoLI dimensions:
+```bash
+java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
 ```
 7. Print specific indicators:
 ```bash
-java app/java/Main --print --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-java app/java/Main --print --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 ```
 * List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/DimensionNames.java
 * List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java

@@ -89,20 +89,25 @@ public class InteractionsStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.INTERACTIONS)) {
             if (args.contains("--indicator=" + IndicatorNames.ASKING_RATIO))
-                Print.printChartData(askingRatio, EU28_MEMBERS, seriesType, IndicatorNames.ASKING_RATIO);
+                Print.printChartData(askingRatio, EU28_MEMBERS, seriesType, IndicatorNames.ASKING_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.DISCUSSION_RATIO))
-                Print.printChartData(discussionRatio, EU28_MEMBERS, seriesType, IndicatorNames.DISCUSSION_RATIO);
+                Print.printChartData(discussionRatio, EU28_MEMBERS, seriesType, IndicatorNames.DISCUSSION_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FAM_RATIO))
-                Print.printChartData(gettingTogetherFamRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FAM_RATIO);
+                Print.printChartData(gettingTogetherFamRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FAM_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FRD_RATIO))
-                Print.printChartData(gettingTogetherFrdRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FRD_RATIO);
+                Print.printChartData(gettingTogetherFrdRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FRD_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO))
-                Print.printChartData(compactGettingTogetherRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO);
+                Print.printChartData(compactGettingTogetherRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
-                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO);
+                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO, direction);
         }
     }
 

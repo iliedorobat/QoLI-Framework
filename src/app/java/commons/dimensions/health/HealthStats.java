@@ -183,54 +183,76 @@ public class HealthStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.HEALTH)) {
             if (args.contains("--indicator=" + IndicatorNames.ALCOHOLIC_RATIO))
-                Print.printChartData(alcoholicRatio, EU28_MEMBERS, seriesType, IndicatorNames.ALCOHOLIC_RATIO);
+                Print.printChartData(alcoholicRatio, EU28_MEMBERS, seriesType, IndicatorNames.ALCOHOLIC_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.FRUITS_VEGETABLES_RATIO))
-                Print.printChartData(fruitsVegetablesRatio, EU28_MEMBERS, seriesType, IndicatorNames.FRUITS_VEGETABLES_RATIO);
+                Print.printChartData(fruitsVegetablesRatio, EU28_MEMBERS, seriesType, IndicatorNames.FRUITS_VEGETABLES_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.BMI_OVERWEIGHT_RATIO))
-                Print.printChartData(bmiOverweightRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OVERWEIGHT_RATIO);
+                Print.printChartData(bmiOverweightRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OVERWEIGHT_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.BMI_OBESE_RATIO))
-                Print.printChartData(bmiObeseRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OBESE_RATIO);
+                Print.printChartData(bmiObeseRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OBESE_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_BMI_RATIO))
-                Print.printChartData(compactBmiRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_BMI_RATIO);
+                Print.printChartData(compactBmiRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_BMI_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.DENTISTS))
-                Print.printChartData(dentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS);
+                Print.printChartData(dentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.DOCTORS))
-                Print.printChartData(doctors, EU28_MEMBERS, seriesType, IndicatorNames.DOCTORS);
+                Print.printChartData(doctors, EU28_MEMBERS, seriesType, IndicatorNames.DOCTORS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.NURSES))
-                Print.printChartData(nurses, EU28_MEMBERS, seriesType, IndicatorNames.NURSES);
+                Print.printChartData(nurses, EU28_MEMBERS, seriesType, IndicatorNames.NURSES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.PHARMACISTS))
-                Print.printChartData(pharmacists, EU28_MEMBERS, seriesType, IndicatorNames.PHARMACISTS);
+                Print.printChartData(pharmacists, EU28_MEMBERS, seriesType, IndicatorNames.PHARMACISTS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.PHYSIOTHERAPISTS))
-                Print.printChartData(physiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS);
+                Print.printChartData(physiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTH_PERSONNEL))
-                Print.printChartData(compactHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTH_PERSONNEL);
+                Print.printChartData(compactHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTH_PERSONNEL, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_RATIO))
-                Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO);
+                Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE))
-                Print.printChartData(healthyLifeYearsFemale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE);
+                Print.printChartData(healthyLifeYearsFemale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_MALE))
-                Print.printChartData(healthyLifeYearsMale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_MALE);
+                Print.printChartData(healthyLifeYearsMale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_MALE, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP))
-                Print.printChartData(compactHealthyLifeGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP);
+                Print.printChartData(compactHealthyLifeGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HOSPITAL_BEDS))
-                Print.printChartData(hospitalBeds, EU28_MEMBERS, seriesType, IndicatorNames.HOSPITAL_BEDS);
+                Print.printChartData(hospitalBeds, EU28_MEMBERS, seriesType, IndicatorNames.HOSPITAL_BEDS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.LIFE_EXPECTANCY))
-                Print.printChartData(lifeExpectancy, EU28_MEMBERS, seriesType, IndicatorNames.LIFE_EXPECTANCY);
+                Print.printChartData(lifeExpectancy, EU28_MEMBERS, seriesType, IndicatorNames.LIFE_EXPECTANCY, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.LONG_HEALTH_ISSUES_RATIO))
-                Print.printChartData(longHealthIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.LONG_HEALTH_ISSUES_RATIO);
+                Print.printChartData(longHealthIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.LONG_HEALTH_ISSUES_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.PHYSICAL_ACTIVITIES_RATIO))
-                Print.printChartData(physicalActivitiesRatio, EU28_MEMBERS, seriesType, IndicatorNames.PHYSICAL_ACTIVITIES_RATIO);
+                Print.printChartData(physicalActivitiesRatio, EU28_MEMBERS, seriesType, IndicatorNames.PHYSICAL_ACTIVITIES_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SMOKERS_RATIO))
-                Print.printChartData(smokersRatio, EU28_MEMBERS, seriesType, IndicatorNames.SMOKERS_RATIO);
+                Print.printChartData(smokersRatio, EU28_MEMBERS, seriesType, IndicatorNames.SMOKERS_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.UNMET_DENTAL_RATIO))
-                Print.printChartData(unmetDentalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_DENTAL_RATIO);
+                Print.printChartData(unmetDentalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_DENTAL_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.UNMET_MEDICAL_RATIO))
-                Print.printChartData(unmetMedicalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_MEDICAL_RATIO);
+                Print.printChartData(unmetMedicalRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNMET_MEDICAL_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.WORK_ACCIDENTS))
-                Print.printChartData(workAccidents, EU28_MEMBERS, seriesType, IndicatorNames.WORK_ACCIDENTS);
+                Print.printChartData(workAccidents, EU28_MEMBERS, seriesType, IndicatorNames.WORK_ACCIDENTS, direction);
         }
     }
 

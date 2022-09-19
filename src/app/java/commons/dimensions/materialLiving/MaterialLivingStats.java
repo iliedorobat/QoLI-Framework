@@ -152,40 +152,55 @@ public class MaterialLivingStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.MATERIAL_LIVING_CONDITIONS)) {
             if (args.contains("--indicator=" + IndicatorNames.DWELLING_ISSUES_RATIO))
-                Print.printChartData(dwellingIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.DWELLING_ISSUES_RATIO);
+                Print.printChartData(dwellingIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.DWELLING_ISSUES_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_RATIO))
-                Print.printChartData(endMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_RATIO);
+                Print.printChartData(endMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_GD_RATIO))
-                Print.printChartData(endMeetInabilityGdRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_GD_RATIO);
+                Print.printChartData(endMeetInabilityGdRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_GD_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_END_MEET_INABILITY_RATIO))
-                Print.printChartData(compactEndMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_END_MEET_INABILITY_RATIO);
+                Print.printChartData(compactEndMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_END_MEET_INABILITY_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.FINANCIAL_SATISFACTION_RATIO))
-                Print.printChartData(financialSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.FINANCIAL_SATISFACTION_RATIO);
+                Print.printChartData(financialSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.FINANCIAL_SATISFACTION_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HIGH_INCOME_RATIO))
-                Print.printChartData(highIncomeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_INCOME_RATIO);
+                Print.printChartData(highIncomeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_INCOME_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_RATIO))
-                Print.printChartData(incomeQuintileRatio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_RATIO);
+                Print.printChartData(incomeQuintileRatio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO))
-                Print.printChartData(incomeQuintileLess65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO);
+                Print.printChartData(incomeQuintileLess65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO))
-                Print.printChartData(incomeQuintileOver65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO);
+                Print.printChartData(incomeQuintileOver65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_QUINTILE_SENIORITY_GAP))
-                Print.printChartData(compactQuintileSeniorityGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_QUINTILE_SENIORITY_GAP);
+                Print.printChartData(compactQuintileSeniorityGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_QUINTILE_SENIORITY_GAP, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.LACK_OF_BATHS_RATIO))
-                Print.printChartData(lackOfBathsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LACK_OF_BATHS_RATIO);
+                Print.printChartData(lackOfBathsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LACK_OF_BATHS_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.LOW_WORK_INTENSITY_RATIO))
-                Print.printChartData(lowWorkIntensityRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WORK_INTENSITY_RATIO);
+                Print.printChartData(lowWorkIntensityRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WORK_INTENSITY_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.MATERIAL_DEPRIVATION_RATIO))
-                Print.printChartData(materialDeprivationRatio, EU28_MEMBERS, seriesType, IndicatorNames.MATERIAL_DEPRIVATION_RATIO);
+                Print.printChartData(materialDeprivationRatio, EU28_MEMBERS, seriesType, IndicatorNames.MATERIAL_DEPRIVATION_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.OVER_OCCUPIED_RATIO))
-                Print.printChartData(overOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_OCCUPIED_RATIO);
+                Print.printChartData(overOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_OCCUPIED_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.POVERTY_RISK_RATIO))
-                Print.printChartData(povertyRiskRatio, EU28_MEMBERS, seriesType, IndicatorNames.POVERTY_RISK_RATIO);
+                Print.printChartData(povertyRiskRatio, EU28_MEMBERS, seriesType, IndicatorNames.POVERTY_RISK_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.UNDER_OCCUPIED_RATIO))
-                Print.printChartData(underOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNDER_OCCUPIED_RATIO);
+                Print.printChartData(underOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNDER_OCCUPIED_RATIO, direction);
         }
     }
 

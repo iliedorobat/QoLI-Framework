@@ -75,22 +75,22 @@ public class QoLIStats {
         return consolidatedList;
     }
 
-    public static void printDimensions(List<String> args, String seriesType) {
+    public static void printDimensions(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.QOLI)) {
             if (seriesType.equals(SERIES_TYPE_COUNTRY)) {
-                printCountries();
+                printCountries(direction);
             } else if (seriesType.equals(SERIES_TYPE_REGION)) {
-                printRegions();
+                printRegions(direction);
             }
         }
     }
 
-    public static void writeDimensions() {
-        writeCountries();
-        writeRegions();
+    public static void writeDimensions(String direction) {
+        writeCountries(direction);
+        writeRegions(direction);
     }
 
-    private static void printCountries() {
+    private static void printCountries(String direction) {
         System.out.println("\n----------- COUNTRIES DATA -----------\n");
         Map<String, Number>
                 qoliList = QoLIStats.generateIndicatorList(),
@@ -105,21 +105,21 @@ public class QoLIStats {
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
                 safetyStats = SafetyStats.generateDimensionList();
 
-        Print.printChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "QoLI");
-        Print.printChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Education");
-        Print.printChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Environment");
-        Print.printChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "GBR");
-        Print.printChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Health");
-        Print.printChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Interactions");
-        Print.printChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Leisure");
-        Print.printChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "PMA");
-        Print.printChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "MLC");
-        Print.printChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Overall Exp");
-        Print.printChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Safety");
+        Print.printChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "QoLI", direction);
+        Print.printChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Education", direction);
+        Print.printChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Environment", direction);
+        Print.printChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "GBR", direction);
+        Print.printChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Health", direction);
+        Print.printChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Interactions", direction);
+        Print.printChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Leisure", direction);
+        Print.printChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "PMA", direction);
+        Print.printChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "MLC", direction);
+        Print.printChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Overall Exp", direction);
+        Print.printChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Safety", direction);
         System.out.println("--------------------------------------");
     }
 
-    private static void printRegions() {
+    private static void printRegions(String direction) {
         System.out.println("\n----------- REGIONS DATA -----------\n");
         Map<String, Number>
                 qoliList = StatsUtils.aggregateRegions(QoLIStats.generateIndicatorList()),
@@ -134,21 +134,21 @@ public class QoLIStats {
                 overallExperienceStats = StatsUtils.aggregateRegions(OverallExperienceStats.generateDimensionList()),
                 safetyStats = StatsUtils.aggregateRegions(SafetyStats.generateDimensionList());
 
-        Print.printChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, "QoLI");
-        Print.printChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, "Education");
-        Print.printChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, "Environment");
-        Print.printChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, "GBR");
-        Print.printChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, "Health");
-        Print.printChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, "Interactions");
-        Print.printChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, "Leisure");
-        Print.printChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, "PMA");
-        Print.printChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, "MLC");
-        Print.printChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, "Overall Exp");
-        Print.printChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, "Safety");
+        Print.printChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, "QoLI", direction);
+        Print.printChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, "Education", direction);
+        Print.printChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, "Environment", direction);
+        Print.printChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, "GBR", direction);
+        Print.printChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, "Health", direction);
+        Print.printChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, "Interactions", direction);
+        Print.printChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, "Leisure", direction);
+        Print.printChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, "PMA", direction);
+        Print.printChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, "MLC", direction);
+        Print.printChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, "Overall Exp", direction);
+        Print.printChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, "Safety", direction);
         System.out.println("--------------------------------------");
     }
 
-    private static void writeCountries() {
+    private static void writeCountries(String direction) {
         Map<String, Number>
                 qoliList = QoLIStats.generateIndicatorList(),
                 educationStats = EducationStats.generateDimensionList(),
@@ -162,20 +162,20 @@ public class QoLIStats {
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
                 safetyStats = SafetyStats.generateDimensionList();
 
-        StatsUtils.writeChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "QoLI");
-        StatsUtils.writeChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Education");
-        StatsUtils.writeChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Environment");
-        StatsUtils.writeChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "GBR");
-        StatsUtils.writeChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Health");
-        StatsUtils.writeChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Interactions");
-        StatsUtils.writeChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Leisure");
-        StatsUtils.writeChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "PMA");
-        StatsUtils.writeChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "MLC");
-        StatsUtils.writeChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Overall Exp");
-        StatsUtils.writeChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Safety");
+        StatsUtils.writeChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "QoLI", direction);
+        StatsUtils.writeChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Education", direction);
+        StatsUtils.writeChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Environment", direction);
+        StatsUtils.writeChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "GBR", direction);
+        StatsUtils.writeChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Health", direction);
+        StatsUtils.writeChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Interactions", direction);
+        StatsUtils.writeChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Leisure", direction);
+        StatsUtils.writeChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "PMA", direction);
+        StatsUtils.writeChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "MLC", direction);
+        StatsUtils.writeChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Overall Exp", direction);
+        StatsUtils.writeChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "Safety", direction);
     }
 
-    private static void writeRegions() {
+    private static void writeRegions(String direction) {
         Map<String, Number>
                 qoliList = StatsUtils.aggregateRegions(QoLIStats.generateIndicatorList()),
                 educationStats = StatsUtils.aggregateRegions(EducationStats.generateDimensionList()),
@@ -189,16 +189,16 @@ public class QoLIStats {
                 overallExperienceStats = StatsUtils.aggregateRegions(OverallExperienceStats.generateDimensionList()),
                 safetyStats = StatsUtils.aggregateRegions(SafetyStats.generateDimensionList());
 
-        StatsUtils.writeChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, "QoLI");
-        StatsUtils.writeChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, "Education");
-        StatsUtils.writeChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, "Environment");
-        StatsUtils.writeChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, "GBR");
-        StatsUtils.writeChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, "Health");
-        StatsUtils.writeChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, "Interactions");
-        StatsUtils.writeChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, "Leisure");
-        StatsUtils.writeChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, "PMA");
-        StatsUtils.writeChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, "MLC");
-        StatsUtils.writeChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, "Overall Exp");
-        StatsUtils.writeChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, "Safety");
+        StatsUtils.writeChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, "QoLI", direction);
+        StatsUtils.writeChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, "Education", direction);
+        StatsUtils.writeChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, "Environment", direction);
+        StatsUtils.writeChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, "GBR", direction);
+        StatsUtils.writeChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, "Health", direction);
+        StatsUtils.writeChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, "Interactions", direction);
+        StatsUtils.writeChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, "Leisure", direction);
+        StatsUtils.writeChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, "PMA", direction);
+        StatsUtils.writeChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, "MLC", direction);
+        StatsUtils.writeChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, "Overall Exp", direction);
+        StatsUtils.writeChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, "Safety", direction);
     }
 }

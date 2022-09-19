@@ -5,6 +5,8 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FilePathConst;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
@@ -63,11 +65,89 @@ public class StatsUtils {
      * Generate CSV data that can be imported into Word charts
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
+     * @param dimensionName The name of the target dimension
+     * @param direction Display years on rows or columns (ROW or COLUMN)
+     * @return Data prepared for use in Word charts
+     */
+    public static StringBuilder generateChartData(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName,
+            String direction
+    ) {
+        if (direction.equals(DIRECTION_ROW)) {
+            return generateChartRows(entries, membersList, seriesType, dimensionName);
+        }
+
+        return generateChartColumns(entries, membersList, seriesType, dimensionName);
+    }
+
+    /**
+     * Generate CSV data that can be imported into Word charts
+     * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param dimensionName The name of the target dimension
      * @return Data prepared for use in Word charts
      */
-    public static StringBuilder generateChartData(Map<String, Number> entries, String[] membersList, String dimensionName) {
-        String header = "--- " + dimensionName + " ---" +
+    private static StringBuilder generateChartColumns(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName
+    ) {
+        String header = "--- " + seriesType + " --- " + dimensionName + " ---" +
+                "\nCountries" + CSV_SEPARATOR;
+        StringBuilder output = new StringBuilder(header);
+        int length = membersList.length;
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            output.append(year);
+
+            if (year < EnvConst.MAX_YEAR) {
+                output.append(CSV_SEPARATOR);
+            }
+        }
+        output.append("\n");
+
+        for (int i = 0; i < length; i++) {
+            String code = membersList[i];
+            StringBuilder line = new StringBuilder(code + CSV_SEPARATOR);
+
+            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+                String key = code + "_" + year;
+                Number value = entries.get(key);
+
+                DecimalFormat df = new DecimalFormat("#,###.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                line.append(df.format(value));
+
+                if (year < EnvConst.MAX_YEAR) {
+                    line.append(CSV_SEPARATOR);
+                }
+            }
+            output.append(line).append("\n");
+        }
+
+        return output;
+    }
+
+    /**
+     * Generate CSV data that can be imported into Word charts
+     * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
+     * @param dimensionName The name of the target dimension
+     * @return Data prepared for use in Word charts
+     */
+    private static StringBuilder generateChartRows(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            String dimensionName
+    ) {
+        String header = "--- " + seriesType + " --- " + dimensionName + " ---" +
                 "\nYears" + CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
         int length = membersList.length;
@@ -106,14 +186,16 @@ public class StatsUtils {
      * @param membersList The list of countries/regions
      * @param seriesType The type of series ("country" or "region")
      * @param dimensionName The name of the target dimension
+     * @param direction Display years on rows or columns (ROW or COLUMN)
      */
     public static void writeChartData(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName
+            String dimensionName,
+            String direction
     ) {
-        StringBuilder sb = StatsUtils.generateChartData(entries, membersList, dimensionName);
+        StringBuilder sb = StatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
         String seriesDirectory = getSeriesDirectory(seriesType);
         String fullPath = FilePathConst.OUTPUT_PATH + seriesDirectory + "/";
         FileUtils.writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);

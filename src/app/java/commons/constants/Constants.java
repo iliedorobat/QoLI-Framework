@@ -146,4 +146,6 @@ public class Constants {
 
     public static final String SERIES_TYPE_COUNTRY = "COUNTRY";
     public static final String SERIES_TYPE_REGION = "REGION";
+    public static final String DIRECTION_COLUMN = "COLUMN";
+    public static final String DIRECTION_ROW = "ROW";
 }

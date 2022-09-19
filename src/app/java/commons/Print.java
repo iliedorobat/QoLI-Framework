@@ -16,9 +16,10 @@ public class Print {
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName
+            String dimensionName,
+            String direction
     ) {
-        StringBuilder output = StatsUtils.generateChartData(entries, membersList, dimensionName);
+        StringBuilder output = StatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
         System.out.println(output);
     }
 

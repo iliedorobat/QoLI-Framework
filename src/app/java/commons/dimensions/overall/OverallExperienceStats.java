@@ -65,12 +65,13 @@ public class OverallExperienceStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.OVERALL_EXPERIENCE)) {
             if (args.contains("--indicator=" + IndicatorNames.HAPPINESS_RATIO))
-                Print.printChartData(happinessRatio, EU28_MEMBERS, seriesType, IndicatorNames.HAPPINESS_RATIO);
+                Print.printChartData(happinessRatio, EU28_MEMBERS, seriesType, IndicatorNames.HAPPINESS_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HIGH_SATISFACTION_RATIO))
-                Print.printChartData(highSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_SATISFACTION_RATIO);
+                Print.printChartData(highSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_SATISFACTION_RATIO, direction);
         }
     }
 }

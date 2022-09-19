@@ -156,46 +156,64 @@ public class SafetyStats {
         }};
     }
 
-    public static void printIndicators(List<String> args, String seriesType) {
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.SAFETY)) {
             if (args.contains("--indicator=" + IndicatorNames.CRIME_RATIO))
-                Print.printChartData(crimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.CRIME_RATIO);
+                Print.printChartData(crimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.CRIME_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.NON_PAYMENT_RATIO))
-                Print.printChartData(nonPaymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PAYMENT_RATIO);
+                Print.printChartData(nonPaymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PAYMENT_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.PENSION_PPS))
-                Print.printChartData(pensionPps, EU28_MEMBERS, seriesType, IndicatorNames.PENSION_PPS);
+                Print.printChartData(pensionPps, EU28_MEMBERS, seriesType, IndicatorNames.PENSION_PPS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SOCIAL_PROTECTION_PPS))
-                Print.printChartData(socialProtectionPps, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_PROTECTION_PPS);
+                Print.printChartData(socialProtectionPps, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_PROTECTION_PPS, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.UNEXPECTED_RATIO))
-                Print.printChartData(unexpectedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEXPECTED_RATIO);
+                Print.printChartData(unexpectedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEXPECTED_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES))
-                Print.printChartData(attemptedHomicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES);
+                Print.printChartData(attemptedHomicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.ASSAULT_OFFENCES))
-                Print.printChartData(assaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.ASSAULT_OFFENCES);
+                Print.printChartData(assaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.ASSAULT_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.BURGLARY_OFFENCES))
-                Print.printChartData(burglaryOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_OFFENCES);
+                Print.printChartData(burglaryOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.BURGLARY_PRIVATE_OFFENCES))
-                Print.printChartData(burglaryPrivateOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_PRIVATE_OFFENCES);
+                Print.printChartData(burglaryPrivateOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_PRIVATE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HOMICIDE_OFFENCES))
-                Print.printChartData(homicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.HOMICIDE_OFFENCES);
+                Print.printChartData(homicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.HOMICIDE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.KIDNAPPING_OFFENCES))
-                Print.printChartData(kidnappingOffences, EU28_MEMBERS, seriesType, IndicatorNames.KIDNAPPING_OFFENCES);
+                Print.printChartData(kidnappingOffences, EU28_MEMBERS, seriesType, IndicatorNames.KIDNAPPING_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.RAPE_OFFENCES))
-                Print.printChartData(rapeOffences, EU28_MEMBERS, seriesType, IndicatorNames.RAPE_OFFENCES);
+                Print.printChartData(rapeOffences, EU28_MEMBERS, seriesType, IndicatorNames.RAPE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.ROBBERY_OFFENCES))
-                Print.printChartData(robberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.ROBBERY_OFFENCES);
+                Print.printChartData(robberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.ROBBERY_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SEXUAL_ASSAULT_OFFENCES))
-                Print.printChartData(sexualAssaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_ASSAULT_OFFENCES);
+                Print.printChartData(sexualAssaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_ASSAULT_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SEXUAL_VIOLENCE_OFFENCES))
-                Print.printChartData(sexualViolenceOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_VIOLENCE_OFFENCES);
+                Print.printChartData(sexualViolenceOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_VIOLENCE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.THEFT_OFFENCES))
-                Print.printChartData(theftOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_OFFENCES);
+                Print.printChartData(theftOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.THEFT_VEHICLE_OFFENCES))
-                Print.printChartData(theftVehicleOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_VEHICLE_OFFENCES);
+                Print.printChartData(theftVehicleOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_VEHICLE_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.UNLAWFUL_OFFENCES))
-                Print.printChartData(unlawfulOffences, EU28_MEMBERS, seriesType, IndicatorNames.UNLAWFUL_OFFENCES);
+                Print.printChartData(unlawfulOffences, EU28_MEMBERS, seriesType, IndicatorNames.UNLAWFUL_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.COMPACT_OFFENCES_RATIO))
-                Print.printChartData(compactOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_OFFENCES_RATIO);
+                Print.printChartData(compactOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_OFFENCES_RATIO, direction);
         }
     }
 
