@@ -10,7 +10,6 @@ public class InteractionsCollector {
         FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.ASKING_RATIO);
         FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.DISCUSSION_RATIO);
         FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.GETTING_TOGETHER_RATIO);
-        FileUtils.writeToJSONFile(getNonParticipationRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.NON_PARTICIPATION_RATIO);
         FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_PATH, FileNameConst.RELATIONSHIPS_SATISFACTION_RATIO);
     }
 
@@ -55,24 +54,6 @@ public class InteractionsCollector {
      */
     private static StringBuilder getGettingTogetherRatio() {
         return Fetcher.fetchData("ilc_scp09", InteractionsParams.getGettingTogetherParams());
-    }
-
-    /**
-     * Non-participation in cultural activities or sports events during the previous 12 months
-     * due to financial reasons or due to a lack of facilities<br/>
-     * People aged 16 years or over<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp05<br/>
-     * Years: 2015<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    private static StringBuilder getNonParticipationRatio() {
-        return Fetcher.fetchData("ilc_scp05", InteractionsParams.getNonParticipationParams());
     }
 
     /**
