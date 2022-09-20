@@ -11,7 +11,6 @@ public class IndicatorNames {
     public static final String BURGLARY_OFFENCES = "BURGLARY_OFFENCES";
     public static final String BURGLARY_PRIVATE_OFFENCES = "BURGLARY_PRIVATE_OFFENCES";
     public static final String CITIZENSHIP = "CITIZENSHIP";
-    public static final String COMPACT_BMI_RATIO = "COMPACT_BMI_RATIO";
     public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
     public static final String COMPACT_END_MEET_INABILITY_RATIO = "COMPACT_END_MEET_INABILITY_RATIO";
     public static final String COMPACT_GETTING_TOGETHER_RATIO = "COMPACT_GETTING_TOGETHER_RATIO";

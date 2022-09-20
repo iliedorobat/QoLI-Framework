@@ -91,7 +91,6 @@ public class HealthStats {
 
             bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
             bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
-            compactBmiRatio = consolidateBmiRatio(),
 
             dentists = Preparation.prepareData(initPersonnelDentists),
             doctors = Preparation.prepareData(initPersonnelDoctors),
@@ -124,7 +123,8 @@ public class HealthStats {
                 double
                         healthyLifeGaps = - compactHealthyLifeGenderGap.get(key).doubleValue(),
                         reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
-                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(compactBmiRatio, key),
+                        reversedBodyMassIndexOverweight = MathUtils.percentageReverseRatio(bmiOverweightRatio, key),
+                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
                         reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssuesRatio, key),
                         reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
                         reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
@@ -140,6 +140,7 @@ public class HealthStats {
                         * MathUtils.percentageSafetyDouble(healthyLifeGaps)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedAlcoholicRatio)
+                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexOverweight)
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
                         * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
                         * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
@@ -197,9 +198,6 @@ public class HealthStats {
             if (args.contains("--indicator=" + IndicatorNames.BMI_OBESE_RATIO))
                 Print.printChartData(bmiObeseRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OBESE_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_BMI_RATIO))
-                Print.printChartData(compactBmiRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_BMI_RATIO, direction);
-
             if (args.contains("--indicator=" + IndicatorNames.DENTISTS))
                 Print.printChartData(dentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS, direction);
 
@@ -254,30 +252,6 @@ public class HealthStats {
             if (args.contains("--indicator=" + IndicatorNames.WORK_ACCIDENTS))
                 Print.printChartData(workAccidents, EU28_MEMBERS, seriesType, IndicatorNames.WORK_ACCIDENTS, direction);
         }
-    }
-
-    /**
-     * Aggregate the population trust ratios into a single index (the average)
-     *
-     * @return An ordered map with aggregated data
-     */
-    private static Map<String, Number> consolidateBmiRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (String code : EU28_MEMBERS) {
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * bmiOverweightRatio.get(key).doubleValue()
-                        * bmiObeseRatio.get(key).doubleValue();
-
-                Number value = MathUtils.getSquareValue(product, 2);
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
     }
 
     /**
