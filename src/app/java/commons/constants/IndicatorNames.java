@@ -13,7 +13,6 @@ public class IndicatorNames {
     public static final String CITIZENSHIP = "CITIZENSHIP";
     public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
     public static final String COMPACT_END_MEET_INABILITY_RATIO = "COMPACT_END_MEET_INABILITY_RATIO";
-    public static final String COMPACT_GETTING_TOGETHER_RATIO = "COMPACT_GETTING_TOGETHER_RATIO";
     public static final String COMPACT_HEALTH_PERSONNEL = "COMPACT_HEALTH_PERSONNEL";
     public static final String COMPACT_HEALTHY_LIFE_GENDER_GAP = "COMPACT_HEALTHY_LIFE_GENDER_GAP";
     public static final String COMPACT_OFFENCES_RATIO = "COMPACT_OFFENCES_RATIO";

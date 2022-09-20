@@ -39,8 +39,6 @@ public class InteractionsStats {
     private static final Map<String, Number>
             initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
             initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_RATIO, discussionRatioPath),
-
-            // Intermediate data to be consolidated into a single indicator
             initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
             initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
             initSatisfactionRatio = Initializer.initConsolidatedMap(SATISFACTION_RATIO, satisfactionRatioPath);
@@ -48,11 +46,8 @@ public class InteractionsStats {
     public static final Map<String, Number>
             askingRatio = Preparation.prepareData(initAskingRatio),
             discussionRatio = Preparation.prepareData(initDiscussionRatio),
-
             gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
             gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio),
-            compactGettingTogetherRatio = consolidateGettingTogetherRatio(),
-
             satisfactionRatio = Preparation.prepareData(initSatisfactionRatio);
 
     public static Map<String, Number> generateDimensionList() {
@@ -65,7 +60,8 @@ public class InteractionsStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(askingRatio, key)
                         * MathUtils.percentageSafetyDouble(discussionRatio, key)
-                        * MathUtils.percentageSafetyDouble(compactGettingTogetherRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key)
                         * MathUtils.percentageSafetyDouble(satisfactionRatio, key);
 
                 Number value = Math.log(product);
@@ -103,35 +99,8 @@ public class InteractionsStats {
             if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FRD_RATIO))
                 Print.printChartData(gettingTogetherFrdRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FRD_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO))
-                Print.printChartData(compactGettingTogetherRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_GETTING_TOGETHER_RATIO, direction);
-
             if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
                 Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO, direction);
         }
-    }
-
-    /**
-     * Aggregate the "Getting Together Ratios" into a single ratio
-     *
-     * @return An ordered map with aggregated data
-     */
-    private static Map<String, Number> consolidateGettingTogetherRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
-                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key);
-
-                Number value = MathUtils.getSquareValue(product, 2);
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
     }
 }
