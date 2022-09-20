@@ -31,7 +31,7 @@ public class HealthCollector {
      * Dataset: hlth_ehis_al1b<br/>
      * Years: 2014<br/><br/>
      *
-     * <b>Lack of data: FR</b><br/><br/>
+     * <b>Lack of data: FR, NL, SI</b><br/><br/>
      * <b>GREATER IS WORSE!</b>
      * @return
      */

@@ -105,7 +105,7 @@ public class HealthStats {
             healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
             compactHealthyLifeGenderGap = consolidateHealthyLifeGenderGap(),
 
-            hospitalBeds = transformHundredThousandToTenThousand(initHospitalBeds),
+            hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
@@ -309,43 +309,17 @@ public class HealthStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                if (dentists.get(key) == null) {
-                    System.out.println();
-                }
-
-                double sum = 0
+                double value = 0
                         + dentists.get(key).doubleValue()
                         + doctors.get(key).doubleValue()
                         + nurses.get(key).doubleValue()
                         + pharmacists.get(key).doubleValue()
                         + physiotherapists.get(key).doubleValue();
 
-                Number value = MathUtils.generatePerHundredThousandInhabitants(CommonStats.population, key, sum);
                 consolidatedList.put(key, value);
             }
         }
 
         return consolidatedList;
-    }
-
-    /**
-     * Transform all values per hundred thousand inhabitants into values per ten thousand inhabitants
-     *
-     * @param initMap The initialized map (see Initializer.initMap)
-     * @return An ordered map with aggregated data
-     */
-    private static Map<String, Number> transformHundredThousandToTenThousand(Map<String, Number> initMap) {
-        Map<String, Number> generatedList = new TreeMap<>(new MapOrder());
-        Map<String, Number> preparedMap = Preparation.prepareData(initMap);
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-                Number value = preparedMap.get(key).doubleValue() / 10;
-                generatedList.put(key, value);
-            }
-        }
-
-        return generatedList;
     }
 }
