@@ -96,7 +96,7 @@ public class SafetyStats {
             theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
             theftVehicleOffences = Preparation.prepareData(initTheftVehicleOffences, EU28_MEMBERS_EXTENDED),
             unlawfulOffences = Preparation.prepareData(initUnlawfulOffences, EU28_MEMBERS_EXTENDED),
-            compactOffencesRatio = consolidateOffencesRatio();
+            totalOffencesRatio = prepareOffencesRatio();
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -110,7 +110,7 @@ public class SafetyStats {
                         socialProtectionPpsRatio = consolidatePpsRatio(socialProtectionPps, code, year),
                         reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
-                        reversedOffencesRatio = MathUtils.percentageReverseRatio(compactOffencesRatio, key),
+                        reversedOffencesRatio = MathUtils.percentageReverseRatio(totalOffencesRatio, key),
                         reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
 
                 double product = 1
@@ -212,8 +212,8 @@ public class SafetyStats {
             if (args.contains("--indicator=" + IndicatorNames.UNLAWFUL_OFFENCES))
                 Print.printChartData(unlawfulOffences, EU28_MEMBERS, seriesType, IndicatorNames.UNLAWFUL_OFFENCES, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_OFFENCES_RATIO))
-                Print.printChartData(compactOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_OFFENCES_RATIO, direction);
+            if (args.contains("--indicator=" + IndicatorNames.TOTAL_OFFENCES_RATIO))
+                Print.printChartData(totalOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_OFFENCES_RATIO, direction);
         }
     }
 
@@ -234,7 +234,7 @@ public class SafetyStats {
      *
      * @return A new sorted map which contains the consolidated indicator
      */
-    private static Map<String, Number> consolidateOffencesRatio() {
+    private static Map<String, Number> prepareOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
 
