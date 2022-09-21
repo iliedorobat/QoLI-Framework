@@ -12,10 +12,8 @@ public class IndicatorNames {
     public static final String BURGLARY_PRIVATE_OFFENCES = "BURGLARY_PRIVATE_OFFENCES";
     public static final String CITIZENSHIP = "CITIZENSHIP";
     public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
-    public static final String COMPACT_END_MEET_INABILITY_RATIO = "COMPACT_END_MEET_INABILITY_RATIO";
     public static final String COMPACT_OFFENCES_RATIO = "COMPACT_OFFENCES_RATIO";
     public static final String COMPACT_POPULATION_TRUST = "COMPACT_POPULATION_TRUST";
-    public static final String COMPACT_QUINTILE_SENIORITY_GAP = "COMPACT_QUINTILE_SENIORITY_GAP";
     public static final String COMPACT_VOLUNTARY_RATIO = "COMPACT_VOLUNTARY_RATIO";
     public static final String CRIME_RATIO = "CRIME_RATIO";
     public static final String DENTISTS = "DENTISTS";
