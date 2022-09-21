@@ -97,12 +97,11 @@ public class HealthStats {
             nurses = Preparation.prepareData(initPersonnelNurses),
             pharmacists = Preparation.prepareData(initPersonnelPharma),
             physiotherapists = Preparation.prepareData(initPersonnelTherapists),
-            compactHealthPersonnel = consolidatePersonnelRatio(),
+            totalHealthPersonnel = preparePersonnelRatio(),
 
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
             healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
-            compactHealthyLifeGenderGap = consolidateHealthyLifeGenderGap(),
 
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
@@ -121,7 +120,6 @@ public class HealthStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        healthyLifeGaps = - compactHealthyLifeGenderGap.get(key).doubleValue(),
                         reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
                         reversedBodyMassIndexOverweight = MathUtils.percentageReverseRatio(bmiOverweightRatio, key),
                         reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
@@ -134,10 +132,9 @@ public class HealthStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
-                        * MathUtils.percentageSafetyDouble(compactHealthPersonnel, key)
+                        * MathUtils.percentageSafetyDouble(totalHealthPersonnel, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
-                        * MathUtils.percentageSafetyDouble(healthyLifeGaps)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedAlcoholicRatio)
                         * MathUtils.percentageSafetyDouble(reversedBodyMassIndexOverweight)
@@ -213,8 +210,8 @@ public class HealthStats {
             if (args.contains("--indicator=" + IndicatorNames.PHYSIOTHERAPISTS))
                 Print.printChartData(physiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTH_PERSONNEL))
-                Print.printChartData(compactHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTH_PERSONNEL, direction);
+            if (args.contains("--indicator=" + IndicatorNames.TOTAL_HEALTH_PERSONNEL))
+                Print.printChartData(totalHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_HEALTH_PERSONNEL, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_RATIO))
                 Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO, direction);
@@ -224,9 +221,6 @@ public class HealthStats {
 
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_MALE))
                 Print.printChartData(healthyLifeYearsMale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_MALE, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP))
-                Print.printChartData(compactHealthyLifeGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_HEALTHY_LIFE_GENDER_GAP, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.HOSPITAL_BEDS))
                 Print.printChartData(hospitalBeds, EU28_MEMBERS, seriesType, IndicatorNames.HOSPITAL_BEDS, direction);
@@ -254,29 +248,8 @@ public class HealthStats {
         }
     }
 
-    /**
-     * Generate the healthy life years gender gap (male HLY ratio - female HLY ratio)
-     *
-     * @return An ordered map with prepared data
-     */
-    // TODO: create a generic method (see consolidateEmploymentGenderGap)
-    private static Map<String, Number> consolidateHealthyLifeGenderGap() {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (String code : EU28_MEMBERS) {
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-                String key = MapUtils.generateKey(code, year);
-                double femaleRatio = healthyLifeYearsFemale.get(key).doubleValue();
-                double maleRatio = healthyLifeYearsMale.get(key).doubleValue();
-                Number genderGap = maleRatio - femaleRatio;
-                preparedMap.put(key, genderGap);
-            }
-        }
-
-        return preparedMap;
-    }
-
-    private static Map<String, Number> consolidatePersonnelRatio() {
+    // Total health personnel per hundred thousand inhabitants
+    private static Map<String, Number> preparePersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {

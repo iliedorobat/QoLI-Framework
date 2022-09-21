@@ -13,8 +13,6 @@ public class IndicatorNames {
     public static final String CITIZENSHIP = "CITIZENSHIP";
     public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
     public static final String COMPACT_END_MEET_INABILITY_RATIO = "COMPACT_END_MEET_INABILITY_RATIO";
-    public static final String COMPACT_HEALTH_PERSONNEL = "COMPACT_HEALTH_PERSONNEL";
-    public static final String COMPACT_HEALTHY_LIFE_GENDER_GAP = "COMPACT_HEALTHY_LIFE_GENDER_GAP";
     public static final String COMPACT_OFFENCES_RATIO = "COMPACT_OFFENCES_RATIO";
     public static final String COMPACT_POPULATION_TRUST = "COMPACT_POPULATION_TRUST";
     public static final String COMPACT_QUINTILE_SENIORITY_GAP = "COMPACT_QUINTILE_SENIORITY_GAP";
@@ -104,6 +102,7 @@ public class IndicatorNames {
     public static final String TEMPORARY_EMPLOYMENT_RATIO = "TEMPORARY_EMPLOYMENT_RATIO";
     public static final String THEFT_OFFENCES = "THEFT_OFFENCES";
     public static final String THEFT_VEHICLE_OFFENCES = "THEFT_VEHICLE_OFFENCES";
+    public static final String TOTAL_HEALTH_PERSONNEL = "TOTAL_HEALTH_PERSONNEL";
     public static final String UNDER_OCCUPIED_RATIO = "UNDER_OCCUPIED_RATIO";
     public static final String UNEXPECTED_RATIO = "UNEXPECTED_RATIO";
     public static final String UNLAWFUL_OFFENCES = "UNLAWFUL_OFFENCES";
