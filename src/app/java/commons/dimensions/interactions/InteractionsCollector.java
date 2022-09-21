@@ -43,7 +43,7 @@ public class InteractionsCollector {
     }
 
     /**
-     * People (16 years or over) getting together with friends at least once a week<br/><br/>
+     * People (16 years or over) getting together with family, relatives or friends at least once a week<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>

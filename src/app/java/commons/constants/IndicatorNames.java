@@ -14,7 +14,6 @@ public class IndicatorNames {
     public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
     public static final String COMPACT_OFFENCES_RATIO = "COMPACT_OFFENCES_RATIO";
     public static final String COMPACT_POPULATION_TRUST = "COMPACT_POPULATION_TRUST";
-    public static final String COMPACT_VOLUNTARY_RATIO = "COMPACT_VOLUNTARY_RATIO";
     public static final String CRIME_RATIO = "CRIME_RATIO";
     public static final String DENTISTS = "DENTISTS";
     public static final String DWELLING_ISSUES_RATIO = "DWELLING_ISSUES_RATIO";
@@ -65,7 +64,7 @@ public class IndicatorNames {
     public static final String NURSES = "NURSES";
     public static final String NP_FIN_CIN_RATIO = "NP_FIN_CIN_RATIO";
     public static final String NP_FIN_CULT_RATIO = "NP_FIN_CULT_RATIO";
-    public static final String NP_FIN_LIVE_RATIO = "CITIZENSHIP";
+    public static final String NP_FIN_LIVE_RATIO = "NP_FIN_LIVE_RATIO";
     public static final String NP_FIN_SPORT_RATIO = "NP_FIN_SPORT_RATIO";
     public static final String NP_NNB_CIN_RATIO = "NP_NNB_CIN_RATIO";
     public static final String NP_NNB_CULT_RATIO = "NP_NNB_CULT_RATIO";

@@ -77,7 +77,6 @@ public class LeisureStats {
 
             formalVoluntaryRatio = Preparation.prepareData(initFormalVoluntaryRatio),
             informalVoluntaryRatio = Preparation.prepareData(initInformalVoluntaryRatio),
-            compactVoluntaryRatio = consolidateVoluntaryRatio(),
 
             satisfactionRatio = Preparation.prepareData(initSatisfactionRatio),
             socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
@@ -96,7 +95,8 @@ public class LeisureStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(satisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
-                        * MathUtils.percentageSafetyDouble(compactVoluntaryRatio, key)
+                        * MathUtils.percentageSafetyDouble(formalVoluntaryRatio, key)
+                        * MathUtils.percentageSafetyDouble(informalVoluntaryRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedNonParticipationRatio);
 
                 Number value = Math.log(product);
@@ -167,9 +167,6 @@ public class LeisureStats {
 
             if (args.contains("--indicator=" + IndicatorNames.NON_PARTICIPATION_RATIO))
                 Print.printChartData(nonParticipationRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PARTICIPATION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_VOLUNTARY_RATIO))
-                Print.printChartData(compactVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_VOLUNTARY_RATIO, direction);
         }
     }
 
@@ -198,30 +195,6 @@ public class LeisureStats {
 
                 // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
                 Number value = MathUtils.getSquareValue(product, 8) - PERCENTAGE_SAFETY_THRESHOLD;
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
-    }
-
-    /**
-     * Aggregate the "Formal Voluntary Ratio" and "Informal Voluntary Ratio" into a single ratio
-     *
-     * @return An ordered map with aggregated data
-     */
-    private static Map<String, Number> consolidateVoluntaryRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(formalVoluntaryRatio, key)
-                        * MathUtils.percentageSafetyDouble(informalVoluntaryRatio, key);
-
-                Number value = MathUtils.getSquareValue(product, 2);
                 consolidatedList.put(key, value);
             }
         }
