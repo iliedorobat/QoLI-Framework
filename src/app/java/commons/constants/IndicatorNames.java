@@ -11,8 +11,6 @@ public class IndicatorNames {
     public static final String BURGLARY_OFFENCES = "BURGLARY_OFFENCES";
     public static final String BURGLARY_PRIVATE_OFFENCES = "BURGLARY_PRIVATE_OFFENCES";
     public static final String CITIZENSHIP = "CITIZENSHIP";
-    public static final String COMPACT_EMPLOYMENT_GENDER_GAP = "COMPACT_EMPLOYMENT_GENDER_GAP";
-    public static final String COMPACT_POPULATION_TRUST = "COMPACT_POPULATION_TRUST";
     public static final String CRIME_RATIO = "CRIME_RATIO";
     public static final String DENTISTS = "DENTISTS";
     public static final String DWELLING_ISSUES_RATIO = "DWELLING_ISSUES_RATIO";
@@ -22,6 +20,7 @@ public class IndicatorNames {
     public static final String DROPOUT_RATIO = "DROPOUT_RATIO";
     public static final String EARLY_EDUCATION_RATIO = "EARLY_EDUCATION_RATIO";
     public static final String EMPLOYMENT_FEMALE_RATIO = "EMPLOYMENT_FEMALE_RATIO";
+    public static final String EMPLOYMENT_GENDER_GAP = "EMPLOYMENT_GENDER_GAP";
     public static final String EMPLOYMENT_MALE_RATIO = "EMPLOYMENT_MALE_RATIO";
     public static final String EMPLOYMENT_RATIO = "EMPLOYMENT_RATIO";
     public static final String END_MEET_INABILITY_RATIO = "END_MEET_INABILITY_RATIO";
@@ -82,6 +81,7 @@ public class IndicatorNames {
     public static final String POPULATION_OTHERS_TRUST_RATIO = "POPULATION_OTHERS_TRUST_RATIO";
     public static final String POPULATION_PLCTST_TRUST_RATIO = "POPULATION_PLCTST_TRUST_RATIO";
     public static final String POPULATION_PLTTST_TRUST_RATIO = "POPULATION_PLTTST_TRUST_RATIO";
+    public static final String POPULATION_TRUST = "POPULATION_TRUST";
     public static final String POVERTY_RISK_RATIO = "POVERTY_RISK_RATIO";
     public static final String PUPILS_RATIO = "PUPILS_RATIO";
     public static final String RAPE_OFFENCES = "RAPE_OFFENCES";

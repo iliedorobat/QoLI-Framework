@@ -66,7 +66,7 @@ public class GovRightsStats {
 
             employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
             employmentMaleRatio = Preparation.prepareData(initEmploymentMaleRatio),
-            compactEmploymentGenderGap = consolidateEmploymentGenderGap(),
+            employmentGenderGap = prepareEmploymentGenderGap(),
 
             genderPayGap = Preparation.prepareData(initGenderPayGap),
 
@@ -74,7 +74,7 @@ public class GovRightsStats {
             populationOthersTrustRatio = Preparation.prepareData(initPopulationOthersTrust),
             populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
             populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust),
-            compactPopulationTrust = consolidatePopulationTrust(),
+            populationTrustRatio = preparePopulationTrust(),
 
             voterTurnout = Preparation.prepareData(initVoterTurnout);
 
@@ -86,15 +86,15 @@ public class GovRightsStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        employmentGap = - compactEmploymentGenderGap.get(key).doubleValue(),
-                        genderGap = - genderPayGap.get(key).doubleValue(),
+                        employmentGap = employmentGenderGap.get(key).doubleValue(),
+                        genderGap = genderPayGap.get(key).doubleValue(),
                         // Transform the 1-10 notes into 1-100 notes
-                        trust = compactPopulationTrust.get(key).doubleValue() * 10;
+                        trust = populationTrustRatio.get(key).doubleValue() * 10;
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(citizenship, key)
-                        * MathUtils.percentageSafetyDouble(employmentGap)
-                        * MathUtils.percentageSafetyDouble(genderGap)
+                        * MathUtils.percentageSafetyDouble(- employmentGap)
+                        * MathUtils.percentageSafetyDouble(- genderGap)
                         * MathUtils.percentageSafetyDouble(trust)
                         * MathUtils.percentageSafetyDouble(voterTurnout, key);
 
@@ -104,8 +104,8 @@ public class GovRightsStats {
         }
 
 
-//        Print.printVariation(StatsUtils.generateVariation(populationTrust, true));
-//        Print.print(populationTrust, true);
+//        Print.printVariation(StatsUtils.generateVariation(populationTrustRatio, true));
+//        Print.print(populationTrustRatio, true);
 
         return consolidatedList;
     }
@@ -135,8 +135,8 @@ public class GovRightsStats {
             if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_MALE_RATIO))
                 Print.printChartData(employmentMaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_MALE_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_EMPLOYMENT_GENDER_GAP))
-                Print.printChartData(compactEmploymentGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_EMPLOYMENT_GENDER_GAP, direction);
+            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_GENDER_GAP))
+                Print.printChartData(employmentGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_GENDER_GAP, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.GENDER_PAY_GAP))
                 Print.printChartData(genderPayGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_PAY_GAP, direction);
@@ -153,8 +153,8 @@ public class GovRightsStats {
             if (args.contains("--indicator=" + IndicatorNames.POPULATION_PLTTST_TRUST_RATIO))
                 Print.printChartData(populationPlttstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLTTST_TRUST_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.COMPACT_POPULATION_TRUST))
-                Print.printChartData(compactPopulationTrust, EU28_MEMBERS, seriesType, IndicatorNames.COMPACT_POPULATION_TRUST, direction);
+            if (args.contains("--indicator=" + IndicatorNames.POPULATION_TRUST))
+                Print.printChartData(populationTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_TRUST, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.VOTER_TURNOUT))
                 Print.printChartData(voterTurnout, EU28_MEMBERS, seriesType, IndicatorNames.VOTER_TURNOUT, direction);
@@ -220,15 +220,19 @@ public class GovRightsStats {
      *
      * @return An ordered map with prepared data
      */
-    private static Map<String, Number> consolidateEmploymentGenderGap() {
+    private static Map<String, Number> prepareEmploymentGenderGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (String code : EU28_MEMBERS) {
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 String key = MapUtils.generateKey(code, year);
+
                 double femaleRatio = employmentFemaleRatio.get(key).doubleValue();
                 double maleRatio = employmentMaleRatio.get(key).doubleValue();
-                Number genderGap = maleRatio - femaleRatio;
+
+                Number diff = maleRatio - femaleRatio;
+                Number genderGap = diff.doubleValue() / maleRatio * 100;
+
                 preparedMap.put(key, genderGap);
             }
         }
@@ -241,7 +245,7 @@ public class GovRightsStats {
      *
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> consolidatePopulationTrust() {
+    private static Map<String, Number> preparePopulationTrust() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (String code : EU28_MEMBERS) {
