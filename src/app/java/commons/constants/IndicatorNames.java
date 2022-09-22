@@ -24,6 +24,7 @@ public class IndicatorNames {
     public static final String EMPLOYMENT_MALE_RATIO = "EMPLOYMENT_MALE_RATIO";
     public static final String EMPLOYMENT_RATIO = "EMPLOYMENT_RATIO";
     public static final String END_MEET_INABILITY_RATIO = "END_MEET_INABILITY_RATIO";
+    public static final String END_MEET_INABILITY_D_RATIO = "END_MEET_INABILITY_D_RATIO";
     public static final String END_MEET_INABILITY_GD_RATIO = "END_MEET_INABILITY_GD_RATIO";
     public static final String FINANCIAL_SATISFACTION_RATIO = "FINANCIAL_SATISFACTION_RATIO";
     public static final String FRUITS_VEGETABLES_RATIO = "FRUITS_VEGETABLES_RATIO";

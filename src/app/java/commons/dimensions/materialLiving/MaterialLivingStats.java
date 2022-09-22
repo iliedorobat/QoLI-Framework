@@ -26,7 +26,7 @@ public class MaterialLivingStats {
     // Queried params values
     private static final MultiValuedMap<String, String>
             DWELLING_ISSUES_RATIO = MaterialLivingParams.getDwellingIssuesParams(),
-            END_MEET_INABILITY_RATIO = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
+            END_MEET_INABILITY_D_RATIO = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
             END_MEET_INABILITY_GD_RATIO = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty")),
             FINANCIAL_SATISFACTION = MaterialLivingParams.getFinancialSatisfactionParams(),
             HIGH_INCOME_RATIO = MaterialLivingParams.getHighIncomeParams(),
@@ -55,7 +55,7 @@ public class MaterialLivingStats {
 
     private static final Map<String, Number>
             initDwellingIssuesRatio = Initializer.initConsolidatedMap(DWELLING_ISSUES_RATIO, dwellingIssuesRatioPath),
-            initEndMeetInabilityRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_RATIO, endMeetInabilityRatioPath),
+            initEndMeetInabilityDRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_D_RATIO, endMeetInabilityRatioPath),
             initEndMeetInabilityGdRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_GD_RATIO, endMeetInabilityRatioPath),
             initFinancialSatisfactionPath = Initializer.initConsolidatedMap(FINANCIAL_SATISFACTION, financialSatisfactionPath),
             initHighIncomeRatio = Initializer.initConsolidatedMap(HIGH_INCOME_RATIO, highIncomeRatioPath),
@@ -72,8 +72,9 @@ public class MaterialLivingStats {
     public static final Map<String, Number>
             dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
 
-            endMeetInabilityRatio = Preparation.prepareData(initEndMeetInabilityRatio),
+            endMeetInabilityDRatio = Preparation.prepareData(initEndMeetInabilityDRatio),
             endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio),
+            endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
 
             financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionPath),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
@@ -98,7 +99,6 @@ public class MaterialLivingStats {
                 double
                         reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
                         reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
-                        reverseEndMeetInabilityGdRatio = MathUtils.percentageReverseRatio(endMeetInabilityGdRatio, key),
                         reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
                         reverseLackOfBathsRatio = MathUtils.percentageReverseRatio(lackOfBathsRatio, key),
                         reverseLowWorkIntensityRatio = MathUtils.percentageReverseRatio(lowWorkIntensityRatio, key),
@@ -112,7 +112,6 @@ public class MaterialLivingStats {
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
                         * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
                         * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityRatio)
-                        * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityGdRatio)
                         * MathUtils.percentageSafetyDouble(reverseIncomeQuintileRatio)
                         * MathUtils.percentageSafetyDouble(reverseLackOfBathsRatio)
                         * MathUtils.percentageSafetyDouble(reverseLowWorkIntensityRatio)
@@ -134,7 +133,7 @@ public class MaterialLivingStats {
     public static ArrayList<Map<String, Number>> getInitList() {
         return new ArrayList<>() {{
             add(Preparation.filterMap(initDwellingIssuesRatio));
-            add(Preparation.filterMap(initEndMeetInabilityRatio));
+            add(Preparation.filterMap(initEndMeetInabilityDRatio));
             add(Preparation.filterMap(initEndMeetInabilityGdRatio));
             add(Preparation.filterMap(initFinancialSatisfactionPath));
             add(Preparation.filterMap(initHighIncomeRatio));
@@ -157,6 +156,9 @@ public class MaterialLivingStats {
 
             if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_RATIO))
                 Print.printChartData(endMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_RATIO, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_D_RATIO))
+                Print.printChartData(endMeetInabilityDRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_D_RATIO, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_GD_RATIO))
                 Print.printChartData(endMeetInabilityGdRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_GD_RATIO, direction);
@@ -194,5 +196,24 @@ public class MaterialLivingStats {
             if (args.contains("--indicator=" + IndicatorNames.UNDER_OCCUPIED_RATIO))
                 Print.printChartData(underOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNDER_OCCUPIED_RATIO, direction);
         }
+    }
+
+    // proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
+    private static Map<String, Number> prepareEndMeedInabilityRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                double value = 0
+                        + endMeetInabilityDRatio.get(key).doubleValue()
+                        + endMeetInabilityGdRatio.get(key).doubleValue();
+
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
     }
 }
