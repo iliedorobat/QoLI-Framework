@@ -90,7 +90,7 @@ public class MainActivityStats {
             jobSatisfaction = Preparation.prepareData(initJobSatisfaction),
             longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
             lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
-            overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio), // FIXME: NaN
+            overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio),
             researchersRatio = Preparation.preparePerTenThousandInhabitants(CommonStats.population, initResearchers),
             temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
@@ -109,6 +109,7 @@ public class MainActivityStats {
                         reversedInvoluntaryPartTimeRatio = MathUtils.percentageReverseRatio(involuntaryPartTimeRatio, key),
                         reversedLongTermUnemploymentRatio = MathUtils.percentageReverseRatio(longTermUnemploymentRatio, key),
                         reversedLowWageEarningsRatio = MathUtils.percentageReverseRatio(lowWageEarningsRatio, key),
+                        reversedOverQualifiedRatio = MathUtils.percentageReverseRatio(overQualifiedRatio, key),
                         reversedTemporaryEmploymentRatio = MathUtils.percentageReverseRatio(temporaryEmploymentRatio, key),
                         reversedUnemploymentRatio = MathUtils.percentageReverseRatio(unemploymentRatio, key),
                         reversedWorkingNightsRatio = MathUtils.percentageReverseRatio(workingNightsRatio, key);
@@ -122,6 +123,7 @@ public class MainActivityStats {
                         * MathUtils.percentageSafetyDouble(reversedInvoluntaryPartTimeRatio)
                         * MathUtils.percentageSafetyDouble(reversedLongTermUnemploymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedLowWageEarningsRatio)
+                        * MathUtils.percentageSafetyDouble(reversedOverQualifiedRatio)
                         * MathUtils.percentageSafetyDouble(reversedTemporaryEmploymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedWorkingNightsRatio);
@@ -146,7 +148,7 @@ public class MainActivityStats {
             add(Preparation.filterMap(initJobSatisfaction));
             add(Preparation.filterMap(initLongTermUnemploymentRatio));
             add(Preparation.filterMap(initLowWageEarningsRatio));
-//            add(Preparation.filterMap(initOverQualifiedRatio));
+            add(Preparation.filterMap(initOverQualifiedRatio));
             add(Preparation.filterMap(initResearchers));
             add(Preparation.filterMap(initTemporaryEmploymentRatio));
             add(Preparation.filterMap(initUnemploymentRatio));
