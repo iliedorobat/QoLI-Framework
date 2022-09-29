@@ -2,13 +2,8 @@ package app.java.commons.dimensions.safety;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
+import app.java.commons.constants.*;
 import app.java.commons.dimensions.common.CommonStats;
-import app.java.commons.constants.DimensionNames;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -106,8 +101,8 @@ public class SafetyStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        pensionPpsRatio = consolidatePpsRatio(pensionPps, code, year),
-                        socialProtectionPpsRatio = consolidatePpsRatio(socialProtectionPps, code, year),
+                        pensionPpsRatio = Preparation.consolidatePpsRatio(pensionPps, code, year),
+                        socialProtectionPpsRatio = Preparation.consolidatePpsRatio(socialProtectionPps, code, year),
                         reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(totalOffencesRatio, key),
@@ -215,18 +210,6 @@ public class SafetyStats {
             if (args.contains("--indicator=" + IndicatorNames.TOTAL_OFFENCES_RATIO))
                 Print.printChartData(totalOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_OFFENCES_RATIO, direction);
         }
-    }
-
-    private static Double consolidatePpsRatio(Map<String, Number> dataset, String code, int year) {
-        Double euAverage = Preparation.calculateEuAverage(dataset, year);
-        String key = MapUtils.generateKey(code, year);
-        Number value = dataset.get(key);
-
-        if (euAverage == null) {
-            throw new Error("The \"euAverage\" variable is null.");
-        }
-
-        return value.doubleValue() / euAverage * 100;
     }
 
     /**

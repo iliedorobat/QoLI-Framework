@@ -160,7 +160,6 @@ public class MaterialLivingCollector {
      *
      * Comments: NUTS 2 regions => nama_10r_2hhinc
      *
-     * @deprecated deprecated in favour of getHighIncomeRatio
      * @return
      */
     private static StringBuilder getMedianIncome() {

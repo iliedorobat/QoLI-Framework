@@ -2,12 +2,7 @@ package app.java.commons.dimensions.materialLiving;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
-import app.java.commons.constants.DimensionNames;
-import app.java.commons.constants.IndicatorNames;
+import app.java.commons.constants.*;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -36,6 +31,7 @@ public class MaterialLivingStats {
             LACK_OF_BATHS_RATIO = MaterialLivingParams.getLackOfBathsParams(),
             LOW_WORK_INTENSITY_RATIO = MaterialLivingParams.getLowWorkIntensityParams(),
             MATERIAL_DEPRIVATION_RATIO = MaterialLivingParams.getMaterialDeprivationParams(),
+            MEDIAN_INCOME_PPS = MaterialLivingParams.getMedianIncome(),
             OVER_OCCUPIED_RATIO = MaterialLivingParams.getOverOccupiedParams(),
             POVERTY_RISK_RATIO = MaterialLivingParams.getPovertyRiskParams(),
             UNDER_OCCUPIED_RATIO = MaterialLivingParams.getUnderOccupiedParams();
@@ -49,6 +45,7 @@ public class MaterialLivingStats {
             lackOfBathsRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.LACK_OF_BATHS_RATIO + JSON_EXTENSION,
             lowWorkIntensityRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.LOW_WORK_INTENSITY_RATIO + JSON_EXTENSION,
             materialDeprivationRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MATERIAL_DEPRIVATION_RATIO + JSON_EXTENSION,
+            medianIncomePpsPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.MEDIAN_INCOME + JSON_EXTENSION,
             overOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.OVER_OCCUPIED_RATIO + JSON_EXTENSION,
             povertyRiskRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.POVERTY_RISK_RATIO + JSON_EXTENSION,
             underOccupiedRatioPath = FilePathConst.MATERIAL_LIVING_PATH + FileNameConst.UNDER_OCCUPIED_RATIO + JSON_EXTENSION;
@@ -65,6 +62,7 @@ public class MaterialLivingStats {
             initLackOfBathsRatio = Initializer.initConsolidatedMap(LACK_OF_BATHS_RATIO, lackOfBathsRatioPath),
             initLowWorkIntensityRatio = Initializer.initConsolidatedMap(LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatioPath),
             initMaterialDeprivationRatio = Initializer.initConsolidatedMap(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatioPath),
+            initMedianIncomePps = Initializer.initConsolidatedMap(MEDIAN_INCOME_PPS, medianIncomePpsPath),
             initOverOccupiedRatio = Initializer.initConsolidatedMap(OVER_OCCUPIED_RATIO, overOccupiedRatioPath),
             initPovertyRiskRatio = Initializer.initConsolidatedMap(POVERTY_RISK_RATIO, povertyRiskRatioPath),
             initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO, underOccupiedRatioPath);
@@ -81,6 +79,7 @@ public class MaterialLivingStats {
             incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
             incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio),
             incomeQuintileOver65Ratio = Preparation.prepareData(initIncomeQuintileOver65Ratio),
+            medianIncomePps = Preparation.prepareData(initMedianIncomePps),
 
             lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
             lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
@@ -97,6 +96,7 @@ public class MaterialLivingStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
+                        medianIncomePpsRatio = Preparation.consolidatePpsRatio(medianIncomePps, code, year),
                         reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
                         reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
                         reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
@@ -109,6 +109,7 @@ public class MaterialLivingStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
+                        * MathUtils.percentageSafetyDouble(medianIncomePpsRatio)
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
                         * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
                         * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityRatio)
@@ -143,6 +144,7 @@ public class MaterialLivingStats {
             add(Preparation.filterMap(initIncomeQuintileLess65Ratio));
             add(Preparation.filterMap(initIncomeQuintileOver65Ratio));
             add(Preparation.filterMap(initMaterialDeprivationRatio));
+            add(Preparation.filterMap(initMedianIncomePps));
             add(Preparation.filterMap(initOverOccupiedRatio));
             add(Preparation.filterMap(initPovertyRiskRatio));
             add(Preparation.filterMap(initUnderOccupiedRatio));
@@ -186,6 +188,9 @@ public class MaterialLivingStats {
 
             if (args.contains("--indicator=" + IndicatorNames.MATERIAL_DEPRIVATION_RATIO))
                 Print.printChartData(materialDeprivationRatio, EU28_MEMBERS, seriesType, IndicatorNames.MATERIAL_DEPRIVATION_RATIO, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.MEDIAN_INCOME_PPS))
+                Print.printChartData(medianIncomePps, EU28_MEMBERS, seriesType, IndicatorNames.MEDIAN_INCOME_PPS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.OVER_OCCUPIED_RATIO))
                 Print.printChartData(overOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_OCCUPIED_RATIO, direction);

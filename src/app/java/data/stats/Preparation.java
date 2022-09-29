@@ -140,6 +140,19 @@ public class Preparation {
     }
 
     // TODO: documentation
+    public static Double consolidatePpsRatio(Map<String, Number> dataset, String code, int year) {
+        Double euAverage = calculateEuAverage(dataset, year);
+        String key = MapUtils.generateKey(code, year);
+        Number value = dataset.get(key);
+
+        if (euAverage == null) {
+            throw new Error("The \"euAverage\" variable is null.");
+        }
+
+        return value.doubleValue() / euAverage * 100;
+    }
+
+    // TODO: documentation
     // Calculate the average of EU
     public static Double calculateEuAverage(Map<String, Number> mainMap, int year) {
         int count = 0;

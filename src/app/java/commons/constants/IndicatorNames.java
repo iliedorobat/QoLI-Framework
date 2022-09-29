@@ -56,6 +56,7 @@ public class IndicatorNames {
     public static final String LOW_WAGE_EARNINGS_RATIO = "LOW_WAGE_EARNINGS_RATIO";
     public static final String LOW_WORK_INTENSITY_RATIO = "LOW_WORK_INTENSITY_RATIO";
     public static final String MATERIAL_DEPRIVATION_RATIO = "MATERIAL_DEPRIVATION_RATIO";
+    public static final String MEDIAN_INCOME_PPS = "MEDIAN_INCOME_PPS";
     public static final String NO_KNOWN_FOREIGN_LANG_RATIO = "NO_KNOWN_FOREIGN_LANG_RATIO";
     public static final String NOISE_POLLUTION_RATIO = "NOISE_POLLUTION_RATIO";
     public static final String NON_PAYMENT_RATIO = "NON_PAYMENT_RATIO";
