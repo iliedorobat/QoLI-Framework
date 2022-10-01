@@ -1,5 +1,6 @@
-# QoLI-Framework
-Quality of Life Index Framework
+# QoLI-Framework: Quality of Life Index Framework
+
+
 
 ## Local setup
 ### Requirements
@@ -42,11 +43,46 @@ java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=ED
 * List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/DimensionNames.java
 * List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java
 
-## Main Database
+
+
+## More info
+### Main Database
 https://ec.europa.eu/eurostat/data/database
 
-## API Server
+### API Server
 https://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/ dataset_name
 
-## GUI
+### GUI
 https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset= dataset_name
+
+
+
+## Publications:
+ICDS 2019: [Quality of Life Index Analysis for the Case of Romanian Regions](http://www.thinkmind.org/index.php?view=article&articleid=icds_2019_2_30_10030)
+```
+@InProceedings{icds_2019_2_30_10030,
+    author="Dorobat, Ilie Cristian, Rinciog, Octavian, Muraru, George Cristian and Posea, Vlad",
+    title="Quality of Life Index Analysis for the Case of Romanian Regions",
+    booktitle="2019 The Thirteenth International Conference on Digital Society and eGovernments (ICDS)",
+    year="2019",
+    publisher="IARIA",
+    pages="37-44",
+    isbn="978-1-61208-685-9"
+    issn="2308-3956"
+}
+```
+
+SYSMEA 2019: [eLIF: European Life Index Framework - An Analysis for the Case of European Union Countries](https://www.thinkmind.org/index.php?view=article&articleid=sysmea_v12_n34_2019_5)
+```
+@InProceedings{sysmea_v12_n34_2019_5,
+    author="Dorobat, Ilie Cristian and Posea, Vlad",
+    title="eLIF: European Life Index Framework - An Analysis for the Case of European Union Countries",
+    booktitle="2019 International Journal On Advances in Systems and Measurements (SYSMEA)",
+    volume="12"
+    number="3-4"
+    year="2019",
+    publisher="IARIA",
+    pages="198-214",
+    issn="1942-261x"
+}
+```
