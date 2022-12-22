@@ -11,7 +11,7 @@
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
-2. Navigate to the root directory (QoLI-Framework directory).
+2. Open the Terminal/Command Prompt and navigate to the root directory (`QoLI-Framework` directory).
 3. Register the environment variables:
 ```bash
 export QOLI_PATH=`pwd`
