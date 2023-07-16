@@ -9,10 +9,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -54,7 +51,7 @@ public class MaterialLivingStats {
             initDwellingIssuesRatio = Initializer.initConsolidatedMap(DWELLING_ISSUES_RATIO, dwellingIssuesRatioPath),
             initEndMeetInabilityDRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_D_RATIO, endMeetInabilityRatioPath),
             initEndMeetInabilityGdRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_GD_RATIO, endMeetInabilityRatioPath),
-            initFinancialSatisfactionPath = Initializer.initConsolidatedMap(FINANCIAL_SATISFACTION, financialSatisfactionPath),
+            initFinancialSatisfactionRatio = Initializer.initConsolidatedMap(FINANCIAL_SATISFACTION, financialSatisfactionPath),
             initHighIncomeRatio = Initializer.initConsolidatedMap(HIGH_INCOME_RATIO, highIncomeRatioPath),
             initIncomeQuintileRatio = Initializer.initConsolidatedMap(INCOME_QUINTILE_RATIO, incomeQuintileRatioPath),
             initIncomeQuintileLess65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_LESS_65_RATIO, incomeQuintileRatioPath),
@@ -74,7 +71,7 @@ public class MaterialLivingStats {
             endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio),
             endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
 
-            financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionPath),
+            financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionRatio),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
             incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
             incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio),
@@ -131,23 +128,23 @@ public class MaterialLivingStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initDwellingIssuesRatio));
-            add(Preparation.filterMap(initEndMeetInabilityDRatio));
-            add(Preparation.filterMap(initEndMeetInabilityGdRatio));
-            add(Preparation.filterMap(initFinancialSatisfactionPath));
-            add(Preparation.filterMap(initHighIncomeRatio));
-            add(Preparation.filterMap(initLackOfBathsRatio));
-            add(Preparation.filterMap(initLowWorkIntensityRatio));
-            add(Preparation.filterMap(initIncomeQuintileRatio));
-            add(Preparation.filterMap(initIncomeQuintileLess65Ratio));
-            add(Preparation.filterMap(initIncomeQuintileOver65Ratio));
-            add(Preparation.filterMap(initMaterialDeprivationRatio));
-            add(Preparation.filterMap(initMedianIncomePps));
-            add(Preparation.filterMap(initOverOccupiedRatio));
-            add(Preparation.filterMap(initPovertyRiskRatio));
-            add(Preparation.filterMap(initUnderOccupiedRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Dwelling Issues Ratio", Preparation.filterMap(initDwellingIssuesRatio));
+            put("End Meet Inability Difficulty Ratio", Preparation.filterMap(initEndMeetInabilityDRatio));
+            put("End Meet Inability Great Difficulty Ratio", Preparation.filterMap(initEndMeetInabilityGdRatio));
+            put("Financial Satisfaction Ratio", Preparation.filterMap(initFinancialSatisfactionRatio));
+            put("High Income Ratio", Preparation.filterMap(initHighIncomeRatio));
+            put("Income Quintile Ratio", Preparation.filterMap(initIncomeQuintileRatio));
+            put("Income Quintile Less 65 Ratio", Preparation.filterMap(initIncomeQuintileLess65Ratio));
+            put("Income Quintile Over 65 Ratio", Preparation.filterMap(initIncomeQuintileOver65Ratio));
+            put("Lack Of Baths Ratio", Preparation.filterMap(initLackOfBathsRatio));
+            put("Low Work Intensity Ratio", Preparation.filterMap(initLowWorkIntensityRatio));
+            put("Material Deprivation Ratio", Preparation.filterMap(initMaterialDeprivationRatio));
+            put("Median Income PPS", Preparation.filterMap(initMedianIncomePps));
+            put("Over Occupied Ratio", Preparation.filterMap(initOverOccupiedRatio));
+            put("Poverty Risk Ratio", Preparation.filterMap(initPovertyRiskRatio));
+            put("Under Occupied Ratio", Preparation.filterMap(initUnderOccupiedRatio));
         }};
     }
 

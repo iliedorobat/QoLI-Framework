@@ -10,10 +10,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
 
@@ -127,27 +124,27 @@ public class SafetyStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initCrimeRatio));
-            add(Preparation.filterMap(initPensionPps));
-            add(Preparation.filterMap(initSocialProtectionPps));
-            add(Preparation.filterMap(initUnexpectedRatio));
-            add(Preparation.filterMap(initNonPaymentRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Crime Ratio", Preparation.filterMap(initCrimeRatio));
+            put("Non Payment Ratio", Preparation.filterMap(initNonPaymentRatio));
+            put("Pension PPS", Preparation.filterMap(initPensionPps));
+            put("Social Protection PPS", Preparation.filterMap(initSocialProtectionPps));
+            put("Unexpected Ratio", Preparation.filterMap(initUnexpectedRatio));
 
-            add(Preparation.filterMap(initAssaultOffences));
-            add(Preparation.filterMap(initAttemptedHomicideOffences));
-            add(Preparation.filterMap(initBurglaryOffences));
-            add(Preparation.filterMap(initBurglaryPrivateOffences));
-            add(Preparation.filterMap(initHomicideOffences));
-            add(Preparation.filterMap(initKidnappingOffences));
-            add(Preparation.filterMap(initRapeOffences));
-            add(Preparation.filterMap(initRobberyOffences));
-            add(Preparation.filterMap(initSexualAssaultOffences));
-            add(Preparation.filterMap(initSexualViolenceOffences));
-            add(Preparation.filterMap(initTheftOffences));
-            add(Preparation.filterMap(initTheftVehicleOffences));
-            add(Preparation.filterMap(initUnlawfulOffences));
+            put("Assault Offences", Preparation.filterMap(initAssaultOffences));
+            put("Attempted Homicide Offences", Preparation.filterMap(initAttemptedHomicideOffences));
+            put("Burglary Offences", Preparation.filterMap(initBurglaryOffences));
+            put("Burglary Private Offences", Preparation.filterMap(initBurglaryPrivateOffences));
+            put("Homicide Offences", Preparation.filterMap(initHomicideOffences));
+            put("Kidnapping Offences", Preparation.filterMap(initKidnappingOffences));
+            put("Rape Offences", Preparation.filterMap(initRapeOffences));
+            put("Robbery Offences", Preparation.filterMap(initRobberyOffences));
+            put("Sexual Assault Offences", Preparation.filterMap(initSexualAssaultOffences));
+            put("Sexual Violence Offences", Preparation.filterMap(initSexualViolenceOffences));
+            put("Theft Offences", Preparation.filterMap(initTheftOffences));
+            put("Theft Vehicle Offences", Preparation.filterMap(initTheftVehicleOffences));
+            put("Unlawful Offences", Preparation.filterMap(initUnlawfulOffences));
         }};
     }
 

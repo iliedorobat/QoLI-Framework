@@ -14,10 +14,7 @@ import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -109,16 +106,16 @@ public class EducationStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initDigitalSkillsRatio));
-            add(Preparation.filterMap(initDropoutRatio));
-            add(Preparation.filterMap(initEarlyEducationRatio));
-            add(Preparation.filterMap(initInactiveYoungRatio));
-            add(Preparation.filterMap(initNoKnownForeignLangRatio));
-            add(Preparation.filterMap(initPupilsRatio));
-            add(Preparation.filterMap(initStudentsRatio));
-            add(Preparation.filterMap(initTrainingRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Digital Skills Ratio", Preparation.filterMap(initDigitalSkillsRatio));
+            put("Dropout Ratio", Preparation.filterMap(initDropoutRatio));
+            put("Early Education Ratio", Preparation.filterMap(initEarlyEducationRatio));
+            put("Inactive Young Ratio", Preparation.filterMap(initInactiveYoungRatio));
+            put("No Known Foreign Lang Ratio", Preparation.filterMap(initNoKnownForeignLangRatio));
+            put("Pupils Ratio", Preparation.filterMap(initPupilsRatio));
+            put("Students Ratio", Preparation.filterMap(initStudentsRatio));
+            put("Trainings Ratio", Preparation.filterMap(initTrainingRatio));
         }};
     }
 

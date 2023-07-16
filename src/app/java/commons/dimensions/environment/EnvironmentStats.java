@@ -14,10 +14,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -82,13 +79,13 @@ public class EnvironmentStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initNoisePollutionRatio));
-            add(Preparation.filterMap(initPm2_5PollutionRatio));
-            add(Preparation.filterMap(initPm10PollutionRatio));
-            add(Preparation.filterMap(initPollutionRatio));
-            add(Preparation.filterMap(initWaterSupplyRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Noise Pollution Ratio", Preparation.filterMap(initNoisePollutionRatio));
+            put("PM 2.5 Pollution Ratio", Preparation.filterMap(initPm2_5PollutionRatio));
+            put("PM 10 Pollution Ratio", Preparation.filterMap(initPm10PollutionRatio));
+            put("Pollution Ratio", Preparation.filterMap(initPollutionRatio));
+            put("Water Supply Ratio", Preparation.filterMap(initWaterSupplyRatio));
         }};
     }
 

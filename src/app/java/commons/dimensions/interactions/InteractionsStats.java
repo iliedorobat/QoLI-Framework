@@ -14,10 +14,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
 
@@ -75,13 +72,13 @@ public class InteractionsStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initAskingRatio));
-            add(Preparation.filterMap(initDiscussionRatio));
-            add(Preparation.filterMap(initGettingTogetherFamRatio));
-            add(Preparation.filterMap(initGettingTogetherFrdRatio));
-            add(Preparation.filterMap(initSatisfactionRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Asking Ratio", Preparation.filterMap(initAskingRatio));
+            put("Discussion Ratio", Preparation.filterMap(initDiscussionRatio));
+            put("Getting Together Family Ratio", Preparation.filterMap(initGettingTogetherFamRatio));
+            put("Getting Together Friends Ratio", Preparation.filterMap(initGettingTogetherFrdRatio));
+            put("Satisfaction Ratio", Preparation.filterMap(initSatisfactionRatio));
         }};
     }
 

@@ -15,10 +15,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -156,28 +153,28 @@ public class HealthStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initAlcoholicRatio));
-            add(Preparation.filterMap(initBmiObeseRatio));
-            add(Preparation.filterMap(initBmiOverweightRatio));
-            add(Preparation.filterMap(initFruitsVegetablesRatio));
-            add(Preparation.filterMap(initHealthyLifeRatio));
-            add(Preparation.filterMap(initHealthyLifeYearsFemale));
-            add(Preparation.filterMap(initHealthyLifeYearsMale));
-            add(Preparation.filterMap(initHospitalBeds));
-            add(Preparation.filterMap(initLifeExpectancy));
-            add(Preparation.filterMap(initLongHealthIssuesRatio));
-            add(Preparation.filterMap(initPersonnelDentists));
-            add(Preparation.filterMap(initPersonnelDoctors));
-            add(Preparation.filterMap(initPersonnelNurses));
-            add(Preparation.filterMap(initPersonnelPharma));
-            add(Preparation.filterMap(initPersonnelTherapists));
-            add(Preparation.filterMap(initPhysicalActivitiesRatio));
-            add(Preparation.filterMap(initSmokersRatio));
-            add(Preparation.filterMap(initUnmetDentalRatio));
-            add(Preparation.filterMap(initUnmetMedicalRatio));
-            add(Preparation.filterMap(initWorkAccidents));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Alcoholic Ratio", Preparation.filterMap(initAlcoholicRatio));
+            put("BMI Obese Ratio", Preparation.filterMap(initBmiObeseRatio));
+            put("BMI Overweight Ratio", Preparation.filterMap(initBmiOverweightRatio));
+            put("Fruits & Vegetables Ratio", Preparation.filterMap(initFruitsVegetablesRatio));
+            put("Healthy Life Ratio", Preparation.filterMap(initHealthyLifeRatio));
+            put("Healthy Life Years Female", Preparation.filterMap(initHealthyLifeYearsFemale));
+            put("Healthy Life Years Male", Preparation.filterMap(initHealthyLifeYearsMale));
+            put("Hospital Beds", Preparation.filterMap(initHospitalBeds));
+            put("Life Expectancy", Preparation.filterMap(initLifeExpectancy));
+            put("Long Health Issues Ratio", Preparation.filterMap(initLongHealthIssuesRatio));
+            put("Personnel Dentists", Preparation.filterMap(initPersonnelDentists));
+            put("Personnel Doctors", Preparation.filterMap(initPersonnelDoctors));
+            put("Personnel Nurses", Preparation.filterMap(initPersonnelNurses));
+            put("Personnel Pharma", Preparation.filterMap(initPersonnelPharma));
+            put("Personnel Therapists", Preparation.filterMap(initPersonnelTherapists));
+            put("Physical Activities Ratio", Preparation.filterMap(initPhysicalActivitiesRatio));
+            put("Smokers Ratio", Preparation.filterMap(initSmokersRatio));
+            put("Unmet Dental Ratio", Preparation.filterMap(initUnmetDentalRatio));
+            put("Unmet Medical Ratio", Preparation.filterMap(initUnmetMedicalRatio));
+            put("Work Accidents", Preparation.filterMap(initWorkAccidents));
         }};
     }
 

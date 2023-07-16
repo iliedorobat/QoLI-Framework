@@ -18,10 +18,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
 
@@ -110,17 +107,17 @@ public class GovRightsStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initCitizenshipRatio));
-            add(Preparation.filterMap(initEmploymentFemaleRatio));
-            add(Preparation.filterMap(initEmploymentMaleRatio));
-            add(Preparation.filterMap(initGenderPayGap));
-            add(Preparation.filterMap(initPopulationLegtstTrust));
-            add(Preparation.filterMap(initPopulationOthersTrust));
-            add(Preparation.filterMap(initPopulationPlctstTrust));
-            add(Preparation.filterMap(initPopulationPlttstTrust));
-            add(Preparation.filterMap(initVoterTurnout));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Citizenship Ratio", Preparation.filterMap(initCitizenshipRatio));
+            put("Employment Female Ratio", Preparation.filterMap(initEmploymentFemaleRatio));
+            put("Employment Male Ratio", Preparation.filterMap(initEmploymentMaleRatio));
+            put("Gender Pay Gap", Preparation.filterMap(initGenderPayGap));
+            put("Population Legal System Trust", Preparation.filterMap(initPopulationLegtstTrust));
+            put("Population Other Systems Trust", Preparation.filterMap(initPopulationOthersTrust));
+            put("Population Police Trust", Preparation.filterMap(initPopulationPlctstTrust));
+            put("Population Political Trust", Preparation.filterMap(initPopulationPlttstTrust));
+            put("Voter Turnout", Preparation.filterMap(initVoterTurnout));
         }};
     }
 

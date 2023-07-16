@@ -15,10 +15,7 @@ import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -139,20 +136,20 @@ public class MainActivityStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initAvgWorkHoursList));
-            add(Preparation.filterMap(initEmploymentRatio));
-            add(Preparation.filterMap(initInactivePopulationRatio));
-            add(Preparation.filterMap(initInvoluntaryPartTimeRatio));
-            add(Preparation.filterMap(initJobSatisfaction));
-            add(Preparation.filterMap(initLongTermUnemploymentRatio));
-            add(Preparation.filterMap(initLowWageEarningsRatio));
-            add(Preparation.filterMap(initOverQualifiedRatio));
-            add(Preparation.filterMap(initResearchers));
-            add(Preparation.filterMap(initTemporaryEmploymentRatio));
-            add(Preparation.filterMap(initUnemploymentRatio));
-            add(Preparation.filterMap(initWorkingNightsRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Avg Work Hours List", Preparation.filterMap(initAvgWorkHoursList));
+            put("Employment Ratio", Preparation.filterMap(initEmploymentRatio));
+            put("Inactive Population Ratio", Preparation.filterMap(initInactivePopulationRatio));
+            put("Involuntary Part-Time Ratio", Preparation.filterMap(initInvoluntaryPartTimeRatio));
+            put("Job Satisfaction", Preparation.filterMap(initJobSatisfaction));
+            put("Long Term Unemployment Ratio", Preparation.filterMap(initLongTermUnemploymentRatio));
+            put("LowWage Earnings Ratio", Preparation.filterMap(initLowWageEarningsRatio));
+            put("Over Qualified Ratio", Preparation.filterMap(initOverQualifiedRatio));
+            put("Researchers", Preparation.filterMap(initResearchers));
+            put("Temporary Employment Ratio", Preparation.filterMap(initTemporaryEmploymentRatio));
+            put("Unemployment Ratio", Preparation.filterMap(initUnemploymentRatio));
+            put("Working Nights Ratio", Preparation.filterMap(initWorkingNightsRatio));
         }};
     }
 

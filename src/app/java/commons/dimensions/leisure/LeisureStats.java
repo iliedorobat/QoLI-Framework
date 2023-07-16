@@ -15,10 +15,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
 
@@ -110,20 +107,20 @@ public class LeisureStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initFormalVoluntaryRatio));
-            add(Preparation.filterMap(initInformalVoluntaryRatio));
-            add(Preparation.filterMap(initNpFinCinRatio));
-            add(Preparation.filterMap(initNpFinCultRatio));
-            add(Preparation.filterMap(initNpFinLiveRatio));
-            add(Preparation.filterMap(initNpFinSportRatio));
-            add(Preparation.filterMap(initNpNnbCinRatio));
-            add(Preparation.filterMap(initNpNnbCultRatio));
-            add(Preparation.filterMap(initNpNnbLiveRatio));
-            add(Preparation.filterMap(initNpNnbSportRatio));
-            add(Preparation.filterMap(initSatisfactionRatio));
-            add(Preparation.filterMap(initSocialActivitiesRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Formal Voluntary Ratio", Preparation.filterMap(initFormalVoluntaryRatio));
+            put("Informal Voluntary Ratio", Preparation.filterMap(initInformalVoluntaryRatio));
+            put("Non Participation Fin Cinema Ratio", Preparation.filterMap(initNpFinCinRatio));
+            put("Non Participation Fin Culture Ratio", Preparation.filterMap(initNpFinCultRatio));
+            put("Non Participation Fin Live Ratio", Preparation.filterMap(initNpFinLiveRatio));
+            put("Non Participation Fin Sport Ratio", Preparation.filterMap(initNpFinSportRatio));
+            put("Non Participation Nnb Cinema Ratio", Preparation.filterMap(initNpNnbCinRatio));
+            put("Non Participation Nnb Culture Ratio", Preparation.filterMap(initNpNnbCultRatio));
+            put("Non Participation Nnb Live Ratio", Preparation.filterMap(initNpNnbLiveRatio));
+            put("Non Participation Nnb Sport Ratio", Preparation.filterMap(initNpNnbSportRatio));
+            put("Satisfaction Ratio", Preparation.filterMap(initSatisfactionRatio));
+            put("Social Activities Ratio", Preparation.filterMap(initSocialActivitiesRatio));
         }};
     }
 

@@ -13,10 +13,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
@@ -58,10 +55,10 @@ public class OverallExperienceStats {
         return consolidatedList;
     }
 
-    public static ArrayList<Map<String, Number>> getInitList() {
-        return new ArrayList<>() {{
-            add(Preparation.filterMap(initHappinessRatio));
-            add(Preparation.filterMap(initHighSatisfactionRatio));
+    public static TreeMap<String, Map<String, Number>> getInitList() {
+        return new TreeMap<>() {{
+            put("Happiness Ratio", Preparation.filterMap(initHappinessRatio));
+            put("High Satisfaction Ratio", Preparation.filterMap(initHighSatisfactionRatio));
         }};
     }
 

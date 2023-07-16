@@ -29,8 +29,10 @@ public class Main {
 
         boolean collect = args.length == 0 || contains(list, "--collect");
         boolean compare = contains(list, "--compare");
+        boolean indStatus = contains(list, "--indicatorStatus");
         boolean calculate = args.length == 0 || contains(list, "--calculate");
         boolean print = args.length == 0 || contains(list, "--print");
+        int targetYear = 2021;
 
         if (collect) {
             // 1. Collect the datasets;
@@ -39,17 +41,17 @@ public class Main {
 
         if (compare) {
             // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-            Print.printDimensionStatus(CommonStats.getInitList(), "Common info");
-            Print.printDimensionStatus(MaterialLivingStats.getInitList(), "MLC");
-            Print.printDimensionStatus(MainActivityStats.getInitList(), "PMA");
-            Print.printDimensionStatus(HealthStats.getInitList(), "Health");
-            Print.printDimensionStatus(EducationStats.getInitList(), "Education");
-            Print.printDimensionStatus(InteractionsStats.getInitList(), "Interactions");
-            Print.printDimensionStatus(LeisureStats.getInitList(), "Leisure");
-            Print.printDimensionStatus(SafetyStats.getInitList(), "Safety");
-            Print.printDimensionStatus(GovRightsStats.getInitList(), "GBR");
-            Print.printDimensionStatus(EnvironmentStats.getInitList(), "Environment");
-            Print.printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp");
+            Print.printDimensionStatus(CommonStats.getInitList(), "Common info", targetYear, indStatus);
+            Print.printDimensionStatus(EducationStats.getInitList(), "Education", targetYear, indStatus);
+            Print.printDimensionStatus(EnvironmentStats.getInitList(), "Environment", targetYear, indStatus);
+            Print.printDimensionStatus(GovRightsStats.getInitList(), "GBR", targetYear, indStatus);
+            Print.printDimensionStatus(HealthStats.getInitList(), "Health", targetYear, indStatus);
+            Print.printDimensionStatus(LeisureStats.getInitList(), "Leisure", targetYear, indStatus);
+            Print.printDimensionStatus(MaterialLivingStats.getInitList(), "MLC", targetYear, indStatus);
+            Print.printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp", targetYear, indStatus);
+            Print.printDimensionStatus(MainActivityStats.getInitList(), "PMA", targetYear, indStatus);
+            Print.printDimensionStatus(SafetyStats.getInitList(), "Safety", targetYear, indStatus);
+            Print.printDimensionStatus(InteractionsStats.getInitList(), "Interactions", targetYear, indStatus);
         }
 
         if (calculate) {

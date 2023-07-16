@@ -6,10 +6,7 @@ import app.java.commons.utils.StatsUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class Print {
     public static void printChartData(
@@ -64,6 +61,7 @@ public class Print {
         }
     }
 
+    /** @deprecated */
     public static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimensionName) {
         int expected = 0;
         int available = 0;
@@ -80,6 +78,56 @@ public class Print {
         System.out.println(dimensionName + ":"
                 + "\n\tAvailable: " + available
                 + "\n\tExpected: " + expected);
+    }
+
+    private static Map<String, Number> filterMap(Map<String, Number> preparedMap, int targetYear) {
+        Map<String, Number> filteredMap = new TreeMap<>(new MapOrder());
+
+        for (Map.Entry<String, Number> entry : preparedMap.entrySet()) {
+            int year = MapUtils.getEntryYear(entry);
+
+            if (year == targetYear) {
+                filteredMap.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return filteredMap;
+    }
+
+    public static void printDimensionStatus(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIntermediateStatus) {
+        int available = 0;
+        int expected = 0;
+
+        for (Map.Entry<String, Map<String, Number>> indicatorMap : map.entrySet()) {
+            Map<String, Number> values = indicatorMap.getValue();
+            String indicatorName = indicatorMap.getKey();
+            if (targetYear > -1) {
+                values = filterMap(values, targetYear);
+            }
+
+            int indicatorAvailable = 0;
+            int indicatorExpected = values.size();
+
+            for (Map.Entry<String, Number> entry : values.entrySet()) {
+                Number value = entry.getValue();
+                if (value != null)
+                    indicatorAvailable += 1;
+            }
+
+            available += indicatorAvailable;
+            expected += indicatorExpected;
+
+            if (printIntermediateStatus) {
+                System.out.println("\t" + indicatorName + ":"
+                        + "\n\t\tAvailable: " + indicatorAvailable
+                        + "\n\t\tMissing: " + (indicatorExpected - indicatorAvailable));
+            }
+        }
+
+        System.out.println(dimensionName + ":"
+                + "\n\tAvailable: " + available
+                + "\n\tMissing: " + (expected - available)
+                + "\n------------------------");
     }
 
     public static String formatNumber(double number) {
