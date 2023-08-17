@@ -2,7 +2,7 @@ package app.java.commons;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.utils.MapUtils;
-import app.java.commons.utils.StatsUtils;
+import app.java.commons.utils.CsvStatsUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -16,7 +16,7 @@ public class Print {
             String dimensionName,
             String direction
     ) {
-        StringBuilder output = StatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
+        StringBuilder output = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
         System.out.println(output);
     }
 

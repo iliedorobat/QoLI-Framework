@@ -11,7 +11,7 @@ import java.util.*;
 
 import static app.java.commons.constants.Constants.*;
 
-public class StatsUtils {
+public class CsvStatsUtils {
     private static final int ROUNDING_PLACES = 2;
 
     /**
@@ -195,9 +195,9 @@ public class StatsUtils {
             String dimensionName,
             String direction
     ) {
-        StringBuilder sb = StatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
+        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
         String seriesDirectory = getSeriesDirectory(seriesType);
-        String fullPath = FilePathConst.OUTPUT_PATH + seriesDirectory + "/";
+        String fullPath = FilePathConst.OUTPUT_PATH + "csv/" + seriesDirectory + "/";
         FileUtils.writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);
     }
 
@@ -281,7 +281,7 @@ public class StatsUtils {
      * @param seriesType The series type
      * @return The directory name of the input series type
      */
-    private static String getSeriesDirectory(String seriesType) {
+    public static String getSeriesDirectory(String seriesType) {
         if (seriesType.equals(SERIES_TYPE_REGION)) {
             return "regions";
         }

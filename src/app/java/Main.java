@@ -1,7 +1,8 @@
 package app.java;
 
 import app.java.commons.Print;
-import app.java.commons.dimensions.QoLIStats;
+import app.java.commons.dimensions.QoLICsvStats;
+import app.java.commons.dimensions.QoLIJsonStats;
 import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.dimensions.education.EducationStats;
 import app.java.commons.dimensions.environment.EnvironmentStats;
@@ -57,7 +58,8 @@ public class Main {
         if (calculate) {
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
             String direction = getDirection(list);
-            QoLIStats.writeDimensions(direction);
+            QoLICsvStats.writeDimensions(direction);
+            QoLIJsonStats.writeDimensions();
         }
 
         if (print) {
@@ -66,7 +68,7 @@ public class Main {
 
             if (seriesType != null) {
                 // 4. Print the QoLI and the QoLI dimensions values
-                QoLIStats.printDimensions(list, seriesType, direction);
+                QoLICsvStats.printDimensions(list, seriesType, direction);
 
                 // 5. Print a specific indicator
                 EducationStats.printIndicators(list, seriesType, direction);
