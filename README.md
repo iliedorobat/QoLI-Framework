@@ -86,11 +86,3 @@ SYSMEA 2019: [eLIF: European Life Index Framework - An Analysis for the Case of 
     issn="1942-261x"
 }
 ```
-
-
-
-
-
-TODO: search for "Dataset contains no data"
-TODO: search for "Lack of data:"
-https://ec.europa.eu/eurostat/statistics-explained/index.php?title=EU_statistics_on_income_and_living_conditions_(EU-SILC)_methodology_-_environment_of_the_dwelling
