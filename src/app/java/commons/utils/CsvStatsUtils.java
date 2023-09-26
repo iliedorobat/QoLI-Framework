@@ -120,7 +120,7 @@ public class CsvStatsUtils {
                 String key = code + "_" + year;
                 Number value = entries.get(key);
 
-                DecimalFormat df = new DecimalFormat("#,###.##", new DecimalFormatSymbols(Locale.ENGLISH));
+                DecimalFormat df = new DecimalFormat("#,###.####", new DecimalFormatSymbols(Locale.ENGLISH));
                 line.append(df.format(value));
 
                 if (year < EnvConst.MAX_YEAR) {
