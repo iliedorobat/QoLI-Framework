@@ -9,6 +9,7 @@ public class BuildProject {
         buildConstants();
         buildUtils();
         buildParams();
+        buildPaths();
         buildCollector();
         buildStats();
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/Main.java");
@@ -18,7 +19,6 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/Constants.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/DimensionNames.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/EnvConst.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/FileNameConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/FilePathConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/IndicatorNames.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsConst.java");
@@ -71,6 +71,20 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperienceParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/safety/SafetyParams.java");
+    }
+
+    private static void buildPaths() throws Exception {
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/common/CommonPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/education/EducationPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/health/HealthPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/interactions/InteractionsPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisure/LeisurePaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/mainActivity/MainActivityPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperiencePaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/safety/SafetyPaths.java");
     }
 
     private static void buildStats() throws Exception {

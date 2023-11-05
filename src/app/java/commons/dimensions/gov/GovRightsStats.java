@@ -2,77 +2,57 @@ package app.java.commons.dimensions.gov;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
 import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS_NAME;
+import static app.java.commons.dimensions.gov.GovRightsParams.*;
+import static app.java.commons.dimensions.gov.GovRightsPaths.*;
 
 public class GovRightsStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            ACTIVE_CITIZENSHIP_RATIO = GovRightsParams.getCitizenshipParams(),
-            EMPLOYMENT_FEMALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("female")),
-            EMPLOYMENT_MALE_RATIO = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("male")),
-            GENDER_PAY_GAP = GovRightsParams.getGenderPayGapParams(),
-            POPULATION_LEGTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
-            POPULATION_PLCTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
-            POPULATION_PLTTST_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
-            POPULATION_OTHERS_TRUST = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
-
-    private static final String
-            citizenshipRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.CITIZENSHIP_RATIO + JSON_EXTENSION,
-            employmentRatioPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.EMPLOYMENT_RATIO_BY_SEX + JSON_EXTENSION,
-            genderPayGapPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.GENDER_PAY_GAP + JSON_EXTENSION,
-            populationTrustPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.POPULATION_TRUST + JSON_EXTENSION,
-            voterTurnoutPath = FilePathConst.GOV_RIGHTS_PATH + FileNameConst.VOTER_TURNOUT + CSV_EXTENSION;
-
-    // Intermediate data which should be consolidated into a single indicator
+    // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
-            initEmploymentFemaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_FEMALE_RATIO, employmentRatioPath),
-            initEmploymentMaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_MALE_RATIO, employmentRatioPath),
-            initPopulationLegtstTrust = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST, populationTrustPath),
-            initPopulationOthersTrust = Initializer.initConsolidatedMap(POPULATION_OTHERS_TRUST, populationTrustPath),
-            initPopulationPlctstTrust = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST, populationTrustPath),
-            initPopulationPlttstTrust = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST, populationTrustPath);
+            initEmploymentFemaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_FEMALE_RATIO_PARAMS, EMPLOYMENT_RATIO_PATH),
+            initEmploymentMaleRatio = Initializer.initConsolidatedMap(EMPLOYMENT_MALE_RATIO_PARAMS, EMPLOYMENT_RATIO_PATH),
+            initPopulationLegtstTrust = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST_PARAMS, POPULATION_TRUST_PATH),
+            initPopulationOthersTrust = Initializer.initConsolidatedMap(POPULATION_OTHERS_TRUST_PARAMS, POPULATION_TRUST_PATH),
+            initPopulationPlctstTrust = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST_PARAMS, POPULATION_TRUST_PATH),
+            initPopulationPlttstTrust = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST_PARAMS, POPULATION_TRUST_PATH);
     private static final ArrayList<Map<String, Number>> voterTurnoutList = new ArrayList<>() {{
-        add(voterTurnoutCsvToMap(voterTurnoutPath));
+        add(voterTurnoutCsvToMap(VOTER_TURNOUT_PATH));
     }};
 
     private static final Map<String, Number>
-            initCitizenshipRatio = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP_RATIO, citizenshipRatioPath),
-            initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP, genderPayGapPath),
+            initCitizenshipRatio = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP_RATIO_PARAMS, CITIZENSHIP_RATIO_PATH),
+            initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP_PARAMS, GENDER_PAY_GAP_PATH),
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 
     public static final Map<String, Number>
             citizenship = Preparation.prepareData(initCitizenshipRatio),
-
             employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
             employmentMaleRatio = Preparation.prepareData(initEmploymentMaleRatio),
             employmentGenderGap = prepareEmploymentGenderGap(),
-
             genderPayGap = Preparation.prepareData(initGenderPayGap),
-
             populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrust),
             populationOthersTrustRatio = Preparation.prepareData(initPopulationOthersTrust),
             populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
             populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust),
             populationTrustRatio = preparePopulationTrust(),
-
             voterTurnout = Preparation.prepareData(initVoterTurnout);
 
     public static Map<String, Number> generateDimensionList() {

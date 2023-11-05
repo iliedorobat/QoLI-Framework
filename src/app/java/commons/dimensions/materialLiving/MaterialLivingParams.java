@@ -129,4 +129,21 @@ public class MaterialLivingParams {
     public static MultiValuedMap<String, String> getUnderOccupiedParams() {
         return getDwellingsOccupationParams();
     }
+
+    public static final MultiValuedMap<String, String>
+            DWELLING_ISSUES_RATIO_PARAMS = MaterialLivingParams.getDwellingIssuesParams(),
+            END_MEET_INABILITY_D_RATIO_PARAMS = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
+            END_MEET_INABILITY_GD_RATIO_PARAMS = MaterialLivingParams.getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty")),
+            FINANCIAL_SATISFACTION_PARAMS = MaterialLivingParams.getFinancialSatisfactionParams(),
+            HIGH_INCOME_RATIO_PARAMS = MaterialLivingParams.getHighIncomeParams(),
+            INCOME_QUINTILE_RATIO_PARAMS = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("total")),
+            INCOME_QUINTILE_LESS_65_RATIO_PARAMS = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("lower_65")),
+            INCOME_QUINTILE_OVER_65_RATIO_PARAMS = MaterialLivingParams.getIncomeQuintileParams(ParamsValues.AGE.get("over_65")),
+            LACK_OF_BATHS_RATIO_PARAMS = MaterialLivingParams.getLackOfBathsParams(),
+            LOW_WORK_INTENSITY_RATIO_PARAMS = MaterialLivingParams.getLowWorkIntensityParams(),
+            MATERIAL_DEPRIVATION_RATIO_PARAMS = MaterialLivingParams.getMaterialDeprivationParams(),
+            MEDIAN_INCOME_PPS_PARAMS = MaterialLivingParams.getMedianIncome(),
+            OVER_OCCUPIED_RATIO_PARAMS = MaterialLivingParams.getOverOccupiedParams(),
+            POVERTY_RISK_RATIO_PARAMS = MaterialLivingParams.getPovertyRiskParams(),
+            UNDER_OCCUPIED_RATIO_PARAMS = MaterialLivingParams.getUnderOccupiedParams();
 }

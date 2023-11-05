@@ -2,35 +2,28 @@ package app.java.commons.dimensions.overall;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
+import static app.java.commons.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.HAPPINESS_RATIO_PATH;
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.HIGH_SATISFACTION_RATIO_PATH;
 
 public class OverallExperienceStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            HAPPINESS_RATIO = OverallExperienceParams.getHappinessParams(),
-            HIGH_SATISFACTION_RATIO = OverallExperienceParams.getHighSatisfactionParams();
-
-    private static final String
-            happinessRatioPath = FilePathConst.OVERALL_EXPERIENCE_PATH + FileNameConst.HAPPINESS_RATIO + JSON_EXTENSION,
-            highSatisfactionRatioPath = FilePathConst.OVERALL_EXPERIENCE_PATH + FileNameConst.HIGH_SATISFACTION_RATIO + JSON_EXTENSION;
-
     private static final Map<String, Number>
-            initHappinessRatio = Initializer.initConsolidatedMap(HAPPINESS_RATIO, happinessRatioPath),
-            initHighSatisfactionRatio = Initializer.initConsolidatedMap(HIGH_SATISFACTION_RATIO, highSatisfactionRatioPath);
+            initHappinessRatio = Initializer.initConsolidatedMap(HAPPINESS_RATIO_PARAMS, HAPPINESS_RATIO_PATH),
+            initHighSatisfactionRatio = Initializer.initConsolidatedMap(HIGH_SATISFACTION_RATIO_PARAMS, HIGH_SATISFACTION_RATIO_PATH);
 
     public static final Map<String, Number>
             happinessRatio = Preparation.prepareData(initHappinessRatio),

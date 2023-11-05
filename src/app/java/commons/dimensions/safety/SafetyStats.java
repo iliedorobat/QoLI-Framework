@@ -2,71 +2,46 @@ package app.java.commons.dimensions.safety;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.*;
+import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
+import static app.java.commons.dimensions.safety.SafetyParams.*;
+import static app.java.commons.dimensions.safety.SafetyPaths.*;
 
 public class SafetyStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            CRIME_RATIO = SafetyParams.getCrimeParams(),
-            NON_PAYMENT_RATIO = SafetyParams.getNonPaymentParams(),
-            PENSION_PPS = SafetyParams.getPensionPpsParams(),
-            SOCIAL_PROTECTION_PPS = SafetyParams.getSocialProtectionPpsParams(),
-            UNEXPECTED_RATIO = SafetyParams.getUnexpectedParams(),
-
-            //UK = UKC-L + UKM + UKN (England and Wales + Scotland + Northern Ireland)
-            OFFENCES_ASSAULT = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("assault")),
-            OFFENCES_ATTEMPTED_HOMICIDE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("attemptedHomicide")),
-            OFFENCES_BURGLARY = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("burglary")),
-            OFFENCES_BURGLARY_PRIVATE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("burglaryPrivate")),
-            OFFENCES_HOMICIDE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("homicide")),
-            OFFENCES_KIDNAPPING = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("kidnapping")),
-            OFFENCES_RAPE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("rape")),
-            OFFENCES_ROBBERY = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("robbery")),
-            OFFENCES_SEXUAL_ASSAULT = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("sexualAssault")),
-            OFFENCES_SEXUAL_VIOLENCE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("sexualViolence")),
-            OFFENCES_THEFT = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("theft")),
-            OFFENCES_THEFT_VEHICLE = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("theftVehicle")),
-            OFFENCES_UNLAWFUL = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("narcotics"));
-
-    private static final String
-            crimeRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.CRIME_RATIO + JSON_EXTENSION,
-            nonPaymentRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.NON_PAYMENT_RATIO + JSON_EXTENSION,
-            offencesPath = FilePathConst.SAFETY_PATH + FileNameConst.OFFENCES + JSON_EXTENSION,
-            pensionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.PENSION_PPS + JSON_EXTENSION,
-            socialProtectionPpsPath = FilePathConst.SAFETY_PATH + FileNameConst.SOCIAL_PROTECTION_RATIO + JSON_EXTENSION,
-            unexpectedRatioPath = FilePathConst.SAFETY_PATH + FileNameConst.UNEXPECTED_RATIO + JSON_EXTENSION;
-
     private static final Map<String, Number>
-            initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO, crimeRatioPath),
-            initNonPaymentRatio = Initializer.initConsolidatedMap(NON_PAYMENT_RATIO, nonPaymentRatioPath),
-            initPensionPps = Initializer.initConsolidatedMap(PENSION_PPS, pensionPpsPath),
-            initSocialProtectionPps = Initializer.initConsolidatedMap(SOCIAL_PROTECTION_PPS, socialProtectionPpsPath),
-            initUnexpectedRatio = Initializer.initConsolidatedMap(UNEXPECTED_RATIO, unexpectedRatioPath),
+            initCrimeRatio = Initializer.initConsolidatedMap(CRIME_RATIO_PARAMS, CRIME_RATIO_PATH),
+            initNonPaymentRatio = Initializer.initConsolidatedMap(NON_PAYMENT_RATIO_PARAMS, NON_PAYMENT_RATIO_PATH),
+            initPensionPps = Initializer.initConsolidatedMap(PENSION_PPS_PARAMS, PENSION_PPS_PATH),
+            initSocialProtectionPps = Initializer.initConsolidatedMap(SOCIAL_PROTECTION_PPS_PARAMS, SOCIAL_PROTECTION_PPS_PATH),
+            initUnexpectedRatio = Initializer.initConsolidatedMap(UNEXPECTED_RATIO_PARAMS, UNEXPECTED_RATIO_PATH),
 
             // Intermediate data which should be consolidated into a single indicator
-            initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
-            initAttemptedHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_ATTEMPTED_HOMICIDE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initBurglaryOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY, offencesPath, EU28_MEMBERS_EXTENDED),
-            initBurglaryPrivateOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY_PRIVATE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_HOMICIDE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initKidnappingOffences = Initializer.initConsolidatedMap(OFFENCES_KIDNAPPING, offencesPath, EU28_MEMBERS_EXTENDED),
-            initRapeOffences = Initializer.initConsolidatedMap(OFFENCES_RAPE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initRobberyOffences = Initializer.initConsolidatedMap(OFFENCES_ROBBERY, offencesPath, EU28_MEMBERS_EXTENDED),
-            initSexualViolenceOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_VIOLENCE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initSexualAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_ASSAULT, offencesPath, EU28_MEMBERS_EXTENDED),
-            initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT, offencesPath, EU28_MEMBERS_EXTENDED),
-            initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE, offencesPath, EU28_MEMBERS_EXTENDED),
-            initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL, offencesPath, EU28_MEMBERS_EXTENDED);
+            initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initAttemptedHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_ATTEMPTED_HOMICIDE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initBurglaryOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initBurglaryPrivateOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY_PRIVATE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_HOMICIDE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initKidnappingOffences = Initializer.initConsolidatedMap(OFFENCES_KIDNAPPING_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initRapeOffences = Initializer.initConsolidatedMap(OFFENCES_RAPE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initRobberyOffences = Initializer.initConsolidatedMap(OFFENCES_ROBBERY_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initSexualViolenceOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_VIOLENCE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initSexualAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_ASSAULT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED);
 
     public static final Map<String, Number>
             crimeRatio = Preparation.prepareData(initCrimeRatio),

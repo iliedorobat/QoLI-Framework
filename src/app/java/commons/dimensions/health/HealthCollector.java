@@ -1,26 +1,27 @@
 package app.java.commons.dimensions.health;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.health.HealthPaths.*;
+
 public class HealthCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAlcoholicRatio(), FilePathConst.HEALTH_PATH, FileNameConst.ALCOHOLIC_RATIO);
-        FileUtils.writeToJSONFile(getBodyMassIndexRatio(), FilePathConst.HEALTH_PATH, FileNameConst.BODY_MASS_INDEX);
-        FileUtils.writeToJSONFile(getFVRatio(), FilePathConst.HEALTH_PATH, FileNameConst.FRUITS_VEGETABLES_RATIO);
-        FileUtils.writeToJSONFile(getLifeExpectancy(), FilePathConst.HEALTH_PATH, FileNameConst.LIFE_EXPECTANCY);
-        FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), FilePathConst.HEALTH_PATH, FileNameConst.LONG_HEALTH_ISSUES_RATIO);
-        FileUtils.writeToJSONFile(getHealthPersonnelRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTH_PERSONNEL);
-        FileUtils.writeToJSONFile(getHealthyLifeRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTHY_LIFE_RATIO);
-        FileUtils.writeToJSONFile(getHealthyLifeYears(), FilePathConst.HEALTH_PATH, FileNameConst.HEALTHY_LIFE_YEARS);
-        FileUtils.writeToJSONFile(getHospitalBedsRatio(), FilePathConst.HEALTH_PATH, FileNameConst.HOSPITAL_BEDS);
-        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), FilePathConst.HEALTH_PATH, FileNameConst.PHYSICAL_ACTIVITIES_RATIO);
-        FileUtils.writeToJSONFile(getSmokersRatio(), FilePathConst.HEALTH_PATH, FileNameConst.SMOKERS_RATIO);
-        FileUtils.writeToJSONFile(getUnmetDentalRatio(), FilePathConst.HEALTH_PATH, FileNameConst.UNMET_DENTAL_RATIO);
-        FileUtils.writeToJSONFile(getUnmetMedicalRatio(), FilePathConst.HEALTH_PATH, FileNameConst.UNMET_MEDICAL_RATIO);
-        FileUtils.writeToJSONFile(getWorkAccidents(), FilePathConst.HEALTH_PATH, FileNameConst.WORK_ACCIDENTS);
+        FileUtils.writeToJSONFile(getAlcoholicRatio(), FilePathConst.HEALTH_PATH, ALCOHOLIC_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getBodyMassIndexRatio(), FilePathConst.HEALTH_PATH, BMI_FILE_NAME);
+        FileUtils.writeToJSONFile(getFVRatio(), FilePathConst.HEALTH_PATH, FRUITS_VEGETABLES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLifeExpectancy(), FilePathConst.HEALTH_PATH, LIFE_EXPECTANCY_FILE_NAME);
+        FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), FilePathConst.HEALTH_PATH, LONG_HEALTH_ISSUES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthPersonnelRatio(), FilePathConst.HEALTH_PATH, HEALTH_PERSONNEL_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthyLifeRatio(), FilePathConst.HEALTH_PATH, HEALTHY_LIFE_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthyLifeYears(), FilePathConst.HEALTH_PATH, HEALTHY_LIFE_YEARS_FILE_NAME);
+        FileUtils.writeToJSONFile(getHospitalBedsRatio(), FilePathConst.HEALTH_PATH, HOSPITAL_BEDS_FILE_NAME);
+        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), FilePathConst.HEALTH_PATH, PHYSICAL_ACTIVITIES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getSmokersRatio(), FilePathConst.HEALTH_PATH, SMOKERS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnmetDentalRatio(), FilePathConst.HEALTH_PATH, UNMET_DENTAL_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnmetMedicalRatio(), FilePathConst.HEALTH_PATH, UNMET_MEDICAL_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkAccidents(), FilePathConst.HEALTH_PATH, WORK_ACCIDENTS_FILE_NAME);
     }
 
     /**

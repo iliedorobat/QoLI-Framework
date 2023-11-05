@@ -61,4 +61,14 @@ public class GovRightsParams {
             put(ParamsConst.UNIT, "RTG");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            ACTIVE_CITIZENSHIP_RATIO_PARAMS = GovRightsParams.getCitizenshipParams(),
+            EMPLOYMENT_FEMALE_RATIO_PARAMS = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("female")),
+            EMPLOYMENT_MALE_RATIO_PARAMS = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("male")),
+            GENDER_PAY_GAP_PARAMS = GovRightsParams.getGenderPayGapParams(),
+            POPULATION_LEGTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
+            POPULATION_PLCTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
+            POPULATION_PLTTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
+            POPULATION_OTHERS_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
 }

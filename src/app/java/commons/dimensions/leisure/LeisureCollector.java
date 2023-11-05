@@ -1,17 +1,18 @@
 package app.java.commons.dimensions.leisure;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.dimensions.interactions.InteractionsParams;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.leisure.LeisurePaths.*;
+
 public class LeisureCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getNonParticipationRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.NON_PARTICIPATION_RATIO);
-        FileUtils.writeToJSONFile(getSocialActivitiesRatio(), FilePathConst.LEISURE_PATH, FileNameConst.SOCIAL_ACTIVITIES_RATIO);
-        FileUtils.writeToJSONFile(getTimeSpentSatisfaction(), FilePathConst.LEISURE_PATH, FileNameConst.TIME_SPENT_SATISFACTION);
-        FileUtils.writeToJSONFile(getVoluntaryActivitiesRatio(), FilePathConst.LEISURE_PATH, FileNameConst.VOLUNTARY_ACTIVITIES_RATIO);
+        FileUtils.writeToJSONFile(getNonParticipationRatio(), FilePathConst.INTERACTIONS_PATH, NON_PARTICIPATION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getSocialActivitiesRatio(), FilePathConst.LEISURE_PATH, SOCIAL_ACTIVITIES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getTimeSpentSatisfaction(), FilePathConst.LEISURE_PATH, TIME_SPENT_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getVoluntaryActivitiesRatio(), FilePathConst.LEISURE_PATH, VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME);
     }
 
     /**

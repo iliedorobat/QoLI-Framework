@@ -134,4 +134,19 @@ public class MainActivityParams {
             put(ParamsConst.WORKING_STATUS, "EMP");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            AVG_WORK_HOURS_2007_PARAMS = MainActivityParams.getAvgWorkHoursParams2007(),
+            AVG_WORK_HOURS_2008_PARAMS = MainActivityParams.getAvgWorkHoursParams2008(),
+            EMPLOYMENT_RATIO_PARAMS = MainActivityParams.getEmploymentParams(),
+            INACTIVE_POPULATION_RATIO_PARAMS = MainActivityParams.getInactivePopulationParams(),
+            INVOLUNTARY_PART_TIME_RATIO_PARAMS = MainActivityParams.getInvoluntaryPartTimeParams(),
+            JOB_SATISFACTION_PARAMS = MainActivityParams.getJobSatisfactionParams(),
+            LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS = MainActivityParams.getLongTermUnemploymentParams(),
+            LOW_WAGE_EARNINGS_RATIO_PARAMS = MainActivityParams.getLowWageEarnersParams(),
+            OVER_QUALIFIED_RATIO_PARAMS = MainActivityParams.getOverQualifiedParams(),
+            RESEARCHERS_PARAMS = MainActivityParams.getResearchersParams(),
+            TEMPORARY_EMPLOYMENT_RATIO_PARAMS = MainActivityParams.getTemporaryEmploymentParams(),
+            UNEMPLOYMENT_RATIO_PARAMS = MainActivityParams.getUnemploymentParams(),
+            WORKING_NIGHTS_RATIO_PARAMS = MainActivityParams.getWorkingNightsParams();
 }

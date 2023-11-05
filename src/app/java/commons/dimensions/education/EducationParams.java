@@ -86,4 +86,15 @@ public class EducationParams {
             put(ParamsConst.UNIT, "PC");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            DIGITAL_SKILLS_PARAMS = EducationParams.getDigitalSkillsParams(),
+            DROPOUT_RATIO_PARAMS = EducationParams.getDropoutParams(),
+            EARLY_EDUCATION_RATIO_PARAMS = EducationParams.getEarlyEducationParams(),
+            INACTIVE_YOUNG_RATIO_PARAMS = EducationParams.getInactiveYoungParams(),
+            NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS = EducationParams.getNoKnownForeignLangParams(),
+            PUPILS_RATIO_2012_PARAMS = EducationParams.getPupilsParams2012(),
+            PUPILS_RATIO_2013_PARAMS = EducationParams.getPupilsParams2013(),
+            STUDENTS_RATIO_PARAMS = EducationParams.getEducationParams(),
+            TRAINING_RATIO_PARAMS = EducationParams.getTrainingParams();
 }

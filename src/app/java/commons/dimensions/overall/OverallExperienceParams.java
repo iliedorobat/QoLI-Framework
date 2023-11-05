@@ -24,4 +24,8 @@ public class OverallExperienceParams {
                 SATISFACTION_TYPES_PARAMS.get("LIFE")
         );
     }
+
+    public static final MultiValuedMap<String, String>
+            HAPPINESS_RATIO_PARAMS = OverallExperienceParams.getHappinessParams(),
+            HIGH_SATISFACTION_RATIO_PARAMS = OverallExperienceParams.getHighSatisfactionParams();
 }

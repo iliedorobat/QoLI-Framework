@@ -1,21 +1,22 @@
 package app.java.commons.dimensions.education;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.education.EducationPaths.*;
+
 public class EducationCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getDigitalSkillsRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.DIGITAL_SKILLS_RATIO);
-        FileUtils.writeToJSONFile(getDropoutRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.DROPOUT_RATIO);
-        FileUtils.writeToJSONFile(getEarlyEducationRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.EARLY_EDU_RATIO);
-        FileUtils.writeToJSONFile(getEducationRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.EDU_RATIO);
-        FileUtils.writeToJSONFile(getInactiveYoungRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.INACTIVE_YOUNG_RATIO);
-        FileUtils.writeToJSONFile(getNoKnownForeignLangRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.NO_KNOWN_FOREIGN_LANG_RATIO);
-        FileUtils.writeToJSONFile(getPupilsRatio2012(), FilePathConst.EDUCATION_PATH, FileNameConst.PUPILS_RATIO_2012);
-        FileUtils.writeToJSONFile(getPupilsRatio2013(), FilePathConst.EDUCATION_PATH, FileNameConst.PUPILS_RATIO_2013);
-        FileUtils.writeToJSONFile(getTrainingRatio(), FilePathConst.EDUCATION_PATH, FileNameConst.TRAINING_RATIO);
+        FileUtils.writeToJSONFile(getDigitalSkillsRatio(), FilePathConst.EDUCATION_PATH, DIGITAL_SKILLS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDropoutRatio(), FilePathConst.EDUCATION_PATH, DROPOUT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getEarlyEducationRatio(), FilePathConst.EDUCATION_PATH, EARLY_EDU_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getEducationRatio(), FilePathConst.EDUCATION_PATH, EDU_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getInactiveYoungRatio(), FilePathConst.EDUCATION_PATH, INACTIVE_YOUNG_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNoKnownForeignLangRatio(), FilePathConst.EDUCATION_PATH, NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getPupilsRatio2012(), FilePathConst.EDUCATION_PATH, PUPILS_RATIO_2012_FILE_NAME);
+        FileUtils.writeToJSONFile(getPupilsRatio2013(), FilePathConst.EDUCATION_PATH, PUPILS_RATIO_2013_FILE_NAME);
+        FileUtils.writeToJSONFile(getTrainingRatio(), FilePathConst.EDUCATION_PATH, TRAINING_RATIO_FILE_NAME);
     }
 
     /**

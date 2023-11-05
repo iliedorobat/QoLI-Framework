@@ -2,43 +2,29 @@ package app.java.commons.dimensions.interactions;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
 import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.dimensions.interactions.InteractionsParams.*;
+import static app.java.commons.dimensions.interactions.InteractionsPaths.*;
 
 public class InteractionsStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            ASKING_RATIO = InteractionsParams.getAskingParams(),
-            DISCUSSION_RATIO = InteractionsParams.getDiscussionParams(),
-            GETTING_TOGETHER_FAM_RATIO = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
-            GETTING_TOGETHER_FRD_RATIO = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
-            SATISFACTION_RATIO = InteractionsParams.getRelationshipsSatisfactionParams();
-
-    private static final String
-            askingRatioPath = FilePathConst.INTERACTIONS_PATH + FileNameConst.ASKING_RATIO + JSON_EXTENSION,
-            discussionRatioPath = FilePathConst.INTERACTIONS_PATH + FileNameConst.DISCUSSION_RATIO + JSON_EXTENSION,
-            gettingTogetherRatioPath = FilePathConst.INTERACTIONS_PATH + FileNameConst.GETTING_TOGETHER_RATIO + JSON_EXTENSION,
-            satisfactionRatioPath = FilePathConst.INTERACTIONS_PATH + FileNameConst.RELATIONSHIPS_SATISFACTION_RATIO + JSON_EXTENSION;
-
     private static final Map<String, Number>
-            initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO, askingRatioPath),
-            initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_RATIO, discussionRatioPath),
-            initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO, gettingTogetherRatioPath),
-            initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO, gettingTogetherRatioPath),
-            initSatisfactionRatio = Initializer.initConsolidatedMap(SATISFACTION_RATIO, satisfactionRatioPath);
+            initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO_PARAMS, ASKING_RATIO_PATH),
+            initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_PARAMS_RATIO, DISCUSSION_RATIO_PATH),
+            initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO_PARAMS, GETTING_TOGETHER_RATIO_PATH),
+            initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO_PARAMS, GETTING_TOGETHER_RATIO_PATH),
+            initSatisfactionRatio = Initializer.initConsolidatedMap(SATISFACTION_RATIO_PARAMS, SATISFACTION_RATIO_PATH);
 
     public static final Map<String, Number>
             askingRatio = Preparation.prepareData(initAskingRatio),

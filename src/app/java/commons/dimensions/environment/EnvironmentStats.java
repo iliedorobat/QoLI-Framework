@@ -2,44 +2,29 @@ package app.java.commons.dimensions.environment;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
 import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.dimensions.environment.EnvironmentParams.*;
+import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            NOISE_POLLUTION_RATIO = EnvironmentParams.getNoisePollutionParams(),
-            PM2_5_POLLUTION_RATIO = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM2_5")),
-            PM10_POLLUTION_RATIO = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM10")),
-            POLLUTION_RATIO = EnvironmentParams.getPollutionParams(),
-            WATER_SUPPLY_RATIO = EnvironmentParams.getWaterSupplyParams();
-
-    private static final String
-            airPollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.AIR_POLLUTION_RATIO + JSON_EXTENSION,
-            noisePollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.NOISE_POLLUTION_RATIO + JSON_EXTENSION,
-            pollutionRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.POLLUTION_RATIO + JSON_EXTENSION,
-            waterSupplyRatioPath = FilePathConst.ENVIRONMENT_PATH + FileNameConst.WATER_SUPPLY_RATIO + JSON_EXTENSION;
-
     private static final Map<String, Number>
-            initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO, noisePollutionRatioPath),
-            initPm2_5PollutionRatio = Initializer.initConsolidatedMap(PM2_5_POLLUTION_RATIO, airPollutionRatioPath),
-            initPm10PollutionRatio = Initializer.initConsolidatedMap(PM10_POLLUTION_RATIO, airPollutionRatioPath),
-            initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO, pollutionRatioPath),
-            initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO, waterSupplyRatioPath);
+            initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO_PARAMS, NOISE_POLLUTION_RATIO_PATH),
+            initPm2_5PollutionRatio = Initializer.initConsolidatedMap(PM2_5_POLLUTION_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
+            initPm10PollutionRatio = Initializer.initConsolidatedMap(PM10_POLLUTION_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
+            initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO_PARAMS, POLLUTION_RATIO_PATH),
+            initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO_PARAMS, WATER_SUPPLY_RATIO_PATH);
 
     public static final Map<String, Number>
             noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),

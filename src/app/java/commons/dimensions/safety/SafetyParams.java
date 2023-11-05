@@ -60,4 +60,26 @@ public class SafetyParams {
             put(ParamsConst.UNIT, "PC");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            CRIME_RATIO_PARAMS = SafetyParams.getCrimeParams(),
+            NON_PAYMENT_RATIO_PARAMS = SafetyParams.getNonPaymentParams(),
+            PENSION_PPS_PARAMS = SafetyParams.getPensionPpsParams(),
+            SOCIAL_PROTECTION_PPS_PARAMS = SafetyParams.getSocialProtectionPpsParams(),
+            UNEXPECTED_RATIO_PARAMS = SafetyParams.getUnexpectedParams(),
+
+            // UK = UKC-L + UKM + UKN (England and Wales + Scotland + Northern Ireland)
+            OFFENCES_ASSAULT_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("assault")),
+            OFFENCES_ATTEMPTED_HOMICIDE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("attemptedHomicide")),
+            OFFENCES_BURGLARY_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("burglary")),
+            OFFENCES_BURGLARY_PRIVATE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("burglaryPrivate")),
+            OFFENCES_HOMICIDE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("homicide")),
+            OFFENCES_KIDNAPPING_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("kidnapping")),
+            OFFENCES_RAPE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("rape")),
+            OFFENCES_ROBBERY_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("robbery")),
+            OFFENCES_SEXUAL_ASSAULT_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("sexualAssault")),
+            OFFENCES_SEXUAL_VIOLENCE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("sexualViolence")),
+            OFFENCES_THEFT_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("theft")),
+            OFFENCES_THEFT_VEHICLE_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("theftVehicle")),
+            OFFENCES_UNLAWFUL_PARAMS = SafetyParams.getOffencesParams(ParamsValues.ICCS.get("narcotics"));
 }

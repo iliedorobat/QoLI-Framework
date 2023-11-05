@@ -41,4 +41,11 @@ public class EnvironmentParams {
             put(ParamsConst.UNIT, "PC");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            NOISE_POLLUTION_RATIO_PARAMS = EnvironmentParams.getNoisePollutionParams(),
+            PM2_5_POLLUTION_RATIO_PARAMS = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM2_5")),
+            PM10_POLLUTION_RATIO_PARAMS = EnvironmentParams.getAirPollutionParams(ParamsValues.AIRPOL.get("PM10")),
+            POLLUTION_RATIO_PARAMS = EnvironmentParams.getPollutionParams(),
+            WATER_SUPPLY_RATIO_PARAMS = EnvironmentParams.getWaterSupplyParams();
 }

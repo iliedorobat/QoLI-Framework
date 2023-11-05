@@ -2,107 +2,63 @@ package app.java.commons.dimensions.health;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FileNameConst;
-import app.java.commons.constants.FilePathConst;
-import app.java.commons.constants.ParamsValues;
-import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.constants.DimensionNames;
+import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
+import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
-import org.apache.commons.collections4.MultiValuedMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.dimensions.health.HealthParams.*;
+import static app.java.commons.dimensions.health.HealthPaths.*;
 
 public class HealthStats {
-    // Queried params values
-    private static final MultiValuedMap<String, String>
-            ALCOHOLIC_RATIO = HealthParams.getAlcoholicParams(),
-            BODY_MASS_INDEX_OVERWEIGHT = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("overweight")),
-            BODY_MASS_INDEX_OBESE = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("obese")),
-            FRUITS_VEGETABLES_RATIO = HealthParams.getFVParams(),
-            HEALTHY_LIFE_RATIO = HealthParams.getHealthyLifeParams(),
-            HEALTHY_LIFE_YEARS_FEMALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("female")),
-            HEALTHY_LIFE_YEARS_MALE = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("male")),
-            HOSPITAL_BEDS = HealthParams.getHospitalBedsParams(),
-            LIFE_EXPECTANCY = HealthParams.getLifeExpectancyParams(),
-            LONG_HEALTH_ISSUE_RATIO = HealthParams.getLongHealthIssuesParams(),
-            PERSONNEL_DENTISTS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("dentists")),
-            PERSONNEL_DOCTORS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")),
-            PERSONNEL_NURSES = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("nurses")),
-            PERSONNEL_PHARMA = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("pharmacists")),
-            PERSONNEL_THERAPISTS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists")),
-            PHYSICAL_ACTIVITIES_RATIO = HealthParams.getPhysicalActivitiesParams(),
-            SMOKERS_RATIO = HealthParams.getSmokersParams(),
-            UNMET_DENTAL_RATIO = HealthParams.getUnmetDentalParams(),
-            UNMET_MEDICAL_RATIO = HealthParams.getUnmetMedicalParams(),
-            WORK_ACCIDENTS = HealthParams.getWorkAccidentsParams();
-
-    private static final String
-            alcoholicRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.ALCOHOLIC_RATIO + JSON_EXTENSION,
-            bodyMassIndexPath = FilePathConst.HEALTH_PATH + FileNameConst.BODY_MASS_INDEX + JSON_EXTENSION,
-            fruitsVegetablesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.FRUITS_VEGETABLES_RATIO + JSON_EXTENSION,
-            healthPersonnelPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTH_PERSONNEL + JSON_EXTENSION,
-            healthyLifeRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_RATIO + JSON_EXTENSION,
-            healthyLifeYearsPath = FilePathConst.HEALTH_PATH + FileNameConst.HEALTHY_LIFE_YEARS + JSON_EXTENSION,
-            hospitalBedsPath = FilePathConst.HEALTH_PATH + FileNameConst.HOSPITAL_BEDS + JSON_EXTENSION,
-            lifeExpectancyPath = FilePathConst.HEALTH_PATH + FileNameConst.LIFE_EXPECTANCY + JSON_EXTENSION,
-            longHealthIssuesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.LONG_HEALTH_ISSUES_RATIO + JSON_EXTENSION,
-            physicalActivitiesRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.PHYSICAL_ACTIVITIES_RATIO + JSON_EXTENSION,
-            smokersRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.SMOKERS_RATIO + JSON_EXTENSION,
-            unmetDentalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_DENTAL_RATIO + JSON_EXTENSION,
-            unmetMedicalRatioPath = FilePathConst.HEALTH_PATH + FileNameConst.UNMET_MEDICAL_RATIO + JSON_EXTENSION,
-            workAccidentsPath = FilePathConst.HEALTH_PATH + FileNameConst.WORK_ACCIDENTS + JSON_EXTENSION;
-
     private static final Map<String, Number>
-            initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO, alcoholicRatioPath),
-            initBmiObeseRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OBESE, bodyMassIndexPath),
-            initBmiOverweightRatio = Initializer.initConsolidatedMap(BODY_MASS_INDEX_OVERWEIGHT, bodyMassIndexPath),
-            initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatioPath),
-            initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO, healthyLifeRatioPath),
-            initHealthyLifeYearsFemale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_FEMALE, healthyLifeYearsPath),
-            initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE, healthyLifeYearsPath),
-            initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS, hospitalBedsPath),
-            initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY, lifeExpectancyPath),
-            initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO, longHealthIssuesRatioPath),
-            initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS, healthPersonnelPath),
-            initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS, healthPersonnelPath),
-            initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES, healthPersonnelPath),
-            initPersonnelPharma = Initializer.initConsolidatedMap(PERSONNEL_PHARMA, healthPersonnelPath),
-            initPersonnelTherapists = Initializer.initConsolidatedMap(PERSONNEL_THERAPISTS, healthPersonnelPath),
-            initPhysicalActivitiesRatio = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatioPath),
-            initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO, smokersRatioPath),
-            initUnmetDentalRatio = Initializer.initConsolidatedMap(UNMET_DENTAL_RATIO, unmetDentalRatioPath),
-            initUnmetMedicalRatio = Initializer.initConsolidatedMap(UNMET_MEDICAL_RATIO, unmetMedicalRatioPath),
-            initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS, workAccidentsPath);
+            initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO_PARAMS, ALCOHOLIC_RATIO_PATH),
+            initBmiObeseRatio = Initializer.initConsolidatedMap(BMI_OBESE_PARAMS, BMI_PATH),
+            initBmiOverweightRatio = Initializer.initConsolidatedMap(BMI_OVERWEIGHT_PARAMS, BMI_PATH),
+            initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO_PARAMS, FRUITS_VEGETABLES_RATIO_PATH),
+            initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO_PARAMS, HEALTHY_LIFE_RATIO_PATH),
+            initHealthyLifeYearsFemale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_FEMALE_PARAMS, HEALTHY_LIFE_YEARS_PATH),
+            initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE_PARAMS, HEALTHY_LIFE_YEARS_PATH),
+            initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS_PARAMS, HOSPITAL_BEDS_PATH),
+            initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY_PARAMS, LIFE_EXPECTANCY_PATH),
+            initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO_PARAMS, LONG_HEALTH_ISSUES_RATIO_PATH),
+            initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPersonnelPharma = Initializer.initConsolidatedMap(PERSONNEL_PHARMA_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPersonnelTherapists = Initializer.initConsolidatedMap(PERSONNEL_THERAPISTS_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPhysicalActivitiesRatio = Initializer.initConsolidatedMap(PHYSICAL_ACTIVITIES_RATIO_PARAMS, PHYSICAL_ACTIVITIES_RATIO_PATH),
+            initSmokersRatio = Initializer.initConsolidatedMap(SMOKERS_RATIO_PARAMS, SMOKERS_RATIO_PATH),
+            initUnmetDentalRatio = Initializer.initConsolidatedMap(UNMET_DENTAL_RATIO_PARAMS, UNMET_DENTAL_RATIO_PATH),
+            initUnmetMedicalRatio = Initializer.initConsolidatedMap(UNMET_MEDICAL_RATIO_PARAMS, UNMET_MEDICAL_RATIO_PATH),
+            initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS_PARAMS, WORK_ACCIDENTS_PATH);
 
     public static final Map<String, Number>
             alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
-            fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
-
-            bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
             bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
-
-            dentists = Preparation.prepareData(initPersonnelDentists),
-            doctors = Preparation.prepareData(initPersonnelDoctors),
-            nurses = Preparation.prepareData(initPersonnelNurses),
-            pharmacists = Preparation.prepareData(initPersonnelPharma),
-            physiotherapists = Preparation.prepareData(initPersonnelTherapists),
-            totalHealthPersonnel = preparePersonnelRatio(),
-
+            bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
+            fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
             healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
-
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
+            personnelDentists = Preparation.prepareData(initPersonnelDentists),
+            personnelDoctors = Preparation.prepareData(initPersonnelDoctors),
+            personnelNurses = Preparation.prepareData(initPersonnelNurses),
+            personnelPharmacists = Preparation.prepareData(initPersonnelPharma),
+            personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
+            personnelTotal = preparePersonnelRatio(),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
             unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
@@ -129,7 +85,7 @@ public class HealthStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
-                        * MathUtils.percentageSafetyDouble(totalHealthPersonnel, key)
+                        * MathUtils.percentageSafetyDouble(personnelTotal, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
@@ -193,22 +149,22 @@ public class HealthStats {
                 Print.printChartData(bmiObeseRatio, EU28_MEMBERS, seriesType, IndicatorNames.BMI_OBESE_RATIO, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.DENTISTS))
-                Print.printChartData(dentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS, direction);
+                Print.printChartData(personnelDentists, EU28_MEMBERS, seriesType, IndicatorNames.DENTISTS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.DOCTORS))
-                Print.printChartData(doctors, EU28_MEMBERS, seriesType, IndicatorNames.DOCTORS, direction);
+                Print.printChartData(personnelDoctors, EU28_MEMBERS, seriesType, IndicatorNames.DOCTORS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.NURSES))
-                Print.printChartData(nurses, EU28_MEMBERS, seriesType, IndicatorNames.NURSES, direction);
+                Print.printChartData(personnelNurses, EU28_MEMBERS, seriesType, IndicatorNames.NURSES, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.PHARMACISTS))
-                Print.printChartData(pharmacists, EU28_MEMBERS, seriesType, IndicatorNames.PHARMACISTS, direction);
+                Print.printChartData(personnelPharmacists, EU28_MEMBERS, seriesType, IndicatorNames.PHARMACISTS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.PHYSIOTHERAPISTS))
-                Print.printChartData(physiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS, direction);
+                Print.printChartData(personnelPhysiotherapists, EU28_MEMBERS, seriesType, IndicatorNames.PHYSIOTHERAPISTS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.TOTAL_HEALTH_PERSONNEL))
-                Print.printChartData(totalHealthPersonnel, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_HEALTH_PERSONNEL, direction);
+                Print.printChartData(personnelTotal, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_HEALTH_PERSONNEL, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_RATIO))
                 Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO, direction);
@@ -254,11 +210,11 @@ public class HealthStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double value = 0
-                        + dentists.get(key).doubleValue()
-                        + doctors.get(key).doubleValue()
-                        + nurses.get(key).doubleValue()
-                        + pharmacists.get(key).doubleValue()
-                        + physiotherapists.get(key).doubleValue();
+                        + personnelDentists.get(key).doubleValue()
+                        + personnelDoctors.get(key).doubleValue()
+                        + personnelNurses.get(key).doubleValue()
+                        + personnelPharmacists.get(key).doubleValue()
+                        + personnelPhysiotherapists.get(key).doubleValue();
 
                 consolidatedList.put(key, value);
             }

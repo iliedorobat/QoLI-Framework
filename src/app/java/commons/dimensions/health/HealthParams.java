@@ -167,4 +167,26 @@ public class HealthParams {
             put(ParamsConst.UNIT, "NR");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            ALCOHOLIC_RATIO_PARAMS = HealthParams.getAlcoholicParams(),
+            BMI_OVERWEIGHT_PARAMS = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("overweight")),
+            BMI_OBESE_PARAMS = HealthParams.getBodyMassIndexParams(ParamsValues.BMI.get("obese")),
+            FRUITS_VEGETABLES_RATIO_PARAMS = HealthParams.getFVParams(),
+            HEALTHY_LIFE_RATIO_PARAMS = HealthParams.getHealthyLifeParams(),
+            HEALTHY_LIFE_YEARS_FEMALE_PARAMS = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("female")),
+            HEALTHY_LIFE_YEARS_MALE_PARAMS = HealthParams.getHealthyLifeYearsParams(ParamsValues.SEX.get("male")),
+            HOSPITAL_BEDS_PARAMS = HealthParams.getHospitalBedsParams(),
+            LIFE_EXPECTANCY_PARAMS = HealthParams.getLifeExpectancyParams(),
+            LONG_HEALTH_ISSUE_RATIO_PARAMS = HealthParams.getLongHealthIssuesParams(),
+            PERSONNEL_DENTISTS_PARAMS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("dentists")),
+            PERSONNEL_DOCTORS_PARAMS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")),
+            PERSONNEL_NURSES_PARAMS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("nurses")),
+            PERSONNEL_PHARMA_PARAMS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("pharmacists")),
+            PERSONNEL_THERAPISTS_PARAMS = HealthParams.getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists")),
+            PHYSICAL_ACTIVITIES_RATIO_PARAMS = HealthParams.getPhysicalActivitiesParams(),
+            SMOKERS_RATIO_PARAMS = HealthParams.getSmokersParams(),
+            UNMET_DENTAL_RATIO_PARAMS = HealthParams.getUnmetDentalParams(),
+            UNMET_MEDICAL_RATIO_PARAMS = HealthParams.getUnmetMedicalParams(),
+            WORK_ACCIDENTS_PARAMS = HealthParams.getWorkAccidentsParams();
 }

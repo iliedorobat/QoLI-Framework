@@ -71,4 +71,11 @@ public class InteractionsParams {
                 SATISFACTION_TYPES_PARAMS.get("RELATIONSHIPS")
         );
     }
+
+    public static final MultiValuedMap<String, String>
+            ASKING_RATIO_PARAMS = InteractionsParams.getAskingParams(),
+            DISCUSSION_PARAMS_RATIO = InteractionsParams.getDiscussionParams(),
+            GETTING_TOGETHER_FAM_RATIO_PARAMS = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
+            GETTING_TOGETHER_FRD_RATIO_PARAMS = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
+            SATISFACTION_RATIO_PARAMS = InteractionsParams.getRelationshipsSatisfactionParams();
 }

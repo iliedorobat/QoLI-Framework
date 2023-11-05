@@ -102,4 +102,7 @@ public class CommonParams {
             put(ParamsConst.UNIT, "PC");
         }};
     }
+
+    public static final MultiValuedMap<String, String>
+            POPULATION_PARAMS = CommonParams.getPopulationParams();
 }

@@ -1,20 +1,20 @@
 package app.java.commons.dimensions.safety;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
+import static app.java.commons.dimensions.safety.SafetyPaths.*;
 
 public class SafetyCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getCrimeRatio(), FilePathConst.SAFETY_PATH, FileNameConst.CRIME_RATIO);
-        FileUtils.writeToJSONFile(getOffences(), FilePathConst.SAFETY_PATH, FileNameConst.OFFENCES);
-        FileUtils.writeToJSONFile(getPensionPps(), FilePathConst.SAFETY_PATH, FileNameConst.PENSION_PPS);
-        FileUtils.writeToJSONFile(getSocialProtectionPps(), FilePathConst.SAFETY_PATH, FileNameConst.SOCIAL_PROTECTION_RATIO);
-        FileUtils.writeToJSONFile(getUnexpectedRatio(), FilePathConst.SAFETY_PATH, FileNameConst.UNEXPECTED_RATIO);
-        FileUtils.writeToJSONFile(getNonPaymentRatio(), FilePathConst.SAFETY_PATH, FileNameConst.NON_PAYMENT_RATIO);
+        FileUtils.writeToJSONFile(getCrimeRatio(), FilePathConst.SAFETY_PATH, CRIME_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getOffences(), FilePathConst.SAFETY_PATH, OFFENCES_FILE_NAME);
+        FileUtils.writeToJSONFile(getPensionPps(), FilePathConst.SAFETY_PATH, PENSION_PPS_FILE_NAME);
+        FileUtils.writeToJSONFile(getSocialProtectionPps(), FilePathConst.SAFETY_PATH, SOCIAL_PROTECTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnexpectedRatio(), FilePathConst.SAFETY_PATH, UNEXPECTED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonPaymentRatio(), FilePathConst.SAFETY_PATH, NON_PAYMENT_RATIO_FILE_NAME);
     }
 
     /**

@@ -1,17 +1,19 @@
 package app.java.commons.dimensions.overall;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
+
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.HAPPINESS_RATIO_FILE_NAME;
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.HIGH_SATISFACTION_RATIO_FILE_NAME;
 
 /**
  * Overall life satisfaction in the context of quality of life
  */
 public class OverallExperienceCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getHappinessRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, FileNameConst.HAPPINESS_RATIO);
-        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, FileNameConst.HIGH_SATISFACTION_RATIO);
+        FileUtils.writeToJSONFile(getHappinessRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, HAPPINESS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, HIGH_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

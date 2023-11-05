@@ -1,16 +1,17 @@
 package app.java.commons.dimensions.interactions;
 
-import app.java.commons.constants.FileNameConst;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.interactions.InteractionsPaths.*;
+
 public class InteractionsCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.ASKING_RATIO);
-        FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.DISCUSSION_RATIO);
-        FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_PATH, FileNameConst.GETTING_TOGETHER_RATIO);
-        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_PATH, FileNameConst.RELATIONSHIPS_SATISFACTION_RATIO);
+        FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_PATH, ASKING_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_PATH, DISCUSSION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

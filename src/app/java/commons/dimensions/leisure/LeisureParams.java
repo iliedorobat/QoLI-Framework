@@ -3,6 +3,7 @@ package app.java.commons.dimensions.leisure;
 import app.java.commons.constants.ParamsConst;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.interactions.InteractionsParams;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
@@ -40,4 +41,20 @@ public class LeisureParams {
         String[] VOLUNTARY_ACTIVITIES = { activity };
         return CommonParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES);
     }
+
+    public static final MultiValuedMap<String, String>
+            FORMAL_VOLUNTARY_RATIO_PARAMS = LeisureParams.getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("formal")),
+            INFORMAL_VOLUNTARY_RATIO_PARAMS = LeisureParams.getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("informal")),
+            SATISFACTION_RATIO_PARAMS = LeisureParams.getTimeSpentSatisfactionParams(),
+            SOCIAL_ACTIVITIES_RATIO_PARAMS = LeisureParams.getSocialActivitiesParams(),
+
+            NP_FIN_CIN_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("cinema"), ParamsValues.REASON.get("financial")),
+                    NP_FIN_CULT_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("culture"), ParamsValues.REASON.get("financial")),
+                    NP_FIN_LIVE_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("live"), ParamsValues.REASON.get("financial")),
+                    NP_FIN_SPORT_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("sports"), ParamsValues.REASON.get("financial")),
+
+            NP_NNB_CIN_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("cinema"), ParamsValues.REASON.get("away")),
+                    NP_NNB_CULT_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("culture"), ParamsValues.REASON.get("away")),
+                    NP_NNB_LIVE_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("live"), ParamsValues.REASON.get("away")),
+                    NP_NNB_SPORT_RATIO_PARAMS = InteractionsParams.getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("sports"), ParamsValues.REASON.get("away"));
 }
