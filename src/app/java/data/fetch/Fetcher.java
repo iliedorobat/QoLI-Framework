@@ -1,5 +1,6 @@
 package app.java.data.fetch;
 
+import app.java.commons.constants.EnvConst;
 import app.java.commons.utils.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.HttpEntity;
@@ -28,12 +29,12 @@ import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
 public class Fetcher {
     private static final String ENCODING_SCHEME = "UTF-8";
-    private static final String URI_PROTOCOL_NAME = "http";
-    private static final String URI_HOST_NAME = "ec.europa.eu/eurostat/wdds";
-    private static final String URI_SERVICE = "rest/data";
-    private static final String URI_SERVICE_VERSION = "v2.1";
+    private static final String URI_PROTOCOL_NAME = "https";
+    private static final String URI_HOST_NAME = "ec.europa.eu/eurostat/api/dissemination";
+    private static final String URI_SERVICE = "statistics";
+    private static final String URI_SERVICE_VERSION = "1.0/data";
     private static final String URI_FORMAT = "json";
-    private static final String URI_LANGUAGE = "en";
+    private static final String URI_LANG = "en";
     private static final String URI_SEPARATOR = "/";
 
     // TODO: documentation:
@@ -58,7 +59,7 @@ public class Fetcher {
             ContentType contentType = ContentType.getOrDefault(entity);
             Charset charset = contentType.getCharset();
 
-            InputStreamReader is = new InputStreamReader(entity.getContent(), charset);
+            InputStreamReader is = new InputStreamReader(entity.getContent());
             BufferedReader br = new BufferedReader(is);
             String line;
 
@@ -109,14 +110,16 @@ public class Fetcher {
     public static URI buildURI(String dataset, MultiValuedMap<String, String> params) {
         String path = URI_SERVICE
                 + URI_SEPARATOR + URI_SERVICE_VERSION
-                + URI_SEPARATOR + URI_FORMAT
-                + URI_SEPARATOR + URI_LANGUAGE
                 + URI_SEPARATOR + dataset;
 
         URIBuilder uriBuilder =  new URIBuilder()
                 .setScheme(URI_PROTOCOL_NAME)
                 .setHost(URI_HOST_NAME)
-                .setPath(path);
+                .setPath(path)
+                .setParameter("format", URI_FORMAT)
+                .setParameter("lang", URI_LANG)
+                .setParameter("sinceTimePeriod", String.valueOf(EnvConst.MIN_YEAR))
+                .setParameter("untilTimePeriod", String.valueOf(EnvConst.MAX_YEAR));
 
         ArrayList<String> keysList = MapUtils.getUniqueKeys(params);
         Map<String, Collection<String>> map = params.asMap();
