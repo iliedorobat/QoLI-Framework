@@ -50,28 +50,14 @@ java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=ED
 https://ec.europa.eu/eurostat/data/database
 
 ### API Server
-https://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/ dataset_name
+https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/##dataset_name##?##query_params##
 
 ### GUI
-https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset= dataset_name
+https://ec.europa.eu/eurostat/databrowser/view/##dataset_name##/default/table?lang=en
 
 
 
 ## Publications:
-ICDS 2019: [Quality of Life Index Analysis for the Case of Romanian Regions](http://www.thinkmind.org/index.php?view=article&articleid=icds_2019_2_30_10030)
-```
-@InProceedings{icds_2019_2_30_10030,
-    author="Dorobat, Ilie Cristian, Rinciog, Octavian, Muraru, George Cristian and Posea, Vlad",
-    title="Quality of Life Index Analysis for the Case of Romanian Regions",
-    booktitle="2019 The Thirteenth International Conference on Digital Society and eGovernments (ICDS)",
-    year="2019",
-    publisher="IARIA",
-    pages="37-44",
-    isbn="978-1-61208-685-9"
-    issn="2308-3956"
-}
-```
-
 SYSMEA 2019: [eLIF: European Life Index Framework - An Analysis for the Case of European Union Countries](https://www.thinkmind.org/index.php?view=article&articleid=sysmea_v12_n34_2019_5)
 ```
 @InProceedings{sysmea_v12_n34_2019_5,
@@ -84,5 +70,19 @@ SYSMEA 2019: [eLIF: European Life Index Framework - An Analysis for the Case of 
     publisher="IARIA",
     pages="198-214",
     issn="1942-261x"
+}
+```
+
+ICDS 2019: [Quality of Life Index Analysis for the Case of Romanian Regions](http://www.thinkmind.org/index.php?view=article&articleid=icds_2019_2_30_10030)
+```
+@InProceedings{icds_2019_2_30_10030,
+    author="Dorobat, Ilie Cristian, Rinciog, Octavian, Muraru, George Cristian and Posea, Vlad",
+    title="Quality of Life Index Analysis for the Case of Romanian Regions",
+    booktitle="2019 The Thirteenth International Conference on Digital Society and eGovernments (ICDS)",
+    year="2019",
+    publisher="IARIA",
+    pages="37-44",
+    isbn="978-1-61208-685-9"
+    issn="2308-3956"
 }
 ```
