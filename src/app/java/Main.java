@@ -85,30 +85,38 @@ public class Main {
         }
     }
 
-    private static String getDirection(List<String> args) {
-        if (args.contains("--direction=" + DIRECTION_ROW)) {
+    private static boolean contains(List<String> pairs, String comparator) {
+        for (String pair : pairs) {
+            String[] values = pair.split("=");
+
+            if (values.length > 1) {
+                String key = values[0];
+                String value = values[1];
+
+                if (comparator.equals(key)) {
+                    return Boolean.valueOf(value);
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static String getDirection(List<String> pairs) {
+        if (pairs.contains("--direction=" + DIRECTION_ROW)) {
             return DIRECTION_ROW;
         }
         return DIRECTION_COLUMN;
     }
 
-    private static String getSeriesType(List<String> args) {
-        if (args.contains("--seriesType=" + SERIES_TYPE_COUNTRY)) {
+    private static String getSeriesType(List<String> pairs) {
+        if (pairs.contains("--seriesType=" + SERIES_TYPE_COUNTRY)) {
             return SERIES_TYPE_COUNTRY;
         }
-        if (args.contains("--seriesType=" + SERIES_TYPE_REGION)) {
+        if (pairs.contains("--seriesType=" + SERIES_TYPE_REGION)) {
             return SERIES_TYPE_REGION;
         }
         return null;
-    }
-
-    private static boolean contains(List<String> list, String comparator) {
-        for (String item : list) {
-            if (item.contains(comparator))
-                return true;
-        }
-
-        return false;
     }
 
     // For testing
