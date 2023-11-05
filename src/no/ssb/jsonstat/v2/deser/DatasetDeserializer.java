@@ -47,13 +47,23 @@ public class DatasetDeserializer extends StdDeserializer<DatasetBuildable> {
     static final TypeReference<?> VALUES_MAP = new TypeReference<TreeMap<Integer, Number>>() {
     };
 
+    /**
+     * @author: ilie.dorobat
+     * ".appendPattern("z").optionalEnd().optionalEnd()"
+     * was replaced by ".appendPattern("z").optionalEnd()"
+     * and ".optionalStart().appendOffset("+HHMM", "Z")"
+     * and ".optionalEnd().optionalEnd()" were added to support
+     * dates like "2023-09-14T23:00:00+0200"
+     */
     static final DateTimeFormatter ECMA_FORMATTER = new DateTimeFormatterBuilder()
             .appendPattern("uuuu").optionalStart().appendPattern("-MM").optionalStart().appendPattern("-dd")
             .optionalEnd()
             .optionalEnd()
             .optionalStart().appendLiteral("T").appendPattern("HH:mm").optionalStart().appendPattern(":ss")
             .optionalStart().appendPattern(".SSS").optionalEnd().optionalEnd().optionalStart()
-            .appendPattern("z").optionalEnd().optionalEnd()
+            .appendPattern("z").optionalEnd()
+            .optionalStart().appendOffset("+HHMM", "Z")
+            .optionalEnd().optionalEnd()
             .parseDefaulting(ChronoField.MONTH_OF_YEAR, 1)
             .parseDefaulting(ChronoField.DAY_OF_MONTH, 1)
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 1)

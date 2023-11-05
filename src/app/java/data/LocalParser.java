@@ -3,10 +3,13 @@ package app.java.data;
 import app.java.commons.utils.FileUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import no.ssb.jsonstat.JsonStatModule;
 import no.ssb.jsonstat.v2.Dataset;
 import no.ssb.jsonstat.v2.DatasetBuildable;
@@ -15,7 +18,10 @@ import no.ssb.jsonstat.v2.Dimension;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class LocalParser {
     // TODO: documentation:
@@ -44,10 +50,11 @@ public class LocalParser {
         Dataset build = null;
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonStatModule());
-        mapper.registerModule(new Jdk8Module().configureAbsentsAsNulls(true));
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.registerModule(new GuavaModule().configureAbsentsAsNulls(false));
+        mapper.registerModule(new Jdk8Module().configureAbsentsAsNulls(true));
+        mapper.registerModule(new JavaTimeModule());
+        mapper.registerModule(new JsonStatModule());
 
         try {
             JsonParser parser = mapper.getFactory().createParser(is);
@@ -55,8 +62,12 @@ public class LocalParser {
             Map<String, DatasetBuildable> o = mapper.readValue(parser, ref);
             DatasetBuildable next = o.values().iterator().next();
             build = next.build();
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return build;
