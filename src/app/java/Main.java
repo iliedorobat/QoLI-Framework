@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.EnvConst.MAX_YEAR;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,7 +34,7 @@ public class Main {
         boolean indStatus = contains(list, "--indicatorStatus");
         boolean calculate = args.length == 0 || contains(list, "--calculate");
         boolean print = args.length == 0 || contains(list, "--print");
-        int targetYear = 2021;
+        int targetYear = MAX_YEAR;
 
         if (collect) {
             // 1. Collect the datasets;
