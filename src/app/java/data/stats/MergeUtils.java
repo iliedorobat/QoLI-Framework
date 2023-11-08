@@ -2,7 +2,7 @@ package app.java.data.stats;
 
 import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.utils.MapUtils;
 import app.java.data.LocalParser;
 import app.java.data.fetch.FetcherUtils;
@@ -47,8 +47,8 @@ public class MergeUtils {
         Map<List<String>, Number> entries = LocalParser.readJSONFile(fullPath);
 
         ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(fullPath);
-        int countryIndex = localKeys.indexOf(ParamsConst.GEO);
-        int yearIndex = localKeys.indexOf(ParamsConst.TIME);
+        int countryIndex = localKeys.indexOf(ParamsNames.GEO);
+        int yearIndex = localKeys.indexOf(ParamsNames.TIME);
 
         for (Map.Entry<List<String>, Number> entry : entries.entrySet()) {
             // entryValues = the queried values for parameters

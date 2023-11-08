@@ -1,7 +1,7 @@
 package app.java.data.fetch;
 
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.utils.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
@@ -38,8 +38,8 @@ public class FetcherUtils {
     // TODO: documentation: Filter the keys added by getMainHttpParams and return the list of unique keys
     public static ArrayList<String> getFilteredParamsKeys(MultiValuedMap<String, String> params) {
         ArrayList<String> paramsKeys = MapUtils.getUniqueKeys(params);
-        paramsKeys.remove(ParamsConst.LANG);
-        paramsKeys.remove(ParamsConst.GEO);
+        paramsKeys.remove(ParamsNames.LANG);
+        paramsKeys.remove(ParamsNames.GEO);
         return paramsKeys;
     }
 
@@ -50,13 +50,13 @@ public class FetcherUtils {
      */
     public static MultiValuedMap<String, String> getMainHttpParams(String[] countries) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
-        params.put(ParamsConst.LANG, "en");
+        params.put(ParamsNames.LANG, "en");
 
         if (EnvConst.IS_TESTING) {
-            params.put(ParamsConst.GEO, "RO");
-            params.put(ParamsConst.TIME, "2015");
+            params.put(ParamsNames.GEO, "RO");
+            params.put(ParamsNames.TIME, "2015");
         } else {
-            addParams(params, ParamsConst.GEO, countries);
+            addParams(params, ParamsNames.GEO, countries);
         }
 
         return params;

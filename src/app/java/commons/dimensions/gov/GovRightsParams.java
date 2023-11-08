@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.gov;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimensions.common.CommonParams;
 import app.java.data.fetch.FetcherUtils;
@@ -19,18 +19,18 @@ public class GovRightsParams {
     public static final MultiValuedMap<String, String> EMPLOYMENT_MALE_RATIO_PARAMS = getEmploymentParams("M");
 
     public static final MultiValuedMap<String, String> EMPLOYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y20-64");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.INDIC_EM, "EMP_LFS");
-        put(ParamsConst.SEX, "F");
-        put(ParamsConst.SEX, "M");
-        put(ParamsConst.UNIT, "PC_POP");
+        put(ParamsNames.AGE, "Y20-64");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.INDIC_EM, "EMP_LFS");
+        put(ParamsNames.SEX, "F");
+        put(ParamsNames.SEX, "M");
+        put(ParamsNames.UNIT, "PC_POP");
     }};
 
     public static final MultiValuedMap<String, String> GENDER_PAY_GAP_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.NACE_R2, "B-S_X_O");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.NACE_R2, "B-S_X_O");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> POPULATION_TRUST_PARAMS = getPopulationTrustParams();
@@ -44,34 +44,34 @@ public class GovRightsParams {
 
     private static MultiValuedMap<String, String> getEmploymentParams(String sex) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y20-64");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.INDIC_EM, "EMP_LFS");
-            put(ParamsConst.SEX, sex);
-            put(ParamsConst.UNIT, "PC_POP");
+            put(ParamsNames.AGE, "Y20-64");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.INDIC_EM, "EMP_LFS");
+            put(ParamsNames.SEX, sex);
+            put(ParamsNames.UNIT, "PC_POP");
         }};
     }
 
     private static MultiValuedMap<String, String> getPopulationTrustParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "RTG");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "RTG");
         }};
-        FetcherUtils.addParams(params, ParamsConst.INDIC_WB, ParamsValues.INDIC_WB);
+        FetcherUtils.addParams(params, ParamsNames.INDIC_WB, ParamsValues.INDIC_WB);
         return params;
     }
 
     private static MultiValuedMap<String, String> getPopulationTrustParams(String trustSystem) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.INDIC_WB, trustSystem);
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "RTG");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.INDIC_WB, trustSystem);
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "RTG");
         }};
     }
 }

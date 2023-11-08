@@ -1,7 +1,7 @@
 package app.java.commons.dimensions.common;
 
 import app.java.commons.Errors;
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
@@ -38,13 +38,13 @@ public class CommonParams {
             Errors.throwNewError(ACL00_LEISURE, activities, "type of people activities");
 
             MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-                put(ParamsConst.AGE, "Y_GE16");
-                put(ParamsConst.FREQ, "A");
-                put(ParamsConst.ISCED_11, "TOTAL");
-                put(ParamsConst.SEX, "T");
-                put(ParamsConst.UNIT, "PC");
+                put(ParamsNames.AGE, "Y_GE16");
+                put(ParamsNames.FREQ, "A");
+                put(ParamsNames.ISCED_11, "TOTAL");
+                put(ParamsNames.SEX, "T");
+                put(ParamsNames.UNIT, "PC");
             }};
-            FetcherUtils.addParams(params, ParamsConst.ACL_00, activities);
+            FetcherUtils.addParams(params, ParamsNames.ACL_00, activities);
             return params;
         } catch (Exception e) {
             return null;
@@ -53,10 +53,10 @@ public class CommonParams {
 
     public static MultiValuedMap<String, String> getPopulationParams() {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "TOTAL");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "NR");
+            put(ParamsNames.AGE, "TOTAL");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "NR");
         }};
     }
 
@@ -82,13 +82,13 @@ public class CommonParams {
      */
     public static MultiValuedMap<String, String> getSatisfactionParams(String satisfactionLevel, String wellBeing) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.INDIC_WB, wellBeing);
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.LEV_SATIS, satisfactionLevel);
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.INDIC_WB, wellBeing);
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.LEV_SATIS, satisfactionLevel);
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
     }
 

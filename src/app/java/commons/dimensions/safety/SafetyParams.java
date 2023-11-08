@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.safety;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -8,17 +8,17 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class SafetyParams {
     public static final MultiValuedMap<String, String> CRIME_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.INC_GRP, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> NON_PAYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.INC_GRP, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String>
@@ -46,39 +46,39 @@ public class SafetyParams {
             OFFENCES_THEFT_VEHICLE_PARAMS = getOffencesParams(ParamsValues.ICCS.get("theftVehicle"));
 
     public static final MultiValuedMap<String, String> PENSION_PPS_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.SPDEPB, "TOTAL");
-        put(ParamsConst.SPDEPM, "TOTAL");
-        put(ParamsConst.UNIT, "PPS_HAB");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SPDEPB, "TOTAL");
+        put(ParamsNames.SPDEPM, "TOTAL");
+        put(ParamsNames.UNIT, "PPS_HAB");
     }};
 
     public static final MultiValuedMap<String, String> SOCIAL_PROTECTION_PPS_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.SPDEPS, "SPBENEFNOREROUTE");
-        put(ParamsConst.UNIT, "PPS_HAB");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SPDEPS, "SPBENEFNOREROUTE");
+        put(ParamsNames.UNIT, "PPS_HAB");
     }};
 
     public static final MultiValuedMap<String, String> UNEXPECTED_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.INC_GRP, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     private static MultiValuedMap<String, String> getOffencesParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.UNIT, "NR");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.UNIT, "NR");
         }};
-        FetcherUtils.addParams(params, ParamsConst.ICCS, ParamsValues.ICCS);
+        FetcherUtils.addParams(params, ParamsNames.ICCS, ParamsValues.ICCS);
         return params;
     }
 
     private static MultiValuedMap<String, String> getOffencesParams(String offenceType) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ICCS, offenceType);
-            put(ParamsConst.UNIT, "NR");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ICCS, offenceType);
+            put(ParamsNames.UNIT, "NR");
         }};
     }
 }

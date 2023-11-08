@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.health;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -8,22 +8,22 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 public class HealthParams {
     public static final MultiValuedMap<String, String> ALCOHOLIC_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "TOTAL");
-        put(ParamsConst.C_BIRTH, "NAT");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.FREQUENCY, "DAY");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.C_BIRTH, "NAT");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.FREQUENCY, "DAY");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> BMI_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "TOTAL");
-        put(ParamsConst.BMI, "BMI_GE25"); // Overweight
-        put(ParamsConst.BMI, "BMI_GE30"); // Obese
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.QUANT_INC, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.BMI, "BMI_GE25"); // Overweight
+        put(ParamsNames.BMI, "BMI_GE30"); // Obese
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> BMI_OVERWEIGHT_PARAMS =
@@ -33,12 +33,12 @@ public class HealthParams {
             getBodyMassIndexParams(ParamsValues.BMI.get("obese"));
 
     public static MultiValuedMap<String, String> FRUITS_VEGETABLES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "TOTAL");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.N_PORTION, "GE5");
-        put(ParamsConst.QUANT_INC, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.N_PORTION, "GE5");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String>
@@ -50,115 +50,115 @@ public class HealthParams {
             PERSONNEL_THERAPISTS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists"));
 
     public static final MultiValuedMap<String, String> HEALTHY_LIFE_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.LEVELS, "VG_G");
-        put(ParamsConst.QUANTILE, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.LEVELS, "VG_G");
+        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = getHealthyLifeYearsParams();
 
     public static final MultiValuedMap<String, String> HOSPITAL_BEDS_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FACILITY, "HBEDT");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.UNIT, "P_HTHAB");
+        put(ParamsNames.FACILITY, "HBEDT");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.UNIT, "P_HTHAB");
     }};
 
     public static final MultiValuedMap<String, String> LIFE_EXPECTANCY_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_LT1"); // Life expectancy for people less than 1 year
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "YR");
+        put(ParamsNames.AGE, "Y_LT1"); // Life expectancy for people less than 1 year
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "YR");
     }};
 
     public static final MultiValuedMap<String, String> LONG_HEALTH_ISSUE_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.QUANTILE, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> PHYSICAL_ACTIVITIES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "TOTAL");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.ISCED_11, "TOTAL");
-        put(ParamsConst.PHYSICAL_ACTIVITY, "MV_AERO_MSC");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.ISCED_11, "TOTAL");
+        put(ParamsNames.PHYSICAL_ACTIVITY, "MV_AERO_MSC");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> SMOKERS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "TOTAL");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.QUANT_INC, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.SMOKING, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.SMOKING, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> UNMET_DENTAL_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.QUANTILE, "TOTAL");
-        put(ParamsConst.REASON, "TOOEFW");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.REASON, "TOOEFW");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> UNMET_MEDICAL_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.QUANTILE, "TOTAL");
-        put(ParamsConst.REASON, "TOOEFW");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.REASON, "TOOEFW");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> WORK_ACCIDENTS_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.INJURY, "TOTAL");
-        put(ParamsConst.NACE_R2, "A_C-N");
-        put(ParamsConst.SEVERITY, "D_GE4");
-        put(ParamsConst.UNIT, "NR");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.INJURY, "TOTAL");
+        put(ParamsNames.NACE_R2, "A_C-N");
+        put(ParamsNames.SEVERITY, "D_GE4");
+        put(ParamsNames.UNIT, "NR");
     }};
 
     private static MultiValuedMap<String, String> getBodyMassIndexParams(String bmi) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "TOTAL");
-            put(ParamsConst.BMI, bmi);
-            put(ParamsConst.QUANTILE, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "TOTAL");
+            put(ParamsNames.BMI, bmi);
+            put(ParamsNames.QUANTILE, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
     }
 
     private static MultiValuedMap<String, String> getHealthPersonnelParams() {
         HashSetValuedHashMap params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.UNIT, "P_HTHAB");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.UNIT, "P_HTHAB");
         }};
-        FetcherUtils.addParams(params, ParamsConst.ISCO_08, ParamsValues.ISCO08);
+        FetcherUtils.addParams(params, ParamsNames.ISCO_08, ParamsValues.ISCO08);
         return params;
     }
 
     private static MultiValuedMap<String, String> getHealthPersonnelParams(String role) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCO_08, role);
-            put(ParamsConst.UNIT, "P_HTHAB");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCO_08, role);
+            put(ParamsNames.UNIT, "P_HTHAB");
         }};
     }
 
     private static MultiValuedMap<String, String> getHealthyLifeYearsParams() {
         HashSetValuedHashMap params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
-            put(ParamsConst.UNIT, "YR");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
+            put(ParamsNames.UNIT, "YR");
         }};
-        FetcherUtils.addParams(params, ParamsConst.SEX, ParamsValues.SEX);
+        FetcherUtils.addParams(params, ParamsNames.SEX, ParamsValues.SEX);
         return params;
     }
 }

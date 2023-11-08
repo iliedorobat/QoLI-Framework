@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.overall;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.dimensions.common.CommonParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -24,13 +24,13 @@ public class OverallExperienceParams {
 
     private static MultiValuedMap<String, String> getHappinessParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsConst.FREQUENCY, HAPPINESS_LEVELS);
+        FetcherUtils.addParams(params, ParamsNames.FREQUENCY, HAPPINESS_LEVELS);
         return params;
     }
 }

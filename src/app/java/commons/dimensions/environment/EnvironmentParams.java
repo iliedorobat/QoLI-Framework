@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.environment;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -10,40 +10,40 @@ public class EnvironmentParams {
     public static final MultiValuedMap<String, String> AIR_POLLUTION_PARAMS = getAirPollutionParams();
 
     public static final MultiValuedMap<String, String> PM2_5_POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AIR_POLLUTION, "PM2_5");
-        put(ParamsConst.FREQ, "A");
+        put(ParamsNames.AIR_POLLUTION, "PM2_5");
+        put(ParamsNames.FREQ, "A");
     }};
 
     public static final MultiValuedMap<String, String> PM10_POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AIR_POLLUTION, "PM10");
-        put(ParamsConst.FREQ, "A");
+        put(ParamsNames.AIR_POLLUTION, "PM10");
+        put(ParamsNames.FREQ, "A");
     }};
 
     public static final MultiValuedMap<String, String> NOISE_POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.INC_GRP, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.INC_GRP, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> WATER_SUPPLY_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.UNIT, "PC");
-        put(ParamsConst.WAT_PROC, "POP_PWS");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.UNIT, "PC");
+        put(ParamsNames.WAT_PROC, "POP_PWS");
     }};
 
     private static MultiValuedMap<String, String> getAirPollutionParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.FREQ, "A");
+            put(ParamsNames.FREQ, "A");
         }};
-        FetcherUtils.addParams(params, ParamsConst.AIR_POLLUTION, ParamsValues.AIRPOL);
+        FetcherUtils.addParams(params, ParamsNames.AIR_POLLUTION, ParamsValues.AIRPOL);
         return params;
     }
 }

@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.interactions;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimensions.common.CommonParams;
 import app.java.data.fetch.FetcherUtils;
@@ -12,19 +12,19 @@ import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES
 
 public class InteractionsParams {
     public static final MultiValuedMap<String, String> ASKING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.ISCED_11, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.ISCED_11, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> DISCUSSION_PARAMS_RATIO = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.AGE, "Y_GE16");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.ISCED_11, "TOTAL");
-        put(ParamsConst.SEX, "T");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.AGE, "Y_GE16");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.ISCED_11, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String>
@@ -39,26 +39,26 @@ public class InteractionsParams {
 
     private static MultiValuedMap<String, String> getGettingTogetherParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.FREQUENCY, "WEEK");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.FREQUENCY, "WEEK");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsConst.IND_TYPE, ParamsValues.IND_TYPE);
+        FetcherUtils.addParams(params, ParamsNames.IND_TYPE, ParamsValues.IND_TYPE);
         return params;
     }
 
     private static MultiValuedMap<String, String> getGettingTogetherParams(String type) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.FREQUENCY, "WEEK");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.IND_TYPE, type);
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.FREQUENCY, "WEEK");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.IND_TYPE, type);
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
     }
 }

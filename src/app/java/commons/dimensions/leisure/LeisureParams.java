@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.leisure;
 
-import app.java.commons.constants.ParamsConst;
+import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimensions.common.CommonParams;
 import app.java.data.fetch.FetcherUtils;
@@ -30,12 +30,12 @@ public class LeisureParams {
             NP_NNB_SPORT_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00_INTERACTIONS.get("sports"), ParamsValues.REASON.get("away"));
 
     public static final MultiValuedMap<String, String> SOCIAL_ACTIVITIES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.DEG_URB, "TOTAL");
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.FREQUENCY, "GE1");
-        put(ParamsConst.HHTYP, "TOTAL");
-        put(ParamsConst.QUANTILE, "TOTAL");
-        put(ParamsConst.UNIT, "PC");
+        put(ParamsNames.DEG_URB, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.FREQUENCY, "GE1");
+        put(ParamsNames.HHTYP, "TOTAL");
+        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
@@ -50,26 +50,26 @@ public class LeisureParams {
 
     private static MultiValuedMap<String, String> getNonParticipationParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsConst.ACL_00, ParamsValues.ACL00_INTERACTIONS);
-        FetcherUtils.addParams(params, ParamsConst.REASON, ParamsValues.REASON);
+        FetcherUtils.addParams(params, ParamsNames.ACL_00, ParamsValues.ACL00_INTERACTIONS);
+        FetcherUtils.addParams(params, ParamsNames.REASON, ParamsValues.REASON);
         return params;
     }
 
     private static MultiValuedMap<String, String> getNonParticipationParams(String type, String reason) {
         return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.ACL_00, type);
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.REASON, reason);
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
+            put(ParamsNames.ACL_00, type);
+            put(ParamsNames.AGE, "Y_GE16");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.REASON, reason);
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "PC");
         }};
     }
 

@@ -1,7 +1,6 @@
 package app.java.commons.constants;
 
-// TODO: split into backend names & backend values
-public class ParamsConst {
+public class ParamsNames {
     public static final String AGE = "age";
     public static final String ACL_00 = "acl00";
     public static final String AIR_POLLUTION = "airpol";
