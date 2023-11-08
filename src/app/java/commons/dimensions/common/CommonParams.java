@@ -11,18 +11,25 @@ import java.util.HashMap;
 import static app.java.commons.constants.ParamsValues.ACL00_LEISURE;
 
 public class CommonParams {
-    public static HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
+    public static final HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
         put("HIGH", "HIGH");
         put("LOW", "LOW");
         put("MED", "MED");
     }};
 
-    public static HashMap<String, String> SATISFACTION_TYPES_PARAMS = new HashMap<>() {{
+    public static final HashMap<String, String> SATISFACTION_TYPES_PARAMS = new HashMap<>() {{
         put("FINANCIAL", "FINSAT");
         put("JOB", "JOBSAT");
         put("LIFE", "LIFESAT");
         put("RELATIONSHIPS", "RELSAT");
         put("TIME_SPENT", "TIMESAT");
+    }};
+
+    public static final MultiValuedMap<String, String> POPULATION_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "NR");
     }};
 
     /**
@@ -49,15 +56,6 @@ public class CommonParams {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    public static MultiValuedMap<String, String> getPopulationParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AGE, "TOTAL");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.SEX, "T");
-            put(ParamsNames.UNIT, "NR");
-        }};
     }
 
     /**
@@ -91,7 +89,4 @@ public class CommonParams {
             put(ParamsNames.UNIT, "PC");
         }};
     }
-
-    public static final MultiValuedMap<String, String>
-            POPULATION_PARAMS = getPopulationParams();
 }

@@ -19,9 +19,9 @@ public class DataCollector {
     public static void collectData() {
         System.out.println("Starting the data collection process...\n");
 
+        CommonCollector.fetchData();
         EducationCollector.fetchData();
         EnvironmentCollector.fetchData();
-        CommonCollector.fetchData();
         GovRightsCollector.fetchData();
         HealthCollector.fetchData();
         InteractionsCollector.fetchData();
