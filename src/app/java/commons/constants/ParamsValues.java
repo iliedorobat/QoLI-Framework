@@ -16,12 +16,6 @@ public class ParamsValues {
         put("informal", "AC42A");       // Informal voluntary activities
     }};
 
-    public static HashMap<String, String> AGE = new HashMap<>() {{
-        put("over_65", "Y_GE65");   // 65 years or over
-        put("lower_65", "Y_LT65");  // Less than 65 years
-        put("total", "TOTAL");      // Total
-    }};
-
     public static final HashMap<String, String> AIRPOL = new HashMap<>() {{
         put("PM2_5", "PM2_5");
         put("PM10", "PM10");

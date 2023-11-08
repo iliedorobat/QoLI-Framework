@@ -65,8 +65,8 @@ public class MaterialLivingParams {
 
     public static final MultiValuedMap<String, String>
             INCOME_QUINTILE_RATIO_PARAMS = getIncomeQuintileParams(),
-            INCOME_QUINTILE_LESS_65_RATIO_PARAMS = getIncomeQuintileParams(ParamsValues.AGE.get("18_to_64")),
-            INCOME_QUINTILE_OVER_65_RATIO_PARAMS = getIncomeQuintileParams(ParamsValues.AGE.get("over_65"));
+            INCOME_QUINTILE_LESS_65_RATIO_PARAMS = getIncomeQuintileParams(QUINTILE_AGES.get("18_to_64")),
+            INCOME_QUINTILE_OVER_65_RATIO_PARAMS = getIncomeQuintileParams(QUINTILE_AGES.get("over_65"));
 
     public static final MultiValuedMap<String, String> LACK_OF_BATHS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsConst.AGE, "TOTAL");
