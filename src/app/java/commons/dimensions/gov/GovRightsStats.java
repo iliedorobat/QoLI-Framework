@@ -200,8 +200,8 @@ public class GovRightsStats {
     private static Map<String, Number> prepareEmploymentGenderGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
-        for (String code : EU28_MEMBERS) {
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double femaleRatio = employmentFemaleRatio.get(key).doubleValue();
@@ -225,8 +225,8 @@ public class GovRightsStats {
     private static Map<String, Number> preparePopulationTrust() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
-        for (String code : EU28_MEMBERS) {
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 // Get the EU average if it is missing from the country's dataset

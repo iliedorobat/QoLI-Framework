@@ -15,14 +15,22 @@ public class OverallExperienceParams {
             "MOST"  // Most of the time
     };
 
-    public static final MultiValuedMap<String, String> HAPPINESS_RATIO_PARAMS = getHappinessParams();
+    public static final MultiValuedMap<String, String>
+            HAPPINESS_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS),
+            HAPPINESS_ALWAYS_RATIO_PARAMS = getHappinessParams("ALW"),
+            HAPPINESS_MOST_OF_THE_TIME_RATIO_PARAMS = getHappinessParams("MOST");
 
     public static final MultiValuedMap<String, String> HIGH_SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
             SATISFACTION_TYPES_PARAMS.get("LIFE")
     );
 
-    private static MultiValuedMap<String, String> getHappinessParams() {
+    private static MultiValuedMap<String, String> getHappinessParams(String happinessLevel) {
+        String[] happinessLevels = new String[] { happinessLevel };
+        return getHappinessParams(happinessLevels);
+    }
+
+    private static MultiValuedMap<String, String> getHappinessParams(String[] happinessLevels) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.AGE, "Y_GE16");
             put(ParamsNames.FREQ, "A");
@@ -30,7 +38,7 @@ public class OverallExperienceParams {
             put(ParamsNames.SEX, "T");
             put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsNames.FREQUENCY, HAPPINESS_LEVELS);
+        FetcherUtils.addParams(params, ParamsNames.FREQUENCY, happinessLevels);
         return params;
     }
 }

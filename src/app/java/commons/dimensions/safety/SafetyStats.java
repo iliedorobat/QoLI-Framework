@@ -234,7 +234,6 @@ public class SafetyStats {
     private static Map<String, Number> prepareOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             double ukSum = 0;
 

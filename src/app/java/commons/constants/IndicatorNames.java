@@ -38,7 +38,8 @@ public class IndicatorNames {
     public static final String GENDER_PAY_GAP = "GENDER_PAY_GAP";
     public static final String GETTING_TOGETHER_FAM_RATIO = "GETTING_TOGETHER_FAM_RATIO";
     public static final String GETTING_TOGETHER_FRD_RATIO = "GETTING_TOGETHER_FRD_RATIO";
-    public static final String HAPPINESS_RATIO = "HAPPINESS_RATIO";
+    public static final String HAPPINESS_ALWAYS_RATIO = "HAPPINESS_ALWAYS_RATIO";
+    public static final String HAPPINESS_MOST_OF_THE_TIME_RATIO = "HAPPINESS_MOST_OF_THE_TIME_RATIO";
     public static final String HEALTHY_LIFE_RATIO = "HEALTHY_LIFE_RATIO";
     public static final String HEALTHY_LIFE_YEARS = "HEALTHY_LIFE_YEARS";
     public static final String HIGH_INCOME_RATIO = "HIGH_INCOME_RATIO";
