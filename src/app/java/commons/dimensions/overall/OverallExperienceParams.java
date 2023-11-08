@@ -12,10 +12,17 @@ import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES
 public class OverallExperienceParams {
     private static final String[] HAPPINESS_LEVELS = {
             "ALW",  // Always
-            "MOST" // Most of the time
+            "MOST"  // Most of the time
     };
 
-    public static MultiValuedMap<String, String> getHappinessParams() {
+    public static final MultiValuedMap<String, String> HAPPINESS_RATIO_PARAMS = getHappinessParams();
+
+    public static final MultiValuedMap<String, String> HIGH_SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
+            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
+            SATISFACTION_TYPES_PARAMS.get("LIFE")
+    );
+
+    private static MultiValuedMap<String, String> getHappinessParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
             put(ParamsConst.FREQ, "A");
@@ -26,15 +33,4 @@ public class OverallExperienceParams {
         FetcherUtils.addParams(params, ParamsConst.FREQUENCY, HAPPINESS_LEVELS);
         return params;
     }
-
-    public static MultiValuedMap<String, String> getHighSatisfactionParams() {
-        return CommonParams.getSatisfactionParams(
-                SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-                SATISFACTION_TYPES_PARAMS.get("LIFE")
-        );
-    }
-
-    public static final MultiValuedMap<String, String>
-            HAPPINESS_RATIO_PARAMS = getHappinessParams(),
-            HIGH_SATISFACTION_RATIO_PARAMS = getHighSatisfactionParams();
 }

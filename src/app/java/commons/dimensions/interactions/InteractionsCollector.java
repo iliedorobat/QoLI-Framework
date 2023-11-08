@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.interactions.InteractionsParams.*;
 import static app.java.commons.dimensions.interactions.InteractionsPaths.*;
 
 public class InteractionsCollector {
@@ -26,7 +27,7 @@ public class InteractionsCollector {
      * @return
      */
     private static StringBuilder getAskingRatio() {
-        return Fetcher.fetchData("ilc_scp15", InteractionsParams.getAskingParams());
+        return Fetcher.fetchData("ilc_scp15", ASKING_RATIO_PARAMS);
     }
 
     /**
@@ -40,7 +41,7 @@ public class InteractionsCollector {
      * @return
      */
     private static StringBuilder getDiscussionRatio() {
-        return Fetcher.fetchData("ilc_scp17", InteractionsParams.getDiscussionParams());
+        return Fetcher.fetchData("ilc_scp17", DISCUSSION_PARAMS_RATIO);
     }
 
     /**
@@ -54,7 +55,7 @@ public class InteractionsCollector {
      * @return
      */
     private static StringBuilder getGettingTogetherRatio() {
-        return Fetcher.fetchData("ilc_scp09", InteractionsParams.getGettingTogetherParams());
+        return Fetcher.fetchData("ilc_scp09", GETTING_TOGETHER_RATIO_PARAMS);
     }
 
     /**
@@ -68,6 +69,6 @@ public class InteractionsCollector {
      * @return
      */
     private static StringBuilder getRelationshipsSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(InteractionsParams.getRelationshipsSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(SATISFACTION_RATIO_PARAMS);
     }
 }

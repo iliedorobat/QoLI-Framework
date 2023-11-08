@@ -8,27 +8,22 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
+import static app.java.commons.constants.ParamsValues.ACL00_LEISURE;
+
 public class CommonParams {
-    public static final String[] ACTIVITIES_TYPES = {
-            "AC41A", // Formal voluntary activities
-            "AC42A", // Informal voluntary activities
-            "AC43A"  // Active citizenship
-    };
+    public static HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
+        put("HIGH", "HIGH");
+        put("LOW", "LOW");
+        put("MED", "MED");
+    }};
 
-    public static HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>();
-    public static HashMap<String, String> SATISFACTION_TYPES_PARAMS = new HashMap<>();
-
-    static {
-        SATISFACTION_LEVELS_PARAMS.put("HIGH", "HIGH");
-        SATISFACTION_LEVELS_PARAMS.put("LOW", "LOW");
-        SATISFACTION_LEVELS_PARAMS.put("MED", "MED");
-
-        SATISFACTION_TYPES_PARAMS.put("FINANCIAL", "FINSAT");
-        SATISFACTION_TYPES_PARAMS.put("JOB", "JOBSAT");
-        SATISFACTION_TYPES_PARAMS.put("LIFE", "LIFESAT");
-        SATISFACTION_TYPES_PARAMS.put("RELATIONSHIPS", "RELSAT");
-        SATISFACTION_TYPES_PARAMS.put("TIME_SPENT", "TIMESAT");
-    }
+    public static HashMap<String, String> SATISFACTION_TYPES_PARAMS = new HashMap<>() {{
+        put("FINANCIAL", "FINSAT");
+        put("JOB", "JOBSAT");
+        put("LIFE", "LIFESAT");
+        put("RELATIONSHIPS", "RELSAT");
+        put("TIME_SPENT", "TIMESAT");
+    }};
 
     /**
      * @param activities The activity types:<br/>
@@ -40,7 +35,7 @@ public class CommonParams {
      */
     public static MultiValuedMap<String, String> getActivePeopleParams(String[] activities) {
         try {
-            Errors.throwNewError(ACTIVITIES_TYPES, activities, "type of people activities");
+            Errors.throwNewError(ACL00_LEISURE, activities, "type of people activities");
 
             MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
                 put(ParamsConst.AGE, "Y_GE16");
@@ -92,16 +87,6 @@ public class CommonParams {
             put(ParamsConst.INDIC_WB, wellBeing);
             put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.LEV_SATIS, satisfactionLevel);
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
-        }};
-    }
-
-    public static MultiValuedMap<String, String> getSupportiveParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC");
         }};

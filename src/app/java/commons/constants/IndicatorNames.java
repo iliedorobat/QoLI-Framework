@@ -19,6 +19,7 @@ public class IndicatorNames {
     public static final String DOCTORS = "DOCTORS";
     public static final String DROPOUT_RATIO = "DROPOUT_RATIO";
     public static final String EARLY_EDUCATION_RATIO = "EARLY_EDUCATION_RATIO";
+    public static final String EDUCATION_RATIO = "EDUCATION_RATIO";
     public static final String EMPLOYMENT_FEMALE_RATIO = "EMPLOYMENT_FEMALE_RATIO";
     public static final String EMPLOYMENT_GENDER_GAP = "EMPLOYMENT_GENDER_GAP";
     public static final String EMPLOYMENT_MALE_RATIO = "EMPLOYMENT_MALE_RATIO";
@@ -95,7 +96,6 @@ public class IndicatorNames {
     public static final String SMOKERS_RATIO = "SMOKERS_RATIO";
     public static final String SOCIAL_ACTIVITIES_RATIO = "SOCIAL_ACTIVITIES_RATIO";
     public static final String SOCIAL_PROTECTION_PPS = "SOCIAL_PROTECTION_PPS";
-    public static final String STUDENTS_RATIO = "STUDENTS_RATIO";
     public static final String TRAINING_RATIO = "TRAINING_RATIO";
     public static final String TEMPORARY_EMPLOYMENT_RATIO = "TEMPORARY_EMPLOYMENT_RATIO";
     public static final String THEFT_OFFENCES = "THEFT_OFFENCES";

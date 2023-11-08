@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.leisure.LeisureParams.*;
 import static app.java.commons.dimensions.leisure.LeisurePaths.*;
 
 public class LeisureCollector {
@@ -29,7 +30,7 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getNonParticipationRatio() {
-        return Fetcher.fetchData("ilc_scp05", LeisureParams.getNonParticipationParams());
+        return Fetcher.fetchData("ilc_scp05", NON_PARTICIPATION_PARAMS);
     }
 
     /**
@@ -46,7 +47,7 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getSocialActivitiesRatio() {
-        return Fetcher.fetchData("ilc_scp02", LeisureParams.getSocialActivitiesParams());
+        return Fetcher.fetchData("ilc_scp02", SOCIAL_ACTIVITIES_RATIO_PARAMS);
     }
 
     /**
@@ -60,7 +61,7 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getTimeSpentSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(LeisureParams.getTimeSpentSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(SATISFACTION_RATIO_PARAMS);
     }
 
     /**
@@ -75,6 +76,6 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getVoluntaryActivitiesRatio() {
-        return Fetcher.fetchActivePeopleRatio(LeisureParams.getVoluntaryActivitiesParams());
+        return Fetcher.fetchActivePeopleRatio(VOLUNTARY_RATIO_PARAMS);
     }
 }

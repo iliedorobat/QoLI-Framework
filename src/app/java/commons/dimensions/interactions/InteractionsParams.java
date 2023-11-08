@@ -11,15 +11,33 @@ import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_LEVEL
 import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
 
 public class InteractionsParams {
-    public static MultiValuedMap<String, String> getAskingParams() {
-        return CommonParams.getSupportiveParams();
-    }
+    public static final MultiValuedMap<String, String> ASKING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsConst.AGE, "Y_GE16");
+        put(ParamsConst.FREQ, "A");
+        put(ParamsConst.ISCED_11, "TOTAL");
+        put(ParamsConst.SEX, "T");
+        put(ParamsConst.UNIT, "PC");
+    }};
 
-    public static MultiValuedMap<String, String> getDiscussionParams() {
-        return CommonParams.getSupportiveParams();
-    }
+    public static final MultiValuedMap<String, String> DISCUSSION_PARAMS_RATIO = new HashSetValuedHashMap<>() {{
+        put(ParamsConst.AGE, "Y_GE16");
+        put(ParamsConst.FREQ, "A");
+        put(ParamsConst.ISCED_11, "TOTAL");
+        put(ParamsConst.SEX, "T");
+        put(ParamsConst.UNIT, "PC");
+    }};
 
-    public static MultiValuedMap<String, String> getGettingTogetherParams() {
+    public static final MultiValuedMap<String, String>
+            GETTING_TOGETHER_RATIO_PARAMS = getGettingTogetherParams(),
+            GETTING_TOGETHER_FAM_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
+            GETTING_TOGETHER_FRD_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends"));
+
+    public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
+            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
+            SATISFACTION_TYPES_PARAMS.get("RELATIONSHIPS")
+    );
+
+    private static MultiValuedMap<String, String> getGettingTogetherParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
             put(ParamsConst.FREQ, "A");
@@ -32,7 +50,7 @@ public class InteractionsParams {
         return params;
     }
 
-    public static MultiValuedMap<String, String> getGettingTogetherParams(String type) {
+    private static MultiValuedMap<String, String> getGettingTogetherParams(String type) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
             put(ParamsConst.FREQ, "A");
@@ -43,18 +61,4 @@ public class InteractionsParams {
             put(ParamsConst.UNIT, "PC");
         }};
     }
-
-    public static MultiValuedMap<String, String> getRelationshipsSatisfactionParams() {
-        return CommonParams.getSatisfactionParams(
-                SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-                SATISFACTION_TYPES_PARAMS.get("RELATIONSHIPS")
-        );
-    }
-
-    public static final MultiValuedMap<String, String>
-            ASKING_RATIO_PARAMS = getAskingParams(),
-            DISCUSSION_PARAMS_RATIO = getDiscussionParams(),
-            GETTING_TOGETHER_FAM_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
-            GETTING_TOGETHER_FRD_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
-            SATISFACTION_RATIO_PARAMS = getRelationshipsSatisfactionParams();
 }

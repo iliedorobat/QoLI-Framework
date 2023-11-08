@@ -4,10 +4,10 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
-import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.File;
 
+import static app.java.commons.dimensions.gov.GovRightsParams.*;
 import static app.java.commons.dimensions.gov.GovRightsPaths.*;
 
 /**
@@ -56,8 +56,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getCitizenshipRatio() {
-        MultiValuedMap<String, String> params = GovRightsParams.getCitizenshipParams();
-        return Fetcher.fetchData("ilc_scp19", params);
+        return Fetcher.fetchData("ilc_scp19", CITIZENSHIP_RATIO_PARAMS);
     }
 
     /**
@@ -71,7 +70,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getEmploymentRatio() {
-        return Fetcher.fetchData("lfsi_emp_a", GovRightsParams.getEmploymentParams());
+        return Fetcher.fetchData("lfsi_emp_a", EMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -86,7 +85,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getGenderPayGap() {
-        return Fetcher.fetchData("earn_gr_gpgr2", GovRightsParams.getGenderPayGapParams());
+        return Fetcher.fetchData("earn_gr_gpgr2", GENDER_PAY_GAP_PARAMS);
     }
 
     /**
@@ -100,6 +99,6 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getPopulationTrust() {
-        return Fetcher.fetchData("ilc_pw03", GovRightsParams.getPopulationTrustParams());
+        return Fetcher.fetchData("ilc_pw03", POPULATION_TRUST_PARAMS);
     }
 }

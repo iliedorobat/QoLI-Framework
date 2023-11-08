@@ -5,6 +5,7 @@ import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
+import static app.java.commons.dimensions.safety.SafetyParams.*;
 import static app.java.commons.dimensions.safety.SafetyPaths.*;
 
 public class SafetyCollector {
@@ -31,7 +32,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getCrimeRatio() {
-        return Fetcher.fetchData("ilc_mddw03", SafetyParams.getCrimeParams());
+        return Fetcher.fetchData("ilc_mddw03", CRIME_RATIO_PARAMS);
     }
 
     /**
@@ -48,7 +49,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getNonPaymentRatio() {
-        return Fetcher.fetchData("ilc_mdes05", SafetyParams.getNonPaymentParams());
+        return Fetcher.fetchData("ilc_mdes05", NON_PAYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -64,7 +65,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getOffences() {
-        return Fetcher.fetchData("crim_off_cat", SafetyParams.getOffencesParams(), EU28_MEMBERS_EXTENDED);
+        return Fetcher.fetchData("crim_off_cat", OFFENCES_PARAMS, EU28_MEMBERS_EXTENDED);
     }
 
     /**
@@ -78,7 +79,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getPensionPps() {
-        return Fetcher.fetchData("spr_exp_pens", SafetyParams.getPensionPpsParams());
+        return Fetcher.fetchData("spr_exp_pens", PENSION_PPS_PARAMS);
     }
 
     /**
@@ -92,7 +93,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getSocialProtectionPps() {
-        return Fetcher.fetchData("spr_exp_sum", SafetyParams.getSocialProtectionPpsParams());
+        return Fetcher.fetchData("spr_exp_sum", SOCIAL_PROTECTION_PPS_PARAMS);
     }
 
     /**
@@ -109,6 +110,6 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getUnexpectedRatio() {
-        return Fetcher.fetchData("ilc_mdes04", SafetyParams.getUnexpectedParams());
+        return Fetcher.fetchData("ilc_mdes04", UNEXPECTED_RATIO_PARAMS);
     }
 }

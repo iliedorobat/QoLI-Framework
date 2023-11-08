@@ -67,6 +67,15 @@ public class ParamsValues {
         put("politic", "PLTTST");
     }};
 
+    public static final HashMap<String, String> ISCED_11 = new HashMap<>() {{
+        put("0_2", "ED0-2");                // Less than primary, primary and lower secondary education (levels 0-2)
+        put("3_8", "ED3-8");                // Upper secondary, post-secondary non-tertiary and tertiary education (levels 3-8)
+        put("3_4", "ED3_4");                // Upper secondary and post-secondary non-tertiary education (levels 3 and 4)
+        put("3_4_GENERAL", "ED3_4GEN");     // Upper secondary and post-secondary non-tertiary education (levels 3 and 4) - general
+        put("3_4_VOCATIONAL", "ED3_4VOC");  // Upper secondary and post-secondary non-tertiary education (levels 3 and 4) - vocational
+        put("5_8", "ED5-8");                // Tertiary education (levels 5-8)
+    }};
+
     public static HashMap<String, String> ISCO08 = new HashMap<>() {{
         put("dentists", "OC2261");
         put("doctors", "OC221");

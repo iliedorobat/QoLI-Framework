@@ -35,20 +35,20 @@ public class EducationStats {
             initDigitalSkillsRatio = Initializer.initConsolidatedMap(DIGITAL_SKILLS_PARAMS, DIGITAL_SKILLS_RATIO_PATH),
             initDropoutRatio = Initializer.initConsolidatedMap(DROPOUT_RATIO_PARAMS, DROPOUT_RATIO_PATH),
             initEarlyEducationRatio = Initializer.initConsolidatedMap(EARLY_EDUCATION_RATIO_PARAMS, EARLY_EDUCATION_RATIO_PATH),
+            initEducationRatio = Initializer.initConsolidatedMap(EDUCATION_RATIO_PARAMS, EDUCATION_RATIO_PATH),
             initInactiveYoungRatio = Initializer.initConsolidatedMap(INACTIVE_YOUNG_RATIO_PARAMS, INACTIVE_YOUNG_RATIO_PATH),
             initNoKnownForeignLangRatio = Initializer.initConsolidatedMap(NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS, NO_KNOWN_FOREIGN_LANG_RATIO_PATH),
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
-            initStudentsRatio = Initializer.initConsolidatedMap(STUDENTS_RATIO_PARAMS, STUDENTS_RATIO_PATH),
             initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO_PARAMS, TRAINING_RATIO_PATH);
 
     public static final Map<String, Number>
             digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
             dropoutRatio = Preparation.prepareData(initDropoutRatio),
             earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
+            educationRatio = Preparation.prepareData(initEducationRatio),
             inactiveYoungRatio = Preparation.prepareData(initInactiveYoungRatio),
             noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
             pupilsRatio = Preparation.prepareData(initPupilsRatio),
-            studentsRatio = Preparation.prepareData(initStudentsRatio),
             trainingRatio = Preparation.prepareData(initTrainingRatio);
 
     public static Map<String, Number> generateDimensionList() {
@@ -66,8 +66,8 @@ public class EducationStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
                         * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
+                        * MathUtils.percentageSafetyDouble(educationRatio, key)
                         * MathUtils.percentageSafetyDouble(pupilsRatio, key)
-                        * MathUtils.percentageSafetyDouble(studentsRatio, key)
                         * MathUtils.percentageSafetyDouble(trainingRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedDropoutRatio)
                         * MathUtils.percentageSafetyDouble(reversedInactiveYoungRatio)
@@ -92,7 +92,7 @@ public class EducationStats {
             put("Inactive Young Ratio", Preparation.filterMap(initInactiveYoungRatio));
             put("No Known Foreign Lang Ratio", Preparation.filterMap(initNoKnownForeignLangRatio));
             put("Pupils Ratio", Preparation.filterMap(initPupilsRatio));
-            put("Students Ratio", Preparation.filterMap(initStudentsRatio));
+            put("Students Ratio", Preparation.filterMap(initEducationRatio));
             put("Trainings Ratio", Preparation.filterMap(initTrainingRatio));
         }};
     }
@@ -108,6 +108,9 @@ public class EducationStats {
             if (args.contains("--indicator=" + IndicatorNames.EARLY_EDUCATION_RATIO))
                 Print.printChartData(earlyEducationRatio, EU28_MEMBERS, seriesType, IndicatorNames.EARLY_EDUCATION_RATIO, direction);
 
+            if (args.contains("--indicator=" + IndicatorNames.EDUCATION_RATIO))
+                Print.printChartData(educationRatio, EU28_MEMBERS, seriesType, IndicatorNames.EDUCATION_RATIO, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.INACTIVE_YOUNG_RATIO))
                 Print.printChartData(inactiveYoungRatio, EU28_MEMBERS, seriesType, IndicatorNames.INACTIVE_YOUNG_RATIO, direction);
 
@@ -116,9 +119,6 @@ public class EducationStats {
 
             if (args.contains("--indicator=" + IndicatorNames.PUPILS_RATIO))
                 Print.printChartData(pupilsRatio, EU28_MEMBERS, seriesType, IndicatorNames.PUPILS_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.STUDENTS_RATIO))
-                Print.printChartData(studentsRatio, EU28_MEMBERS, seriesType, IndicatorNames.STUDENTS_RATIO, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.TRAINING_RATIO))
                 Print.printChartData(trainingRatio, EU28_MEMBERS, seriesType, IndicatorNames.TRAINING_RATIO, direction);

@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.mainActivity.MainActivityParams.*;
 import static app.java.commons.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityCollector {
@@ -39,7 +40,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getAvgWorkHours2007() {
-        return Fetcher.fetchData("lfsa_ewhuna", MainActivityParams.getAvgWorkHoursParams2007());
+        return Fetcher.fetchData("lfsa_ewhuna", AVG_WORK_HOURS_2007_PARAMS);
     }
 
     /**
@@ -58,7 +59,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getAvgWorkHours2008() {
-        return Fetcher.fetchData("lfsa_ewhun2", MainActivityParams.getAvgWorkHoursParams2008());
+        return Fetcher.fetchData("lfsa_ewhun2", AVG_WORK_HOURS_2008_PARAMS);
     }
 
     /**
@@ -74,7 +75,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getEmploymentRatio() {
-        return Fetcher.fetchData("lfsa_ergaed", MainActivityParams.getEmploymentParams());
+        return Fetcher.fetchData("lfsa_ergaed", EMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -90,7 +91,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getInactivePopulationRatio() {
-        return Fetcher.fetchData("lfsa_ipga", MainActivityParams.getInactivePopulationParams());
+        return Fetcher.fetchData("lfsa_ipga", INACTIVE_POPULATION_RATIO_PARAMS);
     }
 
     /**
@@ -107,7 +108,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getInvoluntaryPartTimeRatio() {
-        return Fetcher.fetchData("lfsa_eppgai", MainActivityParams.getInvoluntaryPartTimeParams());
+        return Fetcher.fetchData("lfsa_eppgai", INVOLUNTARY_PART_TIME_RATIO_PARAMS);
     }
 
     /**
@@ -121,7 +122,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getJobSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(MainActivityParams.getJobSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(JOB_SATISFACTION_PARAMS);
     }
 
     /**
@@ -140,7 +141,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getLongTermUnemploymentRatio() {
-        return Fetcher.fetchData("une_ltu_a", MainActivityParams.getLongTermUnemploymentParams());
+        return Fetcher.fetchData("une_ltu_a", LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -156,7 +157,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getLowWageEarnersRatio() {
-        return Fetcher.fetchData("earn_ses_pub1a", MainActivityParams.getLowWageEarnersParams());
+        return Fetcher.fetchData("earn_ses_pub1a", LOW_WAGE_EARNINGS_RATIO_PARAMS);
     }
 
     /**
@@ -173,7 +174,7 @@ public class MainActivityCollector {
      */
     private static StringBuilder getOverQualifiedRatio() {
         // TODO: https://ec.europa.eu/eurostat/web/experimental-statistics/skills
-        return Fetcher.fetchData("lfso_14loq", MainActivityParams.getOverQualifiedParams());
+        return Fetcher.fetchData("lfso_14loq", OVER_QUALIFIED_RATIO_PARAMS);
     }
 
     /**
@@ -189,7 +190,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getResearchers() {
-        return Fetcher.fetchData("rd_p_persocc", MainActivityParams.getResearchersParams());
+        return Fetcher.fetchData("rd_p_persocc", RESEARCHERS_PARAMS);
     }
 
     /**
@@ -205,7 +206,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getTemporaryEmploymentRatio() {
-        return Fetcher.fetchData("lfsi_pt_a", MainActivityParams.getTemporaryEmploymentParams());
+        return Fetcher.fetchData("lfsi_pt_a", TEMPORARY_EMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -223,7 +224,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getUnemploymentRatio() {
-        return Fetcher.fetchData("lfsa_urgaed", MainActivityParams.getUnemploymentParams());
+        return Fetcher.fetchData("lfsa_urgaed", UNEMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -239,6 +240,6 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getWorkingNightsRatio() {
-        return Fetcher.fetchData("lfsa_ewpnig", MainActivityParams.getWorkingNightsParams());
+        return Fetcher.fetchData("lfsa_ewpnig", WORKING_NIGHTS_RATIO_PARAMS);
     }
 }

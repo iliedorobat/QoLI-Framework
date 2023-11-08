@@ -1,6 +1,8 @@
 package app.java.commons;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Errors {
@@ -22,19 +24,19 @@ public class Errors {
     /**
      * Throw new Error if the input data is not found in acceptedData
      *
-     * @param acceptedData The list of accepted input
+     * @param acceptedData Map containing the list of accepted input
      * @param inputData The list of input data
      * @param inputType The input type
      * @throws Error The input data is not found in acceptedData
      */
-    public static void throwNewError(String[] acceptedData, String[] inputData, String inputType) {
-        List<String> acceptedList = Arrays.asList(acceptedData);
+    public static void throwNewError(HashMap<String, String> acceptedData, String[] inputData, String inputType) {
+        List<String> acceptedList = new ArrayList<>(acceptedData.values());
 
         for (String inputDatum : inputData) {
             if (!acceptedList.contains(inputDatum)) {
                 throw new Error("one of the input data (" + Arrays.toString(inputData) + ") " +
                         "is not one of the accepted " + inputType +
-                        "\nPlease choose one of the following ones: " + Arrays.toString(acceptedData) + ")");
+                        "\nPlease choose one of the following ones: " + acceptedList + ")");
             }
         }
     }

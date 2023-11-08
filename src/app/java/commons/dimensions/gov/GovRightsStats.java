@@ -38,7 +38,7 @@ public class GovRightsStats {
     }};
 
     private static final Map<String, Number>
-            initCitizenshipRatio = Initializer.initConsolidatedMap(ACTIVE_CITIZENSHIP_RATIO_PARAMS, CITIZENSHIP_RATIO_PATH),
+            initCitizenshipRatio = Initializer.initConsolidatedMap(CITIZENSHIP_RATIO_PARAMS, CITIZENSHIP_RATIO_PATH),
             initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP_PARAMS, GENDER_PAY_GAP_PATH),
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 

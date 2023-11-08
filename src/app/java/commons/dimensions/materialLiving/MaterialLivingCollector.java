@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.materialLiving.MaterialLivingParams.*;
 import static app.java.commons.dimensions.materialLiving.MaterialLivingPaths.*;
 
 public class MaterialLivingCollector {
@@ -37,7 +38,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getDwellingIssuesRatio() {
-        return Fetcher.fetchData("ilc_mdho01", MaterialLivingParams.getDwellingIssuesParams());
+        return Fetcher.fetchData("ilc_mdho01", DWELLING_ISSUES_RATIO_PARAMS);
     }
 
     /**
@@ -54,7 +55,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getEndMeetInabilityRatio() {
-        return Fetcher.fetchData("ilc_mdes09", MaterialLivingParams.getEndMeetInabilityParams());
+        return Fetcher.fetchData("ilc_mdes09", END_MEET_INABILITY_RATIO_PARAMS);
     }
 
     /**
@@ -68,7 +69,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getFinancialSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(MaterialLivingParams.getFinancialSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(FINANCIAL_SATISFACTION_PARAMS);
     }
 
     /**
@@ -82,7 +83,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getHighIncomeRatio() {
-        return Fetcher.fetchData("ilc_di20", MaterialLivingParams.getHighIncomeParams());
+        return Fetcher.fetchData("ilc_di20", HIGH_INCOME_RATIO_PARAMS);
     }
 
     /**
@@ -99,7 +100,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getIncomeQuintileRatio() {
-        return Fetcher.fetchData("ilc_di11", MaterialLivingParams.getIncomeQuintileParams());
+        return Fetcher.fetchData("ilc_di11", INCOME_QUINTILE_RATIO_PARAMS);
     }
 
     /**
@@ -116,7 +117,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getLackOfBathsRatio() {
-        return Fetcher.fetchData("ilc_mdho05", MaterialLivingParams.getLackOfBathsParams());
+        return Fetcher.fetchData("ilc_mdho05", LACK_OF_BATHS_RATIO_PARAMS);
     }
 
     /**
@@ -134,7 +135,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getLowWorkIntensityRatio() {
-        return Fetcher.fetchData("ilc_lvhl11", MaterialLivingParams.getLowWorkIntensityParams());
+        return Fetcher.fetchData("ilc_lvhl11", LOW_WORK_INTENSITY_RATIO_PARAMS);
     }
 
     /**
@@ -152,7 +153,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getMaterialDeprivationRatio() {
-        return Fetcher.fetchData("ilc_mddd11", MaterialLivingParams.getMaterialDeprivationParams());
+        return Fetcher.fetchData("ilc_mddd11", MATERIAL_DEPRIVATION_RATIO_PARAMS);
     }
 
     /**
@@ -169,7 +170,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getMedianIncome() {
-        return Fetcher.fetchData("ilc_di03", MaterialLivingParams.getMedianIncome());
+        return Fetcher.fetchData("ilc_di03", MEDIAN_INCOME_PPS_PARAMS);
     }
 
     /**
@@ -186,7 +187,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getOverOccupiedRatio() {
-        return Fetcher.fetchData("ilc_lvho05a", MaterialLivingParams.getOverOccupiedParams());
+        return Fetcher.fetchData("ilc_lvho05a", OVER_OCCUPIED_RATIO_PARAMS);
     }
 
     /**
@@ -205,7 +206,7 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getPovertyRiskRatio() {
-        return Fetcher.fetchData("ilc_li03", MaterialLivingParams.getPovertyRiskParams());
+        return Fetcher.fetchData("ilc_li03", POVERTY_RISK_RATIO_PARAMS);
     }
 
     /**
@@ -220,6 +221,6 @@ public class MaterialLivingCollector {
      * @return
      */
     private static StringBuilder getUnderOccupiedRatio() {
-        return Fetcher.fetchData("ilc_lvho50a", MaterialLivingParams.getUnderOccupiedParams());
+        return Fetcher.fetchData("ilc_lvho50a", UNDER_OCCUPIED_RATIO_PARAMS);
     }
 }

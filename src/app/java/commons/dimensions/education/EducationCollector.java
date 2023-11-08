@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.education.EducationParams.*;
 import static app.java.commons.dimensions.education.EducationPaths.*;
 
 public class EducationCollector {
@@ -33,7 +34,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getDigitalSkillsRatio() {
-        return Fetcher.fetchData("sdg_04_70", EducationParams.getDigitalSkillsParams());
+        return Fetcher.fetchData("sdg_04_70", DIGITAL_SKILLS_PARAMS);
     }
 
     /**
@@ -51,7 +52,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getDropoutRatio() {
-        return Fetcher.fetchData("edat_lfse_14", EducationParams.getDropoutParams());
+        return Fetcher.fetchData("edat_lfse_14", DROPOUT_RATIO_PARAMS);
     }
 
     /**
@@ -67,7 +68,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getEarlyEducationRatio() {
-        return Fetcher.fetchData("educ_uoe_enra10", EducationParams.getEarlyEducationParams());
+        return Fetcher.fetchData("educ_uoe_enra10", EARLY_EDUCATION_RATIO_PARAMS);
     }
 
     /**
@@ -83,7 +84,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getEducationRatio() {
-        return Fetcher.fetchData("edat_lfs_9903", EducationParams.getEducationParams());
+        return Fetcher.fetchData("edat_lfs_9903", EDUCATION_RATIO_PARAMS);
     }
 
     /**
@@ -101,7 +102,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getInactiveYoungRatio() {
-        return Fetcher.fetchData("edat_lfse_20", EducationParams.getInactiveYoungParams());
+        return Fetcher.fetchData("edat_lfse_20", INACTIVE_YOUNG_RATIO_PARAMS);
     }
 
     /**
@@ -117,7 +118,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getNoKnownForeignLangRatio() {
-        return Fetcher.fetchData("edat_aes_l22", EducationParams.getNoKnownForeignLangParams());
+        return Fetcher.fetchData("edat_aes_l22", NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS);
     }
 
     /**
@@ -131,7 +132,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getPupilsRatio2012() {
-        return Fetcher.fetchData("educ_iste", EducationParams.getPupilsParams2012());
+        return Fetcher.fetchData("educ_iste", PUPILS_RATIO_2012_PARAMS);
     }
 
     /**
@@ -145,7 +146,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getPupilsRatio2013() {
-        return Fetcher.fetchData("educ_uoe_perp04", EducationParams.getPupilsParams2013());
+        return Fetcher.fetchData("educ_uoe_perp04", PUPILS_RATIO_2013_PARAMS);
     }
 
     /**
@@ -159,6 +160,6 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getTrainingRatio() {
-        return Fetcher.fetchData("trng_lfs_02", EducationParams.getTrainingParams());
+        return Fetcher.fetchData("trng_lfs_02", TRAINING_RATIO_PARAMS);
     }
 }

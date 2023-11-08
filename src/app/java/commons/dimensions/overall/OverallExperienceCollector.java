@@ -4,6 +4,8 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
+import static app.java.commons.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
 import static app.java.commons.dimensions.overall.OverallExperiencePaths.HAPPINESS_RATIO_FILE_NAME;
 import static app.java.commons.dimensions.overall.OverallExperiencePaths.HIGH_SATISFACTION_RATIO_FILE_NAME;
 
@@ -27,7 +29,7 @@ public class OverallExperienceCollector {
      * @return
      */
     private static StringBuilder getHappinessRatio() {
-        return Fetcher.fetchData("ilc_pw08", OverallExperienceParams.getHappinessParams());
+        return Fetcher.fetchData("ilc_pw08", HAPPINESS_RATIO_PARAMS);
     }
 
     /**
@@ -41,6 +43,6 @@ public class OverallExperienceCollector {
      * @return
      */
     private static StringBuilder getHighSatisfactionRatio() {
-        return Fetcher.fetchSatisfactionRatio(OverallExperienceParams.getHighSatisfactionParams());
+        return Fetcher.fetchSatisfactionRatio(HIGH_SATISFACTION_RATIO_PARAMS);
     }
 }

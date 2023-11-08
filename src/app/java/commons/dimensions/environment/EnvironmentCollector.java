@@ -4,6 +4,7 @@ import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
+import static app.java.commons.dimensions.environment.EnvironmentParams.*;
 import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
@@ -29,7 +30,7 @@ public class EnvironmentCollector {
      * @return
      */
     private static StringBuilder getAirPollutionRatio() {
-        return Fetcher.fetchData("sdg_11_50", EnvironmentParams.getAirPollutionParams());
+        return Fetcher.fetchData("sdg_11_50", AIR_POLLUTION_PARAMS);
     }
 
     /**
@@ -46,7 +47,7 @@ public class EnvironmentCollector {
      * @return
      */
     private static StringBuilder getNoisePollutionRatio() {
-        return Fetcher.fetchData("ilc_mddw01", EnvironmentParams.getNoisePollutionParams());
+        return Fetcher.fetchData("ilc_mddw01", NOISE_POLLUTION_RATIO_PARAMS);
     }
 
     /**
@@ -64,7 +65,7 @@ public class EnvironmentCollector {
      * @return
      */
     private static StringBuilder getPollutionRatio() {
-        return Fetcher.fetchData("ilc_mddw02", EnvironmentParams.getPollutionParams());
+        return Fetcher.fetchData("ilc_mddw02", POLLUTION_RATIO_PARAMS);
     }
 
     /**
@@ -80,6 +81,6 @@ public class EnvironmentCollector {
      * @return
      */
     private static StringBuilder getWaterSupplyRatio() {
-        return Fetcher.fetchData("env_wat_pop", EnvironmentParams.getWaterSupplyParams());
+        return Fetcher.fetchData("env_wat_pop", WATER_SUPPLY_RATIO_PARAMS);
     }
 }
