@@ -85,6 +85,12 @@ public class ParamsValues {
         put("uninterested", "NINT");    // No interest
     }};
 
+    public static HashMap<String, String> SEX = new HashMap<>() {{
+        put("female", "F");
+        put("male", "M");
+        put("total", "T");
+    }};
+
     public static HashMap<String, String> SUBJNMON = new HashMap<>() {{
         put("greatDifficulty", "EM_GD");    // Households making ends meet with great difficulty
         put("difficulty", "EM_D");          // Households making ends meet with difficulty

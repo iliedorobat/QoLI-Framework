@@ -58,19 +58,7 @@ public class HealthParams {
         put(ParamsConst.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsConst.FREQ, "A");
-        put(ParamsConst.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
-        // FIXME: put(ParamsConst.SEX, "T");
-        put(ParamsConst.SEX, "F");
-        put(ParamsConst.SEX, "M");
-        put(ParamsConst.UNIT, "YR");
-    }};
-
-    // FIXME: remove in favour of HEALTHY_LIFE_YEARS_PARAMS
-    public static final MultiValuedMap<String, String>
-            HEALTHY_LIFE_YEARS_FEMALE_PARAMS = getHealthyLifeYearsParams("F"),
-            HEALTHY_LIFE_YEARS_MALE_PARAMS = getHealthyLifeYearsParams("M");
+    public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = getHealthyLifeYearsParams();
 
     public static final MultiValuedMap<String, String> HOSPITAL_BEDS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsConst.FACILITY, "HBEDT");
@@ -164,13 +152,13 @@ public class HealthParams {
         }};
     }
 
-    // FIXME: remove in favour of HEALTHY_LIFE_YEARS_PARAMS
-    private static MultiValuedMap<String, String> getHealthyLifeYearsParams(String sex) {
-        return new HashSetValuedHashMap<>() {{
+    private static MultiValuedMap<String, String> getHealthyLifeYearsParams() {
+        HashSetValuedHashMap params = new HashSetValuedHashMap<>() {{
             put(ParamsConst.FREQ, "A");
-            // Healthy life years in absolute value at birth
-            put(ParamsConst.INDIC_HE, "HLY_0");
-            put(ParamsConst.SEX, sex);
+            put(ParamsConst.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
+            put(ParamsConst.UNIT, "YR");
         }};
+        FetcherUtils.addParams(params, ParamsConst.SEX, ParamsValues.SEX);
+        return params;
     }
 }

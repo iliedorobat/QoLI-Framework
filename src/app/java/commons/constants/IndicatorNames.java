@@ -35,8 +35,7 @@ public class IndicatorNames {
     public static final String GETTING_TOGETHER_FRD_RATIO = "GETTING_TOGETHER_FRD_RATIO";
     public static final String HAPPINESS_RATIO = "HAPPINESS_RATIO";
     public static final String HEALTHY_LIFE_RATIO = "HEALTHY_LIFE_RATIO";
-    public static final String HEALTHY_LIFE_YEARS_FEMALE = "HEALTHY_LIFE_YEARS_FEMALE";
-    public static final String HEALTHY_LIFE_YEARS_MALE = "HEALTHY_LIFE_YEARS_MALE";
+    public static final String HEALTHY_LIFE_YEARS = "HEALTHY_LIFE_YEARS";
     public static final String HIGH_INCOME_RATIO = "HIGH_INCOME_RATIO";
     public static final String HIGH_SATISFACTION_RATIO = "HIGH_SATISFACTION_RATIO";
     public static final String HOMICIDE_OFFENCES = "HOMICIDE_OFFENCES";

@@ -26,8 +26,7 @@ public class HealthStats {
             initBmiOverweightRatio = Initializer.initConsolidatedMap(BMI_OVERWEIGHT_PARAMS, BMI_PATH),
             initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO_PARAMS, FRUITS_VEGETABLES_RATIO_PATH),
             initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO_PARAMS, HEALTHY_LIFE_RATIO_PATH),
-            initHealthyLifeYearsFemale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_FEMALE_PARAMS, HEALTHY_LIFE_YEARS_PATH),
-            initHealthyLifeYearsMale = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_MALE_PARAMS, HEALTHY_LIFE_YEARS_PATH),
+            initHealthyLifeYears = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_PARAMS, HEALTHY_LIFE_YEARS_PATH),
             initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS_PARAMS, HOSPITAL_BEDS_PATH),
             initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY_PARAMS, LIFE_EXPECTANCY_PATH),
             initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO_PARAMS, LONG_HEALTH_ISSUES_RATIO_PATH),
@@ -48,8 +47,7 @@ public class HealthStats {
             bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
             fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
-            healthyLifeYearsFemale = Preparation.prepareData(initHealthyLifeYearsFemale),
-            healthyLifeYearsMale = Preparation.prepareData(initHealthyLifeYearsMale),
+            healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
@@ -72,8 +70,6 @@ public class HealthStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                // FIXME: use healthyLifeYearsFemale && healthyLifeYearsMale
-                //  or use healthyLifeYears (TOTAL) => put(ParamsConst.SEX, "T");
                 double
                         reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
                         reversedBodyMassIndexOverweight = MathUtils.percentageReverseRatio(bmiOverweightRatio, key),
@@ -89,6 +85,7 @@ public class HealthStats {
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
                         * MathUtils.percentageSafetyDouble(personnelTotal, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
+                        * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedAlcoholicRatio)
@@ -118,8 +115,7 @@ public class HealthStats {
             put("BMI Overweight Ratio", Preparation.filterMap(initBmiOverweightRatio));
             put("Fruits & Vegetables Ratio", Preparation.filterMap(initFruitsVegetablesRatio));
             put("Healthy Life Ratio", Preparation.filterMap(initHealthyLifeRatio));
-            put("Healthy Life Years Female", Preparation.filterMap(initHealthyLifeYearsFemale));
-            put("Healthy Life Years Male", Preparation.filterMap(initHealthyLifeYearsMale));
+            put("Healthy Life Years", Preparation.filterMap(initHealthyLifeYears));
             put("Hospital Beds", Preparation.filterMap(initHospitalBeds));
             put("Life Expectancy", Preparation.filterMap(initLifeExpectancy));
             put("Long Health Issues Ratio", Preparation.filterMap(initLongHealthIssuesRatio));
@@ -171,11 +167,8 @@ public class HealthStats {
             if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_RATIO))
                 Print.printChartData(healthyLifeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE))
-                Print.printChartData(healthyLifeYearsFemale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_FEMALE, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS_MALE))
-                Print.printChartData(healthyLifeYearsMale, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS_MALE, direction);
+            if (args.contains("--indicator=" + IndicatorNames.HEALTHY_LIFE_YEARS))
+                Print.printChartData(healthyLifeYears, EU28_MEMBERS, seriesType, IndicatorNames.HEALTHY_LIFE_YEARS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.HOSPITAL_BEDS))
                 Print.printChartData(hospitalBeds, EU28_MEMBERS, seriesType, IndicatorNames.HOSPITAL_BEDS, direction);
