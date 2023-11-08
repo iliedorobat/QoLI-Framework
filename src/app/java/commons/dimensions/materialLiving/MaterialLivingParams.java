@@ -63,10 +63,7 @@ public class MaterialLivingParams {
         put(ParamsConst.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String>
-            INCOME_QUINTILE_RATIO_PARAMS = getIncomeQuintileParams(),
-            INCOME_QUINTILE_LESS_65_RATIO_PARAMS = getIncomeQuintileParams(QUINTILE_AGES.get("18_to_64")),
-            INCOME_QUINTILE_OVER_65_RATIO_PARAMS = getIncomeQuintileParams(QUINTILE_AGES.get("over_65"));
+    public static final MultiValuedMap<String, String> INCOME_QUINTILE_RATIO_PARAMS = getIncomeQuintileParams();
 
     public static final MultiValuedMap<String, String> LACK_OF_BATHS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsConst.AGE, "TOTAL");
@@ -151,14 +148,5 @@ public class MaterialLivingParams {
         }};
         FetcherUtils.addParams(params, ParamsConst.AGE, QUINTILE_AGES);
         return params;
-    }
-
-    public static MultiValuedMap<String, String> getIncomeQuintileParams(String age) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, age);
-            put(ParamsConst.FREQ, "A");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "RAT");
-        }};
     }
 }

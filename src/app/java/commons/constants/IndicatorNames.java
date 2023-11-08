@@ -43,8 +43,6 @@ public class IndicatorNames {
     public static final String INACTIVE_POPULATION_RATIO = "INACTIVE_POPULATION_RATIO";
     public static final String INACTIVE_YOUNG_RATIO = "INACTIVE_YOUNG_RATIO";
     public static final String INCOME_QUINTILE_RATIO = "INCOME_QUINTILE_RATIO";
-    public static final String INCOME_QUINTILE_LESS_65_RATIO = "INCOME_QUINTILE_LESS_65_RATIO";
-    public static final String INCOME_QUINTILE_OVER_65_RATIO = "INCOME_QUINTILE_OVER_65_RATIO";
     public static final String INFORMAL_VOLUNTARY_RATIO = "INFORMAL_VOLUNTARY_RATIO";
     public static final String INVOLUNTARY_PART_TIME_RATIO = "INVOLUNTARY_PART_TIME_RATIO";
     public static final String JOB_SATISFACTION = "JOB_SATISFACTION";

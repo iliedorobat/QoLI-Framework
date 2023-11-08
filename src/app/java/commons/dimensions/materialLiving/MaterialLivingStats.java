@@ -26,8 +26,6 @@ public class MaterialLivingStats {
             initFinancialSatisfactionRatio = Initializer.initConsolidatedMap(FINANCIAL_SATISFACTION_PARAMS, FINANCIAL_SATISFACTION_PATH),
             initHighIncomeRatio = Initializer.initConsolidatedMap(HIGH_INCOME_RATIO_PARAMS, HIGH_INCOME_RATIO_PATH),
             initIncomeQuintileRatio = Initializer.initConsolidatedMap(INCOME_QUINTILE_RATIO_PARAMS, INCOME_QUINTILE_RATIO_PATH),
-            initIncomeQuintileLess65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_LESS_65_RATIO_PARAMS, INCOME_QUINTILE_RATIO_PATH),
-            initIncomeQuintileOver65Ratio = Initializer.initConsolidatedMap(INCOME_QUINTILE_OVER_65_RATIO_PARAMS, INCOME_QUINTILE_RATIO_PATH),
             initLackOfBathsRatio = Initializer.initConsolidatedMap(LACK_OF_BATHS_RATIO_PARAMS, LACK_OF_BATHS_RATIO_PATH),
             initLowWorkIntensityRatio = Initializer.initConsolidatedMap(LOW_WORK_INTENSITY_RATIO_PARAMS, LOW_WORK_INTENSITY_RATIO_PATH),
             initMaterialDeprivationRatio = Initializer.initConsolidatedMap(MATERIAL_DEPRIVATION_RATIO_PARAMS, MATERIAL_DEPRIVATION_RATIO_PATH),
@@ -46,8 +44,6 @@ public class MaterialLivingStats {
             financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionRatio),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
             incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
-            incomeQuintileLess65Ratio = Preparation.prepareData(initIncomeQuintileLess65Ratio),
-            incomeQuintileOver65Ratio = Preparation.prepareData(initIncomeQuintileOver65Ratio),
             medianIncomePps = Preparation.prepareData(initMedianIncomePps),
 
             lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
@@ -108,8 +104,6 @@ public class MaterialLivingStats {
             put("Financial Satisfaction Ratio", Preparation.filterMap(initFinancialSatisfactionRatio));
             put("High Income Ratio", Preparation.filterMap(initHighIncomeRatio));
             put("Income Quintile Ratio", Preparation.filterMap(initIncomeQuintileRatio));
-            put("Income Quintile Less 65 Ratio", Preparation.filterMap(initIncomeQuintileLess65Ratio));
-            put("Income Quintile Over 65 Ratio", Preparation.filterMap(initIncomeQuintileOver65Ratio));
             put("Lack Of Baths Ratio", Preparation.filterMap(initLackOfBathsRatio));
             put("Low Work Intensity Ratio", Preparation.filterMap(initLowWorkIntensityRatio));
             put("Material Deprivation Ratio", Preparation.filterMap(initMaterialDeprivationRatio));
@@ -142,12 +136,6 @@ public class MaterialLivingStats {
 
             if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_RATIO))
                 Print.printChartData(incomeQuintileRatio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO))
-                Print.printChartData(incomeQuintileLess65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_LESS_65_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO))
-                Print.printChartData(incomeQuintileOver65Ratio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_OVER_65_RATIO, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.LACK_OF_BATHS_RATIO))
                 Print.printChartData(lackOfBathsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LACK_OF_BATHS_RATIO, direction);
