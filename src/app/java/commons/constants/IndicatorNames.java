@@ -8,10 +8,14 @@ public class IndicatorNames {
     public static final String AVG_WORK_HOURS = "AVG_WORK_HOURS";
     public static final String BMI_OBESE_RATIO = "BMI_OBESE_RATIO";
     public static final String BMI_OVERWEIGHT_RATIO = "BMI_OVERWEIGHT_RATIO";
+    public static final String BRIBERY_OFFENCES = "BRIBERY_OFFENCES";
     public static final String BURGLARY_OFFENCES = "BURGLARY_OFFENCES";
     public static final String BURGLARY_PRIVATE_OFFENCES = "BURGLARY_PRIVATE_OFFENCES";
     public static final String CITIZENSHIP = "CITIZENSHIP";
+    public static final String COMPUTERS_OFFENCES = "COMPUTERS_OFFENCES";
+    public static final String CORRUPTION_OFFENCES = "CORRUPTION_OFFENCES";
     public static final String CRIME_RATIO = "CRIME_RATIO";
+    public static final String CRIMINAL_GROUPS_OFFENCES = "CRIMINAL_GROUPS_OFFENCES";
     public static final String DENTISTS = "DENTISTS";
     public static final String DWELLING_ISSUES_RATIO = "DWELLING_ISSUES_RATIO";
     public static final String DIGITAL_SKILLS_RATIO = "DIGITAL_SKILLS_RATIO";
@@ -30,6 +34,7 @@ public class IndicatorNames {
     public static final String FINANCIAL_SATISFACTION_RATIO = "FINANCIAL_SATISFACTION_RATIO";
     public static final String FRUITS_VEGETABLES_RATIO = "FRUITS_VEGETABLES_RATIO";
     public static final String FORMAL_VOLUNTARY_RATIO = "FORMAL_VOLUNTARY_RATIO";
+    public static final String FRAUD_OFFENCES = "FRAUD_OFFENCES";
     public static final String GENDER_PAY_GAP = "GENDER_PAY_GAP";
     public static final String GETTING_TOGETHER_FAM_RATIO = "GETTING_TOGETHER_FAM_RATIO";
     public static final String GETTING_TOGETHER_FRD_RATIO = "GETTING_TOGETHER_FRD_RATIO";
@@ -55,6 +60,8 @@ public class IndicatorNames {
     public static final String LOW_WORK_INTENSITY_RATIO = "LOW_WORK_INTENSITY_RATIO";
     public static final String MATERIAL_DEPRIVATION_RATIO = "MATERIAL_DEPRIVATION_RATIO";
     public static final String MEDIAN_INCOME_PPS = "MEDIAN_INCOME_PPS";
+    public static final String MONEY_LAUNDERING_OFFENCES = "MONEY_LAUNDERING_OFFENCES";
+    public static final String NARCOTICS_OFFENCES = "NARCOTICS_OFFENCES";
     public static final String NO_KNOWN_FOREIGN_LANG_RATIO = "NO_KNOWN_FOREIGN_LANG_RATIO";
     public static final String NOISE_POLLUTION_RATIO = "NOISE_POLLUTION_RATIO";
     public static final String NON_PAYMENT_RATIO = "NON_PAYMENT_RATIO";
@@ -89,6 +96,7 @@ public class IndicatorNames {
     public static final String ROBBERY_OFFENCES = "ROBBERY_OFFENCES";
     public static final String SATISFACTION_RATIO = "SATISFACTION_RATIO";
     public static final String SEXUAL_ASSAULT_OFFENCES = "SEXUAL_ASSAULT_OFFENCES";
+    public static final String SEXUAL_EXPLOITATION_OFFENCES = "SEXUAL_EXPLOITATION_OFFENCES";
     public static final String SEXUAL_VIOLENCE_OFFENCES = "SEXUAL_VIOLENCE_OFFENCES";
     public static final String SMOKERS_RATIO = "SMOKERS_RATIO";
     public static final String SOCIAL_ACTIVITIES_RATIO = "SOCIAL_ACTIVITIES_RATIO";
@@ -101,7 +109,6 @@ public class IndicatorNames {
     public static final String TOTAL_OFFENCES_RATIO = "TOTAL_OFFENCES_RATIO";
     public static final String UNDER_OCCUPIED_RATIO = "UNDER_OCCUPIED_RATIO";
     public static final String UNEXPECTED_RATIO = "UNEXPECTED_RATIO";
-    public static final String UNLAWFUL_OFFENCES = "UNLAWFUL_OFFENCES";
     public static final String UNEMPLOYMENT_RATIO = "UNEMPLOYMENT_RATIO";
     public static final String UNMET_DENTAL_RATIO = "UNMET_DENTAL_RATIO";
     public static final String UNMET_MEDICAL_RATIO = "UNMET_MEDICAL_RATIO";

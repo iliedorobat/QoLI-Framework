@@ -31,17 +31,24 @@ public class SafetyStats {
             // Intermediate data which should be consolidated into a single indicator
             initAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_ASSAULT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initAttemptedHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_ATTEMPTED_HOMICIDE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initBriberyOffences = Initializer.initConsolidatedMap(OFFENCES_BRIBERY_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initBurglaryOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initBurglaryPrivateOffences = Initializer.initConsolidatedMap(OFFENCES_BURGLARY_PRIVATE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initComputersOffences = Initializer.initConsolidatedMap(OFFENCES_COMPUTERS_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initCorruptionGroupsOffences = Initializer.initConsolidatedMap(OFFENCES_CORRUPTION_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initCriminalGroupsOffences = Initializer.initConsolidatedMap(OFFENCES_CRIMINAL_GROUPS_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initFraudGroupsOffences = Initializer.initConsolidatedMap(OFFENCES_FRAUD_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initHomicideOffences = Initializer.initConsolidatedMap(OFFENCES_HOMICIDE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initKidnappingOffences = Initializer.initConsolidatedMap(OFFENCES_KIDNAPPING_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initMoneyLaunderingOffences = Initializer.initConsolidatedMap(OFFENCES_MONEY_LAUNDERING_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initNarcoticsOffences = Initializer.initConsolidatedMap(OFFENCES_NARCOTICS_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initRapeOffences = Initializer.initConsolidatedMap(OFFENCES_RAPE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initRobberyOffences = Initializer.initConsolidatedMap(OFFENCES_ROBBERY_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initSexualViolenceOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_VIOLENCE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initSexualAssaultOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_ASSAULT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
+            initSexualExploitationOffences = Initializer.initConsolidatedMap(OFFENCES_SEXUAL_EXPLOITATION_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
             initTheftOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
-            initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED),
-            initUnlawfulOffences = Initializer.initConsolidatedMap(OFFENCES_UNLAWFUL_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED);
+            initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED);
 
     public static final Map<String, Number>
             crimeRatio = Preparation.prepareData(initCrimeRatio),
@@ -52,17 +59,24 @@ public class SafetyStats {
 
             attemptedHomicideOffences = Preparation.prepareData(initAttemptedHomicideOffences, EU28_MEMBERS_EXTENDED),
             assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
+            briberyOffences = Preparation.prepareData(initBriberyOffences, EU28_MEMBERS_EXTENDED),
             burglaryOffences = Preparation.prepareData(initBurglaryOffences, EU28_MEMBERS_EXTENDED),
             burglaryPrivateOffences = Preparation.prepareData(initBurglaryPrivateOffences, EU28_MEMBERS_EXTENDED),
+            computersOffences = Preparation.prepareData(initComputersOffences, EU28_MEMBERS_EXTENDED),
+            corruptionOffences = Preparation.prepareData(initCorruptionGroupsOffences, EU28_MEMBERS_EXTENDED),
+            criminalGroupsOffences = Preparation.prepareData(initCriminalGroupsOffences, EU28_MEMBERS_EXTENDED),
+            fraudOffences = Preparation.prepareData(initFraudGroupsOffences, EU28_MEMBERS_EXTENDED),
             homicideOffences = Preparation.prepareData(initHomicideOffences, EU28_MEMBERS_EXTENDED),
             kidnappingOffences = Preparation.prepareData(initKidnappingOffences, EU28_MEMBERS_EXTENDED),
+            moneyLaunderingOffences = Preparation.prepareData(initMoneyLaunderingOffences, EU28_MEMBERS_EXTENDED),
+            narcoticsOffences = Preparation.prepareData(initNarcoticsOffences, EU28_MEMBERS_EXTENDED),
             rapeOffences = Preparation.prepareData(initRapeOffences, EU28_MEMBERS_EXTENDED),
             robberyOffences = Preparation.prepareData(initRobberyOffences, EU28_MEMBERS_EXTENDED),
             sexualAssaultOffences = Preparation.prepareData(initSexualAssaultOffences, EU28_MEMBERS_EXTENDED),
+            sexualExploitationOffences = Preparation.prepareData(initSexualExploitationOffences, EU28_MEMBERS_EXTENDED),
             sexualViolenceOffences = Preparation.prepareData(initSexualViolenceOffences, EU28_MEMBERS_EXTENDED),
             theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
             theftVehicleOffences = Preparation.prepareData(initTheftVehicleOffences, EU28_MEMBERS_EXTENDED),
-            unlawfulOffences = Preparation.prepareData(initUnlawfulOffences, EU28_MEMBERS_EXTENDED),
             totalOffencesRatio = prepareOffencesRatio();
 
     public static Map<String, Number> generateDimensionList() {
@@ -109,17 +123,24 @@ public class SafetyStats {
 
             put("Assault Offences", Preparation.filterMap(initAssaultOffences));
             put("Attempted Homicide Offences", Preparation.filterMap(initAttemptedHomicideOffences));
+            put("Bribery Offences", Preparation.filterMap(initBriberyOffences));
             put("Burglary Offences", Preparation.filterMap(initBurglaryOffences));
             put("Burglary Private Offences", Preparation.filterMap(initBurglaryPrivateOffences));
+            put("Computers Offences", Preparation.filterMap(initComputersOffences));
+            put("Criminal Groups Offences", Preparation.filterMap(initCriminalGroupsOffences));
+            put("Corruption Offences", Preparation.filterMap(initCorruptionGroupsOffences));
+            put("Fraud Offences", Preparation.filterMap(initFraudGroupsOffences));
             put("Homicide Offences", Preparation.filterMap(initHomicideOffences));
             put("Kidnapping Offences", Preparation.filterMap(initKidnappingOffences));
+            put("Money Laundering Offences", Preparation.filterMap(initMoneyLaunderingOffences));
+            put("Narcotics Offences", Preparation.filterMap(initNarcoticsOffences));
             put("Rape Offences", Preparation.filterMap(initRapeOffences));
             put("Robbery Offences", Preparation.filterMap(initRobberyOffences));
             put("Sexual Assault Offences", Preparation.filterMap(initSexualAssaultOffences));
+            put("Sexual Exploitation Offences", Preparation.filterMap(initSexualExploitationOffences));
             put("Sexual Violence Offences", Preparation.filterMap(initSexualViolenceOffences));
             put("Theft Offences", Preparation.filterMap(initTheftOffences));
             put("Theft Vehicle Offences", Preparation.filterMap(initTheftVehicleOffences));
-            put("Unlawful Offences", Preparation.filterMap(initUnlawfulOffences));
         }};
     }
 
@@ -146,17 +167,38 @@ public class SafetyStats {
             if (args.contains("--indicator=" + IndicatorNames.ASSAULT_OFFENCES))
                 Print.printChartData(assaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.ASSAULT_OFFENCES, direction);
 
+            if (args.contains("--indicator=" + IndicatorNames.BRIBERY_OFFENCES))
+                Print.printChartData(briberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.BRIBERY_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.BURGLARY_OFFENCES))
                 Print.printChartData(burglaryOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_OFFENCES, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.BURGLARY_PRIVATE_OFFENCES))
                 Print.printChartData(burglaryPrivateOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_PRIVATE_OFFENCES, direction);
 
+            if (args.contains("--indicator=" + IndicatorNames.COMPUTERS_OFFENCES))
+                Print.printChartData(computersOffences, EU28_MEMBERS, seriesType, IndicatorNames.COMPUTERS_OFFENCES, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.CORRUPTION_OFFENCES))
+                Print.printChartData(corruptionOffences, EU28_MEMBERS, seriesType, IndicatorNames.CORRUPTION_OFFENCES, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.CRIMINAL_GROUPS_OFFENCES))
+                Print.printChartData(criminalGroupsOffences, EU28_MEMBERS, seriesType, IndicatorNames.CRIMINAL_GROUPS_OFFENCES, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.FRAUD_OFFENCES))
+                Print.printChartData(fraudOffences, EU28_MEMBERS, seriesType, IndicatorNames.FRAUD_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.HOMICIDE_OFFENCES))
                 Print.printChartData(homicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.HOMICIDE_OFFENCES, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.KIDNAPPING_OFFENCES))
                 Print.printChartData(kidnappingOffences, EU28_MEMBERS, seriesType, IndicatorNames.KIDNAPPING_OFFENCES, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.MONEY_LAUNDERING_OFFENCES))
+                Print.printChartData(moneyLaunderingOffences, EU28_MEMBERS, seriesType, IndicatorNames.MONEY_LAUNDERING_OFFENCES, direction);
+
+            if (args.contains("--indicator=" + IndicatorNames.NARCOTICS_OFFENCES))
+                Print.printChartData(narcoticsOffences, EU28_MEMBERS, seriesType, IndicatorNames.NARCOTICS_OFFENCES, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.RAPE_OFFENCES))
                 Print.printChartData(rapeOffences, EU28_MEMBERS, seriesType, IndicatorNames.RAPE_OFFENCES, direction);
@@ -167,6 +209,9 @@ public class SafetyStats {
             if (args.contains("--indicator=" + IndicatorNames.SEXUAL_ASSAULT_OFFENCES))
                 Print.printChartData(sexualAssaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_ASSAULT_OFFENCES, direction);
 
+            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES))
+                Print.printChartData(sexualExploitationOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES, direction);
+
             if (args.contains("--indicator=" + IndicatorNames.SEXUAL_VIOLENCE_OFFENCES))
                 Print.printChartData(sexualViolenceOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_VIOLENCE_OFFENCES, direction);
 
@@ -175,9 +220,6 @@ public class SafetyStats {
 
             if (args.contains("--indicator=" + IndicatorNames.THEFT_VEHICLE_OFFENCES))
                 Print.printChartData(theftVehicleOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_VEHICLE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.UNLAWFUL_OFFENCES))
-                Print.printChartData(unlawfulOffences, EU28_MEMBERS, seriesType, IndicatorNames.UNLAWFUL_OFFENCES, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.TOTAL_OFFENCES_RATIO))
                 Print.printChartData(totalOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_OFFENCES_RATIO, direction);
@@ -202,17 +244,24 @@ public class SafetyStats {
                 double sum = 0
                         + attemptedHomicideOffences.get(key).doubleValue()
                         + assaultOffences.get(key).doubleValue()
+                        + briberyOffences.get(key).doubleValue()
                         + burglaryOffences.get(key).doubleValue()
                         + burglaryPrivateOffences.get(key).doubleValue()
+                        + computersOffences.get(key).doubleValue()
+                        + corruptionOffences.get(key).doubleValue()
+                        + criminalGroupsOffences.get(key).doubleValue()
+                        + fraudOffences.get(key).doubleValue()
                         + homicideOffences.get(key).doubleValue()
                         + kidnappingOffences.get(key).doubleValue()
+                        + moneyLaunderingOffences.get(key).doubleValue()
+                        + narcoticsOffences.get(key).doubleValue()
                         + rapeOffences.get(key).doubleValue()
                         + robberyOffences.get(key).doubleValue()
                         + sexualAssaultOffences.get(key).doubleValue()
+                        + sexualExploitationOffences.get(key).doubleValue()
                         + sexualViolenceOffences.get(key).doubleValue()
                         + theftOffences.get(key).doubleValue()
-                        + theftVehicleOffences.get(key).doubleValue()
-                        + unlawfulOffences.get(key).doubleValue();
+                        + theftVehicleOffences.get(key).doubleValue();
 
                 if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
                     ukSum += sum;
