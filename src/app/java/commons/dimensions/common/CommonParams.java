@@ -44,6 +44,7 @@ public class CommonParams {
 
             MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
                 put(ParamsConst.AGE, "Y_GE16");
+                put(ParamsConst.FREQ, "A");
                 put(ParamsConst.ISCED_11, "TOTAL");
                 put(ParamsConst.SEX, "T");
                 put(ParamsConst.UNIT, "PC");
@@ -58,6 +59,7 @@ public class CommonParams {
     public static MultiValuedMap<String, String> getPopulationParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "TOTAL");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "NR");
         }};
@@ -86,6 +88,7 @@ public class CommonParams {
     public static MultiValuedMap<String, String> getSatisfactionParams(String satisfactionLevel, String wellBeing) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.INDIC_WB, wellBeing);
             put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.LEV_SATIS, satisfactionLevel);
@@ -97,6 +100,7 @@ public class CommonParams {
     public static MultiValuedMap<String, String> getSupportiveParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC");
@@ -104,5 +108,5 @@ public class CommonParams {
     }
 
     public static final MultiValuedMap<String, String>
-            POPULATION_PARAMS = CommonParams.getPopulationParams();
+            POPULATION_PARAMS = getPopulationParams();
 }

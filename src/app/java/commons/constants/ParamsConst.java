@@ -9,6 +9,7 @@ public class ParamsConst {
     public static final String C_BIRTH = "c_birth";
     public static final String DEG_URB = "deg_urb";
     public static final String FACILITY = "facility";
+    public static final String FREQ = "freq";
     public static final String FREQUENCY = "frequenc";
     public static final String GEO = "geo";
     public static final String HHTYP = "hhtyp";

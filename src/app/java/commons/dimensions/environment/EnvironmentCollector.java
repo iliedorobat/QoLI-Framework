@@ -20,10 +20,12 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: sdg_11_50<br/>
+     * Node: data provided by European Environment Agency (EEA)<br/>
      * Years: 2000-2019<br/><br/>
      *
      * <b>Lack of data: MT</b><br/><br/>
      * <b>GREATER IS WORSE!</b>
+     *
      * @return
      */
     private static StringBuilder getAirPollutionRatio() {
@@ -31,12 +33,13 @@ public class EnvironmentCollector {
     }
 
     /**
-     * Noise from neighbours or from the street - EU-SILC survey<br/><br/>
+     * Noise from neighbours or from the street<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw01<br/>
-     * Years: 2003-2020<br/><br/>
+     * Note: EU-SILC survey<br/>
+     * Years: 2003-2021<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -48,12 +51,13 @@ public class EnvironmentCollector {
 
     /**
      * Pollution, grime or other environmental problems (e.g.: smoke, dust,
-     * unpleasant smells or polluted water) - EU-SILC survey<br/><br/>
+     * unpleasant smells or polluted water)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw02<br/>
-     * Years: 2003-2020<br/><br/>
+     * Note: EU-SILC survey<br/>
+     * Years: 2003-2021<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -69,7 +73,7 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: env_wat_pop<br/>
-     * Years: 1990; 1995; 2000-2019<br/><br/>
+     * Years: 1990; 1995; 2000-2021<br/><br/>
      *
      * Comment: NUTS 2 regions => env_watpop_r2<br/>
      * <b>Lack of data: IT; LV; SI; UK</b>

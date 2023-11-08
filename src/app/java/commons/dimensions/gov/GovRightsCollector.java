@@ -24,6 +24,15 @@ public class GovRightsCollector {
     }
 
     // https://www.idea.int/data-tools/data/voter-turnout
+
+    /**
+     * Voter turnout<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset:
+     * Note: International IDEA
+     */
     private static void writeVoterTurnout() {
         String FILE_URL = "https://www.idea.int/sites/default/files/tmp/idea_export_40_620c368ac79e4.xls";
         String FILE_PATH = FilePathConst.GOV_RIGHTS_PATH;
@@ -37,8 +46,7 @@ public class GovRightsCollector {
     }
 
     /**
-     * Active citizenship participation<br/>
-     * People aged 16 years or over<br/><br/>
+     * Active citizenship participation (people aged 16 years or over)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
@@ -58,7 +66,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2020
+     * Years: 1992-2022
      *
      * @return
      */
@@ -73,7 +81,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: earn_gr_gpgr2<br/>
-     * Years: 2007-2019<br/><br/>
+     * Years: 2007-2021<br/><br/>
      *
      * @return
      */
@@ -85,9 +93,9 @@ public class GovRightsCollector {
      * Average rating of population trust (16 years or over) in police, legal system and political system<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: rating (number 0-10)<br/>
+     * Data type: rating (number between 0-10)<br/>
      * Dataset: ilc_pw03<br/>
-     * Years: 2013
+     * Years: 2013-2015
      *
      * @return
      */

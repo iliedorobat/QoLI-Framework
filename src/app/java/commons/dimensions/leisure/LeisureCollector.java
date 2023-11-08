@@ -1,7 +1,6 @@
 package app.java.commons.dimensions.leisure;
 
 import app.java.commons.constants.FilePathConst;
-import app.java.commons.dimensions.interactions.InteractionsParams;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -30,7 +29,7 @@ public class LeisureCollector {
      * @return
      */
     private static StringBuilder getNonParticipationRatio() {
-        return Fetcher.fetchData("ilc_scp05", InteractionsParams.getNonParticipationParams());
+        return Fetcher.fetchData("ilc_scp05", LeisureParams.getNonParticipationParams());
     }
 
     /**

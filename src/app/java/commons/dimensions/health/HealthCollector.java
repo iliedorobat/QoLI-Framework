@@ -30,10 +30,10 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_al1b<br/>
-     * Years: 2014<br/><br/>
+     * Years: 2014; 2019<br/><br/>
      *
-     * <b>Lack of data: FR, NL, SI</b><br/><br/>
      * <b>GREATER IS WORSE!</b>
+     *
      * @return
      */
     private static StringBuilder getAlcoholicRatio() {
@@ -76,7 +76,7 @@ public class HealthCollector {
      * Aggregation: NUTS 2 regions<br/>
      * Dataset: hlth_rs_prsrg<br/>
      * Value type: per hundred thousand inhabitants (number)<br/>
-     * Years: 1993-2020
+     * Years: 1993-2021
      *
      * @return
      */
@@ -85,13 +85,12 @@ public class HealthCollector {
     }
 
     /**
-     * Self-perceived very-good or good health<br/>
-     * People aged 16 years or over<br/><br/>
+     * Self-perceived very-good or good health (people aged 16 years or over)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_10<br/>
-     * Years: 2005-2020
+     * Years: 2005-2022
      *
      * @return
      */
@@ -105,7 +104,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
      * Dataset: hlth_hlye<br/>
-     * Years: 2004-2019
+     * Years: 2004-2021
      *
      * @return Male & Female statistics
      */
@@ -119,8 +118,8 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: per hundred thousand inhabitants (number)<br/>
      * Dataset: hlth_rs_bds<br/>
-     * Info: Hospital beds provide information on health care capacities,
-     * i.e. on the maximum number of patients who can be treated by hospitals<br/>
+     * Note: Hospital beds provide information on health care capacities,
+     *      i.e. on the maximum number of patients who can be treated by hospitals<br/>
      * Years: 1960-2020<br/><br/>
      *
      * Comments: NUTS 2 regions => hlth_rs_bdsrg
@@ -138,7 +137,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: years (number)<br/>
      * Dataset: demo_mlexpec<br/>
-     * Years: 1960-2020<br/><br/>
+     * Years: 1960-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => demo_r_mlifexp
      *
@@ -154,7 +153,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_11<br/>
-     * Years: 2008-2020<br/><br/>
+     * Years: 2008-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -171,9 +170,8 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_pe9e<br/>
-     * Years: 2014<br/><br/>
+     * Years: 2014; 2019<br/><br/>
      *
-     * <b>Lack of data: BE; NL</b>
      * @return
      */
     private static StringBuilder getPhysicalActivitiesRatio() {
@@ -197,14 +195,13 @@ public class HealthCollector {
     }
 
     /**
-     * Self-reported unmet needs for dental examination<br/>
-     * People aged 16 years or over<br/>
+     * Self-reported unmet needs for dental examination (people aged 16 years or over)<br/>
      * Reasons: Too expensive or too far to travel or waiting list<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_09<br/>
-     * Years: 2008-2020<br/><br/>
+     * Years: 2008-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -215,14 +212,13 @@ public class HealthCollector {
     }
 
     /**
-     * Self-reported unmet needs for medical examination<br/>
-     * People aged 16 years or over<br/>
+     * Self-reported unmet needs for medical examination (people aged 16 years or over)<br/>
      * Reasons: Too expensive or too far to travel or waiting list<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_08<br/>
-     * Years: 2008-2020<br/><br/>
+     * Years: 2008-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -233,12 +229,12 @@ public class HealthCollector {
     }
 
     /**
-     * Accidents at work (severity = 4 days or over)<br/><br/>
+     * Accidents at work requiring 4 or more days of medical care<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: number<br/>
      * Dataset: hsw_mi07<br/>
-     * Years: 2008-2019<br/><br/>
+     * Years: 2008-2021<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

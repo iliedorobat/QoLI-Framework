@@ -22,7 +22,12 @@ public class FetcherUtils {
         }
     }
 
-    // TODO: documentation:
+    /**
+     * Add new parameters to the params list
+     * @param params The parameters list
+     * @param propertyName The name of the added property
+     * @param valuesMap Map containing target properties
+     */
     public static void addParams(MultiValuedMap<String, String> params, String propertyName, HashMap<String, String> valuesMap) {
         ArrayList<String> values = new ArrayList<>(valuesMap.values());
         for (String value : values) {

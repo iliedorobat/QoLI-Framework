@@ -18,9 +18,10 @@ public class GovRightsParams {
     public static MultiValuedMap<String, String> getEmploymentParams() {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y20-64");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.INDIC_EM, "EMP_LFS");
-            put(ParamsConst.SEX, ParamsValues.SEX.get("female"));
-            put(ParamsConst.SEX, ParamsValues.SEX.get("male"));
+            put(ParamsConst.SEX, "F");
+            put(ParamsConst.SEX, "M");
             put(ParamsConst.UNIT, "PC_POP");
         }};
     }
@@ -28,6 +29,7 @@ public class GovRightsParams {
     public static MultiValuedMap<String, String> getEmploymentParams(String sex) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y20-64");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.INDIC_EM, "EMP_LFS");
             put(ParamsConst.SEX, sex);
             put(ParamsConst.UNIT, "PC_POP");
@@ -36,6 +38,7 @@ public class GovRightsParams {
 
     public static MultiValuedMap<String, String> getGenderPayGapParams() {
         return new HashSetValuedHashMap<>() {{
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.NACE_R2, "B-S_X_O");
             put(ParamsConst.UNIT, "PC");
         }};
@@ -44,8 +47,9 @@ public class GovRightsParams {
     public static MultiValuedMap<String, String> getPopulationTrustParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, ParamsValues.SEX.get("total"));
+            put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "RTG");
         }};
         FetcherUtils.addParams(params, ParamsConst.INDIC_WB, ParamsValues.INDIC_WB);
@@ -55,20 +59,21 @@ public class GovRightsParams {
     public static MultiValuedMap<String, String> getPopulationTrustParams(String trustSystem) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.INDIC_WB, trustSystem);
             put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, ParamsValues.SEX.get("total"));
+            put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "RTG");
         }};
     }
 
     public static final MultiValuedMap<String, String>
-            ACTIVE_CITIZENSHIP_RATIO_PARAMS = GovRightsParams.getCitizenshipParams(),
-            EMPLOYMENT_FEMALE_RATIO_PARAMS = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("female")),
-            EMPLOYMENT_MALE_RATIO_PARAMS = GovRightsParams.getEmploymentParams(ParamsValues.SEX.get("male")),
-            GENDER_PAY_GAP_PARAMS = GovRightsParams.getGenderPayGapParams(),
-            POPULATION_LEGTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
-            POPULATION_PLCTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
-            POPULATION_PLTTST_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
-            POPULATION_OTHERS_TRUST_PARAMS = GovRightsParams.getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
+            ACTIVE_CITIZENSHIP_RATIO_PARAMS = getCitizenshipParams(),
+            EMPLOYMENT_FEMALE_RATIO_PARAMS = getEmploymentParams("F"),
+            EMPLOYMENT_MALE_RATIO_PARAMS = getEmploymentParams("M"),
+            GENDER_PAY_GAP_PARAMS = getGenderPayGapParams(),
+            POPULATION_LEGTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
+            POPULATION_PLCTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
+            POPULATION_PLTTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
+            POPULATION_OTHERS_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
 }

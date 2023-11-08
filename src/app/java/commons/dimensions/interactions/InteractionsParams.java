@@ -22,6 +22,7 @@ public class InteractionsParams {
     public static MultiValuedMap<String, String> getGettingTogetherParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.FREQUENCY, "WEEK");
             put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.SEX, "T");
@@ -34,32 +35,10 @@ public class InteractionsParams {
     public static MultiValuedMap<String, String> getGettingTogetherParams(String type) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsConst.AGE, "Y_GE16");
+            put(ParamsConst.FREQ, "A");
             put(ParamsConst.FREQUENCY, "WEEK");
             put(ParamsConst.ISCED_11, "TOTAL");
             put(ParamsConst.IND_TYPE, type);
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
-        }};
-    }
-
-    public static MultiValuedMap<String, String> getNonParticipationParams() {
-        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.SEX, "T");
-            put(ParamsConst.UNIT, "PC");
-        }};
-        FetcherUtils.addParams(params, ParamsConst.ACL_00, ParamsValues.ACL00_INTERACTIONS);
-        FetcherUtils.addParams(params, ParamsConst.REASON, ParamsValues.REASON);
-        return params;
-    }
-
-    public static MultiValuedMap<String, String> getNonParticipationParams(String type, String reason) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsConst.ACL_00, type);
-            put(ParamsConst.AGE, "Y_GE16");
-            put(ParamsConst.ISCED_11, "TOTAL");
-            put(ParamsConst.REASON, reason);
             put(ParamsConst.SEX, "T");
             put(ParamsConst.UNIT, "PC");
         }};
@@ -73,9 +52,9 @@ public class InteractionsParams {
     }
 
     public static final MultiValuedMap<String, String>
-            ASKING_RATIO_PARAMS = InteractionsParams.getAskingParams(),
-            DISCUSSION_PARAMS_RATIO = InteractionsParams.getDiscussionParams(),
-            GETTING_TOGETHER_FAM_RATIO_PARAMS = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
-            GETTING_TOGETHER_FRD_RATIO_PARAMS = InteractionsParams.getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
-            SATISFACTION_RATIO_PARAMS = InteractionsParams.getRelationshipsSatisfactionParams();
+            ASKING_RATIO_PARAMS = getAskingParams(),
+            DISCUSSION_PARAMS_RATIO = getDiscussionParams(),
+            GETTING_TOGETHER_FAM_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
+            GETTING_TOGETHER_FRD_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends")),
+            SATISFACTION_RATIO_PARAMS = getRelationshipsSatisfactionParams();
 }

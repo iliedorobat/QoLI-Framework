@@ -72,6 +72,8 @@ public class HealthStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
+                // FIXME: use healthyLifeYearsFemale && healthyLifeYearsMale
+                //  or use healthyLifeYears (TOTAL) => put(ParamsConst.SEX, "T");
                 double
                         reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
                         reversedBodyMassIndexOverweight = MathUtils.percentageReverseRatio(bmiOverweightRatio, key),

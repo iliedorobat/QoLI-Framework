@@ -33,19 +33,26 @@ public class ParamsValues {
     }};
 
     public static HashMap<String, String> ICCS = new HashMap<>() {{
-        put("assault", "ICCS02011");            // Assault
+        put("assault", "ICCS020111");           // Serious Assault
         put("attemptedHomicide", "ICCS0102");   // Attempted intentional homicide
+        put("bribery", "ICCS07031");            // Bribery // TODO: new: check
         put("burglary", "ICCS0501");            // Burglary
         put("burglaryPrivate", "ICCS05012");    // Burglary of private residential premises
+        put("computers", "ICCS0903");           // Acts against computer systems // TODO: new: check
+        put("criminalGroups", "ICCS09051");     // Participation in an organized criminal group // TODO: new: check
+        put("corruption", "ICCS0703");          // Corruption // TODO: new: check
+        put("fraud", "ICCS0701");               // Fraud // TODO: new: check
         put("homicide", "ICCS0101");            // Intentional homicide
         put("kidnapping", "ICCS020221");        // Kidnapping
+        put("moneyLaundering", "ICCS07041");    // Money Laundering // TODO: new: check
         put("narcotics", "ICCS0601");           // Unlawful acts involving controlled drugs or precursors
         put("rape", "ICCS03011");               // Rape
         put("robbery", "ICCS0401");             // Robbery
-        put("sexualAssault", "ICCS03012");         // Sexual assault
+        put("sexualAssault", "ICCS03012");      // Sexual assault
         put("sexualViolence", "ICCS0301");      // Sexual violence
+        put("sexualExploitation", "ICCS0302");  // Sexual exploitation // TODO: new: check
         put("theft", "ICCS0502");               // Theft
-        put("theftVehicle", "ICCS050211");      // Theft of a motorized land vehicle
+        put("theftVehicle", "ICCS05021");       // Theft of a motorized land vehicle
     }};
 
     public static HashMap<String, String> IND_TYPE = new HashMap<>() {{
@@ -75,18 +82,12 @@ public class ParamsValues {
         put("uninterested", "NINT");    // No interest
     }};
 
-    public static HashMap<String, String> SEX = new HashMap<>() {{
-        put("female", "F");
-        put("male", "M");
-        put("total", "T");
-    }};
-
     public static HashMap<String, String> SUBJNMON = new HashMap<>() {{
         put("greatDifficulty", "EM_GD");    // Households making ends meet with great difficulty
         put("difficulty", "EM_D");          // Households making ends meet with difficulty
-//        put("someDifficulty", "EM_SD");     // Households making ends meet with some difficulty
-//        put("fairlyEasily", "EM_FE");       // Households making ends meet fairly easily
-//        put("easily", "EM_E");              // Households making ends meet easily
-//        put("veryEasily", "EM_VE");         // Households making ends meet very easily
+        put("someDifficulty", "EM_SD");     // Households making ends meet with some difficulty
+        put("fairlyEasily", "EM_FE");       // Households making ends meet fairly easily
+        put("easily", "EM_E");              // Households making ends meet easily
+        put("veryEasily", "EM_VE");         // Households making ends meet very easily
     }};
 }

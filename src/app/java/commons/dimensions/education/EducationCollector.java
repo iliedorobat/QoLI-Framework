@@ -20,12 +20,15 @@ public class EducationCollector {
     }
 
     /**
-     * Individuals (aged 16-74) having at least basic digital skills by sex<br/><br/>
+     * Share of individuals (aged 16-74) having at least basic digital skills<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: sdg_04_70<br/>
-     * Years: 2015-2019
+     * Note: The digital skills indicapotr methodology has changed substantially to reflect the
+     *      Digital Competence Framework 2.0. As a consequence, 2021 is the beginning of a new
+     *      time series. https://ec.europa.eu/eurostat/cache/metadata/en/sdg_04_70_esmsip2.htm
+     * Years: 2021
      *
      * @return
      */
@@ -39,7 +42,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_14<br/>
-     * Years: 1992-2020<br/><br/>
+     * Years: 1992-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
      *
@@ -53,12 +56,13 @@ public class EducationCollector {
 
     /**
      * Participation in early childhood education:<br/> pupils aged between
-     * 4 years old and the starting age of compulsory education<br/><br/>
+     * 4 years old and the starting age of compulsory education at primary
+     * level<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: educ_uoe_enra10<br/>
-     * Years: 1998-2019
+     * Years: 1998-2021
      *
      * @return
      */
@@ -72,7 +76,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfs_9903<br/>
-     * Years: 2004-2020<br/><br/>
+     * Years: 2004-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_04
      *
@@ -88,7 +92,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: NEET rates (%)<br/>
      * Dataset: edat_lfse_20<br/>
-     * Years: 2000-2020<br/><br/>
+     * Years: 2000-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_22<br/><br/>
      *
@@ -136,7 +140,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: educ_uoe_perp04<br/>
-     * Years: 2013-2019
+     * Years: 2013-2021
      *
      * @return
      */
@@ -150,7 +154,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: trng_lfs_02<br/>
-     * Years: 2004-2020
+     * Years: 2004-2022
      *
      * @return
      */
