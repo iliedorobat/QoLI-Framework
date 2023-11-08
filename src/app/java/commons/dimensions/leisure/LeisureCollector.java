@@ -9,7 +9,7 @@ import static app.java.commons.dimensions.leisure.LeisurePaths.*;
 
 public class LeisureCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getNonParticipationRatio(), FilePathConst.INTERACTIONS_PATH, NON_PARTICIPATION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonParticipationRatio(), FilePathConst.LEISURE_PATH, NON_PARTICIPATION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getSocialActivitiesRatio(), FilePathConst.LEISURE_PATH, SOCIAL_ACTIVITIES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getTimeSpentSatisfaction(), FilePathConst.LEISURE_PATH, TIME_SPENT_SATISFACTION_FILE_NAME);
         FileUtils.writeToJSONFile(getVoluntaryActivitiesRatio(), FilePathConst.LEISURE_PATH, VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME);
