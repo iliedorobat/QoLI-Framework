@@ -50,10 +50,10 @@ java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=ED
 https://ec.europa.eu/eurostat/data/database
 
 ### API Server
-https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/##dataset_name##?##query_params##
+https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ __dataset_name__?__query_params__
 
 ### GUI
-https://ec.europa.eu/eurostat/databrowser/view/##dataset_name##/default/table?lang=en
+https://ec.europa.eu/eurostat/databrowser/view/ __dataset_name__ /default/table?lang=en
 
 
 
@@ -86,3 +86,11 @@ ICDS 2019: [Quality of Life Index Analysis for the Case of Romanian Regions](htt
     issn="2308-3956"
 }
 ```
+
+
+
+
+
+TODO: search for "Dataset contains no data"
+TODO: search for "Lack of data:"
+https://ec.europa.eu/eurostat/statistics-explained/index.php?title=EU_statistics_on_income_and_living_conditions_(EU-SILC)_methodology_-_environment_of_the_dwelling
