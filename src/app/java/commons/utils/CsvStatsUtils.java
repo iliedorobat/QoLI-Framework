@@ -197,7 +197,7 @@ public class CsvStatsUtils {
     ) {
         StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
         String seriesDirectory = getSeriesDirectory(seriesType);
-        String fullPath = FilePathConst.OUTPUT_PATH + "csv/" + seriesDirectory + "/";
+        String fullPath = FilePathConst.PROCESSED_DATASET_PATH + "csv/" + seriesDirectory + "/";
         FileUtils.writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);
     }
 

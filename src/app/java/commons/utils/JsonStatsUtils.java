@@ -59,7 +59,7 @@ public class JsonStatsUtils {
                     objectMapper.writeValueAsString(stats)
             );
             String seriesDirectory = CsvStatsUtils.getSeriesDirectory(seriesType);
-            String fullPath = FilePathConst.OUTPUT_PATH + "json/" + seriesDirectory + "/";
+            String fullPath = FilePathConst.PROCESSED_DATASET_PATH + "json/" + seriesDirectory + "/";
             FileUtils.writeToFile(data, fullPath, dimensionName, Constants.JSON_EXTENSION);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
