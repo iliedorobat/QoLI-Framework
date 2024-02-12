@@ -2,6 +2,7 @@ package app.java.commons.constants;
 
 public class FilePathConst {
     public static final String ORIGINAL_DATASET_PATH = "files/original/json/countries/";
+    public static final String COMMON_PATH = ORIGINAL_DATASET_PATH + "auxiliary/";
     public static final String MATERIAL_LIVING_PATH = ORIGINAL_DATASET_PATH + "livingConditions/";
     public static final String MAIN_ACTIVITY_PATH = ORIGINAL_DATASET_PATH + "mainActivity/";
     public static final String HEALTH_PATH = ORIGINAL_DATASET_PATH + "health/";

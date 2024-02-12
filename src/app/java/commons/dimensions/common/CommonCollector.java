@@ -8,7 +8,7 @@ import static app.java.commons.dimensions.common.CommonParams.POPULATION_PARAMS;
 
 public class CommonCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getPopulation(), FilePathConst.ORIGINAL_DATASET_PATH, CommonPaths.POPULATION_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulation(), FilePathConst.COMMON_PATH, CommonPaths.POPULATION_FILE_NAME);
     }
 
     /**
