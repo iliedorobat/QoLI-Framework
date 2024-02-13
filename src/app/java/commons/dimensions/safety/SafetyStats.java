@@ -103,19 +103,13 @@ public class SafetyStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
-                        reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
-                        reversedOffencesRatio = MathUtils.percentageReverseRatio(totalOffencesRatio, key),
-                        reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(pensionPpsRatio, key)
                         * MathUtils.percentageSafetyDouble(socialProtectionPpsRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
-                        * MathUtils.percentageSafetyDouble(reversedNonPaymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedOffencesRatio)
-                        * MathUtils.percentageSafetyDouble(reversedUnexpectedRatio);
+                        * MathUtils.percentageSafetyDouble(crimeRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(nonPaymentRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(totalOffencesRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(unexpectedRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

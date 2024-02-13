@@ -49,18 +49,12 @@ public class EnvironmentStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedNoisePollutionRatio = MathUtils.percentageReverseRatio(noisePollutionRatio, key),
-                        reversedPm2_5PollutionRatio = MathUtils.percentageReverseRatio(pm2_5PollutionRatio, key),
-                        reversedPm10PollutionRatio = MathUtils.percentageReverseRatio(pm10PollutionRatio, key),
-                        reversedPollutionRatio = MathUtils.percentageReverseRatio(pollutionRatio, key);
-
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(reversedNoisePollutionRatio)
-                        * MathUtils.percentageSafetyDouble(reversedPm2_5PollutionRatio)
-                        * MathUtils.percentageSafetyDouble(reversedPm10PollutionRatio)
-                        * MathUtils.percentageSafetyDouble(reversedPollutionRatio)
-                        * MathUtils.percentageSafetyDouble(waterSupplyRatio, key);
+                        * MathUtils.percentageSafetyDouble(waterSupplyRatio, key)
+                        * MathUtils.percentageSafetyDouble(noisePollutionRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(pm2_5PollutionRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(pm10PollutionRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(pollutionRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

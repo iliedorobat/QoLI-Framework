@@ -91,16 +91,6 @@ public class HealthStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedAlcoholicRatio = MathUtils.percentageReverseRatio(alcoholicRatio, key),
-                        reversedBodyMassIndexOverweight = MathUtils.percentageReverseRatio(bmiOverweightRatio, key),
-                        reversedBodyMassIndexObese = MathUtils.percentageReverseRatio(bmiObeseRatio, key),
-                        reversedLongHealthIssueRatio = MathUtils.percentageReverseRatio(longHealthIssuesRatio, key),
-                        reversedSmokersRatio = MathUtils.percentageReverseRatio(smokersRatio, key),
-                        reversedUnmetDentalStatus = MathUtils.percentageReverseRatio(unmetDentalRatio, key),
-                        reversedUnmetMedicalStatus = MathUtils.percentageReverseRatio(unmetMedicalRatio, key),
-                        reversedWorkAccidents = MathUtils.percentageReverseRatio(workAccidents, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
@@ -109,14 +99,14 @@ public class HealthStats {
                         * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedAlcoholicRatio)
-                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexOverweight)
-                        * MathUtils.percentageSafetyDouble(reversedBodyMassIndexObese)
-                        * MathUtils.percentageSafetyDouble(reversedLongHealthIssueRatio)
-                        * MathUtils.percentageSafetyDouble(reversedSmokersRatio)
-                        * MathUtils.percentageSafetyDouble(reversedUnmetDentalStatus)
-                        * MathUtils.percentageSafetyDouble(reversedUnmetMedicalStatus)
-                        * MathUtils.percentageSafetyDouble(reversedWorkAccidents);
+                        * MathUtils.percentageSafetyDouble(alcoholicRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(bmiOverweightRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(bmiObeseRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(longHealthIssuesRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(smokersRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(unmetDentalRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(unmetMedicalRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(workAccidents, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

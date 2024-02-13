@@ -76,14 +76,12 @@ public class LeisureStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double reversedNonParticipationRatio = MathUtils.percentageReverseRatio(nonParticipationRatio, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(satisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(formalVoluntaryRatio, key)
                         * MathUtils.percentageSafetyDouble(informalVoluntaryRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedNonParticipationRatio);
+                        * MathUtils.percentageSafetyDouble(nonParticipationRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

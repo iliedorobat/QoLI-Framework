@@ -85,29 +85,19 @@ public class MainActivityStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedInactivePopulationRatio = MathUtils.percentageReverseRatio(inactivePopulationRatio, key),
-                        reversedInvoluntaryPartTimeRatio = MathUtils.percentageReverseRatio(involuntaryPartTimeRatio, key),
-                        reversedLongTermUnemploymentRatio = MathUtils.percentageReverseRatio(longTermUnemploymentRatio, key),
-                        reversedLowWageEarningsRatio = MathUtils.percentageReverseRatio(lowWageEarningsRatio, key),
-                        reversedOverQualifiedRatio = MathUtils.percentageReverseRatio(overQualifiedRatio, key),
-                        reversedTemporaryEmploymentRatio = MathUtils.percentageReverseRatio(temporaryEmploymentRatio, key),
-                        reversedUnemploymentRatio = MathUtils.percentageReverseRatio(unemploymentRatio, key),
-                        reversedWorkingNightsRatio = MathUtils.percentageReverseRatio(workingNightsRatio, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(avgRemainedWorkHours, key)
                         * MathUtils.percentageSafetyDouble(employmentRatio, key)
                         * MathUtils.percentageSafetyDouble(jobSatisfaction, key)
                         * MathUtils.percentageSafetyDouble(researchersRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedInactivePopulationRatio)
-                        * MathUtils.percentageSafetyDouble(reversedInvoluntaryPartTimeRatio)
-                        * MathUtils.percentageSafetyDouble(reversedLongTermUnemploymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedLowWageEarningsRatio)
-                        * MathUtils.percentageSafetyDouble(reversedOverQualifiedRatio)
-                        * MathUtils.percentageSafetyDouble(reversedTemporaryEmploymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedUnemploymentRatio)
-                        * MathUtils.percentageSafetyDouble(reversedWorkingNightsRatio);
+                        * MathUtils.percentageSafetyDouble(inactivePopulationRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(involuntaryPartTimeRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(longTermUnemploymentRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(lowWageEarningsRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(overQualifiedRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(temporaryEmploymentRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(unemploymentRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(workingNightsRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

@@ -65,20 +65,15 @@ public class EducationStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedDropoutRatio = MathUtils.percentageReverseRatio(dropoutRatio, key),
-                        reversedInactiveYoungRatio = MathUtils.percentageReverseRatio(inactiveYoungRatio, key),
-                        reversedNoKnownForeignLangRatio = MathUtils.percentageReverseRatio(noKnownForeignLangRatio, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
                         * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
                         * MathUtils.percentageSafetyDouble(educationRatio, key)
                         * MathUtils.percentageSafetyDouble(pupilsRatio, key)
                         * MathUtils.percentageSafetyDouble(trainingRatio, key)
-                        * MathUtils.percentageSafetyDouble(reversedDropoutRatio)
-                        * MathUtils.percentageSafetyDouble(reversedInactiveYoungRatio)
-                        * MathUtils.percentageSafetyDouble(reversedNoKnownForeignLangRatio);
+                        * MathUtils.percentageSafetyDouble(dropoutRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(inactiveYoungRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(noKnownForeignLangRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

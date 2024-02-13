@@ -78,29 +78,19 @@ public class MaterialLivingStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
-                        reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
-                        reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
-                        reverseLackOfBathsRatio = MathUtils.percentageReverseRatio(lackOfBathsRatio, key),
-                        reverseLowWorkIntensityRatio = MathUtils.percentageReverseRatio(lowWorkIntensityRatio, key),
-                        reverseMaterialDeprivationRatio = MathUtils.percentageReverseRatio(materialDeprivationRatio, key),
-                        reverseOverOccupiedRatio = MathUtils.percentageReverseRatio(overOccupiedRatio, key),
-                        reversePovertyRiskRatio = MathUtils.percentageReverseRatio(povertyRiskRatio, key);
-
                 double product = 1
                         * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
                         * MathUtils.percentageSafetyDouble(medianIncomePpsRatio, key)
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
-                        * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
-                        * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityRatio)
-                        * MathUtils.percentageSafetyDouble(reverseIncomeQuintileRatio)
-                        * MathUtils.percentageSafetyDouble(reverseLackOfBathsRatio)
-                        * MathUtils.percentageSafetyDouble(reverseLowWorkIntensityRatio)
-                        * MathUtils.percentageSafetyDouble(reverseMaterialDeprivationRatio)
-                        * MathUtils.percentageSafetyDouble(reverseOverOccupiedRatio)
-                        * MathUtils.percentageSafetyDouble(reversePovertyRiskRatio);
+                        * MathUtils.percentageSafetyDouble(dwellingIssuesRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(endMeetInabilityRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(incomeQuintileRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(lackOfBathsRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(lowWorkIntensityRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(materialDeprivationRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(overOccupiedRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(povertyRiskRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

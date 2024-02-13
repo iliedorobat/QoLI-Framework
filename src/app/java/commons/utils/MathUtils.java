@@ -82,6 +82,30 @@ public class MathUtils {
     }
 
     /**
+     * Get a safety value.<br/>
+     * <b>A safety value</b> is a value that neutralize the effect of the "0" value
+     * in the multiplication and division processes.<br/>
+     *
+     * E.g.:<br/>
+     * - value = 0     =>   safetyValue = 0 + 101 = 101<br/>
+     * - value = -100  =>   safetyValue = -100 + 101 = 1
+     *
+     * @param map The related map
+     * @param key The key
+     * @param reversedImpact true/false specifying if the indicator has a negative impact
+     *                       (e.g.: dropoutRatio, pollutionRatio, etc.)
+     * @return The safety value
+     */
+    public static double percentageSafetyDouble(Map<String, Number> map, String key, boolean reversedImpact) {
+        if (reversedImpact) {
+            double reversedValue = MathUtils.percentageReverseRatio(map, key);
+            return percentageSafetyDouble(reversedValue);
+        }
+
+        return percentageSafetyDouble(map, key);
+    }
+
+    /**
      * Get the differences between 100% and the current ratio.<br/>
      * E.g.: Dropout Ratio = 7%   =>   Graduating Ratio = 100% - 7% = 93%
      *
