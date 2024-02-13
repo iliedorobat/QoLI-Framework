@@ -11,6 +11,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -42,6 +43,13 @@ public class HealthStats {
             initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS_PARAMS, WORK_ACCIDENTS_PATH);
 
     public static final Map<String, Number>
+            // Intermediate data used to calculate personnelTotal
+            personnelDentists = Preparation.prepareData(initPersonnelDentists),
+            personnelDoctors = Preparation.prepareData(initPersonnelDoctors),
+            personnelNurses = Preparation.prepareData(initPersonnelNurses),
+            personnelPharmacists = Preparation.prepareData(initPersonnelPharma),
+            personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
+
             alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
             bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
             bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
@@ -51,17 +59,30 @@ public class HealthStats {
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
-            personnelDentists = Preparation.prepareData(initPersonnelDentists),
-            personnelDoctors = Preparation.prepareData(initPersonnelDoctors),
-            personnelNurses = Preparation.prepareData(initPersonnelNurses),
-            personnelPharmacists = Preparation.prepareData(initPersonnelPharma),
-            personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
             personnelTotal = preparePersonnelRatio(),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
             unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
             unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
             workAccidents = Preparation.preparePerThousandInhabitant(CommonStats.population, initWorkAccidents);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("alcoholicRatio", alcoholicRatio);
+        put("bmiObeseRatio", bmiObeseRatio);
+        put("bmiOverweightRatio", bmiOverweightRatio);
+        put("fruitsVegetablesRatio", fruitsVegetablesRatio);
+        put("healthyLifeRatio", healthyLifeRatio);
+        put("healthyLifeYears", healthyLifeYears);
+        put("hospitalBeds", hospitalBeds);
+        put("lifeExpectancy", lifeExpectancy);
+        put("longHealthIssuesRatio", longHealthIssuesRatio);
+        put("healthPersonnel", personnelTotal);
+        put("physicalActivitiesRatio", physicalActivitiesRatio);
+        put("smokersRatio", smokersRatio);
+        put("unmetDentalRatio", unmetDentalRatio);
+        put("unmetMedicalRatio", unmetMedicalRatio);
+        put("workAccidents", workAccidents);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -196,7 +217,12 @@ public class HealthStats {
         }
     }
 
-    // Total health personnel per hundred thousand inhabitants
+    /**
+     * Aggregate the health personnel into a single indicator representing the
+     * total personnel per hundred thousand inhabitants
+     *
+     * @return An ordered map with aggregated data
+     */
     private static Map<String, Number> preparePersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 

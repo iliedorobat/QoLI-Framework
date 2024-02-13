@@ -3,6 +3,7 @@ package app.java.commons.dimensions.common;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -16,6 +17,10 @@ public class CommonStats {
 
     public static final Map<String, Number>
             population = Preparation.prepareData(initPopulation);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("population", population);
+    }};
 
     public static TreeMap<String, Map<String, Number>> getInitList() {
         return new TreeMap<>() {{

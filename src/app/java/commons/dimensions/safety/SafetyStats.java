@@ -11,6 +11,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -51,12 +52,13 @@ public class SafetyStats {
             initTheftVehicleOffences = Initializer.initConsolidatedMap(OFFENCES_THEFT_VEHICLE_PARAMS, OFFENCES_PATH, EU28_MEMBERS_EXTENDED);
 
     public static final Map<String, Number>
-            crimeRatio = Preparation.prepareData(initCrimeRatio),
-            nonPaymentRatio = Preparation.prepareData(initNonPaymentRatio),
+            // Intermediate data used to calculate pensionPpsRatio
             pensionPps = Preparation.prepareData(initPensionPps),
-            socialProtectionPps = Preparation.prepareData(initSocialProtectionPps),
-            unexpectedRatio = Preparation.prepareData(initUnexpectedRatio),
 
+            // Intermediate data used to calculate socialProtectionPpsRatio
+            socialProtectionPps = Preparation.prepareData(initSocialProtectionPps),
+
+            // Intermediate data used to calculate totalOffencesRatio
             attemptedHomicideOffences = Preparation.prepareData(initAttemptedHomicideOffences, EU28_MEMBERS_EXTENDED),
             assaultOffences = Preparation.prepareData(initAssaultOffences, EU28_MEMBERS_EXTENDED),
             briberyOffences = Preparation.prepareData(initBriberyOffences, EU28_MEMBERS_EXTENDED),
@@ -77,7 +79,22 @@ public class SafetyStats {
             sexualViolenceOffences = Preparation.prepareData(initSexualViolenceOffences, EU28_MEMBERS_EXTENDED),
             theftOffences = Preparation.prepareData(initTheftOffences, EU28_MEMBERS_EXTENDED),
             theftVehicleOffences = Preparation.prepareData(initTheftVehicleOffences, EU28_MEMBERS_EXTENDED),
-            totalOffencesRatio = prepareOffencesRatio();
+
+            crimeRatio = Preparation.prepareData(initCrimeRatio),
+            nonPaymentRatio = Preparation.prepareData(initNonPaymentRatio),
+            pensionPpsRatio = Preparation.preparePpsRatio(pensionPps),
+            socialProtectionPpsRatio = Preparation.preparePpsRatio(socialProtectionPps),
+            totalOffencesRatio = prepareOffencesRatio(),
+            unexpectedRatio = Preparation.prepareData(initUnexpectedRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("crimeRatio", crimeRatio);
+        put("nonPaymentRatio", nonPaymentRatio);
+        put("pensionPpsRatio", pensionPpsRatio);
+        put("socialProtectionPpsRatio", socialProtectionPpsRatio);
+        put("totalOffencesRatio", totalOffencesRatio);
+        put("unexpectedRatio", unexpectedRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -87,16 +104,14 @@ public class SafetyStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        pensionPpsRatio = Preparation.consolidatePpsRatio(pensionPps, code, year),
-                        socialProtectionPpsRatio = Preparation.consolidatePpsRatio(socialProtectionPps, code, year),
                         reversedCrimeRatio = MathUtils.percentageReverseRatio(crimeRatio, key),
                         reversedNonPaymentRatio = MathUtils.percentageReverseRatio(nonPaymentRatio, key),
                         reversedOffencesRatio = MathUtils.percentageReverseRatio(totalOffencesRatio, key),
                         reversedUnexpectedRatio = MathUtils.percentageReverseRatio(unexpectedRatio, key);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(pensionPpsRatio)
-                        * MathUtils.percentageSafetyDouble(socialProtectionPpsRatio)
+                        * MathUtils.percentageSafetyDouble(pensionPpsRatio, key)
+                        * MathUtils.percentageSafetyDouble(socialProtectionPpsRatio, key)
                         * MathUtils.percentageSafetyDouble(reversedCrimeRatio)
                         * MathUtils.percentageSafetyDouble(reversedNonPaymentRatio)
                         * MathUtils.percentageSafetyDouble(reversedOffencesRatio)

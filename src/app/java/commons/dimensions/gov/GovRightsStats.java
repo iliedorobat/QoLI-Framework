@@ -14,10 +14,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.EU28_MEMBERS_NAME;
@@ -43,17 +40,27 @@ public class GovRightsStats {
             initVoterTurnout = Initializer.initConsolidatedMaps(voterTurnoutList);
 
     public static final Map<String, Number>
-            citizenship = Preparation.prepareData(initCitizenshipRatio),
-            employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
-            employmentMaleRatio = Preparation.prepareData(initEmploymentMaleRatio),
-            employmentGenderGap = prepareEmploymentGenderGap(),
-            genderPayGap = Preparation.prepareData(initGenderPayGap),
+            // Intermediate data used to calculate populationTrustRatio
             populationLegtstTrustRatio = Preparation.prepareData(initPopulationLegtstTrust),
             populationOthersTrustRatio = Preparation.prepareData(initPopulationOthersTrust),
             populationPlctstTrustRatio = Preparation.prepareData(initPopulationPlctstTrust),
             populationPlttstTrustRatio = Preparation.prepareData(initPopulationPlttstTrust),
+
+            citizenship = Preparation.prepareData(initCitizenshipRatio),
+            employmentFemaleRatio = Preparation.prepareData(initEmploymentFemaleRatio),
+            employmentMaleRatio = Preparation.prepareData(initEmploymentMaleRatio),
+            genderEmploymentGap = prepareGenderEmploymentGap(),
+            genderPayGap = Preparation.prepareData(initGenderPayGap),
             populationTrustRatio = preparePopulationTrust(),
             voterTurnout = Preparation.prepareData(initVoterTurnout);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("citizenshipRatio", citizenship);
+        put("genderEmploymentGap", genderEmploymentGap);
+        put("genderPayGap", genderPayGap);
+        put("populationTrustRatio", populationTrustRatio);
+        put("voterTurnout", voterTurnout);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -63,7 +70,7 @@ public class GovRightsStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        employmentGap = employmentGenderGap.get(key).doubleValue(),
+                        employmentGap = genderEmploymentGap.get(key).doubleValue(),
                         genderGap = genderPayGap.get(key).doubleValue(),
                         // Transform the 1-10 notes into 1-100 notes
                         trust = populationTrustRatio.get(key).doubleValue() * 10;
@@ -112,8 +119,8 @@ public class GovRightsStats {
             if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_MALE_RATIO))
                 Print.printChartData(employmentMaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_MALE_RATIO, direction);
 
-            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_GENDER_GAP))
-                Print.printChartData(employmentGenderGap, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_GENDER_GAP, direction);
+            if (args.contains("--indicator=" + IndicatorNames.GENDER_EMPLOYMENT_GAP))
+                Print.printChartData(genderEmploymentGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_EMPLOYMENT_GAP, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.GENDER_PAY_GAP))
                 Print.printChartData(genderPayGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_PAY_GAP, direction);
@@ -197,7 +204,7 @@ public class GovRightsStats {
      *
      * @return An ordered map with prepared data
      */
-    private static Map<String, Number> prepareEmploymentGenderGap() {
+    private static Map<String, Number> prepareGenderEmploymentGap() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {

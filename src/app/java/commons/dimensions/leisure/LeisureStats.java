@@ -10,6 +10,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -39,11 +40,13 @@ public class LeisureStats {
             initNpNnbSportRatio = Initializer.initConsolidatedMap(NP_NNB_SPORT_RATIO_PARAMS, NON_PARTICIPATION_RATIO_PATH);
 
     public static final Map<String, Number>
+            // Intermediate date used to calculate nonParticipationRatio
             npFinCinRatio = Preparation.prepareData(initNpFinCinRatio),
             npFinCultRatio = Preparation.prepareData(initNpFinCultRatio),
             npFinLiveRatio = Preparation.prepareData(initNpFinLiveRatio),
             npFinSportRatio = Preparation.prepareData(initNpFinSportRatio),
 
+            // Intermediate date used to calculate nonParticipationRatio
             npNnbCinRatio = Preparation.prepareData(initNpNnbCinRatio),
             npNnbCultRatio = Preparation.prepareData(initNpNnbCultRatio),
             npNnbLiveRatio = Preparation.prepareData(initNpNnbLiveRatio),
@@ -55,6 +58,15 @@ public class LeisureStats {
             satisfactionRatio = Preparation.prepareData(initSatisfactionRatio),
             socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
             nonParticipationRatio = consolidateNonParticipationRatio();
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("formalVoluntaryRatio", formalVoluntaryRatio);
+        put("informalVoluntaryRatio", informalVoluntaryRatio);
+
+        put("satisfactionRatio", satisfactionRatio);
+        put("socialActivitiesRatio", socialActivitiesRatio);
+        put("nonParticipationRatio", nonParticipationRatio);
+    }};
 
 
     public static Map<String, Number> generateDimensionList() {

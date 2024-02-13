@@ -10,9 +10,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.overall.OverallExperienceParams.*;
@@ -26,10 +24,17 @@ public class OverallExperienceStats {
             initHighSatisfactionRatio = Initializer.initConsolidatedMap(HIGH_SATISFACTION_RATIO_PARAMS, HIGH_SATISFACTION_RATIO_PATH);
 
     public static final Map<String, Number>
+            // Intermediate date used to calculate happinessRatio
             happinessAlwaysRatio = Preparation.prepareData(initHappinessAlwaysRatio),
             happinessMostOfTheTimeRatio = Preparation.prepareData(initHappinessMostOfTheTimeRatio),
+
             happinessRatio = prepareHappinessRatio(),
             highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("happinessRatio", happinessRatio);
+        put("highSatisfactionRatio", highSatisfactionRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

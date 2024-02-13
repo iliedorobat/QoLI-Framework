@@ -140,7 +140,23 @@ public class Preparation {
     }
 
     // TODO: documentation
-    public static Double consolidatePpsRatio(Map<String, Number> dataset, String code, int year) {
+    public static Map<String, Number> preparePpsRatio(Map<String, Number> dataset) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                Number value = Preparation.calculatePpsRatio(dataset, code, year);
+                preparedMap.put(key, value);
+            }
+        }
+
+        return preparedMap;
+    }
+
+    // TODO: documentation
+    private static Double calculatePpsRatio(Map<String, Number> dataset, String code, int year) {
         Double euAverage = calculateEuAverage(dataset, year);
         String key = MapUtils.generateKey(code, year);
         Number value = dataset.get(key);

@@ -10,6 +10,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,6 +33,14 @@ public class InteractionsStats {
             gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
             gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio),
             satisfactionRatio = Preparation.prepareData(initSatisfactionRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("askingRatio", askingRatio);
+        put("discussionRatio", discussionRatio);
+        put("gettingTogetherFamRatio", gettingTogetherFamRatio);
+        put("gettingTogetherFrdRatio", gettingTogetherFrdRatio);
+        put("satisfactionRatio", satisfactionRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

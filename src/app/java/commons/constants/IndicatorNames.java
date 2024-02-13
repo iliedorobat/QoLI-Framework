@@ -5,7 +5,7 @@ public class IndicatorNames {
     public static final String ASKING_RATIO = "ASKING_RATIO";
     public static final String ASSAULT_OFFENCES = "ASSAULT_OFFENCES";
     public static final String ATTEMPTED_HOMICIDE_OFFENCES = "ATTEMPTED_HOMICIDE_OFFENCES";
-    public static final String AVG_WORK_HOURS = "AVG_WORK_HOURS";
+    public static final String AVG_REMAINED_WORK_HOURS = "AVG_REMAINED_WORK_HOURS";
     public static final String BMI_OBESE_RATIO = "BMI_OBESE_RATIO";
     public static final String BMI_OVERWEIGHT_RATIO = "BMI_OVERWEIGHT_RATIO";
     public static final String BRIBERY_OFFENCES = "BRIBERY_OFFENCES";
@@ -25,7 +25,6 @@ public class IndicatorNames {
     public static final String EARLY_EDUCATION_RATIO = "EARLY_EDUCATION_RATIO";
     public static final String EDUCATION_RATIO = "EDUCATION_RATIO";
     public static final String EMPLOYMENT_FEMALE_RATIO = "EMPLOYMENT_FEMALE_RATIO";
-    public static final String EMPLOYMENT_GENDER_GAP = "EMPLOYMENT_GENDER_GAP";
     public static final String EMPLOYMENT_MALE_RATIO = "EMPLOYMENT_MALE_RATIO";
     public static final String EMPLOYMENT_RATIO = "EMPLOYMENT_RATIO";
     public static final String END_MEET_INABILITY_RATIO = "END_MEET_INABILITY_RATIO";
@@ -35,6 +34,7 @@ public class IndicatorNames {
     public static final String FRUITS_VEGETABLES_RATIO = "FRUITS_VEGETABLES_RATIO";
     public static final String FORMAL_VOLUNTARY_RATIO = "FORMAL_VOLUNTARY_RATIO";
     public static final String FRAUD_OFFENCES = "FRAUD_OFFENCES";
+    public static final String GENDER_EMPLOYMENT_GAP = "GENDER_EMPLOYMENT_GAP";
     public static final String GENDER_PAY_GAP = "GENDER_PAY_GAP";
     public static final String GETTING_TOGETHER_FAM_RATIO = "GETTING_TOGETHER_FAM_RATIO";
     public static final String GETTING_TOGETHER_FRD_RATIO = "GETTING_TOGETHER_FRD_RATIO";

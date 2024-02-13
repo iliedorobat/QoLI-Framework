@@ -12,10 +12,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.mainActivity.MainActivityParams.*;
@@ -23,7 +20,7 @@ import static app.java.commons.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityStats {
     /** 12 hours * 7 days */
-    private static final int CORRECTION_WORKING_HOURS = 12 * 7;
+    private static final int MAX_LEGAL_WORK_HOURS = 12 * 7;
 
     // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
@@ -50,7 +47,10 @@ public class MainActivityStats {
             initWorkingNightsRatio = Initializer.initConsolidatedMap(WORKING_NIGHTS_RATIO_PARAMS, WORKING_NIGHTS_RATIO_PATH);
 
     public static final Map<String, Number>
+            // Intermediate data used to calculate avgRemainedWorkHours
             avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
+
+            avgRemainedWorkHours = prepareAvgWorkHours(avgWorkHours),
             employmentRatio = Preparation.prepareData(initEmploymentRatio),
             inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
             involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
@@ -63,6 +63,21 @@ public class MainActivityStats {
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("avgRemainedWorkHours", avgRemainedWorkHours);
+        put("employmentRatio", employmentRatio);
+        put("inactivePopulationRatio", inactivePopulationRatio);
+        put("involuntaryPartTimeRatio", involuntaryPartTimeRatio);
+        put("jobSatisfaction", jobSatisfaction);
+        put("longTermUnemploymentRatio", longTermUnemploymentRatio);
+        put("lowWageEarningsRatio", lowWageEarningsRatio);
+        put("overQualifiedRatio", overQualifiedRatio);
+        put("researchersRatio", researchersRatio);
+        put("temporaryEmploymentRatio", temporaryEmploymentRatio);
+        put("unemploymentRatio", unemploymentRatio);
+        put("workingNightsRatio", workingNightsRatio);
+    }};
+
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -71,7 +86,6 @@ public class MainActivityStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        correctedAvgWorkHours = CORRECTION_WORKING_HOURS - avgWorkHours.get(key).doubleValue(),
                         reversedInactivePopulationRatio = MathUtils.percentageReverseRatio(inactivePopulationRatio, key),
                         reversedInvoluntaryPartTimeRatio = MathUtils.percentageReverseRatio(involuntaryPartTimeRatio, key),
                         reversedLongTermUnemploymentRatio = MathUtils.percentageReverseRatio(longTermUnemploymentRatio, key),
@@ -82,7 +96,7 @@ public class MainActivityStats {
                         reversedWorkingNightsRatio = MathUtils.percentageReverseRatio(workingNightsRatio, key);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(correctedAvgWorkHours)
+                        * MathUtils.percentageSafetyDouble(avgRemainedWorkHours, key)
                         * MathUtils.percentageSafetyDouble(employmentRatio, key)
                         * MathUtils.percentageSafetyDouble(jobSatisfaction, key)
                         * MathUtils.percentageSafetyDouble(researchersRatio, key)
@@ -125,8 +139,8 @@ public class MainActivityStats {
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
         if (args.contains("--dimension=" + DimensionNames.MAIN_ACTIVITY)) {
-            if (args.contains("--indicator=" + IndicatorNames.AVG_WORK_HOURS))
-                Print.printChartData(avgWorkHours, EU28_MEMBERS, seriesType, IndicatorNames.AVG_WORK_HOURS, direction);
+            if (args.contains("--indicator=" + IndicatorNames.AVG_REMAINED_WORK_HOURS))
+                Print.printChartData(avgRemainedWorkHours, EU28_MEMBERS, seriesType, IndicatorNames.AVG_REMAINED_WORK_HOURS, direction);
 
             if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_RATIO))
                 Print.printChartData(employmentRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_RATIO, direction);
@@ -161,5 +175,25 @@ public class MainActivityStats {
             if (args.contains("--indicator=" + IndicatorNames.WORKING_NIGHTS_RATIO))
                 Print.printChartData(workingNightsRatio, EU28_MEMBERS, seriesType, IndicatorNames.WORKING_NIGHTS_RATIO, direction);
         }
+    }
+
+    /**
+     * Extract the number of working hours left for a person from a legal maximum of 12 hours/day
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> prepareAvgWorkHours(Map<String, Number> workHours) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                Number value = MAX_LEGAL_WORK_HOURS - workHours.get(key).doubleValue();
+                preparedMap.put(key, value);
+            }
+        }
+
+        return preparedMap;
     }
 }

@@ -11,10 +11,7 @@ import app.java.data.stats.Initializer;
 import app.java.data.stats.MergeUtils;
 import app.java.data.stats.Preparation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.education.EducationParams.*;
@@ -25,11 +22,10 @@ public class EducationStats {
     private static final Map<String, Number>
             consolidatedPupilsRatio2012 = MergeUtils.consolidateMap(PUPILS_RATIO_2012_PARAMS, PUPILS_RATIO_2012_PATH),
             consolidatedPupilsRatio2013 = MergeUtils.consolidateMap(PUPILS_RATIO_2013_PARAMS, PUPILS_RATIO_2013_PATH);
-    private static final ArrayList<Map<String, Number>> pupilsRatioList = new ArrayList<>();
-    static {
-        pupilsRatioList.add(consolidatedPupilsRatio2012);
-        pupilsRatioList.add(consolidatedPupilsRatio2013);
-    }
+    private static final ArrayList<Map<String, Number>> pupilsRatioList = new ArrayList<>() {{
+        add(consolidatedPupilsRatio2012);
+        add(consolidatedPupilsRatio2013);
+    }};
 
     private static final Map<String, Number>
             initDigitalSkillsRatio = Initializer.initConsolidatedMap(DIGITAL_SKILLS_PARAMS, DIGITAL_SKILLS_RATIO_PATH),
@@ -50,6 +46,17 @@ public class EducationStats {
             noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
             pupilsRatio = Preparation.prepareData(initPupilsRatio),
             trainingRatio = Preparation.prepareData(initTrainingRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("digitalSkillsRatio", digitalSkillsRatio);
+        put("dropoutRatio", dropoutRatio);
+        put("earlyEducationRatio", earlyEducationRatio);
+        put("educationRatio", educationRatio);
+        put("inactiveYoungRatio", inactiveYoungRatio);
+        put("zeroForeignLangRatio", noKnownForeignLangRatio);
+        put("pupilsRatio", pupilsRatio);
+        put("trainingRatio", trainingRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());

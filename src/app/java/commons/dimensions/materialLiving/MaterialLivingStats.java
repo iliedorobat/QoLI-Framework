@@ -10,6 +10,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,23 +36,40 @@ public class MaterialLivingStats {
             initUnderOccupiedRatio = Initializer.initConsolidatedMap(UNDER_OCCUPIED_RATIO_PARAMS, UNDER_OCCUPIED_RATIO_PATH);
 
     public static final Map<String, Number>
-            dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
+            // Intermediate data used to calculate medianIncomePpsRatio
+            medianIncomePps = Preparation.prepareData(initMedianIncomePps),
 
+            // Intermediate data used to calculate endMeetInabilityRatio
             endMeetInabilityDRatio = Preparation.prepareData(initEndMeetInabilityDRatio),
             endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio),
-            endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
 
+            dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
+            endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
             financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionRatio),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
             incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
-            medianIncomePps = Preparation.prepareData(initMedianIncomePps),
-
             lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
             lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
             materialDeprivationRatio = Preparation.prepareData(initMaterialDeprivationRatio),
+            medianIncomePpsRatio = Preparation.preparePpsRatio(medianIncomePps),
             overOccupiedRatio = Preparation.prepareData(initOverOccupiedRatio),
             povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
             underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("dwellingIssuesRatio", dwellingIssuesRatio);
+        put("endMeetInabilityRatio", endMeetInabilityRatio);
+        put("financialSatisfactionRatio", financialSatisfactionRatio);
+        put("highIncomeRatio", highIncomeRatio);
+        put("incomeQuintileRatio", incomeQuintileRatio);
+        put("lackOfBathsRatio", lackOfBathsRatio);
+        put("lowWorkIntensityRatio", lowWorkIntensityRatio);
+        put("materialDeprivationRatio", materialDeprivationRatio);
+        put("medianIncomePpsRatio", medianIncomePpsRatio);
+        put("overOccupiedRatio", overOccupiedRatio);
+        put("povertyRiskRatio", povertyRiskRatio);
+        put("underOccupiedRatio", underOccupiedRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
@@ -61,7 +79,6 @@ public class MaterialLivingStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        medianIncomePpsRatio = Preparation.consolidatePpsRatio(medianIncomePps, code, year),
                         reverseDwellingIssuesRatio = MathUtils.percentageReverseRatio(dwellingIssuesRatio, key),
                         reverseEndMeetInabilityRatio = MathUtils.percentageReverseRatio(endMeetInabilityRatio, key),
                         reverseIncomeQuintileRatio = MathUtils.percentageReverseRatio(incomeQuintileRatio, key),
@@ -74,7 +91,7 @@ public class MaterialLivingStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
-                        * MathUtils.percentageSafetyDouble(medianIncomePpsRatio)
+                        * MathUtils.percentageSafetyDouble(medianIncomePpsRatio, key)
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
                         * MathUtils.percentageSafetyDouble(reverseDwellingIssuesRatio)
                         * MathUtils.percentageSafetyDouble(reverseEndMeetInabilityRatio)

@@ -10,6 +10,7 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,6 +33,14 @@ public class EnvironmentStats {
             pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),
             pollutionRatio = Preparation.prepareData(initPollutionRatio),
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put("noisePollutionRatio", noisePollutionRatio);
+        put("pm2_5PollutionRatio", pm2_5PollutionRatio);
+        put("pm10PollutionRatio", pm10PollutionRatio);
+        put("pollutionRatio", pollutionRatio);
+        put("waterSupplyRatio", waterSupplyRatio);
+    }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
