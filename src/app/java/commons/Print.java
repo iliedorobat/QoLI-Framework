@@ -1,14 +1,30 @@
 package app.java.commons;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.CsvStatsUtils;
+import app.java.commons.utils.MapUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public class Print {
+    public static void printChartData(
+            List<String> args,
+            HashMap<String, Map<String, Number>> indicators,
+            String dimension,
+            String[] membersList,
+            String seriesType,
+            String direction
+    ) {
+        if (args.contains("--dimension=" + dimension)) {
+            indicators.forEach((indicatorName, map) -> {
+                if (args.contains("--indicator=" + indicatorName))
+                    Print.printChartData(map, membersList, seriesType, indicatorName, direction);
+            });
+        }
+    }
+
     public static void printChartData(
             Map<String, Number> entries,
             String[] membersList,

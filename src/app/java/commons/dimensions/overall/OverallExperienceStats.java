@@ -10,7 +10,10 @@ import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.overall.OverallExperienceParams.*;
@@ -64,16 +67,13 @@ public class OverallExperienceStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.OVERALL_EXPERIENCE)) {
-            if (args.contains("--indicator=" + IndicatorNames.HAPPINESS_ALWAYS_RATIO))
-                Print.printChartData(happinessAlwaysRatio, EU28_MEMBERS, seriesType, IndicatorNames.HAPPINESS_ALWAYS_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.HAPPINESS_ALWAYS_RATIO, happinessAlwaysRatio);
+            put(IndicatorNames.HAPPINESS_MOST_OF_THE_TIME_RATIO, happinessMostOfTheTimeRatio);
+            put(IndicatorNames.HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.HAPPINESS_MOST_OF_THE_TIME_RATIO))
-                Print.printChartData(happinessMostOfTheTimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HAPPINESS_MOST_OF_THE_TIME_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.HIGH_SATISFACTION_RATIO))
-                Print.printChartData(highSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_SATISFACTION_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.OVERALL_EXPERIENCE, EU28_MEMBERS, seriesType, direction);
     }
 
     private static Map<String, Number> prepareHappinessRatio() {

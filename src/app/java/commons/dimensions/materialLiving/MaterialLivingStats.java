@@ -122,49 +122,24 @@ public class MaterialLivingStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.MATERIAL_LIVING_CONDITIONS)) {
-            if (args.contains("--indicator=" + IndicatorNames.DWELLING_ISSUES_RATIO))
-                Print.printChartData(dwellingIssuesRatio, EU28_MEMBERS, seriesType, IndicatorNames.DWELLING_ISSUES_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
+            put(IndicatorNames.END_MEET_INABILITY_RATIO, endMeetInabilityRatio);
+            put(IndicatorNames.END_MEET_INABILITY_D_RATIO, endMeetInabilityDRatio);
+            put(IndicatorNames.END_MEET_INABILITY_GD_RATIO, endMeetInabilityGdRatio);
+            put(IndicatorNames.FINANCIAL_SATISFACTION_RATIO, financialSatisfactionRatio);
+            put(IndicatorNames.HIGH_INCOME_RATIO, highIncomeRatio);
+            put(IndicatorNames.INCOME_QUINTILE_RATIO, incomeQuintileRatio);
+            put(IndicatorNames.LACK_OF_BATHS_RATIO, lackOfBathsRatio);
+            put(IndicatorNames.LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
+            put(IndicatorNames.MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatio);
+            put(IndicatorNames.MEDIAN_INCOME_PPS, medianIncomePps);
+            put(IndicatorNames.OVER_OCCUPIED_RATIO, overOccupiedRatio);
+            put(IndicatorNames.POVERTY_RISK_RATIO, povertyRiskRatio);
+            put(IndicatorNames.UNDER_OCCUPIED_RATIO, underOccupiedRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_RATIO))
-                Print.printChartData(endMeetInabilityRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_D_RATIO))
-                Print.printChartData(endMeetInabilityDRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_D_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.END_MEET_INABILITY_GD_RATIO))
-                Print.printChartData(endMeetInabilityGdRatio, EU28_MEMBERS, seriesType, IndicatorNames.END_MEET_INABILITY_GD_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.FINANCIAL_SATISFACTION_RATIO))
-                Print.printChartData(financialSatisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.FINANCIAL_SATISFACTION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.HIGH_INCOME_RATIO))
-                Print.printChartData(highIncomeRatio, EU28_MEMBERS, seriesType, IndicatorNames.HIGH_INCOME_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INCOME_QUINTILE_RATIO))
-                Print.printChartData(incomeQuintileRatio, EU28_MEMBERS, seriesType, IndicatorNames.INCOME_QUINTILE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.LACK_OF_BATHS_RATIO))
-                Print.printChartData(lackOfBathsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LACK_OF_BATHS_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.LOW_WORK_INTENSITY_RATIO))
-                Print.printChartData(lowWorkIntensityRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WORK_INTENSITY_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.MATERIAL_DEPRIVATION_RATIO))
-                Print.printChartData(materialDeprivationRatio, EU28_MEMBERS, seriesType, IndicatorNames.MATERIAL_DEPRIVATION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.MEDIAN_INCOME_PPS))
-                Print.printChartData(medianIncomePps, EU28_MEMBERS, seriesType, IndicatorNames.MEDIAN_INCOME_PPS, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.OVER_OCCUPIED_RATIO))
-                Print.printChartData(overOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_OCCUPIED_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POVERTY_RISK_RATIO))
-                Print.printChartData(povertyRiskRatio, EU28_MEMBERS, seriesType, IndicatorNames.POVERTY_RISK_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.UNDER_OCCUPIED_RATIO))
-                Print.printChartData(underOccupiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNDER_OCCUPIED_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.MATERIAL_LIVING_CONDITIONS, EU28_MEMBERS, seriesType, direction);
     }
 
     // proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty

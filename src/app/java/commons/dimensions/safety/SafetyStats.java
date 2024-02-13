@@ -154,85 +154,36 @@ public class SafetyStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.SAFETY)) {
-            if (args.contains("--indicator=" + IndicatorNames.CRIME_RATIO))
-                Print.printChartData(crimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.CRIME_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.CRIME_RATIO, crimeRatio);
+            put(IndicatorNames.NON_PAYMENT_RATIO, nonPaymentRatio);
+            put(IndicatorNames.PENSION_PPS, pensionPps);
+            put(IndicatorNames.SOCIAL_PROTECTION_PPS, socialProtectionPps);
+            put(IndicatorNames.UNEXPECTED_RATIO, unexpectedRatio);
+            put(IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES, attemptedHomicideOffences);
+            put(IndicatorNames.ASSAULT_OFFENCES, assaultOffences);
+            put(IndicatorNames.BRIBERY_OFFENCES, briberyOffences);
+            put(IndicatorNames.BURGLARY_OFFENCES, burglaryOffences);
+            put(IndicatorNames.BURGLARY_PRIVATE_OFFENCES, burglaryPrivateOffences);
+            put(IndicatorNames.COMPUTERS_OFFENCES, computersOffences);
+            put(IndicatorNames.CORRUPTION_OFFENCES, corruptionOffences);
+            put(IndicatorNames.CRIMINAL_GROUPS_OFFENCES, criminalGroupsOffences);
+            put(IndicatorNames.FRAUD_OFFENCES, fraudOffences);
+            put(IndicatorNames.HOMICIDE_OFFENCES, homicideOffences);
+            put(IndicatorNames.KIDNAPPING_OFFENCES, kidnappingOffences);
+            put(IndicatorNames.MONEY_LAUNDERING_OFFENCES, moneyLaunderingOffences);
+            put(IndicatorNames.NARCOTICS_OFFENCES, narcoticsOffences);
+            put(IndicatorNames.RAPE_OFFENCES, rapeOffences);
+            put(IndicatorNames.ROBBERY_OFFENCES, robberyOffences);
+            put(IndicatorNames.SEXUAL_ASSAULT_OFFENCES, sexualAssaultOffences);
+            put(IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES, sexualExploitationOffences);
+            put(IndicatorNames.SEXUAL_VIOLENCE_OFFENCES, sexualViolenceOffences);
+            put(IndicatorNames.THEFT_OFFENCES, theftOffences);
+            put(IndicatorNames.THEFT_VEHICLE_OFFENCES, theftVehicleOffences);
+            put(IndicatorNames.TOTAL_OFFENCES_RATIO, totalOffencesRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.NON_PAYMENT_RATIO))
-                Print.printChartData(nonPaymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PAYMENT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.PENSION_PPS))
-                Print.printChartData(pensionPps, EU28_MEMBERS, seriesType, IndicatorNames.PENSION_PPS, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SOCIAL_PROTECTION_PPS))
-                Print.printChartData(socialProtectionPps, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_PROTECTION_PPS, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.UNEXPECTED_RATIO))
-                Print.printChartData(unexpectedRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEXPECTED_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES))
-                Print.printChartData(attemptedHomicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.ASSAULT_OFFENCES))
-                Print.printChartData(assaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.ASSAULT_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.BRIBERY_OFFENCES))
-                Print.printChartData(briberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.BRIBERY_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.BURGLARY_OFFENCES))
-                Print.printChartData(burglaryOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.BURGLARY_PRIVATE_OFFENCES))
-                Print.printChartData(burglaryPrivateOffences, EU28_MEMBERS, seriesType, IndicatorNames.BURGLARY_PRIVATE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.COMPUTERS_OFFENCES))
-                Print.printChartData(computersOffences, EU28_MEMBERS, seriesType, IndicatorNames.COMPUTERS_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.CORRUPTION_OFFENCES))
-                Print.printChartData(corruptionOffences, EU28_MEMBERS, seriesType, IndicatorNames.CORRUPTION_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.CRIMINAL_GROUPS_OFFENCES))
-                Print.printChartData(criminalGroupsOffences, EU28_MEMBERS, seriesType, IndicatorNames.CRIMINAL_GROUPS_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.FRAUD_OFFENCES))
-                Print.printChartData(fraudOffences, EU28_MEMBERS, seriesType, IndicatorNames.FRAUD_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.HOMICIDE_OFFENCES))
-                Print.printChartData(homicideOffences, EU28_MEMBERS, seriesType, IndicatorNames.HOMICIDE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.KIDNAPPING_OFFENCES))
-                Print.printChartData(kidnappingOffences, EU28_MEMBERS, seriesType, IndicatorNames.KIDNAPPING_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.MONEY_LAUNDERING_OFFENCES))
-                Print.printChartData(moneyLaunderingOffences, EU28_MEMBERS, seriesType, IndicatorNames.MONEY_LAUNDERING_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NARCOTICS_OFFENCES))
-                Print.printChartData(narcoticsOffences, EU28_MEMBERS, seriesType, IndicatorNames.NARCOTICS_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.RAPE_OFFENCES))
-                Print.printChartData(rapeOffences, EU28_MEMBERS, seriesType, IndicatorNames.RAPE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.ROBBERY_OFFENCES))
-                Print.printChartData(robberyOffences, EU28_MEMBERS, seriesType, IndicatorNames.ROBBERY_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_ASSAULT_OFFENCES))
-                Print.printChartData(sexualAssaultOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_ASSAULT_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES))
-                Print.printChartData(sexualExploitationOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SEXUAL_VIOLENCE_OFFENCES))
-                Print.printChartData(sexualViolenceOffences, EU28_MEMBERS, seriesType, IndicatorNames.SEXUAL_VIOLENCE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.THEFT_OFFENCES))
-                Print.printChartData(theftOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.THEFT_VEHICLE_OFFENCES))
-                Print.printChartData(theftVehicleOffences, EU28_MEMBERS, seriesType, IndicatorNames.THEFT_VEHICLE_OFFENCES, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.TOTAL_OFFENCES_RATIO))
-                Print.printChartData(totalOffencesRatio, EU28_MEMBERS, seriesType, IndicatorNames.TOTAL_OFFENCES_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.SAFETY, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

@@ -5,7 +5,7 @@ public class IndicatorNames {
     public static final String ASKING_RATIO = "ASKING_RATIO";
     public static final String ASSAULT_OFFENCES = "ASSAULT_OFFENCES";
     public static final String ATTEMPTED_HOMICIDE_OFFENCES = "ATTEMPTED_HOMICIDE_OFFENCES";
-    public static final String AVG_REMAINED_WORK_HOURS = "AVG_REMAINED_WORK_HOURS";
+    public static final String AVG_WORK_HOURS = "AVG_WORK_HOURS";
     public static final String BMI_OBESE_RATIO = "BMI_OBESE_RATIO";
     public static final String BMI_OVERWEIGHT_RATIO = "BMI_OVERWEIGHT_RATIO";
     public static final String BRIBERY_OFFENCES = "BRIBERY_OFFENCES";

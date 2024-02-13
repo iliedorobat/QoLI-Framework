@@ -78,21 +78,14 @@ public class InteractionsStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.INTERACTIONS)) {
-            if (args.contains("--indicator=" + IndicatorNames.ASKING_RATIO))
-                Print.printChartData(askingRatio, EU28_MEMBERS, seriesType, IndicatorNames.ASKING_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.ASKING_RATIO, askingRatio);
+            put(IndicatorNames.DISCUSSION_RATIO, discussionRatio);
+            put(IndicatorNames.GETTING_TOGETHER_FAM_RATIO, gettingTogetherFamRatio);
+            put(IndicatorNames.GETTING_TOGETHER_FRD_RATIO, gettingTogetherFrdRatio);
+            put(IndicatorNames.SATISFACTION_RATIO, satisfactionRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.DISCUSSION_RATIO))
-                Print.printChartData(discussionRatio, EU28_MEMBERS, seriesType, IndicatorNames.DISCUSSION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FAM_RATIO))
-                Print.printChartData(gettingTogetherFamRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FAM_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.GETTING_TOGETHER_FRD_RATIO))
-                Print.printChartData(gettingTogetherFrdRatio, EU28_MEMBERS, seriesType, IndicatorNames.GETTING_TOGETHER_FRD_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
-                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.INTERACTIONS, EU28_MEMBERS, seriesType, direction);
     }
 }

@@ -109,40 +109,21 @@ public class GovRightsStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.GOVERNMENT)) {
-            if (args.contains("--indicator=" + IndicatorNames.CITIZENSHIP))
-                Print.printChartData(citizenship, EU28_MEMBERS, seriesType, IndicatorNames.CITIZENSHIP, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.CITIZENSHIP, citizenship);
+            put(IndicatorNames.EMPLOYMENT_FEMALE_RATIO, employmentFemaleRatio);
+            put(IndicatorNames.EMPLOYMENT_MALE_RATIO, employmentMaleRatio);
+            put(IndicatorNames.GENDER_EMPLOYMENT_GAP, genderEmploymentGap);
+            put(IndicatorNames.GENDER_PAY_GAP, genderPayGap);
+            put(IndicatorNames.POPULATION_LEGTST_TRUST_RATIO, populationLegtstTrustRatio);
+            put(IndicatorNames.POPULATION_OTHERS_TRUST_RATIO, populationOthersTrustRatio);
+            put(IndicatorNames.POPULATION_PLCTST_TRUST_RATIO, populationPlctstTrustRatio);
+            put(IndicatorNames.POPULATION_PLTTST_TRUST_RATIO, populationPlttstTrustRatio);
+            put(IndicatorNames.POPULATION_TRUST, populationTrustRatio);
+            put(IndicatorNames.VOTER_TURNOUT, voterTurnout);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_FEMALE_RATIO))
-                Print.printChartData(employmentFemaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_FEMALE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_MALE_RATIO))
-                Print.printChartData(employmentMaleRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_MALE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.GENDER_EMPLOYMENT_GAP))
-                Print.printChartData(genderEmploymentGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_EMPLOYMENT_GAP, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.GENDER_PAY_GAP))
-                Print.printChartData(genderPayGap, EU28_MEMBERS, seriesType, IndicatorNames.GENDER_PAY_GAP, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POPULATION_LEGTST_TRUST_RATIO))
-                Print.printChartData(populationLegtstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_LEGTST_TRUST_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POPULATION_OTHERS_TRUST_RATIO))
-                Print.printChartData(populationOthersTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_OTHERS_TRUST_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POPULATION_PLCTST_TRUST_RATIO))
-                Print.printChartData(populationPlctstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLCTST_TRUST_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POPULATION_PLTTST_TRUST_RATIO))
-                Print.printChartData(populationPlttstTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_PLTTST_TRUST_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POPULATION_TRUST))
-                Print.printChartData(populationTrustRatio, EU28_MEMBERS, seriesType, IndicatorNames.POPULATION_TRUST, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.VOTER_TURNOUT))
-                Print.printChartData(voterTurnout, EU28_MEMBERS, seriesType, IndicatorNames.VOTER_TURNOUT, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.GOVERNMENT, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

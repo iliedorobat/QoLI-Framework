@@ -78,21 +78,14 @@ public class EnvironmentStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.ENVIRONMENT)) {
-            if (args.contains("--indicator=" + IndicatorNames.NOISE_POLLUTION_RATIO))
-                Print.printChartData(noisePollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.NOISE_POLLUTION_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.NOISE_POLLUTION_RATIO, noisePollutionRatio);
+            put(IndicatorNames.PM_2_5_POLLUTION_RATIO, pm2_5PollutionRatio);
+            put(IndicatorNames.PM_10_POLLUTION_RATIO, pm10PollutionRatio);
+            put(IndicatorNames.POLLUTION_RATIO, pollutionRatio);
+            put(IndicatorNames.WATER_SUPPLY_RATIO, waterSupplyRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.PM_2_5_POLLUTION_RATIO))
-                Print.printChartData(pm2_5PollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.PM_2_5_POLLUTION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.PM_10_POLLUTION_RATIO))
-                Print.printChartData(pm10PollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.PM_10_POLLUTION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.POLLUTION_RATIO))
-                Print.printChartData(pollutionRatio, EU28_MEMBERS, seriesType, IndicatorNames.POLLUTION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.WATER_SUPPLY_RATIO))
-                Print.printChartData(waterSupplyRatio, EU28_MEMBERS, seriesType, IndicatorNames.WATER_SUPPLY_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.ENVIRONMENT, EU28_MEMBERS, seriesType, direction);
     }
 }

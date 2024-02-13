@@ -100,30 +100,17 @@ public class EducationStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.EDUCATION)) {
-            if (args.contains("--indicator=" + IndicatorNames.DIGITAL_SKILLS_RATIO))
-                Print.printChartData(digitalSkillsRatio, EU28_MEMBERS, seriesType, IndicatorNames.DIGITAL_SKILLS_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
+            put(IndicatorNames.DROPOUT_RATIO, dropoutRatio);
+            put(IndicatorNames.EARLY_EDUCATION_RATIO, earlyEducationRatio);
+            put(IndicatorNames.EDUCATION_RATIO, educationRatio);
+            put(IndicatorNames.INACTIVE_YOUNG_RATIO, inactiveYoungRatio);
+            put(IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO, noKnownForeignLangRatio);
+            put(IndicatorNames.PUPILS_RATIO, pupilsRatio);
+            put(IndicatorNames.TRAINING_RATIO, trainingRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.DROPOUT_RATIO))
-                Print.printChartData(dropoutRatio, EU28_MEMBERS, seriesType, IndicatorNames.DROPOUT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.EARLY_EDUCATION_RATIO))
-                Print.printChartData(earlyEducationRatio, EU28_MEMBERS, seriesType, IndicatorNames.EARLY_EDUCATION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.EDUCATION_RATIO))
-                Print.printChartData(educationRatio, EU28_MEMBERS, seriesType, IndicatorNames.EDUCATION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INACTIVE_YOUNG_RATIO))
-                Print.printChartData(inactiveYoungRatio, EU28_MEMBERS, seriesType, IndicatorNames.INACTIVE_YOUNG_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO))
-                Print.printChartData(noKnownForeignLangRatio, EU28_MEMBERS, seriesType, IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.PUPILS_RATIO))
-                Print.printChartData(pupilsRatio, EU28_MEMBERS, seriesType, IndicatorNames.PUPILS_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.TRAINING_RATIO))
-                Print.printChartData(trainingRatio, EU28_MEMBERS, seriesType, IndicatorNames.TRAINING_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.EDUCATION, EU28_MEMBERS, seriesType, direction);
     }
 }

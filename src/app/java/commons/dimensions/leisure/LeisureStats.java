@@ -112,46 +112,23 @@ public class LeisureStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.LEISURE)) {
-            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_CIN_RATIO))
-                Print.printChartData(npFinCinRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_CIN_RATIO, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.NP_FIN_CIN_RATIO, npFinCinRatio);
+            put(IndicatorNames.NP_FIN_CULT_RATIO, npFinCultRatio);
+            put(IndicatorNames.NP_FIN_LIVE_RATIO, npFinLiveRatio);
+            put(IndicatorNames.NP_FIN_SPORT_RATIO, npFinSportRatio);
+            put(IndicatorNames.NP_NNB_CIN_RATIO, npNnbCinRatio);
+            put(IndicatorNames.NP_NNB_CULT_RATIO, npNnbCultRatio);
+            put(IndicatorNames.NP_NNB_LIVE_RATIO, npNnbLiveRatio);
+            put(IndicatorNames.NP_NNB_SPORT_RATIO, npNnbSportRatio);
+            put(IndicatorNames.FORMAL_VOLUNTARY_RATIO, formalVoluntaryRatio);
+            put(IndicatorNames.INFORMAL_VOLUNTARY_RATIO, informalVoluntaryRatio);
+            put(IndicatorNames.SATISFACTION_RATIO, satisfactionRatio);
+            put(IndicatorNames.SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
+            put(IndicatorNames.NON_PARTICIPATION_RATIO, nonParticipationRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_CULT_RATIO))
-                Print.printChartData(npFinCultRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_CULT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_LIVE_RATIO))
-                Print.printChartData(npFinLiveRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_LIVE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_FIN_SPORT_RATIO))
-                Print.printChartData(npFinSportRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_FIN_SPORT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_CIN_RATIO))
-                Print.printChartData(npNnbCinRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_CIN_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_CULT_RATIO))
-                Print.printChartData(npNnbCultRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_CULT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_LIVE_RATIO))
-                Print.printChartData(npNnbLiveRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_LIVE_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NP_NNB_SPORT_RATIO))
-                Print.printChartData(npNnbSportRatio, EU28_MEMBERS, seriesType, IndicatorNames.NP_NNB_SPORT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.FORMAL_VOLUNTARY_RATIO))
-                Print.printChartData(formalVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.FORMAL_VOLUNTARY_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INFORMAL_VOLUNTARY_RATIO))
-                Print.printChartData(informalVoluntaryRatio, EU28_MEMBERS, seriesType, IndicatorNames.INFORMAL_VOLUNTARY_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SATISFACTION_RATIO))
-                Print.printChartData(satisfactionRatio, EU28_MEMBERS, seriesType, IndicatorNames.SATISFACTION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.SOCIAL_ACTIVITIES_RATIO))
-                Print.printChartData(socialActivitiesRatio, EU28_MEMBERS, seriesType, IndicatorNames.SOCIAL_ACTIVITIES_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.NON_PARTICIPATION_RATIO))
-                Print.printChartData(nonParticipationRatio, EU28_MEMBERS, seriesType, IndicatorNames.NON_PARTICIPATION_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.LEISURE, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

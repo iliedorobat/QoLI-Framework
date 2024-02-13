@@ -128,43 +128,22 @@ public class MainActivityStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + DimensionNames.MAIN_ACTIVITY)) {
-            if (args.contains("--indicator=" + IndicatorNames.AVG_REMAINED_WORK_HOURS))
-                Print.printChartData(avgRemainedWorkHours, EU28_MEMBERS, seriesType, IndicatorNames.AVG_REMAINED_WORK_HOURS, direction);
+        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
+            put(IndicatorNames.AVG_WORK_HOURS, avgWorkHours);
+            put(IndicatorNames.EMPLOYMENT_RATIO, employmentRatio);
+            put(IndicatorNames.INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
+            put(IndicatorNames.INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
+            put(IndicatorNames.JOB_SATISFACTION, jobSatisfaction);
+            put(IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatio);
+            put(IndicatorNames.LOW_WAGE_EARNINGS_RATIO, lowWageEarningsRatio);
+            put(IndicatorNames.OVER_QUALIFIED_RATIO, overQualifiedRatio);
+            put(IndicatorNames.RESEARCHERS_RATIO, researchersRatio);
+            put(IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatio);
+            put(IndicatorNames.UNEMPLOYMENT_RATIO, unemploymentRatio);
+            put(IndicatorNames.WORKING_NIGHTS_RATIO, workingNightsRatio);
+        }};
 
-            if (args.contains("--indicator=" + IndicatorNames.EMPLOYMENT_RATIO))
-                Print.printChartData(employmentRatio, EU28_MEMBERS, seriesType, IndicatorNames.EMPLOYMENT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INACTIVE_POPULATION_RATIO))
-                Print.printChartData(inactivePopulationRatio, EU28_MEMBERS, seriesType, IndicatorNames.INACTIVE_POPULATION_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.INVOLUNTARY_PART_TIME_RATIO))
-                Print.printChartData(involuntaryPartTimeRatio, EU28_MEMBERS, seriesType, IndicatorNames.INVOLUNTARY_PART_TIME_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.JOB_SATISFACTION))
-                Print.printChartData(jobSatisfaction, EU28_MEMBERS, seriesType, IndicatorNames.JOB_SATISFACTION, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO))
-                Print.printChartData(longTermUnemploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.LOW_WAGE_EARNINGS_RATIO))
-                Print.printChartData(lowWageEarningsRatio, EU28_MEMBERS, seriesType, IndicatorNames.LOW_WAGE_EARNINGS_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.OVER_QUALIFIED_RATIO))
-                Print.printChartData(overQualifiedRatio, EU28_MEMBERS, seriesType, IndicatorNames.OVER_QUALIFIED_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.RESEARCHERS_RATIO))
-                Print.printChartData(researchersRatio, EU28_MEMBERS, seriesType, IndicatorNames.RESEARCHERS_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO))
-                Print.printChartData(temporaryEmploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.UNEMPLOYMENT_RATIO))
-                Print.printChartData(unemploymentRatio, EU28_MEMBERS, seriesType, IndicatorNames.UNEMPLOYMENT_RATIO, direction);
-
-            if (args.contains("--indicator=" + IndicatorNames.WORKING_NIGHTS_RATIO))
-                Print.printChartData(workingNightsRatio, EU28_MEMBERS, seriesType, IndicatorNames.WORKING_NIGHTS_RATIO, direction);
-        }
+        Print.printChartData(args, indicators, DimensionNames.MAIN_ACTIVITY, EU28_MEMBERS, seriesType, direction);
     }
 
     /**
