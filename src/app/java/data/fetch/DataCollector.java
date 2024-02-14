@@ -1,6 +1,6 @@
 package app.java.data.fetch;
 
-import app.java.commons.dimensions.common.CommonCollector;
+import app.java.commons.dimensions.auxiliary.AuxiliaryCollector;
 import app.java.commons.dimensions.education.EducationCollector;
 import app.java.commons.dimensions.environment.EnvironmentCollector;
 import app.java.commons.dimensions.gov.GovRightsCollector;
@@ -19,7 +19,7 @@ public class DataCollector {
     public static void collectData() {
         System.out.println("Starting the data collection process...\n");
 
-        CommonCollector.fetchData();
+        AuxiliaryCollector.fetchData();
         EducationCollector.fetchData();
         EnvironmentCollector.fetchData();
         GovRightsCollector.fetchData();

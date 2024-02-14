@@ -1,14 +1,14 @@
-package app.java.commons.dimensions.common;
+package app.java.commons.dimensions.auxiliary;
 
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
-import static app.java.commons.dimensions.common.CommonParams.POPULATION_PARAMS;
-import static app.java.commons.dimensions.common.CommonPaths.AUXILIARY_RAW_PATH;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.POPULATION_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryPaths.AUXILIARY_RAW_PATH;
 
-public class CommonCollector {
+public class AuxiliaryCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getPopulation(), AUXILIARY_RAW_PATH, CommonPaths.POPULATION_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulation(), AUXILIARY_RAW_PATH, AuxiliaryPaths.POPULATION_FILE_NAME);
     }
 
     /**

@@ -2,13 +2,13 @@ package app.java.commons.dimensions.interactions;
 
 import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
-import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class InteractionsParams {
     public static final MultiValuedMap<String, String> ASKING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -32,7 +32,7 @@ public class InteractionsParams {
             GETTING_TOGETHER_FAM_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("family")),
             GETTING_TOGETHER_FRD_RATIO_PARAMS = getGettingTogetherParams(ParamsValues.IND_TYPE.get("friends"));
 
-    public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
+    public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
             SATISFACTION_TYPES_PARAMS.get("RELATIONSHIPS")
     );

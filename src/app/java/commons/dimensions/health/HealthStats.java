@@ -4,7 +4,7 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
-import app.java.commons.dimensions.common.CommonStats;
+import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -63,7 +63,7 @@ public class HealthStats {
             smokersRatio = Preparation.prepareData(initSmokersRatio),
             unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
             unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
-            workAccidents = Preparation.preparePerThousandInhabitant(CommonStats.population, initWorkAccidents);
+            workAccidents = Preparation.preparePerThousandInhabitant(AuxiliaryStats.population, initWorkAccidents);
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
         put("alcoholicRatio", alcoholicRatio);

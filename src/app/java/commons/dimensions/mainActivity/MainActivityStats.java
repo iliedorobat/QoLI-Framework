@@ -4,7 +4,7 @@ import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.IndicatorNames;
-import app.java.commons.dimensions.common.CommonStats;
+import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -57,7 +57,7 @@ public class MainActivityStats {
             longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
             lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
             overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio),
-            researchersRatio = Preparation.preparePerTenThousandInhabitants(CommonStats.population, initResearchers),
+            researchersRatio = Preparation.preparePerTenThousandInhabitants(AuxiliaryStats.population, initResearchers),
             temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);

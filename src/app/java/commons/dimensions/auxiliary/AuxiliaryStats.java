@@ -1,4 +1,4 @@
-package app.java.commons.dimensions.common;
+package app.java.commons.dimensions.auxiliary;
 
 import app.java.data.stats.Initializer;
 import app.java.data.stats.Preparation;
@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.commons.dimensions.common.CommonParams.POPULATION_PARAMS;
-import static app.java.commons.dimensions.common.CommonPaths.POPULATION_PATH;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.POPULATION_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryPaths.POPULATION_PATH;
 
 //TODO: change the "ratio" to "rate" all over the app
-public class CommonStats {
+public class AuxiliaryStats {
     private static final Map<String, Number>
             initPopulation = Initializer.initConsolidatedMap(POPULATION_PARAMS, POPULATION_PATH);
 

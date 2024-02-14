@@ -2,7 +2,7 @@ package app.java.commons.dimensions.gov;
 
 import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
-import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
@@ -12,7 +12,7 @@ public class GovRightsParams {
             ParamsValues.ACL00_LEISURE.get("citizenship")
     };
 
-    public static final MultiValuedMap<String, String> CITIZENSHIP_RATIO_PARAMS = CommonParams.getActivePeopleParams(ACTIVITIES);
+    public static final MultiValuedMap<String, String> CITIZENSHIP_RATIO_PARAMS = AuxiliaryParams.getActivePeopleParams(ACTIVITIES);
 
     public static final MultiValuedMap<String, String> EMPLOYMENT_FEMALE_RATIO_PARAMS = getEmploymentParams("F");
 

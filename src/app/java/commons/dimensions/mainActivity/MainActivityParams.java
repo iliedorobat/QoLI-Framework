@@ -1,12 +1,12 @@
 package app.java.commons.dimensions.mainActivity;
 
 import app.java.commons.constants.ParamsNames;
-import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class MainActivityParams {
     public static final MultiValuedMap<String, String> AVG_WORK_HOURS_2007_PARAMS = new HashSetValuedHashMap<>() {{
@@ -49,7 +49,7 @@ public class MainActivityParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> JOB_SATISFACTION_PARAMS = CommonParams.getSatisfactionParams(
+    public static final MultiValuedMap<String, String> JOB_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
             SATISFACTION_TYPES_PARAMS.get("JOB")
     );

@@ -2,13 +2,13 @@ package app.java.commons.dimensions.leisure;
 
 import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
-import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class LeisureParams {
     private static final String[] VOLUNTARY_ACTIVITIES = {
@@ -38,13 +38,13 @@ public class LeisureParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = CommonParams.getSatisfactionParams(
+    public static final MultiValuedMap<String, String> SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
             SATISFACTION_TYPES_PARAMS.get("TIME_SPENT")
     );
 
     public static MultiValuedMap<String, String>
-            VOLUNTARY_RATIO_PARAMS = CommonParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES),
+            VOLUNTARY_RATIO_PARAMS = AuxiliaryParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES),
             FORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("formal")),
             INFORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ParamsValues.ACL00_LEISURE.get("informal"));
 
@@ -75,6 +75,6 @@ public class LeisureParams {
 
     private static MultiValuedMap<String, String> getVoluntaryActivitiesParams(String activity) {
         String[] VOLUNTARY_ACTIVITIES = { activity };
-        return CommonParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES);
+        return AuxiliaryParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES);
     }
 }

@@ -1,4 +1,4 @@
-package app.java.commons.dimensions.common;
+package app.java.commons.dimensions.auxiliary;
 
 import app.java.commons.Errors;
 import app.java.commons.constants.ParamsNames;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import static app.java.commons.constants.ParamsValues.ACL00_LEISURE;
 
-public class CommonParams {
+public class AuxiliaryParams {
     public static final HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
         put("HIGH", "HIGH");
         put("LOW", "LOW");

@@ -2,15 +2,15 @@ package app.java.commons.dimensions.materialLiving;
 
 import app.java.commons.constants.ParamsNames;
 import app.java.commons.constants.ParamsValues;
-import app.java.commons.dimensions.common.CommonParams;
+import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.common.CommonParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class MaterialLivingParams {
     private static final String[] END_MEETS_DIFFICULTY_LEVELS = {
@@ -39,7 +39,7 @@ public class MaterialLivingParams {
             END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
             END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty"));
 
-    public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = CommonParams.getSatisfactionParams(
+    public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
             SATISFACTION_TYPES_PARAMS.get("FINANCIAL")
     );
