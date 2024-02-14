@@ -3,8 +3,8 @@ package app.java.commons.constants;
 import java.io.File;
 
 public class FilePathConst {
-    public static final String PREPARED_DATASET_PATH = String.join(File.separator, "files", "processed");
-    public static final String RAW_DATASET_PATH = String.join(File.separator, "files", "original", "json", "countries");
+    public static final String PREPARED_DATASET_PATH = String.join(File.separator, "files", "prepared");
+    public static final String RAW_DATASET_PATH = String.join(File.separator, "files", "raw", "json", "countries");
 
     public static final String AUXILIARY_DIR = "auxiliary";
     public static final String EDUCATION_DIR = "education";
