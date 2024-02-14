@@ -92,17 +92,17 @@ public class QoLICsvStats {
     }
     private static void writeDataByRegions(String direction) {
         Map<String, Number>
-                qoliList = CsvStatsUtils.aggregateRegions(QoLIStats.generateIndicatorList()),
-                educationStats = CsvStatsUtils.aggregateRegions(EducationStats.generateDimensionList()),
-                environmentStats = CsvStatsUtils.aggregateRegions(EnvironmentStats.generateDimensionList()),
-                govRightsStats = CsvStatsUtils.aggregateRegions(GovRightsStats.generateDimensionList()),
-                healthStats = CsvStatsUtils.aggregateRegions(HealthStats.generateDimensionList()),
-                interactionsStats = CsvStatsUtils.aggregateRegions(InteractionsStats.generateDimensionList()),
-                leisureStats = CsvStatsUtils.aggregateRegions(LeisureStats.generateDimensionList()),
-                mainActivityStats = CsvStatsUtils.aggregateRegions(MainActivityStats.generateDimensionList()),
-                materialLivingStats = CsvStatsUtils.aggregateRegions(MaterialLivingStats.generateDimensionList()),
-                overallExperienceStats = CsvStatsUtils.aggregateRegions(OverallExperienceStats.generateDimensionList()),
-                safetyStats = CsvStatsUtils.aggregateRegions(SafetyStats.generateDimensionList());
+                qoliList = QoLIStats.aggregateRegions(QoLIStats.generateIndicatorList()),
+                educationStats = QoLIStats.aggregateRegions(EducationStats.generateDimensionList()),
+                environmentStats = QoLIStats.aggregateRegions(EnvironmentStats.generateDimensionList()),
+                govRightsStats = QoLIStats.aggregateRegions(GovRightsStats.generateDimensionList()),
+                healthStats = QoLIStats.aggregateRegions(HealthStats.generateDimensionList()),
+                interactionsStats = QoLIStats.aggregateRegions(InteractionsStats.generateDimensionList()),
+                leisureStats = QoLIStats.aggregateRegions(LeisureStats.generateDimensionList()),
+                mainActivityStats = QoLIStats.aggregateRegions(MainActivityStats.generateDimensionList()),
+                materialLivingStats = QoLIStats.aggregateRegions(MaterialLivingStats.generateDimensionList()),
+                overallExperienceStats = QoLIStats.aggregateRegions(OverallExperienceStats.generateDimensionList()),
+                safetyStats = QoLIStats.aggregateRegions(SafetyStats.generateDimensionList());
 
         CsvStatsUtils.writeChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, QOLI_DIR, direction, null);
         CsvStatsUtils.writeChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, EDUCATION_DIR, direction, EducationStats.preparedIndicators);
