@@ -85,7 +85,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperiencePaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/safety/SafetyPaths.java");
 
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/aggrQoLI/QoLIPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/QoLIPaths.java");
     }
 
     private static void buildStats() throws Exception {
@@ -101,7 +101,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperienceStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/safety/SafetyStats.java");
 
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/aggrQoLI/QoLIStats.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/QoLIStats.java");
     }
 
     // https://www.digitalocean.com/community/tutorials/compile-run-java-program-another-java-program

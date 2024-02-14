@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.*;
-import static app.java.commons.dimensions.aggrQoli.QoLIPaths.QOLI_FILE_NAME;
-import static app.java.commons.dimensions.aggrQoli.QoLIStats.DATA_BY_COUNTRIES;
-import static app.java.commons.dimensions.aggrQoli.QoLIStats.DATA_BY_REGIONS;
+import static app.java.commons.dimensions.QoLIPaths.QOLI_FILE_NAME;
+import static app.java.commons.dimensions.QoLIStats.DATA_BY_COUNTRIES;
+import static app.java.commons.dimensions.QoLIStats.DATA_BY_REGIONS;
 import static app.java.commons.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
 import static app.java.commons.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
 import static app.java.commons.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;

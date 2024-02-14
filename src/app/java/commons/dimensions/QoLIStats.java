@@ -1,4 +1,4 @@
-package app.java.commons.dimensions.aggrQoli;
+package app.java.commons.dimensions;
 
 import app.java.commons.MapOrder;
 import app.java.commons.constants.Constants;
@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.dimensions.aggrQoli.QoLIPaths.QOLI_FILE_NAME;
+import static app.java.commons.dimensions.QoLIPaths.QOLI_FILE_NAME;
 import static app.java.commons.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
 import static app.java.commons.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
 import static app.java.commons.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;
