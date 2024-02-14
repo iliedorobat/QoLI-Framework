@@ -1,6 +1,5 @@
 package app.java.commons.dimensions.interactions;
 
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -9,10 +8,10 @@ import static app.java.commons.dimensions.interactions.InteractionsPaths.*;
 
 public class InteractionsCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_RAW_PATH, ASKING_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_RAW_PATH, DISCUSSION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_RAW_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_RAW_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAskingRatio(), INTERACTIONS_RAW_PATH, ASKING_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDiscussionRatio(), INTERACTIONS_RAW_PATH, DISCUSSION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getGettingTogetherRatio(), INTERACTIONS_RAW_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), INTERACTIONS_RAW_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

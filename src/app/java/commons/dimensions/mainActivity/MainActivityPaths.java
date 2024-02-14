@@ -7,6 +7,8 @@ import java.io.File;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MainActivityPaths {
+    public static final String MAIN_ACTIVITY_FILE_NAME = "mainActivity";
+
     public static final String AVG_WORK_HOURS_2007_FILE_NAME = "avgWorkHours2007";
     public static final String AVG_WORK_HOURS_2008_FILE_NAME = "avgWorkHours2008";
     public static final String EMPLOYMENT_RATIO_FILE_NAME = "employmentRatio";
@@ -21,8 +23,10 @@ public class MainActivityPaths {
     public static final String UNEMPLOYMENT_RATIO_FILE_NAME = "unemploymentRatio";
     public static final String WORKING_NIGHTS_RATIO_FILE_NAME = "nightsRatio";
 
+    public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, MAIN_ACTIVITY_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

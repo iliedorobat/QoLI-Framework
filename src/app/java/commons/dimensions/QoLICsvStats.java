@@ -1,15 +1,27 @@
 package app.java.commons.dimensions;
 
 import app.java.commons.Print;
+import app.java.commons.dimensions.aggrQoli.QoLIPaths;
+import app.java.commons.dimensions.aggrQoli.QoLIStats;
+import app.java.commons.dimensions.education.EducationPaths;
 import app.java.commons.dimensions.education.EducationStats;
+import app.java.commons.dimensions.environment.EnvironmentPaths;
 import app.java.commons.dimensions.environment.EnvironmentStats;
+import app.java.commons.dimensions.gov.GovRightsPaths;
 import app.java.commons.dimensions.gov.GovRightsStats;
+import app.java.commons.dimensions.health.HealthPaths;
 import app.java.commons.dimensions.health.HealthStats;
+import app.java.commons.dimensions.interactions.InteractionsPaths;
 import app.java.commons.dimensions.interactions.InteractionsStats;
+import app.java.commons.dimensions.leisure.LeisurePaths;
 import app.java.commons.dimensions.leisure.LeisureStats;
+import app.java.commons.dimensions.mainActivity.MainActivityPaths;
 import app.java.commons.dimensions.mainActivity.MainActivityStats;
+import app.java.commons.dimensions.materialLiving.MaterialLivingPaths;
 import app.java.commons.dimensions.materialLiving.MaterialLivingStats;
+import app.java.commons.dimensions.overall.OverallExperiencePaths;
 import app.java.commons.dimensions.overall.OverallExperienceStats;
+import app.java.commons.dimensions.safety.SafetyPaths;
 import app.java.commons.dimensions.safety.SafetyStats;
 import app.java.commons.utils.CsvStatsUtils;
 
@@ -17,11 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.*;
-import static app.java.commons.constants.FilePathConst.*;
 
 public class QoLICsvStats {
     public static void printDimensions(List<String> args, String seriesType, String direction) {
-        if (args.contains("--dimension=" + QOLI_DIR)) {
+        if (args.contains("--dimension=" + QoLIPaths.QOLI_FILE_NAME)) {
             if (seriesType.equals(SERIES_TYPE_COUNTRY)) {
                 printData(EU28_MEMBERS, SERIES_TYPE_COUNTRY, direction);
             } else if (seriesType.equals(SERIES_TYPE_REGION)) {
@@ -50,17 +61,17 @@ public class QoLICsvStats {
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
                 safetyStats = SafetyStats.generateDimensionList();
 
-        Print.printChartData(qoliList, membersList, seriesType, QOLI_DIR, direction);
-        Print.printChartData(educationStats, membersList, seriesType, EDUCATION_DIR, direction);
-        Print.printChartData(environmentStats, membersList, seriesType, ENVIRONMENT_DIR, direction);
-        Print.printChartData(govRightsStats, membersList, seriesType, GOVERNANCE_DIR, direction);
-        Print.printChartData(healthStats, membersList, seriesType, HEALTH_DIR, direction);
-        Print.printChartData(interactionsStats, membersList, seriesType, INTERACTIONS_DIR, direction);
-        Print.printChartData(leisureStats, membersList, seriesType, LEISURE_DIR, direction);
-        Print.printChartData(mainActivityStats, membersList, seriesType, MAIN_ACTIVITY_DIR, direction);
-        Print.printChartData(materialLivingStats, membersList, seriesType, LIVING_CONDITIONS_DIR, direction);
-        Print.printChartData(overallExperienceStats, membersList, seriesType, OVERALL_EXPERIENCE_DIR, direction);
-        Print.printChartData(safetyStats, membersList, seriesType, SAFETY_DIR, direction);
+        Print.printChartData(qoliList, membersList, seriesType, QoLIPaths.QOLI_FILE_NAME, direction);
+        Print.printChartData(educationStats, membersList, seriesType, EducationPaths.EDUCATION_FILE_NAME, direction);
+        Print.printChartData(environmentStats, membersList, seriesType, EnvironmentPaths.ENVIRONMENT_FILE_NAME, direction);
+        Print.printChartData(govRightsStats, membersList, seriesType, GovRightsPaths.GOVERNANCE_FILE_NAME, direction);
+        Print.printChartData(healthStats, membersList, seriesType, HealthPaths.HEALTH_FILE_NAME, direction);
+        Print.printChartData(interactionsStats, membersList, seriesType, InteractionsPaths.INTERACTIONS_FILE_NAME, direction);
+        Print.printChartData(leisureStats, membersList, seriesType, LeisurePaths.LEISURE_FILE_NAME, direction);
+        Print.printChartData(mainActivityStats, membersList, seriesType, MainActivityPaths.MAIN_ACTIVITY_FILE_NAME, direction);
+        Print.printChartData(materialLivingStats, membersList, seriesType, MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, direction);
+        Print.printChartData(overallExperienceStats, membersList, seriesType, OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME, direction);
+        Print.printChartData(safetyStats, membersList, seriesType, SafetyPaths.SAFETY_FILE_NAME, direction);
         System.out.println("--------------------------------------");
     }
 
@@ -78,17 +89,17 @@ public class QoLICsvStats {
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
                 safetyStats = SafetyStats.generateDimensionList();
 
-        CsvStatsUtils.writeChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, QOLI_DIR, direction, null);
-        CsvStatsUtils.writeChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, EDUCATION_DIR, direction, EducationStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, ENVIRONMENT_DIR, direction, EnvironmentStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, GOVERNANCE_DIR, direction, GovRightsStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, HEALTH_DIR, direction, HealthStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, INTERACTIONS_DIR, direction, InteractionsStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, LEISURE_DIR, direction, LeisureStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, MAIN_ACTIVITY_DIR, direction, MainActivityStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, LIVING_CONDITIONS_DIR, direction, MaterialLivingStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, OVERALL_EXPERIENCE_DIR, direction, OverallExperienceStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, SAFETY_DIR, direction, SafetyStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, QoLIPaths.QOLI_FILE_NAME, direction, null);
+        CsvStatsUtils.writeChartData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, EducationPaths.EDUCATION_FILE_NAME, direction, EducationStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, EnvironmentPaths.ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, GovRightsPaths.GOVERNANCE_FILE_NAME, direction, GovRightsStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, HealthPaths.HEALTH_FILE_NAME, direction, HealthStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, InteractionsPaths.INTERACTIONS_FILE_NAME, direction, InteractionsStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, LeisurePaths.LEISURE_FILE_NAME, direction, LeisureStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, MainActivityPaths.MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, SafetyPaths.SAFETY_FILE_NAME, direction, SafetyStats.preparedIndicators);
     }
     private static void writeDataByRegions(String direction) {
         Map<String, Number>
@@ -104,16 +115,16 @@ public class QoLICsvStats {
                 overallExperienceStats = QoLIStats.aggregateRegions(OverallExperienceStats.generateDimensionList()),
                 safetyStats = QoLIStats.aggregateRegions(SafetyStats.generateDimensionList());
 
-        CsvStatsUtils.writeChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, QOLI_DIR, direction, null);
-        CsvStatsUtils.writeChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, EDUCATION_DIR, direction, EducationStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, ENVIRONMENT_DIR, direction, EnvironmentStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, GOVERNANCE_DIR, direction, GovRightsStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, HEALTH_DIR, direction, HealthStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, INTERACTIONS_DIR, direction, InteractionsStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, LEISURE_DIR, direction, LeisureStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, MAIN_ACTIVITY_DIR, direction, MainActivityStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, LIVING_CONDITIONS_DIR, direction, MaterialLivingStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, OVERALL_EXPERIENCE_DIR, direction, OverallExperienceStats.preparedIndicators);
-        CsvStatsUtils.writeChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, SAFETY_DIR, direction, SafetyStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(qoliList, EU28_REGIONS, SERIES_TYPE_REGION, QoLIPaths.QOLI_FILE_NAME, direction, null);
+        CsvStatsUtils.writeChartData(educationStats, EU28_REGIONS, SERIES_TYPE_REGION, EducationPaths.EDUCATION_FILE_NAME, direction, EducationStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(environmentStats, EU28_REGIONS, SERIES_TYPE_REGION, EnvironmentPaths.ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(govRightsStats, EU28_REGIONS, SERIES_TYPE_REGION, GovRightsPaths.GOVERNANCE_FILE_NAME, direction, GovRightsStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(healthStats, EU28_REGIONS, SERIES_TYPE_REGION, HealthPaths.HEALTH_FILE_NAME, direction, HealthStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(interactionsStats, EU28_REGIONS, SERIES_TYPE_REGION, InteractionsPaths.INTERACTIONS_FILE_NAME, direction, InteractionsStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(leisureStats, EU28_REGIONS, SERIES_TYPE_REGION, LeisurePaths.LEISURE_FILE_NAME, direction, LeisureStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(mainActivityStats, EU28_REGIONS, SERIES_TYPE_REGION, MainActivityPaths.MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(materialLivingStats, EU28_REGIONS, SERIES_TYPE_REGION, MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(overallExperienceStats, EU28_REGIONS, SERIES_TYPE_REGION, OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.preparedIndicators);
+        CsvStatsUtils.writeChartData(safetyStats, EU28_REGIONS, SERIES_TYPE_REGION, SafetyPaths.SAFETY_FILE_NAME, direction, SafetyStats.preparedIndicators);
     }
 }

@@ -1,7 +1,6 @@
 package app.java.commons.dimensions.gov;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -16,10 +15,10 @@ import static app.java.commons.dimensions.gov.GovRightsPaths.*;
  */
 public class GovRightsCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getCitizenshipRatio(), FilePathConst.GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.GOV_RIGHTS_RAW_PATH, EMPLOYMENT_RATIO_BY_SEX_FILE_NAME);
-        FileUtils.writeToJSONFile(getGenderPayGap(), FilePathConst.GOV_RIGHTS_RAW_PATH, GENDER_PAY_GAP_FILE_NAME);
-        FileUtils.writeToJSONFile(getPopulationTrust(), FilePathConst.GOV_RIGHTS_RAW_PATH, POPULATION_TRUST_FILE_NAME);
+        FileUtils.writeToJSONFile(getCitizenshipRatio(), GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getEmploymentRatio(), GOV_RIGHTS_RAW_PATH, EMPLOYMENT_RATIO_BY_SEX_FILE_NAME);
+        FileUtils.writeToJSONFile(getGenderPayGap(), GOV_RIGHTS_RAW_PATH, GENDER_PAY_GAP_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulationTrust(), GOV_RIGHTS_RAW_PATH, POPULATION_TRUST_FILE_NAME);
         writeVoterTurnout();
     }
 
@@ -35,7 +34,7 @@ public class GovRightsCollector {
      */
     private static void writeVoterTurnout() {
         String FILE_URL = "https://www.idea.int/sites/default/files/tmp/idea_export_40_620c368ac79e4.xls";
-        String FILE_PATH = FilePathConst.GOV_RIGHTS_RAW_PATH;
+        String FILE_PATH = GOV_RIGHTS_RAW_PATH;
         String FILE_NAME = VOTER_TURNOUT_FILE_NAME;
         FileUtils.downloadExcelFile(FILE_URL, FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
         FileUtils.convertXlsToCsv(FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);

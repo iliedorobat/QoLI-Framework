@@ -3,7 +3,7 @@ package app.java;
 import app.java.commons.Print;
 import app.java.commons.dimensions.QoLICsvStats;
 import app.java.commons.dimensions.QoLIJsonStats;
-import app.java.commons.dimensions.common.CommonStats;
+import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.dimensions.education.EducationStats;
 import app.java.commons.dimensions.environment.EnvironmentStats;
 import app.java.commons.dimensions.gov.GovRightsStats;
@@ -43,7 +43,7 @@ public class Main {
 
         if (compare) {
             // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-            Print.printDimensionStatus(CommonStats.getInitList(), "Common info", targetYear, indStatus);
+            Print.printDimensionStatus(AuxiliaryStats.getInitList(), "Auxiliary info", targetYear, indStatus);
             Print.printDimensionStatus(EducationStats.getInitList(), "Education", targetYear, indStatus);
             Print.printDimensionStatus(EnvironmentStats.getInitList(), "Environment", targetYear, indStatus);
             Print.printDimensionStatus(GovRightsStats.getInitList(), "GBR", targetYear, indStatus);

@@ -1,6 +1,5 @@
 package app.java.commons.dimensions.materialLiving;
 
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -9,18 +8,18 @@ import static app.java.commons.dimensions.materialLiving.MaterialLivingPaths.*;
 
 public class MaterialLivingCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getDwellingIssuesRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, DWELLING_ISSUES_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getEndMeetInabilityRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, END_MEET_INABILITY_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getFinancialSatisfaction(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, FINANCIAL_SATISFACTION_FILE_NAME);
-        FileUtils.writeToJSONFile(getHighIncomeRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, HIGH_INCOME_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getIncomeQuintileRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, INCOME_QUINTILE_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLackOfBathsRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, LACK_OF_BATHS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, LOW_WORK_INTENSITY_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getMaterialDeprivationRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, MATERIAL_DEPRIVATION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getMedianIncome(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, MEDIAN_INCOME_FILE_NAME);
-        FileUtils.writeToJSONFile(getOverOccupiedRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, OVER_OCCUPIED_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getPovertyRiskRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, POVERTY_RISK_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnderOccupiedRatio(), FilePathConst.LIVING_CONDITIONS_RAW_PATH, UNDER_OCCUPIED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDwellingIssuesRatio(), LIVING_CONDITIONS_RAW_PATH, DWELLING_ISSUES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getEndMeetInabilityRatio(), LIVING_CONDITIONS_RAW_PATH, END_MEET_INABILITY_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getFinancialSatisfaction(), LIVING_CONDITIONS_RAW_PATH, FINANCIAL_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getHighIncomeRatio(), LIVING_CONDITIONS_RAW_PATH, HIGH_INCOME_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getIncomeQuintileRatio(), LIVING_CONDITIONS_RAW_PATH, INCOME_QUINTILE_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLackOfBathsRatio(), LIVING_CONDITIONS_RAW_PATH, LACK_OF_BATHS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), LIVING_CONDITIONS_RAW_PATH, LOW_WORK_INTENSITY_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getMaterialDeprivationRatio(), LIVING_CONDITIONS_RAW_PATH, MATERIAL_DEPRIVATION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getMedianIncome(), LIVING_CONDITIONS_RAW_PATH, MEDIAN_INCOME_FILE_NAME);
+        FileUtils.writeToJSONFile(getOverOccupiedRatio(), LIVING_CONDITIONS_RAW_PATH, OVER_OCCUPIED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getPovertyRiskRatio(), LIVING_CONDITIONS_RAW_PATH, POVERTY_RISK_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnderOccupiedRatio(), LIVING_CONDITIONS_RAW_PATH, UNDER_OCCUPIED_RATIO_FILE_NAME);
     }
 
     /**

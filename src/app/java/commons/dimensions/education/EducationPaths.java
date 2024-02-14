@@ -7,6 +7,8 @@ import java.io.File;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EducationPaths {
+    public static final String EDUCATION_FILE_NAME = "education";
+
     public static final String DIGITAL_SKILLS_RATIO_FILE_NAME = "digitalSkillsRatio";
     public static final String DROPOUT_RATIO_FILE_NAME = "dropoutRatio";
     public static final String EARLY_EDU_RATIO_FILE_NAME = "earlyEducationRatio";
@@ -17,8 +19,10 @@ public class EducationPaths {
     public static final String PUPILS_RATIO_2013_FILE_NAME = "pupilsRatio2013";
     public static final String TRAINING_RATIO_FILE_NAME = "trainingRatio";
 
+    public static final String EDUCATION_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, EDUCATION_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.EDUCATION_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return EDUCATION_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

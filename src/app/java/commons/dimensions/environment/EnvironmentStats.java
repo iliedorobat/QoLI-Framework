@@ -3,7 +3,6 @@ package app.java.commons.dimensions.environment;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -86,6 +85,6 @@ public class EnvironmentStats {
             put(IndicatorNames.WATER_SUPPLY_RATIO, waterSupplyRatio);
         }};
 
-        Print.printChartData(args, indicators, FilePathConst.ENVIRONMENT_DIR, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, ENVIRONMENT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 }

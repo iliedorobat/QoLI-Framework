@@ -7,6 +7,8 @@ import java.io.File;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthPaths {
+    public static final String HEALTH_FILE_NAME = "health";
+
     public static final String ALCOHOLIC_RATIO_FILE_NAME = "alcoholicRatio";
     public static final String BMI_FILE_NAME = "bodyMassIndex";
     public static final String FRUITS_VEGETABLES_RATIO_FILE_NAME = "fruitsVegetablesRatio";
@@ -22,8 +24,10 @@ public class HealthPaths {
     public static final String UNMET_DENTAL_RATIO_FILE_NAME = "unmetDentalStatus";
     public static final String WORK_ACCIDENTS_FILE_NAME = "workAccidents";
 
+    public static final String HEALTH_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, HEALTH_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.HEALTH_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return HEALTH_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
     
     public static final String

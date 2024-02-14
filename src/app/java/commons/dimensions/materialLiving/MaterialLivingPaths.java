@@ -7,6 +7,8 @@ import java.io.File;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MaterialLivingPaths {
+    public static final String LIVING_CONDITIONS_FILE_NAME = "livingConditions";
+
     public static final String DWELLING_ISSUES_RATIO_FILE_NAME = "dwellingIssuesRatio";
     public static final String END_MEET_INABILITY_RATIO_FILE_NAME = "endMeetInabilityRatio";
     public static final String FINANCIAL_SATISFACTION_FILE_NAME = "financialSatisfaction";
@@ -20,8 +22,10 @@ public class MaterialLivingPaths {
     public static final String POVERTY_RISK_RATIO_FILE_NAME = "povertyRiskRatio";
     public static final String UNDER_OCCUPIED_RATIO_FILE_NAME = "underOccupiedRatio";
 
+    public static final String LIVING_CONDITIONS_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, LIVING_CONDITIONS_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.LIVING_CONDITIONS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return LIVING_CONDITIONS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

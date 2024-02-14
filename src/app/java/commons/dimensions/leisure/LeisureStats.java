@@ -3,7 +3,6 @@ package app.java.commons.dimensions.leisure;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -128,7 +127,7 @@ public class LeisureStats {
             put(IndicatorNames.NON_PARTICIPATION_RATIO, nonParticipationRatio);
         }};
 
-        Print.printChartData(args, indicators, FilePathConst.LEISURE_DIR, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, LEISURE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

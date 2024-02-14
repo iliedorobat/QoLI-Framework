@@ -3,7 +3,6 @@ package app.java.commons.dimensions.overall;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -17,8 +16,7 @@ import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.overall.OverallExperienceParams.*;
-import static app.java.commons.dimensions.overall.OverallExperiencePaths.HAPPINESS_RATIO_PATH;
-import static app.java.commons.dimensions.overall.OverallExperiencePaths.HIGH_SATISFACTION_RATIO_PATH;
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.*;
 
 public class OverallExperienceStats {
     private static final Map<String, Number>
@@ -73,7 +71,7 @@ public class OverallExperienceStats {
             put(IndicatorNames.HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
         }};
 
-        Print.printChartData(args, indicators, FilePathConst.OVERALL_EXPERIENCE_DIR, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, OVERALL_EXPERIENCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     private static Map<String, Number> prepareHappinessRatio() {

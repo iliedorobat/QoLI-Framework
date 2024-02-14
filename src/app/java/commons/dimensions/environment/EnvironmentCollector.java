@@ -1,6 +1,5 @@
 package app.java.commons.dimensions.environment;
 
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -9,10 +8,10 @@ import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAirPollutionRatio(), FilePathConst.ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getNoisePollutionRatio(), FilePathConst.ENVIRONMENT_RAW_PATH, NOISE_POLLUTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getPollutionRatio(), FilePathConst.ENVIRONMENT_RAW_PATH, POLLUTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getWaterSupplyRatio(), FilePathConst.ENVIRONMENT_RAW_PATH, WATER_SUPPLY_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAirPollutionRatio(), ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNoisePollutionRatio(), ENVIRONMENT_RAW_PATH, NOISE_POLLUTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getPollutionRatio(), ENVIRONMENT_RAW_PATH, POLLUTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWaterSupplyRatio(), ENVIRONMENT_RAW_PATH, WATER_SUPPLY_RATIO_FILE_NAME);
     }
 
     /**

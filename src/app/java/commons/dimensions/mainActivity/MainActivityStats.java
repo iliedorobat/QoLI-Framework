@@ -3,7 +3,6 @@ package app.java.commons.dimensions.mainActivity;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
@@ -143,7 +142,7 @@ public class MainActivityStats {
             put(IndicatorNames.WORKING_NIGHTS_RATIO, workingNightsRatio);
         }};
 
-        Print.printChartData(args, indicators, FilePathConst.MAIN_ACTIVITY_DIR, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, MAIN_ACTIVITY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

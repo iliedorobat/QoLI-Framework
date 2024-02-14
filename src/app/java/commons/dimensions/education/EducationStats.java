@@ -3,7 +3,6 @@ package app.java.commons.dimensions.education;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -111,6 +110,6 @@ public class EducationStats {
             put(IndicatorNames.TRAINING_RATIO, trainingRatio);
         }};
 
-        Print.printChartData(args, indicators, FilePathConst.EDUCATION_DIR, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, EDUCATION_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 }

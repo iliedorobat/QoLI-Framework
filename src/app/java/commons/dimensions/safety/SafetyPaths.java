@@ -7,6 +7,8 @@ import java.io.File;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class SafetyPaths {
+    public static final String SAFETY_FILE_NAME = "safety";
+
     public static final String CRIME_RATIO_FILE_NAME = "crimeRatio";
     public static final String NON_PAYMENT_RATIO_FILE_NAME = "unpaidRatio";
     public static final String OFFENCES_FILE_NAME = "offences";
@@ -14,8 +16,10 @@ public class SafetyPaths {
     public static final String SOCIAL_PROTECTION_RATIO_FILE_NAME = "socialProtectionRatio";
     public static final String UNEXPECTED_RATIO_FILE_NAME = "unexpectedRatio";
 
+    public static final String SAFETY_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, SAFETY_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.SAFETY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return SAFETY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

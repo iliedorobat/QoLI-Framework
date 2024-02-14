@@ -8,14 +8,18 @@ import static app.java.commons.constants.Constants.CSV_EXTENSION;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class GovRightsPaths {
+    public static final String GOVERNANCE_FILE_NAME = "governance";
+
     public static final String CITIZENSHIP_RATIO_FILE_NAME = "citizenshipRatio";
     public static final String EMPLOYMENT_RATIO_BY_SEX_FILE_NAME = "employmentRatioBySex";
     public static final String GENDER_PAY_GAP_FILE_NAME = "genderPayGap";
     public static final String POPULATION_TRUST_FILE_NAME = "populationTrustRatio";
     public static final String VOTER_TURNOUT_FILE_NAME = "voterTurnout";
 
+    public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, GOVERNANCE_FILE_NAME);
+
     private static String generatePath(String fileName) {
-        return FilePathConst.GOV_RIGHTS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return GOV_RIGHTS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String
@@ -23,5 +27,5 @@ public class GovRightsPaths {
             EMPLOYMENT_RATIO_PATH = generatePath(EMPLOYMENT_RATIO_BY_SEX_FILE_NAME),
             GENDER_PAY_GAP_PATH = generatePath(GENDER_PAY_GAP_FILE_NAME),
             POPULATION_TRUST_PATH = generatePath(POPULATION_TRUST_FILE_NAME),
-            VOTER_TURNOUT_PATH = FilePathConst.GOV_RIGHTS_RAW_PATH + File.separator + VOTER_TURNOUT_FILE_NAME + CSV_EXTENSION;
+            VOTER_TURNOUT_PATH = GOV_RIGHTS_RAW_PATH + File.separator + VOTER_TURNOUT_FILE_NAME + CSV_EXTENSION;
 }

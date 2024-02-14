@@ -1,14 +1,14 @@
 package app.java.commons.dimensions.common;
 
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
 import static app.java.commons.dimensions.common.CommonParams.POPULATION_PARAMS;
+import static app.java.commons.dimensions.common.CommonPaths.AUXILIARY_RAW_PATH;
 
 public class CommonCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getPopulation(), FilePathConst.COMMON_RAW_PATH, CommonPaths.POPULATION_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulation(), AUXILIARY_RAW_PATH, CommonPaths.POPULATION_FILE_NAME);
     }
 
     /**

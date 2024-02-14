@@ -1,6 +1,5 @@
 package app.java.commons.dimensions.mainActivity;
 
-import app.java.commons.constants.FilePathConst;
 import app.java.commons.utils.FileUtils;
 import app.java.data.fetch.Fetcher;
 
@@ -9,19 +8,19 @@ import static app.java.commons.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAvgWorkHours2007(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2007_FILE_NAME);
-        FileUtils.writeToJSONFile(getAvgWorkHours2008(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2008_FILE_NAME);
-        FileUtils.writeToJSONFile(getEmploymentRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, EMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getInactivePopulationRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, INACTIVE_POPULATION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getInvoluntaryPartTimeRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, INVOLUNTARY_PART_TIME_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getJobSatisfaction(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, JOB_SATISFACTION_FILE_NAME);
-        FileUtils.writeToJSONFile(getLongTermUnemploymentRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLowWageEarnersRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, LOW_WAGE_EARNERS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getOverQualifiedRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, OVER_QUALIFIED_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getResearchers(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, RESEARCHERS_FILE_NAME);
-        FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnemploymentRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, UNEMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getWorkingNightsRatio(), FilePathConst.MAIN_ACTIVITY_RAW_PATH, WORKING_NIGHTS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2007_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2008_FILE_NAME);
+        FileUtils.writeToJSONFile(getEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, EMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getInactivePopulationRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, INACTIVE_POPULATION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getInvoluntaryPartTimeRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, INVOLUNTARY_PART_TIME_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getJobSatisfaction(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, JOB_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getLongTermUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLowWageEarnersRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LOW_WAGE_EARNERS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getOverQualifiedRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, OVER_QUALIFIED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getResearchers(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, RESEARCHERS_FILE_NAME);
+        FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, UNEMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkingNightsRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, WORKING_NIGHTS_RATIO_FILE_NAME);
     }
 
     /**
