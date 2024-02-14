@@ -16,12 +16,52 @@ import app.java.commons.dimensions.safety.SafetyStats;
 import app.java.commons.utils.MapUtils;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
+import static app.java.commons.dimensions.aggrQoli.QoLIPaths.QOLI_FILE_NAME;
+import static app.java.commons.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
+import static app.java.commons.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
+import static app.java.commons.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;
+import static app.java.commons.dimensions.health.HealthPaths.HEALTH_FILE_NAME;
+import static app.java.commons.dimensions.interactions.InteractionsPaths.INTERACTIONS_FILE_NAME;
+import static app.java.commons.dimensions.leisure.LeisurePaths.LEISURE_FILE_NAME;
+import static app.java.commons.dimensions.mainActivity.MainActivityPaths.MAIN_ACTIVITY_FILE_NAME;
+import static app.java.commons.dimensions.materialLiving.MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME;
+import static app.java.commons.dimensions.overall.OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME;
+import static app.java.commons.dimensions.safety.SafetyPaths.SAFETY_FILE_NAME;
 
 public class QoLIStats {
+    public static final HashMap<String, Map<String, Number>> DATA_BY_COUNTRIES = new HashMap<>(){{
+        put(QOLI_FILE_NAME, QoLIStats.generateIndicatorList());
+        put(EDUCATION_FILE_NAME, EducationStats.generateDimensionList());
+        put(ENVIRONMENT_FILE_NAME, EnvironmentStats.generateDimensionList());
+        put(GOVERNANCE_FILE_NAME, GovRightsStats.generateDimensionList());
+        put(HEALTH_FILE_NAME, HealthStats.generateDimensionList());
+        put(INTERACTIONS_FILE_NAME, InteractionsStats.generateDimensionList());
+        put(LEISURE_FILE_NAME, LeisureStats.generateDimensionList());
+        put(MAIN_ACTIVITY_FILE_NAME, MainActivityStats.generateDimensionList());
+        put(LIVING_CONDITIONS_FILE_NAME, MaterialLivingStats.generateDimensionList());
+        put(OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.generateDimensionList());
+        put(SAFETY_FILE_NAME, SafetyStats.generateDimensionList());
+    }};
+
+    public static final HashMap<String, Map<String, Number>> DATA_BY_REGIONS = new HashMap<>(){{
+        put(QOLI_FILE_NAME, QoLIStats.aggregateRegions(QoLIStats.generateIndicatorList()));
+        put(EDUCATION_FILE_NAME, QoLIStats.aggregateRegions(EducationStats.generateDimensionList()));
+        put(ENVIRONMENT_FILE_NAME, QoLIStats.aggregateRegions(EnvironmentStats.generateDimensionList()));
+        put(GOVERNANCE_FILE_NAME, QoLIStats.aggregateRegions((GovRightsStats.generateDimensionList())));
+        put(HEALTH_FILE_NAME, QoLIStats.aggregateRegions(HealthStats.generateDimensionList()));
+        put(INTERACTIONS_FILE_NAME, QoLIStats.aggregateRegions(InteractionsStats.generateDimensionList()));
+        put(LEISURE_FILE_NAME, QoLIStats.aggregateRegions(LeisureStats.generateDimensionList()));
+        put(MAIN_ACTIVITY_FILE_NAME, QoLIStats.aggregateRegions(MainActivityStats.generateDimensionList()));
+        put(LIVING_CONDITIONS_FILE_NAME, QoLIStats.aggregateRegions(MaterialLivingStats.generateDimensionList()));
+        put(OVERALL_EXPERIENCE_FILE_NAME, QoLIStats.aggregateRegions(OverallExperienceStats.generateDimensionList()));
+        put(SAFETY_FILE_NAME, QoLIStats.aggregateRegions(SafetyStats.generateDimensionList()));
+    }};
+
     public static Map<String, Number> generateIndicatorList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
