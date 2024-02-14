@@ -40,7 +40,7 @@ java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=QO
 java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 ```
-* List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/DimensionNames.java
+* List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/FilePathConst.java (constants suffixed by "_DIR")
 * List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java
 
 
