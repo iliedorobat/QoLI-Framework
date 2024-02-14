@@ -2,6 +2,8 @@ package app.java.commons.dimensions.gov;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.CSV_EXTENSION;
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
@@ -13,7 +15,7 @@ public class GovRightsPaths {
     public static final String VOTER_TURNOUT_FILE_NAME = "voterTurnout";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.GOV_RIGHTS_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.GOV_RIGHTS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String
@@ -21,5 +23,5 @@ public class GovRightsPaths {
             EMPLOYMENT_RATIO_PATH = generatePath(EMPLOYMENT_RATIO_BY_SEX_FILE_NAME),
             GENDER_PAY_GAP_PATH = generatePath(GENDER_PAY_GAP_FILE_NAME),
             POPULATION_TRUST_PATH = generatePath(POPULATION_TRUST_FILE_NAME),
-            VOTER_TURNOUT_PATH = FilePathConst.GOV_RIGHTS_PATH + VOTER_TURNOUT_FILE_NAME + CSV_EXTENSION;
+            VOTER_TURNOUT_PATH = FilePathConst.GOV_RIGHTS_RAW_PATH + File.separator + VOTER_TURNOUT_FILE_NAME + CSV_EXTENSION;
 }

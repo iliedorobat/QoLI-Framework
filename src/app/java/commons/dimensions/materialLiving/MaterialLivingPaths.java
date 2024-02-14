@@ -2,6 +2,8 @@ package app.java.commons.dimensions.materialLiving;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MaterialLivingPaths {
@@ -19,7 +21,7 @@ public class MaterialLivingPaths {
     public static final String UNDER_OCCUPIED_RATIO_FILE_NAME = "underOccupiedRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.MATERIAL_LIVING_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.LIVING_CONDITIONS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

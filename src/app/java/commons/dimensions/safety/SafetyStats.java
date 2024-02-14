@@ -2,8 +2,8 @@ package app.java.commons.dimensions.safety;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
@@ -183,7 +183,7 @@ public class SafetyStats {
             put(IndicatorNames.TOTAL_OFFENCES_RATIO, totalOffencesRatio);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.SAFETY, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.SAFETY_DIR, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

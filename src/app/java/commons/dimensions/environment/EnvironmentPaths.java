@@ -2,6 +2,8 @@ package app.java.commons.dimensions.environment;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EnvironmentPaths {
@@ -11,7 +13,7 @@ public class EnvironmentPaths {
     public static final String WATER_SUPPLY_RATIO_FILE_NAME = "waterSupplyRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.ENVIRONMENT_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.ENVIRONMENT_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

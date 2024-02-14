@@ -2,6 +2,8 @@ package app.java.commons.dimensions.leisure;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class LeisurePaths {
@@ -11,7 +13,7 @@ public class LeisurePaths {
     public static final String VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME = "voluntaryActivitiesRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.LEISURE_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.LEISURE_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

@@ -6,6 +6,8 @@ import app.java.commons.constants.FilePathConst;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -43,13 +45,15 @@ public class JsonStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of series ("country" or "region")
-     * @param dimensionName The name of the target dimension
+     * @param directoryName Directory name of the target dimension/indicator
+     * @param preparedIndicators A map containing indicators which make up the target dimension
      */
     public static void writeJsonData(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName
+            String directoryName,
+            HashMap<String, Map<String, Number>> preparedIndicators
     ) {
         TreeMap<String, TreeMap<Integer, Number>> stats = JsonStatsUtils.generateJsonData(entries, membersList);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -59,8 +63,17 @@ public class JsonStatsUtils {
                     objectMapper.writeValueAsString(stats)
             );
             String seriesDirectory = CsvStatsUtils.getSeriesDirectory(seriesType);
-            String fullPath = FilePathConst.PROCESSED_DATASET_PATH + "json/" + seriesDirectory + "/";
-            FileUtils.writeToFile(data, fullPath, dimensionName, Constants.JSON_EXTENSION);
+            String fullPath = String.join(File.separator, FilePathConst.PREPARED_DATASET_PATH, "json", seriesDirectory);
+            FileUtils.writeToFile(data, fullPath, directoryName, Constants.JSON_EXTENSION);
+
+            // TODO:
+//            if (preparedIndicators != null) {
+//                preparedIndicators.forEach((indicatorName, value) -> {
+//                    // TODO: check
+//                    String indicatorFullPath = fullPath + StatsUtils.getDimensionSubPath(dimensionName);
+//                    FileUtils.writeToFile(data, indicatorFullPath, indicatorName, Constants.JSON_EXTENSION);
+//                });
+//            }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

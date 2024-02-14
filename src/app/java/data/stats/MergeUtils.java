@@ -8,6 +8,7 @@ import app.java.data.LocalParser;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 
+import java.io.File;
 import java.util.*;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
@@ -43,7 +44,7 @@ public class MergeUtils {
      */
     public static Map<String, Number> consolidateMap(MultiValuedMap<String, String> params, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        String fullPath = System.getProperty("user.dir") + "/" + filePath;
+        String fullPath = System.getProperty("user.dir") + File.separator + filePath;
         Map<List<String>, Number> entries = LocalParser.readJSONFile(fullPath);
 
         ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(fullPath);

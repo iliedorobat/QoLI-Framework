@@ -2,8 +2,8 @@ package app.java.commons.dimensions.materialLiving;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -139,7 +139,7 @@ public class MaterialLivingStats {
             put(IndicatorNames.UNDER_OCCUPIED_RATIO, underOccupiedRatio);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.MATERIAL_LIVING_CONDITIONS, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.LIVING_CONDITIONS_DIR, EU28_MEMBERS, seriesType, direction);
     }
 
     // proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty

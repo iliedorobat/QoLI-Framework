@@ -2,6 +2,8 @@ package app.java.commons.dimensions.education;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class EducationPaths {
@@ -16,7 +18,7 @@ public class EducationPaths {
     public static final String TRAINING_RATIO_FILE_NAME = "trainingRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.EDUCATION_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.EDUCATION_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

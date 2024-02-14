@@ -2,8 +2,8 @@ package app.java.commons.dimensions.overall;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -73,7 +73,7 @@ public class OverallExperienceStats {
             put(IndicatorNames.HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.OVERALL_EXPERIENCE, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.OVERALL_EXPERIENCE_DIR, EU28_MEMBERS, seriesType, direction);
     }
 
     private static Map<String, Number> prepareHappinessRatio() {

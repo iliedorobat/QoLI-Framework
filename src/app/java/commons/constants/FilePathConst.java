@@ -1,17 +1,33 @@
 package app.java.commons.constants;
 
+import java.io.File;
+
 public class FilePathConst {
-    public static final String ORIGINAL_DATASET_PATH = "files/original/json/countries/";
-    public static final String COMMON_PATH = ORIGINAL_DATASET_PATH + "auxiliary/";
-    public static final String MATERIAL_LIVING_PATH = ORIGINAL_DATASET_PATH + "livingConditions/";
-    public static final String MAIN_ACTIVITY_PATH = ORIGINAL_DATASET_PATH + "mainActivity/";
-    public static final String HEALTH_PATH = ORIGINAL_DATASET_PATH + "health/";
-    public static final String EDUCATION_PATH = ORIGINAL_DATASET_PATH + "education/";
-    public static final String INTERACTIONS_PATH = ORIGINAL_DATASET_PATH + "interactions/";
-    public static final String LEISURE_PATH = ORIGINAL_DATASET_PATH + "leisure/";
-    public static final String SAFETY_PATH = ORIGINAL_DATASET_PATH + "safety/";
-    public static final String GOV_RIGHTS_PATH = ORIGINAL_DATASET_PATH + "governance/";
-    public static final String ENVIRONMENT_PATH = ORIGINAL_DATASET_PATH + "environment/";
-    public static final String OVERALL_EXPERIENCE_PATH = ORIGINAL_DATASET_PATH + "overallExperience/";
-    public static final String PROCESSED_DATASET_PATH = "files/processed/";
+    public static final String PREPARED_DATASET_PATH = String.join(File.separator, "files", "processed");
+    public static final String RAW_DATASET_PATH = String.join(File.separator, "files", "original", "json", "countries");
+
+    public static final String AUXILIARY_DIR = "auxiliary";
+    public static final String EDUCATION_DIR = "education";
+    public static final String ENVIRONMENT_DIR = "environment";
+    public static final String GOVERNANCE_DIR = "governance";
+    public static final String HEALTH_DIR = "health";
+    public static final String INTERACTIONS_DIR = "interactions";
+    public static final String LEISURE_DIR = "leisure";
+    public static final String LIVING_CONDITIONS_DIR = "livingConditions";
+    public static final String MAIN_ACTIVITY_DIR = "mainActivity";
+    public static final String OVERALL_EXPERIENCE_DIR = "overallExperience";
+    public static final String QOLI_DIR = "qoli";
+    public static final String SAFETY_DIR = "safety";
+
+    public static final String COMMON_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, AUXILIARY_DIR);
+    public static final String EDUCATION_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, EDUCATION_DIR);
+    public static final String ENVIRONMENT_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, ENVIRONMENT_DIR);
+    public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, GOVERNANCE_DIR);
+    public static final String HEALTH_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, HEALTH_DIR);
+    public static final String INTERACTIONS_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, INTERACTIONS_DIR);
+    public static final String LEISURE_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, LEISURE_DIR);
+    public static final String LIVING_CONDITIONS_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, LIVING_CONDITIONS_DIR);
+    public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, MAIN_ACTIVITY_DIR);
+    public static final String OVERALL_EXPERIENCE_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, OVERALL_EXPERIENCE_DIR);
+    public static final String SAFETY_RAW_PATH = String.join(File.separator, RAW_DATASET_PATH, SAFETY_DIR);
 }

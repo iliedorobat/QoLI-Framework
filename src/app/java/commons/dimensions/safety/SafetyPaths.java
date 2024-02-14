@@ -2,6 +2,8 @@ package app.java.commons.dimensions.safety;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class SafetyPaths {
@@ -13,7 +15,7 @@ public class SafetyPaths {
     public static final String UNEXPECTED_RATIO_FILE_NAME = "unexpectedRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.SAFETY_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.SAFETY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

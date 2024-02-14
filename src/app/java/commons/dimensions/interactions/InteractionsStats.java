@@ -2,8 +2,8 @@ package app.java.commons.dimensions.interactions;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -86,6 +86,6 @@ public class InteractionsStats {
             put(IndicatorNames.SATISFACTION_RATIO, satisfactionRatio);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.INTERACTIONS, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.INTERACTIONS_DIR, EU28_MEMBERS, seriesType, direction);
     }
 }

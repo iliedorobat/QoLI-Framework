@@ -2,6 +2,8 @@ package app.java.commons.dimensions.health;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthPaths {
@@ -21,7 +23,7 @@ public class HealthPaths {
     public static final String WORK_ACCIDENTS_FILE_NAME = "workAccidents";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.HEALTH_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.HEALTH_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
     
     public static final String

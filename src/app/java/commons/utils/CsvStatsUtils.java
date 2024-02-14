@@ -5,6 +5,7 @@ import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
@@ -66,7 +67,7 @@ public class CsvStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
-     * @param dimensionName The name of the target dimension
+     * @param directoryName Directory name of the target dimension/indicator
      * @param direction Display years on rows or columns (ROW or COLUMN)
      * @return Data prepared for use in Word charts
      */
@@ -74,14 +75,14 @@ public class CsvStatsUtils {
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName,
+            String directoryName,
             String direction
     ) {
         if (direction.equals(DIRECTION_ROW)) {
-            return generateChartRows(entries, membersList, seriesType, dimensionName);
+            return generateChartRows(entries, membersList, seriesType, directoryName);
         }
 
-        return generateChartColumns(entries, membersList, seriesType, dimensionName);
+        return generateChartColumns(entries, membersList, seriesType, directoryName);
     }
 
     /**
@@ -89,16 +90,16 @@ public class CsvStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
-     * @param dimensionName The name of the target dimension
+     * @param directoryName Directory name of the target dimension/indicator
      * @return Data prepared for use in Word charts
      */
     private static StringBuilder generateChartColumns(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName
+            String directoryName
     ) {
-        String header = "--- " + seriesType + " --- " + dimensionName + " ---" +
+        String header = "--- " + seriesType + " --- " + directoryName + " ---" +
                 "\nCountries" + CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
         int length = membersList.length;
@@ -138,16 +139,16 @@ public class CsvStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
-     * @param dimensionName The name of the target dimension
+     * @param directoryName Directory name of the target dimension/indicator
      * @return Data prepared for use in Word charts
      */
     private static StringBuilder generateChartRows(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName
+            String directoryName
     ) {
-        String header = "--- " + seriesType + " --- " + dimensionName + " ---" +
+        String header = "--- " + seriesType + " --- " + directoryName + " ---" +
                 "\nYears" + CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
         int length = membersList.length;
@@ -185,20 +186,30 @@ public class CsvStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of series ("country" or "region")
-     * @param dimensionName The name of the target dimension
+     * @param dimensionDirName The directory name of the target dimension
      * @param direction Display years on rows or columns (ROW or COLUMN)
+     * @param preparedIndicators A map containing indicators which make up the target dimension
      */
     public static void writeChartData(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName,
-            String direction
+            String dimensionDirName,
+            String direction,
+            HashMap<String, Map<String, Number>> preparedIndicators
     ) {
-        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
+        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionDirName, direction);
         String seriesDirectory = getSeriesDirectory(seriesType);
-        String fullPath = FilePathConst.PROCESSED_DATASET_PATH + "csv/" + seriesDirectory + "/";
-        FileUtils.writeToFile(sb, fullPath, dimensionName, Constants.CSV_EXTENSION);
+        String fullPath = String.join(File.separator, FilePathConst.PREPARED_DATASET_PATH + "csv" + seriesDirectory);
+        FileUtils.writeToFile(sb, fullPath, dimensionDirName, Constants.CSV_EXTENSION);
+
+        // TODO:
+//        if (preparedIndicators != null) {
+//            preparedIndicators.forEach((indicatorName, value) -> {
+//                String indicatorFullPath = fullPath + File.separator + dimensionDirName;
+//                FileUtils.writeToFile(sb, indicatorFullPath, indicatorName, Constants.JSON_EXTENSION);
+//            });
+//        }
     }
 
     /**

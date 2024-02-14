@@ -2,6 +2,8 @@ package app.java.commons.dimensions.mainActivity;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class MainActivityPaths {
@@ -20,7 +22,7 @@ public class MainActivityPaths {
     public static final String WORKING_NIGHTS_RATIO_FILE_NAME = "nightsRatio";
 
     private static String generatePath(String fileName) {
-        return FilePathConst.MAIN_ACTIVITY_PATH + fileName + JSON_EXTENSION;
+        return FilePathConst.MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
     }
 
     public static final String

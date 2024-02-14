@@ -15,7 +15,7 @@ public class FileUtils {
      * @param extension The name of the target file
      */
     public static void convertXlsToCsv(String filePath, String fileName, String extension) {
-        String path = filePath + fileName + extension;
+        String path = filePath + File.separator + fileName + extension;
         Workbook workbook = null;
         Row row;
         Cell cell;
@@ -24,8 +24,8 @@ public class FileUtils {
 
         if (extension.equals(Constants.XLS_EXTENSION)) {
             try {
-                new FileWriter(filePath + fileName + Constants.CSV_EXTENSION, false).close();
-                outputStream = new FileOutputStream(filePath + fileName + Constants.CSV_EXTENSION, true);
+                new FileWriter(filePath + File.separator + fileName + Constants.CSV_EXTENSION, false).close();
+                outputStream = new FileOutputStream(filePath + File.separator + fileName + Constants.CSV_EXTENSION, true);
 
                 boolean isHeader = true;
                 workbook = WorkbookFactory.create(new File(path));
@@ -85,7 +85,7 @@ public class FileUtils {
         try {
             URL url = new URL(httpLink);
             in = new BufferedInputStream(url.openStream());
-            out = new FileOutputStream(filePath + fileName + extension);
+            out = new FileOutputStream(filePath + File.separator + fileName + extension);
 
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
@@ -152,7 +152,7 @@ public class FileUtils {
      * @param extension The extension of the output file
      */
     public static void writeToFile(StringBuilder sb, String path, String fileName, String extension) {
-        String fullPath = path + fileName + extension;
+        String fullPath = path + File.separator + fileName + extension;
         FileWriter fw = null;
 
         File directory = new File(path);

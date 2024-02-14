@@ -9,10 +9,10 @@ import static app.java.commons.dimensions.interactions.InteractionsPaths.*;
 
 public class InteractionsCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_PATH, ASKING_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_PATH, DISCUSSION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAskingRatio(), FilePathConst.INTERACTIONS_RAW_PATH, ASKING_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDiscussionRatio(), FilePathConst.INTERACTIONS_RAW_PATH, DISCUSSION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getGettingTogetherRatio(), FilePathConst.INTERACTIONS_RAW_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), FilePathConst.INTERACTIONS_RAW_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

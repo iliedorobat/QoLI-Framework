@@ -2,8 +2,8 @@ package app.java.commons.dimensions.gov;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -123,7 +123,7 @@ public class GovRightsStats {
             put(IndicatorNames.VOTER_TURNOUT, voterTurnout);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.GOVERNMENT, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.GOVERNANCE_DIR, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

@@ -29,10 +29,10 @@ public class Print {
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionName,
+            String directoryName,
             String direction
     ) {
-        StringBuilder output = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionName, direction);
+        StringBuilder output = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
         System.out.println(output);
     }
 

@@ -2,8 +2,8 @@ package app.java.commons.dimensions.health;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
-import app.java.commons.constants.DimensionNames;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.constants.FilePathConst;
 import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.common.CommonStats;
 import app.java.commons.utils.MapUtils;
@@ -167,7 +167,7 @@ public class HealthStats {
             put(IndicatorNames.WORK_ACCIDENTS, workAccidents);
         }};
 
-        Print.printChartData(args, indicators, DimensionNames.HEALTH, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, indicators, FilePathConst.HEALTH_DIR, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

@@ -14,8 +14,8 @@ import static app.java.commons.dimensions.overall.OverallExperiencePaths.HIGH_SA
  */
 public class OverallExperienceCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getHappinessRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, HAPPINESS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), FilePathConst.OVERALL_EXPERIENCE_PATH, HIGH_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHappinessRatio(), FilePathConst.OVERALL_EXPERIENCE_RAW_PATH, HAPPINESS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), FilePathConst.OVERALL_EXPERIENCE_RAW_PATH, HIGH_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

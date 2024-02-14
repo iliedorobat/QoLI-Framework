@@ -15,16 +15,17 @@ import app.java.commons.utils.JsonStatsUtils;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.*;
+import static app.java.commons.constants.FilePathConst.*;
 
 public class QoLIJsonStats {
     public static void writeDimensions() {
-        writeCountries();
-        writeRegions();
+        writeData(EU28_MEMBERS, SERIES_TYPE_COUNTRY);
+        writeData(EU28_MEMBERS, SERIES_TYPE_REGION);
     }
 
-    private static void writeCountries() {
+    private static void writeData(String[] membersList, String seriesType) {
         Map<String, Number>
-                qoliList = QoLICsvStats.generateIndicatorList(),
+                qoliList = QoLIStats.generateIndicatorList(),
                 educationStats = EducationStats.generateDimensionList(),
                 environmentStats = EnvironmentStats.generateDimensionList(),
                 govRightsStats = GovRightsStats.generateDimensionList(),
@@ -36,43 +37,16 @@ public class QoLIJsonStats {
                 overallExperienceStats = OverallExperienceStats.generateDimensionList(),
                 safetyStats = SafetyStats.generateDimensionList();
 
-        JsonStatsUtils.writeJsonData(qoliList, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "qoli");
-        JsonStatsUtils.writeJsonData(educationStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "education");
-        JsonStatsUtils.writeJsonData(environmentStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "environment");
-        JsonStatsUtils.writeJsonData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "governance");
-        JsonStatsUtils.writeJsonData(healthStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "health");
-        JsonStatsUtils.writeJsonData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "interactions");
-        JsonStatsUtils.writeJsonData(leisureStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "leisure");
-        JsonStatsUtils.writeJsonData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "mainActivity");
-        JsonStatsUtils.writeJsonData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "livingConditions");
-        JsonStatsUtils.writeJsonData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "overallExperience");
-        JsonStatsUtils.writeJsonData(safetyStats, EU28_MEMBERS, SERIES_TYPE_COUNTRY, "safety");
-    }
-
-    private static void writeRegions() {
-        Map<String, Number>
-                qoliList = QoLICsvStats.generateIndicatorList(),
-                educationStats = EducationStats.generateDimensionList(),
-                environmentStats = EnvironmentStats.generateDimensionList(),
-                govRightsStats = GovRightsStats.generateDimensionList(),
-                healthStats = HealthStats.generateDimensionList(),
-                interactionsStats = InteractionsStats.generateDimensionList(),
-                leisureStats = LeisureStats.generateDimensionList(),
-                mainActivityStats = MainActivityStats.generateDimensionList(),
-                materialLivingStats = MaterialLivingStats.generateDimensionList(),
-                overallExperienceStats = OverallExperienceStats.generateDimensionList(),
-                safetyStats = SafetyStats.generateDimensionList();
-
-        JsonStatsUtils.writeJsonData(qoliList, EU28_MEMBERS, SERIES_TYPE_REGION, "qoli");
-        JsonStatsUtils.writeJsonData(educationStats, EU28_MEMBERS, SERIES_TYPE_REGION, "education");
-        JsonStatsUtils.writeJsonData(environmentStats, EU28_MEMBERS, SERIES_TYPE_REGION, "environment");
-        JsonStatsUtils.writeJsonData(govRightsStats, EU28_MEMBERS, SERIES_TYPE_REGION, "governance");
-        JsonStatsUtils.writeJsonData(healthStats, EU28_MEMBERS, SERIES_TYPE_REGION, "health");
-        JsonStatsUtils.writeJsonData(interactionsStats, EU28_MEMBERS, SERIES_TYPE_REGION, "interactions");
-        JsonStatsUtils.writeJsonData(leisureStats, EU28_MEMBERS, SERIES_TYPE_REGION, "leisure");
-        JsonStatsUtils.writeJsonData(mainActivityStats, EU28_MEMBERS, SERIES_TYPE_REGION, "mainActivity");
-        JsonStatsUtils.writeJsonData(materialLivingStats, EU28_MEMBERS, SERIES_TYPE_REGION, "livingConditions");
-        JsonStatsUtils.writeJsonData(overallExperienceStats, EU28_MEMBERS, SERIES_TYPE_REGION, "overallExperience");
-        JsonStatsUtils.writeJsonData(safetyStats, EU28_MEMBERS, SERIES_TYPE_REGION, "safety");
+        JsonStatsUtils.writeJsonData(qoliList, membersList, seriesType, QOLI_DIR, null);
+        JsonStatsUtils.writeJsonData(educationStats, membersList, seriesType, EDUCATION_DIR, EducationStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(environmentStats, membersList, seriesType, ENVIRONMENT_DIR, EnvironmentStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(govRightsStats, membersList, seriesType, GOVERNANCE_DIR, GovRightsStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(healthStats, membersList, seriesType, HEALTH_DIR, HealthStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(interactionsStats, membersList, seriesType, INTERACTIONS_DIR, InteractionsStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(leisureStats, membersList, seriesType, LEISURE_DIR, LeisureStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(mainActivityStats, membersList, seriesType, MAIN_ACTIVITY_DIR, MainActivityStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(materialLivingStats, membersList, seriesType, LIVING_CONDITIONS_DIR, MaterialLivingStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(overallExperienceStats, membersList, seriesType, OVERALL_EXPERIENCE_DIR, OverallExperienceStats.preparedIndicators);
+        JsonStatsUtils.writeJsonData(safetyStats, membersList, seriesType, SAFETY_DIR, SafetyStats.preparedIndicators);
     }
 }

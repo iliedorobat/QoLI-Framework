@@ -2,11 +2,13 @@ package app.java.commons.dimensions.common;
 
 import app.java.commons.constants.FilePathConst;
 
+import java.io.File;
+
 import static app.java.commons.constants.Constants.JSON_EXTENSION;
 
 public class CommonPaths {
     public static final String POPULATION_FILE_NAME = "population";
 
     public static final String
-            POPULATION_PATH = FilePathConst.COMMON_PATH + CommonPaths.POPULATION_FILE_NAME + JSON_EXTENSION;
+            POPULATION_PATH = FilePathConst.COMMON_RAW_PATH + File.separator + CommonPaths.POPULATION_FILE_NAME + JSON_EXTENSION;
 }
