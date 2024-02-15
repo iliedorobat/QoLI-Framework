@@ -40,7 +40,7 @@ public class GovRightsCollector {
         FileUtils.convertXlsToCsv(FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
 
         // Remove the XLS file after it has been converted to CSV
-        File file = new File(FILE_PATH + FILE_NAME + Constants.XLS_EXTENSION);
+        File file = new File(FILE_PATH + File.separator + FILE_NAME + Constants.XLS_EXTENSION);
         file.delete();
     }
 
