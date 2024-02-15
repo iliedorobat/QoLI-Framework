@@ -3,7 +3,6 @@ package app.java.commons.dimensions.leisure;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -58,13 +57,35 @@ public class LeisureStats {
             socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
             nonParticipationRatio = consolidateNonParticipationRatio();
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("formalVoluntaryRatio", formalVoluntaryRatio);
-        put("informalVoluntaryRatio", informalVoluntaryRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initFormalVoluntaryRatio));
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initInformalVoluntaryRatio));
+        put(NON_PARTICIPATION_FIN_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCinRatio));
+        put(NON_PARTICIPATION_FIN_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCultRatio));
+        put(NON_PARTICIPATION_FIN_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinLiveRatio));
+        put(NON_PARTICIPATION_FIN_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpFinSportRatio));
+        put(NON_PARTICIPATION_NNB_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCinRatio));
+        put(NON_PARTICIPATION_NNB_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCultRatio));
+        put(NON_PARTICIPATION_NNB_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbLiveRatio));
+        put(NON_PARTICIPATION_NNB_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbSportRatio));
+        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initSocialActivitiesRatio));
+        put(TIME_SPENT_SATISFACTION_FILE_NAME, Preparation.filterMap(initSatisfactionRatio));
+    }};
 
-        put("satisfactionRatio", satisfactionRatio);
-        put("socialActivitiesRatio", socialActivitiesRatio);
-        put("nonParticipationRatio", nonParticipationRatio);
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, formalVoluntaryRatio);
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, informalVoluntaryRatio);
+        put(NON_PARTICIPATION_FIN_CINEMA_RATIO_FILE_NAME, npFinCinRatio);
+        put(NON_PARTICIPATION_FIN_CULTURE_RATIO_FILE_NAME, npFinCultRatio);
+        put(NON_PARTICIPATION_FIN_LIVE_RATIO_FILE_NAME, npFinLiveRatio);
+        put(NON_PARTICIPATION_FIN_SPORT_RATIO_FILE_NAME, npFinSportRatio);
+        put(NON_PARTICIPATION_NNB_CINEMA_RATIO_FILE_NAME, npNnbCinRatio);
+        put(NON_PARTICIPATION_NNB_CULTURE_RATIO_FILE_NAME, npNnbCultRatio);
+        put(NON_PARTICIPATION_NNB_LIVE_RATIO_FILE_NAME, npNnbLiveRatio);
+        put(NON_PARTICIPATION_NNB_SPORT_RATIO_FILE_NAME, npNnbSportRatio);
+        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, socialActivitiesRatio);
+        put(TIME_SPENT_SATISFACTION_FILE_NAME, satisfactionRatio);
+        put(NON_PARTICIPATION_RATIO_FILE_NAME, nonParticipationRatio);
     }};
 
 
@@ -93,41 +114,8 @@ public class LeisureStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Formal Voluntary Ratio", Preparation.filterMap(initFormalVoluntaryRatio));
-            put("Informal Voluntary Ratio", Preparation.filterMap(initInformalVoluntaryRatio));
-            put("Non Participation Fin Cinema Ratio", Preparation.filterMap(initNpFinCinRatio));
-            put("Non Participation Fin Culture Ratio", Preparation.filterMap(initNpFinCultRatio));
-            put("Non Participation Fin Live Ratio", Preparation.filterMap(initNpFinLiveRatio));
-            put("Non Participation Fin Sport Ratio", Preparation.filterMap(initNpFinSportRatio));
-            put("Non Participation Nnb Cinema Ratio", Preparation.filterMap(initNpNnbCinRatio));
-            put("Non Participation Nnb Culture Ratio", Preparation.filterMap(initNpNnbCultRatio));
-            put("Non Participation Nnb Live Ratio", Preparation.filterMap(initNpNnbLiveRatio));
-            put("Non Participation Nnb Sport Ratio", Preparation.filterMap(initNpNnbSportRatio));
-            put("Satisfaction Ratio", Preparation.filterMap(initSatisfactionRatio));
-            put("Social Activities Ratio", Preparation.filterMap(initSocialActivitiesRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.NP_FIN_CIN_RATIO, npFinCinRatio);
-            put(IndicatorNames.NP_FIN_CULT_RATIO, npFinCultRatio);
-            put(IndicatorNames.NP_FIN_LIVE_RATIO, npFinLiveRatio);
-            put(IndicatorNames.NP_FIN_SPORT_RATIO, npFinSportRatio);
-            put(IndicatorNames.NP_NNB_CIN_RATIO, npNnbCinRatio);
-            put(IndicatorNames.NP_NNB_CULT_RATIO, npNnbCultRatio);
-            put(IndicatorNames.NP_NNB_LIVE_RATIO, npNnbLiveRatio);
-            put(IndicatorNames.NP_NNB_SPORT_RATIO, npNnbSportRatio);
-            put(IndicatorNames.FORMAL_VOLUNTARY_RATIO, formalVoluntaryRatio);
-            put(IndicatorNames.INFORMAL_VOLUNTARY_RATIO, informalVoluntaryRatio);
-            put(IndicatorNames.SATISFACTION_RATIO, satisfactionRatio);
-            put(IndicatorNames.SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
-            put(IndicatorNames.NON_PARTICIPATION_RATIO, nonParticipationRatio);
-        }};
-
-        Print.printChartData(args, indicators, LEISURE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, LEISURE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

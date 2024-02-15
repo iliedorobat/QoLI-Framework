@@ -3,7 +3,6 @@ package app.java.commons.dimensions.overall;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -32,9 +31,17 @@ public class OverallExperienceStats {
             happinessRatio = prepareHappinessRatio(),
             highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("happinessRatio", happinessRatio);
-        put("highSatisfactionRatio", highSatisfactionRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(HAPPINESS_ALWAYS_RATIO_FILE_NAME, Preparation.filterMap(initHappinessAlwaysRatio));
+        put(HAPPINESS_MOST_OF_THE_TIME_RATIO_FILE_NAME, Preparation.filterMap(initHappinessMostOfTheTimeRatio));
+        put(HIGH_SATISFACTION_RATIO_FILE_NAME, Preparation.filterMap(initHighSatisfactionRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(HAPPINESS_RATIO_FILE_NAME, happinessRatio);
+        put(HAPPINESS_ALWAYS_RATIO_FILE_NAME, happinessAlwaysRatio);
+        put(HAPPINESS_MOST_OF_THE_TIME_RATIO_FILE_NAME, happinessMostOfTheTimeRatio);
+        put(HIGH_SATISFACTION_RATIO_FILE_NAME, highSatisfactionRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -56,22 +63,8 @@ public class OverallExperienceStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Happiness (Always) Ratio", Preparation.filterMap(initHappinessAlwaysRatio));
-            put("Happiness (Most of the time) Ratio", Preparation.filterMap(initHappinessMostOfTheTimeRatio));
-            put("High Satisfaction Ratio", Preparation.filterMap(initHighSatisfactionRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.HAPPINESS_ALWAYS_RATIO, happinessAlwaysRatio);
-            put(IndicatorNames.HAPPINESS_MOST_OF_THE_TIME_RATIO, happinessMostOfTheTimeRatio);
-            put(IndicatorNames.HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
-        }};
-
-        Print.printChartData(args, indicators, OVERALL_EXPERIENCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, OVERALL_EXPERIENCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     private static Map<String, Number> prepareHappinessRatio() {

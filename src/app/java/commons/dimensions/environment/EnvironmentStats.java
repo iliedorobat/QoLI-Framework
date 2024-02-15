@@ -3,7 +3,6 @@ package app.java.commons.dimensions.environment;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -33,12 +32,20 @@ public class EnvironmentStats {
             pollutionRatio = Preparation.prepareData(initPollutionRatio),
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("noisePollutionRatio", noisePollutionRatio);
-        put("pm2_5PollutionRatio", pm2_5PollutionRatio);
-        put("pm10PollutionRatio", pm10PollutionRatio);
-        put("pollutionRatio", pollutionRatio);
-        put("waterSupplyRatio", waterSupplyRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(NOISE_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initNoisePollutionRatio));
+        put(PM_2_5_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPm2_5PollutionRatio));
+        put(PM_10_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPm10PollutionRatio));
+        put(POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPollutionRatio));
+        put(WATER_SUPPLY_RATIO_FILE_NAME, Preparation.filterMap(initWaterSupplyRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
+        put(PM_2_5_POLLUTION_RATIO_FILE_NAME, pm2_5PollutionRatio);
+        put(PM_10_POLLUTION_RATIO_FILE_NAME, pm10PollutionRatio);
+        put(POLLUTION_RATIO_FILE_NAME, pollutionRatio);
+        put(WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -66,25 +73,7 @@ public class EnvironmentStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Noise Pollution Ratio", Preparation.filterMap(initNoisePollutionRatio));
-            put("PM 2.5 Pollution Ratio", Preparation.filterMap(initPm2_5PollutionRatio));
-            put("PM 10 Pollution Ratio", Preparation.filterMap(initPm10PollutionRatio));
-            put("Pollution Ratio", Preparation.filterMap(initPollutionRatio));
-            put("Water Supply Ratio", Preparation.filterMap(initWaterSupplyRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.NOISE_POLLUTION_RATIO, noisePollutionRatio);
-            put(IndicatorNames.PM_2_5_POLLUTION_RATIO, pm2_5PollutionRatio);
-            put(IndicatorNames.PM_10_POLLUTION_RATIO, pm10PollutionRatio);
-            put(IndicatorNames.POLLUTION_RATIO, pollutionRatio);
-            put(IndicatorNames.WATER_SUPPLY_RATIO, waterSupplyRatio);
-        }};
-
-        Print.printChartData(args, indicators, ENVIRONMENT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, ENVIRONMENT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 }

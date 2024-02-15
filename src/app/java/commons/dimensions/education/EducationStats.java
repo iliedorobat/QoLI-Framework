@@ -3,7 +3,6 @@ package app.java.commons.dimensions.education;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -36,7 +35,7 @@ public class EducationStats {
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
             initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO_PARAMS, TRAINING_RATIO_PATH);
 
-    public static final Map<String, Number>
+    private static final Map<String, Number>
             digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
             dropoutRatio = Preparation.prepareData(initDropoutRatio),
             earlyEducationRatio = Preparation.prepareData(initEarlyEducationRatio),
@@ -46,15 +45,26 @@ public class EducationStats {
             pupilsRatio = Preparation.prepareData(initPupilsRatio),
             trainingRatio = Preparation.prepareData(initTrainingRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("digitalSkillsRatio", digitalSkillsRatio);
-        put("dropoutRatio", dropoutRatio);
-        put("earlyEducationRatio", earlyEducationRatio);
-        put("educationRatio", educationRatio);
-        put("inactiveYoungRatio", inactiveYoungRatio);
-        put("zeroForeignLangRatio", noKnownForeignLangRatio);
-        put("pupilsRatio", pupilsRatio);
-        put("trainingRatio", trainingRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(DIGITAL_SKILLS_RATIO_FILE_NAME, Preparation.filterMap(initDigitalSkillsRatio));
+        put(DROPOUT_RATIO_FILE_NAME, Preparation.filterMap(initDropoutRatio));
+        put(EARLY_EDU_RATIO_FILE_NAME, Preparation.filterMap(initEarlyEducationRatio));
+        put(EDU_RATIO_FILE_NAME, Preparation.filterMap(initEducationRatio)); // students
+        put(INACTIVE_YOUNG_RATIO_FILE_NAME, Preparation.filterMap(initInactiveYoungRatio));
+        put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, Preparation.filterMap(initNoKnownForeignLangRatio));
+        put(PUPILS_RATIO_FILE_NAME, Preparation.filterMap(initPupilsRatio));
+        put(TRAINING_RATIO_FILE_NAME, Preparation.filterMap(initTrainingRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(DIGITAL_SKILLS_RATIO_FILE_NAME, digitalSkillsRatio);
+        put(DROPOUT_RATIO_FILE_NAME, dropoutRatio);
+        put(EARLY_EDU_RATIO_FILE_NAME, earlyEducationRatio);
+        put(EDU_RATIO_FILE_NAME, educationRatio); // students
+        put(INACTIVE_YOUNG_RATIO_FILE_NAME, inactiveYoungRatio);
+        put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, noKnownForeignLangRatio);
+        put(PUPILS_RATIO_FILE_NAME, pupilsRatio);
+        put(TRAINING_RATIO_FILE_NAME, trainingRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -85,31 +95,7 @@ public class EducationStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Digital Skills Ratio", Preparation.filterMap(initDigitalSkillsRatio));
-            put("Dropout Ratio", Preparation.filterMap(initDropoutRatio));
-            put("Early Education Ratio", Preparation.filterMap(initEarlyEducationRatio));
-            put("Inactive Young Ratio", Preparation.filterMap(initInactiveYoungRatio));
-            put("No Known Foreign Lang Ratio", Preparation.filterMap(initNoKnownForeignLangRatio));
-            put("Pupils Ratio", Preparation.filterMap(initPupilsRatio));
-            put("Students Ratio", Preparation.filterMap(initEducationRatio));
-            put("Trainings Ratio", Preparation.filterMap(initTrainingRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
-            put(IndicatorNames.DROPOUT_RATIO, dropoutRatio);
-            put(IndicatorNames.EARLY_EDUCATION_RATIO, earlyEducationRatio);
-            put(IndicatorNames.EDUCATION_RATIO, educationRatio);
-            put(IndicatorNames.INACTIVE_YOUNG_RATIO, inactiveYoungRatio);
-            put(IndicatorNames.NO_KNOWN_FOREIGN_LANG_RATIO, noKnownForeignLangRatio);
-            put(IndicatorNames.PUPILS_RATIO, pupilsRatio);
-            put(IndicatorNames.TRAINING_RATIO, trainingRatio);
-        }};
-
-        Print.printChartData(args, indicators, EDUCATION_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, EDUCATION_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 }

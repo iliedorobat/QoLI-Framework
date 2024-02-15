@@ -3,7 +3,6 @@ package app.java.commons.dimensions.gov;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -53,12 +52,30 @@ public class GovRightsStats {
             populationTrustRatio = preparePopulationTrust(),
             voterTurnout = Preparation.prepareData(initVoterTurnout);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("citizenshipRatio", citizenship);
-        put("genderEmploymentGap", genderEmploymentGap);
-        put("genderPayGap", genderPayGap);
-        put("populationTrustRatio", populationTrustRatio);
-        put("voterTurnout", voterTurnout);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(CITIZENSHIP_RATIO_FILE_NAME, Preparation.filterMap(initCitizenshipRatio));
+        put(FEMALE_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initEmploymentFemaleRatio));
+        put(MALE_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initEmploymentMaleRatio));
+        put(GENDER_PAY_GAP_FILE_NAME, Preparation.filterMap(initGenderPayGap));
+        put(POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationLegtstTrust));
+        put(POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationOthersTrust));
+        put(POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlctstTrust));
+        put(POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlttstTrust));
+        put(VOTER_TURNOUT_FILE_NAME, Preparation.filterMap(initVoterTurnout));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(CITIZENSHIP_RATIO_FILE_NAME, citizenship);
+        put(FEMALE_EMPLOYMENT_RATIO_FILE_NAME, employmentFemaleRatio);
+        put(MALE_EMPLOYMENT_RATIO_FILE_NAME, employmentMaleRatio);
+        put(GENDER_EMPLOYMENT_GAP_FILE_NAME, genderEmploymentGap);
+        put(GENDER_PAY_GAP_FILE_NAME, genderPayGap);
+        put(POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, populationLegtstTrustRatio);
+        put(POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, populationOthersTrustRatio);
+        put(POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, populationPlctstTrustRatio);
+        put(POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, populationPlttstTrustRatio);
+        put(POPULATION_TRUST_FILE_NAME, populationTrustRatio);
+        put(VOTER_TURNOUT_FILE_NAME, voterTurnout);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -93,36 +110,8 @@ public class GovRightsStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Citizenship Ratio", Preparation.filterMap(initCitizenshipRatio));
-            put("Employment Female Ratio", Preparation.filterMap(initEmploymentFemaleRatio));
-            put("Employment Male Ratio", Preparation.filterMap(initEmploymentMaleRatio));
-            put("Gender Pay Gap", Preparation.filterMap(initGenderPayGap));
-            put("Population Legal System Trust", Preparation.filterMap(initPopulationLegtstTrust));
-            put("Population Other Systems Trust", Preparation.filterMap(initPopulationOthersTrust));
-            put("Population Police Trust", Preparation.filterMap(initPopulationPlctstTrust));
-            put("Population Political Trust", Preparation.filterMap(initPopulationPlttstTrust));
-            put("Voter Turnout", Preparation.filterMap(initVoterTurnout));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.CITIZENSHIP, citizenship);
-            put(IndicatorNames.EMPLOYMENT_FEMALE_RATIO, employmentFemaleRatio);
-            put(IndicatorNames.EMPLOYMENT_MALE_RATIO, employmentMaleRatio);
-            put(IndicatorNames.GENDER_EMPLOYMENT_GAP, genderEmploymentGap);
-            put(IndicatorNames.GENDER_PAY_GAP, genderPayGap);
-            put(IndicatorNames.POPULATION_LEGTST_TRUST_RATIO, populationLegtstTrustRatio);
-            put(IndicatorNames.POPULATION_OTHERS_TRUST_RATIO, populationOthersTrustRatio);
-            put(IndicatorNames.POPULATION_PLCTST_TRUST_RATIO, populationPlctstTrustRatio);
-            put(IndicatorNames.POPULATION_PLTTST_TRUST_RATIO, populationPlttstTrustRatio);
-            put(IndicatorNames.POPULATION_TRUST, populationTrustRatio);
-            put(IndicatorNames.VOTER_TURNOUT, voterTurnout);
-        }};
-
-        Print.printChartData(args, indicators, GOVERNANCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, GOVERNANCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

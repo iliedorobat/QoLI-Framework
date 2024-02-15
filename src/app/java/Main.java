@@ -43,17 +43,17 @@ public class Main {
 
         if (compare) {
             // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-            Print.printDimensionStatus(AuxiliaryStats.getInitList(), "Auxiliary info", targetYear, indStatus);
-            Print.printDimensionStatus(EducationStats.getInitList(), "Education", targetYear, indStatus);
-            Print.printDimensionStatus(EnvironmentStats.getInitList(), "Environment", targetYear, indStatus);
-            Print.printDimensionStatus(GovRightsStats.getInitList(), "GBR", targetYear, indStatus);
-            Print.printDimensionStatus(HealthStats.getInitList(), "Health", targetYear, indStatus);
-            Print.printDimensionStatus(LeisureStats.getInitList(), "Leisure", targetYear, indStatus);
-            Print.printDimensionStatus(MaterialLivingStats.getInitList(), "MLC", targetYear, indStatus);
-            Print.printDimensionStatus(OverallExperienceStats.getInitList(), "Overall Exp", targetYear, indStatus);
-            Print.printDimensionStatus(MainActivityStats.getInitList(), "PMA", targetYear, indStatus);
-            Print.printDimensionStatus(SafetyStats.getInitList(), "Safety", targetYear, indStatus);
-            Print.printDimensionStatus(InteractionsStats.getInitList(), "Interactions", targetYear, indStatus);
+            Print.printDimensionStatus(AuxiliaryStats.rawIndicators, "Auxiliary info", targetYear, indStatus);
+            Print.printDimensionStatus(EducationStats.rawIndicators, "Education", targetYear, indStatus);
+            Print.printDimensionStatus(EnvironmentStats.rawIndicators, "Environment", targetYear, indStatus);
+            Print.printDimensionStatus(GovRightsStats.rawIndicators, "GBR", targetYear, indStatus);
+            Print.printDimensionStatus(HealthStats.rawIndicators, "Health", targetYear, indStatus);
+            Print.printDimensionStatus(InteractionsStats.rawIndicators, "Interactions", targetYear, indStatus);
+            Print.printDimensionStatus(LeisureStats.rawIndicators, "Leisure", targetYear, indStatus);
+            Print.printDimensionStatus(MainActivityStats.rawIndicators, "PMA", targetYear, indStatus);
+            Print.printDimensionStatus(MaterialLivingStats.rawIndicators, "MLC", targetYear, indStatus);
+            Print.printDimensionStatus(OverallExperienceStats.rawIndicators, "Overall Exp", targetYear, indStatus);
+            Print.printDimensionStatus(SafetyStats.rawIndicators, "Safety", targetYear, indStatus);
         }
 
         if (calculate) {

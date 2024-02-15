@@ -3,7 +3,6 @@ package app.java.commons.dimensions.health;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -65,22 +64,49 @@ public class HealthStats {
             unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
             workAccidents = Preparation.preparePerThousandInhabitant(AuxiliaryStats.population, initWorkAccidents);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("alcoholicRatio", alcoholicRatio);
-        put("bmiObeseRatio", bmiObeseRatio);
-        put("bmiOverweightRatio", bmiOverweightRatio);
-        put("fruitsVegetablesRatio", fruitsVegetablesRatio);
-        put("healthyLifeRatio", healthyLifeRatio);
-        put("healthyLifeYears", healthyLifeYears);
-        put("hospitalBeds", hospitalBeds);
-        put("lifeExpectancy", lifeExpectancy);
-        put("longHealthIssuesRatio", longHealthIssuesRatio);
-        put("healthPersonnel", personnelTotal);
-        put("physicalActivitiesRatio", physicalActivitiesRatio);
-        put("smokersRatio", smokersRatio);
-        put("unmetDentalRatio", unmetDentalRatio);
-        put("unmetMedicalRatio", unmetMedicalRatio);
-        put("workAccidents", workAccidents);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(ALCOHOLIC_RATIO_FILE_NAME, Preparation.filterMap(initAlcoholicRatio));
+        put(BMI_OBESE_FILE_NAME, Preparation.filterMap(initBmiObeseRatio));
+        put(BMI_OVERWEIGHT_FILE_NAME, Preparation.filterMap(initBmiOverweightRatio));
+        put(FRUITS_VEGETABLES_RATIO_FILE_NAME, Preparation.filterMap(initFruitsVegetablesRatio));
+        put(HEALTHY_LIFE_RATIO_FILE_NAME, Preparation.filterMap(initHealthyLifeRatio));
+        put(HEALTHY_LIFE_YEARS_FILE_NAME, Preparation.filterMap(initHealthyLifeYears));
+        put(HOSPITAL_BEDS_FILE_NAME, Preparation.filterMap(initHospitalBeds));
+        put(LIFE_EXPECTANCY_FILE_NAME, Preparation.filterMap(initLifeExpectancy));
+        put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initLongHealthIssuesRatio));
+        put(PERSONNEL_DENTISTS_FILE_NAME, Preparation.filterMap(initPersonnelDentists));
+        put(PERSONNEL_DOCTORS_FILE_NAME, Preparation.filterMap(initPersonnelDoctors));
+        put(PERSONNEL_NURSES_FILE_NAME, Preparation.filterMap(initPersonnelNurses));
+        put(PERSONNEL_PHARMA_FILE_NAME, Preparation.filterMap(initPersonnelPharma));
+        put(PERSONNEL_THERAPISTS_FILE_NAME, Preparation.filterMap(initPersonnelTherapists));
+        put(PHYSICAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initPhysicalActivitiesRatio));
+        put(SMOKERS_RATIO_FILE_NAME, Preparation.filterMap(initSmokersRatio));
+        put(UNMET_DENTAL_RATIO_FILE_NAME, Preparation.filterMap(initUnmetDentalRatio));
+        put(UNMET_MEDICAL_RATIO_FILE_NAME, Preparation.filterMap(initUnmetMedicalRatio));
+        put(WORK_ACCIDENTS_FILE_NAME, Preparation.filterMap(initWorkAccidents));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(ALCOHOLIC_RATIO_FILE_NAME, alcoholicRatio);
+        put(BMI_OBESE_FILE_NAME, bmiObeseRatio);
+        put(BMI_OVERWEIGHT_FILE_NAME, bmiOverweightRatio);
+        put(FRUITS_VEGETABLES_RATIO_FILE_NAME, fruitsVegetablesRatio);
+        put(HEALTHY_LIFE_RATIO_FILE_NAME, healthyLifeRatio);
+        put(HEALTHY_LIFE_YEARS_FILE_NAME, healthyLifeYears);
+        put(HOSPITAL_BEDS_FILE_NAME, hospitalBeds);
+        put(LIFE_EXPECTANCY_FILE_NAME, lifeExpectancy);
+        put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, longHealthIssuesRatio);
+        put(PERSONNEL_DENTISTS_FILE_NAME, personnelDentists);
+        put(PERSONNEL_DOCTORS_FILE_NAME, personnelDoctors);
+        put(PERSONNEL_NURSES_FILE_NAME, personnelNurses);
+        put(PERSONNEL_PHARMA_FILE_NAME, personnelPharmacists);
+        put(PERSONNEL_THERAPISTS_FILE_NAME, personnelPhysiotherapists);
+        put(PERSONNEL_TOTAL_FILE_NAME, personnelTotal);
+        put(PHYSICAL_ACTIVITIES_RATIO_FILE_NAME, physicalActivitiesRatio);
+        put(SMOKERS_RATIO_FILE_NAME, smokersRatio);
+        put(UNMET_DENTAL_RATIO_FILE_NAME, unmetDentalRatio);
+        put(UNMET_MEDICAL_RATIO_FILE_NAME, unmetMedicalRatio);
+        put(WORK_ACCIDENTS_FILE_NAME, workAccidents);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -118,55 +144,8 @@ public class HealthStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Alcoholic Ratio", Preparation.filterMap(initAlcoholicRatio));
-            put("BMI Obese Ratio", Preparation.filterMap(initBmiObeseRatio));
-            put("BMI Overweight Ratio", Preparation.filterMap(initBmiOverweightRatio));
-            put("Fruits & Vegetables Ratio", Preparation.filterMap(initFruitsVegetablesRatio));
-            put("Healthy Life Ratio", Preparation.filterMap(initHealthyLifeRatio));
-            put("Healthy Life Years", Preparation.filterMap(initHealthyLifeYears));
-            put("Hospital Beds", Preparation.filterMap(initHospitalBeds));
-            put("Life Expectancy", Preparation.filterMap(initLifeExpectancy));
-            put("Long Health Issues Ratio", Preparation.filterMap(initLongHealthIssuesRatio));
-            put("Personnel Dentists", Preparation.filterMap(initPersonnelDentists));
-            put("Personnel Doctors", Preparation.filterMap(initPersonnelDoctors));
-            put("Personnel Nurses", Preparation.filterMap(initPersonnelNurses));
-            put("Personnel Pharma", Preparation.filterMap(initPersonnelPharma));
-            put("Personnel Therapists", Preparation.filterMap(initPersonnelTherapists));
-            put("Physical Activities Ratio", Preparation.filterMap(initPhysicalActivitiesRatio));
-            put("Smokers Ratio", Preparation.filterMap(initSmokersRatio));
-            put("Unmet Dental Ratio", Preparation.filterMap(initUnmetDentalRatio));
-            put("Unmet Medical Ratio", Preparation.filterMap(initUnmetMedicalRatio));
-            put("Work Accidents", Preparation.filterMap(initWorkAccidents));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.ALCOHOLIC_RATIO, alcoholicRatio);
-            put(IndicatorNames.FRUITS_VEGETABLES_RATIO, fruitsVegetablesRatio);
-            put(IndicatorNames.BMI_OVERWEIGHT_RATIO, bmiOverweightRatio);
-            put(IndicatorNames.BMI_OBESE_RATIO, bmiObeseRatio);
-            put(IndicatorNames.DENTISTS, personnelDentists);
-            put(IndicatorNames.DOCTORS, personnelDoctors);
-            put(IndicatorNames.NURSES, personnelNurses);
-            put(IndicatorNames.PHARMACISTS, personnelPharmacists);
-            put(IndicatorNames.PHYSIOTHERAPISTS, personnelPhysiotherapists);
-            put(IndicatorNames.TOTAL_HEALTH_PERSONNEL, personnelTotal);
-            put(IndicatorNames.HEALTHY_LIFE_RATIO, healthyLifeRatio);
-            put(IndicatorNames.HEALTHY_LIFE_YEARS, healthyLifeYears);
-            put(IndicatorNames.HOSPITAL_BEDS, hospitalBeds);
-            put(IndicatorNames.LIFE_EXPECTANCY, lifeExpectancy);
-            put(IndicatorNames.LONG_HEALTH_ISSUES_RATIO, longHealthIssuesRatio);
-            put(IndicatorNames.PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatio);
-            put(IndicatorNames.SMOKERS_RATIO, smokersRatio);
-            put(IndicatorNames.UNMET_DENTAL_RATIO, unmetDentalRatio);
-            put(IndicatorNames.UNMET_MEDICAL_RATIO, unmetMedicalRatio);
-            put(IndicatorNames.WORK_ACCIDENTS, workAccidents);
-        }};
-
-        Print.printChartData(args, indicators, HEALTH_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

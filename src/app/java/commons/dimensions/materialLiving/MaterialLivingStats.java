@@ -3,7 +3,6 @@ package app.java.commons.dimensions.materialLiving;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -55,19 +54,37 @@ public class MaterialLivingStats {
             povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
             underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("dwellingIssuesRatio", dwellingIssuesRatio);
-        put("endMeetInabilityRatio", endMeetInabilityRatio);
-        put("financialSatisfactionRatio", financialSatisfactionRatio);
-        put("highIncomeRatio", highIncomeRatio);
-        put("incomeQuintileRatio", incomeQuintileRatio);
-        put("lackOfBathsRatio", lackOfBathsRatio);
-        put("lowWorkIntensityRatio", lowWorkIntensityRatio);
-        put("materialDeprivationRatio", materialDeprivationRatio);
-        put("medianIncomePpsRatio", medianIncomePpsRatio);
-        put("overOccupiedRatio", overOccupiedRatio);
-        put("povertyRiskRatio", povertyRiskRatio);
-        put("underOccupiedRatio", underOccupiedRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(DWELLING_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initDwellingIssuesRatio));
+        put(END_MEET_INABILITY_D_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityDRatio));
+        put(END_MEET_INABILITY_GD_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityGdRatio));
+        put(FINANCIAL_SATISFACTION_FILE_NAME, Preparation.filterMap(initFinancialSatisfactionRatio));
+        put(HIGH_INCOME_RATIO_FILE_NAME, Preparation.filterMap(initHighIncomeRatio));
+        put(INCOME_QUINTILE_RATIO_FILE_NAME, Preparation.filterMap(initIncomeQuintileRatio));
+        put(LACK_OF_BATHS_RATIO_FILE_NAME, Preparation.filterMap(initLackOfBathsRatio));
+        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
+        put(MATERIAL_DEPRIVATION_RATIO_FILE_NAME, Preparation.filterMap(initMaterialDeprivationRatio));
+        put(MEDIAN_INCOME_PPS_FILE_NAME, Preparation.filterMap(initMedianIncomePps));
+        put(OVER_OCCUPIED_RATIO_FILE_NAME, Preparation.filterMap(initOverOccupiedRatio));
+        put(POVERTY_RISK_RATIO_FILE_NAME, Preparation.filterMap(initPovertyRiskRatio));
+        put(UNDER_OCCUPIED_RATIO_FILE_NAME, Preparation.filterMap(initUnderOccupiedRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(DWELLING_ISSUES_RATIO_FILE_NAME, dwellingIssuesRatio);
+        put(END_MEET_INABILITY_RATIO_FILE_NAME, endMeetInabilityRatio);
+        put(END_MEET_INABILITY_D_RATIO_FILE_NAME, endMeetInabilityDRatio);
+        put(END_MEET_INABILITY_GD_RATIO_FILE_NAME, endMeetInabilityGdRatio);
+        put(FINANCIAL_SATISFACTION_FILE_NAME, financialSatisfactionRatio);
+        put(HIGH_INCOME_RATIO_FILE_NAME, highIncomeRatio);
+        put(INCOME_QUINTILE_RATIO_FILE_NAME, incomeQuintileRatio);
+        put(LACK_OF_BATHS_RATIO_FILE_NAME, lackOfBathsRatio);
+        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
+        put(MATERIAL_DEPRIVATION_RATIO_FILE_NAME, materialDeprivationRatio);
+        put(MEDIAN_INCOME_PPS_FILE_NAME, medianIncomePps);
+        put(OVER_OCCUPIED_RATIO_FILE_NAME, overOccupiedRatio);
+        put(POVERTY_RISK_RATIO_FILE_NAME, povertyRiskRatio);
+        put(UNDER_OCCUPIED_RATIO_FILE_NAME, underOccupiedRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -102,43 +119,8 @@ public class MaterialLivingStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Dwelling Issues Ratio", Preparation.filterMap(initDwellingIssuesRatio));
-            put("End Meet Inability Difficulty Ratio", Preparation.filterMap(initEndMeetInabilityDRatio));
-            put("End Meet Inability Great Difficulty Ratio", Preparation.filterMap(initEndMeetInabilityGdRatio));
-            put("Financial Satisfaction Ratio", Preparation.filterMap(initFinancialSatisfactionRatio));
-            put("High Income Ratio", Preparation.filterMap(initHighIncomeRatio));
-            put("Income Quintile Ratio", Preparation.filterMap(initIncomeQuintileRatio));
-            put("Lack Of Baths Ratio", Preparation.filterMap(initLackOfBathsRatio));
-            put("Low Work Intensity Ratio", Preparation.filterMap(initLowWorkIntensityRatio));
-            put("Material Deprivation Ratio", Preparation.filterMap(initMaterialDeprivationRatio));
-            put("Median Income PPS", Preparation.filterMap(initMedianIncomePps));
-            put("Over Occupied Ratio", Preparation.filterMap(initOverOccupiedRatio));
-            put("Poverty Risk Ratio", Preparation.filterMap(initPovertyRiskRatio));
-            put("Under Occupied Ratio", Preparation.filterMap(initUnderOccupiedRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
-            put(IndicatorNames.END_MEET_INABILITY_RATIO, endMeetInabilityRatio);
-            put(IndicatorNames.END_MEET_INABILITY_D_RATIO, endMeetInabilityDRatio);
-            put(IndicatorNames.END_MEET_INABILITY_GD_RATIO, endMeetInabilityGdRatio);
-            put(IndicatorNames.FINANCIAL_SATISFACTION_RATIO, financialSatisfactionRatio);
-            put(IndicatorNames.HIGH_INCOME_RATIO, highIncomeRatio);
-            put(IndicatorNames.INCOME_QUINTILE_RATIO, incomeQuintileRatio);
-            put(IndicatorNames.LACK_OF_BATHS_RATIO, lackOfBathsRatio);
-            put(IndicatorNames.LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
-            put(IndicatorNames.MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatio);
-            put(IndicatorNames.MEDIAN_INCOME_PPS, medianIncomePps);
-            put(IndicatorNames.OVER_OCCUPIED_RATIO, overOccupiedRatio);
-            put(IndicatorNames.POVERTY_RISK_RATIO, povertyRiskRatio);
-            put(IndicatorNames.UNDER_OCCUPIED_RATIO, underOccupiedRatio);
-        }};
-
-        Print.printChartData(args, indicators, LIVING_CONDITIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, LIVING_CONDITIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     // proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty

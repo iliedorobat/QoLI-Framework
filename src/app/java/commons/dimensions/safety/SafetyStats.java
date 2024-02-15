@@ -3,7 +3,6 @@ package app.java.commons.dimensions.safety;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -86,13 +85,63 @@ public class SafetyStats {
             totalOffencesRatio = prepareOffencesRatio(),
             unexpectedRatio = Preparation.prepareData(initUnexpectedRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("crimeRatio", crimeRatio);
-        put("nonPaymentRatio", nonPaymentRatio);
-        put("pensionPpsRatio", pensionPpsRatio);
-        put("socialProtectionPpsRatio", socialProtectionPpsRatio);
-        put("totalOffencesRatio", totalOffencesRatio);
-        put("unexpectedRatio", unexpectedRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(CRIME_RATIO_FILE_NAME, Preparation.filterMap(initCrimeRatio));
+        put(NON_PAYMENT_RATIO_FILE_NAME, Preparation.filterMap(initNonPaymentRatio));
+        put(PENSION_PPS_FILE_NAME, Preparation.filterMap(initPensionPps));
+        put(SOCIAL_PROTECTION_RATIO_FILE_NAME, Preparation.filterMap(initSocialProtectionPps));
+        put(UNEXPECTED_RATIO_FILE_NAME, Preparation.filterMap(initUnexpectedRatio));
+
+        put(OFFENCES_ASSAULT_FILE_NAME, Preparation.filterMap(initAssaultOffences));
+        put(OFFENCES_ATTEMPTED_HOMICIDE_FILE_NAME, Preparation.filterMap(initAttemptedHomicideOffences));
+        put(OFFENCES_BRIBERY_FILE_NAME, Preparation.filterMap(initBriberyOffences));
+        put(OFFENCES_BURGLARY_FILE_NAME, Preparation.filterMap(initBurglaryOffences));
+        put(OFFENCES_BURGLARY_PRIVATE_FILE_NAME, Preparation.filterMap(initBurglaryPrivateOffences));
+        put(OFFENCES_COMPUTERS_FILE_NAME, Preparation.filterMap(initComputersOffences));
+        put(OFFENCES_CRIMINAL_GROUPS_FILE_NAME, Preparation.filterMap(initCriminalGroupsOffences));
+        put(OFFENCES_CORRUPTION_FILE_NAME, Preparation.filterMap(initCorruptionGroupsOffences));
+        put(OFFENCES_FRAUD_FILE_NAME, Preparation.filterMap(initFraudGroupsOffences));
+        put(OFFENCES_HOMICIDE_FILE_NAME, Preparation.filterMap(initHomicideOffences));
+        put(OFFENCES_KIDNAPPING_FILE_NAME, Preparation.filterMap(initKidnappingOffences));
+        put(OFFENCES_MONEY_LAUNDERING_FILE_NAME, Preparation.filterMap(initMoneyLaunderingOffences));
+        put(OFFENCES_NARCOTICS_FILE_NAME, Preparation.filterMap(initNarcoticsOffences));
+        put(OFFENCES_RAPE_FILE_NAME, Preparation.filterMap(initRapeOffences));
+        put(OFFENCES_ROBBERY_FILE_NAME, Preparation.filterMap(initRobberyOffences));
+        put(OFFENCES_SEXUAL_ASSAULT_FILE_NAME, Preparation.filterMap(initSexualAssaultOffences));
+        put(OFFENCES_SEXUAL_EXPLOITATION_FILE_NAME, Preparation.filterMap(initSexualExploitationOffences));
+        put(OFFENCES_SEXUAL_VIOLENCE_FILE_NAME, Preparation.filterMap(initSexualViolenceOffences));
+        put(OFFENCES_THEFT_FILE_NAME, Preparation.filterMap(initTheftOffences));
+        put(OFFENCES_THEFT_VEHICLE_FILE_NAME, Preparation.filterMap(initTheftVehicleOffences));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(CRIME_RATIO_FILE_NAME, crimeRatio);
+        put(NON_PAYMENT_RATIO_FILE_NAME, nonPaymentRatio);
+        put(PENSION_PPS_FILE_NAME, pensionPps);
+        put(SOCIAL_PROTECTION_RATIO_FILE_NAME, socialProtectionPps);
+        put(UNEXPECTED_RATIO_FILE_NAME, unexpectedRatio);
+
+        put(OFFENCES_ASSAULT_FILE_NAME, assaultOffences);
+        put(OFFENCES_ATTEMPTED_HOMICIDE_FILE_NAME, attemptedHomicideOffences);
+        put(OFFENCES_BRIBERY_FILE_NAME, briberyOffences);
+        put(OFFENCES_BURGLARY_FILE_NAME, burglaryOffences);
+        put(OFFENCES_BURGLARY_PRIVATE_FILE_NAME, burglaryPrivateOffences);
+        put(OFFENCES_COMPUTERS_FILE_NAME, computersOffences);
+        put(OFFENCES_CRIMINAL_GROUPS_FILE_NAME, criminalGroupsOffences);
+        put(OFFENCES_CORRUPTION_FILE_NAME, corruptionOffences);
+        put(OFFENCES_FRAUD_FILE_NAME, fraudOffences);
+        put(OFFENCES_HOMICIDE_FILE_NAME, homicideOffences);
+        put(OFFENCES_KIDNAPPING_FILE_NAME, kidnappingOffences);
+        put(OFFENCES_MONEY_LAUNDERING_FILE_NAME, moneyLaunderingOffences);
+        put(OFFENCES_NARCOTICS_FILE_NAME, narcoticsOffences);
+        put(OFFENCES_RAPE_FILE_NAME, rapeOffences);
+        put(OFFENCES_ROBBERY_FILE_NAME, robberyOffences);
+        put(OFFENCES_SEXUAL_ASSAULT_FILE_NAME, sexualAssaultOffences);
+        put(OFFENCES_SEXUAL_EXPLOITATION_FILE_NAME, sexualExploitationOffences);
+        put(OFFENCES_SEXUAL_VIOLENCE_FILE_NAME, sexualViolenceOffences);
+        put(OFFENCES_THEFT_FILE_NAME, theftOffences);
+        put(OFFENCES_THEFT_VEHICLE_FILE_NAME, theftVehicleOffences);
+        put(OFFENCES_FILE_NAME, totalOffencesRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -121,68 +170,8 @@ public class SafetyStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Crime Ratio", Preparation.filterMap(initCrimeRatio));
-            put("Non Payment Ratio", Preparation.filterMap(initNonPaymentRatio));
-            put("Pension PPS", Preparation.filterMap(initPensionPps));
-            put("Social Protection PPS", Preparation.filterMap(initSocialProtectionPps));
-            put("Unexpected Ratio", Preparation.filterMap(initUnexpectedRatio));
-
-            put("Assault Offences", Preparation.filterMap(initAssaultOffences));
-            put("Attempted Homicide Offences", Preparation.filterMap(initAttemptedHomicideOffences));
-            put("Bribery Offences", Preparation.filterMap(initBriberyOffences));
-            put("Burglary Offences", Preparation.filterMap(initBurglaryOffences));
-            put("Burglary Private Offences", Preparation.filterMap(initBurglaryPrivateOffences));
-            put("Computers Offences", Preparation.filterMap(initComputersOffences));
-            put("Criminal Groups Offences", Preparation.filterMap(initCriminalGroupsOffences));
-            put("Corruption Offences", Preparation.filterMap(initCorruptionGroupsOffences));
-            put("Fraud Offences", Preparation.filterMap(initFraudGroupsOffences));
-            put("Homicide Offences", Preparation.filterMap(initHomicideOffences));
-            put("Kidnapping Offences", Preparation.filterMap(initKidnappingOffences));
-            put("Money Laundering Offences", Preparation.filterMap(initMoneyLaunderingOffences));
-            put("Narcotics Offences", Preparation.filterMap(initNarcoticsOffences));
-            put("Rape Offences", Preparation.filterMap(initRapeOffences));
-            put("Robbery Offences", Preparation.filterMap(initRobberyOffences));
-            put("Sexual Assault Offences", Preparation.filterMap(initSexualAssaultOffences));
-            put("Sexual Exploitation Offences", Preparation.filterMap(initSexualExploitationOffences));
-            put("Sexual Violence Offences", Preparation.filterMap(initSexualViolenceOffences));
-            put("Theft Offences", Preparation.filterMap(initTheftOffences));
-            put("Theft Vehicle Offences", Preparation.filterMap(initTheftVehicleOffences));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.CRIME_RATIO, crimeRatio);
-            put(IndicatorNames.NON_PAYMENT_RATIO, nonPaymentRatio);
-            put(IndicatorNames.PENSION_PPS, pensionPps);
-            put(IndicatorNames.SOCIAL_PROTECTION_PPS, socialProtectionPps);
-            put(IndicatorNames.UNEXPECTED_RATIO, unexpectedRatio);
-            put(IndicatorNames.ATTEMPTED_HOMICIDE_OFFENCES, attemptedHomicideOffences);
-            put(IndicatorNames.ASSAULT_OFFENCES, assaultOffences);
-            put(IndicatorNames.BRIBERY_OFFENCES, briberyOffences);
-            put(IndicatorNames.BURGLARY_OFFENCES, burglaryOffences);
-            put(IndicatorNames.BURGLARY_PRIVATE_OFFENCES, burglaryPrivateOffences);
-            put(IndicatorNames.COMPUTERS_OFFENCES, computersOffences);
-            put(IndicatorNames.CORRUPTION_OFFENCES, corruptionOffences);
-            put(IndicatorNames.CRIMINAL_GROUPS_OFFENCES, criminalGroupsOffences);
-            put(IndicatorNames.FRAUD_OFFENCES, fraudOffences);
-            put(IndicatorNames.HOMICIDE_OFFENCES, homicideOffences);
-            put(IndicatorNames.KIDNAPPING_OFFENCES, kidnappingOffences);
-            put(IndicatorNames.MONEY_LAUNDERING_OFFENCES, moneyLaunderingOffences);
-            put(IndicatorNames.NARCOTICS_OFFENCES, narcoticsOffences);
-            put(IndicatorNames.RAPE_OFFENCES, rapeOffences);
-            put(IndicatorNames.ROBBERY_OFFENCES, robberyOffences);
-            put(IndicatorNames.SEXUAL_ASSAULT_OFFENCES, sexualAssaultOffences);
-            put(IndicatorNames.SEXUAL_EXPLOITATION_OFFENCES, sexualExploitationOffences);
-            put(IndicatorNames.SEXUAL_VIOLENCE_OFFENCES, sexualViolenceOffences);
-            put(IndicatorNames.THEFT_OFFENCES, theftOffences);
-            put(IndicatorNames.THEFT_VEHICLE_OFFENCES, theftVehicleOffences);
-            put(IndicatorNames.TOTAL_OFFENCES_RATIO, totalOffencesRatio);
-        }};
-
-        Print.printChartData(args, indicators, SAFETY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, SAFETY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

@@ -3,7 +3,6 @@ package app.java.commons.dimensions.interactions;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
 import app.java.data.stats.Initializer;
@@ -33,12 +32,20 @@ public class InteractionsStats {
             gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio),
             satisfactionRatio = Preparation.prepareData(initSatisfactionRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("askingRatio", askingRatio);
-        put("discussionRatio", discussionRatio);
-        put("gettingTogetherFamRatio", gettingTogetherFamRatio);
-        put("gettingTogetherFrdRatio", gettingTogetherFrdRatio);
-        put("satisfactionRatio", satisfactionRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(ASKING_RATIO_FILE_NAME, Preparation.filterMap(initAskingRatio));
+        put(DISCUSSION_RATIO_FILE_NAME, Preparation.filterMap(initDiscussionRatio));
+        put(GETTING_TOGETHER_FAM_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFamRatio));
+        put(GETTING_TOGETHER_FRD_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFrdRatio));
+        put(RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, Preparation.filterMap(initSatisfactionRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(ASKING_RATIO_FILE_NAME, askingRatio);
+        put(DISCUSSION_RATIO_FILE_NAME, discussionRatio);
+        put(GETTING_TOGETHER_FAM_RATIO_FILE_NAME, gettingTogetherFamRatio);
+        put(GETTING_TOGETHER_FRD_RATIO_FILE_NAME, gettingTogetherFrdRatio);
+        put(RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, satisfactionRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -66,25 +73,7 @@ public class InteractionsStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Asking Ratio", Preparation.filterMap(initAskingRatio));
-            put("Discussion Ratio", Preparation.filterMap(initDiscussionRatio));
-            put("Getting Together Family Ratio", Preparation.filterMap(initGettingTogetherFamRatio));
-            put("Getting Together Friends Ratio", Preparation.filterMap(initGettingTogetherFrdRatio));
-            put("Satisfaction Ratio", Preparation.filterMap(initSatisfactionRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.ASKING_RATIO, askingRatio);
-            put(IndicatorNames.DISCUSSION_RATIO, discussionRatio);
-            put(IndicatorNames.GETTING_TOGETHER_FAM_RATIO, gettingTogetherFamRatio);
-            put(IndicatorNames.GETTING_TOGETHER_FRD_RATIO, gettingTogetherFrdRatio);
-            put(IndicatorNames.SATISFACTION_RATIO, satisfactionRatio);
-        }};
-
-        Print.printChartData(args, indicators, INTERACTIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, INTERACTIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 }

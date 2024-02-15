@@ -11,6 +11,8 @@ public class EnvironmentPaths {
 
     public static final String AIR_POLLUTION_RATIO_FILE_NAME = "airPollutionRatio";
     public static final String NOISE_POLLUTION_RATIO_FILE_NAME = "noisePollutionRatio";
+    public static final String PM_2_5_POLLUTION_RATIO_FILE_NAME = "pm2_5PollutionRatio";
+    public static final String PM_10_POLLUTION_RATIO_FILE_NAME = "pm10PollutionRatio";
     public static final String POLLUTION_RATIO_FILE_NAME = "pollutionRatio";
     public static final String WATER_SUPPLY_RATIO_FILE_NAME = "waterSupplyRatio";
 

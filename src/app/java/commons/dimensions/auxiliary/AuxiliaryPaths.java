@@ -14,5 +14,5 @@ public class AuxiliaryPaths {
     public static final String AUXILIARY_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, AUXILIARY_FILE_NAME);
 
     public static final String
-            POPULATION_PATH = AUXILIARY_RAW_PATH + File.separator + AuxiliaryPaths.POPULATION_FILE_NAME + JSON_EXTENSION;
+            POPULATION_PATH = AUXILIARY_RAW_PATH + File.separator + POPULATION_FILE_NAME + JSON_EXTENSION;
 }

@@ -16,7 +16,7 @@ public class MaterialLivingCollector {
         FileUtils.writeToJSONFile(getLackOfBathsRatio(), LIVING_CONDITIONS_RAW_PATH, LACK_OF_BATHS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), LIVING_CONDITIONS_RAW_PATH, LOW_WORK_INTENSITY_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getMaterialDeprivationRatio(), LIVING_CONDITIONS_RAW_PATH, MATERIAL_DEPRIVATION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getMedianIncome(), LIVING_CONDITIONS_RAW_PATH, MEDIAN_INCOME_FILE_NAME);
+        FileUtils.writeToJSONFile(getMedianIncome(), LIVING_CONDITIONS_RAW_PATH, MEDIAN_INCOME_PPS_FILE_NAME);
         FileUtils.writeToJSONFile(getOverOccupiedRatio(), LIVING_CONDITIONS_RAW_PATH, OVER_OCCUPIED_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPovertyRiskRatio(), LIVING_CONDITIONS_RAW_PATH, POVERTY_RISK_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getUnderOccupiedRatio(), LIVING_CONDITIONS_RAW_PATH, UNDER_OCCUPIED_RATIO_FILE_NAME);

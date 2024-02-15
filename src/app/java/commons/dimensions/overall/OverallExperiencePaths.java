@@ -10,6 +10,8 @@ public class OverallExperiencePaths {
     public static final String OVERALL_EXPERIENCE_FILE_NAME = "overallExperience";
 
     public static final String HAPPINESS_RATIO_FILE_NAME = "happinessRatio";
+    public static final String HAPPINESS_ALWAYS_RATIO_FILE_NAME = "happinessAlwaysRatio";
+    public static final String HAPPINESS_MOST_OF_THE_TIME_RATIO_FILE_NAME = "happinessMostOfTheTimeRatio";
     public static final String HIGH_SATISFACTION_RATIO_FILE_NAME = "highSatisfactionRatio";
 
     public static final String OVERALL_EXPERIENCE_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, OVERALL_EXPERIENCE_FILE_NAME);

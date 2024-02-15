@@ -15,6 +15,7 @@ public class EducationPaths {
     public static final String EDU_RATIO_FILE_NAME = "educationRatio";
     public static final String INACTIVE_YOUNG_RATIO_FILE_NAME = "inactiveYoungRatio";
     public static final String NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME = "zeroForeignLangRatio";
+    public static final String PUPILS_RATIO_FILE_NAME = "pupilsRatio";
     public static final String PUPILS_RATIO_2012_FILE_NAME = "pupilsRatio2012";
     public static final String PUPILS_RATIO_2013_FILE_NAME = "pupilsRatio2013";
     public static final String TRAINING_RATIO_FILE_NAME = "trainingRatio";

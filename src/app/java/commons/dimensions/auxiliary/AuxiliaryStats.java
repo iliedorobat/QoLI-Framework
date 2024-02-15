@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.POPULATION_PARAMS;
+import static app.java.commons.dimensions.auxiliary.AuxiliaryPaths.POPULATION_FILE_NAME;
 import static app.java.commons.dimensions.auxiliary.AuxiliaryPaths.POPULATION_PATH;
 
 //TODO: change the "ratio" to "rate" all over the app
@@ -18,13 +19,11 @@ public class AuxiliaryStats {
     public static final Map<String, Number>
             population = Preparation.prepareData(initPopulation);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("population", population);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(POPULATION_FILE_NAME, initPopulation);
     }};
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Population", initPopulation);
-        }};
-    }
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+        put(POPULATION_FILE_NAME, population);
+    }};
 }

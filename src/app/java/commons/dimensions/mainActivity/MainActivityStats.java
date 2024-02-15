@@ -3,7 +3,6 @@ package app.java.commons.dimensions.mainActivity;
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.IndicatorNames;
 import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.utils.MapUtils;
 import app.java.commons.utils.MathUtils;
@@ -62,19 +61,35 @@ public class MainActivityStats {
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
-        put("avgRemainedWorkHours", avgRemainedWorkHours);
-        put("employmentRatio", employmentRatio);
-        put("inactivePopulationRatio", inactivePopulationRatio);
-        put("involuntaryPartTimeRatio", involuntaryPartTimeRatio);
-        put("jobSatisfaction", jobSatisfaction);
-        put("longTermUnemploymentRatio", longTermUnemploymentRatio);
-        put("lowWageEarningsRatio", lowWageEarningsRatio);
-        put("overQualifiedRatio", overQualifiedRatio);
-        put("researchersRatio", researchersRatio);
-        put("temporaryEmploymentRatio", temporaryEmploymentRatio);
-        put("unemploymentRatio", unemploymentRatio);
-        put("workingNightsRatio", workingNightsRatio);
+    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(AVG_WORK_HOURS_FILE_NAME, Preparation.filterMap(initAvgWorkHoursList));
+        put(EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initEmploymentRatio));
+        put(INACTIVE_POPULATION_RATIO_FILE_NAME, Preparation.filterMap(initInactivePopulationRatio));
+        put(INVOLUNTARY_PART_TIME_RATIO_FILE_NAME, Preparation.filterMap(initInvoluntaryPartTimeRatio));
+        put(JOB_SATISFACTION_FILE_NAME, Preparation.filterMap(initJobSatisfaction));
+        put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initLongTermUnemploymentRatio));
+        put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, Preparation.filterMap(initLowWageEarningsRatio));
+        put(OVER_QUALIFIED_RATIO_FILE_NAME, Preparation.filterMap(initOverQualifiedRatio));
+        put(RESEARCHERS_FILE_NAME, Preparation.filterMap(initResearchers));
+        put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initTemporaryEmploymentRatio));
+        put(UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initUnemploymentRatio));
+        put(WORKING_NIGHTS_RATIO_FILE_NAME, Preparation.filterMap(initWorkingNightsRatio));
+    }};
+
+    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(AVG_WORK_HOURS_FILE_NAME, avgWorkHours);
+        put(AVG_REMAINED_WORK_HOURS_FILE_NAME, avgRemainedWorkHours);
+        put(EMPLOYMENT_RATIO_FILE_NAME, employmentRatio);
+        put(INACTIVE_POPULATION_RATIO_FILE_NAME, inactivePopulationRatio);
+        put(INVOLUNTARY_PART_TIME_RATIO_FILE_NAME, involuntaryPartTimeRatio);
+        put(JOB_SATISFACTION_FILE_NAME, jobSatisfaction);
+        put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, longTermUnemploymentRatio);
+        put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, lowWageEarningsRatio);
+        put(OVER_QUALIFIED_RATIO_FILE_NAME, overQualifiedRatio);
+        put(RESEARCHERS_FILE_NAME, researchersRatio);
+        put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, temporaryEmploymentRatio);
+        put(UNEMPLOYMENT_RATIO_FILE_NAME, unemploymentRatio);
+        put(WORKING_NIGHTS_RATIO_FILE_NAME, workingNightsRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -109,40 +124,8 @@ public class MainActivityStats {
         return consolidatedList;
     }
 
-    public static TreeMap<String, Map<String, Number>> getInitList() {
-        return new TreeMap<>() {{
-            put("Avg Work Hours List", Preparation.filterMap(initAvgWorkHoursList));
-            put("Employment Ratio", Preparation.filterMap(initEmploymentRatio));
-            put("Inactive Population Ratio", Preparation.filterMap(initInactivePopulationRatio));
-            put("Involuntary Part-Time Ratio", Preparation.filterMap(initInvoluntaryPartTimeRatio));
-            put("Job Satisfaction", Preparation.filterMap(initJobSatisfaction));
-            put("Long Term Unemployment Ratio", Preparation.filterMap(initLongTermUnemploymentRatio));
-            put("LowWage Earnings Ratio", Preparation.filterMap(initLowWageEarningsRatio));
-            put("Over Qualified Ratio", Preparation.filterMap(initOverQualifiedRatio));
-            put("Researchers", Preparation.filterMap(initResearchers));
-            put("Temporary Employment Ratio", Preparation.filterMap(initTemporaryEmploymentRatio));
-            put("Unemployment Ratio", Preparation.filterMap(initUnemploymentRatio));
-            put("Working Nights Ratio", Preparation.filterMap(initWorkingNightsRatio));
-        }};
-    }
-
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        HashMap<String, Map<String, Number>> indicators = new HashMap<>() {{
-            put(IndicatorNames.AVG_WORK_HOURS, avgWorkHours);
-            put(IndicatorNames.EMPLOYMENT_RATIO, employmentRatio);
-            put(IndicatorNames.INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
-            put(IndicatorNames.INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
-            put(IndicatorNames.JOB_SATISFACTION, jobSatisfaction);
-            put(IndicatorNames.LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatio);
-            put(IndicatorNames.LOW_WAGE_EARNINGS_RATIO, lowWageEarningsRatio);
-            put(IndicatorNames.OVER_QUALIFIED_RATIO, overQualifiedRatio);
-            put(IndicatorNames.RESEARCHERS_RATIO, researchersRatio);
-            put(IndicatorNames.TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatio);
-            put(IndicatorNames.UNEMPLOYMENT_RATIO, unemploymentRatio);
-            put(IndicatorNames.WORKING_NIGHTS_RATIO, workingNightsRatio);
-        }};
-
-        Print.printChartData(args, indicators, MAIN_ACTIVITY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**
