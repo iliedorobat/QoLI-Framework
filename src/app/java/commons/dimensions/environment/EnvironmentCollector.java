@@ -8,13 +8,16 @@ import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAirPollutionRatio(), ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
+//        FileUtils.writeToJSONFile(getAirPollutionRatio(), ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getNoisePollutionRatio(), ENVIRONMENT_RAW_PATH, NOISE_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPollutionRatio(), ENVIRONMENT_RAW_PATH, POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getWaterSupplyRatio(), ENVIRONMENT_RAW_PATH, WATER_SUPPLY_RATIO_FILE_NAME);
     }
 
     /**
+     * TODO: remove the statistics related to "sdg_11_50" dataset as
+     *  the dataset "sdg_11_50" has been discontinued since 20/11/2023.
+     *
      * Exposure to air pollution (Particulates < 2.5 µm & Particulates < 10 µm)<br/><br/>
      *
      * Aggregation: country<br/>
