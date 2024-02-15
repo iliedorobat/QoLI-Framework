@@ -29,7 +29,6 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/MapUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/MathUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/FileUtils.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/StatsUtils.java");
 
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/fetch/FetcherUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/fetch/Fetcher.java");
@@ -42,7 +41,7 @@ public class BuildProject {
     }
 
     private static void buildCollector() throws Exception {
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/common/CommonCollector.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/auxiliary/AuxiliaryCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/education/EducationCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsCollector.java");
@@ -57,7 +56,7 @@ public class BuildProject {
     }
 
     private static void buildParams() throws Exception {
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/common/CommonParams.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/auxiliary/AuxiliaryParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/education/EducationParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsParams.java");
@@ -71,7 +70,7 @@ public class BuildProject {
     }
 
     private static void buildPaths() throws Exception {
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/common/CommonPaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/auxiliary/AuxiliaryPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/education/EducationPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsPaths.java");
@@ -87,7 +86,7 @@ public class BuildProject {
     }
 
     private static void buildStats() throws Exception {
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/common/CommonStats.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/auxiliary/AuxiliaryStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/education/EducationStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsStats.java");
