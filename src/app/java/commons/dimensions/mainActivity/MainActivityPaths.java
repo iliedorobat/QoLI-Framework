@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.mainActivity;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -25,7 +25,7 @@ public class MainActivityPaths {
     public static final String UNEMPLOYMENT_RATIO_FILE_NAME = "unemploymentRatio";
     public static final String WORKING_NIGHTS_RATIO_FILE_NAME = "nightsRatio";
 
-    public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, MAIN_ACTIVITY_FILE_NAME);
+    public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, MAIN_ACTIVITY_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

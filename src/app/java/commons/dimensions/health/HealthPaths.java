@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.health;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -32,7 +32,7 @@ public class HealthPaths {
     public static final String UNMET_MEDICAL_RATIO_FILE_NAME = "unmetMedicalStatus";
     public static final String WORK_ACCIDENTS_FILE_NAME = "workAccidents";
 
-    public static final String HEALTH_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, HEALTH_FILE_NAME);
+    public static final String HEALTH_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, HEALTH_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return HEALTH_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

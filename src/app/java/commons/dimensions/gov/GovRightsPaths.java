@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.gov;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -23,7 +23,7 @@ public class GovRightsPaths {
     public static final String POPULATION_TRUST_FILE_NAME = "populationTrustRatio";
     public static final String VOTER_TURNOUT_FILE_NAME = "voterTurnout";
 
-    public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, GOVERNANCE_FILE_NAME);
+    public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, GOVERNANCE_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return GOV_RIGHTS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

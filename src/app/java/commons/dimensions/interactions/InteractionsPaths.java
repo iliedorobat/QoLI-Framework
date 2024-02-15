@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.interactions;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class InteractionsPaths {
     public static final String GETTING_TOGETHER_FRD_RATIO_FILE_NAME = "gettingTogetherFrdRatio";
     public static final String RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME = "relationshipsSatisfactionRatio";
 
-    public static final String INTERACTIONS_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, INTERACTIONS_FILE_NAME);
+    public static final String INTERACTIONS_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, INTERACTIONS_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return INTERACTIONS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

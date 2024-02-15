@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.materialLiving;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -24,7 +24,7 @@ public class MaterialLivingPaths {
     public static final String POVERTY_RISK_RATIO_FILE_NAME = "povertyRiskRatio";
     public static final String UNDER_OCCUPIED_RATIO_FILE_NAME = "underOccupiedRatio";
 
-    public static final String LIVING_CONDITIONS_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, LIVING_CONDITIONS_FILE_NAME);
+    public static final String LIVING_CONDITIONS_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, LIVING_CONDITIONS_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return LIVING_CONDITIONS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

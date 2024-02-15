@@ -18,7 +18,6 @@ public class BuildProject {
     private static void buildConstants() throws Exception {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/Constants.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/EnvConst.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/FilePathConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsConst.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsValues.java");
     }

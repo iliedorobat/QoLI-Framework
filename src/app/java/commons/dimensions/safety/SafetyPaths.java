@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.safety;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -36,7 +36,7 @@ public class SafetyPaths {
     public static final String SOCIAL_PROTECTION_RATIO_FILE_NAME = "socialProtectionRatio";
     public static final String UNEXPECTED_RATIO_FILE_NAME = "unexpectedRatio";
 
-    public static final String SAFETY_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, SAFETY_FILE_NAME);
+    public static final String SAFETY_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, SAFETY_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return SAFETY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

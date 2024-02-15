@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.leisure;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -24,7 +24,7 @@ public class LeisurePaths {
     public static final String TIME_SPENT_SATISFACTION_FILE_NAME = "timeSpentSatisfaction";
     public static final String VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME = "voluntaryActivitiesRatio";
 
-    public static final String LEISURE_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, LEISURE_FILE_NAME);
+    public static final String LEISURE_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, LEISURE_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return LEISURE_RAW_PATH + File.separator + fileName + JSON_EXTENSION;

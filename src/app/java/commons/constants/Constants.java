@@ -1,5 +1,6 @@
 package app.java.commons.constants;
 
+import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,6 +10,9 @@ public class Constants {
     public static final String CSV_SEPARATOR = ";";
     public static final String KEY_SEPARATOR = "_";
     public static final String XLS_EXTENSION = ".xls";
+
+    public static final String PREPARED_DATASET_PATH = String.join(File.separator, "files", "prepared");
+    public static final String RAW_DATASET_PATH = String.join(File.separator, "files", "raw", "json", "countries");
 
     /**
      * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied

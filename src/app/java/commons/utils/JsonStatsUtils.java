@@ -2,7 +2,6 @@ package app.java.commons.utils;
 
 import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
-import app.java.commons.constants.FilePathConst;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -63,7 +62,7 @@ public class JsonStatsUtils {
                     objectMapper.writeValueAsString(stats)
             );
             String seriesDirectory = CsvStatsUtils.getSeriesDirectory(seriesType);
-            String fullPath = String.join(File.separator, FilePathConst.PREPARED_DATASET_PATH, "json", seriesDirectory);
+            String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "json", seriesDirectory);
             FileUtils.writeToFile(data, fullPath, directoryName, Constants.JSON_EXTENSION);
 
             // TODO:

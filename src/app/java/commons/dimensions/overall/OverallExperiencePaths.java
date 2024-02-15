@@ -1,6 +1,6 @@
 package app.java.commons.dimensions.overall;
 
-import app.java.commons.constants.FilePathConst;
+import app.java.commons.constants.Constants;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class OverallExperiencePaths {
     public static final String HAPPINESS_MOST_OF_THE_TIME_RATIO_FILE_NAME = "happinessMostOfTheTimeRatio";
     public static final String HIGH_SATISFACTION_RATIO_FILE_NAME = "highSatisfactionRatio";
 
-    public static final String OVERALL_EXPERIENCE_RAW_PATH = String.join(File.separator, FilePathConst.RAW_DATASET_PATH, OVERALL_EXPERIENCE_FILE_NAME);
+    public static final String OVERALL_EXPERIENCE_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, OVERALL_EXPERIENCE_FILE_NAME);
 
     private static String generatePath(String fileName) {
         return OVERALL_EXPERIENCE_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
