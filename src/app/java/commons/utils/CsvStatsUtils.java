@@ -1,7 +1,7 @@
 package app.java.commons.utils;
 
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.dimensions.QoLIPaths;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -184,7 +184,7 @@ public class CsvStatsUtils {
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
      * @param seriesType The type of series ("country" or "region")
-     * @param dimensionDirName The directory name of the target dimension
+     * @param directoryName Directory name of the target dimension/indicator
      * @param direction Display years on rows or columns (ROW or COLUMN)
      * @param preparedIndicators A map containing indicators which make up the target dimension
      */
@@ -192,22 +192,21 @@ public class CsvStatsUtils {
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String dimensionDirName,
+            String directoryName,
             String direction,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
-        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, dimensionDirName, direction);
-        String seriesDirectory = getSeriesDirectory(seriesType);
-        String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "csv", seriesDirectory);
-        FileUtils.writeToFile(sb, fullPath, dimensionDirName, Constants.CSV_EXTENSION);
+        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
+        String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
+        String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "csv", seriesDirectory);
+        FileUtils.writeToFile(sb, fullPath, directoryName, CSV_EXTENSION);
 
-        // TODO:
-//        if (preparedIndicators != null) {
-//            preparedIndicators.forEach((indicatorName, value) -> {
-//                String indicatorFullPath = fullPath + File.separator + dimensionDirName;
-//                FileUtils.writeToFile(sb, indicatorFullPath, indicatorName, Constants.JSON_EXTENSION);
-//            });
-//        }
+        if (preparedIndicators != null) {
+            preparedIndicators.forEach((indicatorName, value) -> {
+                String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
+                FileUtils.writeToFile(sb, indicatorFullPath, indicatorName, CSV_EXTENSION);
+            });
+        }
     }
 
     /**
@@ -236,17 +235,5 @@ public class CsvStatsUtils {
         }
 
         return deviation;
-    }
-
-    /**
-     * Get the directory name of the input series type
-     * @param seriesType The series type
-     * @return The directory name of the input series type
-     */
-    public static String getSeriesDirectory(String seriesType) {
-        if (seriesType.equals(SERIES_TYPE_REGION)) {
-            return "regions";
-        }
-        return "countries";
     }
 }

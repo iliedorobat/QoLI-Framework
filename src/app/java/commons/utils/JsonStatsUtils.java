@@ -1,7 +1,7 @@
 package app.java.commons.utils;
 
-import app.java.commons.constants.Constants;
 import app.java.commons.constants.EnvConst;
+import app.java.commons.dimensions.QoLIPaths;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,6 +9,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static app.java.commons.constants.Constants.JSON_EXTENSION;
+import static app.java.commons.constants.Constants.PREPARED_DATASET_PATH;
 
 public class JsonStatsUtils {
     /**
@@ -58,21 +61,23 @@ public class JsonStatsUtils {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            StringBuilder data = new StringBuilder(
-                    objectMapper.writeValueAsString(stats)
-            );
-            String seriesDirectory = CsvStatsUtils.getSeriesDirectory(seriesType);
-            String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "json", seriesDirectory);
-            FileUtils.writeToFile(data, fullPath, directoryName, Constants.JSON_EXTENSION);
+            StringBuilder data = new StringBuilder(objectMapper.writeValueAsString(stats));
+            String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
+            String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "json", seriesDirectory);
+            FileUtils.writeToFile(data, fullPath, directoryName, JSON_EXTENSION);
 
-            // TODO:
-//            if (preparedIndicators != null) {
-//                preparedIndicators.forEach((indicatorName, value) -> {
-//                    // TODO: check
-//                    String indicatorFullPath = fullPath + StatsUtils.getDimensionSubPath(dimensionName);
-//                    FileUtils.writeToFile(data, indicatorFullPath, indicatorName, Constants.JSON_EXTENSION);
-//                });
-//            }
+            if (preparedIndicators != null) {
+                preparedIndicators.forEach((indicatorName, value) -> {
+                    Map<String, Number> indicatorStats = preparedIndicators.get(indicatorName);
+                    try {
+                        StringBuilder indicatorData = new StringBuilder(objectMapper.writeValueAsString(indicatorStats));
+                        String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
+                        FileUtils.writeToFile(indicatorData, indicatorFullPath, indicatorName, JSON_EXTENSION);
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
