@@ -1,6 +1,17 @@
 package app.java.commons;
 
 import app.java.commons.constants.Constants;
+import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
+import app.java.commons.dimensions.education.EducationStats;
+import app.java.commons.dimensions.environment.EnvironmentStats;
+import app.java.commons.dimensions.gov.GovRightsStats;
+import app.java.commons.dimensions.health.HealthStats;
+import app.java.commons.dimensions.interactions.InteractionsStats;
+import app.java.commons.dimensions.leisure.LeisureStats;
+import app.java.commons.dimensions.mainActivity.MainActivityStats;
+import app.java.commons.dimensions.materialLiving.MaterialLivingStats;
+import app.java.commons.dimensions.overall.OverallExperienceStats;
+import app.java.commons.dimensions.safety.SafetyStats;
 import app.java.commons.utils.CsvStatsUtils;
 import app.java.commons.utils.MapUtils;
 
@@ -110,7 +121,21 @@ public class Print {
         return filteredMap;
     }
 
-    public static void printDimensionStatus(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIntermediateStatus) {
+    public static void printDimensionsStatus(int targetYear, boolean indStatus) {
+        Print.printDimensionStatus(AuxiliaryStats.rawIndicators, "Auxiliary info", targetYear, indStatus);
+        Print.printDimensionStatus(EducationStats.rawIndicators, "Education", targetYear, indStatus);
+        Print.printDimensionStatus(EnvironmentStats.rawIndicators, "Environment", targetYear, indStatus);
+        Print.printDimensionStatus(GovRightsStats.rawIndicators, "GBR", targetYear, indStatus);
+        Print.printDimensionStatus(HealthStats.rawIndicators, "Health", targetYear, indStatus);
+        Print.printDimensionStatus(InteractionsStats.rawIndicators, "Interactions", targetYear, indStatus);
+        Print.printDimensionStatus(LeisureStats.rawIndicators, "Leisure", targetYear, indStatus);
+        Print.printDimensionStatus(MainActivityStats.rawIndicators, "PMA", targetYear, indStatus);
+        Print.printDimensionStatus(MaterialLivingStats.rawIndicators, "MLC", targetYear, indStatus);
+        Print.printDimensionStatus(OverallExperienceStats.rawIndicators, "Overall Exp", targetYear, indStatus);
+        Print.printDimensionStatus(SafetyStats.rawIndicators, "Safety", targetYear, indStatus);
+    }
+
+    public static void printDimensionStatus(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIndStatus) {
         int available = 0;
         int expected = 0;
 
@@ -133,7 +158,7 @@ public class Print {
             available += indicatorAvailable;
             expected += indicatorExpected;
 
-            if (printIntermediateStatus) {
+            if (printIndStatus) {
                 System.out.println("\t" + indicatorName + ":"
                         + "\n\t\tAvailable: " + indicatorAvailable
                         + "\n\t\tMissing: " + (indicatorExpected - indicatorAvailable));
