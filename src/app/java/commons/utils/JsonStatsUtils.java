@@ -77,9 +77,7 @@ public class JsonStatsUtils {
             TreeMap<Integer, Number> itemStats = new TreeMap<>();
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-                String key = code + "_" + year;
-                Number value = data.get(key);
-                itemStats.put(year, value);
+                itemStats.put(year, StatsUtils.getValue(data, code, year));
             }
             stats.put(code, itemStats);
         }

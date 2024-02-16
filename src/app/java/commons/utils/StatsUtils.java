@@ -63,4 +63,22 @@ public class StatsUtils {
                 ? StatsUtils.aggregateRegions(entries)
                 : entries;
     }
+
+    public static Number getValue(Map<String, Number> entries, String code, int year) {
+        String key = code + "_" + year;
+        Number value = entries.get(key);
+
+        // Handle offences data
+        if (value == null && code.equals("UK")) {
+            double ukSum = 0;
+
+            ukSum += entries.get("UKC-L" + "_" + year).doubleValue();
+            ukSum += entries.get("UKM" + "_" + year).doubleValue();
+            ukSum += entries.get("UKN" + "_" + year).doubleValue();
+
+            value = ukSum;
+        }
+
+        return value;
+    }
 }

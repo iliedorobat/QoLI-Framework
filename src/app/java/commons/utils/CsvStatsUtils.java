@@ -102,7 +102,6 @@ public class CsvStatsUtils {
         String header = "--- " + seriesType + " --- " + directoryName + " ---" +
                 "\nCountries" + CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
-        int length = membersList.length;
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             output.append(year);
@@ -113,14 +112,11 @@ public class CsvStatsUtils {
         }
         output.append("\n");
 
-        for (int i = 0; i < length; i++) {
-            String code = membersList[i];
+        for (String code : membersList) {
             StringBuilder line = new StringBuilder(code + CSV_SEPARATOR);
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-                String key = code + "_" + year;
-                Number value = entries.get(key);
-
+                Number value = StatsUtils.getValue(entries, code, year);
                 DecimalFormat df = new DecimalFormat("#,###.####", new DecimalFormatSymbols(Locale.ENGLISH));
                 line.append(df.format(value));
 
@@ -207,8 +203,7 @@ public class CsvStatsUtils {
 
         if (calculateIndicators && preparedIndicators != null) {
             preparedIndicators.forEach((indicatorName, value) -> {
-                Map<String, Number> indicatorStats = preparedIndicators.get(indicatorName);
-                StringBuilder indicatorSb = CsvStatsUtils.generateChartData(indicatorStats, membersList, seriesType, directoryName, direction);
+                StringBuilder indicatorSb = CsvStatsUtils.generateChartData(preparedIndicators.get(indicatorName), membersList, seriesType, directoryName, direction);
                 String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
                 FileUtils.writeToFile(indicatorSb, indicatorFullPath, indicatorName, CSV_EXTENSION);
             });
