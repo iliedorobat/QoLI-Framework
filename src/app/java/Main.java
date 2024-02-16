@@ -3,7 +3,6 @@ package app.java;
 import app.java.commons.Print;
 import app.java.commons.dimensions.QoLICsvStats;
 import app.java.commons.dimensions.QoLIJsonStats;
-import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
 import app.java.commons.dimensions.education.EducationStats;
 import app.java.commons.dimensions.environment.EnvironmentStats;
 import app.java.commons.dimensions.gov.GovRightsStats;
