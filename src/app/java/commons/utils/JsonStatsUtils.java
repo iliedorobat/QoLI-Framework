@@ -15,34 +15,6 @@ import static app.java.commons.constants.Constants.PREPARED_DATASET_PATH;
 
 public class JsonStatsUtils {
     /**
-     * Generate TreeMap data that can be exported as a JSON
-     * @param entries The map with target dimension data
-     * @param membersList The list of countries/regions
-     * @return Data prepared to be exported as a JSON
-     */
-    private static TreeMap<String, TreeMap<Integer, Number>> generateJsonData(
-            Map<String, Number> entries,
-            String[] membersList
-    ) {
-        TreeMap<String, TreeMap<Integer, Number>> stats = new TreeMap<>();
-        int length = membersList.length;
-
-        for (int i = 0; i < length; i++) {
-            String code = membersList[i];
-            TreeMap<Integer, Number> itemStats = new TreeMap<>();
-
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-                String key = code + "_" + year;
-                Number value = entries.get(key);
-                itemStats.put(year, value);
-            }
-            stats.put(code, itemStats);
-        }
-
-        return stats;
-    }
-
-    /**
      * Export the prepared chart data to a JSON file
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
@@ -59,7 +31,7 @@ public class JsonStatsUtils {
             HashMap<String, Map<String, Number>> preparedIndicators,
             boolean calculateIndicators
     ) {
-        TreeMap<String, TreeMap<Integer, Number>> stats = JsonStatsUtils.generateJsonData(entries, membersList);
+        TreeMap<String, TreeMap<Integer, Number>> stats = generateJsonData(entries, membersList, seriesType);
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -70,7 +42,7 @@ public class JsonStatsUtils {
 
             if (calculateIndicators && preparedIndicators != null) {
                 preparedIndicators.forEach((indicatorName, value) -> {
-                    Map<String, Number> indicatorStats = preparedIndicators.get(indicatorName);
+                    TreeMap<String, TreeMap<Integer, Number>> indicatorStats = generateJsonData(preparedIndicators.get(indicatorName), membersList, seriesType);
                     try {
                         StringBuilder indicatorData = new StringBuilder(objectMapper.writeValueAsString(indicatorStats));
                         String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
@@ -83,5 +55,35 @@ public class JsonStatsUtils {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Generate TreeMap data that can be exported as a JSON
+     * @param entries The map with target dimension data
+     * @param membersList The list of countries/regions
+     * @param seriesType The series type
+     *
+     * @return Data prepared to be exported as a JSON
+     */
+    private static TreeMap<String, TreeMap<Integer, Number>> generateJsonData(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType
+    ) {
+        TreeMap<String, TreeMap<Integer, Number>> stats = new TreeMap<>();
+        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
+
+        for (String code : membersList) {
+            TreeMap<Integer, Number> itemStats = new TreeMap<>();
+
+            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+                String key = code + "_" + year;
+                Number value = data.get(key);
+                itemStats.put(year, value);
+            }
+            stats.put(code, itemStats);
+        }
+
+        return stats;
     }
 }

@@ -76,11 +76,13 @@ public class CsvStatsUtils {
             String directoryName,
             String direction
     ) {
+        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
+
         if (direction.equals(DIRECTION_ROW)) {
-            return generateChartRows(entries, membersList, seriesType, directoryName);
+            return generateChartRows(data, membersList, seriesType, directoryName);
         }
 
-        return generateChartColumns(entries, membersList, seriesType, directoryName);
+        return generateChartColumns(data, membersList, seriesType, directoryName);
     }
 
     /**
@@ -205,8 +207,10 @@ public class CsvStatsUtils {
 
         if (calculateIndicators && preparedIndicators != null) {
             preparedIndicators.forEach((indicatorName, value) -> {
+                Map<String, Number> indicatorStats = preparedIndicators.get(indicatorName);
+                StringBuilder indicatorSb = CsvStatsUtils.generateChartData(indicatorStats, membersList, seriesType, directoryName, direction);
                 String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
-                FileUtils.writeToFile(sb, indicatorFullPath, indicatorName, CSV_EXTENSION);
+                FileUtils.writeToFile(indicatorSb, indicatorFullPath, indicatorName, CSV_EXTENSION);
             });
         }
     }

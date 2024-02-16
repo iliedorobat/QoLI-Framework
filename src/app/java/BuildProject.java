@@ -29,6 +29,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/MapUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/MathUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/FileUtils.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/utils/StatsUtils.java");
 
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/fetch/FetcherUtils.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/data/fetch/Fetcher.java");
