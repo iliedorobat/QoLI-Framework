@@ -187,6 +187,7 @@ public class CsvStatsUtils {
      * @param directoryName Directory name of the target dimension/indicator
      * @param direction Display years on rows or columns (ROW or COLUMN)
      * @param preparedIndicators A map containing indicators which make up the target dimension
+     * @param calculateIndicators Calculate or not the indicators that make up the QoLI dimensions
      */
     public static void writeChartData(
             Map<String, Number> entries,
@@ -194,14 +195,15 @@ public class CsvStatsUtils {
             String seriesType,
             String directoryName,
             String direction,
-            HashMap<String, Map<String, Number>> preparedIndicators
+            HashMap<String, Map<String, Number>> preparedIndicators,
+            boolean calculateIndicators
     ) {
         StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
         String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
         String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "csv", seriesDirectory);
         FileUtils.writeToFile(sb, fullPath, directoryName, CSV_EXTENSION);
 
-        if (preparedIndicators != null) {
+        if (calculateIndicators && preparedIndicators != null) {
             preparedIndicators.forEach((indicatorName, value) -> {
                 String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
                 FileUtils.writeToFile(sb, indicatorFullPath, indicatorName, CSV_EXTENSION);

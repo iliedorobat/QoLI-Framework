@@ -33,6 +33,7 @@ public class Main {
         boolean compare = contains(list, "--compare");
         boolean indStatus = contains(list, "--indicatorStatus");
         boolean calculate = args.length == 0 || contains(list, "--calculate");
+        boolean calculateIndicators = args.length == 0 || contains(list, "--calculateIndicators");
         boolean print = args.length == 0 || contains(list, "--print");
         int targetYear = MAX_YEAR;
 
@@ -49,8 +50,8 @@ public class Main {
         if (calculate) {
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
             String direction = getDirection(list);
-            QoLICsvStats.writeDimensions(direction);
-            QoLIJsonStats.writeDimensions();
+            QoLICsvStats.writeDimensions(direction, calculateIndicators);
+            QoLIJsonStats.writeDimensions(calculateIndicators);
         }
 
         if (print) {
@@ -80,7 +81,13 @@ public class Main {
         for (String pair : pairs) {
             String[] values = pair.split("=");
 
-            if (values.length > 1) {
+            // E.g.: --calculateIndicators
+            if (values.length == 1) {
+                String key = values[0];
+                return comparator.equals(key);
+            }
+            // E.g.: --calculate=true
+            else if (values.length > 1) {
                 String key = values[0];
                 String value = values[1];
 

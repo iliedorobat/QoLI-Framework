@@ -49,13 +49,15 @@ public class JsonStatsUtils {
      * @param seriesType The type of series ("country" or "region")
      * @param directoryName Directory name of the target dimension/indicator
      * @param preparedIndicators A map containing indicators which make up the target dimension
+     * @param calculateIndicators Calculate or not the indicators that make up the QoLI dimensions
      */
     public static void writeJsonData(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
             String directoryName,
-            HashMap<String, Map<String, Number>> preparedIndicators
+            HashMap<String, Map<String, Number>> preparedIndicators,
+            boolean calculateIndicators
     ) {
         TreeMap<String, TreeMap<Integer, Number>> stats = JsonStatsUtils.generateJsonData(entries, membersList);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -66,7 +68,7 @@ public class JsonStatsUtils {
             String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "json", seriesDirectory);
             FileUtils.writeToFile(data, fullPath, directoryName, JSON_EXTENSION);
 
-            if (preparedIndicators != null) {
+            if (calculateIndicators && preparedIndicators != null) {
                 preparedIndicators.forEach((indicatorName, value) -> {
                     Map<String, Number> indicatorStats = preparedIndicators.get(indicatorName);
                     try {

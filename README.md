@@ -28,7 +28,7 @@ java app/java/Main --collect
 ```
 6. Calculate the QoLI dimensions (only once):
 ```bash
-java app/java/Main --calculate --direction=COLUMN
+java app/java/Main --calculate --calculateIndicators --direction=COLUMN
 ```
 7. Print the QoLI and the QoLI dimensions:
 ```bash
