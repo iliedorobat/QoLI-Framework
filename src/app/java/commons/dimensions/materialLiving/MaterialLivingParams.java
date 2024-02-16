@@ -19,8 +19,7 @@ public class MaterialLivingParams {
     };
 
     private static HashMap<String, String> QUINTILE_AGES = new HashMap<>() {{
-        put("lower_18", "Y_LT18");   // Less than 18 years
-        put("18_to_64", "Y18-64");  // Between 18-64 years
+        put("less_65", "Y_LT65");   // less than 65 years
         put("over_65", "Y_GE65");   // 65 years or over
         put("total", "TOTAL");      // Total
     }};
