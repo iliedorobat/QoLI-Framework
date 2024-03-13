@@ -1,4 +1,4 @@
-package app.java.commons.dimensions.leisure;
+package app.java.commons.dimensions.leisureInteract;
 
 import app.java.commons.MapOrder;
 import app.java.commons.Print;
@@ -15,15 +15,20 @@ import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.constants.Constants.PERCENTAGE_SAFETY_THRESHOLD;
-import static app.java.commons.dimensions.leisure.LeisureParams.*;
-import static app.java.commons.dimensions.leisure.LeisurePaths.*;
+import static app.java.commons.dimensions.leisureInteract.LeisureInteractParams.*;
+import static app.java.commons.dimensions.leisureInteract.LeisureInteractPaths.*;
 
-public class LeisureStats {
+public class LeisureInteractStats {
     private static final Map<String, Number>
-            initSatisfactionRatio = Initializer.initConsolidatedMap(SATISFACTION_RATIO_PARAMS, SATISFACTION_RATIO_PATH),
-            initSocialActivitiesRatio = Initializer.initConsolidatedMap(SOCIAL_ACTIVITIES_RATIO_PARAMS, SOCIAL_ACTIVITIES_RATIO_PATH),
+            initAskingRatio = Initializer.initConsolidatedMap(ASKING_RATIO_PARAMS, ASKING_RATIO_PATH),
+            initDiscussionRatio = Initializer.initConsolidatedMap(DISCUSSION_PARAMS_RATIO, DISCUSSION_RATIO_PATH),
             initFormalVoluntaryRatio = Initializer.initConsolidatedMap(FORMAL_VOLUNTARY_RATIO_PARAMS, VOLUNTARY_RATIO_PATH),
+            initGettingTogetherFamRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FAM_RATIO_PARAMS, GETTING_TOGETHER_RATIO_PATH),
+            initGettingTogetherFrdRatio = Initializer.initConsolidatedMap(GETTING_TOGETHER_FRD_RATIO_PARAMS, GETTING_TOGETHER_RATIO_PATH),
             initInformalVoluntaryRatio = Initializer.initConsolidatedMap(INFORMAL_VOLUNTARY_RATIO_PARAMS, VOLUNTARY_RATIO_PATH),
+            initRelSatisfactionRatio = Initializer.initConsolidatedMap(REL_SATISFACTION_RATIO_PARAMS, REL_SATISFACTION_RATIO_PATH),
+            initSocialActivitiesRatio = Initializer.initConsolidatedMap(SOCIAL_ACTIVITIES_RATIO_PARAMS, SOCIAL_ACTIVITIES_RATIO_PATH),
+            initTimeSatisfactionRatio = Initializer.initConsolidatedMap(TIME_SATISFACTION_RATIO_PARAMS, TIME_SATISFACTION_RATIO_PATH),
 
             // Intermediate data to be consolidated into a single indicator
             initNpFinCinRatio = Initializer.initConsolidatedMap(NP_FIN_CIN_RATIO_PARAMS, NON_PARTICIPATION_RATIO_PATH),
@@ -50,42 +55,62 @@ public class LeisureStats {
             npNnbLiveRatio = Preparation.prepareData(initNpNnbLiveRatio),
             npNnbSportRatio = Preparation.prepareData(initNpNnbSportRatio),
 
+            askingRatio = Preparation.prepareData(initAskingRatio),
+            discussionRatio = Preparation.prepareData(initDiscussionRatio),
             formalVoluntaryRatio = Preparation.prepareData(initFormalVoluntaryRatio),
+            gettingTogetherFamRatio = Preparation.prepareData(initGettingTogetherFamRatio),
+            gettingTogetherFrdRatio = Preparation.prepareData(initGettingTogetherFrdRatio),
             informalVoluntaryRatio = Preparation.prepareData(initInformalVoluntaryRatio),
-
-            satisfactionRatio = Preparation.prepareData(initSatisfactionRatio),
+            relSatisfactionRatio = Preparation.prepareData(initRelSatisfactionRatio),
             socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
+            timeSatisfactionRatio = Preparation.prepareData(initTimeSatisfactionRatio),
+
             nonParticipationRatio = consolidateNonParticipationRatio();
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+        put(ASKING_RATIO_FILE_NAME, Preparation.filterMap(initAskingRatio));
+        put(DISCUSSION_RATIO_FILE_NAME, Preparation.filterMap(initDiscussionRatio));
         put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initFormalVoluntaryRatio));
+        put(GETTING_TOGETHER_FAM_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFamRatio));
+        put(GETTING_TOGETHER_FRD_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFrdRatio));
         put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initInformalVoluntaryRatio));
+        put(RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, Preparation.filterMap(initRelSatisfactionRatio));
+        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initSocialActivitiesRatio));
+        put(TIME_SPENT_SATISFACTION_FILE_NAME, Preparation.filterMap(initTimeSatisfactionRatio));
+
         put(NON_PARTICIPATION_FIN_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCinRatio));
         put(NON_PARTICIPATION_FIN_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCultRatio));
         put(NON_PARTICIPATION_FIN_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinLiveRatio));
         put(NON_PARTICIPATION_FIN_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpFinSportRatio));
+
         put(NON_PARTICIPATION_NNB_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCinRatio));
         put(NON_PARTICIPATION_NNB_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCultRatio));
         put(NON_PARTICIPATION_NNB_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbLiveRatio));
         put(NON_PARTICIPATION_NNB_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbSportRatio));
-        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initSocialActivitiesRatio));
-        put(TIME_SPENT_SATISFACTION_FILE_NAME, Preparation.filterMap(initSatisfactionRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        put(ASKING_RATIO_FILE_NAME, askingRatio);
+        put(DISCUSSION_RATIO_FILE_NAME, discussionRatio);
         put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, formalVoluntaryRatio);
+        put(GETTING_TOGETHER_FAM_RATIO_FILE_NAME, gettingTogetherFamRatio);
+        put(GETTING_TOGETHER_FRD_RATIO_FILE_NAME, gettingTogetherFrdRatio);
         put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, informalVoluntaryRatio);
+        put(RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, relSatisfactionRatio);
+        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, socialActivitiesRatio);
+        put(TIME_SPENT_SATISFACTION_FILE_NAME, timeSatisfactionRatio);
+
+        put(NON_PARTICIPATION_RATIO_FILE_NAME, nonParticipationRatio);
+
         put(NON_PARTICIPATION_FIN_CINEMA_RATIO_FILE_NAME, npFinCinRatio);
         put(NON_PARTICIPATION_FIN_CULTURE_RATIO_FILE_NAME, npFinCultRatio);
         put(NON_PARTICIPATION_FIN_LIVE_RATIO_FILE_NAME, npFinLiveRatio);
         put(NON_PARTICIPATION_FIN_SPORT_RATIO_FILE_NAME, npFinSportRatio);
+
         put(NON_PARTICIPATION_NNB_CINEMA_RATIO_FILE_NAME, npNnbCinRatio);
         put(NON_PARTICIPATION_NNB_CULTURE_RATIO_FILE_NAME, npNnbCultRatio);
         put(NON_PARTICIPATION_NNB_LIVE_RATIO_FILE_NAME, npNnbLiveRatio);
         put(NON_PARTICIPATION_NNB_SPORT_RATIO_FILE_NAME, npNnbSportRatio);
-        put(SOCIAL_ACTIVITIES_RATIO_FILE_NAME, socialActivitiesRatio);
-        put(TIME_SPENT_SATISFACTION_FILE_NAME, satisfactionRatio);
-        put(NON_PARTICIPATION_RATIO_FILE_NAME, nonParticipationRatio);
     }};
 
 
@@ -97,10 +122,15 @@ public class LeisureStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(satisfactionRatio, key)
-                        * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
+                        * MathUtils.percentageSafetyDouble(askingRatio, key)
+                        * MathUtils.percentageSafetyDouble(discussionRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
+                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key)
                         * MathUtils.percentageSafetyDouble(formalVoluntaryRatio, key)
                         * MathUtils.percentageSafetyDouble(informalVoluntaryRatio, key)
+                        * MathUtils.percentageSafetyDouble(relSatisfactionRatio, key)
+                        * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
+                        * MathUtils.percentageSafetyDouble(timeSatisfactionRatio, key)
                         * MathUtils.percentageSafetyDouble(nonParticipationRatio, key, true);
 
                 Number value = Math.log(product);
@@ -115,7 +145,7 @@ public class LeisureStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, LEISURE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, LEISURE_INTERACT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
     /**

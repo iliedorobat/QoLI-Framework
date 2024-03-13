@@ -18,7 +18,7 @@ public class BuildProject {
     private static void buildConstants() throws Exception {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/Constants.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/EnvConst.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsConst.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsNames.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/constants/ParamsValues.java");
     }
 
@@ -47,8 +47,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/health/HealthCollector.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/interactions/InteractionsCollector.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisure/LeisureCollector.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisureInteract/LeisureInteractCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/mainActivity/MainActivityCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingCollector.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperienceCollector.java");
@@ -62,8 +61,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/health/HealthParams.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/interactions/InteractionsParams.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisure/LeisureParams.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisureInteract/LeisureInteractParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/mainActivity/MainActivityParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingParams.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperienceParams.java");
@@ -76,8 +74,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/health/HealthPaths.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/interactions/InteractionsPaths.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisure/LeisurePaths.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisureInteract/LeisureInteractPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/mainActivity/MainActivityPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingPaths.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperiencePaths.java");
@@ -92,8 +89,7 @@ public class BuildProject {
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/environment/EnvironmentStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/gov/GovRightsStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/health/HealthStats.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/interactions/InteractionsStats.java");
-        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisure/LeisureStats.java");
+        runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/leisureInteract/LeisureInteractStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/mainActivity/MainActivityStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/materialLiving/MaterialLivingStats.java");
         runProcess("javac -d ./out/production/QoLI-Framework src/app/java/commons/dimensions/overall/OverallExperienceStats.java");

@@ -20,30 +20,22 @@ import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 public class EnvironmentStats {
     private static final Map<String, Number>
             initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO_PARAMS, NOISE_POLLUTION_RATIO_PATH),
-            initPm2_5PollutionRatio = Initializer.initConsolidatedMap(PM2_5_POLLUTION_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initPm10PollutionRatio = Initializer.initConsolidatedMap(PM10_POLLUTION_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
             initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO_PARAMS, POLLUTION_RATIO_PATH),
             initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO_PARAMS, WATER_SUPPLY_RATIO_PATH);
 
     public static final Map<String, Number>
             noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
-            pm2_5PollutionRatio = Preparation.prepareData(initPm2_5PollutionRatio),
-            pm10PollutionRatio = Preparation.prepareData(initPm10PollutionRatio),
             pollutionRatio = Preparation.prepareData(initPollutionRatio),
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(NOISE_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initNoisePollutionRatio));
-        put(PM_2_5_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPm2_5PollutionRatio));
-        put(PM_10_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPm10PollutionRatio));
         put(POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPollutionRatio));
         put(WATER_SUPPLY_RATIO_FILE_NAME, Preparation.filterMap(initWaterSupplyRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
-        put(PM_2_5_POLLUTION_RATIO_FILE_NAME, pm2_5PollutionRatio);
-        put(PM_10_POLLUTION_RATIO_FILE_NAME, pm10PollutionRatio);
         put(POLLUTION_RATIO_FILE_NAME, pollutionRatio);
         put(WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
     }};
@@ -58,8 +50,6 @@ public class EnvironmentStats {
                 double product = 1
                         * MathUtils.percentageSafetyDouble(waterSupplyRatio, key)
                         * MathUtils.percentageSafetyDouble(noisePollutionRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(pm2_5PollutionRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(pm10PollutionRatio, key, true)
                         * MathUtils.percentageSafetyDouble(pollutionRatio, key, true);
 
                 Number value = Math.log(product);
