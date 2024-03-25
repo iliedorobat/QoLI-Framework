@@ -24,7 +24,7 @@ public class SafetyCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw03<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2021<br/><br/>
+     * Years: 2003-2020; 2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -41,7 +41,7 @@ public class SafetyCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdes05<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -102,7 +102,7 @@ public class SafetyCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdes04<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
