@@ -11,6 +11,7 @@ public class ParamsNames {
     public static final String FREQ = "freq";
     public static final String FREQUENCY = "frequenc";
     public static final String GEO = "geo";
+    public static final String HEALTH_PROBLEMS = "hlth_pb";
     public static final String HHTYP = "hhtyp";
     public static final String ICCS = "iccs";
     public static final String INC_GRP = "incgrp";
@@ -27,7 +28,6 @@ public class ParamsNames {
     public static final String LANG = "lang";
     public static final String LEV_SATIS = "lev_satis";
     public static final String LEVELS = "levels";
-    public static final String MGSTATUS = "mgstatus";
     public static final String N_LANG = "n_lang";
     public static final String N_PORTION = "n_portion";
     public static final String NA_ITEM = "na_item";

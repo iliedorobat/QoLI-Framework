@@ -8,8 +8,8 @@ import static app.java.commons.dimensions.health.HealthPaths.*;
 
 public class HealthCollector {
     public static void fetchData() {
-        FileUtils.writeToJSONFile(getAlcoholicRatio(), HEALTH_RAW_PATH, ALCOHOLIC_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getBodyMassIndexRatio(), HEALTH_RAW_PATH, BMI_FILE_NAME);
+        FileUtils.writeToJSONFile(getDepressiveRatio(), HEALTH_RAW_PATH, DEPRESSIVE_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getFVRatio(), HEALTH_RAW_PATH, FRUITS_VEGETABLES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getLifeExpectancy(), HEALTH_RAW_PATH, LIFE_EXPECTANCY_FILE_NAME);
         FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), HEALTH_RAW_PATH, LONG_HEALTH_ISSUES_RATIO_FILE_NAME);
@@ -17,6 +17,7 @@ public class HealthCollector {
         FileUtils.writeToJSONFile(getHealthyLifeRatio(), HEALTH_RAW_PATH, HEALTHY_LIFE_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getHealthyLifeYears(), HEALTH_RAW_PATH, HEALTHY_LIFE_YEARS_FILE_NAME);
         FileUtils.writeToJSONFile(getHospitalBedsRatio(), HEALTH_RAW_PATH, HOSPITAL_BEDS_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonAlcoholicRatio(), HEALTH_RAW_PATH, NON_ALCOHOLIC_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), HEALTH_RAW_PATH, PHYSICAL_ACTIVITIES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getSmokersRatio(), HEALTH_RAW_PATH, SMOKERS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getUnmetDentalRatio(), HEALTH_RAW_PATH, UNMET_DENTAL_RATIO_FILE_NAME);
@@ -25,23 +26,7 @@ public class HealthCollector {
     }
 
     /**
-     * Daily alcohol consumption<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: hlth_ehis_al1b<br/>
-     * Years: 2014; 2019<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
-     *
-     * @return
-     */
-    private static StringBuilder getAlcoholicRatio() {
-        return Fetcher.fetchData("hlth_ehis_al1b", ALCOHOLIC_RATIO_PARAMS);
-    }
-
-    /**
-     * Overweight and obese people<br/><br/>
+     * People having body mass within normal limits<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
@@ -54,6 +39,22 @@ public class HealthCollector {
      */
     private static StringBuilder getBodyMassIndexRatio() {
         return Fetcher.fetchData("hlth_ehis_bm1i", BMI_PARAMS);
+    }
+
+    /**
+     * Share of people who faced depressive symptoms<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: hlth_ehis_mh1i<br/>
+     * Years: 2014; 2019<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    private static StringBuilder getDepressiveRatio() {
+        return Fetcher.fetchData("hlth_ehis_mh1i", DEPRESSIVE_RATIO_PARAMS);
     }
 
     /**
@@ -90,7 +91,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_10<br/>
-     * Years: 2005-2022
+     * Years: 2005-2023
      *
      * @return
      */
@@ -153,7 +154,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_11<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -161,6 +162,22 @@ public class HealthCollector {
      */
     private static StringBuilder getLongHealthIssuesRatio() {
         return Fetcher.fetchData("hlth_silc_11", LONG_HEALTH_ISSUE_RATIO_PARAMS);
+    }
+
+    /**
+     * Share of the population who have never or in the last 12 months had heavy episodic drinking<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: hlth_ehis_al3i<br/>
+     * Years: 2014; 2019<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    private static StringBuilder getNonAlcoholicRatio() {
+        return Fetcher.fetchData("hlth_ehis_al3i", NON_ALCOHOLIC_RATIO_PARAMS);
     }
 
     /**
@@ -201,7 +218,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_09<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -218,7 +235,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_08<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

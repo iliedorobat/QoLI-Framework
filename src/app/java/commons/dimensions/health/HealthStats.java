@@ -19,16 +19,21 @@ import static app.java.commons.dimensions.health.HealthParams.*;
 import static app.java.commons.dimensions.health.HealthPaths.*;
 
 public class HealthStats {
+    // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
-            initAlcoholicRatio = Initializer.initConsolidatedMap(ALCOHOLIC_RATIO_PARAMS, ALCOHOLIC_RATIO_PATH),
-            initBmiObeseRatio = Initializer.initConsolidatedMap(BMI_OBESE_PARAMS, BMI_PATH),
-            initBmiOverweightRatio = Initializer.initConsolidatedMap(BMI_OVERWEIGHT_PARAMS, BMI_PATH),
+            initDepressiveMajorRatio = Initializer.initConsolidatedMap(DEPRESSIVE_MAJOR_RATIO_PARAMS, DEPRESSIVE_RATIO_PATH),
+            initDepressiveNormalRatio = Initializer.initConsolidatedMap(DEPRESSIVE_NORMAL_RATIO_PARAMS, DEPRESSIVE_RATIO_PATH),
+            initDepressiveOtherRatio = Initializer.initConsolidatedMap(DEPRESSIVE_OTHER_RATIO_PARAMS, DEPRESSIVE_RATIO_PATH);
+
+    private static final Map<String, Number>
+            initBmiRatio = Initializer.initConsolidatedMap(BMI_PARAMS, BMI_PATH),
             initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO_PARAMS, FRUITS_VEGETABLES_RATIO_PATH),
             initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO_PARAMS, HEALTHY_LIFE_RATIO_PATH),
             initHealthyLifeYears = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_PARAMS, HEALTHY_LIFE_YEARS_PATH),
             initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS_PARAMS, HOSPITAL_BEDS_PATH),
             initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY_PARAMS, LIFE_EXPECTANCY_PATH),
             initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO_PARAMS, LONG_HEALTH_ISSUES_RATIO_PATH),
+            initNonAlcoholicRatio = Initializer.initConsolidatedMap(NON_ALCOHOLIC_RATIO_PARAMS, NON_ALCOHOLIC_RATIO_PATH),
             initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES_PARAMS, HEALTH_PERSONNEL_PATH),
@@ -41,6 +46,11 @@ public class HealthStats {
             initWorkAccidents = Initializer.initConsolidatedMap(WORK_ACCIDENTS_PARAMS, WORK_ACCIDENTS_PATH);
 
     public static final Map<String, Number>
+            // Intermediate data used to calculate depressiveRatio
+            depressiveMajorRatio = Preparation.prepareData(initDepressiveMajorRatio),
+            depressiveNormalRatio = Preparation.prepareData(initDepressiveNormalRatio),
+            depressiveOtherRatio = Preparation.prepareData(initDepressiveOtherRatio),
+
             // Intermediate data used to calculate personnelTotal
             personnelDentists = Preparation.prepareData(initPersonnelDentists),
             personnelDoctors = Preparation.prepareData(initPersonnelDoctors),
@@ -48,15 +58,15 @@ public class HealthStats {
             personnelPharmacists = Preparation.prepareData(initPersonnelPharma),
             personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
 
-            alcoholicRatio = Preparation.prepareData(initAlcoholicRatio),
-            bmiObeseRatio = Preparation.prepareData(initBmiObeseRatio),
-            bmiOverweightRatio = Preparation.prepareData(initBmiOverweightRatio),
+            bmiRatio = Preparation.prepareData(initBmiRatio),
+            depressiveRatio = prepareDepressiveRatio(),
             fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
+            nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
             personnelTotal = preparePersonnelRatio(),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
@@ -65,15 +75,17 @@ public class HealthStats {
             workAccidents = Preparation.preparePerThousandInhabitant(AuxiliaryStats.population, initWorkAccidents);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(ALCOHOLIC_RATIO_FILE_NAME, Preparation.filterMap(initAlcoholicRatio));
-        put(BMI_OBESE_FILE_NAME, Preparation.filterMap(initBmiObeseRatio));
-        put(BMI_OVERWEIGHT_FILE_NAME, Preparation.filterMap(initBmiOverweightRatio));
+        put(BMI_FILE_NAME, Preparation.filterMap(initBmiRatio));
+        put(DEPRESSIVE_MAJOR_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveMajorRatio));
+        put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveNormalRatio));
+        put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveOtherRatio));
         put(FRUITS_VEGETABLES_RATIO_FILE_NAME, Preparation.filterMap(initFruitsVegetablesRatio));
         put(HEALTHY_LIFE_RATIO_FILE_NAME, Preparation.filterMap(initHealthyLifeRatio));
         put(HEALTHY_LIFE_YEARS_FILE_NAME, Preparation.filterMap(initHealthyLifeYears));
         put(HOSPITAL_BEDS_FILE_NAME, Preparation.filterMap(initHospitalBeds));
         put(LIFE_EXPECTANCY_FILE_NAME, Preparation.filterMap(initLifeExpectancy));
         put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initLongHealthIssuesRatio));
+        put(NON_ALCOHOLIC_RATIO_FILE_NAME, Preparation.filterMap(initNonAlcoholicRatio));
         put(PERSONNEL_DENTISTS_FILE_NAME, Preparation.filterMap(initPersonnelDentists));
         put(PERSONNEL_DOCTORS_FILE_NAME, Preparation.filterMap(initPersonnelDoctors));
         put(PERSONNEL_NURSES_FILE_NAME, Preparation.filterMap(initPersonnelNurses));
@@ -87,15 +99,18 @@ public class HealthStats {
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(ALCOHOLIC_RATIO_FILE_NAME, alcoholicRatio);
-        put(BMI_OBESE_FILE_NAME, bmiObeseRatio);
-        put(BMI_OVERWEIGHT_FILE_NAME, bmiOverweightRatio);
+        put(BMI_FILE_NAME, initBmiRatio);
+        put(DEPRESSIVE_MAJOR_RATIO_FILE_NAME, depressiveMajorRatio);
+        put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, depressiveNormalRatio);
+        put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, depressiveOtherRatio);
+        put(DEPRESSIVE_RATIO_FILE_NAME, depressiveRatio);
         put(FRUITS_VEGETABLES_RATIO_FILE_NAME, fruitsVegetablesRatio);
         put(HEALTHY_LIFE_RATIO_FILE_NAME, healthyLifeRatio);
         put(HEALTHY_LIFE_YEARS_FILE_NAME, healthyLifeYears);
         put(HOSPITAL_BEDS_FILE_NAME, hospitalBeds);
         put(LIFE_EXPECTANCY_FILE_NAME, lifeExpectancy);
         put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, longHealthIssuesRatio);
+        put(NON_ALCOHOLIC_RATIO_FILE_NAME, nonAlcoholicRatio);
         put(PERSONNEL_DENTISTS_FILE_NAME, personnelDentists);
         put(PERSONNEL_DOCTORS_FILE_NAME, personnelDoctors);
         put(PERSONNEL_NURSES_FILE_NAME, personnelNurses);
@@ -117,16 +132,16 @@ public class HealthStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
+                        * MathUtils.percentageSafetyDouble(bmiRatio, key)
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
                         * MathUtils.percentageSafetyDouble(personnelTotal, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
                         * MathUtils.percentageSafetyDouble(hospitalBeds, key)
+                        * MathUtils.percentageSafetyDouble(nonAlcoholicRatio, key)
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
-                        * MathUtils.percentageSafetyDouble(alcoholicRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(bmiOverweightRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(bmiObeseRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(depressiveRatio, key, true)
                         * MathUtils.percentageSafetyDouble(longHealthIssuesRatio, key, true)
                         * MathUtils.percentageSafetyDouble(smokersRatio, key, true)
                         * MathUtils.percentageSafetyDouble(unmetDentalRatio, key, true)
@@ -146,6 +161,30 @@ public class HealthStats {
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
         Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+    }
+
+    /**
+     * Aggregate the share of population facing with depressive symptoms into a single indicator
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> prepareDepressiveRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                double valueNormal = depressiveNormalRatio.get(key).doubleValue();
+                double valueMajor = depressiveMajorRatio.get(key).doubleValue();
+                double valueOther = depressiveOtherRatio.get(key).doubleValue();
+
+                Number value = valueNormal + valueMajor + valueOther;
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
     }
 
     /**

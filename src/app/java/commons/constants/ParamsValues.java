@@ -26,6 +26,12 @@ public class ParamsValues {
         put("obese", "BMI_GE30");
     }};
 
+    public static final HashMap<String, String> HEALTH_PROBLEMS = new HashMap<>() {{
+        put("depressive", "DPR");
+        put("majorDepressive", "DPR_MJR");
+        put("other", "DPR_OTH");
+    }};
+
     public static HashMap<String, String> ICCS = new HashMap<>() {{
         put("assault", "ICCS020111");           // Serious Assault
         put("attemptedHomicide", "ICCS0102");   // Attempted intentional homicide
@@ -78,11 +84,17 @@ public class ParamsValues {
         put("physiotherapists", "OC2264");
     }};
 
-    public static HashMap<String, String> REASON = new HashMap<>() {{
+    public static HashMap<String, String> SOCIAL_ACTIVITIES_NP_REASON = new HashMap<>() {{
         put("away", "NNB");             // None in the neighbourhood
         put("financial", "FIN");        // Financial reasons
         put("other", "OTH");            // Other
         put("uninterested", "NINT");    // No interest
+    }};
+
+    public static HashMap<String, String> VOLUNTARY_ACTIVITIES_NP_REASON = new HashMap<>() {{
+        put("time", "TIME");            // Time
+        put("noInterest", "NINT");      // No interest
+        put("other", "OTH");            // Other
     }};
 
     public static HashMap<String, String> SEX = new HashMap<>() {{
