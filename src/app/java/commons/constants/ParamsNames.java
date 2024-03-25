@@ -34,6 +34,7 @@ public class ParamsNames {
     public static final String NACE_R1 = "nace_r1";
     public static final String NACE_R2 = "nace_r2";
     public static final String PHYSICAL_ACTIVITY = "physact";
+    public static final String PPP_CAT = "ppp_cat";
     public static final String PROF_POS = "prof_pos";
     public static final String QUANT_INC = "quant_inc";
     public static final String QUANTILE = "quantile";
