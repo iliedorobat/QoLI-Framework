@@ -19,10 +19,14 @@ public class MainActivityPaths {
     public static final String JOB_SATISFACTION_FILE_NAME = "jobSatisfaction";
     public static final String LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME = "longTermUnemploymentRatio";
     public static final String LOW_WAGE_EARNERS_RATIO_FILE_NAME = "lowWageEarnersRatio";
-    public static final String OVER_QUALIFIED_RATIO_FILE_NAME = "overQualifiedRatio";
+    public static final String LOW_WORK_INTENSITY_RATIO_FILE_NAME = "lowWorkIntensityRatio";
     public static final String RESEARCHERS_FILE_NAME = "researchers";
     public static final String TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME = "temporaryEmploymentRatio";
     public static final String UNEMPLOYMENT_RATIO_FILE_NAME = "unemploymentRatio";
+    public static final String WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME = "flexibilityRatio";
+    public static final String WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME = "flexibilityRatio";
+    public static final String WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME = "flexibilityRatio";
+    public static final String WORKING_FLEXIBILITY_RATIO_FILE_NAME = "flexibilityRatio";
     public static final String WORKING_NIGHTS_RATIO_FILE_NAME = "nightsRatio";
 
     public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, MAIN_ACTIVITY_FILE_NAME);
@@ -40,9 +44,10 @@ public class MainActivityPaths {
             JOB_SATISFACTION_PATH = generatePath(JOB_SATISFACTION_FILE_NAME),
             LONG_TERM_UNEMPLOYMENT_RATIO_PATH = generatePath(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME),
             LOW_WAGE_EARNINGS_RATIO_PATH = generatePath(LOW_WAGE_EARNERS_RATIO_FILE_NAME),
-            OVER_QUALIFIED_RATIO_PATH = generatePath(OVER_QUALIFIED_RATIO_FILE_NAME),
+            LOW_WORK_INTENSITY_RATIO_PATH = generatePath(LOW_WORK_INTENSITY_RATIO_FILE_NAME),
             RESEARCHERS_PATH = generatePath(RESEARCHERS_FILE_NAME),
             TEMPORARY_EMPLOYMENT_RATIO_PATH = generatePath(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME),
             UNEMPLOYMENT_RATIO_PATH = generatePath(UNEMPLOYMENT_RATIO_FILE_NAME),
+            WORKING_FLEXIBILITY_RATIO_PATH = generatePath(WORKING_FLEXIBILITY_RATIO_FILE_NAME),
             WORKING_NIGHTS_RATIO_PATH = generatePath(WORKING_NIGHTS_RATIO_FILE_NAME);
 }

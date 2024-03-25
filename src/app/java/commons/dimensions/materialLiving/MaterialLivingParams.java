@@ -68,12 +68,7 @@ public class MaterialLivingParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsNames.AGE, "Y_LT60");
-        put(ParamsNames.FREQ, "A");
-        put(ParamsNames.SEX, "T");
-        put(ParamsNames.UNIT, "PC_Y_LT60");
-    }};
+    public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = AuxiliaryParams.LOW_WORK_INTENSITY_RATIO_PARAMS;
 
     public static final MultiValuedMap<String, String> MATERIAL_DEPRIVATION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");

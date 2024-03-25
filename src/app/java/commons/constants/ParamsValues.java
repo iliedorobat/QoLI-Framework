@@ -99,4 +99,12 @@ public class ParamsValues {
         put("easily", "EM_E");              // Households making ends meet easily
         put("veryEasily", "EM_VE");         // Households making ends meet very easily
     }};
+
+    public static HashMap<String, String> WORKING_FLEXIBILITY = new HashMap<>() {{
+        put("noResponse", "NRP");                   // No response
+        put("employerDecision", "EMPL_MAIN");       // Employer or organisation mainly decides
+        put("personDecision", "PER_FUL");           // Person can fully decide
+        put("restrictiveDecision", "PER_RSTR");     // Person can decide with certain restrictions
+        put("total", "TOTAL");                      // Total
+    }};
 }

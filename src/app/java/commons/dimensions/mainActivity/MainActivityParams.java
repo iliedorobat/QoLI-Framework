@@ -2,13 +2,21 @@ package app.java.commons.dimensions.mainActivity;
 
 import app.java.commons.constants.ParamsNames;
 import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
+import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
+import static app.java.commons.constants.ParamsValues.WORKING_FLEXIBILITY;
 import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
 import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class MainActivityParams {
+    private static String[] FLEXIBILITY = {
+            WORKING_FLEXIBILITY.get("total"),
+            WORKING_FLEXIBILITY.get("personDecision"),
+            WORKING_FLEXIBILITY.get("restrictiveDecision")
+    };
+
     public static final MultiValuedMap<String, String> AVG_WORK_HOURS_2007_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.NACE_R1, "TOTAL");
@@ -51,7 +59,7 @@ public class MainActivityParams {
 
     public static final MultiValuedMap<String, String> JOB_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("JOB")
+            SATISFACTION_TYPES_PARAMS.get("JOBSAT")
     );
 
     public static final MultiValuedMap<String, String> LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -69,14 +77,7 @@ public class MainActivityParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> OVER_QUALIFIED_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsNames.AGE, "Y15-64");
-        put(ParamsNames.FREQ, "A");
-        put(ParamsNames.ISCED_11, "TOTAL");
-        put(ParamsNames.MGSTATUS, "TOTAL");
-        put(ParamsNames.SEX, "T");
-        put(ParamsNames.UNIT, "PC");
-    }};
+    public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = AuxiliaryParams.LOW_WORK_INTENSITY_RATIO_PARAMS;
 
     public static final MultiValuedMap<String, String> RESEARCHERS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
@@ -102,6 +103,13 @@ public class MainActivityParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
+    public static final MultiValuedMap<String, String> WORKING_FLEXIBILITY_RATIO_PARAMS = getFlexibilityParams();
+
+    public static final MultiValuedMap<String, String>
+            WORKING_FLEXIBILITY_FULL_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("personDecision")),
+            WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("restrictiveDecision")),
+            WORKING_FLEXIBILITY_TOTAL_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("total"));
+
     public static final MultiValuedMap<String, String> WORKING_NIGHTS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y15-64");
         put(ParamsNames.FREQ, "A");
@@ -110,4 +118,29 @@ public class MainActivityParams {
         put(ParamsNames.UNIT, "PC");
         put(ParamsNames.WORKING_STATUS, "EMP");
     }};
+
+    private static MultiValuedMap<String, String> getFlexibilityParams() {
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
+            put(ParamsNames.AGE, "Y15-74");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "THS_PER");
+            put(ParamsNames.WORKING_STATUS, "EMP");
+        }};
+        FetcherUtils.addParams(params, ParamsNames.WORKING_TIME_FLEX, FLEXIBILITY);
+        return params;
+    }
+
+    private static MultiValuedMap<String, String> getFlexibilityParams(String flexibility) {
+        return new HashSetValuedHashMap<>() {{
+            put(ParamsNames.AGE, "Y15-74");
+            put(ParamsNames.FREQ, "A");
+            put(ParamsNames.ISCED_11, "TOTAL");
+            put(ParamsNames.SEX, "T");
+            put(ParamsNames.UNIT, "THS_PER");
+            put(ParamsNames.WORKING_STATUS, "EMP");
+            put(ParamsNames.WORKING_TIME_FLEX, flexibility);
+        }};
+    };
 }

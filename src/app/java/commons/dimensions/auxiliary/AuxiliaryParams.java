@@ -11,6 +11,13 @@ import java.util.HashMap;
 import static app.java.commons.constants.ParamsValues.ACL00_LEISURE;
 
 public class AuxiliaryParams {
+    public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.AGE, "Y_LT60");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC_Y_LT60");
+    }};
+
     public static final HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
         put("HIGH", "HIGH");
         put("LOW", "LOW");

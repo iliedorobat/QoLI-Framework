@@ -16,10 +16,11 @@ public class MainActivityCollector {
         FileUtils.writeToJSONFile(getJobSatisfaction(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, JOB_SATISFACTION_FILE_NAME);
         FileUtils.writeToJSONFile(getLongTermUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getLowWageEarnersRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LOW_WAGE_EARNERS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getOverQualifiedRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, OVER_QUALIFIED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LOW_WORK_INTENSITY_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getResearchers(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, RESEARCHERS_FILE_NAME);
         FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, UNEMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkingFlexibilityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, WORKING_FLEXIBILITY_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getWorkingNightsRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, WORKING_NIGHTS_RATIO_FILE_NAME);
     }
 
@@ -131,7 +132,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of labour force aged 15-74 years (%)<br/>
      * Dataset: une_ltu_a<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfu2ltu<br/><br/>
      *
@@ -160,20 +161,21 @@ public class MainActivityCollector {
     }
 
     /**
-     * Self-declared over-qualified employees<br/><br/>
+     * People living in households with very low work intensity<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percentage of the total employees aged from 15 to 64 years (%)<br/>
-     * Dataset: lfso_14loq<br/>
-     * Years: 2014<br/><br/>
+     * Data type: proportion of total population aged 0 to 59 years (%)<br/>
+     * Dataset: ilc_lvhl11<br/>
+     * Years: 2003-2023<br/><br/>
      *
-     * <b>Lack of data: DK; IE; NL</b><br/<br/>
+     * Comments: NUTS 2 regions => ilc_lvhl21<br/><br/>
+     *
      * <b>GREATER IS WORSE!</b>
+     *
      * @return
      */
-    private static StringBuilder getOverQualifiedRatio() {
-        // TODO: https://ec.europa.eu/eurostat/web/experimental-statistics/skills
-        return Fetcher.fetchData("lfso_14loq", OVER_QUALIFIED_RATIO_PARAMS);
+    private static StringBuilder getLowWorkIntensityRatio() {
+        return Fetcher.fetchData("ilc_lvhl11", LOW_WORK_INTENSITY_RATIO_PARAMS);
     }
 
     /**
@@ -198,7 +200,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of total employment (%)<br/>
      * Dataset: lfsi_pt_a<br/>
-     * Years: 1993-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -224,6 +226,21 @@ public class MainActivityCollector {
      */
     private static StringBuilder getUnemploymentRatio() {
         return Fetcher.fetchData("lfsa_urgaed", UNEMPLOYMENT_RATIO_PARAMS);
+    }
+
+
+    /**
+     * Persons in employment by working time flexibility<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: thousands persons aged from 15 to 74 years (%)<br/>
+     * Dataset: lfso_19fxwt01<br/>
+     * Years: 2019
+     *
+     * @return
+     */
+    private static StringBuilder getWorkingFlexibilityRatio() {
+        return Fetcher.fetchData("lfso_19fxwt01", WORKING_FLEXIBILITY_RATIO_PARAMS);
     }
 
     /**

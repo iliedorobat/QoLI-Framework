@@ -15,6 +15,7 @@ import java.util.*;
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 import static app.java.commons.dimensions.mainActivity.MainActivityParams.*;
 import static app.java.commons.dimensions.mainActivity.MainActivityPaths.*;
+import static app.java.commons.dimensions.materialLiving.MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME;
 
 public class MainActivityStats {
     /** 12 hours * 7 days */
@@ -24,11 +25,16 @@ public class MainActivityStats {
     private static final Map<String, Number>
             avgWorkHours2007 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2007_PARAMS, AVG_WORK_HOURS_2007_PATH),
             avgWorkHours2008 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2008_PARAMS, AVG_WORK_HOURS_2008_PATH);
-    private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>();
-    static {
+    private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>() {{
         avgWorkHoursList.add(avgWorkHours2007);
         avgWorkHoursList.add(avgWorkHours2008);
-    }
+    }};
+
+    // Intermediate data which will be grouped into a single indicator
+    private static final Map<String, Number>
+            initFlexibilityFullRatio = Initializer.initConsolidatedMap(WORKING_FLEXIBILITY_FULL_RATIO_PARAMS, WORKING_FLEXIBILITY_RATIO_PATH),
+            initFlexibilityRestrictiveRatio = Initializer.initConsolidatedMap(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_PARAMS, WORKING_FLEXIBILITY_RATIO_PATH),
+            initFlexibilityTotalRatio = Initializer.initConsolidatedMap(WORKING_FLEXIBILITY_TOTAL_RATIO_PARAMS, WORKING_FLEXIBILITY_RATIO_PATH);
 
     private static final Map<String, Number>
             initAvgWorkHoursList = Initializer.initConsolidatedMaps(avgWorkHoursList),
@@ -38,7 +44,7 @@ public class MainActivityStats {
             initJobSatisfaction = Initializer.initConsolidatedMap(JOB_SATISFACTION_PARAMS, JOB_SATISFACTION_PATH),
             initLongTermUnemploymentRatio = Initializer.initConsolidatedMap(LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS, LONG_TERM_UNEMPLOYMENT_RATIO_PATH),
             initLowWageEarningsRatio = Initializer.initConsolidatedMap(LOW_WAGE_EARNINGS_RATIO_PARAMS, LOW_WAGE_EARNINGS_RATIO_PATH),
-            initOverQualifiedRatio = Initializer.initConsolidatedMap(OVER_QUALIFIED_RATIO_PARAMS, OVER_QUALIFIED_RATIO_PATH),
+            initLowWorkIntensityRatio = Initializer.initConsolidatedMap(LOW_WORK_INTENSITY_RATIO_PARAMS, LOW_WORK_INTENSITY_RATIO_PATH),
             initResearchers = Initializer.initConsolidatedMap(RESEARCHERS_PARAMS, RESEARCHERS_PATH),
             initTemporaryEmploymentRatio = Initializer.initConsolidatedMap(TEMPORARY_EMPLOYMENT_RATIO_PARAMS, TEMPORARY_EMPLOYMENT_RATIO_PATH),
             initUnemploymentRatio = Initializer.initConsolidatedMap(UNEMPLOYMENT_RATIO_PARAMS, UNEMPLOYMENT_RATIO_PATH),
@@ -48,6 +54,11 @@ public class MainActivityStats {
             // Intermediate data used to calculate avgRemainedWorkHours
             avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
 
+            // Intermediate data used to calculate workingFlexibilityRatio
+            flexibilityFullRatio = Preparation.prepareData(initFlexibilityFullRatio),
+            flexibilityRestrictiveRatio = Preparation.prepareData(initFlexibilityRestrictiveRatio),
+            flexibilityTotalRatio = Preparation.prepareData(initFlexibilityTotalRatio),
+
             avgRemainedWorkHours = prepareAvgWorkHours(avgWorkHours),
             employmentRatio = Preparation.prepareData(initEmploymentRatio),
             inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
@@ -55,10 +66,11 @@ public class MainActivityStats {
             jobSatisfaction = Preparation.prepareData(initJobSatisfaction),
             longTermUnemploymentRatio = Preparation.prepareData(initLongTermUnemploymentRatio),
             lowWageEarningsRatio = Preparation.prepareData(initLowWageEarningsRatio),
-            overQualifiedRatio = Preparation.prepareData(initOverQualifiedRatio),
+            lowWorkIntensityRatio = Preparation.prepareData(initLowWorkIntensityRatio),
             researchersRatio = Preparation.preparePerTenThousandInhabitants(AuxiliaryStats.population, initResearchers),
             temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
+            workingFlexibilityRatio = prepareWorkingFlexibility(),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
@@ -69,10 +81,13 @@ public class MainActivityStats {
         put(JOB_SATISFACTION_FILE_NAME, Preparation.filterMap(initJobSatisfaction));
         put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initLongTermUnemploymentRatio));
         put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, Preparation.filterMap(initLowWageEarningsRatio));
-        put(OVER_QUALIFIED_RATIO_FILE_NAME, Preparation.filterMap(initOverQualifiedRatio));
+        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
         put(RESEARCHERS_FILE_NAME, Preparation.filterMap(initResearchers));
         put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initTemporaryEmploymentRatio));
         put(UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initUnemploymentRatio));
+        put(WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityFullRatio));
+        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityRestrictiveRatio));
+        put(WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityTotalRatio));
         put(WORKING_NIGHTS_RATIO_FILE_NAME, Preparation.filterMap(initWorkingNightsRatio));
     }};
 
@@ -85,10 +100,14 @@ public class MainActivityStats {
         put(JOB_SATISFACTION_FILE_NAME, jobSatisfaction);
         put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, longTermUnemploymentRatio);
         put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, lowWageEarningsRatio);
-        put(OVER_QUALIFIED_RATIO_FILE_NAME, overQualifiedRatio);
+        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
         put(RESEARCHERS_FILE_NAME, researchersRatio);
         put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, temporaryEmploymentRatio);
         put(UNEMPLOYMENT_RATIO_FILE_NAME, unemploymentRatio);
+        put(WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME, flexibilityFullRatio);
+        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME, flexibilityRestrictiveRatio);
+        put(WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME, flexibilityTotalRatio);
+        put(WORKING_FLEXIBILITY_RATIO_FILE_NAME, workingFlexibilityRatio);
         put(WORKING_NIGHTS_RATIO_FILE_NAME, workingNightsRatio);
     }};
 
@@ -108,9 +127,10 @@ public class MainActivityStats {
                         * MathUtils.percentageSafetyDouble(involuntaryPartTimeRatio, key, true)
                         * MathUtils.percentageSafetyDouble(longTermUnemploymentRatio, key, true)
                         * MathUtils.percentageSafetyDouble(lowWageEarningsRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(overQualifiedRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(lowWorkIntensityRatio, key, true)
                         * MathUtils.percentageSafetyDouble(temporaryEmploymentRatio, key, true)
                         * MathUtils.percentageSafetyDouble(unemploymentRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(workingFlexibilityRatio, key)
                         * MathUtils.percentageSafetyDouble(workingNightsRatio, key, true);
 
                 Number value = Math.log(product);
@@ -141,6 +161,31 @@ public class MainActivityStats {
                 String key = MapUtils.generateKey(code, year);
 
                 Number value = MAX_LEGAL_WORK_HOURS - workHours.get(key).doubleValue();
+                preparedMap.put(key, value);
+            }
+        }
+
+        return preparedMap;
+    }
+
+    /**
+     * Get the proportion of the population who has flexible time schedule
+     *
+     * @return An ordered map with aggregated data
+     */
+    private static Map<String, Number> prepareWorkingFlexibility() {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                // Get the EU average if it is missing from the country's dataset
+                double valueFull = flexibilityFullRatio.get(key).doubleValue();
+                double valueRestrictive = flexibilityRestrictiveRatio.get(key).doubleValue();
+                double valueTotal = flexibilityTotalRatio.get(key).doubleValue();
+
+                Number value = (valueFull + valueRestrictive) / valueTotal * 100;
                 preparedMap.put(key, value);
             }
         }

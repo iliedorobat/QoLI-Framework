@@ -54,4 +54,5 @@ public class ParamsNames {
     public static final String WAT_PROC = "wat_proc";
     public static final String WORK_TIME = "worktime";
     public static final String WORKING_STATUS = "wstatus";
+    public static final String WORKING_TIME_FLEX = "wtflex";
 }
