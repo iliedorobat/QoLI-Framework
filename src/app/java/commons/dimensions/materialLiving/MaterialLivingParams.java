@@ -40,8 +40,14 @@ public class MaterialLivingParams {
 
     public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("FINANCIAL")
+            SATISFACTION_TYPES_PARAMS.get("FINSAT")
     );
+
+    public static final MultiValuedMap<String, String> GDP_PER_CAPITA_PPS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.PPP_CAT, "GDP");
+        put(ParamsNames.NA_ITEM, "VI_PPS_EU27_2020_HAB");
+        put(ParamsNames.FREQ, "A");
+    }};
 
     public static final MultiValuedMap<String, String> HIGH_INCOME_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");

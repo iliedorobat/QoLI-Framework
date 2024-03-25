@@ -23,6 +23,7 @@ public class MaterialLivingStats {
             initEndMeetInabilityDRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_D_RATIO_PARAMS, END_MEET_INABILITY_RATIO_PATH),
             initEndMeetInabilityGdRatio = Initializer.initConsolidatedMap(END_MEET_INABILITY_GD_RATIO_PARAMS, END_MEET_INABILITY_RATIO_PATH),
             initFinancialSatisfactionRatio = Initializer.initConsolidatedMap(FINANCIAL_SATISFACTION_PARAMS, FINANCIAL_SATISFACTION_PATH),
+            initGdpPerCapitaPpsRatio = Initializer.initConsolidatedMap(GDP_PER_CAPITA_PPS_RATIO_PARAMS, GDP_PER_CAPITA_PPS_RATIO_PATH),
             initHighIncomeRatio = Initializer.initConsolidatedMap(HIGH_INCOME_RATIO_PARAMS, HIGH_INCOME_RATIO_PATH),
             initIncomeQuintileRatio = Initializer.initConsolidatedMap(INCOME_QUINTILE_RATIO_PARAMS, INCOME_QUINTILE_RATIO_PATH),
             initLackOfBathsRatio = Initializer.initConsolidatedMap(LACK_OF_BATHS_RATIO_PARAMS, LACK_OF_BATHS_RATIO_PATH),
@@ -44,6 +45,7 @@ public class MaterialLivingStats {
             dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
             endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
             financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionRatio),
+            gdpPerCapitaPpsRatio = Preparation.prepareData(initGdpPerCapitaPpsRatio),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
             incomeQuintileRatio = Preparation.prepareData(initIncomeQuintileRatio),
             lackOfBathsRatio = Preparation.prepareData(initLackOfBathsRatio),
@@ -59,6 +61,7 @@ public class MaterialLivingStats {
         put(END_MEET_INABILITY_D_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityDRatio));
         put(END_MEET_INABILITY_GD_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityGdRatio));
         put(FINANCIAL_SATISFACTION_FILE_NAME, Preparation.filterMap(initFinancialSatisfactionRatio));
+        put(GDP_PER_CAPITA_PPS_RATIO_FILE_NAME, Preparation.filterMap(initGdpPerCapitaPpsRatio));
         put(HIGH_INCOME_RATIO_FILE_NAME, Preparation.filterMap(initHighIncomeRatio));
         put(INCOME_QUINTILE_RATIO_FILE_NAME, Preparation.filterMap(initIncomeQuintileRatio));
         put(LACK_OF_BATHS_RATIO_FILE_NAME, Preparation.filterMap(initLackOfBathsRatio));
@@ -76,6 +79,7 @@ public class MaterialLivingStats {
         put(END_MEET_INABILITY_D_RATIO_FILE_NAME, endMeetInabilityDRatio);
         put(END_MEET_INABILITY_GD_RATIO_FILE_NAME, endMeetInabilityGdRatio);
         put(FINANCIAL_SATISFACTION_FILE_NAME, financialSatisfactionRatio);
+        put(GDP_PER_CAPITA_PPS_RATIO_FILE_NAME, gdpPerCapitaPpsRatio);
         put(HIGH_INCOME_RATIO_FILE_NAME, highIncomeRatio);
         put(INCOME_QUINTILE_RATIO_FILE_NAME, incomeQuintileRatio);
         put(LACK_OF_BATHS_RATIO_FILE_NAME, lackOfBathsRatio);
@@ -96,6 +100,7 @@ public class MaterialLivingStats {
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
+                        * MathUtils.percentageSafetyDouble(gdpPerCapitaPpsRatio, key)
                         * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
                         * MathUtils.percentageSafetyDouble(medianIncomePpsRatio, key)
                         * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)

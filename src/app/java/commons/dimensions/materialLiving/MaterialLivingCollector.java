@@ -11,6 +11,7 @@ public class MaterialLivingCollector {
         FileUtils.writeToJSONFile(getDwellingIssuesRatio(), LIVING_CONDITIONS_RAW_PATH, DWELLING_ISSUES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getEndMeetInabilityRatio(), LIVING_CONDITIONS_RAW_PATH, END_MEET_INABILITY_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getFinancialSatisfaction(), LIVING_CONDITIONS_RAW_PATH, FINANCIAL_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getGdpPerCapitaPpsRatio(), LIVING_CONDITIONS_RAW_PATH, GDP_PER_CAPITA_PPS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getHighIncomeRatio(), LIVING_CONDITIONS_RAW_PATH, HIGH_INCOME_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getIncomeQuintileRatio(), LIVING_CONDITIONS_RAW_PATH, INCOME_QUINTILE_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getLackOfBathsRatio(), LIVING_CONDITIONS_RAW_PATH, LACK_OF_BATHS_RATIO_FILE_NAME);
@@ -30,7 +31,7 @@ public class MaterialLivingCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdho01<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2021<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -47,7 +48,7 @@ public class MaterialLivingCollector {
      * Data type: proportion of the population living in households, by difficulty of making ends meet (%)<br/>
      * Dataset: ilc_mdes09<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -72,12 +73,26 @@ public class MaterialLivingCollector {
     }
 
     /**
+     * GDP per capita in PPS<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: tec00114<br/>
+     * Years: 2011-2022
+     *
+     * @return
+     */
+    private static StringBuilder getGdpPerCapitaPpsRatio() {
+        return Fetcher.fetchData("tec00114", GDP_PER_CAPITA_PPS_RATIO_PARAMS);
+    }
+
+    /**
      * Proportion of the population having income of 130% of median income or more<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_di20<br/>
-     * Years: 2003-2022
+     * Years: 2003-2023
      *
      * @return
      */
@@ -92,7 +107,7 @@ public class MaterialLivingCollector {
      * Data type: income quintile share ratio (%)<br/>
      * Dataset: ilc_di11<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -125,7 +140,7 @@ public class MaterialLivingCollector {
      * Aggregation: country<br/>
      * Data type: proportion of total population aged 0 to 59 years (%)<br/>
      * Dataset: ilc_lvhl11<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => ilc_lvhl21<br/><br/>
      *
@@ -162,7 +177,7 @@ public class MaterialLivingCollector {
      * Data type: Purchasing Power Standard (number)<br/>
      * Dataset: ilc_di03<br/>
      * Note: EU-SILC and ECHP surveys</br/>
-     * Years: 1995-2022<br/><br/>
+     * Years: 1995-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => nama_10r_2hhinc
      *
@@ -179,7 +194,7 @@ public class MaterialLivingCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_lvho05a<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022<br/><br/>
+     * Years: 2003-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -196,7 +211,7 @@ public class MaterialLivingCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_li03<br/>
      * Note: EU-SILC and ECHP surveys<br/>
-     * Years: 1995-2022<br/><br/>
+     * Years: 1995-2023<br/><br/>
      *
      * Comments: NUTS regions => ilc_li41<br/><br/>
      *
@@ -215,7 +230,7 @@ public class MaterialLivingCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_lvho50a<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2022
+     * Years: 2003-2023
      *
      * @return
      */
