@@ -11,7 +11,7 @@ import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION
 import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
 
 public class MainActivityParams {
-    private static String[] FLEXIBILITY = {
+    private static final String[] FLEXIBILITY = {
             WORKING_FLEXIBILITY.get("total"),
             WORKING_FLEXIBILITY.get("personDecision"),
             WORKING_FLEXIBILITY.get("restrictiveDecision")
