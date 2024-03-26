@@ -180,7 +180,6 @@ public class MainActivityStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                // Get the EU average if it is missing from the country's dataset
                 double valueFull = flexibilityFullRatio.get(key).doubleValue();
                 double valueRestrictive = flexibilityRestrictiveRatio.get(key).doubleValue();
                 double valueTotal = flexibilityTotalRatio.get(key).doubleValue();

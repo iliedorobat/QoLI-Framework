@@ -8,9 +8,33 @@ import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
     public static void fetchData() {
+        FileUtils.writeToJSONFile(getAirPollutionRatio(), ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getNoisePollutionRatio(), ENVIRONMENT_RAW_PATH, NOISE_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPollutionRatio(), ENVIRONMENT_RAW_PATH, POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getWaterSupplyRatio(), ENVIRONMENT_RAW_PATH, WATER_SUPPLY_RATIO_FILE_NAME);
+    }
+
+    /**
+     * Exposure to air pollution:<br/>
+     *  - Particulates < 2.5 µm<br/>
+     *  - Particulates < 10 µm)<br/>
+     *  - Acidifying gas emissions (NH3, NOX)<br/>
+     *  - Ozone precursors (CH4, CO, NMVOC, NOX)<br/><br/>
+     *
+     *  https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Air_pollution_statistics_-_air_emissions_accounts
+     *  <br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: Kilograms per capita<br/>
+     * Dataset: env_ac_ainah_r2<br/>
+     * Years: 1995-2022<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
+     *
+     * @return
+     */
+    private static StringBuilder getAirPollutionRatio() {
+        return Fetcher.fetchData("env_ac_ainah_r2", AIR_POLLUTION_RATIO_PARAMS);
     }
 
     /**
@@ -20,7 +44,7 @@ public class EnvironmentCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw01<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2021<br/><br/>
+     * Years: 2003-2020; 2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -38,7 +62,7 @@ public class EnvironmentCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mddw02<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2021<br/><br/>
+     * Years: 2003-2020; 2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
