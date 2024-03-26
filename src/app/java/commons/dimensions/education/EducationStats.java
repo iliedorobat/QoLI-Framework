@@ -33,7 +33,8 @@ public class EducationStats {
             initInactiveYoungRatio = Initializer.initConsolidatedMap(INACTIVE_YOUNG_RATIO_PARAMS, INACTIVE_YOUNG_RATIO_PATH),
             initNoKnownForeignLangRatio = Initializer.initConsolidatedMap(NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS, NO_KNOWN_FOREIGN_LANG_RATIO_PATH),
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
-            initTrainingRatio = Initializer.initConsolidatedMap(TRAINING_RATIO_PARAMS, TRAINING_RATIO_PATH);
+            initTrainingLastMonthRatio = Initializer.initConsolidatedMap(TRAINING_LAST_MONTH_RATIO_PARAMS, TRAINING_LAST_MONTH_RATIO_PATH),
+            initTrainingLastYearRatio = Initializer.initConsolidatedMap(TRAINING_LAST_YEAR_RATIO_PARAMS, TRAINING_LAST_YEAR_RATIO_PATH);
 
     private static final Map<String, Number>
             digitalSkillsRatio = Preparation.prepareData(initDigitalSkillsRatio),
@@ -43,7 +44,8 @@ public class EducationStats {
             inactiveYoungRatio = Preparation.prepareData(initInactiveYoungRatio),
             noKnownForeignLangRatio = Preparation.prepareData(initNoKnownForeignLangRatio),
             pupilsRatio = Preparation.prepareData(initPupilsRatio),
-            trainingRatio = Preparation.prepareData(initTrainingRatio);
+            trainingLastMonthRatio = Preparation.prepareData(initTrainingLastMonthRatio),
+            trainingLastYearRatio = Preparation.prepareData(initTrainingLastYearRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(DIGITAL_SKILLS_RATIO_FILE_NAME, Preparation.filterMap(initDigitalSkillsRatio));
@@ -53,7 +55,8 @@ public class EducationStats {
         put(INACTIVE_YOUNG_RATIO_FILE_NAME, Preparation.filterMap(initInactiveYoungRatio));
         put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, Preparation.filterMap(initNoKnownForeignLangRatio));
         put(PUPILS_RATIO_FILE_NAME, Preparation.filterMap(initPupilsRatio));
-        put(TRAINING_RATIO_FILE_NAME, Preparation.filterMap(initTrainingRatio));
+        put(TRAINING_LAST_MONTH_RATIO_FILE_NAME, Preparation.filterMap(initTrainingLastMonthRatio));
+        put(TRAINING_LAST_YEAR_RATIO_FILE_NAME, Preparation.filterMap(initTrainingLastYearRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
@@ -64,7 +67,8 @@ public class EducationStats {
         put(INACTIVE_YOUNG_RATIO_FILE_NAME, inactiveYoungRatio);
         put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, noKnownForeignLangRatio);
         put(PUPILS_RATIO_FILE_NAME, pupilsRatio);
-        put(TRAINING_RATIO_FILE_NAME, trainingRatio);
+        put(TRAINING_LAST_MONTH_RATIO_FILE_NAME, trainingLastMonthRatio);
+        put(TRAINING_LAST_YEAR_RATIO_FILE_NAME, trainingLastYearRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
@@ -79,7 +83,8 @@ public class EducationStats {
                         * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
                         * MathUtils.percentageSafetyDouble(educationRatio, key)
                         * MathUtils.percentageSafetyDouble(pupilsRatio, key)
-                        * MathUtils.percentageSafetyDouble(trainingRatio, key)
+                        * MathUtils.percentageSafetyDouble(trainingLastMonthRatio, key)
+                        * MathUtils.percentageSafetyDouble(trainingLastYearRatio, key)
                         * MathUtils.percentageSafetyDouble(dropoutRatio, key, true)
                         * MathUtils.percentageSafetyDouble(inactiveYoungRatio, key, true)
                         * MathUtils.percentageSafetyDouble(noKnownForeignLangRatio, key, true);

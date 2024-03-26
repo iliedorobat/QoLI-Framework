@@ -16,7 +16,8 @@ public class EducationCollector {
         FileUtils.writeToJSONFile(getNoKnownForeignLangRatio(), EDUCATION_RAW_PATH, NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPupilsRatio2012(), EDUCATION_RAW_PATH, PUPILS_RATIO_2012_FILE_NAME);
         FileUtils.writeToJSONFile(getPupilsRatio2013(), EDUCATION_RAW_PATH, PUPILS_RATIO_2013_FILE_NAME);
-        FileUtils.writeToJSONFile(getTrainingRatio(), EDUCATION_RAW_PATH, TRAINING_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getTrainingLastMonthRatio(), EDUCATION_RAW_PATH, TRAINING_LAST_MONTH_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getTrainingLastYearRatio(), EDUCATION_RAW_PATH, TRAINING_LAST_YEAR_RATIO_FILE_NAME);
     }
 
     /**
@@ -28,7 +29,7 @@ public class EducationCollector {
      * Note: The digital skills indicapotr methodology has changed substantially to reflect the
      *      Digital Competence Framework 2.0. As a consequence, 2021 is the beginning of a new
      *      time series. https://ec.europa.eu/eurostat/cache/metadata/en/sdg_04_70_esmsip2.htm
-     * Years: 2021
+     * Years: 2021; 2023
      *
      * @return
      */
@@ -56,18 +57,20 @@ public class EducationCollector {
 
     /**
      * Participation in early childhood education:<br/> pupils aged between
-     * 4 years old and the starting age of compulsory education at primary
+     * 3 years old and the starting age of compulsory education at primary
      * level<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: educ_uoe_enra10<br/>
-     * Years: 1998-2021
+     * Dataset: educ_uoe_enra21<br/>
+     * Years: 1998-2021<br/><br/>
+     *
+     * Comments: NUTS 2 regions => educ_uoe_enra22<br/><br/>
      *
      * @return
      */
     private static StringBuilder getEarlyEducationRatio() {
-        return Fetcher.fetchData("educ_uoe_enra10", EARLY_EDUCATION_RATIO_PARAMS);
+        return Fetcher.fetchData("educ_uoe_enra21", EARLY_EDUCATION_RATIO_PARAMS);
     }
 
     /**
@@ -75,8 +78,8 @@ public class EducationCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: edat_lfs_9903<br/>
-     * Years: 2004-2022<br/><br/>
+     * Dataset: edat_lfse_03<br/>
+     * Years: 1992-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_04
      *
@@ -109,8 +112,8 @@ public class EducationCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: edat_aes_l22<br/>
-     * Years: 2007; 2011; 2016
+     * Dataset: edat_aes_l21<br/>
+     * Years: 2007; 2011; 2016; 2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -158,7 +161,21 @@ public class EducationCollector {
      *
      * @return
      */
-    private static StringBuilder getTrainingRatio() {
-        return Fetcher.fetchData("trng_lfs_02", TRAINING_RATIO_PARAMS);
+    private static StringBuilder getTrainingLastMonthRatio() {
+        return Fetcher.fetchData("trng_lfs_02", TRAINING_LAST_MONTH_RATIO_PARAMS);
+    }
+
+    /**
+     * Participation rate in education and training (last 12 months - from 25 to 64 years)<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: trng_aes_100<br/>
+     * Years: 2007; 2011; 2016; 2022
+     *
+     * @return
+     */
+    private static StringBuilder getTrainingLastYearRatio() {
+        return Fetcher.fetchData("trng_aes_100", TRAINING_LAST_YEAR_RATIO_PARAMS);
     }
 }

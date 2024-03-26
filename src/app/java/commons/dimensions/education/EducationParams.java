@@ -35,7 +35,7 @@ public class EducationParams {
     }};
 
     public static final MultiValuedMap<String, String> INACTIVE_YOUNG_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsNames.AGE, "Y18-24");
+        put(ParamsNames.AGE, "Y15-29");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.TRAINING, "NO_FE_NO_NFE");
@@ -47,6 +47,7 @@ public class EducationParams {
         put(ParamsNames.AGE, "Y25-64");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.N_LANG, "0");
+        put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
 
@@ -61,11 +62,19 @@ public class EducationParams {
         put(ParamsNames.UNIT, "RT");
     }};
 
-    public static final MultiValuedMap<String, String> TRAINING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+    public static final MultiValuedMap<String, String> TRAINING_LAST_MONTH_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y25-64");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.ISCED_11, "TOTAL");
         put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
+    }};
+
+    public static final MultiValuedMap<String, String> TRAINING_LAST_YEAR_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.AGE, "Y25-64");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.TRAINING, "FE_NFE");     // Formal and non-formal education and training
         put(ParamsNames.UNIT, "PC");
     }};
 }

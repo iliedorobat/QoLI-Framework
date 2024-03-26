@@ -18,7 +18,8 @@ public class EducationPaths {
     public static final String PUPILS_RATIO_FILE_NAME = "pupilsRatio";
     public static final String PUPILS_RATIO_2012_FILE_NAME = "pupilsRatio2012";
     public static final String PUPILS_RATIO_2013_FILE_NAME = "pupilsRatio2013";
-    public static final String TRAINING_RATIO_FILE_NAME = "trainingRatio";
+    public static final String TRAINING_LAST_MONTH_RATIO_FILE_NAME = "trainingLastMonthRatio";
+    public static final String TRAINING_LAST_YEAR_RATIO_FILE_NAME = "trainingLastYearRatio";
 
     public static final String EDUCATION_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, EDUCATION_FILE_NAME);
 
@@ -35,5 +36,6 @@ public class EducationPaths {
             NO_KNOWN_FOREIGN_LANG_RATIO_PATH = generatePath(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME),
             PUPILS_RATIO_2012_PATH = generatePath(PUPILS_RATIO_2012_FILE_NAME),
             PUPILS_RATIO_2013_PATH = generatePath(PUPILS_RATIO_2013_FILE_NAME),
-            TRAINING_RATIO_PATH = generatePath(TRAINING_RATIO_FILE_NAME);
+            TRAINING_LAST_MONTH_RATIO_PATH = generatePath(TRAINING_LAST_MONTH_RATIO_FILE_NAME),
+            TRAINING_LAST_YEAR_RATIO_PATH = generatePath(TRAINING_LAST_YEAR_RATIO_FILE_NAME);
 }

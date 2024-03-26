@@ -21,15 +21,10 @@ public class ParamsValues {
         put("PM10", "PM10");
     }};
 
-    public static final HashMap<String, String> BMI = new HashMap<>() {{
-        put("overweight", "BMI_GE25");
-        put("obese", "BMI_GE30");
-    }};
-
     public static final HashMap<String, String> HEALTH_PROBLEMS = new HashMap<>() {{
         put("depressive", "DPR");
         put("majorDepressive", "DPR_MJR");
-        put("other", "DPR_OTH");
+        put("otherDepressive", "DPR_OTH");
     }};
 
     public static HashMap<String, String> ICCS = new HashMap<>() {{
