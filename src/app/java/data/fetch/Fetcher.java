@@ -85,7 +85,7 @@ public class Fetcher {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_pw05<br/>
-     * Years: 2013
+     * Years: 2013; 2018
      *
      * @return
      */
@@ -100,7 +100,7 @@ public class Fetcher {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_scp19<br/>
-     * Years: 2015
+     * Years: 2015; 2022
      *
      */
     public static StringBuilder fetchActivePeopleRatio(MultiValuedMap<String, String> params) {
