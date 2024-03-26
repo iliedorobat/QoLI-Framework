@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.education.EducationPaths.*;
 
 public class EducationCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getDigitalSkillsRatio(), EDUCATION_RAW_PATH, DIGITAL_SKILLS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getDropoutRatio(), EDUCATION_RAW_PATH, DROPOUT_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getEarlyEducationRatio(), EDUCATION_RAW_PATH, EARLY_EDU_RATIO_FILE_NAME);

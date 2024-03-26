@@ -6,23 +6,22 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.constants.ParamsValues.*;
 
 public class OverallExperienceParams {
-    private static final String[] HAPPINESS_LEVELS = {
-            "ALW",  // Always
-            "MOST"  // Most of the time
+    private static final String[] LEVELS = {
+            HAPPINESS_LEVELS.get("always"),
+            HAPPINESS_LEVELS.get("most")
     };
 
     public static final MultiValuedMap<String, String>
-            HAPPINESS_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS),
-            HAPPINESS_ALWAYS_RATIO_PARAMS = getHappinessParams("ALW"),
-            HAPPINESS_MOST_OF_THE_TIME_RATIO_PARAMS = getHappinessParams("MOST");
+            HAPPINESS_RATIO_PARAMS = getHappinessParams(LEVELS),
+            HAPPINESS_ALWAYS_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS.get("always")),
+            HAPPINESS_MOST_OF_THE_TIME_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS.get("most"));
 
     public static final MultiValuedMap<String, String> HIGH_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("LIFESAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("overall")
     );
 
     private static MultiValuedMap<String, String> getHappinessParams(String happinessLevel) {

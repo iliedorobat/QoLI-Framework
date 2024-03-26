@@ -18,20 +18,6 @@ public class AuxiliaryParams {
         put(ParamsNames.UNIT, "PC_Y_LT60");
     }};
 
-    public static final HashMap<String, String> SATISFACTION_LEVELS_PARAMS = new HashMap<>() {{
-        put("HIGH", "HIGH");
-        put("LOW", "LOW");
-        put("MED", "MED");
-    }};
-
-    public static final HashMap<String, String> SATISFACTION_TYPES_PARAMS = new HashMap<>() {{
-        put("FINANCIAL", "FINSAT");
-        put("JOB", "JOBSAT");
-        put("LIFE", "LIFESAT");
-        put("RELATIONSHIPS", "RELSAT");
-        put("TIME_SPENT", "TIMESAT");
-    }};
-
     public static final MultiValuedMap<String, String> POPULATION_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");

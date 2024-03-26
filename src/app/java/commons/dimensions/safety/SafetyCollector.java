@@ -9,6 +9,7 @@ import static app.java.commons.dimensions.safety.SafetyPaths.*;
 
 public class SafetyCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getCrimeRatio(), SAFETY_RAW_PATH, CRIME_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getOffences(), SAFETY_RAW_PATH, OFFENCES_FILE_NAME);
         FileUtils.writeToJSONFile(getPensionPps(), SAFETY_RAW_PATH, PENSION_PPS_FILE_NAME);

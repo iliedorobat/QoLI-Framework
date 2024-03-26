@@ -7,8 +7,8 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import static app.java.commons.constants.ParamsValues.WORKING_FLEXIBILITY;
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_LEVELS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_TYPES;
 
 public class MainActivityParams {
     private static final String[] FLEXIBILITY = {
@@ -58,8 +58,8 @@ public class MainActivityParams {
     }};
 
     public static final MultiValuedMap<String, String> JOB_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("JOBSAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("job")
     );
 
     public static final MultiValuedMap<String, String> LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{

@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.materialLiving.MaterialLivingPaths.*;
 
 public class MaterialLivingCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getDwellingIssuesRatio(), LIVING_CONDITIONS_RAW_PATH, DWELLING_ISSUES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getEndMeetInabilityRatio(), LIVING_CONDITIONS_RAW_PATH, END_MEET_INABILITY_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getFinancialSatisfaction(), LIVING_CONDITIONS_RAW_PATH, FINANCIAL_SATISFACTION_FILE_NAME);

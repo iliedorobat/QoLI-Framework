@@ -7,8 +7,8 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_LEVELS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_TYPES;
 
 public class LeisureInteractParams {
     private static final String[] VOLUNTARY_ACTIVITIES = {
@@ -17,8 +17,8 @@ public class LeisureInteractParams {
     };
 
     public static final MultiValuedMap<String, String> AREA_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("GREENSAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("greenAreas")
     );
 
     public static final MultiValuedMap<String, String> ASKING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -65,13 +65,13 @@ public class LeisureInteractParams {
     }};
 
     public static final MultiValuedMap<String, String> TIME_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("TIMESAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("timeSpent")
     );
 
     public static final MultiValuedMap<String, String> REL_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("RELSAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("relationships")
     );
 
     public static final MultiValuedMap<String, String>

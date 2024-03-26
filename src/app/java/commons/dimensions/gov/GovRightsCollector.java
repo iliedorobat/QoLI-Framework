@@ -15,6 +15,7 @@ import static app.java.commons.dimensions.gov.GovRightsPaths.*;
  */
 public class GovRightsCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getCitizenshipRatio(), GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getGenderEmpGap(), GOV_RIGHTS_RAW_PATH, GENDER_EMP_GAP_FILE_NAME);
         FileUtils.writeToJSONFile(getGenderPayGap(), GOV_RIGHTS_RAW_PATH, GENDER_PAY_GAP_FILE_NAME);

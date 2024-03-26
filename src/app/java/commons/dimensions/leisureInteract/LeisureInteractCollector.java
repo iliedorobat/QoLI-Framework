@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.leisureInteract.LeisureInteractPaths.*
 
 public class LeisureInteractCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getAskingRatio(), LEISURE_INTERACT_RAW_PATH, ASKING_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getDiscussionRatio(), LEISURE_INTERACT_RAW_PATH, DISCUSSION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getFrequencyContactRatio(), LEISURE_INTERACT_RAW_PATH, FREQUENCY_CONTACT_RATIO_FILE_NAME);

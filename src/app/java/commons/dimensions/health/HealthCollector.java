@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.health.HealthPaths.*;
 
 public class HealthCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getBodyMassIndexRatio(), HEALTH_RAW_PATH, BMI_FILE_NAME);
         FileUtils.writeToJSONFile(getDepressiveRatio(), HEALTH_RAW_PATH, DEPRESSIVE_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getFVRatio(), HEALTH_RAW_PATH, FRUITS_VEGETABLES_RATIO_FILE_NAME);

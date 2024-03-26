@@ -39,12 +39,6 @@ public class Fetcher {
 
     // TODO: documentation:
     public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams) {
-        return fetchData(dataset, inputParams, 100);
-    }
-
-    // TODO: documentation:
-    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams, long sleepTime) {
-        sleep(sleepTime);
         return fetchData(dataset, inputParams, EU28_MEMBERS);
     }
 
@@ -158,7 +152,7 @@ public class Fetcher {
      *
      * @param sleepTime The amount of milliseconds
      */
-    private static void sleep(long sleepTime) {
+    public static void sleep(long sleepTime) {
         try {
             System.out.println("Sleeping " + sleepTime + " milliseconds");
             Thread.sleep(sleepTime);

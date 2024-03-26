@@ -9,8 +9,8 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_LEVELS_PARAMS;
-import static app.java.commons.dimensions.auxiliary.AuxiliaryParams.SATISFACTION_TYPES_PARAMS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_LEVELS;
+import static app.java.commons.constants.ParamsValues.SATISFACTION_TYPES;
 
 public class MaterialLivingParams {
     private static final String[] END_MEETS_DIFFICULTY_LEVELS = {
@@ -39,8 +39,8 @@ public class MaterialLivingParams {
             END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty"));
 
     public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS_PARAMS.get("HIGH"),
-            SATISFACTION_TYPES_PARAMS.get("FINSAT")
+            SATISFACTION_LEVELS.get("high"),
+            SATISFACTION_TYPES.get("financial")
     );
 
     public static final MultiValuedMap<String, String> GDP_PER_CAPITA_PPS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{

@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getAvgWorkHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2007_FILE_NAME);
         FileUtils.writeToJSONFile(getAvgWorkHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2008_FILE_NAME);
         FileUtils.writeToJSONFile(getEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, EMPLOYMENT_RATIO_FILE_NAME);

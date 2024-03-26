@@ -8,6 +8,7 @@ import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getAirPollutionRatio(), ENVIRONMENT_RAW_PATH, AIR_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getNoisePollutionRatio(), ENVIRONMENT_RAW_PATH, NOISE_POLLUTION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPollutionRatio(), ENVIRONMENT_RAW_PATH, POLLUTION_RATIO_FILE_NAME);

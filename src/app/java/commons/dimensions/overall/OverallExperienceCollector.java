@@ -12,6 +12,7 @@ import static app.java.commons.dimensions.overall.OverallExperiencePaths.*;
  */
 public class OverallExperienceCollector {
     public static void fetchData() {
+        Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getHappinessRatio(), OVERALL_EXPERIENCE_RAW_PATH, HAPPINESS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getHighSatisfactionRatio(), OVERALL_EXPERIENCE_RAW_PATH, HIGH_SATISFACTION_RATIO_FILE_NAME);
     }

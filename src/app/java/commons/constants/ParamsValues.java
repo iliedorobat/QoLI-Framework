@@ -26,6 +26,15 @@ public class ParamsValues {
         put("PM10", "PM10");
     }};
 
+    public static HashMap<String, String> HAPPINESS_LEVELS = new HashMap<>() {{
+        put("always", "ALW");       // Always
+        put("most", "MOST");        // Most of the time
+        put("never", "NVR");        // Never
+        put("rarely", "RAR");       // Rarely
+        put("sometimes", "SMT");    // Sometimes
+        put("unknown", "UNK");      // Unknown
+    }};
+
     public static final HashMap<String, String> HEALTH_PROBLEMS = new HashMap<>() {{
         put("depressive", "DPR");
         put("majorDepressive", "DPR_MJR");
@@ -82,6 +91,25 @@ public class ParamsValues {
         put("nurses", "OC222_322");
         put("pharmacists", "OC2262");
         put("physiotherapists", "OC2264");
+    }};
+
+    public static final HashMap<String, String> SATISFACTION_LEVELS = new HashMap<>() {{
+        put("high", "HIGH");
+        put("low", "LOW");
+        put("medium", "MED");
+    }};
+
+    public static final HashMap<String, String> SATISFACTION_TYPES = new HashMap<>() {{
+        put("accommodation", "ACCSAT");
+        put("commutingTime", "COMSAT");
+        put("financial", "FINSAT");
+        put("greenAreas", "GREENSAT");
+        put("job", "JOBSAT");
+        put("overall", "LIFESAT");
+        put("environment", "LIVENVSAT");
+        put("meaningOfLife", "MEANLIFE");
+        put("relationships", "RELSAT");
+        put("timeSpent", "TIMESAT");
     }};
 
     public static HashMap<String, String> SOCIAL_ACTIVITIES_NP_REASON = new HashMap<>() {{
