@@ -1,11 +1,10 @@
 package app.java.commons.constants;
 
 public class ParamsNames {
-    public static final String AGE = "age";
     public static final String ACL_00 = "acl00";
-    public static final String AIR_POLLUTION = "airpol";
+    public static final String AGE = "age";
+    public static final String AIR_POL = "airpol";
     public static final String BMI = "bmi";
-    public static final String C_BIRTH = "c_birth";
     public static final String DEG_URB = "deg_urb";
     public static final String FACILITY = "facility";
     public static final String FREQ = "freq";

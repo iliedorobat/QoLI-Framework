@@ -16,7 +16,12 @@ public class ParamsValues {
         put("informal", "AC42A");       // Informal voluntary activities
     }};
 
-    public static final HashMap<String, String> AIRPOL = new HashMap<>() {{
+    public static final HashMap<String, String> AIR_POL = new HashMap<>() {{
+        put("ammonia", "NH3");          // Ammonia
+        put("carbonMonoxide", "CO");    // Carbon monoxide (Ozone precursor)
+        put("methane", "CH4");          // Methane (Ozone precursor)
+        put("nonMethane", "NMVOC");     // Non-methane volatile organic compounds (Ozone precursor)
+        put("nitrogenOxides", "NOX");   // Nitrogen oxides (Ozone precursor)
         put("PM2_5", "PM2_5");
         put("PM10", "PM10");
     }};
