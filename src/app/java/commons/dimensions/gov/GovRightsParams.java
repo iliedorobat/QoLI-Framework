@@ -14,16 +14,10 @@ public class GovRightsParams {
 
     public static final MultiValuedMap<String, String> CITIZENSHIP_RATIO_PARAMS = AuxiliaryParams.getActivePeopleParams(ACTIVITIES);
 
-    public static final MultiValuedMap<String, String> EMPLOYMENT_FEMALE_RATIO_PARAMS = getEmploymentParams("F");
-
-    public static final MultiValuedMap<String, String> EMPLOYMENT_MALE_RATIO_PARAMS = getEmploymentParams("M");
-
-    public static final MultiValuedMap<String, String> EMPLOYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+    public static final MultiValuedMap<String, String> GENDER_EMP_GAP_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y20-64");
+        put(ParamsNames.INDIC_EM, "EMP_LFS");   // Total employment (resident population concept - LFS)
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INDIC_EM, "EMP_LFS");
-        put(ParamsNames.SEX, "F");
-        put(ParamsNames.SEX, "M");
         put(ParamsNames.UNIT, "PC_POP");
     }};
 
@@ -40,17 +34,6 @@ public class GovRightsParams {
             POPULATION_PLCTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
             POPULATION_PLTTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
             POPULATION_OTHERS_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
-
-
-    private static MultiValuedMap<String, String> getEmploymentParams(String sex) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AGE, "Y20-64");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.INDIC_EM, "EMP_LFS");
-            put(ParamsNames.SEX, sex);
-            put(ParamsNames.UNIT, "PC_POP");
-        }};
-    }
 
     private static MultiValuedMap<String, String> getPopulationTrustParams() {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{

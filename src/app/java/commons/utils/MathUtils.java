@@ -120,6 +120,26 @@ public class MathUtils {
             : 0;
         return 100 - value;
     }
+
+    /**
+     * E.g.: Gender pay gap = -3%   =>   100% + 3% = 103% (women earn 103% of what men earn)
+     * E.g.: Gender pay gap = +8%   =>   100% - 8% = 92% (women earn 92% of what men earn)
+     *
+     * @param map The related map
+     * @param key The key
+     * @return The reversed ratio
+     */
+    public static double reverseGenderGap(Map<String, Number> map, String key) {
+        Number number = map.get(key);
+        if (number == null) {
+            return 0;
+        }
+
+        double value = number.doubleValue();
+        return value < 0
+                ? 100 + Math.abs(value)
+                : 100 - value;
+    }
     /* ************** E O F    P E R C E N T A G E    O P E R A T I O N S ************** */
 
     /**

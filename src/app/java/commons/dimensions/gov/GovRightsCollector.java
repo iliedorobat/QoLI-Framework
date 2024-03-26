@@ -16,7 +16,7 @@ import static app.java.commons.dimensions.gov.GovRightsPaths.*;
 public class GovRightsCollector {
     public static void fetchData() {
         FileUtils.writeToJSONFile(getCitizenshipRatio(), GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getEmploymentRatio(), GOV_RIGHTS_RAW_PATH, EMPLOYMENT_RATIO_BY_SEX_FILE_NAME);
+        FileUtils.writeToJSONFile(getGenderEmpGap(), GOV_RIGHTS_RAW_PATH, GENDER_EMP_GAP_FILE_NAME);
         FileUtils.writeToJSONFile(getGenderPayGap(), GOV_RIGHTS_RAW_PATH, GENDER_PAY_GAP_FILE_NAME);
         FileUtils.writeToJSONFile(getPopulationTrust(), GOV_RIGHTS_RAW_PATH, POPULATION_TRUST_FILE_NAME);
         writeVoterTurnout();
@@ -50,7 +50,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_scp19<br/>
-     * Years: 2015
+     * Years: 2015; 2022
      *
      * @return
      */
@@ -59,17 +59,17 @@ public class GovRightsCollector {
     }
 
     /**
-     * Employment (from 20 to 64 years) by sex - annual data<br/><br/>
+     * The difference between the employment rates of working-age men and women (defined here as those aged 20-64)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: lfsi_emp_a<br/>
-     * Years: 1992-2022
+     * Dataset: tesem060<br/>
+     * Years: 2005-2023<br/><br/>
      *
      * @return
      */
-    private static StringBuilder getEmploymentRatio() {
-        return Fetcher.fetchData("lfsi_emp_a", EMPLOYMENT_RATIO_PARAMS);
+    private static StringBuilder getGenderEmpGap() {
+        return Fetcher.fetchData("tesem060", GENDER_EMP_GAP_PARAMS);
     }
 
     /**
@@ -79,7 +79,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: earn_gr_gpgr2<br/>
-     * Years: 2007-2021<br/><br/>
+     * Years: 2007-2022<br/><br/>
      *
      * @return
      */
