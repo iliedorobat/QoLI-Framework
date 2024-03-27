@@ -26,8 +26,8 @@ public class MainActivityStats {
             avgWorkHours2007 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2007_PARAMS, AVG_WORK_HOURS_2007_PATH),
             avgWorkHours2008 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2008_PARAMS, AVG_WORK_HOURS_2008_PATH);
     private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>() {{
-        avgWorkHoursList.add(avgWorkHours2007);
-        avgWorkHoursList.add(avgWorkHours2008);
+        add(avgWorkHours2007);
+        add(avgWorkHours2008);
     }};
 
     // Intermediate data which will be grouped into a single indicator
