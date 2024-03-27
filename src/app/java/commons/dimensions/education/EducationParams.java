@@ -47,7 +47,6 @@ public class EducationParams {
         put(ParamsNames.AGE, "Y25-64");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.N_LANG, "0");
-        put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
 
