@@ -14,8 +14,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import static app.java.commons.constants.Constants.CSV_SEPARATOR;
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.EU28_MEMBERS_NAME;
 import static app.java.commons.dimensions.gov.GovRightsParams.*;
 import static app.java.commons.dimensions.gov.GovRightsPaths.*;
 
@@ -132,7 +132,7 @@ public class GovRightsStats {
                 }
 
                 if (readLine.trim().length() > 0 && !readLine.contains(csvHeader)) {
-                    String[] items = readLine.split(",");
+                    String[] items = readLine.split(CSV_SEPARATOR);
 
                     String countryCode = items[1].trim();
                     String[] dateItems = items[3].split("-");
