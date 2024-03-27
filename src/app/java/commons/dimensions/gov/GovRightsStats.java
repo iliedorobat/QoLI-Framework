@@ -122,25 +122,29 @@ public class GovRightsStats {
         try {
             br = new BufferedReader(new FileReader(voterTurnoutPath));
             String readLine;
+            int i = 0;
 
             while((readLine = br.readLine()) != null) {
-                if (readLine.trim().length() > 0 && !readLine.contains(csvHeader)) {
-                    String[] items = readLine.split(";");
+                if (i == 0) {
+                    i++;
+                    // Skip the header
+                    continue;
+                }
 
-                    String country = items[0].trim();
-                    String voterType = items[1].trim();
-                    int year = (int) Double.parseDouble(items[2].trim());
-                    String valueStr = items[3].replace("%", "").trim();
+                if (readLine.trim().length() > 0 && !readLine.contains(csvHeader)) {
+                    String[] items = readLine.split(",");
+
+                    String countryCode = items[1].trim();
+                    String[] dateItems = items[3].split("-");
+                    int year = (int) Double.parseDouble(dateItems[0]);
+                    String valueStr = items[4].replace("%", "").trim();
 
                     if (valueStr.length() > 0) {
                         Number value = Double.parseDouble(valueStr);
 
-                        for (Map.Entry<String, String> entry : EU28_MEMBERS_NAME.entrySet()) {
-                            String entryKey = entry.getKey();
-                            String entryValue = entry.getValue();
-
-                            if (country.equals(entryValue)) {
-                                String key = MapUtils.generateKey(entryKey, year);
+                        for (String code : EU28_MEMBERS) {
+                            if (countryCode.equals(code)) {
+                                String key = MapUtils.generateKey(countryCode, year);
                                 preparedMap.put(key, value);
                             }
                         }
