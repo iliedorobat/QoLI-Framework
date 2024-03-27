@@ -163,15 +163,15 @@ public class LeisureInteractCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_scp05<br/>
-     * Years: 2015; 2022<br/><br/>
+     * Dataset: ilc_scp21<br/>
+     * Years: 2015<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
     private static StringBuilder getVoluntaryActivitiesNpRatio() {
-        return Fetcher.fetchData("ilc_scp05", VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_scp21", VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS);
     }
 
     /**
