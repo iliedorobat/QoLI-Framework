@@ -7,20 +7,33 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class FetcherUtils {
     /**
      * Add new parameters to the params list
      * @param params The parameters list
-     * @param values The list with values that should be added
      * @param propertyName The name of the added property
+     * @param values The list with values that should be added
      */
     public static void addParams(MultiValuedMap<String, String> params, String propertyName, String[] values) {
         for (String value : values) {
             params.put(propertyName, value);
         }
     }
+    /**
+     * Add new parameters to the params list
+     * @param params The parameters list
+     * @param propertyName The name of the added property
+     * @param values The list with values that should be added
+     */
+    public static void addParams(MultiValuedMap<String, String> params, String propertyName, Collection<String> values) {
+        for (String value : values) {
+            params.put(propertyName, value);
+        }
+    }
+
 
     /**
      * Add new parameters to the params list

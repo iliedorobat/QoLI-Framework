@@ -3,17 +3,15 @@ package app.java.commons.constants;
 import java.util.HashMap;
 
 public class ParamsValues {
-    public static HashMap<String, String> ACL00_INTERACTIONS = new HashMap<>() {{
+    public static HashMap<String, String> ACL00 = new HashMap<>() {{
+        put("citizenship", "AC43A");    // Active citizenship
+        put("formal", "AC41A");         // Formal voluntary activities
+        put("informal", "AC42A");       // Informal voluntary activities
+
         put("cinema", "AC521");
         put("culture", "AC523H");
         put("live", "AC522A");
         put("sports", "AC525");
-    }};
-
-    public static HashMap<String, String> ACL00_LEISURE = new HashMap<>() {{
-        put("citizenship", "AC43A");    // Active citizenship
-        put("formal", "AC41A");         // Formal voluntary activities
-        put("informal", "AC42A");       // Informal voluntary activities
     }};
 
     public static final HashMap<String, String> AIR_POL = new HashMap<>() {{

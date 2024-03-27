@@ -6,9 +6,7 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.constants.ParamsValues.WORKING_FLEXIBILITY;
-import static app.java.commons.constants.ParamsValues.SATISFACTION_LEVELS;
-import static app.java.commons.constants.ParamsValues.SATISFACTION_TYPES;
+import static app.java.commons.constants.ParamsValues.*;
 
 public class MainActivityParams {
     private static final String[] FLEXIBILITY = {
@@ -103,7 +101,7 @@ public class MainActivityParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> WORKING_FLEXIBILITY_RATIO_PARAMS = getFlexibilityParams();
+    public static final MultiValuedMap<String, String> WORKING_FLEXIBILITY_RATIO_PARAMS = getFlexibilityParams(FLEXIBILITY);
 
     public static final MultiValuedMap<String, String>
             WORKING_FLEXIBILITY_FULL_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("personDecision")),
@@ -119,7 +117,12 @@ public class MainActivityParams {
         put(ParamsNames.WORKING_STATUS, "EMP");
     }};
 
-    private static MultiValuedMap<String, String> getFlexibilityParams() {
+    private static MultiValuedMap<String, String> getFlexibilityParams(String flexibility) {
+        String[] flexibilities = new String[] { flexibility };
+        return getFlexibilityParams(flexibilities);
+    }
+
+    private static MultiValuedMap<String, String> getFlexibilityParams(String[] flexibilities) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.AGE, "Y15-74");
             put(ParamsNames.FREQ, "A");
@@ -128,19 +131,7 @@ public class MainActivityParams {
             put(ParamsNames.UNIT, "THS_PER");
             put(ParamsNames.WORKING_STATUS, "EMP");
         }};
-        FetcherUtils.addParams(params, ParamsNames.WORKING_TIME_FLEX, FLEXIBILITY);
+        FetcherUtils.addParams(params, ParamsNames.WORKING_TIME_FLEX, flexibilities);
         return params;
     }
-
-    private static MultiValuedMap<String, String> getFlexibilityParams(String flexibility) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AGE, "Y15-74");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.ISCED_11, "TOTAL");
-            put(ParamsNames.SEX, "T");
-            put(ParamsNames.UNIT, "THS_PER");
-            put(ParamsNames.WORKING_STATUS, "EMP");
-            put(ParamsNames.WORKING_TIME_FLEX, flexibility);
-        }};
-    };
 }

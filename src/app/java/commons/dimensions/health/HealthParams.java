@@ -5,7 +5,12 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.commons.constants.ParamsValues.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import static app.java.commons.constants.ParamsValues.HEALTH_PROBLEMS;
+import static app.java.commons.constants.ParamsValues.ISCO08;
 
 public class HealthParams {
     public static final MultiValuedMap<String, String> BMI_PARAMS = new HashSetValuedHashMap<>() {{
@@ -17,7 +22,7 @@ public class HealthParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> DEPRESSIVE_RATIO_PARAMS = getDepressiveParams();
+    public static final MultiValuedMap<String, String> DEPRESSIVE_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.values());
 
     public static final MultiValuedMap<String, String>
             DEPRESSIVE_NORMAL_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("depressive")),
@@ -34,7 +39,7 @@ public class HealthParams {
     }};
 
     public static final MultiValuedMap<String, String>
-            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(),
+            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ISCO08.values()),
             PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ISCO08.get("dentists")),
             PERSONNEL_DOCTORS_PARAMS = getHealthPersonnelParams(ISCO08.get("doctors")),
             PERSONNEL_NURSES_PARAMS = getHealthPersonnelParams(ISCO08.get("nurses")),
@@ -126,31 +131,18 @@ public class HealthParams {
         put(ParamsNames.UNIT, "NR");
     }};
 
-    private static MultiValuedMap<String, String> getBodyMassIndexParams(String bmi) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AGE, "TOTAL");
-            put(ParamsNames.BMI, bmi);
-            put(ParamsNames.QUANTILE, "TOTAL");
-            put(ParamsNames.SEX, "T");
-            put(ParamsNames.UNIT, "PC");
-        }};
-    }
-
-    private static MultiValuedMap<String, String> getHealthPersonnelParams() {
-        HashSetValuedHashMap params = new HashSetValuedHashMap<>() {{
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.UNIT, "P_HTHAB");
-        }};
-        FetcherUtils.addParams(params, ParamsNames.ISCO_08, ISCO08);
-        return params;
-    }
-
     private static MultiValuedMap<String, String> getHealthPersonnelParams(String role) {
-        return new HashSetValuedHashMap<>() {{
+        List<String> roles = new ArrayList<>() {{ add(role); }};
+        return getHealthPersonnelParams(roles);
+    }
+
+    private static MultiValuedMap<String, String> getHealthPersonnelParams(Collection<String> roles) {
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.FREQ, "A");
-            put(ParamsNames.ISCO_08, role);
             put(ParamsNames.UNIT, "P_HTHAB");
         }};
+        FetcherUtils.addParams(params, ParamsNames.ISCO_08, roles);
+        return params;
     }
 
     private static MultiValuedMap<String, String> getHealthyLifeYearsParams() {
@@ -162,26 +154,20 @@ public class HealthParams {
         }};
     }
 
-    private static MultiValuedMap<String, String> getDepressiveParams() {
-        HashSetValuedHashMap params = new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AGE, "TOTAL");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.QUANT_INC, "TOTAL");
-            put(ParamsNames.SEX, "T");
-            put(ParamsNames.UNIT, "PC");
-        }};
-        FetcherUtils.addParams(params, ParamsNames.HEALTH_PROBLEMS, HEALTH_PROBLEMS);
-        return params;
+    private static MultiValuedMap<String, String> getDepressiveParams(String healthProblem) {
+        List<String> healthProblems = new ArrayList<>() {{ add(healthProblem); }};
+        return getDepressiveParams(healthProblems);
     }
 
-    private static MultiValuedMap<String, String> getDepressiveParams(String healthProblem) {
-        return new HashSetValuedHashMap<>() {{
+    private static MultiValuedMap<String, String> getDepressiveParams(Collection<String> healthProblems) {
+        MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.AGE, "TOTAL");
             put(ParamsNames.FREQ, "A");
-            put(ParamsNames.HEALTH_PROBLEMS, healthProblem);
             put(ParamsNames.QUANT_INC, "TOTAL");
             put(ParamsNames.SEX, "T");
             put(ParamsNames.UNIT, "PC");
         }};
+        FetcherUtils.addParams(params, ParamsNames.HEALTH_PROBLEMS, healthProblems);
+        return params;
     }
 }

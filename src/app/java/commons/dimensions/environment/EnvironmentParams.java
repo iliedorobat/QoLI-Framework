@@ -8,7 +8,7 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 import static app.java.commons.constants.ParamsValues.AIR_POL;
 
 public class EnvironmentParams {
-    private static final String[] AIR_POL_VALUES = {
+    private static final String[] AIR_POL_TYPES = {
             AIR_POL.get("ammonia"),
             AIR_POL.get("carbonMonoxide"),
             AIR_POL.get("methane"),
@@ -18,7 +18,7 @@ public class EnvironmentParams {
             AIR_POL.get("PM10")
     };
 
-    public static final MultiValuedMap<String, String> AIR_POLLUTION_RATIO_PARAMS = getAirPollutionRatioParams();
+    public static final MultiValuedMap<String, String> AIR_POLLUTION_RATIO_PARAMS = getAirPollutionRatioParams(AIR_POL_TYPES);
 
     public static final MultiValuedMap<String, String> AIR_POLLUTION_CH4_RATIO_PARAMS = getAirPollutionRatioParams(AIR_POL.get("methane"));
     public static final MultiValuedMap<String, String> AIR_POLLUTION_CO_RATIO_PARAMS = getAirPollutionRatioParams(AIR_POL.get("carbonMonoxide"));
@@ -48,23 +48,18 @@ public class EnvironmentParams {
         put(ParamsNames.WAT_PROC, "POP_PWS");
     }};
 
-    private static MultiValuedMap<String, String> getAirPollutionRatioParams() {
+    private static MultiValuedMap<String, String> getAirPollutionRatioParams(String pollutionType) {
+        String[] pollutionTypes = new String[] { pollutionType };
+        return getAirPollutionRatioParams(pollutionTypes);
+    }
+
+    private static MultiValuedMap<String, String> getAirPollutionRatioParams(String[] pollutionTypes) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.NACE_R2, "TOTAL");
             put(ParamsNames.FREQ, "A");
             put(ParamsNames.UNIT, "KG_HAB");    // Kilograms per capita
         }};
-        FetcherUtils.addParams(params, ParamsNames.AIR_POL, AIR_POL_VALUES);
-
+        FetcherUtils.addParams(params, ParamsNames.AIR_POL, pollutionTypes);
         return params;
-    }
-
-    private static MultiValuedMap<String, String> getAirPollutionRatioParams(String pollutionType) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.AIR_POL, pollutionType);
-            put(ParamsNames.NACE_R2, "TOTAL");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.UNIT, "KG_HAB");    // Kilograms per capita
-        }};
     }
 }

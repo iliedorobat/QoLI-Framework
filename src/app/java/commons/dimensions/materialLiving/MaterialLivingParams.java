@@ -1,7 +1,6 @@
 package app.java.commons.dimensions.materialLiving;
 
 import app.java.commons.constants.ParamsNames;
-import app.java.commons.constants.ParamsValues;
 import app.java.commons.dimensions.auxiliary.AuxiliaryParams;
 import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -9,13 +8,12 @@ import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
-import static app.java.commons.constants.ParamsValues.SATISFACTION_LEVELS;
-import static app.java.commons.constants.ParamsValues.SATISFACTION_TYPES;
+import static app.java.commons.constants.ParamsValues.*;
 
 public class MaterialLivingParams {
     private static final String[] END_MEETS_DIFFICULTY_LEVELS = {
-            ParamsValues.SUBJNMON.get("greatDifficulty"),
-            ParamsValues.SUBJNMON.get("difficulty")
+            SUBJNMON.get("greatDifficulty"),
+            SUBJNMON.get("difficulty")
     };
 
     private static HashMap<String, String> QUINTILE_AGES = new HashMap<>() {{
@@ -34,9 +32,9 @@ public class MaterialLivingParams {
     }};
 
     public static final MultiValuedMap<String, String>
-            END_MEET_INABILITY_RATIO_PARAMS = getEndMeetInabilityParams(),
-            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
-            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty"));
+            END_MEET_INABILITY_RATIO_PARAMS = getEndMeetInabilityParams(END_MEETS_DIFFICULTY_LEVELS),
+            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(SUBJNMON.get("difficulty")),
+            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(SUBJNMON.get("greatDifficulty"));
 
     public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             SATISFACTION_LEVELS.get("high"),
@@ -108,25 +106,20 @@ public class MaterialLivingParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    private static MultiValuedMap<String, String> getEndMeetInabilityParams() {
+    private static MultiValuedMap<String, String> getEndMeetInabilityParams(String level) {
+        String[] levels = new String[] { level };
+        return getEndMeetInabilityParams(levels);
+    }
+
+    private static MultiValuedMap<String, String> getEndMeetInabilityParams(String[] levels) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.FREQ, "A");
             put(ParamsNames.HHTYP, "TOTAL");
             put(ParamsNames.INC_GRP, "TOTAL");
             put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsNames.SUBJNMON, END_MEETS_DIFFICULTY_LEVELS);
+        FetcherUtils.addParams(params, ParamsNames.SUBJNMON, levels);
         return params;
-    }
-
-    private static MultiValuedMap<String, String> getEndMeetInabilityParams(String difficultyLevel) {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.HHTYP, "TOTAL");
-            put(ParamsNames.INC_GRP, "TOTAL");
-            put(ParamsNames.SUBJNMON, difficultyLevel);
-            put(ParamsNames.UNIT, "PC");
-        }};
     }
 
     private static MultiValuedMap<String, String> getIncomeQuintileParams() {

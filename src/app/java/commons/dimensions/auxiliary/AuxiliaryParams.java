@@ -6,9 +6,7 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import java.util.HashMap;
-
-import static app.java.commons.constants.ParamsValues.ACL00_LEISURE;
+import static app.java.commons.constants.ParamsValues.ACL00;
 
 public class AuxiliaryParams {
     public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -35,7 +33,7 @@ public class AuxiliaryParams {
      */
     public static MultiValuedMap<String, String> getActivePeopleParams(String[] activities) {
         try {
-            Errors.throwNewError(ACL00_LEISURE, activities, "type of people activities");
+            Errors.throwNewError(ACL00, activities, "type of people activities");
 
             MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
                 put(ParamsNames.AGE, "Y_GE16");
