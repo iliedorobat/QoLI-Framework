@@ -27,13 +27,13 @@ public class HealthStats {
 
     private static final Map<String, Number>
             initBmiRatio = Initializer.initConsolidatedMap(BMI_PARAMS, BMI_PATH),
-            initFruitsVegetablesRatio = Initializer.initConsolidatedMap(FRUITS_VEGETABLES_RATIO_PARAMS, FRUITS_VEGETABLES_RATIO_PATH),
             initHealthyLifeRatio = Initializer.initConsolidatedMap(HEALTHY_LIFE_RATIO_PARAMS, HEALTHY_LIFE_RATIO_PATH),
             initHealthyLifeYears = Initializer.initConsolidatedMap(HEALTHY_LIFE_YEARS_PARAMS, HEALTHY_LIFE_YEARS_PATH),
             initHospitalBeds = Initializer.initConsolidatedMap(HOSPITAL_BEDS_PARAMS, HOSPITAL_BEDS_PATH),
             initLifeExpectancy = Initializer.initConsolidatedMap(LIFE_EXPECTANCY_PARAMS, LIFE_EXPECTANCY_PATH),
             initLongHealthIssuesRatio = Initializer.initConsolidatedMap(LONG_HEALTH_ISSUE_RATIO_PARAMS, LONG_HEALTH_ISSUES_RATIO_PATH),
             initNonAlcoholicRatio = Initializer.initConsolidatedMap(NON_ALCOHOLIC_RATIO_PARAMS, NON_ALCOHOLIC_RATIO_PATH),
+            initNonFruitsVegetablesRatio = Initializer.initConsolidatedMap(NON_FRUITS_VEGETABLES_RATIO_PARAMS, NON_FRUITS_VEGETABLES_RATIO_PATH),
             initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES_PARAMS, HEALTH_PERSONNEL_PATH),
@@ -60,13 +60,13 @@ public class HealthStats {
 
             bmiRatio = Preparation.prepareData(initBmiRatio),
             depressiveRatio = prepareTotalDepressiveRatio(),
-            fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
+            nonFruitsVegetablesRatio = Preparation.prepareData(initNonFruitsVegetablesRatio),
             personnelTotal = prepareTotalPersonnelRatio(),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
@@ -79,13 +79,13 @@ public class HealthStats {
         put(DEPRESSIVE_MAJOR_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveMajorRatio));
         put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveNormalRatio));
         put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveOtherRatio));
-        put(FRUITS_VEGETABLES_RATIO_FILE_NAME, Preparation.filterMap(initFruitsVegetablesRatio));
         put(HEALTHY_LIFE_RATIO_FILE_NAME, Preparation.filterMap(initHealthyLifeRatio));
         put(HEALTHY_LIFE_YEARS_FILE_NAME, Preparation.filterMap(initHealthyLifeYears));
         put(HOSPITAL_BEDS_FILE_NAME, Preparation.filterMap(initHospitalBeds));
         put(LIFE_EXPECTANCY_FILE_NAME, Preparation.filterMap(initLifeExpectancy));
         put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initLongHealthIssuesRatio));
         put(NON_ALCOHOLIC_RATIO_FILE_NAME, Preparation.filterMap(initNonAlcoholicRatio));
+        put(NON_FRUITS_VEGETABLES_RATIO_FILE_NAME, Preparation.filterMap(initNonFruitsVegetablesRatio));
         put(PERSONNEL_DENTISTS_FILE_NAME, Preparation.filterMap(initPersonnelDentists));
         put(PERSONNEL_DOCTORS_FILE_NAME, Preparation.filterMap(initPersonnelDoctors));
         put(PERSONNEL_NURSES_FILE_NAME, Preparation.filterMap(initPersonnelNurses));
@@ -104,13 +104,13 @@ public class HealthStats {
         put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, depressiveNormalRatio);
         put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, depressiveOtherRatio);
         put(DEPRESSIVE_RATIO_FILE_NAME, depressiveRatio);
-        put(FRUITS_VEGETABLES_RATIO_FILE_NAME, fruitsVegetablesRatio);
         put(HEALTHY_LIFE_RATIO_FILE_NAME, healthyLifeRatio);
         put(HEALTHY_LIFE_YEARS_FILE_NAME, healthyLifeYears);
         put(HOSPITAL_BEDS_FILE_NAME, hospitalBeds);
         put(LIFE_EXPECTANCY_FILE_NAME, lifeExpectancy);
         put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, longHealthIssuesRatio);
         put(NON_ALCOHOLIC_RATIO_FILE_NAME, nonAlcoholicRatio);
+        put(NON_FRUITS_VEGETABLES_RATIO_FILE_NAME, nonFruitsVegetablesRatio);
         put(PERSONNEL_DENTISTS_FILE_NAME, personnelDentists);
         put(PERSONNEL_DOCTORS_FILE_NAME, personnelDoctors);
         put(PERSONNEL_NURSES_FILE_NAME, personnelNurses);
@@ -133,18 +133,18 @@ public class HealthStats {
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(bmiRatio, key)
-                        * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
                         * MathUtils.percentageSafetyDouble(nonAlcoholicRatio, key)
+                        * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
 
                         * (MathUtils.percentageSafetyDouble(hospitalBeds, key) / 10) // per million inhabitants
                         * (MathUtils.percentageSafetyDouble(personnelTotal, key) / 10) // per million inhabitants
 
-                        * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(depressiveRatio, key, true)
                         * MathUtils.percentageSafetyDouble(longHealthIssuesRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(nonFruitsVegetablesRatio, key, true)
                         * MathUtils.percentageSafetyDouble(smokersRatio, key, true)
                         * MathUtils.percentageSafetyDouble(unmetDentalRatio, key, true)
                         * MathUtils.percentageSafetyDouble(unmetMedicalRatio, key, true)

@@ -11,7 +11,6 @@ public class HealthCollector {
         Fetcher.sleep(100);
         FileUtils.writeToJSONFile(getBodyMassIndexRatio(), HEALTH_RAW_PATH, BMI_FILE_NAME);
         FileUtils.writeToJSONFile(getDepressiveRatio(), HEALTH_RAW_PATH, DEPRESSIVE_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getFVRatio(), HEALTH_RAW_PATH, FRUITS_VEGETABLES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getLifeExpectancy(), HEALTH_RAW_PATH, LIFE_EXPECTANCY_FILE_NAME);
         FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), HEALTH_RAW_PATH, LONG_HEALTH_ISSUES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getHealthPersonnelRatio(), HEALTH_RAW_PATH, HEALTH_PERSONNEL_FILE_NAME);
@@ -19,6 +18,7 @@ public class HealthCollector {
         FileUtils.writeToJSONFile(getHealthyLifeYears(), HEALTH_RAW_PATH, HEALTHY_LIFE_YEARS_FILE_NAME);
         FileUtils.writeToJSONFile(getHospitalBedsRatio(), HEALTH_RAW_PATH, HOSPITAL_BEDS_FILE_NAME);
         FileUtils.writeToJSONFile(getNonAlcoholicRatio(), HEALTH_RAW_PATH, NON_ALCOHOLIC_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonFruitsVegetablesRatio(), HEALTH_RAW_PATH, NON_FRUITS_VEGETABLES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), HEALTH_RAW_PATH, PHYSICAL_ACTIVITIES_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getSmokersRatio(), HEALTH_RAW_PATH, SMOKERS_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getUnmetDentalRatio(), HEALTH_RAW_PATH, UNMET_DENTAL_RATIO_FILE_NAME);
@@ -54,20 +54,6 @@ public class HealthCollector {
      */
     private static StringBuilder getDepressiveRatio() {
         return Fetcher.fetchData("hlth_ehis_mh1i", DEPRESSIVE_RATIO_PARAMS);
-    }
-
-    /**
-     * Daily consumption of fruit and vegetables<br/><br/>
-     *
-     * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
-     * Dataset: hlth_ehis_fv3i<br/>
-     * Years: 2014; 2019
-     *
-     * @return
-     */
-    private static StringBuilder getFVRatio() {
-        return Fetcher.fetchData("hlth_ehis_fv3i", FRUITS_VEGETABLES_RATIO_PARAMS);
     }
 
     /**
@@ -175,6 +161,20 @@ public class HealthCollector {
      */
     private static StringBuilder getNonAlcoholicRatio() {
         return Fetcher.fetchData("hlth_ehis_al3i", NON_ALCOHOLIC_RATIO_PARAMS);
+    }
+
+    /**
+     * Share of people who don't consume fruit and vegetables daily<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: percentage (%)<br/>
+     * Dataset: hlth_ehis_fv3i<br/>
+     * Years: 2014; 2019
+     *
+     * @return
+     */
+    private static StringBuilder getNonFruitsVegetablesRatio() {
+        return Fetcher.fetchData("hlth_ehis_fv3i", NON_FRUITS_VEGETABLES_RATIO_PARAMS);
     }
 
     /**

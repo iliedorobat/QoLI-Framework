@@ -14,7 +14,6 @@ public class HealthPaths {
     public static final String DEPRESSIVE_MAJOR_RATIO_FILE_NAME = "depressiveMajorRatio";
     public static final String DEPRESSIVE_NORMAL_RATIO_FILE_NAME = "depressiveNormalRatio";
     public static final String DEPRESSIVE_OTHER_RATIO_FILE_NAME = "depressiveOtherRatio";
-    public static final String FRUITS_VEGETABLES_RATIO_FILE_NAME = "fruitsVegetablesRatio";
     public static final String HEALTH_PERSONNEL_FILE_NAME = "healthPersonnel";
     public static final String HEALTHY_LIFE_RATIO_FILE_NAME = "healthyLifeRatio";
     public static final String HEALTHY_LIFE_YEARS_FILE_NAME = "healthyLifeYears";
@@ -22,6 +21,7 @@ public class HealthPaths {
     public static final String LIFE_EXPECTANCY_FILE_NAME = "lifeExpectancy";
     public static final String LONG_HEALTH_ISSUES_RATIO_FILE_NAME = "longHealthIssuesRatio";
     public static final String NON_ALCOHOLIC_RATIO_FILE_NAME = "nonAlcoholicRatio";
+    public static final String NON_FRUITS_VEGETABLES_RATIO_FILE_NAME = "nonFruitsVegetablesRatio";
     public static final String PERSONNEL_DENTISTS_FILE_NAME = "personnelDentists";
     public static final String PERSONNEL_DOCTORS_FILE_NAME = "personnelDoctors";
     public static final String PERSONNEL_NURSES_FILE_NAME = "personnelNurses";
@@ -43,7 +43,6 @@ public class HealthPaths {
     public static final String
             BMI_PATH = generatePath(BMI_FILE_NAME),
             DEPRESSIVE_RATIO_PATH = generatePath(DEPRESSIVE_RATIO_FILE_NAME),
-            FRUITS_VEGETABLES_RATIO_PATH = generatePath(FRUITS_VEGETABLES_RATIO_FILE_NAME),
             HEALTH_PERSONNEL_PATH = generatePath(HEALTH_PERSONNEL_FILE_NAME),
             HEALTHY_LIFE_RATIO_PATH = generatePath(HEALTHY_LIFE_RATIO_FILE_NAME),
             HEALTHY_LIFE_YEARS_PATH = generatePath(HEALTHY_LIFE_YEARS_FILE_NAME),
@@ -51,6 +50,7 @@ public class HealthPaths {
             LIFE_EXPECTANCY_PATH = generatePath(LIFE_EXPECTANCY_FILE_NAME),
             LONG_HEALTH_ISSUES_RATIO_PATH = generatePath(LONG_HEALTH_ISSUES_RATIO_FILE_NAME),
             NON_ALCOHOLIC_RATIO_PATH = generatePath(NON_ALCOHOLIC_RATIO_FILE_NAME),
+            NON_FRUITS_VEGETABLES_RATIO_PATH = generatePath(NON_FRUITS_VEGETABLES_RATIO_FILE_NAME),
             PHYSICAL_ACTIVITIES_RATIO_PATH = generatePath(PHYSICAL_ACTIVITIES_RATIO_FILE_NAME),
             SMOKERS_RATIO_PATH = generatePath(SMOKERS_RATIO_FILE_NAME),
             UNMET_DENTAL_RATIO_PATH = generatePath(UNMET_DENTAL_RATIO_FILE_NAME),

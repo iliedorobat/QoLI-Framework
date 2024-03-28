@@ -29,15 +29,6 @@ public class HealthParams {
             DEPRESSIVE_MAJOR_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("majorDepressive")),
             DEPRESSIVE_OTHER_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("otherDepressive"));
 
-    public static MultiValuedMap<String, String> FRUITS_VEGETABLES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
-        put(ParamsNames.AGE, "TOTAL");
-        put(ParamsNames.FREQ, "A");
-        put(ParamsNames.N_PORTION, "GE5");
-        put(ParamsNames.QUANT_INC, "TOTAL");
-        put(ParamsNames.SEX, "T");
-        put(ParamsNames.UNIT, "PC");
-    }};
-
     public static final MultiValuedMap<String, String>
             HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ISCO08.values()),
             PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ISCO08.get("dentists")),
@@ -87,6 +78,15 @@ public class HealthParams {
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.FREQUENCY, "NVR_NM12");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "PC");
+    }};
+
+    public static MultiValuedMap<String, String> NON_FRUITS_VEGETABLES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.AGE, "TOTAL");
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.N_PORTION, "0");
         put(ParamsNames.QUANT_INC, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
