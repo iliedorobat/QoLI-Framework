@@ -82,12 +82,12 @@ public class EducationStats {
                         * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
                         * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
                         * MathUtils.percentageSafetyDouble(educationRatio, key)
-                        * MathUtils.percentageSafetyDouble(pupilsRatio, key)
                         * MathUtils.percentageSafetyDouble(trainingLastMonthRatio, key)
                         * MathUtils.percentageSafetyDouble(trainingLastYearRatio, key)
                         * MathUtils.percentageSafetyDouble(dropoutRatio, key, true)
                         * MathUtils.percentageSafetyDouble(inactiveYoungRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(noKnownForeignLangRatio, key, true);
+                        * MathUtils.percentageSafetyDouble(noKnownForeignLangRatio, key, true)
+                        * MathUtils.percentageSafetyDouble(pupilsRatio, key, true);
 
                 Number value = Math.log(product);
                 consolidatedList.put(key, value);

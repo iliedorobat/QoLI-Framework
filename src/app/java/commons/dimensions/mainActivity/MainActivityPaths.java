@@ -23,9 +23,9 @@ public class MainActivityPaths {
     public static final String RESEARCHERS_FILE_NAME = "researchers";
     public static final String TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME = "temporaryEmploymentRatio";
     public static final String UNEMPLOYMENT_RATIO_FILE_NAME = "unemploymentRatio";
-    public static final String WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME = "flexibilityRatio";
-    public static final String WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME = "flexibilityRatio";
-    public static final String WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME = "flexibilityRatio";
+    public static final String WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME = "flexibilityFullRatio";
+    public static final String WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME = "flexibilityRestrictiveRatio";
+    public static final String WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME = "flexibilityTotalRatio";
     public static final String WORKING_FLEXIBILITY_RATIO_FILE_NAME = "flexibilityRatio";
     public static final String WORKING_NIGHTS_RATIO_FILE_NAME = "nightsRatio";
 

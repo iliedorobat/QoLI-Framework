@@ -128,7 +128,11 @@ public class MaterialLivingStats {
         Print.printChartData(args, preparedIndicators, LIVING_CONDITIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
-    // proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
+    /**
+     * Get the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
+     *
+     * @return An ordered map with aggregated data
+     */
     private static Map<String, Number> prepareEndMeedInabilityRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -136,9 +140,12 @@ public class MaterialLivingStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
+                double valueDifficulty = endMeetInabilityDRatio.get(key).doubleValue();
+                double valueGreatDifficulty = endMeetInabilityGdRatio.get(key).doubleValue();
+
                 double value = 0
-                        + endMeetInabilityDRatio.get(key).doubleValue()
-                        + endMeetInabilityGdRatio.get(key).doubleValue();
+                        + valueDifficulty
+                        + valueGreatDifficulty;
 
                 consolidatedList.put(key, value);
             }

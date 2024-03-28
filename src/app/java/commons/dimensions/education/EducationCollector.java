@@ -128,9 +128,11 @@ public class EducationCollector {
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
+     * Data type: ratio of pupils to teachers (number)<br/>
      * Dataset: educ_iste<br/>
-     * Years: 1998-2012
+     * Years: 1998-2012<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */
@@ -142,9 +144,11 @@ public class EducationCollector {
      * Ratio of pupils to teachers for primary and secondary education (levels 1-3)<br/><br/>
      *
      * Aggregation: country<br/>
-     * Data type: percentage (%)<br/>
+     * Data type: ratio of pupils to teachers (number)<br/>
      * Dataset: educ_uoe_perp04<br/>
-     * Years: 2013-2021
+     * Years: 2013-2021<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */

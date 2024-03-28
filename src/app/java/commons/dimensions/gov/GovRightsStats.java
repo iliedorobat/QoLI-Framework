@@ -80,15 +80,15 @@ public class GovRightsStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double
-                        empGap = MathUtils.reverseGenderGap(genderEmpGap, key),
-                        payGap = MathUtils.reverseGenderGap(genderPayGap, key),
-                        // Transform the 1-10 notes into 1-100 notes
+                        reversedGenderEmpGap = MathUtils.reverseGenderGap(genderEmpGap, key),
+                        reversedGenderPayGap = MathUtils.reverseGenderGap(genderPayGap, key),
+                        // Transform the 1-10 notes into 10-100 notes
                         trust = populationTrustRatio.get(key).doubleValue() * 10;
 
                 double product = 1
                         * MathUtils.percentageSafetyDouble(citizenship, key)
-                        * MathUtils.percentageSafetyDouble(empGap)
-                        * MathUtils.percentageSafetyDouble(payGap)
+                        * MathUtils.percentageSafetyDouble(reversedGenderEmpGap)
+                        * MathUtils.percentageSafetyDouble(reversedGenderPayGap)
                         * MathUtils.percentageSafetyDouble(trust)
                         * MathUtils.percentageSafetyDouble(voterTurnout, key);
 
@@ -116,7 +116,7 @@ public class GovRightsStats {
      */
     private static Map<String, Number> voterTurnoutCsvToMap(String voterTurnoutPath) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        String csvHeader = "Country;Election type;Year;Voter Turnout";
+        String csvHeader = "Country;ISO2;ISO3;year;Voter Turnout";
         BufferedReader br = null;
 
         try {
@@ -183,7 +183,13 @@ public class GovRightsStats {
                 double valuePlctst = populationPlctstTrustRatio.get(key).doubleValue();
                 double valuePlttst = populationPlttstTrustRatio.get(key).doubleValue();
 
-                Number value = (valueLegtst + valueOthers + valuePlctst + valuePlttst) / 4;
+                double product = 1
+                        * valueLegtst
+                        * valueOthers
+                        * valuePlctst
+                        * valuePlttst;
+
+                Number value = Math.pow(product, 1.0/4);
                 preparedMap.put(key, value);
             }
         }

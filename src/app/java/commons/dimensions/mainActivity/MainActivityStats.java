@@ -59,7 +59,7 @@ public class MainActivityStats {
             flexibilityRestrictiveRatio = Preparation.prepareData(initFlexibilityRestrictiveRatio),
             flexibilityTotalRatio = Preparation.prepareData(initFlexibilityTotalRatio),
 
-            avgRemainedWorkHours = prepareAvgWorkHours(avgWorkHours),
+            avgRemainedWorkHours = prepareAvgRemainedWorkHours(),
             employmentRatio = Preparation.prepareData(initEmploymentRatio),
             inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
             involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
@@ -70,7 +70,7 @@ public class MainActivityStats {
             researchersRatio = Preparation.preparePerTenThousandInhabitants(AuxiliaryStats.population, initResearchers),
             temporaryEmploymentRatio = Preparation.prepareData(initTemporaryEmploymentRatio),
             unemploymentRatio = Preparation.prepareData(initUnemploymentRatio),
-            workingFlexibilityRatio = prepareWorkingFlexibility(),
+            workingFlexibilityRatio = prepareWorkingFlexibilityRatio(),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
@@ -130,7 +130,7 @@ public class MainActivityStats {
                         * MathUtils.percentageSafetyDouble(lowWorkIntensityRatio, key, true)
                         * MathUtils.percentageSafetyDouble(temporaryEmploymentRatio, key, true)
                         * MathUtils.percentageSafetyDouble(unemploymentRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(workingFlexibilityRatio, key)
+                        * MathUtils.percentageSafetyDouble(workingFlexibilityRatio, key) // TODO: check
                         * MathUtils.percentageSafetyDouble(workingNightsRatio, key, true);
 
                 Number value = Math.log(product);
@@ -153,14 +153,14 @@ public class MainActivityStats {
      *
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> prepareAvgWorkHours(Map<String, Number> workHours) {
+    private static Map<String, Number> prepareAvgRemainedWorkHours() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                Number value = MAX_LEGAL_WORK_HOURS - workHours.get(key).doubleValue();
+                Number value = MAX_LEGAL_WORK_HOURS - avgWorkHours.get(key).doubleValue();
                 preparedMap.put(key, value);
             }
         }
@@ -173,7 +173,7 @@ public class MainActivityStats {
      *
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> prepareWorkingFlexibility() {
+    private static Map<String, Number> prepareWorkingFlexibilityRatio() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {

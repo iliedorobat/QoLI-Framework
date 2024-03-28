@@ -55,7 +55,12 @@ public class HealthParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = getHealthyLifeYearsParams();
+    public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = new HashSetValuedHashMap<>() {{
+        put(ParamsNames.FREQ, "A");
+        put(ParamsNames.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
+        put(ParamsNames.SEX, "T");
+        put(ParamsNames.UNIT, "YR");
+    }};
 
     public static final MultiValuedMap<String, String> HOSPITAL_BEDS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FACILITY, "HBEDT");
@@ -143,15 +148,6 @@ public class HealthParams {
         }};
         FetcherUtils.addParams(params, ParamsNames.ISCO_08, roles);
         return params;
-    }
-
-    private static MultiValuedMap<String, String> getHealthyLifeYearsParams() {
-        return new HashSetValuedHashMap<>() {{
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
-            put(ParamsNames.SEX, "T");
-            put(ParamsNames.UNIT, "YR");
-        }};
     }
 
     private static MultiValuedMap<String, String> getDepressiveParams(String healthProblem) {

@@ -32,9 +32,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_bm1i<br/>
-     * Years: 2014; 2019<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Years: 2014; 2019
      *
      * @return
      */
@@ -73,7 +71,7 @@ public class HealthCollector {
     }
 
     /**
-     * Health personnel: Medical doctors; Nurses and midwives; Dentists; Pharmacists; Physiotherapists<br/><br/>
+     * Health personnel: medical doctors; nurses and midwives; dentists; pharmacists; physiotherapists<br/><br/>
      *
      * Aggregation: NUTS 2 regions<br/>
      * Dataset: hlth_rs_prsrg<br/>
@@ -101,14 +99,14 @@ public class HealthCollector {
     }
 
     /**
-     * Health expectancy at birth<br/>
+     * Health expectancy at birth<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
      * Dataset: hlth_hlye<br/>
      * Years: 2004-2021
      *
-     * @return Male & Female statistics
+     * @return
      */
     private static StringBuilder getHealthyLifeYears() {
         return Fetcher.fetchData("hlth_hlye", HEALTHY_LIFE_YEARS_PARAMS);
@@ -171,9 +169,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_al3i<br/>
-     * Years: 2014; 2019<br/><br/>
-     *
-     * <b>GREATER IS WORSE!</b>
+     * Years: 2014; 2019
      *
      * @return
      */
@@ -188,7 +184,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_ehis_pe9e<br/>
-     * Years: 2014; 2019<br/><br/>
+     * Years: 2014; 2019
      *
      * @return
      */

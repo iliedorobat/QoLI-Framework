@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.PERCENTAGE_SAFETY_THRESHOLD;
 import static app.java.commons.dimensions.leisureInteract.LeisureInteractParams.*;
 import static app.java.commons.dimensions.leisureInteract.LeisureInteractPaths.*;
 
@@ -200,19 +199,18 @@ public class LeisureInteractStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
+                double npCinRatio = npFinCinRatio.get(key).doubleValue() + npNnbCinRatio.get(key).doubleValue();
+                double npCultRatio = npFinCultRatio.get(key).doubleValue() + npNnbCultRatio.get(key).doubleValue();
+                double npLiveRatio = npFinLiveRatio.get(key).doubleValue() + npNnbLiveRatio.get(key).doubleValue();
+                double npSportRatio = npFinSportRatio.get(key).doubleValue() + npNnbSportRatio.get(key).doubleValue();
+
                 double product = 1
-                        * MathUtils.percentageSafetyDouble(npFinCinRatio, key)
-                        * MathUtils.percentageSafetyDouble(npFinCultRatio, key)
-                        * MathUtils.percentageSafetyDouble(npFinLiveRatio, key)
-                        * MathUtils.percentageSafetyDouble(npFinSportRatio, key)
+                        * npCinRatio
+                        * npCultRatio
+                        * npLiveRatio
+                        * npSportRatio;
 
-                        * MathUtils.percentageSafetyDouble(npNnbCinRatio, key)
-                        * MathUtils.percentageSafetyDouble(npNnbCultRatio, key)
-                        * MathUtils.percentageSafetyDouble(npNnbLiveRatio, key)
-                        * MathUtils.percentageSafetyDouble(npNnbSportRatio, key);
-
-                // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
-                Number value = MathUtils.getSquareValue(product, 8) - PERCENTAGE_SAFETY_THRESHOLD;
+                Number value = Math.pow(product, 1.0/4);
                 consolidatedList.put(key, value);
             }
         }
@@ -232,14 +230,14 @@ public class LeisureInteractStats {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(npNoInterestFormalRatio, key)
-                        * MathUtils.percentageSafetyDouble(npNoInterestInformalRatio, key)
-                        * MathUtils.percentageSafetyDouble(npTimeFormalRatio, key)
-                        * MathUtils.percentageSafetyDouble(npTimeInformalRatio, key);
+                double npFormalRatio = npNoInterestFormalRatio.get(key).doubleValue() + npTimeFormalRatio.get(key).doubleValue();
+                double npInformalRatio = npNoInterestInformalRatio.get(key).doubleValue() + npTimeInformalRatio.get(key).doubleValue();
 
-                // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
-                Number value = MathUtils.getSquareValue(product, 4) - PERCENTAGE_SAFETY_THRESHOLD;
+                double product = 1
+                        * npFormalRatio
+                        * npInformalRatio;
+
+                Number value = Math.pow(product, 1.0/2);
                 consolidatedList.put(key, value);
             }
         }

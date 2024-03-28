@@ -59,7 +59,7 @@ public class HealthStats {
             personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
 
             bmiRatio = Preparation.prepareData(initBmiRatio),
-            depressiveRatio = prepareDepressiveRatio(),
+            depressiveRatio = prepareTotalDepressiveRatio(),
             fruitsVegetablesRatio = Preparation.prepareData(initFruitsVegetablesRatio),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
@@ -67,7 +67,7 @@ public class HealthStats {
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
-            personnelTotal = preparePersonnelRatio(),
+            personnelTotal = prepareTotalPersonnelRatio(),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
             unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
@@ -135,11 +135,13 @@ public class HealthStats {
                         * MathUtils.percentageSafetyDouble(bmiRatio, key)
                         * MathUtils.percentageSafetyDouble(fruitsVegetablesRatio, key)
                         * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
-                        * MathUtils.percentageSafetyDouble(personnelTotal, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
                         * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
-                        * MathUtils.percentageSafetyDouble(hospitalBeds, key)
                         * MathUtils.percentageSafetyDouble(nonAlcoholicRatio, key)
+
+                        * (MathUtils.percentageSafetyDouble(hospitalBeds, key) / 10) // per million inhabitants
+                        * (MathUtils.percentageSafetyDouble(personnelTotal, key) / 10) // per million inhabitants
+
                         * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
                         * MathUtils.percentageSafetyDouble(depressiveRatio, key, true)
                         * MathUtils.percentageSafetyDouble(longHealthIssuesRatio, key, true)
@@ -168,7 +170,7 @@ public class HealthStats {
      *
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> prepareDepressiveRatio() {
+    private static Map<String, Number> prepareTotalDepressiveRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -193,19 +195,25 @@ public class HealthStats {
      *
      * @return An ordered map with aggregated data
      */
-    private static Map<String, Number> preparePersonnelRatio() {
+    private static Map<String, Number> prepareTotalPersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
+                double valueDentists = personnelDentists.get(key).doubleValue();
+                double valueDoctors = personnelDoctors.get(key).doubleValue();
+                double valueNurses = personnelNurses.get(key).doubleValue();
+                double valuePharmacists = personnelPharmacists.get(key).doubleValue();
+                double valuePhysiotherapists = personnelPhysiotherapists.get(key).doubleValue();
+
                 double value = 0
-                        + personnelDentists.get(key).doubleValue()
-                        + personnelDoctors.get(key).doubleValue()
-                        + personnelNurses.get(key).doubleValue()
-                        + personnelPharmacists.get(key).doubleValue()
-                        + personnelPhysiotherapists.get(key).doubleValue();
+                        + valueDentists
+                        + valueDoctors
+                        + valueNurses
+                        + valuePharmacists
+                        + valuePhysiotherapists;
 
                 consolidatedList.put(key, value);
             }

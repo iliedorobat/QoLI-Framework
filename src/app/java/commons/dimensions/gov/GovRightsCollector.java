@@ -65,6 +65,8 @@ public class GovRightsCollector {
      * Dataset: tesem060<br/>
      * Years: 2005-2023<br/><br/>
      *
+     * <b>GREATER IS WORSE!</b>
+     *
      * @return
      */
     private static StringBuilder getGenderEmpGap() {
@@ -79,6 +81,8 @@ public class GovRightsCollector {
      * Data type: percentage (%)<br/>
      * Dataset: earn_gr_gpgr2<br/>
      * Years: 2007-2022<br/><br/>
+     *
+     * <b>GREATER IS WORSE!</b>
      *
      * @return
      */

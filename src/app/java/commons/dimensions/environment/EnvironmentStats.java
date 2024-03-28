@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.commons.constants.Constants.PERCENTAGE_SAFETY_THRESHOLD;
 import static app.java.commons.dimensions.environment.EnvironmentParams.*;
 import static app.java.commons.dimensions.environment.EnvironmentPaths.*;
 
@@ -132,8 +131,7 @@ public class EnvironmentStats {
                         * valuePm2_5
                         * valuePm10;
 
-                // Subtract 101 because of adding it before by using MathUtils.percentageSafetyDouble method
-                Number value = MathUtils.getSquareValue(product, 7) - PERCENTAGE_SAFETY_THRESHOLD;
+                Number value = Math.pow(product, 1.0/7);
                 preparedMap.put(key, value);
             }
         }
