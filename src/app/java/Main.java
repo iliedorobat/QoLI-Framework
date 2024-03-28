@@ -119,7 +119,7 @@ public class Main {
         Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
         System.out.println(entries);
 
-        ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(filePath);
+        ArrayList<String> localKeys = LocalParser.getDimensionKeys(filePath);
         System.out.println(localKeys);
     }
 }

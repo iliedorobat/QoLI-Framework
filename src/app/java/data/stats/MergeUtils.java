@@ -9,7 +9,10 @@ import app.java.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static app.java.commons.constants.Constants.EU28_MEMBERS;
 
@@ -47,22 +50,22 @@ public class MergeUtils {
         String fullPath = System.getProperty("user.dir") + File.separator + filePath;
         Map<List<String>, Number> entries = LocalParser.readJSONFile(fullPath);
 
-        ArrayList<String> localKeys = LocalParser.getDimensionOrderedKeys(fullPath);
-        int countryIndex = localKeys.indexOf(ParamsNames.GEO);
-        int yearIndex = localKeys.indexOf(ParamsNames.TIME);
+        ArrayList<String> localQueryKeys = LocalParser.getDimensionKeys(fullPath);
+        int countryIndex = localQueryKeys.indexOf(ParamsNames.GEO);
+        int yearIndex = localQueryKeys.indexOf(ParamsNames.TIME);
 
         for (Map.Entry<List<String>, Number> entry : entries.entrySet()) {
             // entryValues = the queried values for parameters
             // Example:
             //      parameters: [unit, sex, isced11, age, geo, time]
             //      queryEntries: [PC, T, ED5-8, Y15-64, UK, 2017]
-            ArrayList<String> queryValues = new ArrayList<>(entry.getKey());
+            ArrayList<String> localQueryValues = new ArrayList<>(entry.getKey());
             Number value = entry.getValue();
 
-            String country = queryValues.get(countryIndex);
-            int year = Integer.parseInt(queryValues.get(yearIndex));
+            String country = localQueryValues.get(countryIndex);
+            int year = Integer.parseInt(localQueryValues.get(yearIndex));
 
-            if (isParamIncluded(params, queryValues)) {
+            if (isParamIncluded(params, localQueryKeys, localQueryValues)) {
                 consolidatedList.put(country + Constants.KEY_SEPARATOR + year, value);
             }
         }
@@ -71,12 +74,15 @@ public class MergeUtils {
     }
 
     // TODO: documentation: Check if the current iterated entry (queryValues) includes params values
-    private static boolean isParamIncluded(MultiValuedMap<String, String> params, ArrayList<String> queryValues) {
+    private static boolean isParamIncluded(MultiValuedMap<String, String> params, ArrayList<String> localQueryKeys, ArrayList<String> queryValues) {
         ArrayList<String> paramsKeys = FetcherUtils.getFilteredParamsKeys(params);
 
         for (String paramKey : paramsKeys) {
+            int localIndex = localQueryKeys.indexOf(paramKey);
+            String localValue = queryValues.get(localIndex);
             String paramValue = params.get(paramKey).iterator().next();
-            if (!queryValues.contains(paramValue))
+
+            if (!localValue.equals(paramValue))
                 return false;
         }
 

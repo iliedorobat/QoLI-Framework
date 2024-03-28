@@ -229,7 +229,6 @@ public class MainActivityCollector {
         return Fetcher.fetchData("lfsa_urgaed", UNEMPLOYMENT_RATIO_PARAMS);
     }
 
-
     /**
      * Persons in employment by working time flexibility<br/><br/>
      *

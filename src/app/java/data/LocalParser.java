@@ -37,7 +37,7 @@ public class LocalParser {
         }
     }
 
-    public static ArrayList<String> getDimensionOrderedKeys(String filePath) {
+    public static ArrayList<String> getDimensionKeys(String filePath) {
         Dataset build = getDataset(filePath);
         Map<String, Dimension> dimension = build.getDimension();
         Set<String> keys = dimension.keySet();
