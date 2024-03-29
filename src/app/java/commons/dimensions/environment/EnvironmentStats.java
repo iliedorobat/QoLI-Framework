@@ -68,7 +68,7 @@ public class EnvironmentStats {
         put(AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNoxRatio));
         put(AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm2_5Ratio));
         put(AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm10Ratio));
-        put(AIR_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNh3Ratio));
+        put(AIR_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(airPollutionRatio));
         put(NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
         put(POLLUTION_RATIO_FILE_NAME, pollutionRatio);
         put(WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
