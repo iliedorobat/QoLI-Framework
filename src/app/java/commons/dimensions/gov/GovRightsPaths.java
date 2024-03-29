@@ -18,6 +18,9 @@ public class GovRightsPaths {
     public static final String POPULATION_PLCTST_TRUST_RATIO_FILE_NAME = "populationPlctstTrustRatio";
     public static final String POPULATION_PLTTST_TRUST_RATIO_FILE_NAME = "populationPlttstTrustRatio";
     public static final String POPULATION_TRUST_FILE_NAME = "populationTrustRatio";
+    public static final String VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME = "voterTurnoutEuParliament";
+    public static final String VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME = "voterTurnoutParliamentary";
+    public static final String VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME = "voterTurnoutPresidential";
     public static final String VOTER_TURNOUT_FILE_NAME = "voterTurnout";
 
     public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, GOVERNANCE_FILE_NAME);
