@@ -1,7 +1,8 @@
-package app.java.aggr.commons.utils;
+package ro.webdata.qoli.aggr.commons.utils;
 
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.dimensions.QoLIPaths;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.dimensions.QoLIPaths;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,9 +10,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
-import static app.java.aggr.commons.constants.Constants.PREPARED_DATASET_PATH;
 
 public class JsonStatsUtils {
     /**
@@ -37,8 +35,8 @@ public class JsonStatsUtils {
         try {
             StringBuilder data = new StringBuilder(objectMapper.writeValueAsString(stats));
             String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
-            String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "json", seriesDirectory);
-            FileUtils.writeToFile(data, fullPath, directoryName, JSON_EXTENSION);
+            String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "json", seriesDirectory);
+            FileUtils.writeToFile(data, fullPath, directoryName, Constants.JSON_EXTENSION);
 
             if (calculateIndicators && preparedIndicators != null) {
                 preparedIndicators.forEach((indicatorName, value) -> {
@@ -46,7 +44,7 @@ public class JsonStatsUtils {
                     try {
                         StringBuilder indicatorData = new StringBuilder(objectMapper.writeValueAsString(indicatorStats));
                         String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
-                        FileUtils.writeToFile(indicatorData, indicatorFullPath, indicatorName, JSON_EXTENSION);
+                        FileUtils.writeToFile(indicatorData, indicatorFullPath, indicatorName, Constants.JSON_EXTENSION);
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }

@@ -1,15 +1,15 @@
-package app.java.aggr.data.fetch;
+package ro.webdata.qoli.aggr.data.fetch;
 
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryCollector;
-import app.java.aggr.commons.dimensions.education.EducationCollector;
-import app.java.aggr.commons.dimensions.environment.EnvironmentCollector;
-import app.java.aggr.commons.dimensions.gov.GovRightsCollector;
-import app.java.aggr.commons.dimensions.health.HealthCollector;
-import app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractCollector;
-import app.java.aggr.commons.dimensions.mainActivity.MainActivityCollector;
-import app.java.aggr.commons.dimensions.materialLiving.MaterialLivingCollector;
-import app.java.aggr.commons.dimensions.overall.OverallExperienceCollector;
-import app.java.aggr.commons.dimensions.safety.SafetyCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.education.EducationCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.health.HealthCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyCollector;
 
 /**
  * Collect the data from Eurostat portal and save it to json files

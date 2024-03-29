@@ -1,27 +1,26 @@
-package app.java.aggr.commons.dimensions.overall;
+package ro.webdata.qoli.aggr.commons.dimensions.overall;
 
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.aggr.commons.constants.ParamsValues.*;
-
 public class OverallExperienceParams {
     private static final String[] LEVELS = {
-            HAPPINESS_LEVELS.get("always"),
-            HAPPINESS_LEVELS.get("most")
+            ParamsValues.HAPPINESS_LEVELS.get("always"),
+            ParamsValues.HAPPINESS_LEVELS.get("most")
     };
 
     public static final MultiValuedMap<String, String>
             HAPPINESS_RATIO_PARAMS = getHappinessParams(LEVELS),
-            HAPPINESS_ALWAYS_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS.get("always")),
-            HAPPINESS_MOST_OF_THE_TIME_RATIO_PARAMS = getHappinessParams(HAPPINESS_LEVELS.get("most"));
+            HAPPINESS_ALWAYS_RATIO_PARAMS = getHappinessParams(ParamsValues.HAPPINESS_LEVELS.get("always")),
+            HAPPINESS_MOST_OF_THE_TIME_RATIO_PARAMS = getHappinessParams(ParamsValues.HAPPINESS_LEVELS.get("most"));
 
     public static final MultiValuedMap<String, String> HIGH_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("overall")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("overall")
     );
 
     private static MultiValuedMap<String, String> getHappinessParams(String happinessLevel) {

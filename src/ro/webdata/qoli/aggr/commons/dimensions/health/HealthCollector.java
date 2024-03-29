@@ -1,29 +1,26 @@
-package app.java.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.commons.dimensions.health;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
-
-import static app.java.aggr.commons.dimensions.health.HealthParams.*;
-import static app.java.aggr.commons.dimensions.health.HealthPaths.*;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 public class HealthCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getBodyMassIndexRatio(), HEALTH_RAW_PATH, BMI_FILE_NAME);
-        FileUtils.writeToJSONFile(getDepressiveRatio(), HEALTH_RAW_PATH, DEPRESSIVE_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLifeExpectancy(), HEALTH_RAW_PATH, LIFE_EXPECTANCY_FILE_NAME);
-        FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), HEALTH_RAW_PATH, LONG_HEALTH_ISSUES_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getHealthPersonnelRatio(), HEALTH_RAW_PATH, HEALTH_PERSONNEL_FILE_NAME);
-        FileUtils.writeToJSONFile(getHealthyLifeRatio(), HEALTH_RAW_PATH, HEALTHY_LIFE_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getHealthyLifeYears(), HEALTH_RAW_PATH, HEALTHY_LIFE_YEARS_FILE_NAME);
-        FileUtils.writeToJSONFile(getHospitalBedsRatio(), HEALTH_RAW_PATH, HOSPITAL_BEDS_FILE_NAME);
-        FileUtils.writeToJSONFile(getNonAlcoholicRatio(), HEALTH_RAW_PATH, NON_ALCOHOLIC_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getNonFruitsVegetablesRatio(), HEALTH_RAW_PATH, NON_FRUITS_VEGETABLES_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), HEALTH_RAW_PATH, PHYSICAL_ACTIVITIES_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getSmokersRatio(), HEALTH_RAW_PATH, SMOKERS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnmetDentalRatio(), HEALTH_RAW_PATH, UNMET_DENTAL_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnmetMedicalRatio(), HEALTH_RAW_PATH, UNMET_MEDICAL_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getWorkAccidents(), HEALTH_RAW_PATH, WORK_ACCIDENTS_FILE_NAME);
+        FileUtils.writeToJSONFile(getBodyMassIndexRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.BMI_FILE_NAME);
+        FileUtils.writeToJSONFile(getDepressiveRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.DEPRESSIVE_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLifeExpectancy(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.LIFE_EXPECTANCY_FILE_NAME);
+        FileUtils.writeToJSONFile(getLongHealthIssuesRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.LONG_HEALTH_ISSUES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthPersonnelRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.HEALTH_PERSONNEL_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthyLifeRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.HEALTHY_LIFE_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHealthyLifeYears(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.HEALTHY_LIFE_YEARS_FILE_NAME);
+        FileUtils.writeToJSONFile(getHospitalBedsRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.HOSPITAL_BEDS_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonAlcoholicRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.NON_ALCOHOLIC_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonFruitsVegetablesRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.NON_FRUITS_VEGETABLES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getPhysicalActivitiesRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.PHYSICAL_ACTIVITIES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getSmokersRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.SMOKERS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnmetDentalRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.UNMET_DENTAL_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnmetMedicalRatio(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.UNMET_MEDICAL_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkAccidents(), HealthPaths.HEALTH_RAW_PATH, HealthPaths.WORK_ACCIDENTS_FILE_NAME);
     }
 
     /**
@@ -37,7 +34,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getBodyMassIndexRatio() {
-        return Fetcher.fetchData("hlth_ehis_bm1i", BMI_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_bm1i", HealthParams.BMI_PARAMS);
     }
 
     /**
@@ -53,7 +50,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getDepressiveRatio() {
-        return Fetcher.fetchData("hlth_ehis_mh1i", DEPRESSIVE_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_mh1i", HealthParams.DEPRESSIVE_RATIO_PARAMS);
     }
 
     /**
@@ -67,7 +64,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getHealthPersonnelRatio() {
-        return Fetcher.fetchData("hlth_rs_prsrg", HEALTH_PERSONNEL_PARAMS);
+        return Fetcher.fetchData("hlth_rs_prsrg", HealthParams.HEALTH_PERSONNEL_PARAMS);
     }
 
     /**
@@ -81,7 +78,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getHealthyLifeRatio() {
-        return Fetcher.fetchData("hlth_silc_10", HEALTHY_LIFE_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_silc_10", HealthParams.HEALTHY_LIFE_RATIO_PARAMS);
     }
 
     /**
@@ -95,7 +92,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getHealthyLifeYears() {
-        return Fetcher.fetchData("hlth_hlye", HEALTHY_LIFE_YEARS_PARAMS);
+        return Fetcher.fetchData("hlth_hlye", HealthParams.HEALTHY_LIFE_YEARS_PARAMS);
     }
 
     /**
@@ -113,7 +110,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getHospitalBedsRatio() {
-        return Fetcher.fetchData("hlth_rs_bds", HOSPITAL_BEDS_PARAMS);
+        return Fetcher.fetchData("hlth_rs_bds", HealthParams.HOSPITAL_BEDS_PARAMS);
     }
 
     /**
@@ -130,7 +127,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getLifeExpectancy() {
-        return Fetcher.fetchData("demo_mlexpec", LIFE_EXPECTANCY_PARAMS);
+        return Fetcher.fetchData("demo_mlexpec", HealthParams.LIFE_EXPECTANCY_PARAMS);
     }
 
     /**
@@ -146,7 +143,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getLongHealthIssuesRatio() {
-        return Fetcher.fetchData("hlth_silc_11", LONG_HEALTH_ISSUE_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_silc_11", HealthParams.LONG_HEALTH_ISSUE_RATIO_PARAMS);
     }
 
     /**
@@ -160,7 +157,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getNonAlcoholicRatio() {
-        return Fetcher.fetchData("hlth_ehis_al3i", NON_ALCOHOLIC_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_al3i", HealthParams.NON_ALCOHOLIC_RATIO_PARAMS);
     }
 
     /**
@@ -174,7 +171,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getNonFruitsVegetablesRatio() {
-        return Fetcher.fetchData("hlth_ehis_fv3i", NON_FRUITS_VEGETABLES_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_fv3i", HealthParams.NON_FRUITS_VEGETABLES_RATIO_PARAMS);
     }
 
     /**
@@ -189,7 +186,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getPhysicalActivitiesRatio() {
-        return Fetcher.fetchData("hlth_ehis_pe9e", PHYSICAL_ACTIVITIES_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_pe9e", HealthParams.PHYSICAL_ACTIVITIES_RATIO_PARAMS);
     }
 
     /**
@@ -205,7 +202,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getSmokersRatio() {
-        return Fetcher.fetchData("hlth_ehis_sk3i", SMOKERS_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_ehis_sk3i", HealthParams.SMOKERS_RATIO_PARAMS);
     }
 
     /**
@@ -222,7 +219,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getUnmetDentalRatio() {
-        return Fetcher.fetchData("hlth_silc_09", UNMET_DENTAL_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_silc_09", HealthParams.UNMET_DENTAL_RATIO_PARAMS);
     }
 
     /**
@@ -239,7 +236,7 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getUnmetMedicalRatio() {
-        return Fetcher.fetchData("hlth_silc_08", UNMET_MEDICAL_RATIO_PARAMS);
+        return Fetcher.fetchData("hlth_silc_08", HealthParams.UNMET_MEDICAL_RATIO_PARAMS);
     }
 
     /**
@@ -255,6 +252,6 @@ public class HealthCollector {
      * @return
      */
     private static StringBuilder getWorkAccidents() {
-        return Fetcher.fetchData("hsw_mi07", WORK_ACCIDENTS_PARAMS);
+        return Fetcher.fetchData("hsw_mi07", HealthParams.WORK_ACCIDENTS_PARAMS);
     }
 }

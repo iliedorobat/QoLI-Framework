@@ -1,14 +1,13 @@
-package app.java.aggr.commons.utils;
+package ro.webdata.qoli.aggr.commons.utils;
 
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.dimensions.QoLIPaths;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.dimensions.QoLIPaths;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
-
-import static app.java.aggr.commons.constants.Constants.*;
 
 public class CsvStatsUtils {
     private static final int ROUNDING_PLACES = 2;
@@ -30,7 +29,7 @@ public class CsvStatsUtils {
     ) {
         Map<String, List<Number>> deviationList = new LinkedHashMap<>();
 
-        for (String code : EU28_MEMBERS) {
+        for (String code : Constants.EU28_MEMBERS) {
             List<Number> countryDeviationList = new LinkedList<>();
             Object[] entries = mainMap.entrySet().toArray();
 
@@ -78,7 +77,7 @@ public class CsvStatsUtils {
     ) {
         Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
 
-        if (direction.equals(DIRECTION_ROW)) {
+        if (direction.equals(Constants.DIRECTION_ROW)) {
             return generateChartRows(data, membersList, seriesType, directoryName);
         }
 
@@ -100,20 +99,20 @@ public class CsvStatsUtils {
             String directoryName
     ) {
         String header = "--- " + seriesType + " --- " + directoryName + " ---" +
-                "\nCountries" + CSV_SEPARATOR;
+                "\nCountries" + Constants.CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             output.append(year);
 
             if (year < EnvConst.MAX_YEAR) {
-                output.append(CSV_SEPARATOR);
+                output.append(Constants.CSV_SEPARATOR);
             }
         }
         output.append("\n");
 
         for (String code : membersList) {
-            StringBuilder line = new StringBuilder(code + CSV_SEPARATOR);
+            StringBuilder line = new StringBuilder(code + Constants.CSV_SEPARATOR);
 
             for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
                 Number value = StatsUtils.getValue(entries, code, year);
@@ -121,7 +120,7 @@ public class CsvStatsUtils {
                 line.append(df.format(value));
 
                 if (year < EnvConst.MAX_YEAR) {
-                    line.append(CSV_SEPARATOR);
+                    line.append(Constants.CSV_SEPARATOR);
                 }
             }
             output.append(line).append("\n");
@@ -145,7 +144,7 @@ public class CsvStatsUtils {
             String directoryName
     ) {
         String header = "--- " + seriesType + " --- " + directoryName + " ---" +
-                "\nYears" + CSV_SEPARATOR;
+                "\nYears" + Constants.CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
         int length = membersList.length;
 
@@ -154,12 +153,12 @@ public class CsvStatsUtils {
             output.append(code);
 
             if (i < length - 1)
-                output.append(CSV_SEPARATOR);
+                output.append(Constants.CSV_SEPARATOR);
         }
         output.append("\n");
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            StringBuilder line = new StringBuilder(year + CSV_SEPARATOR);
+            StringBuilder line = new StringBuilder(year + Constants.CSV_SEPARATOR);
 
             for (int i = 0; i < length; i++) {
                 String code = membersList[i];
@@ -169,7 +168,7 @@ public class CsvStatsUtils {
                 line.append(value);
 
                 if (i < length - 1)
-                    line.append(CSV_SEPARATOR);
+                    line.append(Constants.CSV_SEPARATOR);
             }
             output.append(line).append("\n");
         }
@@ -198,14 +197,14 @@ public class CsvStatsUtils {
     ) {
         StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
         String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
-        String fullPath = String.join(File.separator, PREPARED_DATASET_PATH, "csv", seriesDirectory);
-        FileUtils.writeToFile(sb, fullPath, directoryName, CSV_EXTENSION);
+        String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "csv", seriesDirectory);
+        FileUtils.writeToFile(sb, fullPath, directoryName, Constants.CSV_EXTENSION);
 
         if (calculateIndicators && preparedIndicators != null) {
             preparedIndicators.forEach((indicatorName, value) -> {
                 StringBuilder indicatorSb = CsvStatsUtils.generateChartData(preparedIndicators.get(indicatorName), membersList, seriesType, directoryName, direction);
                 String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
-                FileUtils.writeToFile(indicatorSb, indicatorFullPath, indicatorName, CSV_EXTENSION);
+                FileUtils.writeToFile(indicatorSb, indicatorFullPath, indicatorName, Constants.CSV_EXTENSION);
             });
         }
     }

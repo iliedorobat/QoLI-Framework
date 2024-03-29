@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.education;
+package ro.webdata.qoli.aggr.commons.dimensions.education;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class EducationPaths {
     public static final String EDUCATION_FILE_NAME = "education";
@@ -24,7 +22,7 @@ public class EducationPaths {
     public static final String EDUCATION_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, EDUCATION_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return EDUCATION_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return EDUCATION_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String

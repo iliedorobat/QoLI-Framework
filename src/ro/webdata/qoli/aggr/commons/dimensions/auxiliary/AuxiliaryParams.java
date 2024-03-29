@@ -1,12 +1,11 @@
-package app.java.aggr.commons.dimensions.auxiliary;
+package ro.webdata.qoli.aggr.commons.dimensions.auxiliary;
 
-import app.java.aggr.commons.Errors;
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.Errors;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
-
-import static app.java.aggr.commons.constants.ParamsValues.ACL00;
 
 public class AuxiliaryParams {
     public static final MultiValuedMap<String, String> LOW_WORK_INTENSITY_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -33,7 +32,7 @@ public class AuxiliaryParams {
      */
     public static MultiValuedMap<String, String> getActivePeopleParams(String[] activities) {
         try {
-            Errors.throwNewError(ACL00, activities, "type of people activities");
+            Errors.throwNewError(ParamsValues.ACL00, activities, "type of people activities");
 
             MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
                 put(ParamsNames.AGE, "Y_GE16");

@@ -1,4 +1,4 @@
-package app.java.aggr;
+package ro.webdata.qoli.aggr;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package app.java.aggr.commons;
+package ro.webdata.qoli.aggr.commons;
 
 import java.util.Comparator;
 

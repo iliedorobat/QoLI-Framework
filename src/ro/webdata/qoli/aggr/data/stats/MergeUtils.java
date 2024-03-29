@@ -1,11 +1,11 @@
-package app.java.aggr.data.stats;
+package ro.webdata.qoli.aggr.data.stats;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.constants.Constants;
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.data.LocalParser;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.data.LocalParser;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.File;
@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
 
 public class MergeUtils {
     /**
@@ -99,7 +97,7 @@ public class MergeUtils {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         // Iterate over EU28_MEMBERS in order to add the entries by country code into the ordered map
-        for (String code : EU28_MEMBERS) {
+        for (String code : Constants.EU28_MEMBERS) {
             for (Map<String, Number> map : mapsList) {
                 for (Map.Entry<String, Number> entry : map.entrySet()) {
                     String entryCode = MapUtils.getEntryCode(entry);

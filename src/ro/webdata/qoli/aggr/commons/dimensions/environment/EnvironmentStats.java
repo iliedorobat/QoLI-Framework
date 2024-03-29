@@ -1,36 +1,33 @@
-package app.java.aggr.commons.dimensions.environment;
+package ro.webdata.qoli.aggr.commons.dimensions.environment;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.Print;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.commons.utils.MathUtils;
-import app.java.aggr.data.stats.Initializer;
-import app.java.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.data.stats.Initializer;
+import ro.webdata.qoli.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.dimensions.environment.EnvironmentParams.*;
-import static app.java.aggr.commons.dimensions.environment.EnvironmentPaths.*;
-
 public class EnvironmentStats {
     private static final Map<String, Number>
             // Intermediate data which will be grouped into a single indicator
-            initAirPollutionNh3Ratio = Initializer.initConsolidatedMap(AIR_POLLUTION_NH3_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionCh4Ratio = Initializer.initConsolidatedMap(AIR_POLLUTION_CH4_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionCoRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_CO_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionNmvocRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_NMVOC_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionNoxRatio = Initializer.initConsolidatedMap(AIR_POLLUTION_NOX_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionPm2_5Ratio = Initializer.initConsolidatedMap(AIR_POLLUTION_PM_2_5_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
-            initAirPollutionPm10Ratio = Initializer.initConsolidatedMap(AIR_POLLUTION_PM_10_RATIO_PARAMS, AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionNh3Ratio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_NH3_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionCh4Ratio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_CH4_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionCoRatio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_CO_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionNmvocRatio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_NMVOC_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionNoxRatio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_NOX_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionPm2_5Ratio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_PM_2_5_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
+            initAirPollutionPm10Ratio = Initializer.initConsolidatedMap(EnvironmentParams.AIR_POLLUTION_PM_10_RATIO_PARAMS, EnvironmentPaths.AIR_POLLUTION_RATIO_PATH),
 
-            initNoisePollutionRatio = Initializer.initConsolidatedMap(NOISE_POLLUTION_RATIO_PARAMS, NOISE_POLLUTION_RATIO_PATH),
-            initPollutionRatio = Initializer.initConsolidatedMap(POLLUTION_RATIO_PARAMS, POLLUTION_RATIO_PATH),
-            initWaterSupplyRatio = Initializer.initConsolidatedMap(WATER_SUPPLY_RATIO_PARAMS, WATER_SUPPLY_RATIO_PATH);
+            initNoisePollutionRatio = Initializer.initConsolidatedMap(EnvironmentParams.NOISE_POLLUTION_RATIO_PARAMS, EnvironmentPaths.NOISE_POLLUTION_RATIO_PATH),
+            initPollutionRatio = Initializer.initConsolidatedMap(EnvironmentParams.POLLUTION_RATIO_PARAMS, EnvironmentPaths.POLLUTION_RATIO_PATH),
+            initWaterSupplyRatio = Initializer.initConsolidatedMap(EnvironmentParams.WATER_SUPPLY_RATIO_PARAMS, EnvironmentPaths.WATER_SUPPLY_RATIO_PATH);
 
     public static final Map<String, Number>
             // Intermediate data used to calculate airPollutionRatio
@@ -48,37 +45,37 @@ public class EnvironmentStats {
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNh3Ratio));
-        put(AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCh4Ratio));
-        put(AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCoRatio));
-        put(AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNmvocRatio));
-        put(AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNoxRatio));
-        put(AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm2_5Ratio));
-        put(AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm10Ratio));
-        put(NOISE_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initNoisePollutionRatio));
-        put(POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPollutionRatio));
-        put(WATER_SUPPLY_RATIO_FILE_NAME, Preparation.filterMap(initWaterSupplyRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNh3Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCh4Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCoRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNmvocRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNoxRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm2_5Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm10Ratio));
+        put(EnvironmentPaths.NOISE_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initNoisePollutionRatio));
+        put(EnvironmentPaths.POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPollutionRatio));
+        put(EnvironmentPaths.WATER_SUPPLY_RATIO_FILE_NAME, Preparation.filterMap(initWaterSupplyRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNh3Ratio));
-        put(AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCh4Ratio));
-        put(AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCoRatio));
-        put(AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNmvocRatio));
-        put(AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNoxRatio));
-        put(AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm2_5Ratio));
-        put(AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm10Ratio));
-        put(AIR_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(airPollutionRatio));
-        put(NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
-        put(POLLUTION_RATIO_FILE_NAME, pollutionRatio);
-        put(WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
+        put(EnvironmentPaths.AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNh3Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCh4Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCoRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNmvocRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNoxRatio));
+        put(EnvironmentPaths.AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm2_5Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm10Ratio));
+        put(EnvironmentPaths.AIR_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(airPollutionRatio));
+        put(EnvironmentPaths.NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
+        put(EnvironmentPaths.POLLUTION_RATIO_FILE_NAME, pollutionRatio);
+        put(EnvironmentPaths.WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
     }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -99,11 +96,11 @@ public class EnvironmentStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, ENVIRONMENT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, EnvironmentPaths.ENVIRONMENT_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, ENVIRONMENT_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, EnvironmentPaths.ENVIRONMENT_FILE_NAME, targetYear, indStatus);
     }
 
     /**
@@ -115,7 +112,7 @@ public class EnvironmentStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueCh4 = airPollutionCh4Ratio.get(key).doubleValue();

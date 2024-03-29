@@ -1,22 +1,22 @@
-package app.java.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.commons.dimensions.health;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.Print;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.commons.utils.MathUtils;
-import app.java.aggr.data.stats.Initializer;
-import app.java.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.data.stats.Initializer;
+import ro.webdata.qoli.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.dimensions.health.HealthParams.*;
-import static app.java.aggr.commons.dimensions.health.HealthPaths.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthParams.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthPaths.*;
 
 public class HealthStats {
     // Intermediate data which will be grouped into a single indicator
@@ -128,7 +128,7 @@ public class HealthStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -162,7 +162,7 @@ public class HealthStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
@@ -178,7 +178,7 @@ public class HealthStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueNormal = depressiveNormalRatio.get(key).doubleValue();
@@ -203,7 +203,7 @@ public class HealthStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueDentists = personnelDentists.get(key).doubleValue();

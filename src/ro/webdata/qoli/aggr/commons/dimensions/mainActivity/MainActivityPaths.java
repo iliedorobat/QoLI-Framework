@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.mainActivity;
+package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class MainActivityPaths {
     public static final String MAIN_ACTIVITY_FILE_NAME = "mainActivity";
@@ -32,7 +30,7 @@ public class MainActivityPaths {
     public static final String MAIN_ACTIVITY_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, MAIN_ACTIVITY_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return MAIN_ACTIVITY_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String

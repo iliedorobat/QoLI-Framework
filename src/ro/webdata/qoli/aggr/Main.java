@@ -1,22 +1,22 @@
-package app.java.aggr;
+package ro.webdata.qoli.aggr;
 
-import app.java.aggr.commons.dimensions.QoLICsvStats;
-import app.java.aggr.commons.dimensions.QoLIJsonStats;
-import app.java.aggr.commons.dimensions.education.EducationStats;
-import app.java.aggr.commons.dimensions.environment.EnvironmentStats;
-import app.java.aggr.commons.dimensions.gov.GovRightsStats;
-import app.java.aggr.commons.dimensions.health.HealthStats;
-import app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
-import app.java.aggr.commons.dimensions.mainActivity.MainActivityStats;
-import app.java.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
-import app.java.aggr.commons.dimensions.overall.OverallExperienceStats;
-import app.java.aggr.commons.dimensions.safety.SafetyStats;
-import app.java.aggr.data.fetch.DataCollector;
+import ro.webdata.qoli.aggr.commons.dimensions.QoLICsvStats;
+import ro.webdata.qoli.aggr.commons.dimensions.QoLIJsonStats;
+import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.commons.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
+import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static app.java.aggr.StartupUtils.*;
+import static ro.webdata.qoli.aggr.StartupUtils.*;
 
 public class Main {
     public static void main(String[] args) {

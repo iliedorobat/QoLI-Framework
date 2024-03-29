@@ -1,21 +1,18 @@
-package app.java.aggr.commons.dimensions.safety;
+package ro.webdata.qoli.aggr.commons.dimensions.safety;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
-
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS_EXTENDED;
-import static app.java.aggr.commons.dimensions.safety.SafetyParams.*;
-import static app.java.aggr.commons.dimensions.safety.SafetyPaths.*;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 public class SafetyCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getCrimeRatio(), SAFETY_RAW_PATH, CRIME_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getOffences(), SAFETY_RAW_PATH, OFFENCES_FILE_NAME);
-        FileUtils.writeToJSONFile(getPensionPps(), SAFETY_RAW_PATH, PENSION_PPS_FILE_NAME);
-        FileUtils.writeToJSONFile(getSocialProtectionPps(), SAFETY_RAW_PATH, SOCIAL_PROTECTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnexpectedRatio(), SAFETY_RAW_PATH, UNEXPECTED_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getNonPaymentRatio(), SAFETY_RAW_PATH, NON_PAYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getCrimeRatio(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.CRIME_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getOffences(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.OFFENCES_FILE_NAME);
+        FileUtils.writeToJSONFile(getPensionPps(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.PENSION_PPS_FILE_NAME);
+        FileUtils.writeToJSONFile(getSocialProtectionPps(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.SOCIAL_PROTECTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnexpectedRatio(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.UNEXPECTED_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNonPaymentRatio(), SafetyPaths.SAFETY_RAW_PATH, SafetyPaths.NON_PAYMENT_RATIO_FILE_NAME);
     }
 
     /**
@@ -32,7 +29,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getCrimeRatio() {
-        return Fetcher.fetchData("ilc_mddw03", CRIME_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_mddw03", SafetyParams.CRIME_RATIO_PARAMS);
     }
 
     /**
@@ -49,7 +46,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getNonPaymentRatio() {
-        return Fetcher.fetchData("ilc_mdes05", NON_PAYMENT_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_mdes05", SafetyParams.NON_PAYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -65,7 +62,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getOffences() {
-        return Fetcher.fetchData("crim_off_cat", OFFENCES_PARAMS, EU28_MEMBERS_EXTENDED);
+        return Fetcher.fetchData("crim_off_cat", SafetyParams.OFFENCES_PARAMS, Constants.EU28_MEMBERS_EXTENDED);
     }
 
     /**
@@ -79,7 +76,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getPensionPps() {
-        return Fetcher.fetchData("spr_exp_pens", PENSION_PPS_PARAMS);
+        return Fetcher.fetchData("spr_exp_pens", SafetyParams.PENSION_PPS_PARAMS);
     }
 
     /**
@@ -93,7 +90,7 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getSocialProtectionPps() {
-        return Fetcher.fetchData("spr_exp_sum", SOCIAL_PROTECTION_PPS_PARAMS);
+        return Fetcher.fetchData("spr_exp_sum", SafetyParams.SOCIAL_PROTECTION_PPS_PARAMS);
     }
 
     /**
@@ -110,6 +107,6 @@ public class SafetyCollector {
      * @return
      */
     private static StringBuilder getUnexpectedRatio() {
-        return Fetcher.fetchData("ilc_mdes04", UNEXPECTED_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_mdes04", SafetyParams.UNEXPECTED_RATIO_PARAMS);
     }
 }

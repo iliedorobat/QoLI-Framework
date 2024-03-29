@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.leisureInteract;
+package ro.webdata.qoli.aggr.commons.dimensions.leisureInteract;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class LeisureInteractPaths {
     public static final String LEISURE_INTERACT_FILE_NAME = "leisureInteractions";
@@ -42,7 +40,7 @@ public class LeisureInteractPaths {
     public static final String LEISURE_INTERACT_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, LEISURE_INTERACT_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return LEISURE_INTERACT_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return LEISURE_INTERACT_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String

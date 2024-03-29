@@ -1,11 +1,8 @@
-package app.java.aggr.commons.dimensions.gov;
+package ro.webdata.qoli.aggr.commons.dimensions.gov;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.CSV_EXTENSION;
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class GovRightsPaths {
     public static final String GOVERNANCE_FILE_NAME = "governance";
@@ -26,7 +23,7 @@ public class GovRightsPaths {
     public static final String GOV_RIGHTS_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, GOVERNANCE_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return GOV_RIGHTS_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return GOV_RIGHTS_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String
@@ -34,5 +31,5 @@ public class GovRightsPaths {
             GENDER_EMP_GAP_PATH = generatePath(GENDER_EMP_GAP_FILE_NAME),
             GENDER_PAY_GAP_PATH = generatePath(GENDER_PAY_GAP_FILE_NAME),
             POPULATION_TRUST_PATH = generatePath(POPULATION_TRUST_FILE_NAME),
-            VOTER_TURNOUT_PATH = GOV_RIGHTS_RAW_PATH + File.separator + VOTER_TURNOUT_FILE_NAME + CSV_EXTENSION;
+            VOTER_TURNOUT_PATH = GOV_RIGHTS_RAW_PATH + File.separator + VOTER_TURNOUT_FILE_NAME + Constants.CSV_EXTENSION;
 }

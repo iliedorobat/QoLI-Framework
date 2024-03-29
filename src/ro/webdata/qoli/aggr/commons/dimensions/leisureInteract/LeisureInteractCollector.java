@@ -1,25 +1,22 @@
-package app.java.aggr.commons.dimensions.leisureInteract;
+package ro.webdata.qoli.aggr.commons.dimensions.leisureInteract;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
-
-import static app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractParams.*;
-import static app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractPaths.*;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 public class LeisureInteractCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getAskingRatio(), LEISURE_INTERACT_RAW_PATH, ASKING_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getDiscussionRatio(), LEISURE_INTERACT_RAW_PATH, DISCUSSION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getFrequencyContactRatio(), LEISURE_INTERACT_RAW_PATH, FREQUENCY_CONTACT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getGettingTogetherRatio(), LEISURE_INTERACT_RAW_PATH, GETTING_TOGETHER_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getRecreationAreasSatisfaction(), LEISURE_INTERACT_RAW_PATH, AREA_SATISFACTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), LEISURE_INTERACT_RAW_PATH, RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getSocialActivitiesNpRatio(), LEISURE_INTERACT_RAW_PATH, SOCIAL_ACTIVITIES_NP_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getSocialActivitiesRatio(), LEISURE_INTERACT_RAW_PATH, SOCIAL_ACTIVITIES_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getTimeSpentSatisfaction(), LEISURE_INTERACT_RAW_PATH, TIME_SPENT_SATISFACTION_FILE_NAME);
-        FileUtils.writeToJSONFile(getVoluntaryActivitiesNpRatio(), LEISURE_INTERACT_RAW_PATH, VOLUNTARY_ACTIVITIES_NP_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getVoluntaryActivitiesRatio(), LEISURE_INTERACT_RAW_PATH, VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAskingRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.ASKING_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getDiscussionRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.DISCUSSION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getFrequencyContactRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.FREQUENCY_CONTACT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getGettingTogetherRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.GETTING_TOGETHER_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getRecreationAreasSatisfaction(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.AREA_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getRelationshipsSatisfaction(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getSocialActivitiesNpRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.SOCIAL_ACTIVITIES_NP_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getSocialActivitiesRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.SOCIAL_ACTIVITIES_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getTimeSpentSatisfaction(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.TIME_SPENT_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getVoluntaryActivitiesNpRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.VOLUNTARY_ACTIVITIES_NP_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getVoluntaryActivitiesRatio(), LeisureInteractPaths.LEISURE_INTERACT_RAW_PATH, LeisureInteractPaths.VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME);
     }
 
     /**
@@ -34,7 +31,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getAskingRatio() {
-        return Fetcher.fetchData("ilc_scp15", ASKING_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_scp15", LeisureInteractParams.ASKING_RATIO_PARAMS);
     }
 
     /**
@@ -48,7 +45,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getDiscussionRatio() {
-        return Fetcher.fetchData("ilc_scp17", DISCUSSION_PARAMS_RATIO);
+        return Fetcher.fetchData("ilc_scp17", LeisureInteractParams.DISCUSSION_PARAMS_RATIO);
     }
 
     /**
@@ -62,7 +59,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getGettingTogetherRatio() {
-        return Fetcher.fetchData("ilc_scp09", INTERACTIONS_PARAMS);
+        return Fetcher.fetchData("ilc_scp09", LeisureInteractParams.INTERACTIONS_PARAMS);
     }
 
     /**
@@ -76,7 +73,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getFrequencyContactRatio() {
-        return Fetcher.fetchData("ilc_scp11", INTERACTIONS_PARAMS);
+        return Fetcher.fetchData("ilc_scp11", LeisureInteractParams.INTERACTIONS_PARAMS);
     }
 
     /**
@@ -90,7 +87,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getRecreationAreasSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(AREA_SATISFACTION_RATIO_PARAMS);
+        return Fetcher.fetchSatisfactionRatio(LeisureInteractParams.AREA_SATISFACTION_RATIO_PARAMS);
     }
 
     /**
@@ -104,7 +101,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getRelationshipsSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(REL_SATISFACTION_RATIO_PARAMS);
+        return Fetcher.fetchSatisfactionRatio(LeisureInteractParams.REL_SATISFACTION_RATIO_PARAMS);
     }
 
     /**
@@ -122,7 +119,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getSocialActivitiesNpRatio() {
-        return Fetcher.fetchData("ilc_scp05", SOCIAL_ACTIVITIES_NP_PARAMS);
+        return Fetcher.fetchData("ilc_scp05", LeisureInteractParams.SOCIAL_ACTIVITIES_NP_PARAMS);
     }
 
     /**
@@ -139,7 +136,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getSocialActivitiesRatio() {
-        return Fetcher.fetchData("ilc_scp02", SOCIAL_ACTIVITIES_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_scp02", LeisureInteractParams.SOCIAL_ACTIVITIES_RATIO_PARAMS);
     }
 
     /**
@@ -153,7 +150,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getTimeSpentSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(TIME_SATISFACTION_RATIO_PARAMS);
+        return Fetcher.fetchSatisfactionRatio(LeisureInteractParams.TIME_SATISFACTION_RATIO_PARAMS);
     }
 
     /**
@@ -171,7 +168,7 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getVoluntaryActivitiesNpRatio() {
-        return Fetcher.fetchData("ilc_scp21", VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_scp21", LeisureInteractParams.VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS);
     }
 
     /**
@@ -186,6 +183,6 @@ public class LeisureInteractCollector {
      * @return
      */
     private static StringBuilder getVoluntaryActivitiesRatio() {
-        return Fetcher.fetchActivePeopleRatio(VOLUNTARY_RATIO_PARAMS);
+        return Fetcher.fetchActivePeopleRatio(LeisureInteractParams.VOLUNTARY_RATIO_PARAMS);
     }
 }

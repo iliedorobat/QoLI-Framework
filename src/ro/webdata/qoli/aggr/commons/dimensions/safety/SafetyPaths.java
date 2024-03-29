@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.safety;
+package ro.webdata.qoli.aggr.commons.dimensions.safety;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class SafetyPaths {
     public static final String SAFETY_FILE_NAME = "safety";
@@ -39,7 +37,7 @@ public class SafetyPaths {
     public static final String SAFETY_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, SAFETY_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return SAFETY_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return SAFETY_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String

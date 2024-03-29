@@ -1,16 +1,14 @@
-package app.java.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.commons.dimensions.health;
 
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static app.java.aggr.commons.constants.ParamsValues.HEALTH_PROBLEMS;
-import static app.java.aggr.commons.constants.ParamsValues.ISCO08;
 
 public class HealthParams {
     public static final MultiValuedMap<String, String> BMI_PARAMS = new HashSetValuedHashMap<>() {{
@@ -22,20 +20,20 @@ public class HealthParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> DEPRESSIVE_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.values());
+    public static final MultiValuedMap<String, String> DEPRESSIVE_RATIO_PARAMS = getDepressiveParams(ParamsValues.HEALTH_PROBLEMS.values());
 
     public static final MultiValuedMap<String, String>
-            DEPRESSIVE_NORMAL_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("depressive")),
-            DEPRESSIVE_MAJOR_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("majorDepressive")),
-            DEPRESSIVE_OTHER_RATIO_PARAMS = getDepressiveParams(HEALTH_PROBLEMS.get("otherDepressive"));
+            DEPRESSIVE_NORMAL_RATIO_PARAMS = getDepressiveParams(ParamsValues.HEALTH_PROBLEMS.get("depressive")),
+            DEPRESSIVE_MAJOR_RATIO_PARAMS = getDepressiveParams(ParamsValues.HEALTH_PROBLEMS.get("majorDepressive")),
+            DEPRESSIVE_OTHER_RATIO_PARAMS = getDepressiveParams(ParamsValues.HEALTH_PROBLEMS.get("otherDepressive"));
 
     public static final MultiValuedMap<String, String>
-            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ISCO08.values()),
-            PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ISCO08.get("dentists")),
-            PERSONNEL_DOCTORS_PARAMS = getHealthPersonnelParams(ISCO08.get("doctors")),
-            PERSONNEL_NURSES_PARAMS = getHealthPersonnelParams(ISCO08.get("nurses")),
-            PERSONNEL_PHARMA_PARAMS = getHealthPersonnelParams(ISCO08.get("pharmacists")),
-            PERSONNEL_THERAPISTS_PARAMS = getHealthPersonnelParams(ISCO08.get("physiotherapists"));
+            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.values()),
+            PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("dentists")),
+            PERSONNEL_DOCTORS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")),
+            PERSONNEL_NURSES_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("nurses")),
+            PERSONNEL_PHARMA_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("pharmacists")),
+            PERSONNEL_THERAPISTS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists"));
 
     public static final MultiValuedMap<String, String> HEALTHY_LIFE_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y_GE16");

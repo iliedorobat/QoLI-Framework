@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.overall;
+package ro.webdata.qoli.aggr.commons.dimensions.overall;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class OverallExperiencePaths {
     public static final String OVERALL_EXPERIENCE_FILE_NAME = "overallExperience";
@@ -17,7 +15,7 @@ public class OverallExperiencePaths {
     public static final String OVERALL_EXPERIENCE_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, OVERALL_EXPERIENCE_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return OVERALL_EXPERIENCE_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return OVERALL_EXPERIENCE_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
 
     public static final String

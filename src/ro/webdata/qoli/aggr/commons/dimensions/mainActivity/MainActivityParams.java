@@ -1,18 +1,17 @@
-package app.java.aggr.commons.dimensions.mainActivity;
+package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
 
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static app.java.aggr.commons.constants.ParamsValues.*;
-
 public class MainActivityParams {
     private static final String[] FLEXIBILITY = {
-            WORKING_FLEXIBILITY.get("total"),
-            WORKING_FLEXIBILITY.get("personDecision"),
-            WORKING_FLEXIBILITY.get("restrictiveDecision")
+            ParamsValues.WORKING_FLEXIBILITY.get("total"),
+            ParamsValues.WORKING_FLEXIBILITY.get("personDecision"),
+            ParamsValues.WORKING_FLEXIBILITY.get("restrictiveDecision")
     };
 
     public static final MultiValuedMap<String, String> AVG_WORK_HOURS_2007_PARAMS = new HashSetValuedHashMap<>() {{
@@ -56,8 +55,8 @@ public class MainActivityParams {
     }};
 
     public static final MultiValuedMap<String, String> JOB_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("job")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("job")
     );
 
     public static final MultiValuedMap<String, String> LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -104,9 +103,9 @@ public class MainActivityParams {
     public static final MultiValuedMap<String, String> WORKING_FLEXIBILITY_RATIO_PARAMS = getFlexibilityParams(FLEXIBILITY);
 
     public static final MultiValuedMap<String, String>
-            WORKING_FLEXIBILITY_FULL_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("personDecision")),
-            WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("restrictiveDecision")),
-            WORKING_FLEXIBILITY_TOTAL_RATIO_PARAMS = getFlexibilityParams(WORKING_FLEXIBILITY.get("total"));
+            WORKING_FLEXIBILITY_FULL_RATIO_PARAMS = getFlexibilityParams(ParamsValues.WORKING_FLEXIBILITY.get("personDecision")),
+            WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_PARAMS = getFlexibilityParams(ParamsValues.WORKING_FLEXIBILITY.get("restrictiveDecision")),
+            WORKING_FLEXIBILITY_TOTAL_RATIO_PARAMS = getFlexibilityParams(ParamsValues.WORKING_FLEXIBILITY.get("total"));
 
     public static final MultiValuedMap<String, String> WORKING_NIGHTS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y15-64");

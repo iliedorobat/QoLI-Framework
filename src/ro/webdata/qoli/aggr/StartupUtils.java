@@ -1,11 +1,10 @@
-package app.java.aggr;
+package ro.webdata.qoli.aggr;
+
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static app.java.aggr.commons.constants.Constants.*;
-import static app.java.aggr.commons.constants.Constants.SERIES_TYPE_REGION;
 
 public class StartupUtils {
     public static boolean contains(List<String> pairs, String comparator) {
@@ -48,18 +47,18 @@ public class StartupUtils {
     }
 
     public static String getDirection(List<String> pairs) {
-        if (pairs.contains("--direction=" + DIRECTION_ROW)) {
-            return DIRECTION_ROW;
+        if (pairs.contains("--direction=" + Constants.DIRECTION_ROW)) {
+            return Constants.DIRECTION_ROW;
         }
-        return DIRECTION_COLUMN;
+        return Constants.DIRECTION_COLUMN;
     }
 
     public static String getSeriesType(List<String> pairs) {
-        if (pairs.contains("--seriesType=" + SERIES_TYPE_COUNTRY)) {
-            return SERIES_TYPE_COUNTRY;
+        if (pairs.contains("--seriesType=" + Constants.SERIES_TYPE_COUNTRY)) {
+            return Constants.SERIES_TYPE_COUNTRY;
         }
-        if (pairs.contains("--seriesType=" + SERIES_TYPE_REGION)) {
-            return SERIES_TYPE_REGION;
+        if (pairs.contains("--seriesType=" + Constants.SERIES_TYPE_REGION)) {
+            return Constants.SERIES_TYPE_REGION;
         }
         return null;
     }

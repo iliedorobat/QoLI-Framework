@@ -1,6 +1,6 @@
-package app.java.aggr.commons.dimensions.education;
+package ro.webdata.qoli.aggr.commons.dimensions.education;
 
-import app.java.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 

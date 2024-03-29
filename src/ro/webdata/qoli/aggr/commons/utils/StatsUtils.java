@@ -1,14 +1,12 @@
-package app.java.aggr.commons.utils;
+package ro.webdata.qoli.aggr.commons.utils;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.constants.Constants;
-import app.java.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static app.java.aggr.commons.constants.Constants.SERIES_TYPE_REGION;
 
 public class StatsUtils {
     public static Map<String, Number> aggregateRegions(Map<String, Number> entries) {
@@ -59,7 +57,7 @@ public class StatsUtils {
     }
 
     public static Map<String, Number> getEntries(Map<String, Number> entries, String seriesType) {
-        return seriesType.equals(SERIES_TYPE_REGION)
+        return seriesType.equals(Constants.SERIES_TYPE_REGION)
                 ? StatsUtils.aggregateRegions(entries)
                 : entries;
     }

@@ -1,13 +1,10 @@
-package app.java.aggr.commons.dimensions.gov;
+package ro.webdata.qoli.aggr.commons.dimensions.gov;
 
-import app.java.aggr.commons.constants.Constants;
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 import java.io.File;
-
-import static app.java.aggr.commons.dimensions.gov.GovRightsParams.*;
-import static app.java.aggr.commons.dimensions.gov.GovRightsPaths.*;
 
 /**
  * Factors which influence the life of the population from the perspective
@@ -16,10 +13,10 @@ import static app.java.aggr.commons.dimensions.gov.GovRightsPaths.*;
 public class GovRightsCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getCitizenshipRatio(), GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getGenderEmpGap(), GOV_RIGHTS_RAW_PATH, GENDER_EMP_GAP_FILE_NAME);
-        FileUtils.writeToJSONFile(getGenderPayGap(), GOV_RIGHTS_RAW_PATH, GENDER_PAY_GAP_FILE_NAME);
-        FileUtils.writeToJSONFile(getPopulationTrust(), GOV_RIGHTS_RAW_PATH, POPULATION_TRUST_FILE_NAME);
+        FileUtils.writeToJSONFile(getCitizenshipRatio(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.CITIZENSHIP_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getGenderEmpGap(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.GENDER_EMP_GAP_FILE_NAME);
+        FileUtils.writeToJSONFile(getGenderPayGap(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.GENDER_PAY_GAP_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulationTrust(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.POPULATION_TRUST_FILE_NAME);
         writeVoterTurnout();
     }
 
@@ -33,8 +30,8 @@ public class GovRightsCollector {
      */
     private static void writeVoterTurnout() {
         String FILE_URL = "https://www.idea.int/data-tools/export?type=region_only&themeId=293&world=all&loc=home";
-        String FILE_PATH = GOV_RIGHTS_RAW_PATH;
-        String FILE_NAME = VOTER_TURNOUT_FILE_NAME;
+        String FILE_PATH = GovRightsPaths.GOV_RIGHTS_RAW_PATH;
+        String FILE_NAME = GovRightsPaths.VOTER_TURNOUT_FILE_NAME;
         FileUtils.downloadExcelFile(FILE_URL, FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
         FileUtils.convertXlsToCsv(FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);
 
@@ -54,7 +51,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getCitizenshipRatio() {
-        return Fetcher.fetchData("ilc_scp19", CITIZENSHIP_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_scp19", GovRightsParams.CITIZENSHIP_RATIO_PARAMS);
     }
 
     /**
@@ -70,7 +67,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getGenderEmpGap() {
-        return Fetcher.fetchData("tesem060", GENDER_EMP_GAP_PARAMS);
+        return Fetcher.fetchData("tesem060", GovRightsParams.GENDER_EMP_GAP_PARAMS);
     }
 
     /**
@@ -87,7 +84,7 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getGenderPayGap() {
-        return Fetcher.fetchData("earn_gr_gpgr2", GENDER_PAY_GAP_PARAMS);
+        return Fetcher.fetchData("earn_gr_gpgr2", GovRightsParams.GENDER_PAY_GAP_PARAMS);
     }
 
     /**
@@ -101,6 +98,6 @@ public class GovRightsCollector {
      * @return
      */
     private static StringBuilder getPopulationTrust() {
-        return Fetcher.fetchData("ilc_pw03", POPULATION_TRUST_PARAMS);
+        return Fetcher.fetchData("ilc_pw03", GovRightsParams.POPULATION_TRUST_PARAMS);
     }
 }

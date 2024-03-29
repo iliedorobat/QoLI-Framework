@@ -1,11 +1,10 @@
-package app.java.aggr.commons.dimensions.overall;
+package ro.webdata.qoli.aggr.commons.dimensions.overall;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static app.java.aggr.commons.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
-import static app.java.aggr.commons.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
-import static app.java.aggr.commons.dimensions.overall.OverallExperiencePaths.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
+import static ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
 
 /**
  * Overall life satisfaction in the context of quality of life
@@ -13,8 +12,8 @@ import static app.java.aggr.commons.dimensions.overall.OverallExperiencePaths.*;
 public class OverallExperienceCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getHappinessRatio(), OVERALL_EXPERIENCE_RAW_PATH, HAPPINESS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), OVERALL_EXPERIENCE_RAW_PATH, HIGH_SATISFACTION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHappinessRatio(), OverallExperiencePaths.OVERALL_EXPERIENCE_RAW_PATH, OverallExperiencePaths.HAPPINESS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getHighSatisfactionRatio(), OverallExperiencePaths.OVERALL_EXPERIENCE_RAW_PATH, OverallExperiencePaths.HIGH_SATISFACTION_RATIO_FILE_NAME);
     }
 
     /**

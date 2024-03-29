@@ -1,15 +1,14 @@
-package app.java.aggr.data.stats;
+package ro.webdata.qoli.aggr.data.stats;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import org.apache.commons.collections4.MultiValuedMap;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
 
 /**
  * Basic methods for initializing lists (add "null" value for the missing keys)
@@ -29,7 +28,7 @@ public class Initializer {
     public static Map<String, Number> initMap(
             Map<String, Number> map
     ) {
-        return Initializer.initMap(map, EU28_MEMBERS);
+        return Initializer.initMap(map, Constants.EU28_MEMBERS);
     }
 
     /**
@@ -65,7 +64,7 @@ public class Initializer {
             MultiValuedMap<String, String> params,
             String filePath
     ) {
-        return initConsolidatedMap(params, filePath, EU28_MEMBERS);
+        return initConsolidatedMap(params, filePath, Constants.EU28_MEMBERS);
     }
 
     /**

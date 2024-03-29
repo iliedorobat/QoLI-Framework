@@ -1,12 +1,13 @@
-package app.java.aggr.commons.dimensions.gov;
+package ro.webdata.qoli.aggr.commons.dimensions.gov;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.Print;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.commons.utils.MathUtils;
-import app.java.aggr.data.stats.Initializer;
-import app.java.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.data.stats.Initializer;
+import ro.webdata.qoli.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,18 +15,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import static app.java.aggr.commons.constants.Constants.CSV_SEPARATOR;
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.dimensions.gov.GovRightsParams.*;
-import static app.java.aggr.commons.dimensions.gov.GovRightsPaths.*;
-
 public class GovRightsStats {
     // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
-            initPopulationLegtstTrust = Initializer.initConsolidatedMap(POPULATION_LEGTST_TRUST_PARAMS, POPULATION_TRUST_PATH),
-            initPopulationOthersTrust = Initializer.initConsolidatedMap(POPULATION_OTHERS_TRUST_PARAMS, POPULATION_TRUST_PATH),
-            initPopulationPlctstTrust = Initializer.initConsolidatedMap(POPULATION_PLCTST_TRUST_PARAMS, POPULATION_TRUST_PATH),
-            initPopulationPlttstTrust = Initializer.initConsolidatedMap(POPULATION_PLTTST_TRUST_PARAMS, POPULATION_TRUST_PATH);
+            initPopulationLegtstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_LEGTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
+            initPopulationOthersTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_OTHERS_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
+            initPopulationPlctstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_PLCTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
+            initPopulationPlttstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_PLTTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH);
 
     private static final Map<String, Map<String, Number>> initVoterTurnout = voterTurnoutCsvToMap();
 
@@ -37,9 +33,9 @@ public class GovRightsStats {
 
 
     private static final Map<String, Number>
-            initCitizenshipRatio = Initializer.initConsolidatedMap(CITIZENSHIP_RATIO_PARAMS, CITIZENSHIP_RATIO_PATH),
-            initGenderEmpGap = Initializer.initConsolidatedMap(GENDER_EMP_GAP_PARAMS, GENDER_EMP_GAP_PATH),
-            initGenderPayGap = Initializer.initConsolidatedMap(GENDER_PAY_GAP_PARAMS, GENDER_PAY_GAP_PATH);
+            initCitizenshipRatio = Initializer.initConsolidatedMap(GovRightsParams.CITIZENSHIP_RATIO_PARAMS, GovRightsPaths.CITIZENSHIP_RATIO_PATH),
+            initGenderEmpGap = Initializer.initConsolidatedMap(GovRightsParams.GENDER_EMP_GAP_PARAMS, GovRightsPaths.GENDER_EMP_GAP_PATH),
+            initGenderPayGap = Initializer.initConsolidatedMap(GovRightsParams.GENDER_PAY_GAP_PARAMS, GovRightsPaths.GENDER_PAY_GAP_PATH);
 
     public static final Map<String, Number>
             // Intermediate data used to calculate populationTrustRatio
@@ -60,38 +56,38 @@ public class GovRightsStats {
             voterTurnout = prepareVoterTurnout();
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(CITIZENSHIP_RATIO_FILE_NAME, Preparation.filterMap(initCitizenshipRatio));
-        put(GENDER_EMP_GAP_FILE_NAME, Preparation.filterMap(initGenderEmpGap));
-        put(GENDER_PAY_GAP_FILE_NAME, Preparation.filterMap(initGenderPayGap));
-        put(POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationLegtstTrust));
-        put(POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationOthersTrust));
-        put(POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlctstTrust));
-        put(POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlttstTrust));
-        put(VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, Preparation.filterMap(initTurnoutEuParliament));
-        put(VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, Preparation.filterMap(initTurnoutParliamentary));
-        put(VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, Preparation.filterMap(initTurnoutPresidential));
+        put(GovRightsPaths.CITIZENSHIP_RATIO_FILE_NAME, Preparation.filterMap(initCitizenshipRatio));
+        put(GovRightsPaths.GENDER_EMP_GAP_FILE_NAME, Preparation.filterMap(initGenderEmpGap));
+        put(GovRightsPaths.GENDER_PAY_GAP_FILE_NAME, Preparation.filterMap(initGenderPayGap));
+        put(GovRightsPaths.POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationLegtstTrust));
+        put(GovRightsPaths.POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationOthersTrust));
+        put(GovRightsPaths.POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlctstTrust));
+        put(GovRightsPaths.POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlttstTrust));
+        put(GovRightsPaths.VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, Preparation.filterMap(initTurnoutEuParliament));
+        put(GovRightsPaths.VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, Preparation.filterMap(initTurnoutParliamentary));
+        put(GovRightsPaths.VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, Preparation.filterMap(initTurnoutPresidential));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(CITIZENSHIP_RATIO_FILE_NAME, citizenship);
-        put(GENDER_EMP_GAP_FILE_NAME, genderEmpGap);
-        put(GENDER_PAY_GAP_FILE_NAME, genderPayGap);
-        put(POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, populationLegtstTrustRatio);
-        put(POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, populationOthersTrustRatio);
-        put(POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, populationPlctstTrustRatio);
-        put(POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, populationPlttstTrustRatio);
-        put(POPULATION_TRUST_FILE_NAME, populationTrustRatio);
-        put(VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, turnoutEuParliament);
-        put(VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, turnoutParliamentary);
-        put(VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, turnoutPresidential);
-        put(VOTER_TURNOUT_FILE_NAME, voterTurnout);
+        put(GovRightsPaths.CITIZENSHIP_RATIO_FILE_NAME, citizenship);
+        put(GovRightsPaths.GENDER_EMP_GAP_FILE_NAME, genderEmpGap);
+        put(GovRightsPaths.GENDER_PAY_GAP_FILE_NAME, genderPayGap);
+        put(GovRightsPaths.POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, populationLegtstTrustRatio);
+        put(GovRightsPaths.POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, populationOthersTrustRatio);
+        put(GovRightsPaths.POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, populationPlctstTrustRatio);
+        put(GovRightsPaths.POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, populationPlttstTrustRatio);
+        put(GovRightsPaths.POPULATION_TRUST_FILE_NAME, populationTrustRatio);
+        put(GovRightsPaths.VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, turnoutEuParliament);
+        put(GovRightsPaths.VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, turnoutParliamentary);
+        put(GovRightsPaths.VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, turnoutPresidential);
+        put(GovRightsPaths.VOTER_TURNOUT_FILE_NAME, voterTurnout);
     }};
 
     public static Map<String, Number> generateDimensionList() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double
@@ -120,11 +116,11 @@ public class GovRightsStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, GOVERNANCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, GovRightsPaths.GOVERNANCE_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, GOVERNANCE_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, GovRightsPaths.GOVERNANCE_FILE_NAME, targetYear, indStatus);
     }
 
     /**
@@ -136,7 +132,7 @@ public class GovRightsStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueLegtst = populationLegtstTrustRatio.get(key).doubleValue();
@@ -167,7 +163,7 @@ public class GovRightsStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueEuParliamentary = turnoutEuParliament.get(key).doubleValue();
@@ -202,7 +198,7 @@ public class GovRightsStats {
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new FileReader(VOTER_TURNOUT_PATH));
+            br = new BufferedReader(new FileReader(GovRightsPaths.VOTER_TURNOUT_PATH));
             String readLine;
             int i = 0;
 
@@ -214,7 +210,7 @@ public class GovRightsStats {
                 }
 
                 if (readLine.trim().length() > 0 && !readLine.contains(csvHeader)) {
-                    String[] items = readLine.split(CSV_SEPARATOR);
+                    String[] items = readLine.split(Constants.CSV_SEPARATOR);
                     if (items.length < 6) {
                         // Voter Turnout value does not exists
                         continue;
@@ -232,7 +228,7 @@ public class GovRightsStats {
                     if (valueStr.length() > 0) {
                         Number value = Double.parseDouble(valueStr);
 
-                        for (String code : EU28_MEMBERS) {
+                        for (String code : Constants.EU28_MEMBERS) {
                             if (countryCode.equals(code)) {
                                 String key = MapUtils.generateKey(countryCode, year);
 
@@ -253,9 +249,9 @@ public class GovRightsStats {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.err.println("The file " + VOTER_TURNOUT_PATH + " has not been found.");
+            System.err.println("The file " + GovRightsPaths.VOTER_TURNOUT_PATH + " has not been found.");
         } catch (IOException e) {
-            System.err.println("Error at reading the file " + VOTER_TURNOUT_PATH + " from the disk.");
+            System.err.println("Error at reading the file " + GovRightsPaths.VOTER_TURNOUT_PATH + " from the disk.");
         } finally {
             try {
                 br.close();

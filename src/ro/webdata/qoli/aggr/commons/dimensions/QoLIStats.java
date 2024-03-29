@@ -1,46 +1,46 @@
-package app.java.aggr.commons.dimensions;
+package ro.webdata.qoli.aggr.commons.dimensions;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.dimensions.education.EducationStats;
-import app.java.aggr.commons.dimensions.environment.EnvironmentStats;
-import app.java.aggr.commons.dimensions.gov.GovRightsStats;
-import app.java.aggr.commons.dimensions.health.HealthStats;
-import app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
-import app.java.aggr.commons.dimensions.mainActivity.MainActivityStats;
-import app.java.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
-import app.java.aggr.commons.dimensions.overall.OverallExperienceStats;
-import app.java.aggr.commons.dimensions.safety.SafetyStats;
-import app.java.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.commons.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.dimensions.education.EducationPaths;
+import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentPaths;
+import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsPaths;
+import ro.webdata.qoli.aggr.commons.dimensions.health.HealthPaths;
+import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperiencePaths;
+import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyPaths;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.dimensions.QoLIPaths.QOLI_FILE_NAME;
-import static app.java.aggr.commons.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
-import static app.java.aggr.commons.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
-import static app.java.aggr.commons.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;
-import static app.java.aggr.commons.dimensions.health.HealthPaths.HEALTH_FILE_NAME;
-import static app.java.aggr.commons.dimensions.leisureInteract.LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME;
-import static app.java.aggr.commons.dimensions.mainActivity.MainActivityPaths.MAIN_ACTIVITY_FILE_NAME;
-import static app.java.aggr.commons.dimensions.materialLiving.MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME;
-import static app.java.aggr.commons.dimensions.overall.OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME;
-import static app.java.aggr.commons.dimensions.safety.SafetyPaths.SAFETY_FILE_NAME;
+import static ro.webdata.qoli.aggr.commons.dimensions.QoLIPaths.QOLI_FILE_NAME;
+import static ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME;
+import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityPaths.MAIN_ACTIVITY_FILE_NAME;
+import static ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME;
 
 public class QoLIStats {
     public static final HashMap<String, Map<String, Number>> DATA_BY_COUNTRIES = new HashMap<>(){{
         put(QOLI_FILE_NAME, QoLIStats.generateIndicatorList());
-        put(EDUCATION_FILE_NAME, EducationStats.generateDimensionList());
-        put(ENVIRONMENT_FILE_NAME, EnvironmentStats.generateDimensionList());
-        put(GOVERNANCE_FILE_NAME, GovRightsStats.generateDimensionList());
-        put(HEALTH_FILE_NAME, HealthStats.generateDimensionList());
+        put(EducationPaths.EDUCATION_FILE_NAME, EducationStats.generateDimensionList());
+        put(EnvironmentPaths.ENVIRONMENT_FILE_NAME, EnvironmentStats.generateDimensionList());
+        put(GovRightsPaths.GOVERNANCE_FILE_NAME, GovRightsStats.generateDimensionList());
+        put(HealthPaths.HEALTH_FILE_NAME, HealthStats.generateDimensionList());
         put(LEISURE_INTERACT_FILE_NAME, LeisureInteractStats.generateDimensionList());
         put(MAIN_ACTIVITY_FILE_NAME, MainActivityStats.generateDimensionList());
         put(LIVING_CONDITIONS_FILE_NAME, MaterialLivingStats.generateDimensionList());
-        put(OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.generateDimensionList());
-        put(SAFETY_FILE_NAME, SafetyStats.generateDimensionList());
+        put(OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.generateDimensionList());
+        put(SafetyPaths.SAFETY_FILE_NAME, SafetyStats.generateDimensionList());
     }};
 
     public static Map<String, Number> generateIndicatorList() {
@@ -57,7 +57,7 @@ public class QoLIStats {
                 safetyStats = SafetyStats.generateDimensionList();
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double education = educationStats.get(key).doubleValue();

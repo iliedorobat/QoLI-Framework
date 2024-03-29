@@ -1,15 +1,13 @@
-package app.java.aggr.data.stats;
+package ro.webdata.qoli.aggr.data.stats;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.Map;
 import java.util.TreeMap;
-
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.constants.Constants.KEY_SEPARATOR;
 
 public class Preparation {
     /**
@@ -57,7 +55,7 @@ public class Preparation {
      * @return Prepared map without null values
      */
     public static Map<String, Number> prepareData(Map<String, Number> mainMap) {
-        return prepareData(mainMap, EU28_MEMBERS);
+        return prepareData(mainMap, Constants.EU28_MEMBERS);
     }
 
     /**
@@ -72,7 +70,7 @@ public class Preparation {
         Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 Number value = MathUtils.generatePerThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
@@ -94,7 +92,7 @@ public class Preparation {
         Map<String, Number> preparedMap = prepareData(initMap);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 Number value = MathUtils.generatePerTenThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
                 generatedMap.put(key, value);
@@ -144,7 +142,7 @@ public class Preparation {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 Number value = Preparation.calculatePpsRatio(dataset, code, year);
@@ -178,7 +176,7 @@ public class Preparation {
             Number entryValue = entry.getValue();
             String entryKey = entry.getKey();
             String entryYear = entryKey != null
-                    ? entryKey.split(KEY_SEPARATOR)[1]
+                    ? entryKey.split(Constants.KEY_SEPARATOR)[1]
                     : null;
 
             if (entryValue != null && Integer.parseInt(entryYear) == year) {

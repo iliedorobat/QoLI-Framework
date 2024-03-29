@@ -1,10 +1,10 @@
-package app.java.aggr.commons.dimensions.environment;
+package ro.webdata.qoli.aggr.commons.dimensions.environment;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static app.java.aggr.commons.dimensions.environment.EnvironmentParams.*;
-import static app.java.aggr.commons.dimensions.environment.EnvironmentPaths.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentParams.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentPaths.*;
 
 public class EnvironmentCollector {
     public static void fetchData() {

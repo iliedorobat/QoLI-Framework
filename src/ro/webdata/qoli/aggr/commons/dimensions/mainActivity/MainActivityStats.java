@@ -1,21 +1,21 @@
-package app.java.aggr.commons.dimensions.mainActivity;
+package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
 
-import app.java.aggr.commons.MapOrder;
-import app.java.aggr.commons.Print;
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
-import app.java.aggr.commons.utils.MapUtils;
-import app.java.aggr.commons.utils.MathUtils;
-import app.java.aggr.data.stats.Initializer;
-import app.java.aggr.data.stats.MergeUtils;
-import app.java.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.MapOrder;
+import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.data.stats.Initializer;
+import ro.webdata.qoli.aggr.data.stats.MergeUtils;
+import ro.webdata.qoli.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingPaths;
 
 import java.util.*;
 
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-import static app.java.aggr.commons.dimensions.mainActivity.MainActivityParams.*;
-import static app.java.aggr.commons.dimensions.mainActivity.MainActivityPaths.*;
-import static app.java.aggr.commons.dimensions.materialLiving.MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME;
+import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityParams.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityStats {
     /** 12 hours * 7 days */
@@ -81,7 +81,7 @@ public class MainActivityStats {
         put(JOB_SATISFACTION_FILE_NAME, Preparation.filterMap(initJobSatisfaction));
         put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initLongTermUnemploymentRatio));
         put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, Preparation.filterMap(initLowWageEarningsRatio));
-        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
+        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
         put(RESEARCHERS_FILE_NAME, Preparation.filterMap(initResearchers));
         put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initTemporaryEmploymentRatio));
         put(UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initUnemploymentRatio));
@@ -100,7 +100,7 @@ public class MainActivityStats {
         put(JOB_SATISFACTION_FILE_NAME, jobSatisfaction);
         put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, longTermUnemploymentRatio);
         put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, lowWageEarningsRatio);
-        put(LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
+        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
         put(RESEARCHERS_FILE_NAME, researchersRatio);
         put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, temporaryEmploymentRatio);
         put(UNEMPLOYMENT_RATIO_FILE_NAME, unemploymentRatio);
@@ -115,7 +115,7 @@ public class MainActivityStats {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1
@@ -145,7 +145,7 @@ public class MainActivityStats {
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
@@ -161,7 +161,7 @@ public class MainActivityStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 Number value = MAX_LEGAL_WORK_HOURS - avgWorkHours.get(key).doubleValue();
@@ -181,7 +181,7 @@ public class MainActivityStats {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : EU28_MEMBERS) {
+            for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
                 double valueFull = flexibilityFullRatio.get(key).doubleValue();

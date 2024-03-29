@@ -1,28 +1,25 @@
-package app.java.aggr.commons.dimensions.mainActivity;
+package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
-
-import static app.java.aggr.commons.dimensions.mainActivity.MainActivityParams.*;
-import static app.java.aggr.commons.dimensions.mainActivity.MainActivityPaths.*;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 public class MainActivityCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getAvgWorkHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2007_FILE_NAME);
-        FileUtils.writeToJSONFile(getAvgWorkHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, AVG_WORK_HOURS_2008_FILE_NAME);
-        FileUtils.writeToJSONFile(getEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, EMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getInactivePopulationRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, INACTIVE_POPULATION_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getInvoluntaryPartTimeRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, INVOLUNTARY_PART_TIME_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getJobSatisfaction(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, JOB_SATISFACTION_FILE_NAME);
-        FileUtils.writeToJSONFile(getLongTermUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLowWageEarnersRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LOW_WAGE_EARNERS_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, LOW_WORK_INTENSITY_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getResearchers(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, RESEARCHERS_FILE_NAME);
-        FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, UNEMPLOYMENT_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getWorkingFlexibilityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, WORKING_FLEXIBILITY_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getWorkingNightsRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, WORKING_NIGHTS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORK_HOURS_2007_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORK_HOURS_2008_FILE_NAME);
+        FileUtils.writeToJSONFile(getEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.EMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getInactivePopulationRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.INACTIVE_POPULATION_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getInvoluntaryPartTimeRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.INVOLUNTARY_PART_TIME_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getJobSatisfaction(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.JOB_SATISFACTION_FILE_NAME);
+        FileUtils.writeToJSONFile(getLongTermUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLowWageEarnersRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.LOW_WAGE_EARNERS_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getLowWorkIntensityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getResearchers(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.RESEARCHERS_FILE_NAME);
+        FileUtils.writeToJSONFile(getTemporaryEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getUnemploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.UNEMPLOYMENT_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkingFlexibilityRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.WORKING_FLEXIBILITY_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getWorkingNightsRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.WORKING_NIGHTS_RATIO_FILE_NAME);
     }
 
     /**
@@ -41,7 +38,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getAvgWorkHours2007() {
-        return Fetcher.fetchData("lfsa_ewhuna", AVG_WORK_HOURS_2007_PARAMS);
+        return Fetcher.fetchData("lfsa_ewhuna", MainActivityParams.AVG_WORK_HOURS_2007_PARAMS);
     }
 
     /**
@@ -60,7 +57,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getAvgWorkHours2008() {
-        return Fetcher.fetchData("lfsa_ewhun2", AVG_WORK_HOURS_2008_PARAMS);
+        return Fetcher.fetchData("lfsa_ewhun2", MainActivityParams.AVG_WORK_HOURS_2008_PARAMS);
     }
 
     /**
@@ -76,7 +73,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getEmploymentRatio() {
-        return Fetcher.fetchData("lfsa_ergaed", EMPLOYMENT_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsa_ergaed", MainActivityParams.EMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -92,7 +89,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getInactivePopulationRatio() {
-        return Fetcher.fetchData("lfsa_ipga", INACTIVE_POPULATION_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsa_ipga", MainActivityParams.INACTIVE_POPULATION_RATIO_PARAMS);
     }
 
     /**
@@ -109,7 +106,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getInvoluntaryPartTimeRatio() {
-        return Fetcher.fetchData("lfsa_eppgai", INVOLUNTARY_PART_TIME_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsa_eppgai", MainActivityParams.INVOLUNTARY_PART_TIME_RATIO_PARAMS);
     }
 
     /**
@@ -123,7 +120,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getJobSatisfaction() {
-        return Fetcher.fetchSatisfactionRatio(JOB_SATISFACTION_PARAMS);
+        return Fetcher.fetchSatisfactionRatio(MainActivityParams.JOB_SATISFACTION_PARAMS);
     }
 
     /**
@@ -142,7 +139,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getLongTermUnemploymentRatio() {
-        return Fetcher.fetchData("une_ltu_a", LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS);
+        return Fetcher.fetchData("une_ltu_a", MainActivityParams.LONG_TERM_UNEMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -158,7 +155,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getLowWageEarnersRatio() {
-        return Fetcher.fetchData("earn_ses_pub1a", LOW_WAGE_EARNINGS_RATIO_PARAMS);
+        return Fetcher.fetchData("earn_ses_pub1a", MainActivityParams.LOW_WAGE_EARNINGS_RATIO_PARAMS);
     }
 
     /**
@@ -176,7 +173,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getLowWorkIntensityRatio() {
-        return Fetcher.fetchData("ilc_lvhl11", LOW_WORK_INTENSITY_RATIO_PARAMS);
+        return Fetcher.fetchData("ilc_lvhl11", MainActivityParams.LOW_WORK_INTENSITY_RATIO_PARAMS);
     }
 
     /**
@@ -192,7 +189,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getResearchers() {
-        return Fetcher.fetchData("rd_p_persocc", RESEARCHERS_PARAMS);
+        return Fetcher.fetchData("rd_p_persocc", MainActivityParams.RESEARCHERS_PARAMS);
     }
 
     /**
@@ -208,7 +205,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getTemporaryEmploymentRatio() {
-        return Fetcher.fetchData("lfsi_pt_a", TEMPORARY_EMPLOYMENT_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsi_pt_a", MainActivityParams.TEMPORARY_EMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -226,7 +223,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getUnemploymentRatio() {
-        return Fetcher.fetchData("lfsa_urgaed", UNEMPLOYMENT_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsa_urgaed", MainActivityParams.UNEMPLOYMENT_RATIO_PARAMS);
     }
 
     /**
@@ -240,7 +237,7 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getWorkingFlexibilityRatio() {
-        return Fetcher.fetchData("lfso_19fxwt01", WORKING_FLEXIBILITY_RATIO_PARAMS);
+        return Fetcher.fetchData("lfso_19fxwt01", MainActivityParams.WORKING_FLEXIBILITY_RATIO_PARAMS);
     }
 
     /**
@@ -256,6 +253,6 @@ public class MainActivityCollector {
      * @return
      */
     private static StringBuilder getWorkingNightsRatio() {
-        return Fetcher.fetchData("lfsa_ewpnig", WORKING_NIGHTS_RATIO_PARAMS);
+        return Fetcher.fetchData("lfsa_ewpnig", MainActivityParams.WORKING_NIGHTS_RATIO_PARAMS);
     }
 }

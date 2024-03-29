@@ -1,8 +1,8 @@
-package app.java.aggr.data.fetch;
+package ro.webdata.qoli.aggr.data.fetch;
 
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 

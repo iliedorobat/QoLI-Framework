@@ -1,19 +1,18 @@
-package app.java.aggr.commons.dimensions.materialLiving;
+package ro.webdata.qoli.aggr.commons.dimensions.materialLiving;
 
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.HashMap;
 
-import static app.java.aggr.commons.constants.ParamsValues.*;
-
 public class MaterialLivingParams {
     private static final String[] END_MEETS_DIFFICULTY_LEVELS = {
-            SUBJNMON.get("greatDifficulty"),
-            SUBJNMON.get("difficulty")
+            ParamsValues.SUBJNMON.get("greatDifficulty"),
+            ParamsValues.SUBJNMON.get("difficulty")
     };
 
     private static HashMap<String, String> QUINTILE_AGES = new HashMap<>() {{
@@ -33,12 +32,12 @@ public class MaterialLivingParams {
 
     public static final MultiValuedMap<String, String>
             END_MEET_INABILITY_RATIO_PARAMS = getEndMeetInabilityParams(END_MEETS_DIFFICULTY_LEVELS),
-            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(SUBJNMON.get("difficulty")),
-            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(SUBJNMON.get("greatDifficulty"));
+            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
+            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty"));
 
     public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("financial")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("financial")
     );
 
     public static final MultiValuedMap<String, String> GDP_PER_CAPITA_PPS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{

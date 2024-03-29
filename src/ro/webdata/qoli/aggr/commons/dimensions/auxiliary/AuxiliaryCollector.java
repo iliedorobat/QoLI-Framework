@@ -1,10 +1,9 @@
-package app.java.aggr.commons.dimensions.auxiliary;
+package ro.webdata.qoli.aggr.commons.dimensions.auxiliary;
 
-import app.java.aggr.commons.utils.FileUtils;
-import app.java.aggr.data.fetch.Fetcher;
+import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static app.java.aggr.commons.dimensions.auxiliary.AuxiliaryParams.POPULATION_PARAMS;
-import static app.java.aggr.commons.dimensions.auxiliary.AuxiliaryPaths.AUXILIARY_RAW_PATH;
+import static ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryPaths.AUXILIARY_RAW_PATH;
 
 public class AuxiliaryCollector {
     public static void fetchData() {
@@ -22,6 +21,6 @@ public class AuxiliaryCollector {
      * @return
      */
     private static StringBuilder getPopulation() {
-        return Fetcher.fetchData("demo_pjan", POPULATION_PARAMS);
+        return Fetcher.fetchData("demo_pjan", AuxiliaryParams.POPULATION_PARAMS);
     }
 }

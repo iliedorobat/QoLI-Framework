@@ -1,4 +1,4 @@
-package app.java.aggr.commons.constants;
+package ro.webdata.qoli.aggr.commons.constants;
 
 import java.util.Calendar;
 

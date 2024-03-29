@@ -1,8 +1,9 @@
-package app.java.aggr.commons.dimensions.leisureInteract;
+package ro.webdata.qoli.aggr.commons.dimensions.leisureInteract;
 
-import app.java.aggr.commons.constants.ParamsNames;
-import app.java.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
-import app.java.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryParams;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
+import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
@@ -11,24 +12,22 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import static app.java.aggr.commons.constants.ParamsValues.*;
-
 public class LeisureInteractParams {
     private static final String[] SOCIAL_INTERACTIONS = {
-            ACL00.get("cinema"),
-            ACL00.get("culture"),
-            ACL00.get("live"),
-            ACL00.get("sports")
+            ParamsValues.ACL00.get("cinema"),
+            ParamsValues.ACL00.get("culture"),
+            ParamsValues.ACL00.get("live"),
+            ParamsValues.ACL00.get("sports")
     };
 
     private static final String[] VOLUNTARY_ACTIVITIES = {
-            ACL00.get("formal"),
-            ACL00.get("informal")
+            ParamsValues.ACL00.get("formal"),
+            ParamsValues.ACL00.get("informal")
     };
 
     public static final MultiValuedMap<String, String> AREA_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("greenAreas")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("greenAreas")
     );
 
     public static final MultiValuedMap<String, String> ASKING_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
@@ -48,22 +47,22 @@ public class LeisureInteractParams {
     }};
 
     public static final MultiValuedMap<String, String>
-            INTERACTIONS_PARAMS = getInteractionsParams(IND_TYPE.values()),
-            INTERACTIONS_FAM_PARAMS = getInteractionsParams(IND_TYPE.get("family")),
-            INTERACTIONS_FRD_PARAMS = getInteractionsParams(IND_TYPE.get("friends"));
+            INTERACTIONS_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.values()),
+            INTERACTIONS_FAM_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.get("family")),
+            INTERACTIONS_FRD_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.get("friends"));
 
     public static final MultiValuedMap<String, String>
-            SOCIAL_ACTIVITIES_NP_PARAMS = getActivitiesNpParams(SOCIAL_INTERACTIONS, SOCIAL_ACTIVITIES_NP_REASON),
+            SOCIAL_ACTIVITIES_NP_PARAMS = getActivitiesNpParams(SOCIAL_INTERACTIONS, ParamsValues.SOCIAL_ACTIVITIES_NP_REASON),
 
-            NP_FIN_CIN_RATIO_PARAMS = getNonParticipationParams(ACL00.get("cinema"), SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
-            NP_FIN_CULT_RATIO_PARAMS = getNonParticipationParams(ACL00.get("culture"), SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
-            NP_FIN_LIVE_RATIO_PARAMS = getNonParticipationParams(ACL00.get("live"), SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
-            NP_FIN_SPORT_RATIO_PARAMS = getNonParticipationParams(ACL00.get("sports"), SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
+            NP_FIN_CIN_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("cinema"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
+            NP_FIN_CULT_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("culture"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
+            NP_FIN_LIVE_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("live"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
+            NP_FIN_SPORT_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("sports"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("financial")),
 
-            NP_NNB_CIN_RATIO_PARAMS = getNonParticipationParams(ACL00.get("cinema"), SOCIAL_ACTIVITIES_NP_REASON.get("away")),
-            NP_NNB_CULT_RATIO_PARAMS = getNonParticipationParams(ACL00.get("culture"), SOCIAL_ACTIVITIES_NP_REASON.get("away")),
-            NP_NNB_LIVE_RATIO_PARAMS = getNonParticipationParams(ACL00.get("live"), SOCIAL_ACTIVITIES_NP_REASON.get("away")),
-            NP_NNB_SPORT_RATIO_PARAMS = getNonParticipationParams(ACL00.get("sports"), SOCIAL_ACTIVITIES_NP_REASON.get("away"));
+            NP_NNB_CIN_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("cinema"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("away")),
+            NP_NNB_CULT_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("culture"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("away")),
+            NP_NNB_LIVE_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("live"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("away")),
+            NP_NNB_SPORT_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("sports"), ParamsValues.SOCIAL_ACTIVITIES_NP_REASON.get("away"));
 
     public static final MultiValuedMap<String, String> SOCIAL_ACTIVITIES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.DEG_URB, "TOTAL");
@@ -75,28 +74,28 @@ public class LeisureInteractParams {
     }};
 
     public static final MultiValuedMap<String, String> TIME_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("timeSpent")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("timeSpent")
     );
 
     public static final MultiValuedMap<String, String> REL_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
-            SATISFACTION_LEVELS.get("high"),
-            SATISFACTION_TYPES.get("relationships")
+            ParamsValues.SATISFACTION_LEVELS.get("high"),
+            ParamsValues.SATISFACTION_TYPES.get("relationships")
     );
 
     public static final MultiValuedMap<String, String>
-            VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS = getActivitiesNpParams(VOLUNTARY_ACTIVITIES, VOLUNTARY_ACTIVITIES_NP_REASON),
+            VOLUNTARY_ACTIVITIES_NP_RATIO_PARAMS = getActivitiesNpParams(VOLUNTARY_ACTIVITIES, ParamsValues.VOLUNTARY_ACTIVITIES_NP_REASON),
 
-            NP_NO_INTEREST_FORMAL_RATIO_PARAMS = getNonParticipationParams(ACL00.get("formal"), VOLUNTARY_ACTIVITIES_NP_REASON.get("noInterest")),
-            NP_NO_INTEREST_INFORMAL_RATIO_PARAMS = getNonParticipationParams(ACL00.get("informal"), VOLUNTARY_ACTIVITIES_NP_REASON.get("noInterest")),
+            NP_NO_INTEREST_FORMAL_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("formal"), ParamsValues.VOLUNTARY_ACTIVITIES_NP_REASON.get("noInterest")),
+            NP_NO_INTEREST_INFORMAL_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("informal"), ParamsValues.VOLUNTARY_ACTIVITIES_NP_REASON.get("noInterest")),
 
-            NP_TIME_FORMAL_RATIO_PARAMS = getNonParticipationParams(ACL00.get("formal"), VOLUNTARY_ACTIVITIES_NP_REASON.get("time")),
-            NP_TIME_INFORMAL_RATIO_PARAMS = getNonParticipationParams(ACL00.get("informal"), VOLUNTARY_ACTIVITIES_NP_REASON.get("time"));
+            NP_TIME_FORMAL_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("formal"), ParamsValues.VOLUNTARY_ACTIVITIES_NP_REASON.get("time")),
+            NP_TIME_INFORMAL_RATIO_PARAMS = getNonParticipationParams(ParamsValues.ACL00.get("informal"), ParamsValues.VOLUNTARY_ACTIVITIES_NP_REASON.get("time"));
 
     public static MultiValuedMap<String, String>
             VOLUNTARY_RATIO_PARAMS = AuxiliaryParams.getActivePeopleParams(VOLUNTARY_ACTIVITIES),
-            FORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ACL00.get("formal")),
-            INFORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ACL00.get("informal"));
+            FORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ParamsValues.ACL00.get("formal")),
+            INFORMAL_VOLUNTARY_RATIO_PARAMS = getVoluntaryActivitiesParams(ParamsValues.ACL00.get("informal"));
 
     private static MultiValuedMap<String, String> getInteractionsParams(String type) {
         List<String> types = new ArrayList<>() {{ add(type); }};

@@ -1,10 +1,8 @@
-package app.java.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.commons.dimensions.health;
 
-import app.java.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.File;
-
-import static app.java.aggr.commons.constants.Constants.JSON_EXTENSION;
 
 public class HealthPaths {
     public static final String HEALTH_FILE_NAME = "health";
@@ -37,7 +35,7 @@ public class HealthPaths {
     public static final String HEALTH_RAW_PATH = String.join(File.separator, Constants.RAW_DATASET_PATH, HEALTH_FILE_NAME);
 
     private static String generatePath(String fileName) {
-        return HEALTH_RAW_PATH + File.separator + fileName + JSON_EXTENSION;
+        return HEALTH_RAW_PATH + File.separator + fileName + Constants.JSON_EXTENSION;
     }
     
     public static final String

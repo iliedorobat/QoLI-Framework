@@ -1,7 +1,8 @@
-package app.java.aggr.data.fetch;
+package ro.webdata.qoli.aggr.data.fetch;
 
-import app.java.aggr.commons.constants.EnvConst;
-import app.java.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-import static app.java.aggr.commons.constants.Constants.EU28_MEMBERS;
-
 public class Fetcher {
     private static final String ENCODING_SCHEME = "UTF-8";
     private static final String URI_PROTOCOL_NAME = "https";
@@ -39,7 +38,7 @@ public class Fetcher {
 
     // TODO: documentation:
     public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams) {
-        return fetchData(dataset, inputParams, EU28_MEMBERS);
+        return fetchData(dataset, inputParams, Constants.EU28_MEMBERS);
     }
 
     // TODO: documentation:
