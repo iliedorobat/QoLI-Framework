@@ -174,6 +174,10 @@ public class SafetyStats {
         Print.printChartData(args, preparedIndicators, SAFETY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, SAFETY_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Aggregate all the offences types into the total offences index
      *

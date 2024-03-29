@@ -86,11 +86,3 @@ ICDS 2019: [Quality of Life Index Analysis for the Case of Romanian Regions](htt
     issn="2308-3956"
 }
 ```
-
-
-
-
-
-TODO: search for "Dataset contains no data"
-TODO: search for "Lack of data:"
-https://ec.europa.eu/eurostat/statistics-explained/index.php?title=EU_statistics_on_income_and_living_conditions_(EU-SILC)_methodology_-_environment_of_the_dwelling

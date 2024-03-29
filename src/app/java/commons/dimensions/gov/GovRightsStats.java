@@ -123,6 +123,10 @@ public class GovRightsStats {
         Print.printChartData(args, preparedIndicators, GOVERNANCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, GOVERNANCE_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Aggregate the population trust ratios into a single index
      *

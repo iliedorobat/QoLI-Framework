@@ -102,6 +102,10 @@ public class EnvironmentStats {
         Print.printChartData(args, preparedIndicators, ENVIRONMENT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, ENVIRONMENT_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Aggregate the "Pollution Ratios" into a single ratio
      *

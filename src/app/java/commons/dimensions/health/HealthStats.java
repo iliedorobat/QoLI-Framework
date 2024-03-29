@@ -165,6 +165,10 @@ public class HealthStats {
         Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, HEALTH_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Aggregate the share of population facing with depressive symptoms into a single indicator
      *

@@ -128,6 +128,10 @@ public class MaterialLivingStats {
         Print.printChartData(args, preparedIndicators, LIVING_CONDITIONS_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, LIVING_CONDITIONS_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Get the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
      *

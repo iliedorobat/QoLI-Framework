@@ -187,6 +187,10 @@ public class LeisureInteractStats {
         Print.printChartData(args, preparedIndicators, LEISURE_INTERACT_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, LEISURE_INTERACT_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Aggregate the "Non Participation Ratios" into a single ratio
      *

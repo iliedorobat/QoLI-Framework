@@ -1,16 +1,6 @@
 package app.java.commons;
 
 import app.java.commons.constants.Constants;
-import app.java.commons.dimensions.auxiliary.AuxiliaryStats;
-import app.java.commons.dimensions.education.EducationStats;
-import app.java.commons.dimensions.environment.EnvironmentStats;
-import app.java.commons.dimensions.gov.GovRightsStats;
-import app.java.commons.dimensions.health.HealthStats;
-import app.java.commons.dimensions.leisureInteract.LeisureInteractStats;
-import app.java.commons.dimensions.mainActivity.MainActivityStats;
-import app.java.commons.dimensions.materialLiving.MaterialLivingStats;
-import app.java.commons.dimensions.overall.OverallExperienceStats;
-import app.java.commons.dimensions.safety.SafetyStats;
 import app.java.commons.utils.CsvStatsUtils;
 import app.java.commons.utils.MapUtils;
 
@@ -87,25 +77,6 @@ public class Print {
         }
     }
 
-    /** @deprecated */
-    public static void printDimensionStatus(ArrayList<Map<String, Number>> list, String dimensionName) {
-        int expected = 0;
-        int available = 0;
-
-        for (Map<String, Number> entries : list) {
-            for (Map.Entry<String, Number> entry : entries.entrySet()) {
-                Number value = entry.getValue();
-                expected += 1;
-                if (value != null)
-                    available += 1;
-            }
-        }
-
-        System.out.println(dimensionName + ":"
-                + "\n\tAvailable: " + available
-                + "\n\tExpected: " + expected);
-    }
-
     private static Map<String, Number> filterMap(Map<String, Number> preparedMap, int targetYear) {
         Map<String, Number> filteredMap = new TreeMap<>(new MapOrder());
 
@@ -120,20 +91,7 @@ public class Print {
         return filteredMap;
     }
 
-    public static void printDimensionsStatus(int targetYear, boolean indStatus) {
-        Print.printDimensionStatus(AuxiliaryStats.rawIndicators, "Auxiliary info", targetYear, indStatus);
-        Print.printDimensionStatus(EducationStats.rawIndicators, "Education", targetYear, indStatus);
-        Print.printDimensionStatus(EnvironmentStats.rawIndicators, "Environment", targetYear, indStatus);
-        Print.printDimensionStatus(GovRightsStats.rawIndicators, "GBR", targetYear, indStatus);
-        Print.printDimensionStatus(HealthStats.rawIndicators, "Health", targetYear, indStatus);
-        Print.printDimensionStatus(LeisureInteractStats.rawIndicators, "Leisure and Social Interactions", targetYear, indStatus);
-        Print.printDimensionStatus(MainActivityStats.rawIndicators, "PMA", targetYear, indStatus);
-        Print.printDimensionStatus(MaterialLivingStats.rawIndicators, "MLC", targetYear, indStatus);
-        Print.printDimensionStatus(OverallExperienceStats.rawIndicators, "Overall Exp", targetYear, indStatus);
-        Print.printDimensionStatus(SafetyStats.rawIndicators, "Safety", targetYear, indStatus);
-    }
-
-    public static void printDimensionStatus(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIndStatus) {
+    public static void printDataAvailability(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIndStatus) {
         int available = 0;
         int expected = 0;
 

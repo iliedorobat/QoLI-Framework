@@ -1,6 +1,5 @@
 package app.java;
 
-import app.java.commons.Print;
 import app.java.commons.dimensions.QoLICsvStats;
 import app.java.commons.dimensions.QoLIJsonStats;
 import app.java.commons.dimensions.education.EducationStats;
@@ -21,28 +20,34 @@ import java.util.List;
 import java.util.Map;
 
 import static app.java.commons.constants.Constants.*;
-import static app.java.commons.constants.EnvConst.MAX_YEAR;
 
 public class Main {
     public static void main(String[] args) {
         List<String> list = Arrays.asList(args);
 
         boolean collect = args.length == 0 || contains(list, "--collect");
-        boolean compare = contains(list, "--compare");
-        boolean indStatus = contains(list, "--indicatorStatus");
+        boolean indStatus = contains(list, "--showIndicatorStatus");
         boolean calculate = args.length == 0 || contains(list, "--calculate");
         boolean calculateIndicators = args.length == 0 || contains(list, "--calculateIndicators");
         boolean print = args.length == 0 || contains(list, "--print");
-        int targetYear = MAX_YEAR;
+        int statusYear = getTargetYear(list, "--dataStatus");
 
         if (collect) {
             // 1. Collect the datasets;
             DataCollector.collectData();
         }
 
-        if (compare) {
+        if (statusYear > -1) {
             // 2. (OPTIONAL) Print the data inconsistencies (available dataset and expected dataset)
-            Print.printDimensionsStatus(targetYear, indStatus);
+            EducationStats.printDataAvailability(statusYear, indStatus);
+            EnvironmentStats.printDataAvailability(statusYear, indStatus);
+            GovRightsStats.printDataAvailability(statusYear, indStatus);
+            HealthStats.printDataAvailability(statusYear, indStatus);
+            LeisureInteractStats.printDataAvailability(statusYear, indStatus);
+            MainActivityStats.printDataAvailability(statusYear, indStatus);
+            MaterialLivingStats.printDataAvailability(statusYear, indStatus);
+            OverallExperienceStats.printDataAvailability(statusYear, indStatus);
+            SafetyStats.printDataAvailability(statusYear, indStatus);
         }
 
         if (calculate) {
@@ -112,6 +117,20 @@ public class Main {
             return SERIES_TYPE_REGION;
         }
         return null;
+    }
+
+    private static int getTargetYear(List<String> pairs, String comparator) {
+        for (String pair : pairs) {
+            String[] values = pair.split("=");
+            String key = values[0];
+
+            if (comparator.equals(key) & values.length > 1) {
+                String value = values[1];
+                return Integer.parseInt(value);
+            }
+        }
+
+        return -1;
     }
 
     // For testing

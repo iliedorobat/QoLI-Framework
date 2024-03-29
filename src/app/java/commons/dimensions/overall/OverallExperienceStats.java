@@ -67,6 +67,10 @@ public class OverallExperienceStats {
         Print.printChartData(args, preparedIndicators, OVERALL_EXPERIENCE_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, OVERALL_EXPERIENCE_FILE_NAME, targetYear, indStatus);
+    }
+
     private static Map<String, Number> prepareHappinessRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 

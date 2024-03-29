@@ -148,6 +148,10 @@ public class MainActivityStats {
         Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY_FILE_NAME, EU28_MEMBERS, seriesType, direction);
     }
 
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, MAIN_ACTIVITY_FILE_NAME, targetYear, indStatus);
+    }
+
     /**
      * Extract the number of working hours left for a person from a legal maximum of 12 hours/day
      *
