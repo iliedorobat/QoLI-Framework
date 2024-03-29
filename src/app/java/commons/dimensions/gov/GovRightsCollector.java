@@ -32,7 +32,7 @@ public class GovRightsCollector {
      * Note: International IDEA
      */
     private static void writeVoterTurnout() {
-        String FILE_URL = "https://www.idea.int/data-tools/export?type=region_and_question&themeId=293&questionId=9188&political_entity=142733";
+        String FILE_URL = "https://www.idea.int/data-tools/export?type=region_only&themeId=293&world=all&loc=home";
         String FILE_PATH = GOV_RIGHTS_RAW_PATH;
         String FILE_NAME = VOTER_TURNOUT_FILE_NAME;
         FileUtils.downloadExcelFile(FILE_URL, FILE_PATH, FILE_NAME, Constants.XLS_EXTENSION);

@@ -116,7 +116,7 @@ public class GovRightsStats {
      */
     private static Map<String, Number> voterTurnoutCsvToMap(String voterTurnoutPath) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-        String csvHeader = "Country;ISO2;ISO3;year;Voter Turnout";
+        String csvHeader = "Country;ISO2;ISO3;Election Type;Year;Voter Turnout;Total vote;Registration;VAP Turnout;Voting age population;Population;Invalid votes;Compulsory voting";
         BufferedReader br = null;
 
         try {
@@ -133,11 +133,22 @@ public class GovRightsStats {
 
                 if (readLine.trim().length() > 0 && !readLine.contains(csvHeader)) {
                     String[] items = readLine.split(CSV_SEPARATOR);
+                    if (items.length < 6) {
+                        // Voter Turnout value does not exists
+                        continue;
+                    }
+
+                    if (!items[3].equalsIgnoreCase("Parliamentary")) {
+                        continue;
+                    }
 
                     String countryCode = items[1].trim();
-                    String[] dateItems = items[3].split("-");
+                    if (countryCode.equalsIgnoreCase("GB")) {
+                        countryCode = "UK";
+                    }
+                    String[] dateItems = items[4].split("-");
                     int year = (int) Double.parseDouble(dateItems[0]);
-                    String valueStr = items[4].replace("%", "").trim();
+                    String valueStr = items[5].replace("%", "").trim();
 
                     if (valueStr.length() > 0) {
                         Number value = Double.parseDouble(valueStr);
