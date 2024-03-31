@@ -1,8 +1,7 @@
 package ro.webdata.qoli.aggr.stats.utils;
 
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.dimensions.QoLIPaths;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.dimensions.QoLIPaths;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -66,6 +65,8 @@ public class CsvStatsUtils {
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param directoryName Directory name of the target dimension/indicator
      * @param direction Display years on rows or columns (ROW or COLUMN)
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      * @return Data prepared for use in Word charts
      */
     public static StringBuilder generateChartData(
@@ -73,15 +74,17 @@ public class CsvStatsUtils {
             String[] membersList,
             String seriesType,
             String directoryName,
-            String direction
+            String direction,
+            int startYear,
+            int endYear
     ) {
         Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
 
         if (direction.equals(Constants.DIRECTION_ROW)) {
-            return generateChartRows(data, membersList, seriesType, directoryName);
+            return generateChartRows(data, membersList, seriesType, directoryName, startYear, endYear);
         }
 
-        return generateChartColumns(data, membersList, seriesType, directoryName);
+        return generateChartColumns(data, membersList, seriesType, directoryName, startYear, endYear);
     }
 
     /**
@@ -90,22 +93,26 @@ public class CsvStatsUtils {
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param directoryName Directory name of the target dimension/indicator
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      * @return Data prepared for use in Word charts
      */
     private static StringBuilder generateChartColumns(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String directoryName
+            String directoryName,
+            int startYear,
+            int endYear
     ) {
         String header = "--- " + seriesType + " --- " + directoryName + " ---" +
                 "\nCountries" + Constants.CSV_SEPARATOR;
         StringBuilder output = new StringBuilder(header);
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = startYear; year <= endYear; year++) {
             output.append(year);
 
-            if (year < EnvConst.MAX_YEAR) {
+            if (year < endYear) {
                 output.append(Constants.CSV_SEPARATOR);
             }
         }
@@ -114,12 +121,12 @@ public class CsvStatsUtils {
         for (String code : membersList) {
             StringBuilder line = new StringBuilder(code + Constants.CSV_SEPARATOR);
 
-            for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (int year = startYear; year <= endYear; year++) {
                 Number value = StatsUtils.getValue(entries, code, year);
                 DecimalFormat df = new DecimalFormat("#,###.####", new DecimalFormatSymbols(Locale.ENGLISH));
                 line.append(df.format(value));
 
-                if (year < EnvConst.MAX_YEAR) {
+                if (year < endYear) {
                     line.append(Constants.CSV_SEPARATOR);
                 }
             }
@@ -135,13 +142,17 @@ public class CsvStatsUtils {
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param directoryName Directory name of the target dimension/indicator
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      * @return Data prepared for use in Word charts
      */
     private static StringBuilder generateChartRows(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
-            String directoryName
+            String directoryName,
+            int startYear,
+            int endYear
     ) {
         String header = "--- " + seriesType + " --- " + directoryName + " ---" +
                 "\nYears" + Constants.CSV_SEPARATOR;
@@ -157,7 +168,7 @@ public class CsvStatsUtils {
         }
         output.append("\n");
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = startYear; year <= endYear; year++) {
             StringBuilder line = new StringBuilder(year + Constants.CSV_SEPARATOR);
 
             for (int i = 0; i < length; i++) {
@@ -185,6 +196,8 @@ public class CsvStatsUtils {
      * @param direction Display years on rows or columns (ROW or COLUMN)
      * @param preparedIndicators A map containing indicators which make up the target dimension
      * @param calculateIndicators Calculate or not the indicators that make up the QoLI dimensions
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      */
     public static void writeChartData(
             Map<String, Number> entries,
@@ -193,16 +206,18 @@ public class CsvStatsUtils {
             String directoryName,
             String direction,
             HashMap<String, Map<String, Number>> preparedIndicators,
-            boolean calculateIndicators
+            boolean calculateIndicators,
+            int startYear,
+            int endYear
     ) {
-        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
+        StringBuilder sb = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction, startYear, endYear);
         String seriesDirectory = QoLIPaths.getSeriesDirectory(seriesType);
         String fullPath = String.join(File.separator, Constants.PREPARED_DATASET_PATH, "csv", seriesDirectory);
         FileUtils.writeToFile(sb, fullPath, directoryName, Constants.CSV_EXTENSION);
 
         if (calculateIndicators && preparedIndicators != null) {
             preparedIndicators.forEach((indicatorName, value) -> {
-                StringBuilder indicatorSb = CsvStatsUtils.generateChartData(preparedIndicators.get(indicatorName), membersList, seriesType, directoryName, direction);
+                StringBuilder indicatorSb = CsvStatsUtils.generateChartData(preparedIndicators.get(indicatorName), membersList, seriesType, directoryName, direction, startYear, endYear);
                 String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
                 FileUtils.writeToFile(indicatorSb, indicatorFullPath, indicatorName, Constants.CSV_EXTENSION);
             });

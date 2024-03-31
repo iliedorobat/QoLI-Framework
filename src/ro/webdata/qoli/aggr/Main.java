@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr;
 
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
@@ -57,8 +58,8 @@ public class Main {
             String direction = getDirection(list);
 
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
-            QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators);
-            QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators);
+            QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators, EnvConst.MIN_YEAR, EnvConst.MAX_YEAR);
+            QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators, EnvConst.MIN_YEAR, EnvConst.MAX_YEAR);
         }
 
         if (print) {

@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats;
 
 import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.CsvStatsUtils;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
@@ -32,7 +33,7 @@ public class Print {
             String directoryName,
             String direction
     ) {
-        StringBuilder output = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction);
+        StringBuilder output = CsvStatsUtils.generateChartData(entries, membersList, seriesType, directoryName, direction, EnvConst.MIN_YEAR, EnvConst.MAX_YEAR);
         System.out.println(output);
     }
 

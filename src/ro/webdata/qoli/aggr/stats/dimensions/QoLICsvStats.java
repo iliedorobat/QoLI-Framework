@@ -40,9 +40,9 @@ public class QoLICsvStats {
         }
     }
 
-    public static void writeDimensions(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators) {
-        writeDataByCountries(dataByCountries, direction, calculateIndicators);
-        writeDataByRegions(dataByCountries, direction, calculateIndicators);
+    public static void writeDimensions(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators, int startYear, int endYear) {
+        writeDataByCountries(dataByCountries, direction, calculateIndicators, startYear, endYear);
+        writeDataByRegions(dataByCountries, direction, calculateIndicators, startYear, endYear);
     }
 
     private static void printCountriesData(HashMap<String, Map<String, Number>> dataByCountries, String direction) {
@@ -57,12 +57,12 @@ public class QoLICsvStats {
         System.out.println("--------------------------------------");
     }
 
-    private static void writeDataByCountries(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators) {
-        writeData(Constants.EU28_MEMBERS, Constants.SERIES_TYPE_COUNTRY, dataByCountries, direction, calculateIndicators);
+    private static void writeDataByCountries(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators, int startYear, int endYear) {
+        writeData(Constants.EU28_MEMBERS, Constants.SERIES_TYPE_COUNTRY, dataByCountries, direction, calculateIndicators, startYear, endYear);
     }
 
-    private static void writeDataByRegions(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators) {
-        writeData(Constants.EU28_REGIONS, Constants.SERIES_TYPE_REGION, dataByCountries, direction, calculateIndicators);
+    private static void writeDataByRegions(HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators, int startYear, int endYear) {
+        writeData(Constants.EU28_REGIONS, Constants.SERIES_TYPE_REGION, dataByCountries, direction, calculateIndicators, startYear, endYear);
     }
 
     private static void printData(String[] membersList, String seriesType, HashMap<String, Map<String, Number>> dataByCountries, String direction) {
@@ -78,16 +78,16 @@ public class QoLICsvStats {
         Print.printChartData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, direction);
     }
 
-    private static void writeData(String[] membersList, String seriesType, HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators) {
-        CsvStatsUtils.writeChartData(dataByCountries.get(QOLI), membersList, seriesType, QOLI_FILE_NAME, direction, null, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, direction, EducationStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, direction, GovRightsStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, direction, HealthStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, direction, LeisureInteractStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.preparedIndicators, calculateIndicators);
-        CsvStatsUtils.writeChartData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, direction, SafetyStats.preparedIndicators, calculateIndicators);
+    private static void writeData(String[] membersList, String seriesType, HashMap<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators, int startYear, int endYear) {
+        CsvStatsUtils.writeChartData(dataByCountries.get(QOLI), membersList, seriesType, QOLI_FILE_NAME, direction, null, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, direction, EducationStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, direction, GovRightsStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, direction, HealthStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, direction, LeisureInteractStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, direction, SafetyStats.preparedIndicators, calculateIndicators, startYear, endYear);
     }
 }
