@@ -1,6 +1,6 @@
-package ro.webdata.qoli.aggr.commons.dimensions.leisureInteract;
+package ro.webdata.qoli.aggr.stats.dimensions.leisureInteract;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 public class LeisureInteractCollector {

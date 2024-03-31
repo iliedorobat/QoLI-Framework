@@ -1,33 +1,33 @@
-package ro.webdata.qoli.aggr.commons.dimensions;
+package ro.webdata.qoli.aggr.stats.dimensions;
 
-import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
-import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
-import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
-import ro.webdata.qoli.aggr.commons.dimensions.health.HealthStats;
-import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
-import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityStats;
-import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
-import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceStats;
-import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
-import ro.webdata.qoli.aggr.commons.utils.CsvStatsUtils;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.stats.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
+import ro.webdata.qoli.aggr.stats.utils.CsvStatsUtils;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.QoLIPaths.QOLI_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthPaths.HEALTH_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityPaths.MAIN_ACTIVITY_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyPaths.SAFETY_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.QoLIPaths.QOLI_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationPaths.EDUCATION_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentPaths.ENVIRONMENT_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsPaths.GOVERNANCE_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthPaths.HEALTH_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityPaths.MAIN_ACTIVITY_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyPaths.SAFETY_FILE_NAME;
 
 public class QoLICsvStats {
     public static void printDimensions(List<String> args, String seriesType, HashMap<String, Map<String, Number>> dataByCountries, String direction) {

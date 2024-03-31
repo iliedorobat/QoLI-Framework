@@ -1,18 +1,18 @@
-package ro.webdata.qoli.aggr.commons.dimensions;
+package ro.webdata.qoli.aggr.stats.dimensions;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
-import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
-import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
-import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
-import ro.webdata.qoli.aggr.commons.dimensions.health.HealthStats;
-import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
-import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityStats;
-import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
-import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceStats;
-import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.stats.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.util.List;
 import java.util.Map;

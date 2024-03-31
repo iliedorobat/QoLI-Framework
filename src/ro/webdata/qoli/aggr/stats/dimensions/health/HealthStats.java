@@ -1,12 +1,12 @@
-package ro.webdata.qoli.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.stats.dimensions.health;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
-import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryStats;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthAggrParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthPaths.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthPaths.*;
 
 public class HealthStats {
     // Intermediate data which will be grouped into a single indicator

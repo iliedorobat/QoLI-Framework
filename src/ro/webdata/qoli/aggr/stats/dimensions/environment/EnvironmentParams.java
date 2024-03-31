@@ -1,11 +1,11 @@
-package ro.webdata.qoli.aggr.commons.dimensions.environment;
+package ro.webdata.qoli.aggr.stats.dimensions.environment;
 
-import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
 import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
-import static ro.webdata.qoli.aggr.commons.constants.ParamsValues.AIR_POL;
+import static ro.webdata.qoli.aggr.stats.constants.ParamsValues.AIR_POL;
 
 public class EnvironmentParams {
     private static final String[] AIR_POL_TYPES = {

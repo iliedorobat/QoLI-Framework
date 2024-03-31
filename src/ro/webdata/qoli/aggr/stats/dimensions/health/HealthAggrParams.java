@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.stats.dimensions.health;
 
 import java.util.ArrayList;
 import java.util.HashMap;

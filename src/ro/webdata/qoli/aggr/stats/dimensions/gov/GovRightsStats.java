@@ -1,12 +1,12 @@
-package ro.webdata.qoli.aggr.commons.dimensions.gov;
+package ro.webdata.qoli.aggr.stats.dimensions.gov;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
-import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.utils.MathUtils;
+import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsAggrParams.*;
 
 public class GovRightsStats {
     // Intermediate data which will be grouped into a single indicator

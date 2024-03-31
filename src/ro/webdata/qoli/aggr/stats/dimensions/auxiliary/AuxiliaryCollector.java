@@ -1,9 +1,9 @@
-package ro.webdata.qoli.aggr.commons.dimensions.auxiliary;
+package ro.webdata.qoli.aggr.stats.dimensions.auxiliary;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryPaths.AUXILIARY_RAW_PATH;
+import static ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryPaths.AUXILIARY_RAW_PATH;
 
 public class AuxiliaryCollector {
     public static void fetchData() {

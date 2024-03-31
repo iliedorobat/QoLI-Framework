@@ -1,8 +1,8 @@
-package ro.webdata.qoli.aggr.commons.utils;
+package ro.webdata.qoli.aggr.stats.utils;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.*;
 import java.util.stream.Collectors;

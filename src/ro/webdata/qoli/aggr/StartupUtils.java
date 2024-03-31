@@ -1,6 +1,6 @@
 package ro.webdata.qoli.aggr;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;

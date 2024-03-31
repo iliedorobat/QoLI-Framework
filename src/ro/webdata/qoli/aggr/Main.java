@@ -1,18 +1,17 @@
 package ro.webdata.qoli.aggr;
 
-import ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams;
-import ro.webdata.qoli.aggr.commons.dimensions.QoLICsvStats;
-import ro.webdata.qoli.aggr.commons.dimensions.QoLIJsonStats;
-import ro.webdata.qoli.aggr.commons.dimensions.QoLIStats;
-import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
-import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
-import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
-import ro.webdata.qoli.aggr.commons.dimensions.health.HealthStats;
-import ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractStats;
-import ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityStats;
-import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingStats;
-import ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceStats;
-import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
+import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
+import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
+import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
+import ro.webdata.qoli.aggr.stats.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.stats.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 
 import java.util.Arrays;
@@ -21,8 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 import static ro.webdata.qoli.aggr.StartupUtils.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams.SAFETY;
+import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.SAFETY;
 
 public class Main {
     private static final HashMap<String, Map<String, Number>> dataByCountries = new HashMap<>(){{

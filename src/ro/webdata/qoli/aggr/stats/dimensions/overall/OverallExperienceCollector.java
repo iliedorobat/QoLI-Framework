@@ -1,10 +1,10 @@
-package ro.webdata.qoli.aggr.commons.dimensions.overall;
+package ro.webdata.qoli.aggr.stats.dimensions.overall;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
-import static ro.webdata.qoli.aggr.commons.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
+import static ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceParams.HAPPINESS_RATIO_PARAMS;
+import static ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceParams.HIGH_SATISFACTION_RATIO_PARAMS;
 
 /**
  * Overall life satisfaction in the context of quality of life

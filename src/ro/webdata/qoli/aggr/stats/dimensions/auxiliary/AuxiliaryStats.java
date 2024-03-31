@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons.dimensions.auxiliary;
+package ro.webdata.qoli.aggr.stats.dimensions.auxiliary;
 
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryPaths.POPULATION_FILE_NAME;
-import static ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryPaths.POPULATION_PATH;
+import static ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryPaths.POPULATION_FILE_NAME;
+import static ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryPaths.POPULATION_PATH;
 
 //TODO: change the "ratio" to "rate" all over the app
 public class AuxiliaryStats {

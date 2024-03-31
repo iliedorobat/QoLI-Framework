@@ -1,6 +1,6 @@
 package ro.webdata.qoli.aggr.data;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

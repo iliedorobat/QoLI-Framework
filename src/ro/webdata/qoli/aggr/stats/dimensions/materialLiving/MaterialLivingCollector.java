@@ -1,10 +1,10 @@
-package ro.webdata.qoli.aggr.commons.dimensions.materialLiving;
+package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingPaths.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingPaths.*;
 
 public class MaterialLivingCollector {
     public static void fetchData() {

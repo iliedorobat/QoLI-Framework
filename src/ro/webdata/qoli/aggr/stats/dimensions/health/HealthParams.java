@@ -1,8 +1,8 @@
-package ro.webdata.qoli.aggr.commons.dimensions.health;
+package ro.webdata.qoli.aggr.stats.dimensions.health;
 
-import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
+import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
 import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
-import ro.webdata.qoli.aggr.commons.constants.ParamsValues;
+import ro.webdata.qoli.aggr.stats.constants.ParamsValues;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 

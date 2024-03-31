@@ -1,8 +1,8 @@
-package ro.webdata.qoli.aggr.commons;
+package ro.webdata.qoli.aggr.stats;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.utils.CsvStatsUtils;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.utils.CsvStatsUtils;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

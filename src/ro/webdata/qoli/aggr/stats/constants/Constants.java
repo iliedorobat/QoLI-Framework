@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons.constants;
+package ro.webdata.qoli.aggr.stats.constants;
 
 import java.io.File;
 import java.util.Map;

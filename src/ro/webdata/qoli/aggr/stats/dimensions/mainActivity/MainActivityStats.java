@@ -1,21 +1,21 @@
-package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
+package ro.webdata.qoli.aggr.stats.dimensions.mainActivity;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
-import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryStats;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.MergeUtils;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 
 import java.util.*;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityAggrParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityPaths.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityPaths.*;
 
 public class MainActivityStats {
     /** 12 hours * 7 days */

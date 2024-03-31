@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons.dimensions.materialLiving;
+package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
 import java.util.ArrayList;
 import java.util.HashMap;

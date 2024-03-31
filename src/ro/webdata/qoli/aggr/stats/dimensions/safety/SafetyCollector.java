@@ -1,8 +1,8 @@
-package ro.webdata.qoli.aggr.commons.dimensions.safety;
+package ro.webdata.qoli.aggr.stats.dimensions.safety;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 public class SafetyCollector {
     public static void fetchData() {

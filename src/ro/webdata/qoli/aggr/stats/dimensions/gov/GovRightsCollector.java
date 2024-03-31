@@ -1,7 +1,7 @@
-package ro.webdata.qoli.aggr.commons.dimensions.gov;
+package ro.webdata.qoli.aggr.stats.dimensions.gov;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
 import java.io.File;

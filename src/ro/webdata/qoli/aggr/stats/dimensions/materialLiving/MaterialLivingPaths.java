@@ -1,6 +1,6 @@
-package ro.webdata.qoli.aggr.commons.dimensions.materialLiving;
+package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 import java.io.File;
 

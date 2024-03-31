@@ -1,6 +1,6 @@
-package ro.webdata.qoli.aggr.commons.dimensions.safety;
+package ro.webdata.qoli.aggr.stats.dimensions.safety;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 import java.io.File;
 

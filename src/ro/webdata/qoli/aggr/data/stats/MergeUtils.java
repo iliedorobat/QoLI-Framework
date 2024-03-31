@@ -1,9 +1,9 @@
 package ro.webdata.qoli.aggr.data.stats;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.constants.ParamsNames;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.data.LocalParser;
 import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
 import org.apache.commons.collections4.MultiValuedMap;

@@ -1,17 +1,17 @@
-package ro.webdata.qoli.aggr.commons.dimensions.education;
+package ro.webdata.qoli.aggr.stats.dimensions.education;
 
-import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.MergeUtils;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 
 import java.util.*;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationAggrParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationPaths.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationPaths.*;
 
 public class EducationStats {
     // Intermediate data which will be grouped into a single indicator

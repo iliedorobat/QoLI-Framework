@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons;
+package ro.webdata.qoli.aggr.stats;
 
 import java.util.ArrayList;
 import java.util.Arrays;

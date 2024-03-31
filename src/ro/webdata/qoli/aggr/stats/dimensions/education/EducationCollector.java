@@ -1,10 +1,10 @@
-package ro.webdata.qoli.aggr.commons.dimensions.education;
+package ro.webdata.qoli.aggr.stats.dimensions.education;
 
-import ro.webdata.qoli.aggr.commons.utils.FileUtils;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationParams.*;
-import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationPaths.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.education.EducationPaths.*;
 
 public class EducationCollector {
     public static void fetchData() {

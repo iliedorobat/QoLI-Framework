@@ -1,4 +1,4 @@
-package ro.webdata.qoli.aggr.commons.constants;
+package ro.webdata.qoli.aggr.stats.constants;
 
 public class ParamsNames {
     public static final String ACL_00 = "acl00";

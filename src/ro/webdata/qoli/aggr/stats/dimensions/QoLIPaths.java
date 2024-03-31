@@ -1,6 +1,6 @@
-package ro.webdata.qoli.aggr.commons.dimensions;
+package ro.webdata.qoli.aggr.stats.dimensions;
 
-import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 public class QoLIPaths {
     public static final String QOLI_FILE_NAME = "qoli";
