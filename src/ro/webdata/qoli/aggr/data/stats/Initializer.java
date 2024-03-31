@@ -68,7 +68,7 @@ public class Initializer {
     }
 
     /**
-     * *** used for offences ratio ***
+     * *** used on offences ratio ***<br/><br/>
      *
      * Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
      * PERIOD OF TIME<br/>

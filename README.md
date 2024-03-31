@@ -26,10 +26,15 @@ java app/java/BuildProject
 ```bash
 java app/java/Main --collect
 ```
-6. Calculate the QoLI dimensions (only once):
-```bash
-java app/java/Main --calculate --calculateIndicators --direction=COLUMN
-```
+6. Aggregate the datasets:
+   1. Calculate the QoLI dimensions:
+    ```bash
+    java app/java/Main --calculate --calculateIndicators --direction=COLUMN
+    ```
+    2. Calculate the QoLI based on a specific set of indicators:
+    ```bash
+    java app/java/Main --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    ```
 7. Print the QoLI and the QoLI dimensions:
 ```bash
 java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
@@ -45,7 +50,7 @@ java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=ED
 
 
 
-## More info
+## Data Source
 ### Main Database
 https://ec.europa.eu/eurostat/data/database
 

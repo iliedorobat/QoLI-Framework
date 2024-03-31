@@ -9,8 +9,6 @@ public class MaterialLivingPaths {
 
     public static final String DWELLING_ISSUES_RATIO_FILE_NAME = "dwellingIssuesRatio";
     public static final String END_MEET_INABILITY_RATIO_FILE_NAME = "endMeetInabilityRatio";
-    public static final String END_MEET_INABILITY_D_RATIO_FILE_NAME = "endMeetInabilityDRatio";
-    public static final String END_MEET_INABILITY_GD_RATIO_FILE_NAME = "endMeetInabilityGDRatio";
     public static final String FINANCIAL_SATISFACTION_FILE_NAME = "financialSatisfaction";
     public static final String GDP_PER_CAPITA_PPS_RATIO_FILE_NAME = "gdpPerCapitaPpsRatio";
     public static final String HIGH_INCOME_RATIO_FILE_NAME = "highIncomeRatio";

@@ -2,18 +2,18 @@ package ro.webdata.qoli.aggr.commons.dimensions.mainActivity;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.MergeUtils;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
-import ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingPaths;
 
 import java.util.*;
 
+import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityAggrParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.mainActivity.MainActivityPaths.*;
 
@@ -74,89 +74,60 @@ public class MainActivityStats {
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(AVG_WORK_HOURS_FILE_NAME, Preparation.filterMap(initAvgWorkHoursList));
-        put(EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initEmploymentRatio));
-        put(INACTIVE_POPULATION_RATIO_FILE_NAME, Preparation.filterMap(initInactivePopulationRatio));
-        put(INVOLUNTARY_PART_TIME_RATIO_FILE_NAME, Preparation.filterMap(initInvoluntaryPartTimeRatio));
-        put(JOB_SATISFACTION_FILE_NAME, Preparation.filterMap(initJobSatisfaction));
-        put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initLongTermUnemploymentRatio));
-        put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, Preparation.filterMap(initLowWageEarningsRatio));
-        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
-        put(RESEARCHERS_FILE_NAME, Preparation.filterMap(initResearchers));
-        put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initTemporaryEmploymentRatio));
-        put(UNEMPLOYMENT_RATIO_FILE_NAME, Preparation.filterMap(initUnemploymentRatio));
-        put(WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityFullRatio));
-        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityRestrictiveRatio));
-        put(WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME, Preparation.filterMap(initFlexibilityTotalRatio));
-        put(WORKING_NIGHTS_RATIO_FILE_NAME, Preparation.filterMap(initWorkingNightsRatio));
+        put(AVG_WORK_HOURS, Preparation.filterMap(initAvgWorkHoursList));
+        put(EMPLOYMENT_RATIO, Preparation.filterMap(initEmploymentRatio));
+        put(INACTIVE_POPULATION_RATIO, Preparation.filterMap(initInactivePopulationRatio));
+        put(INVOLUNTARY_PART_TIME_RATIO, Preparation.filterMap(initInvoluntaryPartTimeRatio));
+        put(JOB_SATISFACTION, Preparation.filterMap(initJobSatisfaction));
+        put(LONG_TERM_UNEMPLOYMENT_RATIO, Preparation.filterMap(initLongTermUnemploymentRatio));
+        put(LOW_WAGE_EARNERS_RATIO, Preparation.filterMap(initLowWageEarningsRatio));
+        put(LOW_WORK_INTENSITY_RATIO, Preparation.filterMap(initLowWorkIntensityRatio));
+        put(RESEARCHERS_RATIO, Preparation.filterMap(initResearchers));
+        put(TEMPORARY_EMPLOYMENT_RATIO, Preparation.filterMap(initTemporaryEmploymentRatio));
+        put(UNEMPLOYMENT_RATIO, Preparation.filterMap(initUnemploymentRatio));
+        put(WORKING_FLEXIBILITY_FULL_RATIO, Preparation.filterMap(initFlexibilityFullRatio));
+        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO, Preparation.filterMap(initFlexibilityRestrictiveRatio));
+        put(WORKING_FLEXIBILITY_TOTAL_RATIO, Preparation.filterMap(initFlexibilityTotalRatio));
+        put(WORKING_NIGHTS_RATIO, Preparation.filterMap(initWorkingNightsRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(AVG_WORK_HOURS_FILE_NAME, avgWorkHours);
-        put(AVG_REMAINED_WORK_HOURS_FILE_NAME, avgRemainedWorkHours);
-        put(EMPLOYMENT_RATIO_FILE_NAME, employmentRatio);
-        put(INACTIVE_POPULATION_RATIO_FILE_NAME, inactivePopulationRatio);
-        put(INVOLUNTARY_PART_TIME_RATIO_FILE_NAME, involuntaryPartTimeRatio);
-        put(JOB_SATISFACTION_FILE_NAME, jobSatisfaction);
-        put(LONG_TERM_UNEMPLOYMENT_RATIO_FILE_NAME, longTermUnemploymentRatio);
-        put(LOW_WAGE_EARNERS_RATIO_FILE_NAME, lowWageEarningsRatio);
-        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
-        put(RESEARCHERS_FILE_NAME, researchersRatio);
-        put(TEMPORARY_EMPLOYMENT_RATIO_FILE_NAME, temporaryEmploymentRatio);
-        put(UNEMPLOYMENT_RATIO_FILE_NAME, unemploymentRatio);
-        put(WORKING_FLEXIBILITY_FULL_RATIO_FILE_NAME, flexibilityFullRatio);
-        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO_FILE_NAME, flexibilityRestrictiveRatio);
-        put(WORKING_FLEXIBILITY_TOTAL_RATIO_FILE_NAME, flexibilityTotalRatio);
-        put(WORKING_FLEXIBILITY_RATIO_FILE_NAME, workingFlexibilityRatio);
-        put(WORKING_NIGHTS_RATIO_FILE_NAME, workingNightsRatio);
+        put(AVG_WORK_HOURS, avgWorkHours);
+        put(AVG_REMAINED_WORK_HOURS, avgRemainedWorkHours);
+        put(EMPLOYMENT_RATIO, employmentRatio);
+        put(INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
+        put(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
+        put(JOB_SATISFACTION, jobSatisfaction);
+        put(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatio);
+        put(LOW_WAGE_EARNERS_RATIO, lowWageEarningsRatio);
+        put(LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
+        put(RESEARCHERS_RATIO, researchersRatio);
+        put(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatio);
+        put(UNEMPLOYMENT_RATIO, unemploymentRatio);
+        put(WORKING_FLEXIBILITY_FULL_RATIO, flexibilityFullRatio);
+        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO, flexibilityRestrictiveRatio);
+        put(WORKING_FLEXIBILITY_TOTAL_RATIO, flexibilityTotalRatio);
+        put(WORKING_FLEXIBILITY_RATIO, workingFlexibilityRatio);
+        put(WORKING_NIGHTS_RATIO, workingNightsRatio);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(avgRemainedWorkHours, key)
-                        * MathUtils.percentageSafetyDouble(employmentRatio, key)
-                        * MathUtils.percentageSafetyDouble(jobSatisfaction, key)
-                        * MathUtils.percentageSafetyDouble(researchersRatio, key)
-                        * MathUtils.percentageSafetyDouble(inactivePopulationRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(involuntaryPartTimeRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(longTermUnemploymentRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(lowWageEarningsRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(lowWorkIntensityRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(temporaryEmploymentRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(unemploymentRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(workingFlexibilityRatio, key) // TODO: check
-                        * MathUtils.percentageSafetyDouble(workingNightsRatio, key, true);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
-            }
-        }
-
-//        Print.printVariation(StatsUtils.generateVariation(pupilsRatio, true));
-//        Print.print(initPupilsRatio, false);
-
-        return consolidatedList;
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, MAIN_ACTIVITY_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, MAIN_ACTIVITY, targetYear, indStatus);
     }
 
-    /**
-     * Extract the number of working hours left for a person from a legal maximum of 12 hours/day
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Extract the number of working hours left for a person from a legal maximum of 12 hours/day
     private static Map<String, Number> prepareAvgRemainedWorkHours() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
@@ -172,11 +143,7 @@ public class MainActivityStats {
         return preparedMap;
     }
 
-    /**
-     * Get the proportion of the population who has flexible time schedule
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Get the proportion of the population who has flexible time schedule
     private static Map<String, Number> prepareWorkingFlexibilityRatio() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 

@@ -1,17 +1,15 @@
 package ro.webdata.qoli.aggr.commons.dimensions.education;
 
-import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
-import ro.webdata.qoli.aggr.commons.constants.EnvConst;
-import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.MergeUtils;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.*;
 
+import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationAggrParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.education.EducationPaths.*;
 
@@ -48,63 +46,42 @@ public class EducationStats {
             trainingLastYearRatio = Preparation.prepareData(initTrainingLastYearRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(DIGITAL_SKILLS_RATIO_FILE_NAME, Preparation.filterMap(initDigitalSkillsRatio));
-        put(DROPOUT_RATIO_FILE_NAME, Preparation.filterMap(initDropoutRatio));
-        put(EARLY_EDU_RATIO_FILE_NAME, Preparation.filterMap(initEarlyEducationRatio));
-        put(EDU_RATIO_FILE_NAME, Preparation.filterMap(initEducationRatio)); // students
-        put(INACTIVE_YOUNG_RATIO_FILE_NAME, Preparation.filterMap(initInactiveYoungRatio));
-        put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, Preparation.filterMap(initNoKnownForeignLangRatio));
-        put(PUPILS_RATIO_FILE_NAME, Preparation.filterMap(initPupilsRatio));
-        put(TRAINING_LAST_MONTH_RATIO_FILE_NAME, Preparation.filterMap(initTrainingLastMonthRatio));
-        put(TRAINING_LAST_YEAR_RATIO_FILE_NAME, Preparation.filterMap(initTrainingLastYearRatio));
+        put(DIGITAL_SKILLS_RATIO, Preparation.filterMap(initDigitalSkillsRatio));
+        put(DROPOUT_RATIO, Preparation.filterMap(initDropoutRatio));
+        put(EARLY_EDU_RATIO, Preparation.filterMap(initEarlyEducationRatio));
+        put(EDUCATION_RATIO, Preparation.filterMap(initEducationRatio));
+        put(INACTIVE_YOUNG_RATIO, Preparation.filterMap(initInactiveYoungRatio));
+        put(NO_KNOWN_FOREIGN_LANG_RATIO, Preparation.filterMap(initNoKnownForeignLangRatio));
+        put(PUPILS_RATIO, Preparation.filterMap(initPupilsRatio));
+        put(TRAINING_LAST_MONTH_RATIO, Preparation.filterMap(initTrainingLastMonthRatio));
+        put(TRAINING_LAST_YEAR_RATIO, Preparation.filterMap(initTrainingLastYearRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(DIGITAL_SKILLS_RATIO_FILE_NAME, digitalSkillsRatio);
-        put(DROPOUT_RATIO_FILE_NAME, dropoutRatio);
-        put(EARLY_EDU_RATIO_FILE_NAME, earlyEducationRatio);
-        put(EDU_RATIO_FILE_NAME, educationRatio); // students
-        put(INACTIVE_YOUNG_RATIO_FILE_NAME, inactiveYoungRatio);
-        put(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME, noKnownForeignLangRatio);
-        put(PUPILS_RATIO_FILE_NAME, pupilsRatio);
-        put(TRAINING_LAST_MONTH_RATIO_FILE_NAME, trainingLastMonthRatio);
-        put(TRAINING_LAST_YEAR_RATIO_FILE_NAME, trainingLastYearRatio);
+        put(DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
+        put(DROPOUT_RATIO, dropoutRatio);
+        put(EARLY_EDU_RATIO, earlyEducationRatio);
+        put(EDUCATION_RATIO, educationRatio);
+        put(INACTIVE_YOUNG_RATIO, inactiveYoungRatio);
+        put(NO_KNOWN_FOREIGN_LANG_RATIO, noKnownForeignLangRatio);
+        put(PUPILS_RATIO, pupilsRatio);
+        put(TRAINING_LAST_MONTH_RATIO, trainingLastMonthRatio);
+        put(TRAINING_LAST_YEAR_RATIO, trainingLastYearRatio);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(digitalSkillsRatio, key)
-                        * MathUtils.percentageSafetyDouble(earlyEducationRatio, key)
-                        * MathUtils.percentageSafetyDouble(educationRatio, key)
-                        * MathUtils.percentageSafetyDouble(trainingLastMonthRatio, key)
-                        * MathUtils.percentageSafetyDouble(trainingLastYearRatio, key)
-                        * MathUtils.percentageSafetyDouble(dropoutRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(inactiveYoungRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(noKnownForeignLangRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(pupilsRatio, key, true);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
-            }
-        }
-
-//        Print.printVariation(StatsUtils.generateVariation(pupilsRatio, true));
-//        Print.print(initPupilsRatio, false);
-
-        return consolidatedList;
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, EDUCATION_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, EDUCATION, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, EDUCATION_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, EDUCATION, targetYear, indStatus);
     }
 }

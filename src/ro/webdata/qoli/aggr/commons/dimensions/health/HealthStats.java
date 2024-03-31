@@ -2,19 +2,20 @@ package ro.webdata.qoli.aggr.commons.dimensions.health;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.dimensions.auxiliary.AuxiliaryStats;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthAggrParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthParams.*;
 import static ro.webdata.qoli.aggr.commons.dimensions.health.HealthPaths.*;
 
@@ -62,7 +63,9 @@ public class HealthStats {
             depressiveRatio = prepareTotalDepressiveRatio(),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
-            hospitalBeds = Preparation.prepareData(initHospitalBeds),
+            hospitalBeds = prepareHospitalBedsRatio(
+                    Preparation.prepareData(initHospitalBeds)
+            ),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
@@ -75,105 +78,89 @@ public class HealthStats {
             workAccidents = Preparation.preparePerThousandInhabitant(AuxiliaryStats.population, initWorkAccidents);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(BMI_FILE_NAME, Preparation.filterMap(initBmiRatio));
-        put(DEPRESSIVE_MAJOR_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveMajorRatio));
-        put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveNormalRatio));
-        put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, Preparation.filterMap(initDepressiveOtherRatio));
-        put(HEALTHY_LIFE_RATIO_FILE_NAME, Preparation.filterMap(initHealthyLifeRatio));
-        put(HEALTHY_LIFE_YEARS_FILE_NAME, Preparation.filterMap(initHealthyLifeYears));
-        put(HOSPITAL_BEDS_FILE_NAME, Preparation.filterMap(initHospitalBeds));
-        put(LIFE_EXPECTANCY_FILE_NAME, Preparation.filterMap(initLifeExpectancy));
-        put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initLongHealthIssuesRatio));
-        put(NON_ALCOHOLIC_RATIO_FILE_NAME, Preparation.filterMap(initNonAlcoholicRatio));
-        put(NON_FRUITS_VEGETABLES_RATIO_FILE_NAME, Preparation.filterMap(initNonFruitsVegetablesRatio));
-        put(PERSONNEL_DENTISTS_FILE_NAME, Preparation.filterMap(initPersonnelDentists));
-        put(PERSONNEL_DOCTORS_FILE_NAME, Preparation.filterMap(initPersonnelDoctors));
-        put(PERSONNEL_NURSES_FILE_NAME, Preparation.filterMap(initPersonnelNurses));
-        put(PERSONNEL_PHARMA_FILE_NAME, Preparation.filterMap(initPersonnelPharma));
-        put(PERSONNEL_THERAPISTS_FILE_NAME, Preparation.filterMap(initPersonnelTherapists));
-        put(PHYSICAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initPhysicalActivitiesRatio));
-        put(SMOKERS_RATIO_FILE_NAME, Preparation.filterMap(initSmokersRatio));
-        put(UNMET_DENTAL_RATIO_FILE_NAME, Preparation.filterMap(initUnmetDentalRatio));
-        put(UNMET_MEDICAL_RATIO_FILE_NAME, Preparation.filterMap(initUnmetMedicalRatio));
-        put(WORK_ACCIDENTS_FILE_NAME, Preparation.filterMap(initWorkAccidents));
+        put(BODY_MASS_INDEX, Preparation.filterMap(initBmiRatio));
+        put(DEPRESSIVE_MAJOR_RATIO, Preparation.filterMap(initDepressiveMajorRatio));
+        put(DEPRESSIVE_NORMAL_RATIO, Preparation.filterMap(initDepressiveNormalRatio));
+        put(DEPRESSIVE_OTHER_RATIO, Preparation.filterMap(initDepressiveOtherRatio));
+        put(HEALTHY_LIFE_RATIO, Preparation.filterMap(initHealthyLifeRatio));
+        put(HEALTHY_LIFE_YEARS, Preparation.filterMap(initHealthyLifeYears));
+        put(HOSPITAL_BEDS, Preparation.filterMap(initHospitalBeds));
+        put(LIFE_EXPECTANCY, Preparation.filterMap(initLifeExpectancy));
+        put(LONG_HEALTH_ISSUES_RATIO, Preparation.filterMap(initLongHealthIssuesRatio));
+        put(NON_ALCOHOLIC_RATIO, Preparation.filterMap(initNonAlcoholicRatio));
+        put(NON_FRUITS_VEGETABLES_RATIO, Preparation.filterMap(initNonFruitsVegetablesRatio));
+        put(PERSONNEL_DENTISTS, Preparation.filterMap(initPersonnelDentists));
+        put(PERSONNEL_DOCTORS, Preparation.filterMap(initPersonnelDoctors));
+        put(PERSONNEL_NURSES, Preparation.filterMap(initPersonnelNurses));
+        put(PERSONNEL_PHARMACISTS, Preparation.filterMap(initPersonnelPharma));
+        put(PERSONNEL_THERAPISTS, Preparation.filterMap(initPersonnelTherapists));
+        put(PHYSICAL_ACTIVITIES_RATIO, Preparation.filterMap(initPhysicalActivitiesRatio));
+        put(SMOKERS_RATIO, Preparation.filterMap(initSmokersRatio));
+        put(UNMET_DENTAL_RATIO, Preparation.filterMap(initUnmetDentalRatio));
+        put(UNMET_MEDICAL_RATIO, Preparation.filterMap(initUnmetMedicalRatio));
+        put(WORK_ACCIDENTS, Preparation.filterMap(initWorkAccidents));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(BMI_FILE_NAME, initBmiRatio);
-        put(DEPRESSIVE_MAJOR_RATIO_FILE_NAME, depressiveMajorRatio);
-        put(DEPRESSIVE_NORMAL_RATIO_FILE_NAME, depressiveNormalRatio);
-        put(DEPRESSIVE_OTHER_RATIO_FILE_NAME, depressiveOtherRatio);
-        put(DEPRESSIVE_RATIO_FILE_NAME, depressiveRatio);
-        put(HEALTHY_LIFE_RATIO_FILE_NAME, healthyLifeRatio);
-        put(HEALTHY_LIFE_YEARS_FILE_NAME, healthyLifeYears);
-        put(HOSPITAL_BEDS_FILE_NAME, hospitalBeds);
-        put(LIFE_EXPECTANCY_FILE_NAME, lifeExpectancy);
-        put(LONG_HEALTH_ISSUES_RATIO_FILE_NAME, longHealthIssuesRatio);
-        put(NON_ALCOHOLIC_RATIO_FILE_NAME, nonAlcoholicRatio);
-        put(NON_FRUITS_VEGETABLES_RATIO_FILE_NAME, nonFruitsVegetablesRatio);
-        put(PERSONNEL_DENTISTS_FILE_NAME, personnelDentists);
-        put(PERSONNEL_DOCTORS_FILE_NAME, personnelDoctors);
-        put(PERSONNEL_NURSES_FILE_NAME, personnelNurses);
-        put(PERSONNEL_PHARMA_FILE_NAME, personnelPharmacists);
-        put(PERSONNEL_THERAPISTS_FILE_NAME, personnelPhysiotherapists);
-        put(PERSONNEL_TOTAL_FILE_NAME, personnelTotal);
-        put(PHYSICAL_ACTIVITIES_RATIO_FILE_NAME, physicalActivitiesRatio);
-        put(SMOKERS_RATIO_FILE_NAME, smokersRatio);
-        put(UNMET_DENTAL_RATIO_FILE_NAME, unmetDentalRatio);
-        put(UNMET_MEDICAL_RATIO_FILE_NAME, unmetMedicalRatio);
-        put(WORK_ACCIDENTS_FILE_NAME, workAccidents);
+        put(BODY_MASS_INDEX, bmiRatio);
+        put(DEPRESSIVE_MAJOR_RATIO, depressiveMajorRatio);
+        put(DEPRESSIVE_NORMAL_RATIO, depressiveNormalRatio);
+        put(DEPRESSIVE_OTHER_RATIO, depressiveOtherRatio);
+        put(DEPRESSIVE_RATIO, depressiveRatio);
+        put(HEALTHY_LIFE_RATIO, healthyLifeRatio);
+        put(HEALTHY_LIFE_YEARS, healthyLifeYears);
+        put(HOSPITAL_BEDS, hospitalBeds);
+        put(LIFE_EXPECTANCY, lifeExpectancy);
+        put(LONG_HEALTH_ISSUES_RATIO, longHealthIssuesRatio);
+        put(NON_ALCOHOLIC_RATIO, nonAlcoholicRatio);
+        put(NON_FRUITS_VEGETABLES_RATIO, nonFruitsVegetablesRatio);
+        put(PERSONNEL_DENTISTS, personnelDentists);
+        put(PERSONNEL_DOCTORS, personnelDoctors);
+        put(PERSONNEL_NURSES, personnelNurses);
+        put(PERSONNEL_PHARMACISTS, personnelPharmacists);
+        put(PERSONNEL_THERAPISTS, personnelPhysiotherapists);
+        put(PERSONNEL_TOTAL, personnelTotal);
+        put(PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatio);
+        put(SMOKERS_RATIO, smokersRatio);
+        put(UNMET_DENTAL_RATIO, unmetDentalRatio);
+        put(UNMET_MEDICAL_RATIO, unmetMedicalRatio);
+        put(WORK_ACCIDENTS, workAccidents);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
+
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
+
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, preparedIndicators, HEALTH, Constants.EU28_MEMBERS, seriesType, direction);
+    }
+
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, HEALTH, targetYear, indStatus);
+    }
+
+    // Transform hospital beds "per thousand" inhabitants into "per million" inhabitants
+    private static Map<String, Number> prepareHospitalBedsRatio(Map<String, Number> preparedData) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(bmiRatio, key)
-                        * MathUtils.percentageSafetyDouble(lifeExpectancy, key)
-                        * MathUtils.percentageSafetyDouble(healthyLifeRatio, key)
-                        * MathUtils.percentageSafetyDouble(healthyLifeYears, key)
-                        * MathUtils.percentageSafetyDouble(nonAlcoholicRatio, key)
-                        * MathUtils.percentageSafetyDouble(physicalActivitiesRatio, key)
-
-                        * (MathUtils.percentageSafetyDouble(hospitalBeds, key) / 10) // per million inhabitants
-                        * (MathUtils.percentageSafetyDouble(personnelTotal, key) / 10) // per million inhabitants
-
-                        * MathUtils.percentageSafetyDouble(depressiveRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(longHealthIssuesRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(nonFruitsVegetablesRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(smokersRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(unmetDentalRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(unmetMedicalRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(workAccidents, key, true);
-
-                Number value = Math.log(product);
+                // Transform "per hundred thousand" inhabitants into "per million" inhabitants
+                double value = preparedData.get(key).doubleValue() / 10;
                 consolidatedList.put(key, value);
             }
         }
 
-//        Print.printVariation(StatsUtils.generateVariation(workAccidents, true));
-//        Print.print(consolidatedList, true);
-
         return consolidatedList;
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, HEALTH_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
-    }
-
-    public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, HEALTH_FILE_NAME, targetYear, indStatus);
-    }
-
-    /**
-     * Aggregate the share of population facing with depressive symptoms into a single indicator
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the share of population facing with depressive symptoms into a single indicator
     private static Map<String, Number> prepareTotalDepressiveRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -193,12 +180,8 @@ public class HealthStats {
         return consolidatedList;
     }
 
-    /**
-     * Aggregate the health personnel into a single indicator representing the
-     * total personnel per hundred thousand inhabitants
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the health personnel into a single indicator representing the
+    // total personnel per million inhabitants
     private static Map<String, Number> prepareTotalPersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -218,6 +201,8 @@ public class HealthStats {
                         + valueNurses
                         + valuePharmacists
                         + valuePhysiotherapists;
+                // Transform "per hundred thousand" inhabitants into "per million" inhabitants
+                value = value / 10;
 
                 consolidatedList.put(key, value);
             }

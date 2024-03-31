@@ -1,7 +1,9 @@
 package ro.webdata.qoli.aggr;
 
+import ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams;
 import ro.webdata.qoli.aggr.commons.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.commons.dimensions.QoLIJsonStats;
+import ro.webdata.qoli.aggr.commons.dimensions.QoLIStats;
 import ro.webdata.qoli.aggr.commons.dimensions.education.EducationStats;
 import ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentStats;
 import ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsStats;
@@ -14,11 +16,28 @@ import ro.webdata.qoli.aggr.commons.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static ro.webdata.qoli.aggr.StartupUtils.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams.*;
+import static ro.webdata.qoli.aggr.commons.dimensions.QoLIAggrParams.SAFETY;
 
 public class Main {
+    private static final HashMap<String, Map<String, Number>> dataByCountries = new HashMap<>(){{
+        put(QOLI, QoLIStats.generateStats());
+        put(EDUCATION, EducationStats.generateStats());
+        put(ENVIRONMENT, EnvironmentStats.generateStats());
+        put(GOVERNANCE, GovRightsStats.generateStats());
+        put(HEALTH, HealthStats.generateStats());
+        put(LEISURE_INTERACT, LeisureInteractStats.generateStats());
+        put(LIVING_CONDITIONS, MaterialLivingStats.generateStats());
+        put(MAIN_ACTIVITY, MainActivityStats.generateStats());
+        put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats());
+        put(SAFETY, SafetyStats.generateStats());
+    }};
+
     public static void main(String[] args) {
         List<String> list = Arrays.asList(args);
 
@@ -51,8 +70,8 @@ public class Main {
         if (calculate) {
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
             String direction = getDirection(list);
-            QoLICsvStats.writeDimensions(direction, calculateIndicators);
-            QoLIJsonStats.writeDimensions(calculateIndicators);
+            QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators);
+            QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators);
         }
 
         if (print) {
@@ -61,7 +80,7 @@ public class Main {
 
             if (seriesType != null) {
                 // 4. Print the QoLI and the QoLI dimensions values
-                QoLICsvStats.printDimensions(list, seriesType, direction);
+                QoLICsvStats.printDimensions(list, seriesType, dataByCountries, direction);
 
                 // 5. Print a specific indicator
                 EducationStats.printIndicators(list, seriesType, direction);

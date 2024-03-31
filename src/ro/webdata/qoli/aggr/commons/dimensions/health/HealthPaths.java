@@ -9,9 +9,6 @@ public class HealthPaths {
 
     public static final String BMI_FILE_NAME = "bodyMassIndex";
     public static final String DEPRESSIVE_RATIO_FILE_NAME = "depressiveRatio";
-    public static final String DEPRESSIVE_MAJOR_RATIO_FILE_NAME = "depressiveMajorRatio";
-    public static final String DEPRESSIVE_NORMAL_RATIO_FILE_NAME = "depressiveNormalRatio";
-    public static final String DEPRESSIVE_OTHER_RATIO_FILE_NAME = "depressiveOtherRatio";
     public static final String HEALTH_PERSONNEL_FILE_NAME = "healthPersonnel";
     public static final String HEALTHY_LIFE_RATIO_FILE_NAME = "healthyLifeRatio";
     public static final String HEALTHY_LIFE_YEARS_FILE_NAME = "healthyLifeYears";
@@ -20,12 +17,6 @@ public class HealthPaths {
     public static final String LONG_HEALTH_ISSUES_RATIO_FILE_NAME = "longHealthIssuesRatio";
     public static final String NON_ALCOHOLIC_RATIO_FILE_NAME = "nonAlcoholicRatio";
     public static final String NON_FRUITS_VEGETABLES_RATIO_FILE_NAME = "nonFruitsVegetablesRatio";
-    public static final String PERSONNEL_DENTISTS_FILE_NAME = "personnelDentists";
-    public static final String PERSONNEL_DOCTORS_FILE_NAME = "personnelDoctors";
-    public static final String PERSONNEL_NURSES_FILE_NAME = "personnelNurses";
-    public static final String PERSONNEL_PHARMA_FILE_NAME = "personnelPharma";
-    public static final String PERSONNEL_THERAPISTS_FILE_NAME = "personnelTherapists";
-    public static final String PERSONNEL_TOTAL_FILE_NAME = "personnelTotal";
     public static final String PHYSICAL_ACTIVITIES_RATIO_FILE_NAME = "physicalActivitiesRatio";
     public static final String SMOKERS_RATIO_FILE_NAME = "smokersRatio";
     public static final String UNMET_DENTAL_RATIO_FILE_NAME = "unmetDentalStatus";

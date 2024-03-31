@@ -2,17 +2,19 @@ package ro.webdata.qoli.aggr.commons.dimensions.materialLiving;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static ro.webdata.qoli.aggr.commons.dimensions.materialLiving.MaterialLivingAggrParams.*;
 
 public class MaterialLivingStats {
     private static final Map<String, Number>
@@ -54,86 +56,57 @@ public class MaterialLivingStats {
             underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(MaterialLivingPaths.DWELLING_ISSUES_RATIO_FILE_NAME, Preparation.filterMap(initDwellingIssuesRatio));
-        put(MaterialLivingPaths.END_MEET_INABILITY_D_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityDRatio));
-        put(MaterialLivingPaths.END_MEET_INABILITY_GD_RATIO_FILE_NAME, Preparation.filterMap(initEndMeetInabilityGdRatio));
-        put(MaterialLivingPaths.FINANCIAL_SATISFACTION_FILE_NAME, Preparation.filterMap(initFinancialSatisfactionRatio));
-        put(MaterialLivingPaths.GDP_PER_CAPITA_PPS_RATIO_FILE_NAME, Preparation.filterMap(initGdpPerCapitaPpsRatio));
-        put(MaterialLivingPaths.HIGH_INCOME_RATIO_FILE_NAME, Preparation.filterMap(initHighIncomeRatio));
-        put(MaterialLivingPaths.INCOME_QUINTILE_RATIO_FILE_NAME, Preparation.filterMap(initIncomeQuintileRatio));
-        put(MaterialLivingPaths.LACK_OF_BATHS_RATIO_FILE_NAME, Preparation.filterMap(initLackOfBathsRatio));
-        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, Preparation.filterMap(initLowWorkIntensityRatio));
-        put(MaterialLivingPaths.MATERIAL_DEPRIVATION_RATIO_FILE_NAME, Preparation.filterMap(initMaterialDeprivationRatio));
-        put(MaterialLivingPaths.MEDIAN_INCOME_PPS_FILE_NAME, Preparation.filterMap(initMedianIncomePps));
-        put(MaterialLivingPaths.OVER_OCCUPIED_RATIO_FILE_NAME, Preparation.filterMap(initOverOccupiedRatio));
-        put(MaterialLivingPaths.POVERTY_RISK_RATIO_FILE_NAME, Preparation.filterMap(initPovertyRiskRatio));
-        put(MaterialLivingPaths.UNDER_OCCUPIED_RATIO_FILE_NAME, Preparation.filterMap(initUnderOccupiedRatio));
+        put(DWELLING_ISSUES_RATIO, Preparation.filterMap(initDwellingIssuesRatio));
+        put(END_MEET_INABILITY_D_RATIO, Preparation.filterMap(initEndMeetInabilityDRatio));
+        put(END_MEET_INABILITY_GD_RATIO, Preparation.filterMap(initEndMeetInabilityGdRatio));
+        put(FINANCIAL_SATISFACTION_RATIO, Preparation.filterMap(initFinancialSatisfactionRatio));
+        put(GDP_PER_CAPITA_PPS_RATIO, Preparation.filterMap(initGdpPerCapitaPpsRatio));
+        put(HIGH_INCOME_RATIO, Preparation.filterMap(initHighIncomeRatio));
+        put(INCOME_QUINTILE_RATIO, Preparation.filterMap(initIncomeQuintileRatio));
+        put(LACK_OF_BATHS_RATIO, Preparation.filterMap(initLackOfBathsRatio));
+        put(LOW_WORK_INTENSITY_RATIO, Preparation.filterMap(initLowWorkIntensityRatio));
+        put(MATERIAL_DEPRIVATION_RATIO, Preparation.filterMap(initMaterialDeprivationRatio));
+        put(MEDIAN_INCOME_PPS_RATIO, Preparation.filterMap(initMedianIncomePps));
+        put(OVER_OCCUPIED_RATIO, Preparation.filterMap(initOverOccupiedRatio));
+        put(POVERTY_RISK_RATIO, Preparation.filterMap(initPovertyRiskRatio));
+        put(UNDER_OCCUPIED_RATIO, Preparation.filterMap(initUnderOccupiedRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(MaterialLivingPaths.DWELLING_ISSUES_RATIO_FILE_NAME, dwellingIssuesRatio);
-        put(MaterialLivingPaths.END_MEET_INABILITY_RATIO_FILE_NAME, endMeetInabilityRatio);
-        put(MaterialLivingPaths.END_MEET_INABILITY_D_RATIO_FILE_NAME, endMeetInabilityDRatio);
-        put(MaterialLivingPaths.END_MEET_INABILITY_GD_RATIO_FILE_NAME, endMeetInabilityGdRatio);
-        put(MaterialLivingPaths.FINANCIAL_SATISFACTION_FILE_NAME, financialSatisfactionRatio);
-        put(MaterialLivingPaths.GDP_PER_CAPITA_PPS_RATIO_FILE_NAME, gdpPerCapitaPpsRatio);
-        put(MaterialLivingPaths.HIGH_INCOME_RATIO_FILE_NAME, highIncomeRatio);
-        put(MaterialLivingPaths.INCOME_QUINTILE_RATIO_FILE_NAME, incomeQuintileRatio);
-        put(MaterialLivingPaths.LACK_OF_BATHS_RATIO_FILE_NAME, lackOfBathsRatio);
-        put(MaterialLivingPaths.LOW_WORK_INTENSITY_RATIO_FILE_NAME, lowWorkIntensityRatio);
-        put(MaterialLivingPaths.MATERIAL_DEPRIVATION_RATIO_FILE_NAME, materialDeprivationRatio);
-        put(MaterialLivingPaths.MEDIAN_INCOME_PPS_FILE_NAME, medianIncomePps);
-        put(MaterialLivingPaths.OVER_OCCUPIED_RATIO_FILE_NAME, overOccupiedRatio);
-        put(MaterialLivingPaths.POVERTY_RISK_RATIO_FILE_NAME, povertyRiskRatio);
-        put(MaterialLivingPaths.UNDER_OCCUPIED_RATIO_FILE_NAME, underOccupiedRatio);
+        put(DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
+        put(END_MEET_INABILITY_RATIO, endMeetInabilityRatio);
+        put(END_MEET_INABILITY_D_RATIO, endMeetInabilityDRatio);
+        put(END_MEET_INABILITY_GD_RATIO, endMeetInabilityGdRatio);
+        put(FINANCIAL_SATISFACTION_RATIO, financialSatisfactionRatio);
+        put(GDP_PER_CAPITA_PPS_RATIO, gdpPerCapitaPpsRatio);
+        put(HIGH_INCOME_RATIO, highIncomeRatio);
+        put(INCOME_QUINTILE_RATIO, incomeQuintileRatio);
+        put(LACK_OF_BATHS_RATIO, lackOfBathsRatio);
+        put(LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
+        put(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatio);
+        put(MEDIAN_INCOME_PPS_RATIO, medianIncomePpsRatio);
+        put(OVER_OCCUPIED_RATIO, overOccupiedRatio);
+        put(POVERTY_RISK_RATIO, povertyRiskRatio);
+        put(UNDER_OCCUPIED_RATIO, underOccupiedRatio);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(financialSatisfactionRatio, key)
-                        * MathUtils.percentageSafetyDouble(gdpPerCapitaPpsRatio, key)
-                        * MathUtils.percentageSafetyDouble(highIncomeRatio, key)
-                        * MathUtils.percentageSafetyDouble(medianIncomePpsRatio, key)
-                        * MathUtils.percentageSafetyDouble(underOccupiedRatio, key)
-                        * MathUtils.percentageSafetyDouble(dwellingIssuesRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(endMeetInabilityRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(incomeQuintileRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(lackOfBathsRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(lowWorkIntensityRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(materialDeprivationRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(overOccupiedRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(povertyRiskRatio, key, true);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
-            }
-        }
-
-//        Print.printVariation(StatsUtils.generateVariation(lackOfBathsRatio, true));
-//        Print.print(purchasingRatio, true);
-
-        return consolidatedList;
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, LIVING_CONDITIONS, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, LIVING_CONDITIONS, targetYear, indStatus);
     }
 
-    /**
-     * Get the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Get the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
     private static Map<String, Number> prepareEndMeedInabilityRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 

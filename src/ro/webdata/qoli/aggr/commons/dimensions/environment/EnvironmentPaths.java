@@ -7,13 +7,6 @@ import java.io.File;
 public class EnvironmentPaths {
     public static final String ENVIRONMENT_FILE_NAME = "environment";
 
-    public static final String AIR_POLLUTION_Nh3_RATIO_FILE_NAME = "airPollutionNh3Ratio";
-    public static final String AIR_POLLUTION_CH4_RATIO_FILE_NAME = "airPollutionCh4Ratio";
-    public static final String AIR_POLLUTION_CO_RATIO_FILE_NAME = "airPollutionCoRatio";
-    public static final String AIR_POLLUTION_NMVOC_RATIO_FILE_NAME = "airPollutionNmvocRatio";
-    public static final String AIR_POLLUTION_NOX_RATIO_FILE_NAME = "airPollutionNoxRatio";
-    public static final String AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME = "airPollutionPm2_5Ratio";
-    public static final String AIR_POLLUTION_PM_10_RATIO_FILE_NAME = "airPollutionPm10Ratio";
     public static final String AIR_POLLUTION_RATIO_FILE_NAME = "airPollutionRatio";
     public static final String NOISE_POLLUTION_RATIO_FILE_NAME = "noisePollutionRatio";
     public static final String POLLUTION_RATIO_FILE_NAME = "pollutionRatio";

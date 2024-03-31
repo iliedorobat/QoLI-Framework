@@ -2,17 +2,19 @@ package ro.webdata.qoli.aggr.commons.dimensions.leisureInteract;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static ro.webdata.qoli.aggr.commons.dimensions.leisureInteract.LeisureInteractAggrParams.*;
 
 public class LeisureInteractStats {
     private static final Map<String, Number>
@@ -83,116 +85,85 @@ public class LeisureInteractStats {
             voluntaryActivitiesNpRatio = consolidateVoluntaryActivitiesNpRatio();
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(LeisureInteractPaths.AREA_SATISFACTION_RATIO_FILE_NAME, Preparation.filterMap(initAreaSatisfactionRatio));
-        put(LeisureInteractPaths.ASKING_RATIO_FILE_NAME, Preparation.filterMap(initAskingRatio));
-        put(LeisureInteractPaths.DISCUSSION_RATIO_FILE_NAME, Preparation.filterMap(initDiscussionRatio));
-        put(LeisureInteractPaths.FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initFormalVoluntaryRatio));
-        put(LeisureInteractPaths.FREQUENCY_CONTACT_FAM_RATIO_FILE_NAME, Preparation.filterMap(initFrequencyContactFamRatio));
-        put(LeisureInteractPaths.FREQUENCY_CONTACT_FRD_RATIO_FILE_NAME, Preparation.filterMap(initFrequencyContactFrdRatio));
-        put(LeisureInteractPaths.GETTING_TOGETHER_FAM_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFamRatio));
-        put(LeisureInteractPaths.GETTING_TOGETHER_FRD_RATIO_FILE_NAME, Preparation.filterMap(initGettingTogetherFrdRatio));
-        put(LeisureInteractPaths.INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initInformalVoluntaryRatio));
-        put(LeisureInteractPaths.RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, Preparation.filterMap(initRelSatisfactionRatio));
-        put(LeisureInteractPaths.SOCIAL_ACTIVITIES_RATIO_FILE_NAME, Preparation.filterMap(initSocialActivitiesRatio));
-        put(LeisureInteractPaths.TIME_SPENT_SATISFACTION_FILE_NAME, Preparation.filterMap(initTimeSatisfactionRatio));
+        put(AREA_SATISFACTION_RATIO, Preparation.filterMap(initAreaSatisfactionRatio));
+        put(ASKING_RATIO, Preparation.filterMap(initAskingRatio));
+        put(DISCUSSION_RATIO, Preparation.filterMap(initDiscussionRatio));
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, Preparation.filterMap(initFormalVoluntaryRatio));
+        put(FREQUENCY_CONTACT_FAM_RATIO, Preparation.filterMap(initFrequencyContactFamRatio));
+        put(FREQUENCY_CONTACT_FRD_RATIO, Preparation.filterMap(initFrequencyContactFrdRatio));
+        put(GETTING_TOGETHER_FAM_RATIO, Preparation.filterMap(initGettingTogetherFamRatio));
+        put(GETTING_TOGETHER_FRD_RATIO, Preparation.filterMap(initGettingTogetherFrdRatio));
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, Preparation.filterMap(initInformalVoluntaryRatio));
+        put(RELATIONSHIPS_SATISFACTION_RATIO, Preparation.filterMap(initRelSatisfactionRatio));
+        put(SOCIAL_ACTIVITIES_RATIO, Preparation.filterMap(initSocialActivitiesRatio));
+        put(TIME_SPENT_SATISFACTION, Preparation.filterMap(initTimeSatisfactionRatio));
 
-        put(LeisureInteractPaths.NP_FIN_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCinRatio));
-        put(LeisureInteractPaths.NP_FIN_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinCultRatio));
-        put(LeisureInteractPaths.NP_FIN_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpFinLiveRatio));
-        put(LeisureInteractPaths.NP_FIN_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpFinSportRatio));
+        put(NP_FIN_CINEMA_RATIO, Preparation.filterMap(initNpFinCinRatio));
+        put(NP_FIN_CULTURE_RATIO, Preparation.filterMap(initNpFinCultRatio));
+        put(NP_FIN_LIVE_RATIO, Preparation.filterMap(initNpFinLiveRatio));
+        put(NP_FIN_SPORT_RATIO, Preparation.filterMap(initNpFinSportRatio));
 
-        put(LeisureInteractPaths.NP_NNB_CINEMA_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCinRatio));
-        put(LeisureInteractPaths.NP_NNB_CULTURE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbCultRatio));
-        put(LeisureInteractPaths.NP_NNB_LIVE_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbLiveRatio));
-        put(LeisureInteractPaths.NP_NNB_SPORT_RATIO_FILE_NAME, Preparation.filterMap(initNpNnbSportRatio));
+        put(NP_NNB_CINEMA_RATIO, Preparation.filterMap(initNpNnbCinRatio));
+        put(NP_NNB_CULTURE_RATIO, Preparation.filterMap(initNpNnbCultRatio));
+        put(NP_NNB_LIVE_RATIO, Preparation.filterMap(initNpNnbLiveRatio));
+        put(NP_NNB_SPORT_RATIO, Preparation.filterMap(initNpNnbSportRatio));
 
-        put(LeisureInteractPaths.NP_NO_INTEREST_FORMAL_RATIO_FILE_NAME, Preparation.filterMap(initNpNoInterestFormalRatio));
-        put(LeisureInteractPaths.NP_NO_INTEREST_INFORMAL_RATIO_FILE_NAME, Preparation.filterMap(initNpNoInterestInformalRatio));
-        put(LeisureInteractPaths.NP_TIME_FORMAL_RATIO_FILE_NAME, Preparation.filterMap(initNpTimeFormalRatio));
-        put(LeisureInteractPaths.NP_TIME_INFORMAL_RATIO_FILE_NAME, Preparation.filterMap(initNpTimeInformalRatio));
+        put(NP_NO_INTEREST_FORMAL_RATIO, Preparation.filterMap(initNpNoInterestFormalRatio));
+        put(NP_NO_INTEREST_INFORMAL_RATIO, Preparation.filterMap(initNpNoInterestInformalRatio));
+        put(NP_TIME_FORMAL_RATIO, Preparation.filterMap(initNpTimeFormalRatio));
+        put(NP_TIME_INFORMAL_RATIO, Preparation.filterMap(initNpTimeInformalRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(LeisureInteractPaths.AREA_SATISFACTION_RATIO_FILE_NAME, areaSatisfactionRatio);
-        put(LeisureInteractPaths.ASKING_RATIO_FILE_NAME, askingRatio);
-        put(LeisureInteractPaths.DISCUSSION_RATIO_FILE_NAME, discussionRatio);
-        put(LeisureInteractPaths.FORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, formalVoluntaryRatio);
-        put(LeisureInteractPaths.FREQUENCY_CONTACT_FAM_RATIO_FILE_NAME, frequencyContactFamRatio);
-        put(LeisureInteractPaths.FREQUENCY_CONTACT_FRD_RATIO_FILE_NAME, frequencyContactFrdRatio);
-        put(LeisureInteractPaths.GETTING_TOGETHER_FAM_RATIO_FILE_NAME, gettingTogetherFamRatio);
-        put(LeisureInteractPaths.GETTING_TOGETHER_FRD_RATIO_FILE_NAME, gettingTogetherFrdRatio);
-        put(LeisureInteractPaths.INFORMAL_VOLUNTARY_ACTIVITIES_RATIO_FILE_NAME, informalVoluntaryRatio);
-        put(LeisureInteractPaths.RELATIONSHIPS_SATISFACTION_RATIO_FILE_NAME, relSatisfactionRatio);
-        put(LeisureInteractPaths.SOCIAL_ACTIVITIES_RATIO_FILE_NAME, socialActivitiesRatio);
-        put(LeisureInteractPaths.TIME_SPENT_SATISFACTION_FILE_NAME, timeSatisfactionRatio);
+        put(AREA_SATISFACTION_RATIO, areaSatisfactionRatio);
+        put(ASKING_RATIO, askingRatio);
+        put(DISCUSSION_RATIO, discussionRatio);
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, formalVoluntaryRatio);
+        put(FREQUENCY_CONTACT_FAM_RATIO, frequencyContactFamRatio);
+        put(FREQUENCY_CONTACT_FRD_RATIO, frequencyContactFrdRatio);
+        put(GETTING_TOGETHER_FAM_RATIO, gettingTogetherFamRatio);
+        put(GETTING_TOGETHER_FRD_RATIO, gettingTogetherFrdRatio);
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, informalVoluntaryRatio);
+        put(RELATIONSHIPS_SATISFACTION_RATIO, relSatisfactionRatio);
+        put(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
+        put(TIME_SPENT_SATISFACTION, timeSatisfactionRatio);
 
-        put(LeisureInteractPaths.SOCIAL_ACTIVITIES_NP_RATIO_FILE_NAME, socialActivitiesNpRatio);
-        put(LeisureInteractPaths.VOLUNTARY_ACTIVITIES_NP_RATIO_FILE_NAME, voluntaryActivitiesNpRatio);
+        put(SOCIAL_ACTIVITIES_NP_RATIO, socialActivitiesNpRatio);
+        put(VOLUNTARY_ACTIVITIES_NP_RATIO, voluntaryActivitiesNpRatio);
 
-        put(LeisureInteractPaths.NP_FIN_CINEMA_RATIO_FILE_NAME, npFinCinRatio);
-        put(LeisureInteractPaths.NP_FIN_CULTURE_RATIO_FILE_NAME, npFinCultRatio);
-        put(LeisureInteractPaths.NP_FIN_LIVE_RATIO_FILE_NAME, npFinLiveRatio);
-        put(LeisureInteractPaths.NP_FIN_SPORT_RATIO_FILE_NAME, npFinSportRatio);
+        put(NP_FIN_CINEMA_RATIO, npFinCinRatio);
+        put(NP_FIN_CULTURE_RATIO, npFinCultRatio);
+        put(NP_FIN_LIVE_RATIO, npFinLiveRatio);
+        put(NP_FIN_SPORT_RATIO, npFinSportRatio);
 
-        put(LeisureInteractPaths.NP_NNB_CINEMA_RATIO_FILE_NAME, npNnbCinRatio);
-        put(LeisureInteractPaths.NP_NNB_CULTURE_RATIO_FILE_NAME, npNnbCultRatio);
-        put(LeisureInteractPaths.NP_NNB_LIVE_RATIO_FILE_NAME, npNnbLiveRatio);
-        put(LeisureInteractPaths.NP_NNB_SPORT_RATIO_FILE_NAME, npNnbSportRatio);
+        put(NP_NNB_CINEMA_RATIO, npNnbCinRatio);
+        put(NP_NNB_CULTURE_RATIO, npNnbCultRatio);
+        put(NP_NNB_LIVE_RATIO, npNnbLiveRatio);
+        put(NP_NNB_SPORT_RATIO, npNnbSportRatio);
 
-        put(LeisureInteractPaths.NP_NO_INTEREST_FORMAL_RATIO_FILE_NAME, npNoInterestFormalRatio);
-        put(LeisureInteractPaths.NP_NO_INTEREST_INFORMAL_RATIO_FILE_NAME, npNoInterestInformalRatio);
-        put(LeisureInteractPaths.NP_TIME_FORMAL_RATIO_FILE_NAME, npTimeFormalRatio);
-        put(LeisureInteractPaths.NP_TIME_INFORMAL_RATIO_FILE_NAME, npTimeInformalRatio);
+        put(NP_NO_INTEREST_FORMAL_RATIO, npNoInterestFormalRatio);
+        put(NP_NO_INTEREST_INFORMAL_RATIO, npNoInterestInformalRatio);
+        put(NP_TIME_FORMAL_RATIO, npTimeFormalRatio);
+        put(NP_TIME_INFORMAL_RATIO, npTimeInformalRatio);
     }};
 
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(areaSatisfactionRatio, key)
-                        * MathUtils.percentageSafetyDouble(askingRatio, key)
-                        * MathUtils.percentageSafetyDouble(discussionRatio, key)
-                        * MathUtils.percentageSafetyDouble(frequencyContactFamRatio, key)
-                        * MathUtils.percentageSafetyDouble(frequencyContactFrdRatio, key)
-                        * MathUtils.percentageSafetyDouble(gettingTogetherFamRatio, key)
-                        * MathUtils.percentageSafetyDouble(gettingTogetherFrdRatio, key)
-                        * MathUtils.percentageSafetyDouble(formalVoluntaryRatio, key)
-                        * MathUtils.percentageSafetyDouble(informalVoluntaryRatio, key)
-                        * MathUtils.percentageSafetyDouble(relSatisfactionRatio, key)
-                        * MathUtils.percentageSafetyDouble(socialActivitiesRatio, key)
-                        * MathUtils.percentageSafetyDouble(timeSatisfactionRatio, key)
-                        * MathUtils.percentageSafetyDouble(socialActivitiesNpRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(voluntaryActivitiesNpRatio, key, true);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
-            }
-        }
-
-//        Print.printVariation(StatsUtils.generateVariation(askingRatio, true));
-//        Print.print(askingRatio, true);
-
-        return consolidatedList;
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, LEISURE_INTERACT, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, LEISURE_INTERACT, targetYear, indStatus);
     }
 
-    /**
-     * Aggregate the "Non Participation Ratios" into a single ratio
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the "Non Participation Ratios" into a single ratio
     private static Map<String, Number> consolidateSocialActivitiesNpRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -219,11 +190,7 @@ public class LeisureInteractStats {
         return consolidatedList;
     }
 
-    /**
-     * Aggregate the "Non Participation Ratios" into a single ratio
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the "Non Participation Ratios" into a single ratio
     private static Map<String, Number> consolidateVoluntaryActivitiesNpRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 

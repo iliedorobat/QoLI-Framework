@@ -2,18 +2,24 @@ package ro.webdata.qoli.aggr.commons.dimensions.gov;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
 import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import static ro.webdata.qoli.aggr.commons.dimensions.gov.GovRightsAggrParams.*;
 
 public class GovRightsStats {
     // Intermediate data which will be grouped into a single indicator
@@ -50,84 +56,76 @@ public class GovRightsStats {
             turnoutPresidential = Preparation.prepareData(initTurnoutPresidential),
 
             citizenship = Preparation.prepareData(initCitizenshipRatio),
-            genderEmpGap = Preparation.prepareData(initGenderEmpGap),
-            genderPayGap = Preparation.prepareData(initGenderPayGap),
+            genderEmpGap = prepareGenderGap(
+                    Preparation.prepareData(initGenderEmpGap)
+            ),
+            genderPayGap = prepareGenderGap(
+                    Preparation.prepareData(initGenderPayGap)
+            ),
             populationTrustRatio = preparePopulationTrust(),
             voterTurnout = prepareVoterTurnout();
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(GovRightsPaths.CITIZENSHIP_RATIO_FILE_NAME, Preparation.filterMap(initCitizenshipRatio));
-        put(GovRightsPaths.GENDER_EMP_GAP_FILE_NAME, Preparation.filterMap(initGenderEmpGap));
-        put(GovRightsPaths.GENDER_PAY_GAP_FILE_NAME, Preparation.filterMap(initGenderPayGap));
-        put(GovRightsPaths.POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationLegtstTrust));
-        put(GovRightsPaths.POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationOthersTrust));
-        put(GovRightsPaths.POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlctstTrust));
-        put(GovRightsPaths.POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, Preparation.filterMap(initPopulationPlttstTrust));
-        put(GovRightsPaths.VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, Preparation.filterMap(initTurnoutEuParliament));
-        put(GovRightsPaths.VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, Preparation.filterMap(initTurnoutParliamentary));
-        put(GovRightsPaths.VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, Preparation.filterMap(initTurnoutPresidential));
+        put(CITIZENSHIP_RATIO, Preparation.filterMap(initCitizenshipRatio));
+        put(GENDER_EMP_GAP, Preparation.filterMap(initGenderEmpGap));
+        put(GENDER_PAY_GAP, Preparation.filterMap(initGenderPayGap));
+        put(POPULATION_TRUST_LEGTST, Preparation.filterMap(initPopulationLegtstTrust));
+        put(POPULATION_TRUST_OTHERS, Preparation.filterMap(initPopulationOthersTrust));
+        put(POPULATION_TRUST_PLCTST, Preparation.filterMap(initPopulationPlctstTrust));
+        put(POPULATION_TRUST_PLTTST, Preparation.filterMap(initPopulationPlttstTrust));
+        put(VOTER_TURNOUT_EU_PARLIAMENT, Preparation.filterMap(initTurnoutEuParliament));
+        put(VOTER_TURNOUT_PARLIAMENTARY, Preparation.filterMap(initTurnoutParliamentary));
+        put(VOTER_TURNOUT_PRESIDENTIAL, Preparation.filterMap(initTurnoutPresidential));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(GovRightsPaths.CITIZENSHIP_RATIO_FILE_NAME, citizenship);
-        put(GovRightsPaths.GENDER_EMP_GAP_FILE_NAME, genderEmpGap);
-        put(GovRightsPaths.GENDER_PAY_GAP_FILE_NAME, genderPayGap);
-        put(GovRightsPaths.POPULATION_LEGTST_TRUST_RATIO_FILE_NAME, populationLegtstTrustRatio);
-        put(GovRightsPaths.POPULATION_OTHERS_TRUST_RATIO_FILE_NAME, populationOthersTrustRatio);
-        put(GovRightsPaths.POPULATION_PLCTST_TRUST_RATIO_FILE_NAME, populationPlctstTrustRatio);
-        put(GovRightsPaths.POPULATION_PLTTST_TRUST_RATIO_FILE_NAME, populationPlttstTrustRatio);
-        put(GovRightsPaths.POPULATION_TRUST_FILE_NAME, populationTrustRatio);
-        put(GovRightsPaths.VOTER_TURNOUT_EU_PARLIAMENT_FILE_NAME, turnoutEuParliament);
-        put(GovRightsPaths.VOTER_TURNOUT_PARLIAMENTARY_FILE_NAME, turnoutParliamentary);
-        put(GovRightsPaths.VOTER_TURNOUT_PRESIDENTIAL_FILE_NAME, turnoutPresidential);
-        put(GovRightsPaths.VOTER_TURNOUT_FILE_NAME, voterTurnout);
+        put(CITIZENSHIP_RATIO, citizenship);
+        put(GENDER_EMP_GAP, genderEmpGap);
+        put(GENDER_PAY_GAP, genderPayGap);
+        put(POPULATION_TRUST_LEGTST, populationLegtstTrustRatio);
+        put(POPULATION_TRUST_OTHERS, populationOthersTrustRatio);
+        put(POPULATION_TRUST_PLCTST, populationPlctstTrustRatio);
+        put(POPULATION_TRUST_PLTTST, populationPlttstTrustRatio);
+        put(POPULATION_TRUST, populationTrustRatio);
+        put(VOTER_TURNOUT_EU_PARLIAMENT, turnoutEuParliament);
+        put(VOTER_TURNOUT_PARLIAMENTARY, turnoutParliamentary);
+        put(VOTER_TURNOUT_PRESIDENTIAL, turnoutPresidential);
+        put(VOTER_TURNOUT, voterTurnout);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
+
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
+
+    public static void printIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, preparedIndicators, GOVERNANCE, Constants.EU28_MEMBERS, seriesType, direction);
+    }
+
+    public static void printDataAvailability(int targetYear, boolean indStatus) {
+        Print.printDataAvailability(rawIndicators, GOVERNANCE, targetYear, indStatus);
+    }
+
+    // Reverse the value of the gender emp/pay gap
+    private static Map<String, Number> prepareGenderGap(Map<String, Number> preparedData) {
+        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double
-                        reversedGenderEmpGap = MathUtils.reverseGenderGap(genderEmpGap, key),
-                        reversedGenderPayGap = MathUtils.reverseGenderGap(genderPayGap, key),
-                        // Transform the 1-10 notes into 10-100 notes
-                        trust = populationTrustRatio.get(key).doubleValue() * 10;
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(citizenship, key)
-                        * MathUtils.percentageSafetyDouble(reversedGenderEmpGap)
-                        * MathUtils.percentageSafetyDouble(reversedGenderPayGap)
-                        * MathUtils.percentageSafetyDouble(trust)
-                        * MathUtils.percentageSafetyDouble(voterTurnout, key);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
+                double value = MathUtils.reverseGenderGap(preparedData, key);
+                preparedMap.put(key, value);
             }
         }
 
-
-//        Print.printVariation(StatsUtils.generateVariation(populationTrustRatio, true));
-//        Print.print(populationTrustRatio, true);
-
-        return consolidatedList;
+        return preparedMap;
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, GovRightsPaths.GOVERNANCE_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
-    }
-
-    public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, GovRightsPaths.GOVERNANCE_FILE_NAME, targetYear, indStatus);
-    }
-
-    /**
-     * Aggregate the population trust ratios into a single index
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the population trust ratios into a single index
     private static Map<String, Number> preparePopulationTrust() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
@@ -147,6 +145,9 @@ public class GovRightsStats {
                         * valuePlttst;
 
                 Number value = Math.pow(product, 1.0/4);
+                // Transform the 1-10 notes into 10-100 notes
+                value = value.doubleValue() * 10;
+
                 preparedMap.put(key, value);
             }
         }
@@ -154,11 +155,7 @@ public class GovRightsStats {
         return preparedMap;
     }
 
-    /**
-     * Aggregate the voter turnout for different type of elections into a single index
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the voter turnout for different type of elections into a single index
     private static Map<String, Number> prepareVoterTurnout() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
@@ -183,11 +180,7 @@ public class GovRightsStats {
         return preparedMap;
     }
 
-    /**
-     * Convert the voter turnout data from csv into Java Maps
-     *
-     * @return An ordered map with prepared data
-     */
+    // Convert the voter turnout data from csv into Java Map
     private static Map<String, Map<String, Number>> voterTurnoutCsvToMap() {
         Map<String, Map<String, Number>> preparedMap = new HashMap<>();
         Map<String, Number> euParliamentaryMap = new TreeMap<>(new MapOrder());

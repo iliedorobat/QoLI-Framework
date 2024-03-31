@@ -2,17 +2,19 @@ package ro.webdata.qoli.aggr.commons.dimensions.environment;
 
 import ro.webdata.qoli.aggr.commons.MapOrder;
 import ro.webdata.qoli.aggr.commons.Print;
+import ro.webdata.qoli.aggr.commons.constants.Constants;
 import ro.webdata.qoli.aggr.commons.constants.EnvConst;
 import ro.webdata.qoli.aggr.commons.utils.MapUtils;
-import ro.webdata.qoli.aggr.commons.utils.MathUtils;
+import ro.webdata.qoli.aggr.commons.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.commons.constants.Constants;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static ro.webdata.qoli.aggr.commons.dimensions.environment.EnvironmentAggrParams.*;
 
 public class EnvironmentStats {
     private static final Map<String, Number>
@@ -45,69 +47,49 @@ public class EnvironmentStats {
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(EnvironmentPaths.AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNh3Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCh4Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionCoRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNmvocRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionNoxRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm2_5Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(initAirPollutionPm10Ratio));
-        put(EnvironmentPaths.NOISE_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initNoisePollutionRatio));
-        put(EnvironmentPaths.POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(initPollutionRatio));
-        put(EnvironmentPaths.WATER_SUPPLY_RATIO_FILE_NAME, Preparation.filterMap(initWaterSupplyRatio));
+        put(AIR_POLLUTION_NH_3_RATIO, Preparation.filterMap(initAirPollutionNh3Ratio));
+        put(AIR_POLLUTION_CH_4_RATIO, Preparation.filterMap(initAirPollutionCh4Ratio));
+        put(AIR_POLLUTION_CO_RATIO, Preparation.filterMap(initAirPollutionCoRatio));
+        put(AIR_POLLUTION_NMVOC_RATIO, Preparation.filterMap(initAirPollutionNmvocRatio));
+        put(AIR_POLLUTION_NOX_RATIO, Preparation.filterMap(initAirPollutionNoxRatio));
+        put(AIR_POLLUTION_PM_2_5_RATIO, Preparation.filterMap(initAirPollutionPm2_5Ratio));
+        put(AIR_POLLUTION_PM_10_RATIO, Preparation.filterMap(initAirPollutionPm10Ratio));
+        put(NOISE_POLLUTION_RATIO, Preparation.filterMap(initNoisePollutionRatio));
+        put(POLLUTION_RATIO, Preparation.filterMap(initPollutionRatio));
+        put(WATER_SUPPLY_RATIO, Preparation.filterMap(initWaterSupplyRatio));
     }};
 
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        put(EnvironmentPaths.AIR_POLLUTION_Nh3_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNh3Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_CH4_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCh4Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_CO_RATIO_FILE_NAME, Preparation.filterMap(airPollutionCoRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_NMVOC_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNmvocRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_NOX_RATIO_FILE_NAME, Preparation.filterMap(airPollutionNoxRatio));
-        put(EnvironmentPaths.AIR_POLLUTION_PM_2_5_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm2_5Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_PM_10_RATIO_FILE_NAME, Preparation.filterMap(airPollutionPm10Ratio));
-        put(EnvironmentPaths.AIR_POLLUTION_RATIO_FILE_NAME, Preparation.filterMap(airPollutionRatio));
-        put(EnvironmentPaths.NOISE_POLLUTION_RATIO_FILE_NAME, noisePollutionRatio);
-        put(EnvironmentPaths.POLLUTION_RATIO_FILE_NAME, pollutionRatio);
-        put(EnvironmentPaths.WATER_SUPPLY_RATIO_FILE_NAME, waterSupplyRatio);
+        put(AIR_POLLUTION_NH_3_RATIO, airPollutionNh3Ratio);
+        put(AIR_POLLUTION_CH_4_RATIO, airPollutionCh4Ratio);
+        put(AIR_POLLUTION_CO_RATIO, airPollutionCoRatio);
+        put(AIR_POLLUTION_NMVOC_RATIO, airPollutionNmvocRatio);
+        put(AIR_POLLUTION_NOX_RATIO, airPollutionNoxRatio);
+        put(AIR_POLLUTION_PM_2_5_RATIO, airPollutionPm2_5Ratio);
+        put(AIR_POLLUTION_PM_10_RATIO, airPollutionPm10Ratio);
+        put(AIR_POLLUTION_RATIO, airPollutionRatio);
+        put(NOISE_POLLUTION_RATIO, noisePollutionRatio);
+        put(POLLUTION_RATIO, pollutionRatio);
+        put(WATER_SUPPLY_RATIO, waterSupplyRatio);
     }};
 
-    public static Map<String, Number> generateDimensionList() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+    public static Map<String, Number> generateStats() {
+        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    }
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double product = 1
-                        * MathUtils.percentageSafetyDouble(waterSupplyRatio, key)
-                        * MathUtils.percentageSafetyDouble(airPollutionRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(noisePollutionRatio, key, true)
-                        * MathUtils.percentageSafetyDouble(pollutionRatio, key, true);
-
-                Number value = Math.log(product);
-                consolidatedList.put(key, value);
-            }
-        }
-
-//        Print.printVariation(StatsUtils.generateVariation(initAirPollutionRatio, true));
-//        Print.print(initAirPollutionRatio, true);
-
-        return consolidatedList;
+    public static Map<String, Number> generateStats(List<String> aggrList) {
+        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, EnvironmentPaths.ENVIRONMENT_FILE_NAME, Constants.EU28_MEMBERS, seriesType, direction);
+        Print.printChartData(args, preparedIndicators, ENVIRONMENT, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
-        Print.printDataAvailability(rawIndicators, EnvironmentPaths.ENVIRONMENT_FILE_NAME, targetYear, indStatus);
+        Print.printDataAvailability(rawIndicators, ENVIRONMENT, targetYear, indStatus);
     }
 
-    /**
-     * Aggregate the "Pollution Ratios" into a single ratio
-     *
-     * @return An ordered map with aggregated data
-     */
+    // Aggregate the "Pollution Ratios" into a single ratio
     private static Map<String, Number> prepareAirPollutionRatio() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
