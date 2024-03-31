@@ -86,7 +86,7 @@ public class StatsUtils {
                     }
                 }
 
-                Number value = Math.log(product);
+                Number value = MathUtils.getLogValue(product);
                 consolidatedList.put(key, value);
             }
         }

@@ -11,6 +11,19 @@ public class MathUtils {
     private static final int HUNDRED_THOUSAND_VALUE = 100000;
 
     /**
+     * Determine the result of applying of Math.log against a product of indicators.<br/>
+     * Return 1 if the result of the product is 1, otherwise calculate the Math.log of the product.
+     *
+     * @param product The value of the product of a series of indicators
+     * @return <b>double</b>
+     */
+    public static double getLogValue(double product) {
+        if (product == 1)
+            return product;
+        return Math.log(product);
+    }
+
+    /**
      * Returns the value of a specific square
      *
      * @param value The value of square extraction

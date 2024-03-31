@@ -13,6 +13,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
 import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.utils.MathUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class QoLIStats {
                         * materialLiving
                         * overallExperience
                         * safety;
-                Number value = Math.log(product);
+                Number value = MathUtils.getLogValue(product);
                 consolidatedList.put(key, value);
             }
         }

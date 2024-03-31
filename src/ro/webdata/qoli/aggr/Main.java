@@ -1,5 +1,6 @@
 package ro.webdata.qoli.aggr;
 
+import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
@@ -12,31 +13,16 @@ import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityStats;
 import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
 import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
-import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ro.webdata.qoli.aggr.StartupUtils.*;
+import static ro.webdata.qoli.aggr.ParamsUtils.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
-import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.SAFETY;
 
 public class Main {
-    private static final HashMap<String, Map<String, Number>> dataByCountries = new HashMap<>(){{
-        put(QOLI, QoLIStats.generateStats());
-        put(EDUCATION, EducationStats.generateStats());
-        put(ENVIRONMENT, EnvironmentStats.generateStats());
-        put(GOVERNANCE, GovRightsStats.generateStats());
-        put(HEALTH, HealthStats.generateStats());
-        put(LEISURE_INTERACT, LeisureInteractStats.generateStats());
-        put(LIVING_CONDITIONS, MaterialLivingStats.generateStats());
-        put(MAIN_ACTIVITY, MainActivityStats.generateStats());
-        put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats());
-        put(SAFETY, SafetyStats.generateStats());
-    }};
-
     public static void main(String[] args) {
         List<String> list = Arrays.asList(args);
 
@@ -67,8 +53,10 @@ public class Main {
         }
 
         if (calculate) {
-            // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
+            HashMap<String, Map<String, Number>> dataByCountries = generateData(aggr);
             String direction = getDirection(list);
+
+            // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
             QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators);
             QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators);
         }
@@ -78,6 +66,8 @@ public class Main {
             String direction = getDirection(list);
 
             if (seriesType != null) {
+                HashMap<String, Map<String, Number>> dataByCountries = generateData(aggr);
+
                 // 4. Print the QoLI and the QoLI dimensions values
                 QoLICsvStats.printDimensions(list, seriesType, dataByCountries, direction);
 
@@ -93,5 +83,20 @@ public class Main {
                 SafetyStats.printIndicators(list, seriesType, direction);
             }
         }
+    }
+
+    private static HashMap<String, Map<String, Number>> generateData(List<String> aggr) {
+        return new HashMap<>(){{
+            put(QOLI, QoLIStats.generateStats(aggr));
+            put(EDUCATION, EducationStats.generateStats(aggr));
+            put(ENVIRONMENT, EnvironmentStats.generateStats(aggr));
+            put(GOVERNANCE, GovRightsStats.generateStats(aggr));
+            put(HEALTH, HealthStats.generateStats(aggr));
+            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggr));
+            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggr));
+            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggr));
+            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggr));
+            put(SAFETY, SafetyStats.generateStats(aggr));
+        }};
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StartupUtils {
+public class ParamsUtils {
     public static boolean contains(List<String> pairs, String comparator) {
         for (String pair : pairs) {
             String[] values = pair.split("=");
