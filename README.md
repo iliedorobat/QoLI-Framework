@@ -19,31 +19,31 @@ export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/po
 ```
 4. Compile the project:
 ```bash
-javac -d ./out/production/QoLI-Framework src/app/java/BuildProject.java
-java app/java/BuildProject
+javac -d ./out/production/QoLI-Framework src/ro/webdata/qoli/aggr/BuildProject.java
+java ro/webdata/qoli/aggr/BuildProject
 ```
 5. Collect the datasets:
 ```bash
-java app/java/Main --collect
+java ro/webdata/qoli/aggr/Main --collect
 ```
 6. Aggregate the datasets:
    1. Calculate the QoLI dimensions:
     ```bash
-    java app/java/Main --calculate --calculateIndicators --direction=COLUMN
+    java ro/webdata/qoli/aggr/Main --calculate --calculateIndicators --direction=COLUMN
     ```
     2. Calculate the QoLI based on a specific set of indicators:
     ```bash
-    java app/java/Main --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    java ro/webdata/qoli/aggr/Main --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
     ```
 7. Print the QoLI and the QoLI dimensions:
 ```bash
-java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
 ```
 7. Print specific indicators:
 ```bash
-java app/java/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-java app/java/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 ```
 * List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/FilePathConst.java (constants suffixed by "_DIR")
 * List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java
