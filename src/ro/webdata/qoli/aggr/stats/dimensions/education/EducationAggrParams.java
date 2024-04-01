@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.education;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EducationAggrParams {
@@ -18,16 +16,16 @@ public class EducationAggrParams {
     public static final String TRAINING_LAST_MONTH_RATIO = "trainingLastMonthRatio";
     public static final String TRAINING_LAST_YEAR_RATIO = "trainingLastYearRatio";
     
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(DIGITAL_SKILLS_RATIO);
-        add(DROPOUT_RATIO);
-        add(EARLY_EDU_RATIO);
-        add(EDUCATION_RATIO);
-        add(INACTIVE_YOUNG_RATIO);
-        add(NO_KNOWN_FOREIGN_LANG_RATIO);
-        add(PUPILS_RATIO);
-        add(TRAINING_LAST_MONTH_RATIO);
-        add(TRAINING_LAST_YEAR_RATIO);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(DIGITAL_SKILLS_RATIO, "Digital Skills Ratio");
+        put(DROPOUT_RATIO, "Dropout Ratio");
+        put(EARLY_EDU_RATIO, "Early Education Ratio");
+        put(EDUCATION_RATIO, "Education Ratio");
+        put(INACTIVE_YOUNG_RATIO, "Inactive Young People Ratio");
+        put(NO_KNOWN_FOREIGN_LANG_RATIO, "Zero Foreign Language Ratio");
+        put(PUPILS_RATIO, "Pupils Ratio");
+        put(TRAINING_LAST_MONTH_RATIO, "Training Ratio (last 4 weeks)");
+        put(TRAINING_LAST_YEAR_RATIO, "Training Ratio (last year)");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

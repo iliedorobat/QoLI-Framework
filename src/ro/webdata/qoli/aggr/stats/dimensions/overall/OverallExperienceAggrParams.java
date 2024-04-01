@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.overall;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class OverallExperienceAggrParams {
@@ -13,9 +11,9 @@ public class OverallExperienceAggrParams {
     public static final String HAPPINESS_RATIO = "happinessRatio";
     public static final String HIGH_SATISFACTION_RATIO = "highSatisfactionRatio";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(HAPPINESS_RATIO);
-        add(HIGH_SATISFACTION_RATIO);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(HAPPINESS_RATIO, "Happiness Ratio");
+        put(HIGH_SATISFACTION_RATIO, "High Satisfaction Ratio");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

@@ -21,7 +21,7 @@ import java.util.TreeMap;
 
 public class QoLIStats {
     public static Map<String, Number> generateStats() {
-        return generateStats(QoLIAggrParams.ALLOWED_PARAMS);
+        return generateStats(List.copyOf(QoLIAggrParams.ALLOWED_PARAMS.keySet()));
     }
 
     public static Map<String, Number> generateStats(List<String> aggrList) {

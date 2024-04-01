@@ -7,7 +7,7 @@ public class QoLIPaths {
 
     /**
      * Get the directory name of the input series type
-     * @param seriesType The series type
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @return The directory name of the input series type
      */
     public static String getSeriesDirectory(String seriesType) {

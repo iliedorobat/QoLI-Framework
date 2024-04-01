@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.health;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class HealthAggrParams {
@@ -32,32 +30,32 @@ public class HealthAggrParams {
     public static final String UNMET_MEDICAL_RATIO = "unmetMedicalStatus";
     public static final String WORK_ACCIDENTS = "workAccidents";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(BODY_MASS_INDEX);
-        add(DEPRESSIVE_RATIO);
-        add(LIFE_EXPECTANCY);
-        add(LONG_HEALTH_ISSUES_RATIO);
-        add(HEALTHY_LIFE_RATIO);
-        add(HEALTHY_LIFE_YEARS);
-        add(HOSPITAL_BEDS);
-        add(NON_ALCOHOLIC_RATIO);
-        add(NON_FRUITS_VEGETABLES_RATIO);
-        add(PERSONNEL_TOTAL);
-        add(PHYSICAL_ACTIVITIES_RATIO);
-        add(SMOKERS_RATIO);
-        add(UNMET_DENTAL_RATIO);
-        add(UNMET_MEDICAL_RATIO);
-        add(WORK_ACCIDENTS);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(BODY_MASS_INDEX, "Body Mass Index");
+        put(DEPRESSIVE_RATIO, "Depressive Ratio");
+        put(HEALTHY_LIFE_RATIO, "Healthy Life Ratio");
+        put(HEALTHY_LIFE_YEARS, "Healthy Life Years");
+        put(HOSPITAL_BEDS, "Hospital Beds");
+        put(LIFE_EXPECTANCY, "Life Expectancy at Birth");
+        put(LONG_HEALTH_ISSUES_RATIO, "Long Health Issues Ratio");
+        put(NON_ALCOHOLIC_RATIO, "Non-Alcoholic Ratio");
+        put(NON_FRUITS_VEGETABLES_RATIO, "Non-Fruits Vegetables Ratio");
+        put(PERSONNEL_TOTAL, "Health Personnel Ratio");
+        put(PHYSICAL_ACTIVITIES_RATIO, "Physical Activities Ratio");
+        put(SMOKERS_RATIO, "Smokers Ratio");
+        put(UNMET_DENTAL_RATIO, "Unmet Dental Ratio");
+        put(UNMET_MEDICAL_RATIO, "Unmet Medical Ratio");
+        put(WORK_ACCIDENTS, "Work Accidents Ratio");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(BODY_MASS_INDEX, false);
         put(DEPRESSIVE_RATIO, true);
-        put(LIFE_EXPECTANCY, false);
-        put(LONG_HEALTH_ISSUES_RATIO, true);
         put(HEALTHY_LIFE_RATIO, false);
         put(HEALTHY_LIFE_YEARS, false);
         put(HOSPITAL_BEDS, false);
+        put(LIFE_EXPECTANCY, false);
+        put(LONG_HEALTH_ISSUES_RATIO, true);
         put(NON_ALCOHOLIC_RATIO, false);
         put(NON_FRUITS_VEGETABLES_RATIO, true);
         put(PERSONNEL_TOTAL, false);

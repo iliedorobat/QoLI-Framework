@@ -122,7 +122,7 @@ public class CsvStatsUtils {
             StringBuilder line = new StringBuilder(code + Constants.CSV_SEPARATOR);
 
             for (int year = startYear; year <= endYear; year++) {
-                Number value = StatsUtils.getValue(entries, code, year);
+                Number value = StatsUtils.generateJsonValue(entries, code, year);
                 DecimalFormat df = new DecimalFormat("#,###.####", new DecimalFormatSymbols(Locale.ENGLISH));
                 line.append(df.format(value));
 
@@ -191,7 +191,7 @@ public class CsvStatsUtils {
      * Export the prepared chart data to a CSV file
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
-     * @param seriesType The type of series ("country" or "region")
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param directoryName Directory name of the target dimension/indicator
      * @param direction Display years on rows or columns (ROW or COLUMN)
      * @param preparedIndicators A map containing indicators which make up the target dimension

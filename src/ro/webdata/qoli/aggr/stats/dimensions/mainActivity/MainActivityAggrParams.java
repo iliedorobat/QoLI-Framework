@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.mainActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivityAggrParams {
@@ -26,20 +24,20 @@ public class MainActivityAggrParams {
     public static final String WORKING_FLEXIBILITY_RATIO = "workingFlexibilityRatio";
     public static final String WORKING_NIGHTS_RATIO = "workingNightsRatio";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(AVG_REMAINED_WORK_HOURS);
-        add(EMPLOYMENT_RATIO);
-        add(INACTIVE_POPULATION_RATIO);
-        add(INVOLUNTARY_PART_TIME_RATIO);
-        add(LONG_TERM_UNEMPLOYMENT_RATIO);
-        add(JOB_SATISFACTION);
-        add(LOW_WAGE_EARNERS_RATIO);
-        add(LOW_WORK_INTENSITY_RATIO);
-        add(RESEARCHERS_RATIO);
-        add(TEMPORARY_EMPLOYMENT_RATIO);
-        add(UNEMPLOYMENT_RATIO);
-        add(WORKING_FLEXIBILITY_RATIO);
-        add(WORKING_NIGHTS_RATIO);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");
+        put(EMPLOYMENT_RATIO, "Employment Ratio");
+        put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
+        put(INVOLUNTARY_PART_TIME_RATIO, "Involuntary Part-Time Ratio");
+        put(JOB_SATISFACTION, "Job Satisfaction");
+        put(LONG_TERM_UNEMPLOYMENT_RATIO, "Long Term Unemployment Ratio");
+        put(LOW_WAGE_EARNERS_RATIO, "Low Wage Earners Ratio");
+        put(LOW_WORK_INTENSITY_RATIO, "Low Work Intensity Ratio");
+        put(RESEARCHERS_RATIO, "Researchers Ratio");
+        put(TEMPORARY_EMPLOYMENT_RATIO, "Temporary Employment Ratio");
+        put(UNEMPLOYMENT_RATIO, "Unemployment Ratio");
+        put(WORKING_FLEXIBILITY_RATIO, "Working Flexibility Ratio");
+        put(WORKING_NIGHTS_RATIO, "Working Nights Ratio");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

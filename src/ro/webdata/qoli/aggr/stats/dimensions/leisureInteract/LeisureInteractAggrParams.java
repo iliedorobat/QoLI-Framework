@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.leisureInteract;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LeisureInteractAggrParams {
@@ -35,21 +33,21 @@ public class LeisureInteractAggrParams {
     public static final String TIME_SPENT_SATISFACTION = "timeSpentSatisfaction";
     public static final String VOLUNTARY_ACTIVITIES_NP_RATIO = "voluntaryActivitiesNpRatio";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(AREA_SATISFACTION_RATIO);
-        add(ASKING_RATIO);
-        add(DISCUSSION_RATIO);
-        add(FORMAL_VOLUNTARY_ACTIVITIES_RATIO);
-        add(FREQUENCY_CONTACT_FAM_RATIO);
-        add(FREQUENCY_CONTACT_FRD_RATIO);
-        add(GETTING_TOGETHER_FAM_RATIO);
-        add(GETTING_TOGETHER_FRD_RATIO);
-        add(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO);
-        add(RELATIONSHIPS_SATISFACTION_RATIO);
-        add(SOCIAL_ACTIVITIES_NP_RATIO);
-        add(SOCIAL_ACTIVITIES_RATIO);
-        add(TIME_SPENT_SATISFACTION);
-        add(VOLUNTARY_ACTIVITIES_NP_RATIO);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(AREA_SATISFACTION_RATIO, "Green Areas Satisfaction Ratio");
+        put(ASKING_RATIO, "Asking Ratio");
+        put(DISCUSSION_RATIO, "Discussion Ratio");
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, "Formal Voluntary Ratio");
+        put(FREQUENCY_CONTACT_FAM_RATIO, "Frequency Contact Ratio (Family)");
+        put(FREQUENCY_CONTACT_FRD_RATIO, "Frequency Contact Ratio (Friends)");
+        put(GETTING_TOGETHER_FAM_RATIO, "Getting Together Ratio (Family)");
+        put(GETTING_TOGETHER_FRD_RATIO, "Getting Together Ratio (Friends)");
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, "Informal Voluntary Ratio");
+        put(RELATIONSHIPS_SATISFACTION_RATIO, "Relationships Satisfaction Ratio");
+        put(SOCIAL_ACTIVITIES_NP_RATIO, "Non-Participation in Social Activities Ratio");
+        put(SOCIAL_ACTIVITIES_RATIO, "Social Activities Ratio");
+        put(TIME_SPENT_SATISFACTION, "Time Satisfaction Ratio");
+        put(VOLUNTARY_ACTIVITIES_NP_RATIO, "Non-Participation in Voluntary Activities Ratio");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

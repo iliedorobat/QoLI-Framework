@@ -1,5 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.gov;
 
+import ro.webdata.qoli.aggr.data.stats.Initializer;
+import ro.webdata.qoli.aggr.data.stats.Preparation;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
@@ -7,8 +9,6 @@ import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
-import ro.webdata.qoli.aggr.data.stats.Initializer;
-import ro.webdata.qoli.aggr.data.stats.Preparation;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -94,11 +94,11 @@ public class GovRightsStats {
     }};
 
     public static Map<String, Number> generateStats() {
-        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
     }
 
     public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

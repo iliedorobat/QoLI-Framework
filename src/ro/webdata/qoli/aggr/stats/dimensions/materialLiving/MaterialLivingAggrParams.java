@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MaterialLivingAggrParams {
@@ -24,20 +22,20 @@ public class MaterialLivingAggrParams {
     public static final String POVERTY_RISK_RATIO = "povertyRiskRatio";
     public static final String UNDER_OCCUPIED_RATIO = "underOccupiedRatio";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(DWELLING_ISSUES_RATIO);
-        add(END_MEET_INABILITY_RATIO);
-        add(FINANCIAL_SATISFACTION_RATIO);
-        add(GDP_PER_CAPITA_PPS_RATIO);
-        add(HIGH_INCOME_RATIO);
-        add(INCOME_QUINTILE_RATIO);
-        add(LACK_OF_BATHS_RATIO);
-        add(LOW_WORK_INTENSITY_RATIO);
-        add(MATERIAL_DEPRIVATION_RATIO);
-        add(MEDIAN_INCOME_PPS_RATIO);
-        add(OVER_OCCUPIED_RATIO);
-        add(POVERTY_RISK_RATIO);
-        add(UNDER_OCCUPIED_RATIO);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(DWELLING_ISSUES_RATIO, "Dwelling Issues Ratio");
+        put(END_MEET_INABILITY_RATIO, "End Meet Inability Ratio");
+        put(FINANCIAL_SATISFACTION_RATIO, "Financial Satisfaction Ratio");
+        put(GDP_PER_CAPITA_PPS_RATIO, "GDP per Capita in PPS Ratio");
+        put(HIGH_INCOME_RATIO, "High Income Ratio");
+        put(INCOME_QUINTILE_RATIO, "Income Quintile Ratio");
+        put(LACK_OF_BATHS_RATIO, "Lack of Baths Ratio");
+        put(LOW_WORK_INTENSITY_RATIO, "Low Work Intensity Ratio");
+        put(MATERIAL_DEPRIVATION_RATIO, "Material Deprivation Ratio");
+        put(MEDIAN_INCOME_PPS_RATIO, "Median Income in PPS Ratio");
+        put(OVER_OCCUPIED_RATIO, "Over Occupied Ratio");
+        put(POVERTY_RISK_RATIO, "Poverty Risk Ratio");
+        put(UNDER_OCCUPIED_RATIO, "Under Occupied Ratio");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

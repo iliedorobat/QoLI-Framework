@@ -95,12 +95,86 @@ public class StatsUtils {
     }
 
     /**
+     * Filter the generated stats in a range.
+     * @param entries The map containing prepared data for a specific dimension
+     * @param membersList The list of countries/regions
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
+     * @return Filtered stats in a specific range
+     */
+    public static TreeMap<String, TreeMap<Integer, Number>> filterStats(
+            Map<String, Number> entries,
+            String[] membersList,
+            String seriesType,
+            int startYear,
+            int endYear
+    ) {
+        TreeMap<String, TreeMap<Integer, Number>> stats = new TreeMap<>();
+        Map<String, Number> data = getEntries(entries, seriesType);
+
+        for (String code : membersList) {
+            TreeMap<Integer, Number> itemStats = new TreeMap<>();
+
+            for (int year = startYear; year <= endYear; year++) {
+                String key = code + "_" + year;
+                Number value = data.get(key);
+                itemStats.put(year, value);
+            }
+            stats.put(code, itemStats);
+        }
+
+        return stats;
+    }
+
+    /**
+     * *** used on offences ratio ***<br/><br/>
+     *
+     * Aggregate values of the regions of the UK (UKC-L & UKM & UKN) into a single value (UK)
+     * @param entries The map with target dimension data<br/>
+     *                - (E.g.: EducationStats.generateStats())
+     * @param code The current country code
+     * @param year The current year
+     * @return Prepared value
+     */
+    public static Number generateJsonValue(Map<String, Number> entries, String code, int year) {
+        String key = code + "_" + year;
+        Number value = entries.get(key);
+
+        // Handle offences data
+        if (value == null && code.equals("UK")) {
+            double ukSum = 0;
+
+            ukSum += entries.get("UKC-L" + "_" + year).doubleValue();
+            ukSum += entries.get("UKM" + "_" + year).doubleValue();
+            ukSum += entries.get("UKN" + "_" + year).doubleValue();
+
+            value = ukSum;
+        }
+
+        return value;
+    }
+
+    /**
+     * Get countries data or regions data based on "seriesType"
+     * @param entries The map with target dimension data<br/>
+     *                - (E.g.: EducationStats.generateStats())
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
+     * @return Countries/regions data
+     */
+    public static Map<String, Number> getEntries(Map<String, Number> entries, String seriesType) {
+        return seriesType.equals(Constants.SERIES_TYPE_REGION)
+                ? StatsUtils.aggregateRegions(entries)
+                : entries;
+    }
+
+    /**
      * Consolidate calculated values of EU countries into values of EU regions
      * @param entries The map with target dimension data<br/>
      *                - (E.g.: EducationStats.generateStats())
      * @return Regions data prepared to be exported as a JSON
      */
-    public static Map<String, Number> aggregateRegions(Map<String, Number> entries) {
+    private static Map<String, Number> aggregateRegions(Map<String, Number> entries) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -148,48 +222,17 @@ public class StatsUtils {
     }
 
     /**
-     * Get countries data or regions data based on "seriesType"
-     * @param entries The map with target dimension data<br/>
-     *                - (E.g.: EducationStats.generateStats())
-     * @param seriesType The type of the aggregation (REGION or COUNTRY)
-     * @return Countries/regions data
+     * Filter the target indicators (aggrList) based on a specific series of indicators
+     * which describe a dimension (allowedAggrList).
+     @param aggrList List of aggregation params<br/>
+     * E.g.:<br/>
+     *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
+     * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
+     * E.g.:<br/>
+     *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
-    public static Map<String, Number> getEntries(Map<String, Number> entries, String seriesType) {
-        return seriesType.equals(Constants.SERIES_TYPE_REGION)
-                ? StatsUtils.aggregateRegions(entries)
-                : entries;
-    }
-
-    /**
-     * *** used on offences ratio ***<br/><br/>
-     *
-     * Aggregate values of the regions of the UK (UKC-L & UKM & UKN) into a single value (UK)
-     * @param entries The map with target dimension data<br/>
-     *                - (E.g.: EducationStats.generateStats())
-     * @param code The current country code
-     * @param year The current year
-     * @return Prepared value
-     */
-    public static Number getValue(Map<String, Number> entries, String code, int year) {
-        String key = code + "_" + year;
-        Number value = entries.get(key);
-
-        // Handle offences data
-        if (value == null && code.equals("UK")) {
-            double ukSum = 0;
-
-            ukSum += entries.get("UKC-L" + "_" + year).doubleValue();
-            ukSum += entries.get("UKM" + "_" + year).doubleValue();
-            ukSum += entries.get("UKN" + "_" + year).doubleValue();
-
-            value = ukSum;
-        }
-
-        return value;
-    }
-
-    // Filter the target indicators (aggrList) based on a specific series of indicators
-    // which describe a dimension (allowedAggrList).
     private static List<String> filterAggrList(List<String> aggrList, List<String> allowedAggrList) {
         if (aggrList == null || aggrList.size() == 0)
             return allowedAggrList;

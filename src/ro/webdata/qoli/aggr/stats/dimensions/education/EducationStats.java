@@ -1,11 +1,11 @@
 package ro.webdata.qoli.aggr.stats.dimensions.education;
 
-import ro.webdata.qoli.aggr.stats.Print;
-import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.MergeUtils;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
+import ro.webdata.qoli.aggr.stats.Print;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
 import java.util.*;
 
@@ -70,11 +70,11 @@ public class EducationStats {
     }};
 
     public static Map<String, Number> generateStats() {
-        return StatsUtils.generateStats(ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
     }
 
     public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

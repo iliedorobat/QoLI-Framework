@@ -15,7 +15,7 @@ public class JsonStatsUtils {
      * Export the prepared chart data to a JSON file
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
-     * @param seriesType The type of series ("country" or "region")
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param directoryName Directory name of the target dimension/indicator
      * @param preparedIndicators A map containing indicators which make up the target dimension
      * @param calculateIndicators Calculate or not the indicators that make up the QoLI dimensions
@@ -62,7 +62,7 @@ public class JsonStatsUtils {
      * Generate TreeMap data that can be exported as a JSON
      * @param entries The map with target dimension data
      * @param membersList The list of countries/regions
-     * @param seriesType The series type
+     * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param startYear The year the analysis starts
      * @param endYear The year the analysis ends
      *
@@ -82,7 +82,7 @@ public class JsonStatsUtils {
             TreeMap<Integer, Number> itemStats = new TreeMap<>();
 
             for (int year = startYear; year <= endYear; year++) {
-                itemStats.put(year, StatsUtils.getValue(data, code, year));
+                itemStats.put(year, StatsUtils.generateJsonValue(data, code, year));
             }
             stats.put(code, itemStats);
         }

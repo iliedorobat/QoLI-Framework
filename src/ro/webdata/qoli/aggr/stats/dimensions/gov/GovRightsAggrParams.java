@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr.stats.dimensions.gov;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GovRightsAggrParams {
@@ -21,12 +19,12 @@ public class GovRightsAggrParams {
     public static final String VOTER_TURNOUT_PARLIAMENTARY = "voterTurnoutParliamentary";
     public static final String VOTER_TURNOUT_PRESIDENTIAL = "voterTurnoutPresidential";
 
-    public static final List<String> ALLOWED_PARAMS = new ArrayList<>() {{
-        add(CITIZENSHIP_RATIO);
-        add(GENDER_EMP_GAP);
-        add(GENDER_PAY_GAP);
-        add(POPULATION_TRUST);
-        add(VOTER_TURNOUT);
+    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+        put(CITIZENSHIP_RATIO, "Citizenship Ratio");
+        put(GENDER_EMP_GAP, "Gender Employment Gap");
+        put(GENDER_PAY_GAP, "Gender Pay Gap");
+        put(POPULATION_TRUST, "Population Trust Ratio");
+        put(VOTER_TURNOUT, "Voter Turnout");
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
