@@ -32,7 +32,7 @@ public class JsonStatsUtils {
             int startYear,
             int endYear
     ) {
-        TreeMap<String, TreeMap<Integer, Number>> stats = generateJsonData(entries, membersList, seriesType, startYear, endYear);
+        TreeMap<String, TreeMap<Integer, Number>> stats = prepareJsonData(entries, membersList, seriesType, startYear, endYear);
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -43,7 +43,7 @@ public class JsonStatsUtils {
 
             if (calculateIndicators && preparedIndicators != null) {
                 preparedIndicators.forEach((indicatorName, value) -> {
-                    TreeMap<String, TreeMap<Integer, Number>> indicatorStats = generateJsonData(preparedIndicators.get(indicatorName), membersList, seriesType, startYear, endYear);
+                    TreeMap<String, TreeMap<Integer, Number>> indicatorStats = prepareJsonData(preparedIndicators.get(indicatorName), membersList, seriesType, startYear, endYear);
                     try {
                         StringBuilder indicatorData = new StringBuilder(objectMapper.writeValueAsString(indicatorStats));
                         String indicatorFullPath = String.join(File.separator, fullPath, directoryName);
@@ -68,7 +68,7 @@ public class JsonStatsUtils {
      *
      * @return Data prepared to be exported as a JSON
      */
-    public static TreeMap<String, TreeMap<Integer, Number>> generateJsonData(
+    private static TreeMap<String, TreeMap<Integer, Number>> prepareJsonData(
             Map<String, Number> entries,
             String[] membersList,
             String seriesType,
