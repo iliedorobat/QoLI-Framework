@@ -6,17 +6,17 @@ import java.util.Map;
 public class EnvironmentAggrParams {
     public static final String ENVIRONMENT = "environment";
 
-    public static final String AIR_POLLUTION_RATIO = "airPollutionRatio";
-    public static final String AIR_POLLUTION_NH_3_RATIO = "airPollutionNh3Ratio";
-    public static final String AIR_POLLUTION_CH_4_RATIO = "airPollutionCh4Ratio";
-    public static final String AIR_POLLUTION_CO_RATIO = "airPollutionCoRatio";
-    public static final String AIR_POLLUTION_NMVOC_RATIO = "airPollutionNmvocRatio";
-    public static final String AIR_POLLUTION_NOX_RATIO = "airPollutionNoxRatio";
-    public static final String AIR_POLLUTION_PM_2_5_RATIO = "airPollutionPm2_5Ratio";
-    public static final String AIR_POLLUTION_PM_10_RATIO = "airPollutionPm10Ratio";
-    public static final String NOISE_POLLUTION_RATIO = "noisePollutionRatio";
-    public static final String POLLUTION_RATIO = "pollutionRatio";
-    public static final String WATER_SUPPLY_RATIO = "waterSupplyRatio";
+    public static final String AIR_POLLUTION_RATIO = ENVIRONMENT + ":airPollutionRatio";
+    public static final String AIR_POLLUTION_NH_3_RATIO = ENVIRONMENT + ":airPollutionNh3Ratio";
+    public static final String AIR_POLLUTION_CH_4_RATIO = ENVIRONMENT + ":airPollutionCh4Ratio";
+    public static final String AIR_POLLUTION_CO_RATIO = ENVIRONMENT + ":airPollutionCoRatio";
+    public static final String AIR_POLLUTION_NMVOC_RATIO = ENVIRONMENT + ":airPollutionNmvocRatio";
+    public static final String AIR_POLLUTION_NOX_RATIO = ENVIRONMENT + ":airPollutionNoxRatio";
+    public static final String AIR_POLLUTION_PM_2_5_RATIO = ENVIRONMENT + ":airPollutionPm2_5Ratio";
+    public static final String AIR_POLLUTION_PM_10_RATIO = ENVIRONMENT + ":airPollutionPm10Ratio";
+    public static final String NOISE_POLLUTION_RATIO = ENVIRONMENT + ":noisePollutionRatio";
+    public static final String POLLUTION_RATIO = ENVIRONMENT + ":pollutionRatio";
+    public static final String WATER_SUPPLY_RATIO = ENVIRONMENT + ":waterSupplyRatio";
 
     public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, "Air Pollution Ratio");

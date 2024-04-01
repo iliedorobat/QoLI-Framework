@@ -6,15 +6,15 @@ import java.util.Map;
 public class EducationAggrParams {
     public static final String EDUCATION = "education";
 
-    public static final String DIGITAL_SKILLS_RATIO = "digitalSkillsRatio";
-    public static final String DROPOUT_RATIO = "dropoutRatio";
-    public static final String EARLY_EDU_RATIO = "earlyEducationRatio";
-    public static final String EDUCATION_RATIO = "educationRatio";
-    public static final String INACTIVE_YOUNG_RATIO = "inactiveYoungRatio";
-    public static final String NO_KNOWN_FOREIGN_LANG_RATIO = "noKnownForeignLangRatio";
-    public static final String PUPILS_RATIO = "pupilsRatio";
-    public static final String TRAINING_LAST_MONTH_RATIO = "trainingLastMonthRatio";
-    public static final String TRAINING_LAST_YEAR_RATIO = "trainingLastYearRatio";
+    public static final String DIGITAL_SKILLS_RATIO = EDUCATION + ":digitalSkillsRatio";
+    public static final String DROPOUT_RATIO = EDUCATION + ":dropoutRatio";
+    public static final String EARLY_EDU_RATIO = EDUCATION + ":earlyEducationRatio";
+    public static final String EDUCATION_RATIO = EDUCATION + ":educationRatio";
+    public static final String INACTIVE_YOUNG_RATIO = EDUCATION + ":inactiveYoungRatio";
+    public static final String NO_KNOWN_FOREIGN_LANG_RATIO = EDUCATION + ":noKnownForeignLangRatio";
+    public static final String PUPILS_RATIO = EDUCATION + ":pupilsRatio";
+    public static final String TRAINING_LAST_MONTH_RATIO = EDUCATION + ":trainingLastMonthRatio";
+    public static final String TRAINING_LAST_YEAR_RATIO = EDUCATION + ":trainingLastYearRatio";
     
     public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, "Digital Skills Ratio");

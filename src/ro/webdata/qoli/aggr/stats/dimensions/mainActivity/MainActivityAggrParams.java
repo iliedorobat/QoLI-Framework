@@ -6,23 +6,23 @@ import java.util.Map;
 public class MainActivityAggrParams {
     public static final String MAIN_ACTIVITY = "mainActivity";
 
-    public static final String AVG_WORK_HOURS = "avgWorkHours";
-    public static final String AVG_REMAINED_WORK_HOURS = "avgRemainedWorkHours";
-    public static final String EMPLOYMENT_RATIO = "employmentRatio";
-    public static final String INACTIVE_POPULATION_RATIO = "inactivePopulationRatio";
-    public static final String INVOLUNTARY_PART_TIME_RATIO = "involuntaryPartTimeRatio";
-    public static final String JOB_SATISFACTION = "jobSatisfaction";
-    public static final String LONG_TERM_UNEMPLOYMENT_RATIO = "longTermUnemploymentRatio";
-    public static final String LOW_WAGE_EARNERS_RATIO = "lowWageEarnersRatio";
-    public static final String LOW_WORK_INTENSITY_RATIO = "lowWorkIntensityRatio";
-    public static final String RESEARCHERS_RATIO = "researchersRatio";
-    public static final String TEMPORARY_EMPLOYMENT_RATIO = "temporaryEmploymentRatio";
-    public static final String UNEMPLOYMENT_RATIO = "unemploymentRatio";
-    public static final String WORKING_FLEXIBILITY_FULL_RATIO = "workingFlexibilityFullRatio";
-    public static final String WORKING_FLEXIBILITY_RESTRICTIVE_RATIO = "workingFlexibilityRestrictiveRatio";
-    public static final String WORKING_FLEXIBILITY_TOTAL_RATIO = "workingFlexibilityTotalRatio";
-    public static final String WORKING_FLEXIBILITY_RATIO = "workingFlexibilityRatio";
-    public static final String WORKING_NIGHTS_RATIO = "workingNightsRatio";
+    public static final String AVG_WORK_HOURS = MAIN_ACTIVITY + ":avgWorkHours";
+    public static final String AVG_REMAINED_WORK_HOURS = MAIN_ACTIVITY + ":avgRemainedWorkHours";
+    public static final String EMPLOYMENT_RATIO = MAIN_ACTIVITY + ":employmentRatio";
+    public static final String INACTIVE_POPULATION_RATIO = MAIN_ACTIVITY + ":inactivePopulationRatio";
+    public static final String INVOLUNTARY_PART_TIME_RATIO = MAIN_ACTIVITY + ":involuntaryPartTimeRatio";
+    public static final String JOB_SATISFACTION = MAIN_ACTIVITY + ":jobSatisfaction";
+    public static final String LONG_TERM_UNEMPLOYMENT_RATIO = MAIN_ACTIVITY + ":longTermUnemploymentRatio";
+    public static final String LOW_WAGE_EARNERS_RATIO = MAIN_ACTIVITY + ":lowWageEarnersRatio";
+    public static final String LOW_WORK_INTENSITY_RATIO = MAIN_ACTIVITY + ":lowWorkIntensityRatio";
+    public static final String RESEARCHERS_RATIO = MAIN_ACTIVITY + ":researchersRatio";
+    public static final String TEMPORARY_EMPLOYMENT_RATIO = MAIN_ACTIVITY + ":temporaryEmploymentRatio";
+    public static final String UNEMPLOYMENT_RATIO = MAIN_ACTIVITY + ":unemploymentRatio";
+    public static final String WORKING_FLEXIBILITY_FULL_RATIO = MAIN_ACTIVITY + ":workingFlexibilityFullRatio";
+    public static final String WORKING_FLEXIBILITY_RESTRICTIVE_RATIO = MAIN_ACTIVITY + ":workingFlexibilityRestrictiveRatio";
+    public static final String WORKING_FLEXIBILITY_TOTAL_RATIO = MAIN_ACTIVITY + ":workingFlexibilityTotalRatio";
+    public static final String WORKING_FLEXIBILITY_RATIO = MAIN_ACTIVITY + ":workingFlexibilityRatio";
+    public static final String WORKING_NIGHTS_RATIO = MAIN_ACTIVITY + ":workingNightsRatio";
 
     public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
         put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");

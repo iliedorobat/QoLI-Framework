@@ -6,10 +6,10 @@ import java.util.Map;
 public class OverallExperienceAggrParams {
     public static final String OVERALL_EXPERIENCE = "overallExperience";
 
-    public static final String HAPPINESS_ALWAYS_RATIO = "happinessAlwaysRatio";
-    public static final String HAPPINESS_MOST_TIME_RATIO = "happinessMostOfTheTimeRatio";
-    public static final String HAPPINESS_RATIO = "happinessRatio";
-    public static final String HIGH_SATISFACTION_RATIO = "highSatisfactionRatio";
+    public static final String HAPPINESS_ALWAYS_RATIO = OVERALL_EXPERIENCE + ":happinessAlwaysRatio";
+    public static final String HAPPINESS_MOST_TIME_RATIO = OVERALL_EXPERIENCE + ":happinessMostOfTheTimeRatio";
+    public static final String HAPPINESS_RATIO = OVERALL_EXPERIENCE + ":happinessRatio";
+    public static final String HIGH_SATISFACTION_RATIO = OVERALL_EXPERIENCE + ":highSatisfactionRatio";
 
     public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
         put(HAPPINESS_RATIO, "Happiness Ratio");
