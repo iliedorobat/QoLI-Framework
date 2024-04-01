@@ -17,6 +17,9 @@ public class StatsUtils {
      * E.g.:<br/>
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
+     * @param mainAggregator The aggregator describing the target dimension.<br/>
+     * E.g.:<br/>
+     *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
      * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
@@ -30,11 +33,12 @@ public class StatsUtils {
      */
     public static Map<String, Number> generateStats(
             List<String> aggrList,
+            String mainAggregator,
             List<String> allowedAggrList,
             Map<String, Boolean> reversed,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
-        List<String> filteredAggrList = filterAggrList(aggrList, allowedAggrList);
+        List<String> filteredAggrList = filterAggrList(aggrList, mainAggregator, allowedAggrList);
         return generateStats(filteredAggrList, reversed, preparedIndicators);
     }
 
@@ -228,13 +232,19 @@ public class StatsUtils {
      * E.g.:<br/>
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
+     * @param mainAggregator The aggregator describing the target dimension.<br/>
+     * E.g.:<br/>
+     *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
      * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
-    private static List<String> filterAggrList(List<String> aggrList, List<String> allowedAggrList) {
+    private static List<String> filterAggrList(List<String> aggrList, String mainAggregator, List<String> allowedAggrList) {
         if (aggrList == null || aggrList.size() == 0)
+            return allowedAggrList;
+
+        if (aggrList.contains(mainAggregator))
             return allowedAggrList;
 
         return aggrList.stream()

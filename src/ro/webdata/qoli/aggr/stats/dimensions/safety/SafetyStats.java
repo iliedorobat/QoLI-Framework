@@ -148,7 +148,7 @@ public class SafetyStats {
     }
 
     public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, SAFETY, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
