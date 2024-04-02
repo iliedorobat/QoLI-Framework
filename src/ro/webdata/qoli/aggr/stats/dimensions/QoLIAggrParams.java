@@ -11,6 +11,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceAggrParams
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyAggrParams;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class QoLIAggrParams {
@@ -26,7 +27,7 @@ public class QoLIAggrParams {
     public static final String OVERALL_EXPERIENCE = OverallExperienceAggrParams.OVERALL_EXPERIENCE;
     public static final String SAFETY = SafetyAggrParams.SAFETY;
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(EDUCATION, "Education");
         put(ENVIRONMENT, "Natural and Living Environment");
         put(GOVERNANCE, "Governance and Basic Rights");
@@ -38,16 +39,18 @@ public class QoLIAggrParams {
         put(SAFETY, "Economic and Physical Safety");
     }};
 
-    public static final Map<String, Map<String, String>> DIMENSIONS_ALLOWED_PARAMS = new HashMap<>() {{
-        put(EDUCATION, EducationAggrParams.ALLOWED_PARAMS);
-        put(ENVIRONMENT, EnvironmentAggrParams.ALLOWED_PARAMS);
-        put(GOVERNANCE, GovRightsAggrParams.ALLOWED_PARAMS);
-        put(HEALTH, HealthAggrParams.ALLOWED_PARAMS);
-        put(LEISURE_INTERACT, LeisureInteractAggrParams.ALLOWED_PARAMS);
-        put(MAIN_ACTIVITY, MainActivityAggrParams.ALLOWED_PARAMS);
-        put(LIVING_CONDITIONS, MaterialLivingAggrParams.ALLOWED_PARAMS);
-        put(OVERALL_EXPERIENCE, OverallExperienceAggrParams.ALLOWED_PARAMS);
-        put(SAFETY, SafetyAggrParams.ALLOWED_PARAMS);
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
+
+    public static final Map<String, Map<String, String>> ALLOWED_DIMENSION_LABELS = new HashMap<>() {{
+        put(EDUCATION, EducationAggrParams.ALLOWED_PARAM_LABELS);
+        put(ENVIRONMENT, EnvironmentAggrParams.ALLOWED_PARAM_LABELS);
+        put(GOVERNANCE, GovRightsAggrParams.ALLOWED_PARAM_LABELS);
+        put(HEALTH, HealthAggrParams.ALLOWED_PARAM_LABELS);
+        put(LEISURE_INTERACT, LeisureInteractAggrParams.ALLOWED_PARAM_LABELS);
+        put(MAIN_ACTIVITY, MainActivityAggrParams.ALLOWED_PARAM_LABELS);
+        put(LIVING_CONDITIONS, MaterialLivingAggrParams.ALLOWED_PARAM_LABELS);
+        put(OVERALL_EXPERIENCE, OverallExperienceAggrParams.ALLOWED_PARAM_LABELS);
+        put(SAFETY, SafetyAggrParams.ALLOWED_PARAM_LABELS);
     }};
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{

@@ -15,30 +15,31 @@ import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class QoLIStats {
-    public static Map<String, Number> generateStats() {
-        return generateStats(List.copyOf(QoLIAggrParams.ALLOWED_PARAMS.keySet()));
-    }
-
-    public static Map<String, Number> generateStats(List<String> aggrList) {
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
+        List<String> countryList = countryCodes == null || countryCodes.size() == 0
+                ? Arrays.asList(Constants.EU28_MEMBERS)
+                : countryCodes;
+        
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
         Map<String, Number>
-                educationStats = EducationStats.generateStats(aggrList),
-                environmentStats = EnvironmentStats.generateStats(aggrList),
-                govRightsStats = GovRightsStats.generateStats(aggrList),
-                healthStats = HealthStats.generateStats(aggrList),
-                leisureInteractStats = LeisureInteractStats.generateStats(aggrList),
-                mainActivityStats = MainActivityStats.generateStats(aggrList),
-                materialLivingStats = MaterialLivingStats.generateStats(aggrList),
-                overallExperienceStats = OverallExperienceStats.generateStats(aggrList),
-                safetyStats = SafetyStats.generateStats(aggrList);
+                educationStats = EducationStats.generateStats(aggrList, countryList),
+                environmentStats = EnvironmentStats.generateStats(aggrList, countryList),
+                govRightsStats = GovRightsStats.generateStats(aggrList, countryList),
+                healthStats = HealthStats.generateStats(aggrList, countryList),
+                leisureInteractStats = LeisureInteractStats.generateStats(aggrList, countryList),
+                mainActivityStats = MainActivityStats.generateStats(aggrList, countryList),
+                materialLivingStats = MaterialLivingStats.generateStats(aggrList, countryList),
+                overallExperienceStats = OverallExperienceStats.generateStats(aggrList, countryList),
+                safetyStats = SafetyStats.generateStats(aggrList, countryList);
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
+            for (String code : countryList) {
                 String key = MapUtils.generateKey(code, year);
 
                 double education = educationStats.get(key).doubleValue();

@@ -17,6 +17,7 @@ public class StatsUtils {
      * E.g.:<br/>
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
+     * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"].
      * @param mainAggregator The aggregator describing the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
@@ -33,13 +34,14 @@ public class StatsUtils {
      */
     public static Map<String, Number> generateStats(
             List<String> aggrList,
+            List<String> countryCodes,
             String mainAggregator,
             List<String> allowedAggrList,
             Map<String, Boolean> reversed,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
         List<String> filteredAggrList = filterAggrList(aggrList, mainAggregator, allowedAggrList);
-        return generateStats(filteredAggrList, reversed, preparedIndicators);
+        return generateStats(filteredAggrList, countryCodes, reversed, preparedIndicators);
     }
 
     /**
@@ -49,6 +51,7 @@ public class StatsUtils {
      * E.g.:<br/>
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
+     * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"].
      * @param reversed Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.IS_REVERSED, EducationAggrParams.IS_REVERSED, etc.
@@ -59,14 +62,14 @@ public class StatsUtils {
      */
     public static Map<String, Number> generateStats(
             List<String> aggrList,
+            List<String> countryCodes,
             Map<String, Boolean> reversed,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        // TODO: minYear and maxYear as params
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
+            for (String code : countryCodes) {
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1;

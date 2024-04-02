@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.mainActivity;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivityAggrParams {
@@ -24,7 +25,7 @@ public class MainActivityAggrParams {
     public static final String WORKING_FLEXIBILITY_RATIO = MAIN_ACTIVITY + ":workingFlexibilityRatio";
     public static final String WORKING_NIGHTS_RATIO = MAIN_ACTIVITY + ":workingNightsRatio";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");
         put(EMPLOYMENT_RATIO, "Employment Ratio");
         put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
@@ -39,6 +40,8 @@ public class MainActivityAggrParams {
         put(WORKING_FLEXIBILITY_RATIO, "Working Flexibility Ratio");
         put(WORKING_NIGHTS_RATIO, "Working Nights Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(AVG_REMAINED_WORK_HOURS, false);

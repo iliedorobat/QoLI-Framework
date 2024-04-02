@@ -73,12 +73,8 @@ public class EnvironmentStats {
         put(WATER_SUPPLY_RATIO, waterSupplyRatio);
     }};
 
-    public static Map<String, Number> generateStats() {
-        return StatsUtils.generateStats(List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
-    }
-
-    public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, ENVIRONMENT, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
+        return StatsUtils.generateStats(aggrList, countryCodes, ENVIRONMENT, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

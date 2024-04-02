@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.environment;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EnvironmentAggrParams {
@@ -18,12 +19,14 @@ public class EnvironmentAggrParams {
     public static final String POLLUTION_RATIO = ENVIRONMENT + ":pollutionRatio";
     public static final String WATER_SUPPLY_RATIO = ENVIRONMENT + ":waterSupplyRatio";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, "Air Pollution Ratio");
         put(NOISE_POLLUTION_RATIO, "Noise Pollution Ratio");
         put(POLLUTION_RATIO, "Pollution Ratio");
         put(WATER_SUPPLY_RATIO, "Water Supply Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, true);

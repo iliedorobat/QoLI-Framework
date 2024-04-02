@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.health;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HealthAggrParams {
@@ -30,7 +31,7 @@ public class HealthAggrParams {
     public static final String UNMET_MEDICAL_RATIO = HEALTH + ":unmetMedicalStatus";
     public static final String WORK_ACCIDENTS = HEALTH + ":workAccidents";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(BODY_MASS_INDEX, "Body Mass Index");
         put(DEPRESSIVE_RATIO, "Depressive Ratio");
         put(HEALTHY_LIFE_RATIO, "Healthy Life Ratio");
@@ -47,6 +48,8 @@ public class HealthAggrParams {
         put(UNMET_MEDICAL_RATIO, "Unmet Medical Ratio");
         put(WORK_ACCIDENTS, "Work Accidents Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(BODY_MASS_INDEX, false);

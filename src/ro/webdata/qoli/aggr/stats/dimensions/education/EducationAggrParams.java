@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.education;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EducationAggrParams {
@@ -16,7 +17,7 @@ public class EducationAggrParams {
     public static final String TRAINING_LAST_MONTH_RATIO = EDUCATION + ":trainingLastMonthRatio";
     public static final String TRAINING_LAST_YEAR_RATIO = EDUCATION + ":trainingLastYearRatio";
     
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, "Digital Skills Ratio");
         put(DROPOUT_RATIO, "Dropout Ratio");
         put(EARLY_EDU_RATIO, "Early Education Ratio");
@@ -27,6 +28,8 @@ public class EducationAggrParams {
         put(TRAINING_LAST_MONTH_RATIO, "Training Ratio (last 4 weeks)");
         put(TRAINING_LAST_YEAR_RATIO, "Training Ratio (last year)");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, false);

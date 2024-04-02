@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MaterialLivingAggrParams {
@@ -22,7 +23,7 @@ public class MaterialLivingAggrParams {
     public static final String POVERTY_RISK_RATIO = LIVING_CONDITIONS + ":povertyRiskRatio";
     public static final String UNDER_OCCUPIED_RATIO = LIVING_CONDITIONS + ":underOccupiedRatio";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, "Dwelling Issues Ratio");
         put(END_MEET_INABILITY_RATIO, "End Meet Inability Ratio");
         put(FINANCIAL_SATISFACTION_RATIO, "Financial Satisfaction Ratio");
@@ -37,6 +38,8 @@ public class MaterialLivingAggrParams {
         put(POVERTY_RISK_RATIO, "Poverty Risk Ratio");
         put(UNDER_OCCUPIED_RATIO, "Under Occupied Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, true);

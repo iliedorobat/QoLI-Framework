@@ -147,12 +147,8 @@ public class LeisureInteractStats {
         put(NP_TIME_INFORMAL_RATIO, npTimeInformalRatio);
     }};
 
-    public static Map<String, Number> generateStats() {
-        return StatsUtils.generateStats(List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
-    }
-
-    public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, LEISURE_INTERACT, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
+        return StatsUtils.generateStats(aggrList, countryCodes, LEISURE_INTERACT, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

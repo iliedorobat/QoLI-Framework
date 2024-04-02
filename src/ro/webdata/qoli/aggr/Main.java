@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr;
 
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
@@ -87,17 +88,19 @@ public class Main {
     }
 
     private static HashMap<String, Map<String, Number>> generateData(List<String> aggr) {
+        List<String> countryCodes = Arrays.asList(Constants.EU28_MEMBERS);
+
         return new HashMap<>(){{
-            put(QOLI, QoLIStats.generateStats(aggr));
-            put(EDUCATION, EducationStats.generateStats(aggr));
-            put(ENVIRONMENT, EnvironmentStats.generateStats(aggr));
-            put(GOVERNANCE, GovRightsStats.generateStats(aggr));
-            put(HEALTH, HealthStats.generateStats(aggr));
-            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggr));
-            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggr));
-            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggr));
-            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggr));
-            put(SAFETY, SafetyStats.generateStats(aggr));
+            put(QOLI, QoLIStats.generateStats(aggr, countryCodes));
+            put(EDUCATION, EducationStats.generateStats(aggr, countryCodes));
+            put(ENVIRONMENT, EnvironmentStats.generateStats(aggr, countryCodes));
+            put(GOVERNANCE, GovRightsStats.generateStats(aggr, countryCodes));
+            put(HEALTH, HealthStats.generateStats(aggr, countryCodes));
+            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggr, countryCodes));
+            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggr, countryCodes));
+            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggr, countryCodes));
+            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggr, countryCodes));
+            put(SAFETY, SafetyStats.generateStats(aggr, countryCodes));
         }};
     }
 }

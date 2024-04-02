@@ -69,12 +69,8 @@ public class EducationStats {
         put(TRAINING_LAST_YEAR_RATIO, trainingLastYearRatio);
     }};
 
-    public static Map<String, Number> generateStats() {
-        return StatsUtils.generateStats(List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
-    }
-
-    public static Map<String, Number> generateStats(List<String> aggrList) {
-        return StatsUtils.generateStats(aggrList, EDUCATION, List.copyOf(ALLOWED_PARAMS.keySet()), IS_REVERSED, preparedIndicators);
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
+        return StatsUtils.generateStats(aggrList, countryCodes, EDUCATION, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

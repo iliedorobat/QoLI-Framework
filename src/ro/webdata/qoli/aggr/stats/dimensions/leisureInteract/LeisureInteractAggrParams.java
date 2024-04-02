@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.leisureInteract;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LeisureInteractAggrParams {
@@ -33,7 +34,7 @@ public class LeisureInteractAggrParams {
     public static final String TIME_SPENT_SATISFACTION = LEISURE_INTERACT + ":timeSpentSatisfaction";
     public static final String VOLUNTARY_ACTIVITIES_NP_RATIO = LEISURE_INTERACT + ":voluntaryActivitiesNpRatio";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, "Green Areas Satisfaction Ratio");
         put(ASKING_RATIO, "Asking Ratio");
         put(DISCUSSION_RATIO, "Discussion Ratio");
@@ -49,6 +50,8 @@ public class LeisureInteractAggrParams {
         put(TIME_SPENT_SATISFACTION, "Time Satisfaction Ratio");
         put(VOLUNTARY_ACTIVITIES_NP_RATIO, "Non-Participation in Voluntary Activities Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, false);

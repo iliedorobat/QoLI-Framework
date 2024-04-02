@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.dimensions.safety;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SafetyAggrParams {
@@ -33,7 +34,7 @@ public class SafetyAggrParams {
     public static final String SOCIAL_PROTECTION_PPS_RATIO = SAFETY + ":socialProtectionPpsRatio";
     public static final String UNEXPECTED_RATIO = SAFETY + ":unexpectedRatio";
 
-    public static final Map<String, String> ALLOWED_PARAMS = new HashMap<>() {{
+    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(CRIME_RATIO, "Crime Ratio");
         put(PENSION_PPS_RATIO, "Pension in PPS Ratio");
         put(NON_PAYMENT_RATIO, "Non Payment Ratio");
@@ -41,6 +42,8 @@ public class SafetyAggrParams {
         put(SOCIAL_PROTECTION_PPS_RATIO, "Social Protection in PPS Ratio");
         put(UNEXPECTED_RATIO, "Unexpected Ratio");
     }};
+
+    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(CRIME_RATIO, true);
