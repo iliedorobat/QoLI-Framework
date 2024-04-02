@@ -1,10 +1,10 @@
 package ro.webdata.qoli.aggr.data.stats;
 
 import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
 import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
-import ro.webdata.qoli.aggr.stats.constants.Constants;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -102,15 +102,22 @@ public class Preparation {
         return generatedMap;
     }
 
-    // used for offences ratio
-    public static Map<String, Number> prepareData(Map<String, Number> mainMap, String[] countries) {
+    /**
+     * *** used on offences ratio ***<br/><br/>
+     * Fill the missing values.
+     *
+     * @param mainMap The initialized map (see Initializer.initMap)
+     * @param countryCodes The list of country codes
+     * @return Prepared map
+     */
+    public static Map<String, Number> prepareData(Map<String, Number> mainMap, String[] countryCodes) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
             preparedMap.put(entry.getKey(), entry.getValue());
         }
 
-        for (String code : countries) {
+        for (String code : countryCodes) {
             fillRightNullValues(preparedMap, code);
             fillLeftNullValues(preparedMap, code);
             fillNullValues(mainMap, preparedMap, code);
@@ -119,7 +126,13 @@ public class Preparation {
         return filterMap(preparedMap);
     }
 
-    // TODO: documentation
+    /**
+     * Add values for the years that have null values for a specified country code.
+     *
+     * @param mainMap The initialized map (see Initializer.initMap)
+     * @param preparedMap The prepared map containing all entries
+     * @param code The country code for which the ratio is calculated
+     */
     private static void fillNullValues(
             Map<String, Number> mainMap,
             Map<String, Number> preparedMap,
@@ -137,15 +150,20 @@ public class Preparation {
         fillLeftNullValues(preparedMap, code);
     }
 
-    // TODO: documentation
-    public static Map<String, Number> preparePpsRatio(Map<String, Number> dataset) {
+    /**
+     * Calculate the share of PPS compared to EU average.
+     *
+     * @param entries The map containing prepared data for a specific dimension
+     * @return Map containing the PPS Ratio
+     */
+    public static Map<String, Number> preparePpsRatio(Map<String, Number> entries) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                Number value = Preparation.calculatePpsRatio(dataset, code, year);
+                Number value = Preparation.calculatePpsRatio(entries, code, year);
                 preparedMap.put(key, value);
             }
         }
@@ -153,11 +171,18 @@ public class Preparation {
         return preparedMap;
     }
 
-    // TODO: documentation
-    private static Double calculatePpsRatio(Map<String, Number> dataset, String code, int year) {
-        Double euAverage = calculateEuAverage(dataset, year);
+    /**
+     * Calculate the share of PPS compared to EU average.
+     *
+     * @param entries The map containing prepared data for a specific dimension
+     * @param code The country code for which the ratio is calculated
+     * @param year The year for which the ratio is calculated
+     * @return PPS Ratio
+     */
+    private static Double calculatePpsRatio(Map<String, Number> entries, String code, int year) {
+        Double euAverage = calculateEuAverage(entries, year);
         String key = MapUtils.generateKey(code, year);
-        Number value = dataset.get(key);
+        Number value = entries.get(key);
 
         if (euAverage == null) {
             throw new Error("The \"euAverage\" variable is null.");
@@ -166,8 +191,13 @@ public class Preparation {
         return value.doubleValue() / euAverage * 100;
     }
 
-    // TODO: documentation
-    // Calculate the average of EU
+    /**
+     * Calculate the average of the EU
+     *
+     * @param mainMap The initialized map (see Initializer.initMap)
+     * @param year The year for which the average is calculated
+     * @return Average of the EU
+     */
     public static Double calculateEuAverage(Map<String, Number> mainMap, int year) {
         int count = 0;
         double sum = 0;
@@ -175,13 +205,14 @@ public class Preparation {
         for (Map.Entry<String, Number> entry : mainMap.entrySet()) {
             Number entryValue = entry.getValue();
             String entryKey = entry.getKey();
-            String entryYear = entryKey != null
-                    ? entryKey.split(Constants.KEY_SEPARATOR)[1]
-                    : null;
 
-            if (entryValue != null && Integer.parseInt(entryYear) == year) {
-                sum += entryValue.doubleValue();
-                count ++;
+            if (entryValue != null && entryKey != null) {
+                String entryYear = entryKey.split(Constants.KEY_SEPARATOR)[1];
+
+                if (Integer.parseInt(entryYear) == year) {
+                    sum += entryValue.doubleValue();
+                    count ++;
+                }
             }
         }
 
@@ -192,7 +223,7 @@ public class Preparation {
     }
 
     /**
-     * Add values for the next years that have null values for a specified country code<br/>
+     * Add values for next years that have null values for a specified country code<br/>
      * E.g.:
      * <pre>
      *  {
@@ -217,8 +248,9 @@ public class Preparation {
      *      EU28_2017=94.4
      *  }
      * </pre>
-     * @param preparedMap
-     * @param code The country code for which is made the processing
+     *
+     * @param preparedMap The prepared map containing all entries
+     * @param code The country code for which the processing is being done
      */
     private static void fillRightNullValues(
             Map<String, Number> preparedMap,
@@ -238,7 +270,7 @@ public class Preparation {
     }
 
     /**
-     * Add values for the next years that have null values for a specified country code<br/>
+     * Add values for previous years that have null values for a specified country code<br/>
      * E.g.:
      * <pre>
      *  {
@@ -263,8 +295,9 @@ public class Preparation {
      *      EU28_2017=null
      *  }
      * </pre>
-     * @param preparedMap
-     * @param code The country code for which is made the processing
+     *
+     * @param preparedMap The prepared map containing all entries
+     * @param code The country code for which the processing is being done
      */
     private static void fillLeftNullValues(
             Map<String, Number> preparedMap,
@@ -285,7 +318,8 @@ public class Preparation {
 
     /**
      * Fill the output map only with data for the analyzed period
-     * @param preparedMap The prepared map with all the entries
+     *
+     * @param preparedMap The prepared map containing all entries
      * @return Filtered map by the analyzed period
      */
     public static Map<String, Number> filterMap(Map<String, Number> preparedMap) {
@@ -304,6 +338,7 @@ public class Preparation {
 
     /**
      * Add an entry in the analyzed map if it's missing
+     *
      * @param map The map
      * @param key The key
      * @param value The value

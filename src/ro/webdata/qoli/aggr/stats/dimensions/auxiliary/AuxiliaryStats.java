@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import static ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryPaths.POPULATION_FILE_NAME;
 import static ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryPaths.POPULATION_PATH;
 
-//TODO: change the "ratio" to "rate" all over the app
 public class AuxiliaryStats {
     private static final Map<String, Number>
             initPopulation = Initializer.initConsolidatedMap(AuxiliaryParams.POPULATION_PARAMS, POPULATION_PATH);

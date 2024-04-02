@@ -17,7 +17,7 @@ public class CsvStatsUtils {
      *      * (entry[i] / entry[i-1] * 100) - 100;
      *      * entry[i] - entry[i-1].
      *
-     * @param mainMap The initialized map (see Initializer.initMap);
+     * @param mainMap The initialized map (see Initializer.initMap)
      * @param isRelative Specify if the calculated variation is relative (or absolute)
      *
      * @return The list of the individual variations

@@ -1,12 +1,12 @@
 package ro.webdata.qoli.aggr.data.stats;
 
+import org.apache.commons.collections4.MultiValuedMap;
+import ro.webdata.qoli.aggr.data.LocalParser;
+import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
 import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
-import ro.webdata.qoli.aggr.data.LocalParser;
-import ro.webdata.qoli.aggr.data.fetch.FetcherUtils;
-import org.apache.commons.collections4.MultiValuedMap;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,13 +71,21 @@ public class MergeUtils {
         return consolidatedList;
     }
 
-    // TODO: documentation: Check if the current iterated entry (queryValues) includes params values
-    private static boolean isParamIncluded(MultiValuedMap<String, String> params, ArrayList<String> localQueryKeys, ArrayList<String> queryValues) {
-        ArrayList<String> paramsKeys = FetcherUtils.getFilteredParamsKeys(params);
+    /**
+     * Check if the current iterated key-value pair ("localQueryKeys" and "localQueryValues") is included
+     * in the list of key-value pairs used to fetch data ("params")
+     *
+     * @param params List of parameters used to fetch data (E.g.: AVG_WORK_HOURS_2007_PARAMS, etc.)
+     * @param localQueryKeys List of local parameters (taken from data stored on disk)
+     * @param localQueryValues List of local values (taken from data stored on disk)
+     * @return True/False
+     */
+    private static boolean isParamIncluded(MultiValuedMap<String, String> params, ArrayList<String> localQueryKeys, ArrayList<String> localQueryValues) {
+        ArrayList<String> paramsKeys = FetcherUtils.filterParamsKeys(params);
 
         for (String paramKey : paramsKeys) {
             int localIndex = localQueryKeys.indexOf(paramKey);
-            String localValue = queryValues.get(localIndex);
+            String localValue = localQueryValues.get(localIndex);
             String paramValue = params.get(paramKey).iterator().next();
 
             if (!localValue.equals(paramValue))

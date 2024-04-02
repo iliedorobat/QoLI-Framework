@@ -17,7 +17,7 @@ public class StatsUtils {
      * E.g.:<br/>
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
-     * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"].
+     * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"]).
      * @param mainAggregator The aggregator describing the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
@@ -140,8 +140,8 @@ public class StatsUtils {
      * Aggregate values of the regions of the UK (UKC-L & UKM & UKN) into a single value (UK)
      * @param entries The map with target dimension data<br/>
      *                - (E.g.: EducationStats.generateStats())
-     * @param code The current country code
-     * @param year The current year
+     * @param code The country code for which the aggregation is done
+     * @param year The year for which the aggregation is done
      * @return Prepared value
      */
     public static Number generateJsonValue(Map<String, Number> entries, String code, int year) {

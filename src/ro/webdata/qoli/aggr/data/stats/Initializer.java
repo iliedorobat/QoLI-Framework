@@ -78,16 +78,16 @@ public class Initializer {
      * @param params The global allowed query values (the allowed query values
      *                           excepting the year and the country code)
      * @param filePath The full access path to the desired file
-     * @param countries The countries code list
+     * @param countryCodes The list of country codes
      * @return A new sorted consolidated map with no missing keys
      */
     public static Map<String, Number> initConsolidatedMap(
             MultiValuedMap<String, String> params,
             String filePath,
-            String[] countries
+            String[] countryCodes
     ) {
         Map<String, Number> consolidatedList = MergeUtils.consolidateMap(params, filePath);
-        return initMap(consolidatedList, countries);
+        return initMap(consolidatedList, countryCodes);
     }
 
     /**
@@ -98,16 +98,16 @@ public class Initializer {
      * A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
      *
      * @param originalMap The original input map
-     * @param countries The list of countries code
+     * @param countryCodes The list of country codes
      * @return A new sorted map with no missing keys
      */
     public static Map<String, Number> initMap(
             Map<String, Number> originalMap,
-            String[] countries
+            String[] countryCodes
     ) {
         Map<String, Number> initMap = new TreeMap<>(new MapOrder());
 
-        for (String code : countries) {
+        for (String code : countryCodes) {
             for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
                 initEmptyData(originalMap, initMap, code, year);
             }
@@ -121,8 +121,8 @@ public class Initializer {
      *
      * @param originalMap The original input map
      * @param initMap The new map which is built by adding all the key-value pairs for the analysed period
-     * @param code The current country code
-     * @param year The current year
+     * @param code The country code for which the calculation is done
+     * @param year The year for which the calculation is done
      */
     private static void initEmptyData(
             Map<String, Number> originalMap,

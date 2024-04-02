@@ -1,10 +1,10 @@
 package ro.webdata.qoli.aggr.data.fetch;
 
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
-import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +12,9 @@ import java.util.HashMap;
 
 public class FetcherUtils {
     /**
-     * Add new parameters to the params list
-     * @param params The parameters list
+     * Add new parameters to the "params" list
+     *
+     * @param params List of parameters
      * @param propertyName The name of the added property
      * @param values The list with values that should be added
      */
@@ -23,8 +24,9 @@ public class FetcherUtils {
         }
     }
     /**
-     * Add new parameters to the params list
-     * @param params The parameters list
+     * Add new parameters to the "params" list
+     *
+     * @param params List of parameters
      * @param propertyName The name of the added property
      * @param values The list with values that should be added
      */
@@ -36,8 +38,9 @@ public class FetcherUtils {
 
 
     /**
-     * Add new parameters to the params list
-     * @param params The parameters list
+     * Add new parameters to the "params" list
+     *
+     * @param params List of parameters
      * @param propertyName The name of the added property
      * @param valuesMap Map containing target properties
      */
@@ -48,8 +51,13 @@ public class FetcherUtils {
         }
     }
 
-    // TODO: documentation: Filter the keys added by getMainHttpParams and return the list of unique keys
-    public static ArrayList<String> getFilteredParamsKeys(MultiValuedMap<String, String> params) {
+    /**
+     * Filter the keys added by getMainHttpParams and return a list of unique keys.
+     *
+     * @param params List of parameters
+     * @return Unique keys from which "lang" and "geo" were filtered out
+     */
+    public static ArrayList<String> filterParamsKeys(MultiValuedMap<String, String> params) {
         ArrayList<String> paramsKeys = MapUtils.getUniqueKeys(params);
         paramsKeys.remove(ParamsNames.LANG);
         paramsKeys.remove(ParamsNames.GEO);
@@ -57,11 +65,24 @@ public class FetcherUtils {
     }
 
     /**
-     * Get the main parameters
+     * Consolidate the main parameters and the query parameters specific to the analyzed indicator into a single entity.
      *
-     * @return
+     * @param indicatorParams The map containing the query parameters specific to the analyzed indicator
+     * @param countryCodes The list of country codes
+     * @return Map containing both the main query parameters and the query parameters specific to the analyzed indicator
      */
-    public static MultiValuedMap<String, String> getMainHttpParams(String[] countries) {
+    public static MultiValuedMap<String, String> consolidateHttpParams(MultiValuedMap<String, String> indicatorParams, String[] countryCodes) {
+        MultiValuedMap<String, String> httpParams = prepareMainHttpParams(countryCodes);
+        httpParams.putAll(indicatorParams);
+        return httpParams;
+    }
+
+    /**
+     * Prepare the main params ("geo" for production and "geo" & "time" for testing).
+     *
+     * @return Map containing the main params
+     */
+    public static MultiValuedMap<String, String> prepareMainHttpParams(String[] countries) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
         params.put(ParamsNames.LANG, "en");
 
@@ -73,12 +94,5 @@ public class FetcherUtils {
         }
 
         return params;
-    }
-
-    // TODO: documentation:
-    public static MultiValuedMap<String, String> consolidateHttpParams(MultiValuedMap<String, String> indicatorParams, String[] countries) {
-        MultiValuedMap<String, String> httpParams = getMainHttpParams(countries);
-        httpParams.putAll(indicatorParams);
-        return httpParams;
     }
 }

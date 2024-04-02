@@ -1,6 +1,5 @@
 package ro.webdata.qoli.aggr.data;
 
-import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,6 +13,7 @@ import no.ssb.jsonstat.JsonStatModule;
 import no.ssb.jsonstat.v2.Dataset;
 import no.ssb.jsonstat.v2.DatasetBuildable;
 import no.ssb.jsonstat.v2.Dimension;
+import ro.webdata.qoli.aggr.stats.utils.FileUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -24,8 +24,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class LocalParser {
-    // TODO: documentation:
-
+    /**
+     * Read data from disk.
+     *
+     * @param filePath The full access path to the desired file
+     * @return JSON-stat v2 dataset
+     */
     public static Map<List<String>, Number> readJSONFile(String filePath) {
         Dataset build = getDataset(filePath);
         return build.asMap();

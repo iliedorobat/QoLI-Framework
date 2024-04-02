@@ -1,8 +1,5 @@
 package ro.webdata.qoli.aggr.data.fetch;
 
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
-import ro.webdata.qoli.aggr.stats.constants.Constants;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,6 +10,9 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,14 +36,27 @@ public class Fetcher {
     private static final String URI_LANG = "en";
     private static final String URI_SEPARATOR = "/";
 
-    // TODO: documentation:
+    /**
+     * Fetch the Eurostat data.
+     *
+     * @param dataset The search path (E.g.: "nama_10r_2hhinc")
+     * @param inputParams The main parameters used in search path
+     * @return HTTP Response as a StringBuilder
+     */
     public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams) {
         return fetchData(dataset, inputParams, Constants.EU28_MEMBERS);
     }
 
-    // TODO: documentation:
-    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams, String[] countries) {
-        MultiValuedMap<String, String> params = FetcherUtils.consolidateHttpParams(inputParams, countries);
+    /**
+     * Fetch the Eurostat data.
+     *
+     * @param dataset The search path (E.g.: "nama_10r_2hhinc")
+     * @param inputParams The main parameters used in search path
+     * @param countryCodes The list of country codes
+     * @return HTTP Response as a StringBuilder
+     */
+    public static StringBuilder fetchData(String dataset, MultiValuedMap<String, String> inputParams, String[] countryCodes) {
+        MultiValuedMap<String, String> params = FetcherUtils.consolidateHttpParams(inputParams, countryCodes);
         StringBuilder result = new StringBuilder();
         URI uri = buildURI(dataset, params);
 
@@ -102,6 +115,7 @@ public class Fetcher {
 
     /**
      * Generate the URI used to extract data
+     *
      * @param dataset The search path (E.g.: "nama_10r_2hhinc")
      * @param params The parameters used in search path
      * @return URI

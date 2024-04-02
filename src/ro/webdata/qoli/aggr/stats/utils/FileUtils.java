@@ -69,7 +69,7 @@ public class FileUtils {
     /**
      * Download an Excel file
      * @param httpLink The http address
-     * @param filePath The destination path
+     * @param filePath The full access path to the destination file
      * @param fileName The name of the destination file
      * @param extension The extension of the destination file
      */
