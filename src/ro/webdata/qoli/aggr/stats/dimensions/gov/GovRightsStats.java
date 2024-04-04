@@ -93,8 +93,8 @@ public class GovRightsStats {
         put(VOTER_TURNOUT, voterTurnout);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
-        return StatsUtils.generateStats(aggrList, countryCodes, GOVERNANCE, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, GOVERNANCE, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

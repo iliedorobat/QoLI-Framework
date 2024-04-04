@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr;
 
 import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,16 +64,22 @@ public class ParamsUtils {
         return null;
     }
 
-    public static int getTargetYear(List<String> pairs) {
+    public static int getYear(List<String> pairs, String comparator) {
         for (String pair : pairs) {
             String[] values = pair.split("=");
             String key = values[0];
 
-            if (key.equals("--dataStatus") & values.length > 1) {
+            if (key.equals(comparator) & values.length > 1) {
                 String value = values[1];
                 return Integer.parseInt(value);
             }
         }
+
+        if (comparator.equals("--startYear"))
+            return EnvConst.MIN_YEAR;
+
+        if (comparator.equals("--endYear"))
+            return EnvConst.MAX_YEAR;
 
         return -1;
     }

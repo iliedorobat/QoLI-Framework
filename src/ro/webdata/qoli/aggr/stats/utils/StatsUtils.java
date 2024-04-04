@@ -2,7 +2,6 @@ package ro.webdata.qoli.aggr.stats.utils;
 
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,13 +17,15 @@ public class StatsUtils {
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
      * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"]).
+     * @param startYear The year from which the analysis begins
+     * @param endYear The year in which the analysis ends
      * @param mainAggregator The aggregator describing the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
      * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
-     * @param reversed Map containing specifications about which indicator describes a negative state.<br/>
+     * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.IS_REVERSED, EducationAggrParams.IS_REVERSED, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
@@ -35,13 +36,15 @@ public class StatsUtils {
     public static Map<String, Number> generateStats(
             List<String> aggrList,
             List<String> countryCodes,
+            int startYear,
+            int endYear,
             String mainAggregator,
             List<String> allowedAggrList,
-            Map<String, Boolean> reversed,
+            Map<String, Boolean> reversedMap,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
         List<String> filteredAggrList = filterAggrList(aggrList, mainAggregator, allowedAggrList);
-        return generateStats(filteredAggrList, countryCodes, reversed, preparedIndicators);
+        return generateStats(filteredAggrList, countryCodes, startYear, endYear, reversedMap, preparedIndicators);
     }
 
     /**
@@ -52,7 +55,9 @@ public class StatsUtils {
      *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
      * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"].
-     * @param reversed Map containing specifications about which indicator describes a negative state.<br/>
+     * @param startYear The year from which the analysis begins
+     * @param endYear The year in which the analysis ends
+     * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
      *      * QoLIAggrParams.IS_REVERSED, EducationAggrParams.IS_REVERSED, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
@@ -63,12 +68,14 @@ public class StatsUtils {
     public static Map<String, Number> generateStats(
             List<String> aggrList,
             List<String> countryCodes,
-            Map<String, Boolean> reversed,
+            int startYear,
+            int endYear,
+            Map<String, Boolean> reversedMap,
             HashMap<String, Map<String, Number>> preparedIndicators
     ) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = startYear; year <= endYear; year++) {
             for (String code : countryCodes) {
                 String key = MapUtils.generateKey(code, year);
 
@@ -84,11 +91,11 @@ public class StatsUtils {
                             .orElse(null);
 
                     if (aggr != null && aggr.equals(indicatorName)) {
-                        if (!reversed.containsKey(indicatorName)) {
+                        if (!reversedMap.containsKey(indicatorName)) {
                             System.err.println("reversed map does not contains " + indicatorName);
                             continue;
                         }
-                        boolean isReversed = reversed.get(indicatorName);
+                        boolean isReversed = reversedMap.get(indicatorName);
                         product *= MathUtils.percentageSafetyDouble(values, key, isReversed);
                     }
                 }
@@ -118,7 +125,7 @@ public class StatsUtils {
             int endYear
     ) {
         TreeMap<String, TreeMap<Integer, Number>> stats = new TreeMap<>();
-        Map<String, Number> data = getEntries(entries, seriesType);
+        Map<String, Number> data = getEntries(entries, seriesType, startYear, endYear);
 
         for (String code : membersList) {
             TreeMap<Integer, Number> itemStats = new TreeMap<>();
@@ -167,11 +174,13 @@ public class StatsUtils {
      * @param entries The map with target dimension data<br/>
      *                - (E.g.: EducationStats.generateStats())
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      * @return Countries/regions data
      */
-    public static Map<String, Number> getEntries(Map<String, Number> entries, String seriesType) {
+    public static Map<String, Number> getEntries(Map<String, Number> entries, String seriesType, int startYear, int endYear) {
         return seriesType.equals(Constants.SERIES_TYPE_REGION)
-                ? StatsUtils.aggregateRegions(entries)
+                ? StatsUtils.aggregateRegions(entries, startYear, endYear)
                 : entries;
     }
 
@@ -179,12 +188,14 @@ public class StatsUtils {
      * Consolidate calculated values of EU countries into values of EU regions
      * @param entries The map with target dimension data<br/>
      *                - (E.g.: EducationStats.generateStats())
+     * @param startYear The year the analysis starts
+     * @param endYear The year the analysis ends
      * @return Regions data prepared to be exported as a JSON
      */
-    private static Map<String, Number> aggregateRegions(Map<String, Number> entries) {
+    private static Map<String, Number> aggregateRegions(Map<String, Number> entries, int startYear, int endYear) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = startYear; year <= endYear; year++) {
             double easternCounter = 0,
                     northernCounter = 0,
                     southernCounter = 0,
