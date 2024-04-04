@@ -31,7 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - Allow the calculation of the QoLI based on a custom set of indicators (E.g.: ["discussionRatio","gettingTogetherFrdRatio"]).
 
 ## 2.0
-- "Leisure" and "Social Interactions" dimensions have been merged back to a single dimension - "Leisure and Social Interactions".
+- "Leisure" and "Social Interactions" dimensions were merged back into a single dimension - "Leisure and Social Interactions".
 - Added support for calculating the indicators that make up the 8+1 QoLI dimensions.
 
 ## 1.1
