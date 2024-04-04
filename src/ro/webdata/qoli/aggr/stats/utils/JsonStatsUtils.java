@@ -76,7 +76,7 @@ public class JsonStatsUtils {
             int endYear
     ) {
         TreeMap<String, TreeMap<Integer, Number>> stats = new TreeMap<>();
-        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
+        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType, startYear, endYear);
 
         for (String code : membersList) {
             TreeMap<Integer, Number> itemStats = new TreeMap<>();

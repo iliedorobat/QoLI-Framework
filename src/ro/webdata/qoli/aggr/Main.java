@@ -1,8 +1,6 @@
 package ro.webdata.qoli.aggr;
 
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
-import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
@@ -17,12 +15,11 @@ import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static ro.webdata.qoli.aggr.ParamsUtils.*;
-import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
+import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.QOLI;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,7 +30,9 @@ public class Main {
         boolean calculate = args.length == 0 || contains(list, "--calculate");
         boolean calculateIndicators = args.length == 0 || contains(list, "--calculateIndicators");
         boolean print = args.length == 0 || contains(list, "--print");
-        int statusYear = getTargetYear(list);
+        int statusYear = getYear(list, "--dataStatus");
+        int startYear = getYear(list, "--startYear");
+        int endYear = getYear(list, "--endYear");
         List<String> aggr = getAggregations(list);
 
         if (collect) {
@@ -55,12 +54,12 @@ public class Main {
         }
 
         if (calculate) {
-            HashMap<String, Map<String, Number>> dataByCountries = generateData(aggr);
+            Map<String, Map<String, Number>> dataByCountries = prepareDimensions(aggr, startYear, endYear);
             String direction = getDirection(list);
 
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
-            QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators, EnvConst.MIN_YEAR, EnvConst.MAX_YEAR);
-            QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators, EnvConst.MIN_YEAR, EnvConst.MAX_YEAR);
+            QoLICsvStats.writeDimensions(dataByCountries, direction, calculateIndicators, startYear, endYear);
+            QoLIJsonStats.writeDimensions(dataByCountries, calculateIndicators, startYear, endYear);
         }
 
         if (print) {
@@ -68,7 +67,7 @@ public class Main {
             String direction = getDirection(list);
 
             if (seriesType != null) {
-                HashMap<String, Map<String, Number>> dataByCountries = generateData(aggr);
+                Map<String, Map<String, Number>> dataByCountries = prepareDimensions(aggr, startYear, endYear);
 
                 // 4. Print the QoLI and the QoLI dimensions values
                 QoLICsvStats.printDimensions(list, seriesType, dataByCountries, direction);
@@ -87,20 +86,9 @@ public class Main {
         }
     }
 
-    private static HashMap<String, Map<String, Number>> generateData(List<String> aggr) {
-        List<String> countryCodes = Arrays.asList(Constants.EU28_MEMBERS);
-
-        return new HashMap<>(){{
-            put(QOLI, QoLIStats.generateStats(aggr, countryCodes));
-            put(EDUCATION, EducationStats.generateStats(aggr, countryCodes));
-            put(ENVIRONMENT, EnvironmentStats.generateStats(aggr, countryCodes));
-            put(GOVERNANCE, GovRightsStats.generateStats(aggr, countryCodes));
-            put(HEALTH, HealthStats.generateStats(aggr, countryCodes));
-            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggr, countryCodes));
-            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggr, countryCodes));
-            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggr, countryCodes));
-            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggr, countryCodes));
-            put(SAFETY, SafetyStats.generateStats(aggr, countryCodes));
-        }};
+    private static Map<String, Map<String, Number>> prepareDimensions(List<String> aggr, int startYear, int endYear) {
+        Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareDimensions(aggr, null, startYear, endYear);
+        dataByCountries.put(QOLI, QoLIStats.generateStats(aggr, null, startYear, endYear));
+        return dataByCountries;
     }
 }

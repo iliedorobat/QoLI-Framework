@@ -78,7 +78,7 @@ public class CsvStatsUtils {
             int startYear,
             int endYear
     ) {
-        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType);
+        Map<String, Number> data = StatsUtils.getEntries(entries, seriesType, startYear, endYear);
 
         if (direction.equals(Constants.DIRECTION_ROW)) {
             return generateChartRows(data, membersList, seriesType, directoryName, startYear, endYear);

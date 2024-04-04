@@ -111,8 +111,8 @@ public class MainActivityStats {
         put(WORKING_NIGHTS_RATIO, workingNightsRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
-        return StatsUtils.generateStats(aggrList, countryCodes, MAIN_ACTIVITY, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

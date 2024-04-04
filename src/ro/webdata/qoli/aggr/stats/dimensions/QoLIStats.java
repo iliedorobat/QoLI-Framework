@@ -2,7 +2,6 @@ package ro.webdata.qoli.aggr.stats.dimensions;
 
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.education.EducationStats;
 import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentStats;
 import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsStats;
@@ -19,25 +18,14 @@ import java.util.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
 public class QoLIStats {
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes) {
-        List<String> countryList = countryCodes == null || countryCodes.size() == 0
-                ? Arrays.asList(Constants.EU28_MEMBERS)
-                : countryCodes;
-        
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        Map<String, Map<String, Number>> stats = new HashMap<>() {{
-            put(EDUCATION, EducationStats.generateStats(aggrList, countryList));
-            put(ENVIRONMENT, EnvironmentStats.generateStats(aggrList, countryList));
-            put(GOVERNANCE, GovRightsStats.generateStats(aggrList, countryList));
-            put(HEALTH, HealthStats.generateStats(aggrList, countryList));
-            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggrList, countryList));
-            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggrList, countryList));
-            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggrList, countryList));
-            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggrList, countryList));
-            put(SAFETY, SafetyStats.generateStats(aggrList, countryList));
-        }};
+    public static Map<String, Number> generateStats(List<String> aggrs, List<String> countryCodes, int startYear, int endYear) {
+        List<String> aggrList = getAggrList(aggrs);
+        List<String> countryList = getCountryList(countryCodes);
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+        Map<String, Map<String, Number>> stats = prepareDimensions(aggrList, countryList, startYear, endYear);
+
+        for (int year = startYear; year <= endYear; year++) {
             for (String code : countryList) {
                 String key = MapUtils.generateKey(code, year);
                 double product = 1;
@@ -69,5 +57,33 @@ public class QoLIStats {
         }
 
         return consolidatedList;
+    }
+
+    public static Map<String, Map<String, Number>> prepareDimensions(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        List<String> countryList = getCountryList(countryCodes);
+
+        return new HashMap<>() {{
+            put(EDUCATION, EducationStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(ENVIRONMENT, EnvironmentStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(GOVERNANCE, GovRightsStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(HEALTH, HealthStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(SAFETY, SafetyStats.generateStats(aggrList, countryList , startYear, endYear));
+        }};
+    }
+
+    private static List<String> getAggrList(List<String> aggrs) {
+        return aggrs == null || aggrs.size() == 0
+                ? QoLIAggrParams.ALLOWED_PARAMS
+                : aggrs;
+    }
+
+    private static List<String> getCountryList(List<String> countryCodes) {
+        return countryCodes == null || countryCodes.size() == 0
+                ? Arrays.asList(Constants.EU28_MEMBERS)
+                : countryCodes;
     }
 }
