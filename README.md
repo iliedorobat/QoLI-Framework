@@ -45,8 +45,18 @@ java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --
 java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 ```
-* List of dimensions: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/FilePathConst.java (constants suffixed by "_DIR")
-* List of indicators: https://github.com/iliedorobat/QoLI-Framework/src/app/java/commons/constants/IndicatorNames.java
+* List of dimensions:
+  * [QoLIAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/QoLIAggrParams.java#L42)
+* List of indicators:
+  * Economic and Physical Safety: [SafetyAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/safety/SafetyAggrParams.java#L46)
+  * Education: [EducationAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/education/EducationAggrParams.java#L32)
+  * Governance and Basic Rights: [GovRightsAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/gov/GovRightsAggrParams.java#L31)
+  * Health: [HealthAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/health/HealthAggrParams.java#L52)
+  * Leisure and Social Interactions: [LeisureInteractAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/leisureInteract/LeisureInteractAggrParams.java#L54)
+  * Material Living Conditions: [MaterialLivingAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/materialLiving/MaterialLivingAggrParams.java#L42)
+  * Natural and Living Environment: [EnvironmentAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/environment/EnvironmentAggrParams.java#L29)
+  * Overall Experience of Life: [OverallExperienceAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/overall/OverallExperienceAggrParams.java#L20)
+  * Productive or Main Activity: [MainActivityAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/mainActivity/MainActivityAggrParams.java#L44)
 
 
 
