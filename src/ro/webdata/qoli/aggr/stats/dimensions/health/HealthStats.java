@@ -77,7 +77,7 @@ public class HealthStats {
             unmetMedicalRatio = Preparation.prepareData(initUnmetMedicalRatio),
             workAccidents = Preparation.preparePerThousandInhabitant(AuxiliaryStats.population, initWorkAccidents);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(BODY_MASS_INDEX, Preparation.filterMap(initBmiRatio));
         put(DEPRESSIVE_MAJOR_RATIO, Preparation.filterMap(initDepressiveMajorRatio));
         put(DEPRESSIVE_NORMAL_RATIO, Preparation.filterMap(initDepressiveNormalRatio));
@@ -101,7 +101,7 @@ public class HealthStats {
         put(WORK_ACCIDENTS, Preparation.filterMap(initWorkAccidents));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(BODY_MASS_INDEX, bmiRatio);
         put(DEPRESSIVE_MAJOR_RATIO, depressiveMajorRatio);
         put(DEPRESSIVE_NORMAL_RATIO, depressiveNormalRatio);

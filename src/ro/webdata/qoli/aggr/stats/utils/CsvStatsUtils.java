@@ -205,7 +205,7 @@ public class CsvStatsUtils {
             String seriesType,
             String directoryName,
             String direction,
-            HashMap<String, Map<String, Number>> preparedIndicators,
+            Map<String, Map<String, Number>> preparedIndicators,
             boolean calculateIndicators,
             int startYear,
             int endYear

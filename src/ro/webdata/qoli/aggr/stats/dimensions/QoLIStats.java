@@ -18,6 +18,18 @@ import java.util.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
 public class QoLIStats {
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+        putAll(EducationStats.preparedIndicators);
+        putAll(EnvironmentStats.preparedIndicators);
+        putAll(GovRightsStats.preparedIndicators);
+        putAll(HealthStats.preparedIndicators);
+        putAll(LeisureInteractStats.preparedIndicators);
+        putAll(MainActivityStats.preparedIndicators);
+        putAll(MaterialLivingStats.preparedIndicators);
+        putAll(OverallExperienceStats.preparedIndicators);
+        putAll(SafetyStats.preparedIndicators);
+    }};
+
     public static Map<String, Number> generateStats(List<String> aggrs, List<String> countryCodes, int startYear, int endYear) {
         List<String> aggrList = getAggrList(aggrs);
         List<String> countryList = getCountryList(countryCodes);
@@ -75,13 +87,13 @@ public class QoLIStats {
         }};
     }
 
-    private static List<String> getAggrList(List<String> aggrs) {
+    public static List<String> getAggrList(List<String> aggrs) {
         return aggrs == null || aggrs.size() == 0
                 ? QoLIAggrParams.ALLOWED_PARAMS
                 : aggrs;
     }
 
-    private static List<String> getCountryList(List<String> countryCodes) {
+    public static List<String> getCountryList(List<String> countryCodes) {
         return countryCodes == null || countryCodes.size() == 0
                 ? Arrays.asList(Constants.EU28_MEMBERS)
                 : countryCodes;

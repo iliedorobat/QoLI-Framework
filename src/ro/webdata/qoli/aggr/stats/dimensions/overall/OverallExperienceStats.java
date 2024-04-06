@@ -31,13 +31,13 @@ public class OverallExperienceStats {
             happinessRatio = prepareHappinessRatio(),
             highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(HAPPINESS_ALWAYS_RATIO, Preparation.filterMap(initHappinessAlwaysRatio));
         put(HAPPINESS_MOST_TIME_RATIO, Preparation.filterMap(initHappinessMostOfTheTimeRatio));
         put(HIGH_SATISFACTION_RATIO, Preparation.filterMap(initHighSatisfactionRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(HAPPINESS_RATIO, happinessRatio);
         put(HAPPINESS_ALWAYS_RATIO, happinessAlwaysRatio);
         put(HAPPINESS_MOST_TIME_RATIO, happinessMostOfTheTimeRatio);

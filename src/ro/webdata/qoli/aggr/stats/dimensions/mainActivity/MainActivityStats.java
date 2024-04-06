@@ -73,7 +73,7 @@ public class MainActivityStats {
             workingFlexibilityRatio = prepareWorkingFlexibilityRatio(),
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(AVG_WORK_HOURS, Preparation.filterMap(initAvgWorkHoursList));
         put(EMPLOYMENT_RATIO, Preparation.filterMap(initEmploymentRatio));
         put(INACTIVE_POPULATION_RATIO, Preparation.filterMap(initInactivePopulationRatio));
@@ -91,7 +91,7 @@ public class MainActivityStats {
         put(WORKING_NIGHTS_RATIO, Preparation.filterMap(initWorkingNightsRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(AVG_WORK_HOURS, avgWorkHours);
         put(AVG_REMAINED_WORK_HOURS, avgRemainedWorkHours);
         put(EMPLOYMENT_RATIO, employmentRatio);

@@ -65,7 +65,7 @@ public class GovRightsStats {
             populationTrustRatio = preparePopulationTrust(),
             voterTurnout = prepareVoterTurnout();
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(CITIZENSHIP_RATIO, Preparation.filterMap(initCitizenshipRatio));
         put(GENDER_EMP_GAP, Preparation.filterMap(initGenderEmpGap));
         put(GENDER_PAY_GAP, Preparation.filterMap(initGenderPayGap));
@@ -78,7 +78,7 @@ public class GovRightsStats {
         put(VOTER_TURNOUT_PRESIDENTIAL, Preparation.filterMap(initTurnoutPresidential));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, citizenship);
         put(GENDER_EMP_GAP, genderEmpGap);
         put(GENDER_PAY_GAP, genderPayGap);

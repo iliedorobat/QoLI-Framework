@@ -84,7 +84,7 @@ public class LeisureInteractStats {
             socialActivitiesNpRatio = consolidateSocialActivitiesNpRatio(),
             voluntaryActivitiesNpRatio = consolidateVoluntaryActivitiesNpRatio();
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(AREA_SATISFACTION_RATIO, Preparation.filterMap(initAreaSatisfactionRatio));
         put(ASKING_RATIO, Preparation.filterMap(initAskingRatio));
         put(DISCUSSION_RATIO, Preparation.filterMap(initDiscussionRatio));
@@ -114,7 +114,7 @@ public class LeisureInteractStats {
         put(NP_TIME_INFORMAL_RATIO, Preparation.filterMap(initNpTimeInformalRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, areaSatisfactionRatio);
         put(ASKING_RATIO, askingRatio);
         put(DISCUSSION_RATIO, discussionRatio);

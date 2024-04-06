@@ -84,7 +84,7 @@ public class SafetyStats {
             totalOffencesRatio = prepareOffencesRatio(),
             unexpectedRatio = Preparation.prepareData(initUnexpectedRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(CRIME_RATIO, Preparation.filterMap(initCrimeRatio));
         put(NON_PAYMENT_RATIO, Preparation.filterMap(initNonPaymentRatio));
         put(PENSION_PPS_RATIO, Preparation.filterMap(initPensionPps));
@@ -113,7 +113,7 @@ public class SafetyStats {
         put(OFFENCES_THEFT_VEHICLE, Preparation.filterMap(initTheftVehicleOffences));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(CRIME_RATIO, crimeRatio);
         put(NON_PAYMENT_RATIO, nonPaymentRatio);
         put(PENSION_PPS_RATIO, pensionPpsRatio);

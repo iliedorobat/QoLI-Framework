@@ -6,7 +6,6 @@ import ro.webdata.qoli.aggr.stats.constants.Constants;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIPaths;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,7 +26,7 @@ public class JsonStatsUtils {
             String[] membersList,
             String seriesType,
             String directoryName,
-            HashMap<String, Map<String, Number>> preparedIndicators,
+            Map<String, Map<String, Number>> preparedIndicators,
             boolean calculateIndicators,
             int startYear,
             int endYear

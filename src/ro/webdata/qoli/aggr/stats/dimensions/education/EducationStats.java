@@ -45,7 +45,7 @@ public class EducationStats {
             trainingLastMonthRatio = Preparation.prepareData(initTrainingLastMonthRatio),
             trainingLastYearRatio = Preparation.prepareData(initTrainingLastYearRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(DIGITAL_SKILLS_RATIO, Preparation.filterMap(initDigitalSkillsRatio));
         put(DROPOUT_RATIO, Preparation.filterMap(initDropoutRatio));
         put(EARLY_EDU_RATIO, Preparation.filterMap(initEarlyEducationRatio));
@@ -57,7 +57,7 @@ public class EducationStats {
         put(TRAINING_LAST_YEAR_RATIO, Preparation.filterMap(initTrainingLastYearRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
         put(DROPOUT_RATIO, dropoutRatio);
         put(EARLY_EDU_RATIO, earlyEducationRatio);

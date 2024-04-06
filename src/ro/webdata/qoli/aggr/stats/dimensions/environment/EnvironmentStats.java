@@ -46,7 +46,7 @@ public class EnvironmentStats {
             pollutionRatio = Preparation.prepareData(initPollutionRatio),
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(AIR_POLLUTION_NH_3_RATIO, Preparation.filterMap(initAirPollutionNh3Ratio));
         put(AIR_POLLUTION_CH_4_RATIO, Preparation.filterMap(initAirPollutionCh4Ratio));
         put(AIR_POLLUTION_CO_RATIO, Preparation.filterMap(initAirPollutionCoRatio));
@@ -59,7 +59,7 @@ public class EnvironmentStats {
         put(WATER_SUPPLY_RATIO, Preparation.filterMap(initWaterSupplyRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(AIR_POLLUTION_NH_3_RATIO, airPollutionNh3Ratio);
         put(AIR_POLLUTION_CH_4_RATIO, airPollutionCh4Ratio);
         put(AIR_POLLUTION_CO_RATIO, airPollutionCoRatio);

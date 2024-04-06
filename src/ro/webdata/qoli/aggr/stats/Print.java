@@ -7,12 +7,15 @@ import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Print {
     public static void printChartData(
             List<String> args,
-            HashMap<String, Map<String, Number>> indicators,
+            Map<String, Map<String, Number>> indicators,
             String dimension,
             String[] membersList,
             String seriesType,
@@ -92,7 +95,7 @@ public class Print {
         return filteredMap;
     }
 
-    public static void printDataAvailability(TreeMap<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIndStatus) {
+    public static void printDataAvailability(Map<String, Map<String, Number>> map, String dimensionName, int targetYear, boolean printIndStatus) {
         int available = 0;
         int expected = 0;
 

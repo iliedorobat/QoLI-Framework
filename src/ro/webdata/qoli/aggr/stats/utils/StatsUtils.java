@@ -3,7 +3,10 @@ package ro.webdata.qoli.aggr.stats.utils;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class StatsUtils {
@@ -41,7 +44,7 @@ public class StatsUtils {
             String mainAggregator,
             List<String> allowedAggrList,
             Map<String, Boolean> reversedMap,
-            HashMap<String, Map<String, Number>> preparedIndicators
+            Map<String, Map<String, Number>> preparedIndicators
     ) {
         List<String> filteredAggrList = filterAggrList(aggrList, mainAggregator, allowedAggrList);
         return generateStats(filteredAggrList, countryCodes, startYear, endYear, reversedMap, preparedIndicators);
@@ -71,7 +74,7 @@ public class StatsUtils {
             int startYear,
             int endYear,
             Map<String, Boolean> reversedMap,
-            HashMap<String, Map<String, Number>> preparedIndicators
+            Map<String, Map<String, Number>> preparedIndicators
     ) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 

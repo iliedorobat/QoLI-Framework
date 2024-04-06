@@ -55,7 +55,7 @@ public class MaterialLivingStats {
             povertyRiskRatio = Preparation.prepareData(initPovertyRiskRatio),
             underOccupiedRatio = Preparation.prepareData(initUnderOccupiedRatio);
 
-    public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
+    public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(DWELLING_ISSUES_RATIO, Preparation.filterMap(initDwellingIssuesRatio));
         put(END_MEET_INABILITY_D_RATIO, Preparation.filterMap(initEndMeetInabilityDRatio));
         put(END_MEET_INABILITY_GD_RATIO, Preparation.filterMap(initEndMeetInabilityGdRatio));
@@ -72,7 +72,7 @@ public class MaterialLivingStats {
         put(UNDER_OCCUPIED_RATIO, Preparation.filterMap(initUnderOccupiedRatio));
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
         put(END_MEET_INABILITY_RATIO, endMeetInabilityRatio);
         put(END_MEET_INABILITY_D_RATIO, endMeetInabilityDRatio);
