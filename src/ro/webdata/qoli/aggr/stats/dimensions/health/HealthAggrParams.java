@@ -94,7 +94,6 @@ public class HealthAggrParams {
         put(DEPRESSIVE_MAJOR_RATIO, "Depressive Symptoms (Major) Ratio");
         put(DEPRESSIVE_NORMAL_RATIO, "Depressive Symptoms (Normal) Ratio");
         put(DEPRESSIVE_OTHER_RATIO, "Depressive Symptoms (Other) Ratio");
-        put(DEPRESSIVE_RATIO, "Depressive Symptoms (Total) Ratio");
         put(HEALTHY_LIFE_RATIO, "Healthy Life Ratio");
         put(HEALTHY_LIFE_YEARS, "Healthy Life Years");
         put(HOSPITAL_BEDS, "Hospital Beds");
