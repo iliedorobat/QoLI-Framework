@@ -73,22 +73,22 @@ public class Main {
                 QoLICsvStats.printDimensions(list, seriesType, dataByCountries, direction);
 
                 // 5. Print a specific indicator
-                EducationStats.printIndicators(list, seriesType, direction);
-                EnvironmentStats.printIndicators(list, seriesType, direction);
-                GovRightsStats.printIndicators(list, seriesType, direction);
-                HealthStats.printIndicators(list, seriesType, direction);
-                LeisureInteractStats.printIndicators(list, seriesType, direction);
-                MainActivityStats.printIndicators(list, seriesType, direction);
-                MaterialLivingStats.printIndicators(list, seriesType, direction);
-                OverallExperienceStats.printIndicators(list, seriesType, direction);
-                SafetyStats.printIndicators(list, seriesType, direction);
+                EducationStats.printAggrIndicators(list, seriesType, direction);
+                EnvironmentStats.printAggrIndicators(list, seriesType, direction);
+                GovRightsStats.printAggrIndicators(list, seriesType, direction);
+                HealthStats.printAggrIndicators(list, seriesType, direction);
+                LeisureInteractStats.printAggrIndicators(list, seriesType, direction);
+                MainActivityStats.printAggrIndicators(list, seriesType, direction);
+                MaterialLivingStats.printAggrIndicators(list, seriesType, direction);
+                OverallExperienceStats.printAggrIndicators(list, seriesType, direction);
+                SafetyStats.printAggrIndicators(list, seriesType, direction);
             }
         }
     }
 
     private static Map<String, Map<String, Number>> prepareDimensions(List<String> aggr, int startYear, int endYear) {
         Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareDimensions(aggr, null, startYear, endYear);
-        dataByCountries.put(QOLI, QoLIStats.generateStats(aggr, null, startYear, endYear));
+        dataByCountries.put(QOLI, QoLIStats.generateAggrStats(aggr, null, startYear, endYear));
         return dataByCountries;
     }
 }

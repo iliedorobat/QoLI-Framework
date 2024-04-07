@@ -114,7 +114,24 @@ public class LeisureInteractStats {
         put(NP_TIME_INFORMAL_RATIO, Preparation.filterMap(initNpTimeInformalRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
+        put(AREA_SATISFACTION_RATIO, areaSatisfactionRatio);
+        put(ASKING_RATIO, askingRatio);
+        put(DISCUSSION_RATIO, discussionRatio);
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, formalVoluntaryRatio);
+        put(FREQUENCY_CONTACT_FAM_RATIO, frequencyContactFamRatio);
+        put(FREQUENCY_CONTACT_FRD_RATIO, frequencyContactFrdRatio);
+        put(GETTING_TOGETHER_FAM_RATIO, gettingTogetherFamRatio);
+        put(GETTING_TOGETHER_FRD_RATIO, gettingTogetherFrdRatio);
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, informalVoluntaryRatio);
+        put(RELATIONSHIPS_SATISFACTION_RATIO, relSatisfactionRatio);
+        put(SOCIAL_ACTIVITIES_NP_RATIO, socialActivitiesNpRatio);
+        put(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
+        put(TIME_SPENT_SATISFACTION, timeSatisfactionRatio);
+        put(VOLUNTARY_ACTIVITIES_NP_RATIO, voluntaryActivitiesNpRatio);
+    }};
+
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, areaSatisfactionRatio);
         put(ASKING_RATIO, askingRatio);
         put(DISCUSSION_RATIO, discussionRatio);
@@ -127,9 +144,6 @@ public class LeisureInteractStats {
         put(RELATIONSHIPS_SATISFACTION_RATIO, relSatisfactionRatio);
         put(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
         put(TIME_SPENT_SATISFACTION, timeSatisfactionRatio);
-
-        put(SOCIAL_ACTIVITIES_NP_RATIO, socialActivitiesNpRatio);
-        put(VOLUNTARY_ACTIVITIES_NP_RATIO, voluntaryActivitiesNpRatio);
 
         put(NP_FIN_CINEMA_RATIO, npFinCinRatio);
         put(NP_FIN_CULTURE_RATIO, npFinCultRatio);
@@ -147,12 +161,16 @@ public class LeisureInteractStats {
         put(NP_TIME_INFORMAL_RATIO, npTimeInformalRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LEISURE_INTERACT, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LEISURE_INTERACT, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, LEISURE_INTERACT, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LEISURE_INTERACT, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, LEISURE_INTERACT, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

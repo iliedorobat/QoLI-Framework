@@ -79,14 +79,14 @@ public class QoLICsvStats {
 
     private static void writeData(String[] membersList, String seriesType, Map<String, Map<String, Number>> dataByCountries, String direction, boolean calculateIndicators, int startYear, int endYear) {
         CsvStatsUtils.writeChartData(dataByCountries.get(QOLI), membersList, seriesType, QOLI_FILE_NAME, direction, null, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, direction, EducationStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, direction, GovRightsStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, direction, HealthStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, direction, LeisureInteractStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        CsvStatsUtils.writeChartData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, direction, SafetyStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, direction, EducationStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, direction, EnvironmentStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, direction, GovRightsStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, direction, HealthStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, direction, LeisureInteractStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, direction, MaterialLivingStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, direction, MainActivityStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, direction, OverallExperienceStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        CsvStatsUtils.writeChartData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, direction, SafetyStats.aggrIndicators, calculateIndicators, startYear, endYear);
     }
 }

@@ -63,9 +63,7 @@ public class HealthStats {
             depressiveRatio = prepareTotalDepressiveRatio(),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
-            hospitalBeds = prepareHospitalBedsRatio(
-                    Preparation.prepareData(initHospitalBeds)
-            ),
+            hospitalBeds = Preparation.prepareData(initHospitalBeds),
             lifeExpectancy = Preparation.prepareData(initLifeExpectancy),
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
@@ -101,7 +99,7 @@ public class HealthStats {
         put(WORK_ACCIDENTS, Preparation.filterMap(initWorkAccidents));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(BODY_MASS_INDEX, bmiRatio);
         put(DEPRESSIVE_MAJOR_RATIO, depressiveMajorRatio);
         put(DEPRESSIVE_NORMAL_RATIO, depressiveNormalRatio);
@@ -109,7 +107,7 @@ public class HealthStats {
         put(DEPRESSIVE_RATIO, depressiveRatio);
         put(HEALTHY_LIFE_RATIO, healthyLifeRatio);
         put(HEALTHY_LIFE_YEARS, healthyLifeYears);
-        put(HOSPITAL_BEDS, hospitalBeds);
+        put(HOSPITAL_BEDS, prepareHospitalBedsRatio());
         put(LIFE_EXPECTANCY, lifeExpectancy);
         put(LONG_HEALTH_ISSUES_RATIO, longHealthIssuesRatio);
         put(NON_ALCOHOLIC_RATIO, nonAlcoholicRatio);
@@ -127,12 +125,40 @@ public class HealthStats {
         put(WORK_ACCIDENTS, workAccidents);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, HEALTH, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        put(BODY_MASS_INDEX, bmiRatio);
+        put(DEPRESSIVE_MAJOR_RATIO, depressiveMajorRatio);
+        put(DEPRESSIVE_NORMAL_RATIO, depressiveNormalRatio);
+        put(DEPRESSIVE_OTHER_RATIO, depressiveOtherRatio);
+        put(HEALTHY_LIFE_RATIO, healthyLifeRatio);
+        put(HEALTHY_LIFE_YEARS, healthyLifeYears);
+        put(HOSPITAL_BEDS, hospitalBeds);
+        put(LIFE_EXPECTANCY, lifeExpectancy);
+        put(LONG_HEALTH_ISSUES_RATIO, longHealthIssuesRatio);
+        put(NON_ALCOHOLIC_RATIO, nonAlcoholicRatio);
+        put(NON_FRUITS_VEGETABLES_RATIO, nonFruitsVegetablesRatio);
+        put(PERSONNEL_DENTISTS, personnelDentists);
+        put(PERSONNEL_DOCTORS, personnelDoctors);
+        put(PERSONNEL_NURSES, personnelNurses);
+        put(PERSONNEL_PHARMACISTS, personnelPharmacists);
+        put(PERSONNEL_THERAPISTS, personnelPhysiotherapists);
+        put(PHYSICAL_ACTIVITIES_RATIO, physicalActivitiesRatio);
+        put(SMOKERS_RATIO, smokersRatio);
+        put(UNMET_DENTAL_RATIO, unmetDentalRatio);
+        put(UNMET_MEDICAL_RATIO, unmetMedicalRatio);
+        put(WORK_ACCIDENTS, workAccidents);
+    }};
+
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, HEALTH, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, HEALTH, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, HEALTH, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, HEALTH, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
@@ -140,7 +166,7 @@ public class HealthStats {
     }
 
     // Transform hospital beds "per thousand" inhabitants into "per million" inhabitants
-    private static Map<String, Number> prepareHospitalBedsRatio(Map<String, Number> preparedData) {
+    private static Map<String, Number> prepareHospitalBedsRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -148,7 +174,7 @@ public class HealthStats {
                 String key = MapUtils.generateKey(code, year);
 
                 // Transform "per hundred thousand" inhabitants into "per million" inhabitants
-                double value = preparedData.get(key).doubleValue() / 10;
+                double value = hospitalBeds.get(key).doubleValue() / 10;
                 consolidatedList.put(key, value);
             }
         }

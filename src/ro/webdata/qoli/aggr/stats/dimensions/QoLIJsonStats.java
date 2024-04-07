@@ -42,14 +42,14 @@ public class QoLIJsonStats {
 
     private static void writeData(String[] membersList, String seriesType, Map<String, Map<String, Number>> dataByCountries, boolean calculateIndicators, int startYear, int endYear) {
         JsonStatsUtils.writeJsonData(dataByCountries.get(QOLI), membersList, seriesType, QOLI_FILE_NAME, null, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, EducationStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, EnvironmentStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, GovRightsStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, HealthStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, LeisureInteractStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, MaterialLivingStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, MainActivityStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.preparedIndicators, calculateIndicators, startYear, endYear);
-        JsonStatsUtils.writeJsonData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, SafetyStats.preparedIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(EDUCATION), membersList, seriesType, EDUCATION_FILE_NAME, EducationStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(ENVIRONMENT), membersList, seriesType, ENVIRONMENT_FILE_NAME, EnvironmentStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(GOVERNANCE), membersList, seriesType, GOVERNANCE_FILE_NAME, GovRightsStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(HEALTH), membersList, seriesType, HEALTH_FILE_NAME, HealthStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(LEISURE_INTERACT), membersList, seriesType, LEISURE_INTERACT_FILE_NAME, LeisureInteractStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(LIVING_CONDITIONS), membersList, seriesType, LIVING_CONDITIONS_FILE_NAME, MaterialLivingStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(MAIN_ACTIVITY), membersList, seriesType, MAIN_ACTIVITY_FILE_NAME, MainActivityStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(OVERALL_EXPERIENCE), membersList, seriesType, OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.aggrIndicators, calculateIndicators, startYear, endYear);
+        JsonStatsUtils.writeJsonData(dataByCountries.get(SAFETY), membersList, seriesType, SAFETY_FILE_NAME, SafetyStats.aggrIndicators, calculateIndicators, startYear, endYear);
     }
 }

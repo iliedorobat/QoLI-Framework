@@ -56,12 +56,8 @@ public class GovRightsStats {
             turnoutPresidential = Preparation.prepareData(initTurnoutPresidential),
 
             citizenship = Preparation.prepareData(initCitizenshipRatio),
-            genderEmpGap = prepareGenderGap(
-                    Preparation.prepareData(initGenderEmpGap)
-            ),
-            genderPayGap = prepareGenderGap(
-                    Preparation.prepareData(initGenderPayGap)
-            ),
+            genderEmpGap = Preparation.prepareData(initGenderEmpGap),
+            genderPayGap = Preparation.prepareData(initGenderPayGap),
             populationTrustRatio = preparePopulationTrust(),
             voterTurnout = prepareVoterTurnout();
 
@@ -78,7 +74,15 @@ public class GovRightsStats {
         put(VOTER_TURNOUT_PRESIDENTIAL, Preparation.filterMap(initTurnoutPresidential));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
+        put(CITIZENSHIP_RATIO, citizenship);
+        put(GENDER_EMP_GAP, prepareGenderGap(genderEmpGap));
+        put(GENDER_PAY_GAP, prepareGenderGap(genderPayGap));
+        put(POPULATION_TRUST, populationTrustRatio);
+        put(VOTER_TURNOUT, voterTurnout);
+    }};
+
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, citizenship);
         put(GENDER_EMP_GAP, genderEmpGap);
         put(GENDER_PAY_GAP, genderPayGap);
@@ -86,19 +90,21 @@ public class GovRightsStats {
         put(POPULATION_TRUST_OTHERS, populationOthersTrustRatio);
         put(POPULATION_TRUST_PLCTST, populationPlctstTrustRatio);
         put(POPULATION_TRUST_PLTTST, populationPlttstTrustRatio);
-        put(POPULATION_TRUST, populationTrustRatio);
         put(VOTER_TURNOUT_EU_PARLIAMENT, turnoutEuParliament);
         put(VOTER_TURNOUT_PARLIAMENTARY, turnoutParliamentary);
         put(VOTER_TURNOUT_PRESIDENTIAL, turnoutPresidential);
-        put(VOTER_TURNOUT, voterTurnout);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, GOVERNANCE, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, GOVERNANCE, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, GOVERNANCE, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, GOVERNANCE, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, GOVERNANCE, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

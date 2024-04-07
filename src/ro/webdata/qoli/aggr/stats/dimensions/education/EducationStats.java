@@ -29,7 +29,7 @@ public class EducationStats {
             initEarlyEducationRatio = Initializer.initConsolidatedMap(EARLY_EDUCATION_RATIO_PARAMS, EARLY_EDUCATION_RATIO_PATH),
             initEducationRatio = Initializer.initConsolidatedMap(EDUCATION_RATIO_PARAMS, EDUCATION_RATIO_PATH),
             initInactiveYoungRatio = Initializer.initConsolidatedMap(INACTIVE_YOUNG_RATIO_PARAMS, INACTIVE_YOUNG_RATIO_PATH),
-            initNoKnownForeignLangRatio = Initializer.initConsolidatedMap(NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS, NO_KNOWN_FOREIGN_LANG_RATIO_PATH),
+            initNoKnownForeignLangRatio = Initializer.initConsolidatedMap(NO_FOREIGN_LANG_KNOWN_RATIO_PARAMS, NO_FOREIGN_LANG_KNOWN_RATIO_PATH),
             initPupilsRatio = Initializer.initConsolidatedMaps(pupilsRatioList),
             initTrainingLastMonthRatio = Initializer.initConsolidatedMap(TRAINING_LAST_MONTH_RATIO_PARAMS, TRAINING_LAST_MONTH_RATIO_PATH),
             initTrainingLastYearRatio = Initializer.initConsolidatedMap(TRAINING_LAST_YEAR_RATIO_PARAMS, TRAINING_LAST_YEAR_RATIO_PATH);
@@ -51,30 +51,46 @@ public class EducationStats {
         put(EARLY_EDU_RATIO, Preparation.filterMap(initEarlyEducationRatio));
         put(EDUCATION_RATIO, Preparation.filterMap(initEducationRatio));
         put(INACTIVE_YOUNG_RATIO, Preparation.filterMap(initInactiveYoungRatio));
-        put(NO_KNOWN_FOREIGN_LANG_RATIO, Preparation.filterMap(initNoKnownForeignLangRatio));
+        put(NO_FOREIGN_LANG_KNOWN_RATIO, Preparation.filterMap(initNoKnownForeignLangRatio));
         put(PUPILS_RATIO, Preparation.filterMap(initPupilsRatio));
         put(TRAINING_LAST_MONTH_RATIO, Preparation.filterMap(initTrainingLastMonthRatio));
         put(TRAINING_LAST_YEAR_RATIO, Preparation.filterMap(initTrainingLastYearRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
         put(DROPOUT_RATIO, dropoutRatio);
         put(EARLY_EDU_RATIO, earlyEducationRatio);
         put(EDUCATION_RATIO, educationRatio);
         put(INACTIVE_YOUNG_RATIO, inactiveYoungRatio);
-        put(NO_KNOWN_FOREIGN_LANG_RATIO, noKnownForeignLangRatio);
+        put(NO_FOREIGN_LANG_KNOWN_RATIO, noKnownForeignLangRatio);
         put(PUPILS_RATIO, pupilsRatio);
         put(TRAINING_LAST_MONTH_RATIO, trainingLastMonthRatio);
         put(TRAINING_LAST_YEAR_RATIO, trainingLastYearRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, EDUCATION, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        put(DIGITAL_SKILLS_RATIO, digitalSkillsRatio);
+        put(DROPOUT_RATIO, dropoutRatio);
+        put(EARLY_EDU_RATIO, earlyEducationRatio);
+        put(EDUCATION_RATIO, educationRatio);
+        put(INACTIVE_YOUNG_RATIO, inactiveYoungRatio);
+        put(NO_FOREIGN_LANG_KNOWN_RATIO, noKnownForeignLangRatio);
+        put(PUPILS_RATIO, pupilsRatio);
+        put(TRAINING_LAST_MONTH_RATIO, trainingLastMonthRatio);
+        put(TRAINING_LAST_YEAR_RATIO, trainingLastYearRatio);
+    }};
+
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, EDUCATION, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, EDUCATION, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, EDUCATION, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, EDUCATION, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

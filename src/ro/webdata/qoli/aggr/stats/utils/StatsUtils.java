@@ -149,7 +149,7 @@ public class StatsUtils {
      *
      * Aggregate values of the regions of the UK (UKC-L & UKM & UKN) into a single value (UK)
      * @param entries The map with target dimension data<br/>
-     *                - (E.g.: EducationStats.generateStats())
+     *                - (E.g.: EducationStats.generateAggrStats())
      * @param code The country code for which the aggregation is done
      * @param year The year for which the aggregation is done
      * @return Prepared value
@@ -175,7 +175,7 @@ public class StatsUtils {
     /**
      * Get countries data or regions data based on "seriesType"
      * @param entries The map with target dimension data<br/>
-     *                - (E.g.: EducationStats.generateStats())
+     *                - (E.g.: EducationStats.generateAggrStats())
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param startYear The year the analysis starts
      * @param endYear The year the analysis ends
@@ -190,7 +190,7 @@ public class StatsUtils {
     /**
      * Consolidate calculated values of EU countries into values of EU regions
      * @param entries The map with target dimension data<br/>
-     *                - (E.g.: EducationStats.generateStats())
+     *                - (E.g.: EducationStats.generateAggrStats())
      * @param startYear The year the analysis starts
      * @param endYear The year the analysis ends
      * @return Regions data prepared to be exported as a JSON

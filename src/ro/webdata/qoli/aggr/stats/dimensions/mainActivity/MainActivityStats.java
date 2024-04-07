@@ -91,7 +91,7 @@ public class MainActivityStats {
         put(WORKING_NIGHTS_RATIO, Preparation.filterMap(initWorkingNightsRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(AVG_WORK_HOURS, avgWorkHours);
         put(AVG_REMAINED_WORK_HOURS, avgRemainedWorkHours);
         put(EMPLOYMENT_RATIO, employmentRatio);
@@ -111,12 +111,33 @@ public class MainActivityStats {
         put(WORKING_NIGHTS_RATIO, workingNightsRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        put(AVG_WORK_HOURS, avgWorkHours);
+        put(EMPLOYMENT_RATIO, employmentRatio);
+        put(INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
+        put(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
+        put(JOB_SATISFACTION, jobSatisfaction);
+        put(LONG_TERM_UNEMPLOYMENT_RATIO, longTermUnemploymentRatio);
+        put(LOW_WAGE_EARNERS_RATIO, lowWageEarningsRatio);
+        put(LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
+        put(RESEARCHERS_RATIO, researchersRatio);
+        put(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatio);
+        put(UNEMPLOYMENT_RATIO, unemploymentRatio);
+        put(WORKING_FLEXIBILITY_FULL_RATIO, flexibilityFullRatio);
+        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO, flexibilityRestrictiveRatio);
+        put(WORKING_NIGHTS_RATIO, workingNightsRatio);
+    }};
+
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, MAIN_ACTIVITY, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, MAIN_ACTIVITY, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

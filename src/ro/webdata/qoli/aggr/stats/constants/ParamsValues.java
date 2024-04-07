@@ -1,6 +1,7 @@
 package ro.webdata.qoli.aggr.stats.constants;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ParamsValues {
     public static HashMap<String, String> ACL00 = new HashMap<>() {{
@@ -14,7 +15,7 @@ public class ParamsValues {
         put("sports", "AC525");
     }};
 
-    public static final HashMap<String, String> AIR_POL = new HashMap<>() {{
+    public static final Map<String, String> AIR_POL = new HashMap<>() {{
         put("ammonia", "NH3");          // Ammonia
         put("carbonMonoxide", "CO");    // Carbon monoxide (Ozone precursor)
         put("methane", "CH4");          // Methane (Ozone precursor)
@@ -24,7 +25,7 @@ public class ParamsValues {
         put("PM10", "PM10");
     }};
 
-    public static HashMap<String, String> HAPPINESS_LEVELS = new HashMap<>() {{
+    public static Map<String, String> HAPPINESS_LEVELS = new HashMap<>() {{
         put("always", "ALW");       // Always
         put("most", "MOST");        // Most of the time
         put("never", "NVR");        // Never
@@ -33,13 +34,13 @@ public class ParamsValues {
         put("unknown", "UNK");      // Unknown
     }};
 
-    public static final HashMap<String, String> HEALTH_PROBLEMS = new HashMap<>() {{
+    public static final Map<String, String> HEALTH_PROBLEMS = new HashMap<>() {{
         put("depressive", "DPR");
         put("majorDepressive", "DPR_MJR");
         put("otherDepressive", "DPR_OTH");
     }};
 
-    public static HashMap<String, String> ICCS = new HashMap<>() {{
+    public static Map<String, String> ICCS = new HashMap<>() {{
         put("assault", "ICCS020111");           // Serious Assault
         put("attemptedHomicide", "ICCS0102");   // Attempted intentional homicide
         put("bribery", "ICCS07031");            // Bribery
@@ -62,19 +63,19 @@ public class ParamsValues {
         put("theftVehicle", "ICCS05021");       // Theft of a motorized land vehicle
     }};
 
-    public static HashMap<String, String> IND_TYPE = new HashMap<>() {{
+    public static Map<String, String> IND_TYPE = new HashMap<>() {{
         put("family", "FAM");
         put("friends", "FRD");
     }};
 
-    public static HashMap<String, String> INDIC_WB = new HashMap<>() {{
+    public static Map<String, String> INDIC_WB = new HashMap<>() {{
         put("legal", "LEGTST");
         put("others", "OTHTST");
         put("police", "PLCTST");
         put("politic", "PLTTST");
     }};
 
-    public static final HashMap<String, String> ISCED_11 = new HashMap<>() {{
+    public static final Map<String, String> ISCED_11 = new HashMap<>() {{
         put("0_2", "ED0-2");                // Less than primary, primary and lower secondary education (levels 0-2)
         put("3_8", "ED3-8");                // Upper secondary, post-secondary non-tertiary and tertiary education (levels 3-8)
         put("3_4", "ED3_4");                // Upper secondary and post-secondary non-tertiary education (levels 3 and 4)
@@ -83,7 +84,7 @@ public class ParamsValues {
         put("5_8", "ED5-8");                // Tertiary education (levels 5-8)
     }};
 
-    public static HashMap<String, String> ISCO08 = new HashMap<>() {{
+    public static Map<String, String> ISCO08 = new HashMap<>() {{
         put("dentists", "OC2261");
         put("doctors", "OC221");
         put("nurses", "OC222_322");
@@ -91,13 +92,13 @@ public class ParamsValues {
         put("physiotherapists", "OC2264");
     }};
 
-    public static final HashMap<String, String> SATISFACTION_LEVELS = new HashMap<>() {{
+    public static final Map<String, String> SATISFACTION_LEVELS = new HashMap<>() {{
         put("high", "HIGH");
         put("low", "LOW");
         put("medium", "MED");
     }};
 
-    public static final HashMap<String, String> SATISFACTION_TYPES = new HashMap<>() {{
+    public static final Map<String, String> SATISFACTION_TYPES = new HashMap<>() {{
         put("accommodation", "ACCSAT");
         put("commutingTime", "COMSAT");
         put("financial", "FINSAT");
@@ -123,13 +124,13 @@ public class ParamsValues {
         put("other", "OTH");            // Other
     }};
 
-    public static HashMap<String, String> SEX = new HashMap<>() {{
+    public static Map<String, String> SEX = new HashMap<>() {{
         put("female", "F");
         put("male", "M");
         put("total", "T");
     }};
 
-    public static HashMap<String, String> SUBJNMON = new HashMap<>() {{
+    public static Map<String, String> SUBJNMON = new HashMap<>() {{
         put("greatDifficulty", "EM_GD");    // Households making ends meet with great difficulty
         put("difficulty", "EM_D");          // Households making ends meet with difficulty
         put("someDifficulty", "EM_SD");     // Households making ends meet with some difficulty
@@ -138,7 +139,7 @@ public class ParamsValues {
         put("veryEasily", "EM_VE");         // Households making ends meet very easily
     }};
 
-    public static HashMap<String, String> WORKING_FLEXIBILITY = new HashMap<>() {{
+    public static Map<String, String> WORKING_FLEXIBILITY = new HashMap<>() {{
         put("noResponse", "NRP");                   // No response
         put("employerDecision", "EMPL_MAIN");       // Employer or organisation mainly decides
         put("personDecision", "PER_FUL");           // Person can fully decide

@@ -72,9 +72,24 @@ public class MaterialLivingStats {
         put(UNDER_OCCUPIED_RATIO, Preparation.filterMap(initUnderOccupiedRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
         put(END_MEET_INABILITY_RATIO, endMeetInabilityRatio);
+        put(FINANCIAL_SATISFACTION_RATIO, financialSatisfactionRatio);
+        put(GDP_PER_CAPITA_PPS_RATIO, gdpPerCapitaPpsRatio);
+        put(HIGH_INCOME_RATIO, highIncomeRatio);
+        put(INCOME_QUINTILE_RATIO, incomeQuintileRatio);
+        put(LACK_OF_BATHS_RATIO, lackOfBathsRatio);
+        put(LOW_WORK_INTENSITY_RATIO, lowWorkIntensityRatio);
+        put(MATERIAL_DEPRIVATION_RATIO, materialDeprivationRatio);
+        put(MEDIAN_INCOME_PPS_RATIO, medianIncomePpsRatio);
+        put(OVER_OCCUPIED_RATIO, overOccupiedRatio);
+        put(POVERTY_RISK_RATIO, povertyRiskRatio);
+        put(UNDER_OCCUPIED_RATIO, underOccupiedRatio);
+    }};
+
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        put(DWELLING_ISSUES_RATIO, dwellingIssuesRatio);
         put(END_MEET_INABILITY_D_RATIO, endMeetInabilityDRatio);
         put(END_MEET_INABILITY_GD_RATIO, endMeetInabilityGdRatio);
         put(FINANCIAL_SATISFACTION_RATIO, financialSatisfactionRatio);
@@ -90,12 +105,16 @@ public class MaterialLivingStats {
         put(UNDER_OCCUPIED_RATIO, underOccupiedRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LIVING_CONDITIONS, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LIVING_CONDITIONS, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, LIVING_CONDITIONS, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LIVING_CONDITIONS, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, LIVING_CONDITIONS, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

@@ -14,7 +14,7 @@ public class EducationCollector {
         FileUtils.writeToJSONFile(getEarlyEducationRatio(), EDUCATION_RAW_PATH, EARLY_EDU_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getEducationRatio(), EDUCATION_RAW_PATH, EDU_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getInactiveYoungRatio(), EDUCATION_RAW_PATH, INACTIVE_YOUNG_RATIO_FILE_NAME);
-        FileUtils.writeToJSONFile(getNoKnownForeignLangRatio(), EDUCATION_RAW_PATH, NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME);
+        FileUtils.writeToJSONFile(getNoKnownForeignLangRatio(), EDUCATION_RAW_PATH, NO_FOREIGN_LANG_KNOWN_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getPupilsRatio2012(), EDUCATION_RAW_PATH, PUPILS_RATIO_2012_FILE_NAME);
         FileUtils.writeToJSONFile(getPupilsRatio2013(), EDUCATION_RAW_PATH, PUPILS_RATIO_2013_FILE_NAME);
         FileUtils.writeToJSONFile(getTrainingLastMonthRatio(), EDUCATION_RAW_PATH, TRAINING_LAST_MONTH_RATIO_FILE_NAME);
@@ -121,7 +121,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getNoKnownForeignLangRatio() {
-        return Fetcher.fetchData("edat_aes_l22", NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS);
+        return Fetcher.fetchData("edat_aes_l22", NO_FOREIGN_LANG_KNOWN_RATIO_PARAMS);
     }
 
     /**

@@ -43,7 +43,7 @@ public class EducationParams {
         put(ParamsNames.WORKING_STATUS, "NEMP");
     }};
 
-    public static final MultiValuedMap<String, String> NO_KNOWN_FOREIGN_LANG_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
+    public static final MultiValuedMap<String, String> NO_FOREIGN_LANG_KNOWN_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y25-64");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.N_LANG, "0");

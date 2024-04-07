@@ -37,19 +37,27 @@ public class OverallExperienceStats {
         put(HIGH_SATISFACTION_RATIO, Preparation.filterMap(initHighSatisfactionRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(HAPPINESS_RATIO, happinessRatio);
+        put(HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
+    }};
+
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
         put(HAPPINESS_ALWAYS_RATIO, happinessAlwaysRatio);
         put(HAPPINESS_MOST_TIME_RATIO, happinessMostOfTheTimeRatio);
         put(HIGH_SATISFACTION_RATIO, highSatisfactionRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, OVERALL_EXPERIENCE, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, OVERALL_EXPERIENCE, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

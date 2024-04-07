@@ -18,19 +18,19 @@ import java.util.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
 public class QoLIStats {
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
-        putAll(EducationStats.preparedIndicators);
-        putAll(EnvironmentStats.preparedIndicators);
-        putAll(GovRightsStats.preparedIndicators);
-        putAll(HealthStats.preparedIndicators);
-        putAll(LeisureInteractStats.preparedIndicators);
-        putAll(MainActivityStats.preparedIndicators);
-        putAll(MaterialLivingStats.preparedIndicators);
-        putAll(OverallExperienceStats.preparedIndicators);
-        putAll(SafetyStats.preparedIndicators);
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
+        putAll(EducationStats.aggrIndicators);
+        putAll(EnvironmentStats.aggrIndicators);
+        putAll(GovRightsStats.aggrIndicators);
+        putAll(HealthStats.aggrIndicators);
+        putAll(LeisureInteractStats.aggrIndicators);
+        putAll(MainActivityStats.aggrIndicators);
+        putAll(MaterialLivingStats.aggrIndicators);
+        putAll(OverallExperienceStats.aggrIndicators);
+        putAll(SafetyStats.aggrIndicators);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrs, List<String> countryCodes, int startYear, int endYear) {
+    public static Map<String, Number> generateAggrStats(List<String> aggrs, List<String> countryCodes, int startYear, int endYear) {
         List<String> aggrList = getAggrList(aggrs);
         List<String> countryList = getCountryList(countryCodes);
 
@@ -75,15 +75,15 @@ public class QoLIStats {
         List<String> countryList = getCountryList(countryCodes);
 
         return new HashMap<>() {{
-            put(EDUCATION, EducationStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(ENVIRONMENT, EnvironmentStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(GOVERNANCE, GovRightsStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(HEALTH, HealthStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(LEISURE_INTERACT, LeisureInteractStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(LIVING_CONDITIONS, MaterialLivingStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(MAIN_ACTIVITY, MainActivityStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateStats(aggrList, countryList , startYear, endYear));
-            put(SAFETY, SafetyStats.generateStats(aggrList, countryList , startYear, endYear));
+            put(EDUCATION, EducationStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(ENVIRONMENT, EnvironmentStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(GOVERNANCE, GovRightsStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(HEALTH, HealthStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(LEISURE_INTERACT, LeisureInteractStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(LIVING_CONDITIONS, MaterialLivingStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(MAIN_ACTIVITY, MainActivityStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(OVERALL_EXPERIENCE, OverallExperienceStats.generateAggrStats(aggrList, countryList , startYear, endYear));
+            put(SAFETY, SafetyStats.generateAggrStats(aggrList, countryList , startYear, endYear));
         }};
     }
 

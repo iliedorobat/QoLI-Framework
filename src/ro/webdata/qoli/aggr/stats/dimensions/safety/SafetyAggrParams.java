@@ -64,4 +64,90 @@ public class SafetyAggrParams {
         put(SOCIAL_PROTECTION_PPS_RATIO, false);
         put(UNEXPECTED_RATIO, true);
     }};
+
+    public static final Map<String, String> IND_PARAMS_LABELS = new HashMap<>() {{
+        put(CRIME_RATIO, "Crime Ratio");
+        put(NON_PAYMENT_RATIO, "Non Payment Ratio");
+        put(OFFENCES_ASSAULT, "Police-recorded Offences - Assaults");
+        put(OFFENCES_ATTEMPTED_HOMICIDE, "Police-recorded Offences - Attempted International Homicide");
+        put(OFFENCES_BRIBERY, "Police-recorded Offences - Bribery");
+        put(OFFENCES_BURGLARY, "Police-recorded Offences - Burglary");
+        put(OFFENCES_BURGLARY_PRIVATE, "Police-recorded Offences - Burglary of Private Residential Premises");
+        put(OFFENCES_COMPUTERS, "Police-recorded Offences - Acts Against Computer Systems");
+        put(OFFENCES_CRIMINAL_GROUPS, "Police-recorded Offences - Participation in an Organized Criminal Group");
+        put(OFFENCES_CORRUPTION, "Police-recorded Offences - Corruption");
+        put(OFFENCES_FRAUD, "Police-recorded Offences - Fraud");
+        put(OFFENCES_HOMICIDE, "Police-recorded Offences - International Homicide");
+        put(OFFENCES_KIDNAPPING, "Police-recorded Offences - Kidnapping");
+        put(OFFENCES_MONEY_LAUNDERING, "Police-recorded Offences - Money Laundering");
+        put(OFFENCES_NARCOTICS, "Police-recorded Offences - Narcotics");
+        put(OFFENCES_RAPE, "Police-recorded Offences - Rape");
+        put(OFFENCES_ROBBERY, "Police-recorded Offences - Robbery");
+        put(OFFENCES_SEXUAL_ASSAULT, "Police-recorded Offences - Sexual Assault");
+        put(OFFENCES_SEXUAL_EXPLOITATION, "Police-recorded Offences - Sexual Exploitation");
+        put(OFFENCES_SEXUAL_VIOLENCE, "Police-recorded Offences - Sexual Violence");
+        put(OFFENCES_THEFT, "Police-recorded Offences - Theft");
+        put(OFFENCES_THEFT_VEHICLE, "Police-recorded Offences - Theft of a Motorized Vehicle or Parts of Thereof");
+        put(PENSION_PPS_RATIO, "Pension in PPS Ratio");
+        put(SOCIAL_PROTECTION_PPS_RATIO, "Social Protection in PPS Ratio");
+        put(UNEXPECTED_RATIO, "Unexpected Ratio");
+    }};
+
+    public static final Map<String, String> IND_PARAMS_UNITS = new HashMap<>() {{
+        put(CRIME_RATIO, PERCENT);
+        put(NON_PAYMENT_RATIO, PERCENT);
+        put(OFFENCES_ASSAULT, NUMBER);
+        put(OFFENCES_ATTEMPTED_HOMICIDE, NUMBER);
+        put(OFFENCES_BRIBERY, NUMBER);
+        put(OFFENCES_BURGLARY, NUMBER);
+        put(OFFENCES_BURGLARY_PRIVATE, NUMBER);
+        put(OFFENCES_COMPUTERS, NUMBER);
+        put(OFFENCES_CRIMINAL_GROUPS, NUMBER);
+        put(OFFENCES_CORRUPTION, NUMBER);
+        put(OFFENCES_FRAUD, NUMBER);
+        put(OFFENCES_HOMICIDE, NUMBER);
+        put(OFFENCES_KIDNAPPING, NUMBER);
+        put(OFFENCES_MONEY_LAUNDERING, NUMBER);
+        put(OFFENCES_NARCOTICS, NUMBER);
+        put(OFFENCES_RAPE, NUMBER);
+        put(OFFENCES_ROBBERY, NUMBER);
+        put(OFFENCES_SEXUAL_ASSAULT, NUMBER);
+        put(OFFENCES_SEXUAL_EXPLOITATION, NUMBER);
+        put(OFFENCES_SEXUAL_VIOLENCE, NUMBER);
+        put(OFFENCES_THEFT, NUMBER);
+        put(OFFENCES_THEFT_VEHICLE, NUMBER);
+        put(PENSION_PPS_RATIO, PPS_PER_INHABITANT);
+        put(SOCIAL_PROTECTION_PPS_RATIO, PPS_PER_INHABITANT);
+        put(UNEXPECTED_RATIO, PERCENT);
+    }};
+
+    public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
+
+    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+        put(CRIME_RATIO, true);
+        put(NON_PAYMENT_RATIO, true);
+        put(OFFENCES_ASSAULT, true);
+        put(OFFENCES_ATTEMPTED_HOMICIDE, true);
+        put(OFFENCES_BRIBERY, true);
+        put(OFFENCES_BURGLARY, true);
+        put(OFFENCES_BURGLARY_PRIVATE, true);
+        put(OFFENCES_COMPUTERS, true);
+        put(OFFENCES_CRIMINAL_GROUPS, true);
+        put(OFFENCES_CORRUPTION, true);
+        put(OFFENCES_FRAUD, true);
+        put(OFFENCES_HOMICIDE, true);
+        put(OFFENCES_KIDNAPPING, true);
+        put(OFFENCES_MONEY_LAUNDERING, true);
+        put(OFFENCES_NARCOTICS, true);
+        put(OFFENCES_RAPE, true);
+        put(OFFENCES_ROBBERY, true);
+        put(OFFENCES_SEXUAL_ASSAULT, true);
+        put(OFFENCES_SEXUAL_EXPLOITATION, true);
+        put(OFFENCES_SEXUAL_VIOLENCE, true);
+        put(OFFENCES_THEFT, true);
+        put(OFFENCES_THEFT_VEHICLE, true);
+        put(PENSION_PPS_RATIO, false);
+        put(SOCIAL_PROTECTION_PPS_RATIO, false);
+        put(UNEXPECTED_RATIO, true);
+    }};
 }

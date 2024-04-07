@@ -113,13 +113,18 @@ public class SafetyStats {
         put(OFFENCES_THEFT_VEHICLE, Preparation.filterMap(initTheftVehicleOffences));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(CRIME_RATIO, crimeRatio);
         put(NON_PAYMENT_RATIO, nonPaymentRatio);
         put(PENSION_PPS_RATIO, pensionPpsRatio);
         put(SOCIAL_PROTECTION_PPS_RATIO, socialProtectionPpsRatio);
         put(UNEXPECTED_RATIO, unexpectedRatio);
+        put(OFFENCES_RATIO, totalOffencesRatio);
+    }};
 
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        put(CRIME_RATIO, crimeRatio);
+        put(NON_PAYMENT_RATIO, nonPaymentRatio);
         put(OFFENCES_ASSAULT, assaultOffences);
         put(OFFENCES_ATTEMPTED_HOMICIDE, attemptedHomicideOffences);
         put(OFFENCES_BRIBERY, briberyOffences);
@@ -140,15 +145,21 @@ public class SafetyStats {
         put(OFFENCES_SEXUAL_VIOLENCE, sexualViolenceOffences);
         put(OFFENCES_THEFT, theftOffences);
         put(OFFENCES_THEFT_VEHICLE, theftVehicleOffences);
-        put(OFFENCES_RATIO, totalOffencesRatio);
+        put(PENSION_PPS_RATIO, pensionPpsRatio);
+        put(SOCIAL_PROTECTION_PPS_RATIO, socialProtectionPpsRatio);
+        put(UNEXPECTED_RATIO, unexpectedRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, SAFETY, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, SAFETY, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, SAFETY, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, SAFETY, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, SAFETY, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

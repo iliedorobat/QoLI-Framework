@@ -21,7 +21,7 @@ public class AuxiliaryStats {
         put(POPULATION_FILE_NAME, initPopulation);
     }};
 
-    public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>(){{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>(){{
         put(POPULATION_FILE_NAME, population);
     }};
 }

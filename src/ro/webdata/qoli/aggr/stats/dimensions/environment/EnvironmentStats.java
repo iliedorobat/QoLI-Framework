@@ -59,7 +59,14 @@ public class EnvironmentStats {
         put(WATER_SUPPLY_RATIO, Preparation.filterMap(initWaterSupplyRatio));
     }};
 
-    public static final Map<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
+    public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
+        put(AIR_POLLUTION_RATIO, airPollutionRatio);
+        put(NOISE_POLLUTION_RATIO, noisePollutionRatio);
+        put(POLLUTION_RATIO, pollutionRatio);
+        put(WATER_SUPPLY_RATIO, waterSupplyRatio);
+    }};
+
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
         put(AIR_POLLUTION_NH_3_RATIO, airPollutionNh3Ratio);
         put(AIR_POLLUTION_CH_4_RATIO, airPollutionCh4Ratio);
         put(AIR_POLLUTION_CO_RATIO, airPollutionCoRatio);
@@ -67,18 +74,21 @@ public class EnvironmentStats {
         put(AIR_POLLUTION_NOX_RATIO, airPollutionNoxRatio);
         put(AIR_POLLUTION_PM_2_5_RATIO, airPollutionPm2_5Ratio);
         put(AIR_POLLUTION_PM_10_RATIO, airPollutionPm10Ratio);
-        put(AIR_POLLUTION_RATIO, airPollutionRatio);
         put(NOISE_POLLUTION_RATIO, noisePollutionRatio);
         put(POLLUTION_RATIO, pollutionRatio);
         put(WATER_SUPPLY_RATIO, waterSupplyRatio);
     }};
 
-    public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, ENVIRONMENT, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
+    public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, ENVIRONMENT, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
     }
 
-    public static void printIndicators(List<String> args, String seriesType, String direction) {
-        Print.printChartData(args, preparedIndicators, ENVIRONMENT, Constants.EU28_MEMBERS, seriesType, direction);
+    public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, ENVIRONMENT, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+    }
+
+    public static void printAggrIndicators(List<String> args, String seriesType, String direction) {
+        Print.printChartData(args, aggrIndicators, ENVIRONMENT, Constants.EU28_MEMBERS, seriesType, direction);
     }
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {

@@ -12,7 +12,7 @@ public class EducationPaths {
     public static final String EARLY_EDU_RATIO_FILE_NAME = "earlyEducationRatio";
     public static final String EDU_RATIO_FILE_NAME = "educationRatio";
     public static final String INACTIVE_YOUNG_RATIO_FILE_NAME = "inactiveYoungRatio";
-    public static final String NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME = "zeroForeignLangRatio";
+    public static final String NO_FOREIGN_LANG_KNOWN_RATIO_FILE_NAME = "noForeignLangKnownRatio";
     public static final String PUPILS_RATIO_2012_FILE_NAME = "pupilsRatio2012";
     public static final String PUPILS_RATIO_2013_FILE_NAME = "pupilsRatio2013";
     public static final String TRAINING_LAST_MONTH_RATIO_FILE_NAME = "trainingLastMonthRatio";
@@ -30,7 +30,7 @@ public class EducationPaths {
             EARLY_EDUCATION_RATIO_PATH = generatePath(EARLY_EDU_RATIO_FILE_NAME),
             EDUCATION_RATIO_PATH = generatePath(EDU_RATIO_FILE_NAME),
             INACTIVE_YOUNG_RATIO_PATH = generatePath(INACTIVE_YOUNG_RATIO_FILE_NAME),
-            NO_KNOWN_FOREIGN_LANG_RATIO_PATH = generatePath(NO_KNOWN_FOREIGN_LANG_RATIO_FILE_NAME),
+            NO_FOREIGN_LANG_KNOWN_RATIO_PATH = generatePath(NO_FOREIGN_LANG_KNOWN_RATIO_FILE_NAME),
             PUPILS_RATIO_2012_PATH = generatePath(PUPILS_RATIO_2012_FILE_NAME),
             PUPILS_RATIO_2013_PATH = generatePath(PUPILS_RATIO_2013_FILE_NAME),
             TRAINING_LAST_MONTH_RATIO_PATH = generatePath(TRAINING_LAST_MONTH_RATIO_FILE_NAME),
