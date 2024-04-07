@@ -30,6 +30,18 @@ public class QoLIStats {
         putAll(SafetyStats.aggrIndicators);
     }};
 
+    public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
+        putAll(EducationStats.baseIndicators);
+        putAll(EnvironmentStats.baseIndicators);
+        putAll(GovRightsStats.baseIndicators);
+        putAll(HealthStats.baseIndicators);
+        putAll(LeisureInteractStats.baseIndicators);
+        putAll(MainActivityStats.baseIndicators);
+        putAll(MaterialLivingStats.baseIndicators);
+        putAll(OverallExperienceStats.baseIndicators);
+        putAll(SafetyStats.baseIndicators);
+    }};
+
     public static Map<String, Number> generateAggrStats(List<String> aggrs, List<String> countryCodes, int startYear, int endYear) {
         List<String> aggrList = getAggrList(aggrs);
         List<String> countryList = getCountryList(countryCodes);
