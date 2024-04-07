@@ -49,11 +49,11 @@ public class OverallExperienceStats {
     }};
 
     public static Map<String, Number> generateAggrStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, AGGR_PARAMS, AGGR_REVERSED_STATE, aggrIndicators);
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, AGGR_PARAMS, AGGR_REVERSED_STATES, aggrIndicators);
     }
 
     public static Map<String, Number> generateBaseStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, IND_PARAMS, IND_REVERSED_STATE, baseIndicators);
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, OVERALL_EXPERIENCE, IND_PARAMS, IND_REVERSED_STATES, baseIndicators);
     }
 
     public static void printAggrIndicators(List<String> args, String seriesType, String direction) {

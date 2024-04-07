@@ -56,7 +56,7 @@ public class SafetyAggrParams {
 
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
         put(CRIME_RATIO, true);
         put(NON_PAYMENT_RATIO, true);
         put(OFFENCES_RATIO, true);
@@ -123,7 +123,7 @@ public class SafetyAggrParams {
 
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
         put(CRIME_RATIO, true);
         put(NON_PAYMENT_RATIO, true);
         put(OFFENCES_ASSAULT, true);

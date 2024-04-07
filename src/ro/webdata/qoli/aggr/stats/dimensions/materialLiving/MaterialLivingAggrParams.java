@@ -59,7 +59,7 @@ public class MaterialLivingAggrParams {
 
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, true);
         put(END_MEET_INABILITY_RATIO, true);
         put(FINANCIAL_SATISFACTION_RATIO, false);
@@ -111,7 +111,7 @@ public class MaterialLivingAggrParams {
 
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, true);
         put(END_MEET_INABILITY_D_RATIO, true);
         put(END_MEET_INABILITY_GD_RATIO, true);

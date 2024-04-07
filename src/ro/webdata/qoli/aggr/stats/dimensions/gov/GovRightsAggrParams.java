@@ -40,7 +40,7 @@ public class GovRightsAggrParams {
 
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, false);
         put(GENDER_EMP_GAP, false); // has already been reversed through the means of MathUtils.reverseGenderGap
         put(GENDER_PAY_GAP, false); // has already been reversed through the means of MathUtils.reverseGenderGap
@@ -76,7 +76,7 @@ public class GovRightsAggrParams {
 
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, false);
         put(GENDER_EMP_GAP, true);
         put(GENDER_PAY_GAP, true);

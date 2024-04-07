@@ -71,7 +71,7 @@ public class HealthAggrParams {
 
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
         put(BODY_MASS_INDEX, false);
         put(DEPRESSIVE_RATIO, true);
         put(HEALTHY_LIFE_RATIO, false);
@@ -140,7 +140,7 @@ public class HealthAggrParams {
 
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
         put(BODY_MASS_INDEX, false);
         put(DEPRESSIVE_MAJOR_RATIO, true);
         put(DEPRESSIVE_NORMAL_RATIO, true);

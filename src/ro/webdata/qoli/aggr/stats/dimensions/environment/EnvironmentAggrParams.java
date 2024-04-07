@@ -38,7 +38,7 @@ public class EnvironmentAggrParams {
 
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, true);
         put(NOISE_POLLUTION_RATIO, true);
         put(POLLUTION_RATIO, true);
@@ -73,7 +73,7 @@ public class EnvironmentAggrParams {
 
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
-    public static final Map<String, Boolean> IND_REVERSED_STATE = new HashMap<>() {{
+    public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
         put(AIR_POLLUTION_NH_3_RATIO, true);
         put(AIR_POLLUTION_CH_4_RATIO, true);
         put(AIR_POLLUTION_CO_RATIO, true);

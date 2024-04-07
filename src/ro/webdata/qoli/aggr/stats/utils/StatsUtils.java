@@ -30,7 +30,7 @@ public class StatsUtils {
      *      * QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.AGGR_REVERSED_STATE, EducationAggrParams.AGGR_REVERSED_STATE, etc.
+     *      * QoLIAggrParams.AGGR_REVERSED_STATES, EducationAggrParams.AGGR_REVERSED_STATES, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationStats.preparedIndicators, etc.
@@ -62,7 +62,7 @@ public class StatsUtils {
      * @param endYear The year in which the analysis ends
      * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.AGGR_REVERSED_STATE, EducationAggrParams.AGGR_REVERSED_STATE, etc.
+     *      * QoLIAggrParams.AGGR_REVERSED_STATES, EducationAggrParams.AGGR_REVERSED_STATES, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationStats.preparedIndicators, etc.
