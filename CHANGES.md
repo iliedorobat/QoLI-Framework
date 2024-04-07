@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ---
 
+## 2.2
+- Added the server service.
+
 ## 2.1
 - Changed current indicators:
   - "Pupils Ratio" was reversed because it describes a negative state.

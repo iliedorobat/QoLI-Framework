@@ -13,10 +13,17 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
 2. Open the Terminal/Command Prompt and navigate to the root directory (`QoLI-Framework` directory).
 3. Register the environment variables:
-```bash
-export QOLI_PATH=`pwd`
-export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/poi-5.2.0.jar:${QOLI_PATH}/lib/guava-22.0.jar:${QOLI_PATH}/lib/xmlbeans-5.0.3.jar:${QOLI_PATH}/lib/httpcore-4.4.11.jar:${QOLI_PATH}/lib/poi-ooxml-5.2.0.jar:${QOLI_PATH}/lib/protonpack-1.13.jar:${QOLI_PATH}/lib/guava-stream-1.0.jar:${QOLI_PATH}/lib/httpclient-4.5.9.jar:${QOLI_PATH}/lib/log4j-api-2.17.1.jar:${QOLI_PATH}/lib/commons-io-2.11.0.jar:${QOLI_PATH}/lib/log4j-core-2.17.1.jar:${QOLI_PATH}/lib/assertj-core-3.6.1.jar:${QOLI_PATH}/lib/assertj-json-1.0.0.jar:${QOLI_PATH}/lib/mockito-core-2.2.8.jar:${QOLI_PATH}/lib/commons-logging-1.2.jar:${QOLI_PATH}/lib/commons-math3-3.6.1.jar:${QOLI_PATH}/lib/jackson-core-2.15.3.jar:${QOLI_PATH}/lib/json-stat-java-0.2.2.jar:${QOLI_PATH}/lib/commons-compress-1.21.jar:${QOLI_PATH}/lib/commons-collections4-4.3.jar:${QOLI_PATH}/lib/jackson-databind-2.15.3.jar:${QOLI_PATH}/lib/jackson-annotations-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jdk8-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-guava-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jsr310-2.15.3.jar"
-```
+   1. QoLI Framework:
+    ```bash
+    export QOLI_PATH=`pwd`
+    export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/poi-5.2.0.jar:${QOLI_PATH}/lib/guava-22.0.jar:${QOLI_PATH}/lib/xmlbeans-5.0.3.jar:${QOLI_PATH}/lib/httpcore-4.4.11.jar:${QOLI_PATH}/lib/poi-ooxml-5.2.0.jar:${QOLI_PATH}/lib/protonpack-1.13.jar:${QOLI_PATH}/lib/guava-stream-1.0.jar:${QOLI_PATH}/lib/httpclient-4.5.9.jar:${QOLI_PATH}/lib/log4j-api-2.17.1.jar:${QOLI_PATH}/lib/commons-io-2.11.0.jar:${QOLI_PATH}/lib/log4j-core-2.17.1.jar:${QOLI_PATH}/lib/assertj-core-3.6.1.jar:${QOLI_PATH}/lib/assertj-json-1.0.0.jar:${QOLI_PATH}/lib/mockito-core-2.2.8.jar:${QOLI_PATH}/lib/commons-logging-1.2.jar:${QOLI_PATH}/lib/commons-math3-3.6.1.jar:${QOLI_PATH}/lib/jackson-core-2.15.3.jar:${QOLI_PATH}/lib/json-stat-java-0.2.2.jar:${QOLI_PATH}/lib/commons-compress-1.21.jar:${QOLI_PATH}/lib/commons-collections4-4.3.jar:${QOLI_PATH}/lib/jackson-databind-2.15.3.jar:${QOLI_PATH}/lib/jackson-annotations-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jdk8-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-guava-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jsr310-2.15.3.jar"
+    ```
+    2. QoLI Server:
+    ```bash
+    export QOLI_PATH=`pwd`
+    export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/poi-5.2.0.jar:${QOLI_PATH}/lib/guava-22.0.jar:${QOLI_PATH}/lib/xmlbeans-5.0.3.jar:${QOLI_PATH}/lib/httpcore-4.4.11.jar:${QOLI_PATH}/lib/poi-ooxml-5.2.0.jar:${QOLI_PATH}/lib/protonpack-1.13.jar:${QOLI_PATH}/lib/guava-stream-1.0.jar:${QOLI_PATH}/lib/httpclient-4.5.9.jar:${QOLI_PATH}/lib/log4j-api-2.17.1.jar:${QOLI_PATH}/lib/commons-io-2.11.0.jar:${QOLI_PATH}/lib/log4j-core-2.17.1.jar:${QOLI_PATH}/lib/assertj-core-3.6.1.jar:${QOLI_PATH}/lib/assertj-json-1.0.0.jar:${QOLI_PATH}/lib/mockito-core-2.2.8.jar:${QOLI_PATH}/lib/commons-logging-1.2.jar:${QOLI_PATH}/lib/commons-math3-3.6.1.jar:${QOLI_PATH}/lib/jackson-core-2.15.3.jar:${QOLI_PATH}/lib/json-stat-java-0.2.2.jar:${QOLI_PATH}/lib/commons-compress-1.21.jar:${QOLI_PATH}/lib/commons-collections4-4.3.jar:${QOLI_PATH}/lib/jackson-databind-2.15.3.jar:${QOLI_PATH}/lib/jackson-annotations-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jdk8-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-guava-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jsr310-2.15.3.jar"
+    export CLASSPATH="$CLASSPATH:${QOLI_PATH}/lib/grizzly-core-4.0.0.jar:${QOLI_PATH}/lib/grizzly-http-all-4.0.0.jar:${QOLI_PATH}/lib/grizzly-http-server-4.0.0.jar:${QOLI_PATH}/lib/hk2-api-3.0.3.jar:${QOLI_PATH}/lib/hk2-locator-3.0.3.jar:${QOLI_PATH}/lib/hk2-utils-3.0.3.jar:${QOLI_PATH}/lib/jackson-module-jakarta-xmlbind-annotations-2.15.3.jar:${QOLI_PATH}/lib/jakarta.annotation-api-2.1.1.jar:${QOLI_PATH}/lib/jakarta.inject-api-2.0.1.jar:${QOLI_PATH}/lib/jakarta.validation-api-3.0.2.jar:${QOLI_PATH}/lib/jakarta.ws.rs-api-3.1.0.jar:${QOLI_PATH}/lib/jakarta.xml.bind-api-4.0.0.jar:${QOLI_PATH}/lib/jersey-client.jar:${QOLI_PATH}/lib/jersey-common.jar:${QOLI_PATH}/lib/jersey-container-grizzly2-http-3.1.0.jar:${QOLI_PATH}/lib/jersey-entity-filtering-3.1.0.jar:${QOLI_PATH}/lib/jersey-hk2.jar:${QOLI_PATH}/lib/jersey-media-json-jackson-3.1.0.jar:${QOLI_PATH}/lib/jersey-server.jar"
+    ```
 4. Compile the project:
 ```bash
 javac -d ./out/production/QoLI-Framework src/ro/webdata/qoli/aggr/BuildProject.java
@@ -46,17 +53,17 @@ java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY -
 java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
 ```
 * List of dimensions:
-  * [QoLIAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/QoLIAggrParams.java#L42)
+  * [QoLIAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/QoLIAggrParams.java#L42)
 * List of indicators:
-  * Economic and Physical Safety: [SafetyAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/safety/SafetyAggrParams.java#L46)
-  * Education: [EducationAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/education/EducationAggrParams.java#L32)
-  * Governance and Basic Rights: [GovRightsAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/gov/GovRightsAggrParams.java#L31)
-  * Health: [HealthAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/health/HealthAggrParams.java#L52)
-  * Leisure and Social Interactions: [LeisureInteractAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/leisureInteract/LeisureInteractAggrParams.java#L54)
-  * Material Living Conditions: [MaterialLivingAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/materialLiving/MaterialLivingAggrParams.java#L42)
-  * Natural and Living Environment: [EnvironmentAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/environment/EnvironmentAggrParams.java#L29)
-  * Overall Experience of Life: [OverallExperienceAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/overall/OverallExperienceAggrParams.java#L20)
-  * Productive or Main Activity: [MainActivityAggrParams.ALLOWED_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/mainActivity/MainActivityAggrParams.java#L44)
+  * Economic and Physical Safety: [SafetyAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/safety/SafetyAggrParams.java#L46)
+  * Education: [EducationAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/education/EducationAggrParams.java#L32)
+  * Governance and Basic Rights: [GovRightsAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/gov/GovRightsAggrParams.java#L31)
+  * Health: [HealthAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/health/HealthAggrParams.java#L52)
+  * Leisure and Social Interactions: [LeisureInteractAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/leisureInteract/LeisureInteractAggrParams.java#L54)
+  * Material Living Conditions: [MaterialLivingAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/materialLiving/MaterialLivingAggrParams.java#L42)
+  * Natural and Living Environment: [EnvironmentAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/environment/EnvironmentAggrParams.java#L29)
+  * Overall Experience of Life: [OverallExperienceAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/overall/OverallExperienceAggrParams.java#L20)
+  * Productive or Main Activity: [MainActivityAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/mainActivity/MainActivityAggrParams.java#L44)
 
 
 
