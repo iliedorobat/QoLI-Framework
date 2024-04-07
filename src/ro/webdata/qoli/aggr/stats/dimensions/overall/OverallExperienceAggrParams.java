@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.PERCENT;
+
 public class OverallExperienceAggrParams {
     public static final String OVERALL_EXPERIENCE = "overallExperience";
 
@@ -15,6 +17,11 @@ public class OverallExperienceAggrParams {
     public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(HAPPINESS_RATIO, "Happiness Ratio");
         put(HIGH_SATISFACTION_RATIO, "High Satisfaction Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(HAPPINESS_RATIO, PERCENT);
+        put(HIGH_SATISFACTION_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

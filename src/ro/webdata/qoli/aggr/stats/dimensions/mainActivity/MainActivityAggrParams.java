@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
+
 public class MainActivityAggrParams {
     public static final String MAIN_ACTIVITY = "mainActivity";
 
@@ -39,6 +41,22 @@ public class MainActivityAggrParams {
         put(UNEMPLOYMENT_RATIO, "Unemployment Ratio");
         put(WORKING_FLEXIBILITY_RATIO, "Working Flexibility Ratio");
         put(WORKING_NIGHTS_RATIO, "Working Nights Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(AVG_REMAINED_WORK_HOURS, HOURS);
+        put(EMPLOYMENT_RATIO, PERCENT);
+        put(INACTIVE_POPULATION_RATIO, PERCENT);
+        put(INVOLUNTARY_PART_TIME_RATIO, PERCENT);
+        put(JOB_SATISFACTION, PERCENT);
+        put(LONG_TERM_UNEMPLOYMENT_RATIO, PERCENT);
+        put(LOW_WAGE_EARNERS_RATIO, PERCENT);
+        put(LOW_WORK_INTENSITY_RATIO, PERCENT);
+        put(RESEARCHERS_RATIO, PER_10_THOUSAND_INHABITANTS);
+        put(TEMPORARY_EMPLOYMENT_RATIO, PERCENT);
+        put(UNEMPLOYMENT_RATIO, PERCENT);
+        put(WORKING_FLEXIBILITY_RATIO, PERCENT);
+        put(WORKING_NIGHTS_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

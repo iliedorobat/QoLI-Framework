@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
+
 public class SafetyAggrParams {
     public static final String SAFETY = "safety";
 
@@ -36,11 +38,20 @@ public class SafetyAggrParams {
 
     public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
         put(CRIME_RATIO, "Crime Ratio");
-        put(PENSION_PPS_RATIO, "Pension in PPS Ratio");
         put(NON_PAYMENT_RATIO, "Non Payment Ratio");
         put(OFFENCES_RATIO, "Total Offences Ratio");
+        put(PENSION_PPS_RATIO, "Pension in PPS Ratio");
         put(SOCIAL_PROTECTION_PPS_RATIO, "Social Protection in PPS Ratio");
         put(UNEXPECTED_RATIO, "Unexpected Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(CRIME_RATIO, PERCENT);
+        put(NON_PAYMENT_RATIO, PERCENT);
+        put(OFFENCES_RATIO, PER_HUNDRED_INHABITANTS);
+        put(PENSION_PPS_RATIO, PPS_PER_INHABITANT);
+        put(SOCIAL_PROTECTION_PPS_RATIO, PPS_PER_INHABITANT);
+        put(UNEXPECTED_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

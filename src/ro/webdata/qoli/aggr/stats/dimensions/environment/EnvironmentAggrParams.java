@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.KG_PER_CAPITA;
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.PERCENT;
+
 public class EnvironmentAggrParams {
     public static final String ENVIRONMENT = "environment";
 
@@ -24,6 +27,13 @@ public class EnvironmentAggrParams {
         put(NOISE_POLLUTION_RATIO, "Noise Pollution Ratio");
         put(POLLUTION_RATIO, "Pollution Ratio");
         put(WATER_SUPPLY_RATIO, "Water Supply Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(AIR_POLLUTION_RATIO, KG_PER_CAPITA);
+        put(NOISE_POLLUTION_RATIO, PERCENT);
+        put(POLLUTION_RATIO, PERCENT);
+        put(WATER_SUPPLY_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.GEO_MEAN_PERCENT_POP;
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.PERCENT;
+
 public class LeisureInteractAggrParams {
     public static final String LEISURE_INTERACT = "leisureInteractions";
 
@@ -49,6 +52,23 @@ public class LeisureInteractAggrParams {
         put(SOCIAL_ACTIVITIES_RATIO, "Social Activities Ratio");
         put(TIME_SPENT_SATISFACTION, "Time Satisfaction Ratio");
         put(VOLUNTARY_ACTIVITIES_NP_RATIO, "Non-Participation in Voluntary Activities Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(AREA_SATISFACTION_RATIO, PERCENT);
+        put(ASKING_RATIO, PERCENT);
+        put(DISCUSSION_RATIO, PERCENT);
+        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, PERCENT);
+        put(FREQUENCY_CONTACT_FAM_RATIO, PERCENT);
+        put(FREQUENCY_CONTACT_FRD_RATIO, PERCENT);
+        put(GETTING_TOGETHER_FAM_RATIO, PERCENT);
+        put(GETTING_TOGETHER_FRD_RATIO, PERCENT);
+        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, PERCENT);
+        put(RELATIONSHIPS_SATISFACTION_RATIO, PERCENT);
+        put(SOCIAL_ACTIVITIES_NP_RATIO, GEO_MEAN_PERCENT_POP);
+        put(SOCIAL_ACTIVITIES_RATIO, PERCENT);
+        put(TIME_SPENT_SATISFACTION, PERCENT);
+        put(VOLUNTARY_ACTIVITIES_NP_RATIO, GEO_MEAN_PERCENT_POP);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

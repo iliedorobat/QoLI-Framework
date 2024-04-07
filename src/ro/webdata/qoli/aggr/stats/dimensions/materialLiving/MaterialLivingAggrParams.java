@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
+
 public class MaterialLivingAggrParams {
     public static final String LIVING_CONDITIONS = "livingConditions";
 
@@ -37,6 +39,22 @@ public class MaterialLivingAggrParams {
         put(OVER_OCCUPIED_RATIO, "Over Occupied Ratio");
         put(POVERTY_RISK_RATIO, "Poverty Risk Ratio");
         put(UNDER_OCCUPIED_RATIO, "Under Occupied Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(DWELLING_ISSUES_RATIO, PERCENT);
+        put(END_MEET_INABILITY_RATIO, PERCENT);
+        put(FINANCIAL_SATISFACTION_RATIO, PERCENT);
+        put(GDP_PER_CAPITA_PPS_RATIO, PERCENT);
+        put(HIGH_INCOME_RATIO, PERCENT);
+        put(INCOME_QUINTILE_RATIO, PERCENT);
+        put(LACK_OF_BATHS_RATIO, PERCENT);
+        put(LOW_WORK_INTENSITY_RATIO, PERCENT);
+        put(MATERIAL_DEPRIVATION_RATIO, PERCENT);
+        put(MEDIAN_INCOME_PPS_RATIO, PPS);
+        put(OVER_OCCUPIED_RATIO, PERCENT);
+        put(POVERTY_RISK_RATIO, PERCENT);
+        put(UNDER_OCCUPIED_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

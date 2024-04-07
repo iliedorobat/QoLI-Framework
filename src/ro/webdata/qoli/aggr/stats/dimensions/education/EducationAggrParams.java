@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.PERCENT;
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.PUPILS_PER_TEACHER;
+
 public class EducationAggrParams {
     public static final String EDUCATION = "education";
 
@@ -27,6 +30,18 @@ public class EducationAggrParams {
         put(PUPILS_RATIO, "Pupils Ratio");
         put(TRAINING_LAST_MONTH_RATIO, "Training Ratio (last 4 weeks)");
         put(TRAINING_LAST_YEAR_RATIO, "Training Ratio (last year)");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(DIGITAL_SKILLS_RATIO, PERCENT);
+        put(DROPOUT_RATIO, PERCENT);
+        put(EARLY_EDU_RATIO, PERCENT);
+        put(EDUCATION_RATIO, PERCENT);
+        put(INACTIVE_YOUNG_RATIO, PERCENT);
+        put(NO_KNOWN_FOREIGN_LANG_RATIO, PERCENT);
+        put(PUPILS_RATIO, PUPILS_PER_TEACHER);
+        put(TRAINING_LAST_MONTH_RATIO, PERCENT);
+        put(TRAINING_LAST_YEAR_RATIO, PERCENT);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

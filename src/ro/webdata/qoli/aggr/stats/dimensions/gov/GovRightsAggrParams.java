@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
+
 public class GovRightsAggrParams {
     public static final String GOVERNANCE = "governance";
 
@@ -26,6 +28,14 @@ public class GovRightsAggrParams {
         put(GENDER_PAY_GAP, "Gender Pay Gap");
         put(POPULATION_TRUST, "Population Trust Ratio");
         put(VOTER_TURNOUT, "Voter Turnout");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(CITIZENSHIP_RATIO, PERCENT);
+        put(GENDER_EMP_GAP, PERCENT);
+        put(GENDER_PAY_GAP, PERCENT);
+        put(POPULATION_TRUST, GEO_MEAN_SCORE_10_100);
+        put(VOTER_TURNOUT, GEO_MEAN_PERCENT_POP);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());

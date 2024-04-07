@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
+
 public class HealthAggrParams {
     public static final String HEALTH = "health";
 
@@ -47,6 +49,24 @@ public class HealthAggrParams {
         put(UNMET_DENTAL_RATIO, "Unmet Dental Ratio");
         put(UNMET_MEDICAL_RATIO, "Unmet Medical Ratio");
         put(WORK_ACCIDENTS, "Work Accidents Ratio");
+    }};
+
+    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+        put(BODY_MASS_INDEX, PERCENT);
+        put(DEPRESSIVE_RATIO, PERCENT);
+        put(HEALTHY_LIFE_RATIO, PERCENT);
+        put(HEALTHY_LIFE_YEARS, YEARS);
+        put(HOSPITAL_BEDS, PER_MILLION_INHABITANTS);
+        put(LIFE_EXPECTANCY, YEARS);
+        put(LONG_HEALTH_ISSUES_RATIO, PERCENT);
+        put(NON_ALCOHOLIC_RATIO, PERCENT);
+        put(NON_FRUITS_VEGETABLES_RATIO, PERCENT);
+        put(PERSONNEL_TOTAL, PER_MILLION_INHABITANTS);
+        put(PHYSICAL_ACTIVITIES_RATIO, PERCENT);
+        put(SMOKERS_RATIO, PERCENT);
+        put(UNMET_DENTAL_RATIO, PERCENT);
+        put(UNMET_MEDICAL_RATIO, PERCENT);
+        put(WORK_ACCIDENTS, PER_THOUSAND_INHABITANTS);
     }};
 
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
