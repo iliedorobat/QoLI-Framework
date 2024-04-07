@@ -125,26 +125,26 @@ public class SafetyStats {
     public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
         put(CRIME_RATIO, crimeRatio);
         put(NON_PAYMENT_RATIO, nonPaymentRatio);
-        put(OFFENCES_ASSAULT, assaultOffences);
-        put(OFFENCES_ATTEMPTED_HOMICIDE, attemptedHomicideOffences);
-        put(OFFENCES_BRIBERY, briberyOffences);
-        put(OFFENCES_BURGLARY, burglaryOffences);
-        put(OFFENCES_BURGLARY_PRIVATE, burglaryPrivateOffences);
-        put(OFFENCES_COMPUTERS, computersOffences);
-        put(OFFENCES_CRIMINAL_GROUPS, criminalGroupsOffences);
-        put(OFFENCES_CORRUPTION, corruptionOffences);
-        put(OFFENCES_FRAUD, fraudOffences);
-        put(OFFENCES_HOMICIDE, homicideOffences);
-        put(OFFENCES_KIDNAPPING, kidnappingOffences);
-        put(OFFENCES_MONEY_LAUNDERING, moneyLaunderingOffences);
-        put(OFFENCES_NARCOTICS, narcoticsOffences);
-        put(OFFENCES_RAPE, rapeOffences);
-        put(OFFENCES_ROBBERY, robberyOffences);
-        put(OFFENCES_SEXUAL_ASSAULT, sexualAssaultOffences);
-        put(OFFENCES_SEXUAL_EXPLOITATION, sexualExploitationOffences);
-        put(OFFENCES_SEXUAL_VIOLENCE, sexualViolenceOffences);
-        put(OFFENCES_THEFT, theftOffences);
-        put(OFFENCES_THEFT_VEHICLE, theftVehicleOffences);
+        put(OFFENCES_ASSAULT, prepareOffences(assaultOffences));
+        put(OFFENCES_ATTEMPTED_HOMICIDE, prepareOffences(attemptedHomicideOffences));
+        put(OFFENCES_BRIBERY, prepareOffences(briberyOffences));
+        put(OFFENCES_BURGLARY, prepareOffences(burglaryOffences));
+        put(OFFENCES_BURGLARY_PRIVATE, prepareOffences(burglaryPrivateOffences));
+        put(OFFENCES_COMPUTERS, prepareOffences(computersOffences));
+        put(OFFENCES_CRIMINAL_GROUPS, prepareOffences(criminalGroupsOffences));
+        put(OFFENCES_CORRUPTION, prepareOffences(corruptionOffences));
+        put(OFFENCES_FRAUD, prepareOffences(fraudOffences));
+        put(OFFENCES_HOMICIDE, prepareOffences(homicideOffences));
+        put(OFFENCES_KIDNAPPING, prepareOffences(kidnappingOffences));
+        put(OFFENCES_MONEY_LAUNDERING, prepareOffences(moneyLaunderingOffences));
+        put(OFFENCES_NARCOTICS, prepareOffences(narcoticsOffences));
+        put(OFFENCES_RAPE, prepareOffences(rapeOffences));
+        put(OFFENCES_ROBBERY, prepareOffences(robberyOffences));
+        put(OFFENCES_SEXUAL_ASSAULT, prepareOffences(sexualAssaultOffences));
+        put(OFFENCES_SEXUAL_EXPLOITATION, prepareOffences(sexualExploitationOffences));
+        put(OFFENCES_SEXUAL_VIOLENCE, prepareOffences(sexualViolenceOffences));
+        put(OFFENCES_THEFT, prepareOffences(theftOffences));
+        put(OFFENCES_THEFT_VEHICLE, prepareOffences(theftVehicleOffences));
         put(PENSION_PPS_RATIO, pensionPpsRatio);
         put(SOCIAL_PROTECTION_PPS_RATIO, socialProtectionPpsRatio);
         put(UNEXPECTED_RATIO, unexpectedRatio);
@@ -164,6 +164,32 @@ public class SafetyStats {
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
         Print.printDataAvailability(rawIndicators, SAFETY, targetYear, indStatus);
+    }
+
+    // Add the offences values of "UKC-L", "UKM" and "UKN" into a single value ("UK")
+    private static Map<String, Number> prepareOffences(Map<String, Number> offence) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            double ukValue = 0;
+
+            for (String code : Constants.EU28_MEMBERS_EXTENDED) {
+                String key = MapUtils.generateKey(code, year);
+
+                double value = offence.get(key).doubleValue();
+
+                if (code.equals("UKC-L") || code.equals("UKM") || code.equals("UKN")) {
+                    ukValue += value;
+                } else {
+                    consolidatedList.put(key, value);
+                }
+            }
+
+            String key = MapUtils.generateKey("UK", year);
+            consolidatedList.put(key, ukValue);
+        }
+
+        return consolidatedList;
     }
 
     // Aggregate all the offences types into the total offences index
@@ -208,7 +234,7 @@ public class SafetyStats {
 
             String key = MapUtils.generateKey("UK", year);
             Number ukValue = MathUtils.generatePerHundredInhabitants(AuxiliaryStats.population, key, ukSum);
-            consolidatedList.put(MapUtils.generateKey("UK", year), ukValue);
+            consolidatedList.put(key, ukValue);
         }
 
         return consolidatedList;
