@@ -27,7 +27,7 @@ public class MainActivityAggrParams {
     public static final String WORKING_FLEXIBILITY_RATIO = MAIN_ACTIVITY + ":workingFlexibilityRatio";
     public static final String WORKING_NIGHTS_RATIO = MAIN_ACTIVITY + ":workingNightsRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");
         put(EMPLOYMENT_RATIO, "Employment Ratio");
         put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
@@ -59,7 +59,7 @@ public class MainActivityAggrParams {
         put(WORKING_NIGHTS_RATIO, PERCENT);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(AVG_REMAINED_WORK_HOURS, false);

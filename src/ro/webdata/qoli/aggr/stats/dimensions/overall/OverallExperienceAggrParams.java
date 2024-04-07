@@ -14,7 +14,7 @@ public class OverallExperienceAggrParams {
     public static final String HAPPINESS_RATIO = OVERALL_EXPERIENCE + ":happinessRatio";
     public static final String HIGH_SATISFACTION_RATIO = OVERALL_EXPERIENCE + ":highSatisfactionRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(HAPPINESS_RATIO, "Happiness Ratio");
         put(HIGH_SATISFACTION_RATIO, "High Satisfaction Ratio");
     }};
@@ -24,7 +24,7 @@ public class OverallExperienceAggrParams {
         put(HIGH_SATISFACTION_RATIO, PERCENT);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(HAPPINESS_RATIO, false);

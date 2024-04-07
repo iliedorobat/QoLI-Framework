@@ -36,7 +36,7 @@ public class SafetyAggrParams {
     public static final String SOCIAL_PROTECTION_PPS_RATIO = SAFETY + ":socialProtectionPpsRatio";
     public static final String UNEXPECTED_RATIO = SAFETY + ":unexpectedRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(CRIME_RATIO, "Crime Ratio");
         put(NON_PAYMENT_RATIO, "Non Payment Ratio");
         put(OFFENCES_RATIO, "Total Offences Ratio");
@@ -54,7 +54,7 @@ public class SafetyAggrParams {
         put(UNEXPECTED_RATIO, PERCENT);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(CRIME_RATIO, true);

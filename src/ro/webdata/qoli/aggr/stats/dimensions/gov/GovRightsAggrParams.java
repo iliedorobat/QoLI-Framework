@@ -22,7 +22,7 @@ public class GovRightsAggrParams {
     public static final String VOTER_TURNOUT_PARLIAMENTARY = GOVERNANCE + ":voterTurnoutParliamentary";
     public static final String VOTER_TURNOUT_PRESIDENTIAL = GOVERNANCE + ":voterTurnoutPresidential";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, "Citizenship Ratio");
         put(GENDER_EMP_GAP, "Gender Employment Gap");
         put(GENDER_PAY_GAP, "Gender Pay Gap");
@@ -38,7 +38,7 @@ public class GovRightsAggrParams {
         put(VOTER_TURNOUT, GEO_MEAN_PERCENT_POP);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, false);

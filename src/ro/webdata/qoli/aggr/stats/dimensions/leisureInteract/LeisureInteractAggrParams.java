@@ -37,7 +37,7 @@ public class LeisureInteractAggrParams {
     public static final String TIME_SPENT_SATISFACTION = LEISURE_INTERACT + ":timeSpentSatisfaction";
     public static final String VOLUNTARY_ACTIVITIES_NP_RATIO = LEISURE_INTERACT + ":voluntaryActivitiesNpRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, "Green Areas Satisfaction Ratio");
         put(ASKING_RATIO, "Asking Ratio");
         put(DISCUSSION_RATIO, "Discussion Ratio");
@@ -71,7 +71,7 @@ public class LeisureInteractAggrParams {
         put(VOLUNTARY_ACTIVITIES_NP_RATIO, GEO_MEAN_PERCENT_POP);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(AREA_SATISFACTION_RATIO, false);

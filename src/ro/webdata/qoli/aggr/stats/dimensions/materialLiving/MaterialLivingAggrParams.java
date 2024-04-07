@@ -25,7 +25,7 @@ public class MaterialLivingAggrParams {
     public static final String POVERTY_RISK_RATIO = LIVING_CONDITIONS + ":povertyRiskRatio";
     public static final String UNDER_OCCUPIED_RATIO = LIVING_CONDITIONS + ":underOccupiedRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, "Dwelling Issues Ratio");
         put(END_MEET_INABILITY_RATIO, "End Meet Inability Ratio");
         put(FINANCIAL_SATISFACTION_RATIO, "Financial Satisfaction Ratio");
@@ -57,7 +57,7 @@ public class MaterialLivingAggrParams {
         put(UNDER_OCCUPIED_RATIO, PERCENT);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(DWELLING_ISSUES_RATIO, true);

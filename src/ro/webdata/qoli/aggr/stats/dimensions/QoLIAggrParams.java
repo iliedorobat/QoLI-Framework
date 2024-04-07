@@ -27,7 +27,7 @@ public class QoLIAggrParams {
     public static final String OVERALL_EXPERIENCE = OverallExperienceAggrParams.OVERALL_EXPERIENCE;
     public static final String SAFETY = SafetyAggrParams.SAFETY;
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(EDUCATION, "Education");
         put(ENVIRONMENT, "Natural and Living Environment");
         put(GOVERNANCE, "Governance and Basic Rights");
@@ -39,18 +39,18 @@ public class QoLIAggrParams {
         put(SAFETY, "Economic and Physical Safety");
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Map<String, String>> ALLOWED_DIMENSION_LABELS = new HashMap<>() {{
-        put(EDUCATION, EducationAggrParams.AGGR_PARAM_LABELS);
-        put(ENVIRONMENT, EnvironmentAggrParams.AGGR_PARAM_LABELS);
-        put(GOVERNANCE, GovRightsAggrParams.AGGR_PARAM_LABELS);
-        put(HEALTH, HealthAggrParams.AGGR_PARAM_LABELS);
-        put(LEISURE_INTERACT, LeisureInteractAggrParams.AGGR_PARAM_LABELS);
-        put(MAIN_ACTIVITY, MainActivityAggrParams.AGGR_PARAM_LABELS);
-        put(LIVING_CONDITIONS, MaterialLivingAggrParams.AGGR_PARAM_LABELS);
-        put(OVERALL_EXPERIENCE, OverallExperienceAggrParams.AGGR_PARAM_LABELS);
-        put(SAFETY, SafetyAggrParams.AGGR_PARAM_LABELS);
+        put(EDUCATION, EducationAggrParams.AGGR_PARAMS_LABELS);
+        put(ENVIRONMENT, EnvironmentAggrParams.AGGR_PARAMS_LABELS);
+        put(GOVERNANCE, GovRightsAggrParams.AGGR_PARAMS_LABELS);
+        put(HEALTH, HealthAggrParams.AGGR_PARAMS_LABELS);
+        put(LEISURE_INTERACT, LeisureInteractAggrParams.AGGR_PARAMS_LABELS);
+        put(MAIN_ACTIVITY, MainActivityAggrParams.AGGR_PARAMS_LABELS);
+        put(LIVING_CONDITIONS, MaterialLivingAggrParams.AGGR_PARAMS_LABELS);
+        put(OVERALL_EXPERIENCE, OverallExperienceAggrParams.AGGR_PARAMS_LABELS);
+        put(SAFETY, SafetyAggrParams.AGGR_PARAMS_LABELS);
     }};
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{

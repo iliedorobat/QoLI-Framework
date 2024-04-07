@@ -22,7 +22,7 @@ public class EnvironmentAggrParams {
     public static final String POLLUTION_RATIO = ENVIRONMENT + ":pollutionRatio";
     public static final String WATER_SUPPLY_RATIO = ENVIRONMENT + ":waterSupplyRatio";
 
-    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, "Air Pollution Ratio");
         put(NOISE_POLLUTION_RATIO, "Noise Pollution Ratio");
         put(POLLUTION_RATIO, "Pollution Ratio");
@@ -36,7 +36,7 @@ public class EnvironmentAggrParams {
         put(WATER_SUPPLY_RATIO, PERCENT);
     }};
 
-    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(AIR_POLLUTION_RATIO, true);
