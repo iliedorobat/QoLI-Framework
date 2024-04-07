@@ -33,7 +33,7 @@ public class HealthAggrParams {
     public static final String UNMET_MEDICAL_RATIO = HEALTH + ":unmetMedicalStatus";
     public static final String WORK_ACCIDENTS = HEALTH + ":workAccidents";
 
-    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
         put(BODY_MASS_INDEX, "Body Mass Index");
         put(DEPRESSIVE_RATIO, "Depressive Ratio");
         put(HEALTHY_LIFE_RATIO, "Healthy Life Ratio");
@@ -51,7 +51,7 @@ public class HealthAggrParams {
         put(WORK_ACCIDENTS, "Work Accidents Ratio");
     }};
 
-    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_UNITS = new HashMap<>() {{
         put(BODY_MASS_INDEX, PERCENT);
         put(DEPRESSIVE_RATIO, PERCENT);
         put(HEALTHY_LIFE_RATIO, PERCENT);
@@ -69,9 +69,9 @@ public class HealthAggrParams {
         put(WORK_ACCIDENTS, PER_THOUSAND_INHABITANTS);
     }};
 
-    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
 
-    public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(BODY_MASS_INDEX, false);
         put(DEPRESSIVE_RATIO, true);
         put(HEALTHY_LIFE_RATIO, false);

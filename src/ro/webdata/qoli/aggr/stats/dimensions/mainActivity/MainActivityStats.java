@@ -112,7 +112,7 @@ public class MainActivityStats {
     }};
 
     public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, MAIN_ACTIVITY, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

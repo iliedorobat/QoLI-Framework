@@ -17,7 +17,7 @@ public class StatsUtils {
      *
      * @param aggrList List of aggregation params<br/>
      * E.g.:<br/>
-     *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * predefined list: QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
      * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"]).
      * @param startYear The year from which the analysis begins
@@ -27,10 +27,10 @@ public class StatsUtils {
      *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
      * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.IS_REVERSED, EducationAggrParams.IS_REVERSED, etc.
+     *      * QoLIAggrParams.AGGR_REVERSED_STATE, EducationAggrParams.AGGR_REVERSED_STATE, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationStats.preparedIndicators, etc.
@@ -55,14 +55,14 @@ public class StatsUtils {
      *
      * @param aggrList List of aggregation params<br/>
      * E.g.:<br/>
-     *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * predefined list: QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
      * @param countryCodes List of analyzed country codes (E.g.: ["AT", "BE", "RO"].
      * @param startYear The year from which the analysis begins
      * @param endYear The year in which the analysis ends
      * @param reversedMap Map containing specifications about which indicator describes a negative state.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.IS_REVERSED, EducationAggrParams.IS_REVERSED, etc.
+     *      * QoLIAggrParams.AGGR_REVERSED_STATE, EducationAggrParams.AGGR_REVERSED_STATE, etc.
      * @param preparedIndicators Map that contains the prepared indicators specific to the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationStats.preparedIndicators, etc.
@@ -247,14 +247,14 @@ public class StatsUtils {
      * which describe a dimension (allowedAggrList).
      @param aggrList List of aggregation params<br/>
      * E.g.:<br/>
-     *      * predefined list: QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * predefined list: QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      *      * custom list: ["digitalSkillsRatio", "dropoutRatio", "crimeRatio"]
      * @param mainAggregator The aggregator describing the target dimension.<br/>
      * E.g.:<br/>
      *      * EducationAggrParams.EDUCATION, EnvironmentAggrParams.ENVIRONMENT, etc.
      * @param allowedAggrList List of aggregation params specific to the target dimension.<br/>
      * E.g.:<br/>
-     *      * QoLIAggrParams.ALLOWED_PARAMS, EducationAggrParams.ALLOWED_PARAMS, etc.
+     *      * QoLIAggrParams.AGGR_PARAMS, EducationAggrParams.AGGR_PARAMS, etc.
      * @return Sorted map with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
      */
     private static List<String> filterAggrList(List<String> aggrList, String mainAggregator, List<String> allowedAggrList) {

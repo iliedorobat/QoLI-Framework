@@ -70,7 +70,7 @@ public class EducationStats {
     }};
 
     public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, EDUCATION, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, EDUCATION, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {

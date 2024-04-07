@@ -89,7 +89,7 @@ public class QoLIStats {
 
     public static List<String> getAggrList(List<String> aggrs) {
         return aggrs == null || aggrs.size() == 0
-                ? QoLIAggrParams.ALLOWED_PARAMS
+                ? QoLIAggrParams.AGGR_PARAMS
                 : aggrs;
     }
 

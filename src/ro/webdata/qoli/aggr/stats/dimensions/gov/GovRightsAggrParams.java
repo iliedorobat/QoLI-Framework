@@ -22,7 +22,7 @@ public class GovRightsAggrParams {
     public static final String VOTER_TURNOUT_PARLIAMENTARY = GOVERNANCE + ":voterTurnoutParliamentary";
     public static final String VOTER_TURNOUT_PRESIDENTIAL = GOVERNANCE + ":voterTurnoutPresidential";
 
-    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, "Citizenship Ratio");
         put(GENDER_EMP_GAP, "Gender Employment Gap");
         put(GENDER_PAY_GAP, "Gender Pay Gap");
@@ -30,17 +30,17 @@ public class GovRightsAggrParams {
         put(VOTER_TURNOUT, "Voter Turnout");
     }};
 
-    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_UNITS = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, PERCENT);
-        put(GENDER_EMP_GAP, PERCENT);
-        put(GENDER_PAY_GAP, PERCENT);
+        put(GENDER_EMP_GAP, PERCENT); // TODO: check
+        put(GENDER_PAY_GAP, PERCENT); // TODO: check
         put(POPULATION_TRUST, GEO_MEAN_SCORE_10_100);
         put(VOTER_TURNOUT, GEO_MEAN_PERCENT_POP);
     }};
 
-    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
 
-    public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, false);
         put(GENDER_EMP_GAP, false); // is already reversed through the means of MathUtils.reverseGenderGap
         put(GENDER_PAY_GAP, false); // is already reversed through the means of MathUtils.reverseGenderGap

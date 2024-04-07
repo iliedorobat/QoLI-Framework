@@ -20,7 +20,7 @@ public class EducationAggrParams {
     public static final String TRAINING_LAST_MONTH_RATIO = EDUCATION + ":trainingLastMonthRatio";
     public static final String TRAINING_LAST_YEAR_RATIO = EDUCATION + ":trainingLastYearRatio";
     
-    public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAM_LABELS = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, "Digital Skills Ratio");
         put(DROPOUT_RATIO, "Dropout Ratio");
         put(EARLY_EDU_RATIO, "Early Education Ratio");
@@ -32,7 +32,7 @@ public class EducationAggrParams {
         put(TRAINING_LAST_YEAR_RATIO, "Training Ratio (last year)");
     }};
 
-    public static final Map<String, String> ALLOWED_PARAM_UNITS = new HashMap<>() {{
+    public static final Map<String, String> AGGR_PARAMS_UNITS = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, PERCENT);
         put(DROPOUT_RATIO, PERCENT);
         put(EARLY_EDU_RATIO, PERCENT);
@@ -44,9 +44,9 @@ public class EducationAggrParams {
         put(TRAINING_LAST_YEAR_RATIO, PERCENT);
     }};
 
-    public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
+    public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAM_LABELS.keySet());
 
-    public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
+    public static final Map<String, Boolean> AGGR_REVERSED_STATE = new HashMap<>() {{
         put(DIGITAL_SKILLS_RATIO, false);
         put(DROPOUT_RATIO, true);
         put(EARLY_EDU_RATIO, false);

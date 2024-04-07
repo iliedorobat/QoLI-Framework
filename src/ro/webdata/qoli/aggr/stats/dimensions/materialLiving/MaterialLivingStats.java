@@ -91,7 +91,7 @@ public class MaterialLivingStats {
     }};
 
     public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
-        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LIVING_CONDITIONS, ALLOWED_PARAMS, IS_REVERSED, preparedIndicators);
+        return StatsUtils.generateStats(aggrList, countryCodes, startYear, endYear, LIVING_CONDITIONS, AGGR_PARAMS, AGGR_REVERSED_STATE, preparedIndicators);
     }
 
     public static void printIndicators(List<String> args, String seriesType, String direction) {
