@@ -4,7 +4,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ro.webdata.qoli.server.commons.Endpoint;
-import ro.webdata.qoli.server.endpoint.stats.StatsConfigEndpoint;
+import ro.webdata.qoli.server.endpoint.stats.collector.StatsCollectorEndpoint;
+import ro.webdata.qoli.server.endpoint.stats.config.StatsConfigEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
 
 import java.net.URI;
@@ -23,11 +24,12 @@ public class Server {
         final ResourceConfig config = new ResourceConfig();
 
         // Registering like this will give warnings like:
-        // WARNING: A provider com.example.controller.QoLIEndpoint registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider
-        // ro.webdata.humanities.server.museum.QoLIEndpoint will be ignored.
+        // WARNING: A provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime.
+        // Due to constraint configuration problems the provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint will be ignored.
         // But it just works and according to stackoverflow this is a bug:
         // https://github.com/eclipse-ee4j/jersey/issues/3700
         config.register(StatsEndpoint.class);
+        config.register(StatsCollectorEndpoint.class);
         config.register(StatsConfigEndpoint.class);
 
         if (local) {

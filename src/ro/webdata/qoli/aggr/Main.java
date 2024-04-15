@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import static ro.webdata.qoli.aggr.ParamsUtils.*;
-import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.QOLI;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,7 +53,7 @@ public class Main {
         }
 
         if (calculate) {
-            Map<String, Map<String, Number>> dataByCountries = prepareDimensions(aggr, startYear, endYear);
+            Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareExtendedDimensions(aggr, null, startYear, endYear);
             String direction = getDirection(list);
 
             // 3. Calculate and write the QoLI and the QoLI dimensions values to disk
@@ -67,7 +66,7 @@ public class Main {
             String direction = getDirection(list);
 
             if (seriesType != null) {
-                Map<String, Map<String, Number>> dataByCountries = prepareDimensions(aggr, startYear, endYear);
+                Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareExtendedDimensions(aggr, null, startYear, endYear);
 
                 // 4. Print the QoLI and the QoLI dimensions values
                 QoLICsvStats.printDimensions(list, seriesType, dataByCountries, direction);
@@ -84,11 +83,5 @@ public class Main {
                 SafetyStats.printAggrIndicators(list, seriesType, direction);
             }
         }
-    }
-
-    private static Map<String, Map<String, Number>> prepareDimensions(List<String> aggr, int startYear, int endYear) {
-        Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareDimensions(aggr, null, startYear, endYear);
-        dataByCountries.put(QOLI, QoLIStats.generateAggrStats(aggr, null, startYear, endYear));
-        return dataByCountries;
     }
 }

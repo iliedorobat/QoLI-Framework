@@ -99,6 +99,12 @@ public class QoLIStats {
         }};
     }
 
+    public static Map<String, Map<String, Number>> prepareExtendedDimensions(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
+        Map<String, Map<String, Number>> dataByCountries = prepareDimensions(aggrList, countryCodes, startYear, endYear);
+        dataByCountries.put(QOLI, QoLIStats.generateAggrStats(aggrList, countryCodes, startYear, endYear));
+        return dataByCountries;
+    }
+
     public static List<String> getAggrList(List<String> aggrs) {
         return aggrs == null || aggrs.size() == 0
                 ? QoLIAggrParams.AGGR_PARAMS
