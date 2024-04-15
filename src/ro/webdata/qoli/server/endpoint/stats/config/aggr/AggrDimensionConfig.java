@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DimensionConfig {
+public class AggrDimensionConfig {
     @JsonProperty("checked")
     boolean checked = true;
 
@@ -17,16 +17,16 @@ public class DimensionConfig {
     String label;
 
     @JsonProperty("aggregators")
-    List<IndicatorConfig> aggregators = new ArrayList<>();
+    List<AggrIndicatorConfig> aggregators = new ArrayList<>();
 
-    public DimensionConfig(String filename, String label, Map<String, String> allowedParams) {
+    public AggrDimensionConfig(String filename, String label, Map<String, String> allowedParams) {
         this.filename = filename;
         this.label = label;
 
         for (Map.Entry<String, String> param : allowedParams.entrySet()) {
             String indKey = param.getKey();
             String indLabel = param.getValue();
-            IndicatorConfig indConfig = new IndicatorConfig(indKey, indLabel);
+            AggrIndicatorConfig indConfig = new AggrIndicatorConfig(indKey, indLabel);
 
             aggregators.add(indConfig);
         }

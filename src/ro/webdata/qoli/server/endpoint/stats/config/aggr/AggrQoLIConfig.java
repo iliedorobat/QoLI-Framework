@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class QoLIConfig {
+public class AggrQoLIConfig {
     @JsonProperty("checked")
     boolean checked = true;
 
@@ -19,34 +19,34 @@ public class QoLIConfig {
     String label = "QoLI";
 
     @JsonProperty("aggregators")
-    List<DimensionConfig> aggregators = new ArrayList<>();
+    List<AggrDimensionConfig> aggregators = new ArrayList<>();
 
-    public QoLIConfig() {
+    public AggrQoLIConfig() {
         for (Map.Entry<String, Map<String, String>> item : QoLIAggrParams.AGGR_DIMENSION_LABELS.entrySet()) {
             String dimKey = item.getKey();
             String dimLabel = QoLIAggrParams.AGGR_PARAMS_LABELS.get(dimKey);
             Map<String, String> dimAllowedParams = item.getValue();
 
-            DimensionConfig dimConfig = new DimensionConfig(dimKey, dimLabel, dimAllowedParams);
-            dimConfig.aggregators.sort(new IndicatorsOrder());
+            AggrDimensionConfig dimConfig = new AggrDimensionConfig(dimKey, dimLabel, dimAllowedParams);
+            dimConfig.aggregators.sort(new AggrIndicatorsOrder());
 
             aggregators.add(dimConfig);
         }
 
-        aggregators.sort(new DimensionsOrder());
+        aggregators.sort(new AggrDimensionsOrder());
     }
 }
 
-class DimensionsOrder implements Comparator<DimensionConfig> {
+class AggrDimensionsOrder implements Comparator<AggrDimensionConfig> {
     @Override
-    public int compare(DimensionConfig dimension1, DimensionConfig dimension2) {
+    public int compare(AggrDimensionConfig dimension1, AggrDimensionConfig dimension2) {
         return dimension1.label.compareTo(dimension2.label);
     }
 }
 
-class IndicatorsOrder implements Comparator<IndicatorConfig> {
+class AggrIndicatorsOrder implements Comparator<AggrIndicatorConfig> {
     @Override
-    public int compare(IndicatorConfig indicator1, IndicatorConfig indicator2) {
+    public int compare(AggrIndicatorConfig indicator1, AggrIndicatorConfig indicator2) {
         return indicator1.label.compareTo(indicator2.label);
     }
 }

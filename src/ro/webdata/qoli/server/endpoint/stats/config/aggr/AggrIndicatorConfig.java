@@ -13,7 +13,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyAggrParams;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
-public class IndicatorConfig {
+public class AggrIndicatorConfig {
     @JsonProperty("checked")
     boolean checked = true;
 
@@ -29,7 +29,7 @@ public class IndicatorConfig {
     @JsonProperty("units")
     String units;
 
-    public IndicatorConfig(String filename, String label) {
+    public AggrIndicatorConfig(String filename, String label) {
         this.filename = filename;
         this.label = label;
         this.negativeState = isReversed(filename);

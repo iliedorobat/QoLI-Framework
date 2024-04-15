@@ -25,23 +25,23 @@ public class BaseQoLIConfig {
             Map<String, String> dimAllowedParams = item.getValue();
 
             BaseDimensionConfig dimConfig = new BaseDimensionConfig(dimKey, dimLabel, dimAllowedParams);
-            dimConfig.aggregators.sort(new IndicatorsOrder());
+            dimConfig.aggregators.sort(new BaseIndicatorsOrder());
 
             aggregators.add(dimConfig);
         }
 
-        aggregators.sort(new DimensionsOrder());
+        aggregators.sort(new BaseDimensionsOrder());
     }
 }
 
-class DimensionsOrder implements Comparator<BaseDimensionConfig> {
+class BaseDimensionsOrder implements Comparator<BaseDimensionConfig> {
     @Override
     public int compare(BaseDimensionConfig dimension1, BaseDimensionConfig dimension2) {
         return dimension1.label.compareTo(dimension2.label);
     }
 }
 
-class IndicatorsOrder implements Comparator<BaseIndicatorConfig> {
+class BaseIndicatorsOrder implements Comparator<BaseIndicatorConfig> {
     @Override
     public int compare(BaseIndicatorConfig indicator1, BaseIndicatorConfig indicator2) {
         return indicator1.label.compareTo(indicator2.label);

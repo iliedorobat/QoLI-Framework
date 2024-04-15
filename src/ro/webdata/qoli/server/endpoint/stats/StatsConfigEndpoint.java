@@ -7,7 +7,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ro.webdata.qoli.server.commons.ParamsValues;
-import ro.webdata.qoli.server.endpoint.stats.config.aggr.QoLIConfig;
+import ro.webdata.qoli.server.endpoint.stats.config.aggr.AggrQoLIConfig;
 import ro.webdata.qoli.server.endpoint.stats.config.base.BaseQoLIConfig;
 
 @Path("/stats/config")
@@ -20,7 +20,7 @@ public class StatsConfigEndpoint {
         switch (analysisType) {
             // E.g.: http://localhost:3070/stats/config?analysisType=aggregate
             case ParamsValues.AGGREGATED_ANALYSIS:
-                QoLIConfig config = new QoLIConfig();
+                AggrQoLIConfig config = new AggrQoLIConfig();
                 return Response.ok().entity(config).build();
 
             // E.g.: http://localhost:3070/stats/config?analysisType=individually
