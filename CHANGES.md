@@ -7,12 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added the server service.
 
 ## 2.1
+- Added the server service.
+
+## 2.0
 - Changed current indicators:
   - "Pupils Ratio" was reversed because it describes a negative state.
   - "Alcoholic Ratio" was changed to depict the "frequency of heavy episodic drinking" instead of the "daily alcohol consumption".
   - Inactive young people param was changed from Y18-24 to Y15-29.
   - Body Mass Index formula was changed to describe the share of the people within normal limits.
   - "Hospital Beds" and "Total Personnel" are reported to 1 million inhabitants instead of 100.000.
+  - "Health Personnel" formula it also includes midwives. 
   - "Fruits and Vegetables Ratio" formula has been changed to depict the proportion of the population who never consumes fruits and vegetables.
   - "Non-Participation" to voluntary and social activities formula was updated.
   - "Gender Gap" formula was updated.
@@ -29,11 +33,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Population participating in education and training in the 12 months.
     - People who frequently contact family, relatives or friends.
     - Population rating the satisfaction with recreational and green areas as high.
-    - Participation in formal or informal voluntary activities.
 - New features:
   - Allow the calculation of the QoLI based on a custom set of indicators (E.g.: ["discussionRatio","gettingTogetherFrdRatio"]).
 
-## 2.0
+## 1.2
 - "Leisure" and "Social Interactions" dimensions were merged back into a single dimension - "Leisure and Social Interactions".
 - Added support for calculating the indicators that make up the 8+1 QoLI dimensions.
 

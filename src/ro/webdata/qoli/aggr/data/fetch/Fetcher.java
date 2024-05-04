@@ -90,13 +90,13 @@ public class Fetcher {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */
     public static StringBuilder fetchSatisfactionRatio(MultiValuedMap<String, String> params) {
-        return Fetcher.fetchData("ilc_pw05", params);
+        return Fetcher.fetchData("ilc_pw05b", params);
     }
 
     /**

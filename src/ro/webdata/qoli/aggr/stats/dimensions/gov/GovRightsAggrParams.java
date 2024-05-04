@@ -13,10 +13,10 @@ public class GovRightsAggrParams {
     public static final String GENDER_EMP_GAP = GOVERNANCE + ":genderEmpGap";
     public static final String GENDER_PAY_GAP = GOVERNANCE + ":genderPayGap";
     public static final String POPULATION_TRUST = GOVERNANCE + ":populationTrustRatio";
-    public static final String POPULATION_TRUST_LEGTST = GOVERNANCE + ":populationTrustLegtstRatio";
-    public static final String POPULATION_TRUST_OTHERS = GOVERNANCE + ":populationTrustOthersRatio";
-    public static final String POPULATION_TRUST_PLCTST = GOVERNANCE + ":populationTrustPlctstRatio";
-    public static final String POPULATION_TRUST_PLTTST = GOVERNANCE + ":populationTrustPlttstRatio";
+    public static final String POPULATION_TRUST_LEGAL = GOVERNANCE + ":populationTrustLegtstRatio";
+    public static final String POPULATION_TRUST_OTHER = GOVERNANCE + ":populationTrustOthersRatio";
+    public static final String POPULATION_TRUST_POLICE = GOVERNANCE + ":populationTrustPlctstRatio";
+    public static final String POPULATION_TRUST_POLITIC = GOVERNANCE + ":populationTrustPlttstRatio";
     public static final String VOTER_TURNOUT = GOVERNANCE + ":voterTurnout";
     public static final String VOTER_TURNOUT_EU_PARLIAMENT = GOVERNANCE + ":voterTurnoutEuParliament";
     public static final String VOTER_TURNOUT_PARLIAMENTARY = GOVERNANCE + ":voterTurnoutParliamentary";

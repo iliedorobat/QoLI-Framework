@@ -24,10 +24,10 @@ import static ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsAggrParams.*;
 public class GovRightsStats {
     // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
-            initPopulationLegtstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_LEGTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
-            initPopulationOthersTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_OTHERS_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
-            initPopulationPlctstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_PLCTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
-            initPopulationPlttstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_PLTTST_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH);
+            initPopulationLegtstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_LEGAL_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
+            initPopulationOthersTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_OTHER_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_OTHER_PATH),
+            initPopulationPlctstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_POLICE_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH),
+            initPopulationPlttstTrust = Initializer.initConsolidatedMap(GovRightsParams.POPULATION_POLITIC_TRUST_PARAMS, GovRightsPaths.POPULATION_TRUST_PATH);
 
     private static final Map<String, Map<String, Number>> initVoterTurnout = voterTurnoutCsvToMap();
 
@@ -65,10 +65,10 @@ public class GovRightsStats {
         put(CITIZENSHIP_RATIO, Preparation.filterMap(initCitizenshipRatio));
         put(GENDER_EMP_GAP, Preparation.filterMap(initGenderEmpGap));
         put(GENDER_PAY_GAP, Preparation.filterMap(initGenderPayGap));
-        put(POPULATION_TRUST_LEGTST, Preparation.filterMap(initPopulationLegtstTrust));
-        put(POPULATION_TRUST_OTHERS, Preparation.filterMap(initPopulationOthersTrust));
-        put(POPULATION_TRUST_PLCTST, Preparation.filterMap(initPopulationPlctstTrust));
-        put(POPULATION_TRUST_PLTTST, Preparation.filterMap(initPopulationPlttstTrust));
+        put(POPULATION_TRUST_LEGAL, Preparation.filterMap(initPopulationLegtstTrust));
+        put(POPULATION_TRUST_OTHER, Preparation.filterMap(initPopulationOthersTrust));
+        put(POPULATION_TRUST_POLICE, Preparation.filterMap(initPopulationPlctstTrust));
+        put(POPULATION_TRUST_POLITIC, Preparation.filterMap(initPopulationPlttstTrust));
         put(VOTER_TURNOUT_EU_PARLIAMENT, Preparation.filterMap(initTurnoutEuParliament));
         put(VOTER_TURNOUT_PARLIAMENTARY, Preparation.filterMap(initTurnoutParliamentary));
         put(VOTER_TURNOUT_PRESIDENTIAL, Preparation.filterMap(initTurnoutPresidential));
@@ -86,10 +86,11 @@ public class GovRightsStats {
         put(CITIZENSHIP_RATIO, citizenship);
         put(GENDER_EMP_GAP, genderEmpGap);
         put(GENDER_PAY_GAP, genderPayGap);
-        put(POPULATION_TRUST_LEGTST, populationLegtstTrustRatio);
-        put(POPULATION_TRUST_OTHERS, populationOthersTrustRatio);
-        put(POPULATION_TRUST_PLCTST, populationPlctstTrustRatio);
-        put(POPULATION_TRUST_PLTTST, populationPlttstTrustRatio);
+        put(POPULATION_TRUST_LEGAL, populationLegtstTrustRatio);
+        put(POPULATION_TRUST_OTHER, populationOthersTrustRatio);
+        put(POPULATION_TRUST_POLICE, populationPlctstTrustRatio);
+        put(POPULATION_TRUST_POLITIC, populationPlttstTrustRatio);
+        put(POPULATION_TRUST, populationTrustRatio);
         put(VOTER_TURNOUT_EU_PARLIAMENT, turnoutEuParliament);
         put(VOTER_TURNOUT_PARLIAMENTARY, turnoutParliamentary);
         put(VOTER_TURNOUT_PRESIDENTIAL, turnoutPresidential);

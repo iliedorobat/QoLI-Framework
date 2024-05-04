@@ -21,8 +21,10 @@ public class HealthAggrParams {
     public static final String LONG_HEALTH_ISSUES_RATIO = HEALTH + ":longHealthIssuesRatio";
     public static final String NON_ALCOHOLIC_RATIO = HEALTH + ":nonAlcoholicRatio";
     public static final String NON_FRUITS_VEGETABLES_RATIO = HEALTH + ":nonFruitsVegetablesRatio";
+    public static final String PERSONNEL_CARING = HEALTH + ":personnelCaring";
     public static final String PERSONNEL_DENTISTS = HEALTH + ":personnelDentists";
     public static final String PERSONNEL_DOCTORS = HEALTH + ":personnelDoctors";
+    public static final String PERSONNEL_MIDWIVES = HEALTH + ":personnelMidwives";
     public static final String PERSONNEL_NURSES = HEALTH + ":personnelNurses";
     public static final String PERSONNEL_PHARMACISTS = HEALTH + ":personnelPharmacists";
     public static final String PERSONNEL_THERAPISTS = HEALTH + ":personnelTherapists";
