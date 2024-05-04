@@ -17,6 +17,7 @@ public class GovRightsCollector {
         FileUtils.writeToJSONFile(getGenderEmpGap(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.GENDER_EMP_GAP_FILE_NAME);
         FileUtils.writeToJSONFile(getGenderPayGap(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.GENDER_PAY_GAP_FILE_NAME);
         FileUtils.writeToJSONFile(getPopulationTrust(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.POPULATION_TRUST_FILE_NAME);
+        FileUtils.writeToJSONFile(getPopulationTrustOther(), GovRightsPaths.GOV_RIGHTS_RAW_PATH, GovRightsPaths.POPULATION_TRUST_OTHER_FILE_NAME);
         writeVoterTurnout();
     }
 
@@ -92,12 +93,26 @@ public class GovRightsCollector {
      *
      * Aggregation: country<br/>
      * Data type: rating (number between 0-10)<br/>
-     * Dataset: ilc_pw03<br/>
-     * Years: 2013-2015
+     * Dataset: ilc_pw03b<br/>
+     * Years: 2013
      *
      * @return
      */
     private static StringBuilder getPopulationTrust() {
-        return Fetcher.fetchData("ilc_pw03", GovRightsParams.POPULATION_TRUST_PARAMS);
+        return Fetcher.fetchData("ilc_pw03b", GovRightsParams.POPULATION_TRUST_PARAMS);
+    }
+
+    /**
+     * Average rating of population trust (16 years or over) in other system<br/><br/>
+     *
+     * Aggregation: country<br/>
+     * Data type: rating (number between 0-10)<br/>
+     * Dataset: ilc_pw03<br/>
+     * Years: 2013; 2018; 2021-2023
+     *
+     * @return
+     */
+    private static StringBuilder getPopulationTrustOther() {
+        return Fetcher.fetchData("ilc_pw03", GovRightsParams.POPULATION_TRUST_OTHER_PARAMS);
     }
 }

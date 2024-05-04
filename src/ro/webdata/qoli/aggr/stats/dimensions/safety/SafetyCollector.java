@@ -55,7 +55,7 @@ public class SafetyCollector {
      * Aggregation: country<br/>
      * Data type: count (number)<br/>
      * Dataset: crim_off_cat<br/>
-     * Years: 2008-2021<br/><br/>
+     * Years: 2008-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

@@ -24,6 +24,13 @@ public class ParamsValues {
         put("PM10", "PM10");
     }};
 
+    public static HashMap<String, String> DOMAIN = new HashMap<>() {{
+        put("legal", "LEG");
+        put("other", "OTH");
+        put("police", "POLC");
+        put("politic", "POLIT");
+    }};
+
     public static HashMap<String, String> HAPPINESS_LEVELS = new HashMap<>() {{
         put("always", "ALW");       // Always
         put("most", "MOST");        // Most of the time
@@ -62,18 +69,6 @@ public class ParamsValues {
         put("theftVehicle", "ICCS05021");       // Theft of a motorized land vehicle
     }};
 
-    public static HashMap<String, String> IND_TYPE = new HashMap<>() {{
-        put("family", "FAM");
-        put("friends", "FRD");
-    }};
-
-    public static HashMap<String, String> INDIC_WB = new HashMap<>() {{
-        put("legal", "LEGTST");
-        put("others", "OTHTST");
-        put("police", "PLCTST");
-        put("politic", "PLTTST");
-    }};
-
     public static final HashMap<String, String> ISCED_11 = new HashMap<>() {{
         put("0_2", "ED0-2");                // Less than primary, primary and lower secondary education (levels 0-2)
         put("3_8", "ED3-8");                // Upper secondary, post-secondary non-tertiary and tertiary education (levels 3-8)
@@ -83,12 +78,19 @@ public class ParamsValues {
         put("5_8", "ED5-8");                // Tertiary education (levels 5-8)
     }};
 
-    public static HashMap<String, String> ISCO08 = new HashMap<>() {{
-        put("dentists", "OC2261");
-        put("doctors", "OC221");
-        put("nurses", "OC222_322");
-        put("pharmacists", "OC2262");
-        put("physiotherapists", "OC2264");
+    public static HashMap<String, String> MED_SPEC = new HashMap<>() {{
+        put("caringPersonal", "PER_CARE");
+        put("dentists", "DENT");
+        put("doctors", "PHYS");
+        put("midwives", "MWS");
+        put("nurses", "NRS");
+        put("pharmacists", "PHARM");
+        put("physiotherapists", "PHYSIO");
+    }};
+
+    public static HashMap<String, String> PERS_CAT = new HashMap<>() {{
+        put("family", "FAM_REL");
+        put("friends", "FRD");
     }};
 
     public static final HashMap<String, String> SATISFACTION_LEVELS = new HashMap<>() {{
@@ -98,27 +100,26 @@ public class ParamsValues {
     }};
 
     public static final HashMap<String, String> SATISFACTION_TYPES = new HashMap<>() {{
-        put("accommodation", "ACCSAT");
-        put("commutingTime", "COMSAT");
-        put("financial", "FINSAT");
-        put("greenAreas", "GREENSAT");
-        put("job", "JOBSAT");
-        put("overall", "LIFESAT");
-        put("environment", "LIVENVSAT");
+        put("accommodation", "ACCOM");
+        put("commutingTime", "COM");
+        put("financial", "FIN");
+        put("greenAreas", "REC_GA");
+        put("job", "JOB");
+        put("environment", "LIVENV");
         put("meaningOfLife", "MEANLIFE");
-        put("relationships", "RELSAT");
-        put("timeSpent", "TIMESAT");
+        put("relationships", "PER_RELS");
+        put("timeSpent", "TIME");
     }};
 
     public static HashMap<String, String> SOCIAL_ACTIVITIES_NP_REASON = new HashMap<>() {{
-        put("away", "NNB");             // None in the neighbourhood
+        put("away", "NACT_NB");         // None in the neighbourhood
         put("financial", "FIN");        // Financial reasons
         put("other", "OTH");            // Other
         put("uninterested", "NINT");    // No interest
     }};
 
     public static HashMap<String, String> VOLUNTARY_ACTIVITIES_NP_REASON = new HashMap<>() {{
-        put("time", "TIME");            // Time
+        put("time", "NTIME");           // Time
         put("noInterest", "NINT");      // No interest
         put("other", "OTH");            // Other
     }};

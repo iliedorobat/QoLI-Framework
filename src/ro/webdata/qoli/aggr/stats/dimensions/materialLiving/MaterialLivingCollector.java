@@ -64,8 +64,8 @@ public class MaterialLivingCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */
@@ -79,7 +79,7 @@ public class MaterialLivingCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: tec00114<br/>
-     * Years: 2011-2022
+     * Years: 2011-2023
      *
      * @return
      */

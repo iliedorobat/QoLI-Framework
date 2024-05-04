@@ -20,7 +20,7 @@ public class OverallExperienceParams {
 
     public static final MultiValuedMap<String, String> HIGH_SATISFACTION_RATIO_PARAMS = AuxiliaryParams.getSatisfactionParams(
             ParamsValues.SATISFACTION_LEVELS.get("high"),
-            ParamsValues.SATISFACTION_TYPES.get("overall")
+            ParamsValues.SATISFACTION_TYPES.get("meaningOfLife")
     );
 
     private static MultiValuedMap<String, String> getHappinessParams(String happinessLevel) {

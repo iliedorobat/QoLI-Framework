@@ -28,12 +28,14 @@ public class HealthParams {
             DEPRESSIVE_OTHER_RATIO_PARAMS = getDepressiveParams(ParamsValues.HEALTH_PROBLEMS.get("otherDepressive"));
 
     public static final MultiValuedMap<String, String>
-            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.values()),
-            PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("dentists")),
-            PERSONNEL_DOCTORS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("doctors")),
-            PERSONNEL_NURSES_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("nurses")),
-            PERSONNEL_PHARMA_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("pharmacists")),
-            PERSONNEL_THERAPISTS_PARAMS = getHealthPersonnelParams(ParamsValues.ISCO08.get("physiotherapists"));
+            HEALTH_PERSONNEL_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.values()),
+            PERSONNEL_CARING_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("caringPersonal")),
+            PERSONNEL_DENTISTS_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("dentists")),
+            PERSONNEL_DOCTORS_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("doctors")),
+            PERSONNEL_MIDWIVES_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("midwives")),
+            PERSONNEL_NURSES_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("nurses")),
+            PERSONNEL_PHARMA_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("pharmacists")),
+            PERSONNEL_THERAPISTS_PARAMS = getHealthPersonnelParams(ParamsValues.MED_SPEC.get("physiotherapists"));
 
     public static final MultiValuedMap<String, String> HEALTHY_LIFE_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y_GE16");
@@ -53,6 +55,7 @@ public class HealthParams {
 
     public static final MultiValuedMap<String, String> HOSPITAL_BEDS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FACILITY, "HBEDT");
+        put(ParamsNames.HEALTH_CARE, "TOTAL");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.UNIT, "P_HTHAB");
     }};
@@ -143,8 +146,9 @@ public class HealthParams {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.FREQ, "A");
             put(ParamsNames.UNIT, "P_HTHAB");
+            put(ParamsNames.WORKING_STATUS, "PRACT");
         }};
-        FetcherUtils.addParams(params, ParamsNames.ISCO_08, roles);
+        FetcherUtils.addParams(params, ParamsNames.MED_SPEC, roles);
         return params;
     }
 

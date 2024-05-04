@@ -37,6 +37,7 @@ public class HealthStats {
             initNonFruitsVegetablesRatio = Initializer.initConsolidatedMap(NON_FRUITS_VEGETABLES_RATIO_PARAMS, NON_FRUITS_VEGETABLES_RATIO_PATH),
             initPersonnelDentists = Initializer.initConsolidatedMap(PERSONNEL_DENTISTS_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelDoctors = Initializer.initConsolidatedMap(PERSONNEL_DOCTORS_PARAMS, HEALTH_PERSONNEL_PATH),
+            initPersonnelMidwives = Initializer.initConsolidatedMap(PERSONNEL_MIDWIVES_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelNurses = Initializer.initConsolidatedMap(PERSONNEL_NURSES_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelPharma = Initializer.initConsolidatedMap(PERSONNEL_PHARMA_PARAMS, HEALTH_PERSONNEL_PATH),
             initPersonnelTherapists = Initializer.initConsolidatedMap(PERSONNEL_THERAPISTS_PARAMS, HEALTH_PERSONNEL_PATH),
@@ -55,6 +56,7 @@ public class HealthStats {
             // Intermediate data used to calculate personnelTotal
             personnelDentists = Preparation.prepareData(initPersonnelDentists),
             personnelDoctors = Preparation.prepareData(initPersonnelDoctors),
+            personnelMidwives = Preparation.prepareData(initPersonnelMidwives),
             personnelNurses = Preparation.prepareData(initPersonnelNurses),
             personnelPharmacists = Preparation.prepareData(initPersonnelPharma),
             personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
@@ -116,6 +118,7 @@ public class HealthStats {
         put(NON_FRUITS_VEGETABLES_RATIO, nonFruitsVegetablesRatio);
         put(PERSONNEL_DENTISTS, personnelDentists);
         put(PERSONNEL_DOCTORS, personnelDoctors);
+        put(PERSONNEL_MIDWIVES, personnelMidwives);
         put(PERSONNEL_NURSES, personnelNurses);
         put(PERSONNEL_PHARMACISTS, personnelPharmacists);
         put(PERSONNEL_THERAPISTS, personnelPhysiotherapists);
@@ -177,7 +180,7 @@ public class HealthStats {
     }
 
     // Aggregate the health personnel into a single indicator representing the
-    // total personnel per million inhabitants
+    // total personnel (excepting the caring personnel) per million inhabitants
     private static Map<String, Number> prepareTotalPersonnelRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
@@ -187,6 +190,7 @@ public class HealthStats {
 
                 double valueDentists = personnelDentists.get(key).doubleValue();
                 double valueDoctors = personnelDoctors.get(key).doubleValue();
+                double valueMidwives = personnelMidwives.get(key).doubleValue();
                 double valueNurses = personnelNurses.get(key).doubleValue();
                 double valuePharmacists = personnelPharmacists.get(key).doubleValue();
                 double valuePhysiotherapists = personnelPhysiotherapists.get(key).doubleValue();
@@ -194,6 +198,7 @@ public class HealthStats {
                 double value = 0
                         + valueDentists
                         + valueDoctors
+                        + valueMidwives
                         + valueNurses
                         + valuePharmacists
                         + valuePhysiotherapists;

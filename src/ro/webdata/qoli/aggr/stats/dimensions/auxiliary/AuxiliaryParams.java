@@ -54,28 +54,27 @@ public class AuxiliaryParams {
      *                   - MED: medium;<br/>
      *                   - LOW: low;
      *
-     * @param wellBeing The type of calculated well-being:<br/>
-     *                  - ACCSAT: Satisfaction with accommodation;<br/>
-     *                  - COMSAT: Satisfaction with commuting time;<br/>
-     *                  - FINSAT: Satisfaction with financial situation;<br/>
-     *                  - GREENSAT: Satisfaction with recreational and green areas;<br/>
-     *                  - JOBSAT: Job satisfaction;<br/>
-     *                  - LIFESAT: Overall life satisfaction;<br/>
-     *                  - LIVENVSAT: Satisfaction with living environment;<br/>
+     * @param satisfactionType The type of calculated well-being:<br/>
+     *                  - ACCOM: Satisfaction with accommodation;<br/>
+     *                  - COM: Satisfaction with commuting time;<br/>
+     *                  - FIN: Satisfaction with financial situation;<br/>
+     *                  - JOB: Job satisfaction;<br/>
+     *                  - LIVENV: Satisfaction with living environment;<br/>
      *                  - MEANLIFE: Meaning of life;<br/>
-     *                  - RELSAT: Satisfaction with personal relationships;<br/>
-     *                  - TIMESAT: Satisfaction with time use;
+     *                  - PER_RELS: Satisfaction with personal relationships;<br/>
+     *                  - REC_GA: Satisfaction with recreational and green areas;<br/>
+     *                  - TIME: Satisfaction with time use;
      *
      * @return
      */
-    public static MultiValuedMap<String, String> getSatisfactionParams(String satisfactionLevel, String wellBeing) {
+    public static MultiValuedMap<String, String> getSatisfactionParams(String satisfactionLevel, String satisfactionType) {
         return new HashSetValuedHashMap<>() {{
             put(ParamsNames.AGE, "Y_GE16");
-            put(ParamsNames.FREQ, "A");
-            put(ParamsNames.INDIC_WB, wellBeing);
             put(ParamsNames.ISCED_11, "TOTAL");
             put(ParamsNames.LEV_SATIS, satisfactionLevel);
+            put(ParamsNames.LIFE_SAT, satisfactionType);
             put(ParamsNames.SEX, "T");
+            put(ParamsNames.FREQ, "A");
             put(ParamsNames.UNIT, "PC");
         }};
     }

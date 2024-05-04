@@ -47,9 +47,9 @@ public class LeisureInteractParams {
     }};
 
     public static final MultiValuedMap<String, String>
-            INTERACTIONS_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.values()),
-            INTERACTIONS_FAM_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.get("family")),
-            INTERACTIONS_FRD_PARAMS = getInteractionsParams(ParamsValues.IND_TYPE.get("friends"));
+            INTERACTIONS_PARAMS = getInteractionsParams(ParamsValues.PERS_CAT.values()),
+            INTERACTIONS_FAM_PARAMS = getInteractionsParams(ParamsValues.PERS_CAT.get("family")),
+            INTERACTIONS_FRD_PARAMS = getInteractionsParams(ParamsValues.PERS_CAT.get("friends"));
 
     public static final MultiValuedMap<String, String>
             SOCIAL_ACTIVITIES_NP_PARAMS = getActivitiesNpParams(SOCIAL_INTERACTIONS, ParamsValues.SOCIAL_ACTIVITIES_NP_REASON),
@@ -68,8 +68,8 @@ public class LeisureInteractParams {
         put(ParamsNames.DEG_URB, "TOTAL");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.FREQUENCY, "GE1");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.QUANT_INC, "TOTAL");
         put(ParamsNames.UNIT, "PC");
     }};
 
@@ -111,7 +111,7 @@ public class LeisureInteractParams {
             put(ParamsNames.SEX, "T");
             put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsNames.IND_TYPE, types);
+        FetcherUtils.addParams(params, ParamsNames.PERS_CAT, types);
         return params;
     }
 

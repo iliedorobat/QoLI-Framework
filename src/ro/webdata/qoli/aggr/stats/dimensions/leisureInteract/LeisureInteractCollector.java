@@ -26,7 +26,7 @@ public class LeisureInteractCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_scp15<br/>
-     * Years: 2013; 2015; 2022
+     * Years: 2015
      *
      * @return
      */
@@ -81,8 +81,8 @@ public class LeisureInteractCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */
@@ -95,8 +95,8 @@ public class LeisureInteractCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */
@@ -144,8 +144,8 @@ public class LeisureInteractCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */

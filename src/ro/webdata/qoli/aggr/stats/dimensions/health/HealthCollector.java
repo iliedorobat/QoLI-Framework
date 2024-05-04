@@ -57,14 +57,14 @@ public class HealthCollector {
      * Health personnel: medical doctors; nurses and midwives; dentists; pharmacists; physiotherapists<br/><br/>
      *
      * Aggregation: NUTS 2 regions<br/>
-     * Dataset: hlth_rs_prsrg<br/>
+     * Dataset: hlth_rs_prs2<br/>
      * Value type: per hundred thousand inhabitants (number)<br/>
-     * Years: 1993-2021
+     * Years: 1960-2022
      *
      * @return
      */
     private static StringBuilder getHealthPersonnelRatio() {
-        return Fetcher.fetchData("hlth_rs_prsrg", HealthParams.HEALTH_PERSONNEL_PARAMS);
+        return Fetcher.fetchData("hlth_rs_prs2", HealthParams.HEALTH_PERSONNEL_PARAMS);
     }
 
     /**
@@ -82,7 +82,8 @@ public class HealthCollector {
     }
 
     /**
-     * Health expectancy at birth<br/><br/>
+     * Health expectancy at birth (the number of remaining years that a person of specific
+     * age is expected to live without any severe or moderate health problems)<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
@@ -100,17 +101,15 @@ public class HealthCollector {
      *
      * Aggregation: country<br/>
      * Data type: per hundred thousand inhabitants (number)<br/>
-     * Dataset: hlth_rs_bds<br/>
+     * Dataset: hlth_rs_bds1<br/>
      * Note: Hospital beds provide information on health care capacities,
      *      i.e. on the maximum number of patients who can be treated by hospitals<br/>
-     * Years: 1960-2020<br/><br/>
-     *
-     * Comments: NUTS 2 regions => hlth_rs_bdsrg
+     * Years: 1960-2022<br/><br/>
      *
      * @return
      */
     private static StringBuilder getHospitalBedsRatio() {
-        return Fetcher.fetchData("hlth_rs_bds", HealthParams.HOSPITAL_BEDS_PARAMS);
+        return Fetcher.fetchData("hlth_rs_bds1", HealthParams.HOSPITAL_BEDS_PARAMS);
     }
 
     /**
@@ -120,7 +119,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: years (number)<br/>
      * Dataset: demo_mlexpec<br/>
-     * Years: 1960-2022<br/><br/>
+     * Years: 1960-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => demo_r_mlifexp
      *

@@ -44,7 +44,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_14<br/>
-     * Years: 1992-2022<br/><br/>
+     * Years: 1992-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
      *
@@ -80,7 +80,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_03<br/>
-     * Years: 1992-2022<br/><br/>
+     * Years: 1992-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_04
      *
@@ -91,12 +91,12 @@ public class EducationCollector {
     }
 
     /**
-     * Young people (from 18 to 24 years) neither in employment nor in education and training<br/><br/>
+     * Young people (from 15 to 29 years) neither in employment nor in education and training<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: NEET rates (%)<br/>
      * Dataset: edat_lfse_20<br/>
-     * Years: 2000-2022<br/><br/>
+     * Years: 2000-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_22<br/><br/>
      *
@@ -162,7 +162,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: trng_lfs_02<br/>
-     * Years: 2004-2022
+     * Years: 2004-2023
      *
      * @return
      */

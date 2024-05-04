@@ -48,7 +48,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: hours (number)<br/>
      * Dataset: lfsa_ewhun2<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
      *
@@ -66,7 +66,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of people aged from 15 to 64 years (%)<br/>
      * Dataset: lfsa_ergaed<br/>
-     * Years: 1983-2022<br/><br/>
+     * Years: 1983-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfe2emprt
      *
@@ -82,7 +82,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the population aged 15-64 years who were economically inactive (%)<br/>
      * Dataset: lfsa_ipga<br/>
-     * Years: 1983-2022<br/><br/>
+     * Years: 1983-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -99,7 +99,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the total part-time employment aged 15-64 years (%)<br/>
      * Dataset: lfsa_eppgai<br/>
-     * Years: 1983-2022<br/><br/>
+     * Years: 1983-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -114,8 +114,8 @@ public class MainActivityCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: ilc_pw05<br/>
-     * Years: 2013; 2018
+     * Dataset: ilc_pw05b<br/>
+     * Years: 2013; 2018; 2022
      *
      * @return
      */
@@ -214,7 +214,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of labour force aged 15-74 years (%)<br/>
      * Dataset: lfsa_urgaed<br/>
-     * Years: 1983-2022<br/><br/>
+     * Years: 1983-2023<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfu3rt<br/><br/>
      *
@@ -246,7 +246,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the total employment aged from 15 to 64 years (%)<br/>
      * Dataset: lfsa_ewpnig<br/>
-     * Years: 1992-2021<br/><br/>
+     * Years: 1992-2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

@@ -15,6 +15,14 @@ public class GovRightsParams {
     private static final String[] ACTIVITIES = {
             ParamsValues.ACL00.get("citizenship")
     };
+    private static final String[] DOMAIN_TRUST = {
+            ParamsValues.DOMAIN.get("legal"),
+            ParamsValues.DOMAIN.get("police"),
+            ParamsValues.DOMAIN.get("politic")
+    };
+    private static final String[] DOMAIN_TRUST_OTHER = {
+            ParamsValues.DOMAIN.get("other")
+    };
 
     public static final MultiValuedMap<String, String> CITIZENSHIP_RATIO_PARAMS = AuxiliaryParams.getActivePeopleParams(ACTIVITIES);
 
@@ -31,13 +39,15 @@ public class GovRightsParams {
         put(ParamsNames.UNIT, "PC");
     }};
 
-    public static final MultiValuedMap<String, String> POPULATION_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.values());
+    public static final MultiValuedMap<String, String> POPULATION_TRUST_PARAMS = getPopulationTrustParams(List.of(DOMAIN_TRUST));
+
+    public static final MultiValuedMap<String, String> POPULATION_TRUST_OTHER_PARAMS = getPopulationTrustParams(List.of(DOMAIN_TRUST_OTHER));
 
     public static final MultiValuedMap<String, String>
-            POPULATION_LEGTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("legal")),
-            POPULATION_PLCTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("police")),
-            POPULATION_PLTTST_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("politic")),
-            POPULATION_OTHERS_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.INDIC_WB.get("others"));
+            POPULATION_LEGAL_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.DOMAIN.get("legal")),
+            POPULATION_POLICE_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.DOMAIN.get("police")),
+            POPULATION_POLITIC_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.DOMAIN.get("politic")),
+            POPULATION_OTHER_TRUST_PARAMS = getPopulationTrustParams(ParamsValues.DOMAIN.get("other"));
 
     private static MultiValuedMap<String, String> getPopulationTrustParams(String trustSystem) {
         List<String> trustSystems = new ArrayList<>() {{ add(trustSystem); }};
@@ -52,7 +62,7 @@ public class GovRightsParams {
             put(ParamsNames.SEX, "T");
             put(ParamsNames.UNIT, "RTG");
         }};
-        FetcherUtils.addParams(params, ParamsNames.INDIC_WB, trustSystems);
+        FetcherUtils.addParams(params, ParamsNames.DOMAIN, trustSystems);
         return params;
     }
 }
