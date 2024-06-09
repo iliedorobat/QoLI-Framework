@@ -3,9 +3,6 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ---
 
-## 2.2
-- Added the server service.
-
 ## 2.1
 - Added the server service.
 
@@ -22,6 +19,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   - "Gender Gap" formula was updated.
   - "Population Trust Ratio" formula was updated.
   - EU Parliament elections & Presidential elections were added to "Voter Turnout".
+  - "Frequency contact" indicators have been consolidated into a single indicator.
+  - "Non-Participation to cultural, sports and voluntaries activities" indicators have been consolidated into a single indicator.
+  - "Participation to cultural, sports and voluntaries activities" indicators have been consolidated into a single indicator.
 - Deleted indicators:
   - "Over Qualified Ratio" was removed because there is data only for 2014 and in some cases (DK, IE, NL) there is not data at all.
 - New indicators:

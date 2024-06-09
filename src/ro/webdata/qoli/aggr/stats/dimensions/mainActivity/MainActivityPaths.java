@@ -7,8 +7,8 @@ import java.io.File;
 public class MainActivityPaths {
     public static final String MAIN_ACTIVITY_FILE_NAME = "mainActivity";
 
-    public static final String AVG_WORK_HOURS_2007_FILE_NAME = "avgWorkHours2007";
-    public static final String AVG_WORK_HOURS_2008_FILE_NAME = "avgWorkHours2008";
+    public static final String AVG_WORKING_HOURS_2007_FILE_NAME = "avgWorkHours2007";
+    public static final String AVG_WORKING_HOURS_2008_FILE_NAME = "avgWorkHours2008";
     public static final String EMPLOYMENT_RATIO_FILE_NAME = "employmentRatio";
     public static final String INACTIVE_POPULATION_RATIO_FILE_NAME = "inactivePopulationRatio";
     public static final String INVOLUNTARY_PART_TIME_RATIO_FILE_NAME = "involuntaryPartTimeRatio";
@@ -29,8 +29,8 @@ public class MainActivityPaths {
     }
 
     public static final String
-            AVG_WORK_HOURS_2007_PATH = generatePath(AVG_WORK_HOURS_2007_FILE_NAME),
-            AVG_WORK_HOURS_2008_PATH = generatePath(AVG_WORK_HOURS_2008_FILE_NAME),
+            AVG_WORKING_HOURS_2007_PATH = generatePath(AVG_WORKING_HOURS_2007_FILE_NAME),
+            AVG_WORKING_HOURS_2008_PATH = generatePath(AVG_WORKING_HOURS_2008_FILE_NAME),
             EMPLOYMENT_RATIO_PATH = generatePath(EMPLOYMENT_RATIO_FILE_NAME),
             INACTIVE_POPULATION_RATIO_PATH = generatePath(INACTIVE_POPULATION_RATIO_FILE_NAME),
             INVOLUNTARY_PART_TIME_RATIO_PATH = generatePath(INVOLUNTARY_PART_TIME_RATIO_FILE_NAME),

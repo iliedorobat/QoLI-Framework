@@ -18,7 +18,7 @@ public class EnvironmentCollector {
     /**
      * Exposure to air pollution:<br/>
      *  - Particulates < 2.5 µm<br/>
-     *  - Particulates < 10 µm)<br/>
+     *  - Particulates < 10 µm<br/>
      *  - Acidifying gas emissions (NH3, NOX)<br/>
      *  - Ozone precursors (CH4, CO, NMVOC, NOX)<br/><br/>
      *

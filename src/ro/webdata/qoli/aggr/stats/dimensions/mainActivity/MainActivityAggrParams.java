@@ -9,8 +9,8 @@ import static ro.webdata.qoli.aggr.stats.constants.ParamsUnits.*;
 public class MainActivityAggrParams {
     public static final String MAIN_ACTIVITY = "mainActivity";
 
-    public static final String AVG_WORK_HOURS = MAIN_ACTIVITY + ":avgWorkHours";
-    public static final String AVG_REMAINED_WORK_HOURS = MAIN_ACTIVITY + ":avgRemainedWorkHours";
+    public static final String AVG_WORKING_HOURS = MAIN_ACTIVITY + ":avgWorkingHours";
+    public static final String AVG_REMAINING_WORKING_HOURS = MAIN_ACTIVITY + ":avgRemainingWorkingHours";
     public static final String EMPLOYMENT_RATIO = MAIN_ACTIVITY + ":employmentRatio";
     public static final String INACTIVE_POPULATION_RATIO = MAIN_ACTIVITY + ":inactivePopulationRatio";
     public static final String INVOLUNTARY_PART_TIME_RATIO = MAIN_ACTIVITY + ":involuntaryPartTimeRatio";
@@ -28,7 +28,7 @@ public class MainActivityAggrParams {
     public static final String WORKING_NIGHTS_RATIO = MAIN_ACTIVITY + ":workingNightsRatio";
 
     public static final Map<String, String> AGGR_PARAMS_LABELS = new HashMap<>() {{
-        put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");
+        put(AVG_REMAINING_WORKING_HOURS, "Average Remaining Working Hours Ratio");
         put(EMPLOYMENT_RATIO, "Employment Ratio");
         put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
         put(INVOLUNTARY_PART_TIME_RATIO, "Involuntary Part-Time Ratio");
@@ -44,7 +44,7 @@ public class MainActivityAggrParams {
     }};
 
     public static final Map<String, String> AGGR_PARAMS_UNITS = new HashMap<>() {{
-        put(AVG_REMAINED_WORK_HOURS, HOURS);
+        put(AVG_REMAINING_WORKING_HOURS, HOURS);
         put(EMPLOYMENT_RATIO, PERCENT);
         put(INACTIVE_POPULATION_RATIO, PERCENT);
         put(INVOLUNTARY_PART_TIME_RATIO, PERCENT);
@@ -62,7 +62,7 @@ public class MainActivityAggrParams {
     public static final List<String> AGGR_PARAMS = List.copyOf(AGGR_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> AGGR_REVERSED_STATES = new HashMap<>() {{
-        put(AVG_REMAINED_WORK_HOURS, false);
+        put(AVG_REMAINING_WORKING_HOURS, false);
         put(EMPLOYMENT_RATIO, false);
         put(INACTIVE_POPULATION_RATIO, true);
         put(INVOLUNTARY_PART_TIME_RATIO, true);
@@ -78,7 +78,7 @@ public class MainActivityAggrParams {
     }};
 
     public static final Map<String, String> IND_PARAMS_LABELS = new HashMap<>() {{
-        put(AVG_WORK_HOURS, "Average Work Hours");
+        put(AVG_WORKING_HOURS, "Average Working Hours");
         put(EMPLOYMENT_RATIO, "Employment Ratio");
         put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
         put(INVOLUNTARY_PART_TIME_RATIO, "Involuntary Part-Time Ratio");
@@ -95,7 +95,7 @@ public class MainActivityAggrParams {
     }};
 
     public static final Map<String, String> IND_PARAMS_UNITS = new HashMap<>() {{
-        put(AVG_WORK_HOURS, HOURS);
+        put(AVG_WORKING_HOURS, HOURS);
         put(EMPLOYMENT_RATIO, PERCENT);
         put(INACTIVE_POPULATION_RATIO, PERCENT);
         put(INVOLUNTARY_PART_TIME_RATIO, PERCENT);
@@ -114,7 +114,7 @@ public class MainActivityAggrParams {
     public static final List<String> IND_PARAMS = List.copyOf(IND_PARAMS_LABELS.keySet());
 
     public static final Map<String, Boolean> IND_REVERSED_STATES = new HashMap<>() {{
-        put(AVG_WORK_HOURS, false);
+        put(AVG_WORKING_HOURS, false);
         put(EMPLOYMENT_RATIO, false);
         put(INACTIVE_POPULATION_RATIO, true);
         put(INVOLUNTARY_PART_TIME_RATIO, true);

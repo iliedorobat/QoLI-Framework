@@ -81,8 +81,10 @@ public class LeisureInteractStats {
             socialActivitiesRatio = Preparation.prepareData(initSocialActivitiesRatio),
             timeSatisfactionRatio = Preparation.prepareData(initTimeSatisfactionRatio),
 
-            socialActivitiesNpRatio = consolidateSocialActivitiesNpRatio(),
-            voluntaryActivitiesNpRatio = consolidateVoluntaryActivitiesNpRatio();
+            frequencyContactRatio = consolidatedFrequencyContactRatio(),
+            gettingTogetherRatio = consolidatedGettingTogetherRatio(),
+            nonParticipationRatio = consolidatedNonParticipationRatio(),
+            participationRatio = consolidatedParticipationRatio();
 
     public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(AREA_SATISFACTION_RATIO, Preparation.filterMap(initAreaSatisfactionRatio));
@@ -118,17 +120,12 @@ public class LeisureInteractStats {
         put(AREA_SATISFACTION_RATIO, areaSatisfactionRatio);
         put(ASKING_RATIO, askingRatio);
         put(DISCUSSION_RATIO, discussionRatio);
-        put(FORMAL_VOLUNTARY_ACTIVITIES_RATIO, formalVoluntaryRatio);
-        put(FREQUENCY_CONTACT_FAM_RATIO, frequencyContactFamRatio);
-        put(FREQUENCY_CONTACT_FRD_RATIO, frequencyContactFrdRatio);
-        put(GETTING_TOGETHER_FAM_RATIO, gettingTogetherFamRatio);
-        put(GETTING_TOGETHER_FRD_RATIO, gettingTogetherFrdRatio);
-        put(INFORMAL_VOLUNTARY_ACTIVITIES_RATIO, informalVoluntaryRatio);
+        put(FREQUENCY_CONTACT_RATIO, frequencyContactRatio);
+        put(GETTING_TOGETHER_RATIO, gettingTogetherRatio);
+        put(NP_RATIO, nonParticipationRatio);
+        put(PARTICIPATION_RATIO, participationRatio);
         put(RELATIONSHIPS_SATISFACTION_RATIO, relSatisfactionRatio);
-        put(SOCIAL_ACTIVITIES_NP_RATIO, socialActivitiesNpRatio);
-        put(SOCIAL_ACTIVITIES_RATIO, socialActivitiesRatio);
         put(TIME_SPENT_SATISFACTION, timeSatisfactionRatio);
-        put(VOLUNTARY_ACTIVITIES_NP_RATIO, voluntaryActivitiesNpRatio);
     }};
 
     public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
@@ -177,26 +174,70 @@ public class LeisureInteractStats {
         Print.printDataAvailability(rawIndicators, LEISURE_INTERACT, targetYear, indStatus);
     }
 
-    // Aggregate the "Non Participation Ratios" into a single ratio
-    private static Map<String, Number> consolidateSocialActivitiesNpRatio() {
+    // Aggregate the "Frequency Contact Ratios" into a single ratio
+    private static Map<String, Number> consolidatedFrequencyContactRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                double npCinRatio = npFinCinRatio.get(key).doubleValue() + npNnbCinRatio.get(key).doubleValue();
-                double npCultRatio = npFinCultRatio.get(key).doubleValue() + npNnbCultRatio.get(key).doubleValue();
-                double npLiveRatio = npFinLiveRatio.get(key).doubleValue() + npNnbLiveRatio.get(key).doubleValue();
-                double npSportRatio = npFinSportRatio.get(key).doubleValue() + npNnbSportRatio.get(key).doubleValue();
+                double famRate = frequencyContactFamRatio.get(key).doubleValue();
+                double frdRate = frequencyContactFrdRatio.get(key).doubleValue();
 
                 double product = 1
-                        * npCinRatio
-                        * npCultRatio
-                        * npLiveRatio
-                        * npSportRatio;
+                        * famRate
+                        * frdRate;
 
-                Number value = Math.pow(product, 1.0/4);
+                Number value = Math.pow(product, 1.0/2);
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    // Aggregate the "Getting Together Ratios" into a single ratio
+    private static Map<String, Number> consolidatedGettingTogetherRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : Constants.EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                double famRate = gettingTogetherFamRatio.get(key).doubleValue();
+                double frdRate = gettingTogetherFrdRatio.get(key).doubleValue();
+
+                double product = 1
+                        * famRate
+                        * frdRate;
+
+                Number value = Math.pow(product, 1.0/2);
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    // Aggregate the "Participation Ratios" into a single ratio
+    private static Map<String, Number> consolidatedParticipationRatio() {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : Constants.EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+
+                double informalRate = informalVoluntaryRatio.get(key).doubleValue();
+                double formalRate = formalVoluntaryRatio.get(key).doubleValue();
+                double socialRate = socialActivitiesRatio.get(key).doubleValue();
+
+                double product = 1
+                        * informalRate
+                        * formalRate
+                        * socialRate;
+
+                Number value = Math.pow(product, 1.0/3);
                 consolidatedList.put(key, value);
             }
         }
@@ -205,7 +246,7 @@ public class LeisureInteractStats {
     }
 
     // Aggregate the "Non Participation Ratios" into a single ratio
-    private static Map<String, Number> consolidateVoluntaryActivitiesNpRatio() {
+    private static Map<String, Number> consolidatedNonParticipationRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
@@ -214,12 +255,20 @@ public class LeisureInteractStats {
 
                 double npFormalRatio = npNoInterestFormalRatio.get(key).doubleValue() + npTimeFormalRatio.get(key).doubleValue();
                 double npInformalRatio = npNoInterestInformalRatio.get(key).doubleValue() + npTimeInformalRatio.get(key).doubleValue();
+                double npCinRatio = npFinCinRatio.get(key).doubleValue() + npNnbCinRatio.get(key).doubleValue();
+                double npCultRatio = npFinCultRatio.get(key).doubleValue() + npNnbCultRatio.get(key).doubleValue();
+                double npLiveRatio = npFinLiveRatio.get(key).doubleValue() + npNnbLiveRatio.get(key).doubleValue();
+                double npSportRatio = npFinSportRatio.get(key).doubleValue() + npNnbSportRatio.get(key).doubleValue();
 
                 double product = 1
                         * npFormalRatio
-                        * npInformalRatio;
+                        * npInformalRatio
+                        * npCinRatio
+                        * npCultRatio
+                        * npLiveRatio
+                        * npSportRatio;
 
-                Number value = Math.pow(product, 1.0/2);
+                Number value = Math.pow(product, 1.0/6);
                 consolidatedList.put(key, value);
             }
         }

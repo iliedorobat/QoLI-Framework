@@ -19,12 +19,12 @@ import static ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityPat
 
 public class MainActivityStats {
     /** 12 hours * 7 days */
-    private static final int MAX_LEGAL_WORK_HOURS = 12 * 7;
+    private static final int MAX_LEGAL_WORKING_HOURS = 12 * 7;
 
     // Intermediate data which will be grouped into a single indicator
     private static final Map<String, Number>
-            avgWorkHours2007 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2007_PARAMS, AVG_WORK_HOURS_2007_PATH),
-            avgWorkHours2008 = MergeUtils.consolidateMap(AVG_WORK_HOURS_2008_PARAMS, AVG_WORK_HOURS_2008_PATH);
+            avgWorkHours2007 = MergeUtils.consolidateMap(AVG_WORKING_HOURS_2007_PARAMS, AVG_WORKING_HOURS_2007_PATH),
+            avgWorkHours2008 = MergeUtils.consolidateMap(AVG_WORKING_HOURS_2008_PARAMS, AVG_WORKING_HOURS_2008_PATH);
     private static final ArrayList<Map<String, Number>> avgWorkHoursList = new ArrayList<>() {{
         add(avgWorkHours2007);
         add(avgWorkHours2008);
@@ -51,7 +51,7 @@ public class MainActivityStats {
             initWorkingNightsRatio = Initializer.initConsolidatedMap(WORKING_NIGHTS_RATIO_PARAMS, WORKING_NIGHTS_RATIO_PATH);
 
     public static final Map<String, Number>
-            // Intermediate data used to calculate avgRemainedWorkHours
+            // Intermediate data used to calculate avgRemainingWorkHours
             avgWorkHours = Preparation.prepareData(initAvgWorkHoursList),
 
             // Intermediate data used to calculate workingFlexibilityRatio
@@ -59,7 +59,7 @@ public class MainActivityStats {
             flexibilityRestrictiveRatio = Preparation.prepareData(initFlexibilityRestrictiveRatio),
             flexibilityTotalRatio = Preparation.prepareData(initFlexibilityTotalRatio),
 
-            avgRemainedWorkHours = prepareAvgRemainedWorkHours(),
+            avgRemainingWorkHours = prepareavgRemainingWorkHours(),
             employmentRatio = Preparation.prepareData(initEmploymentRatio),
             inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
             involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
@@ -74,7 +74,7 @@ public class MainActivityStats {
             workingNightsRatio = Preparation.prepareData(initWorkingNightsRatio);
 
     public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
-        put(AVG_WORK_HOURS, Preparation.filterMap(initAvgWorkHoursList));
+        put(AVG_WORKING_HOURS, Preparation.filterMap(initAvgWorkHoursList));
         put(EMPLOYMENT_RATIO, Preparation.filterMap(initEmploymentRatio));
         put(INACTIVE_POPULATION_RATIO, Preparation.filterMap(initInactivePopulationRatio));
         put(INVOLUNTARY_PART_TIME_RATIO, Preparation.filterMap(initInvoluntaryPartTimeRatio));
@@ -92,8 +92,7 @@ public class MainActivityStats {
     }};
 
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
-        put(AVG_WORK_HOURS, avgWorkHours);
-        put(AVG_REMAINED_WORK_HOURS, avgRemainedWorkHours);
+        put(AVG_REMAINING_WORKING_HOURS, avgRemainingWorkHours);
         put(EMPLOYMENT_RATIO, employmentRatio);
         put(INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
         put(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
@@ -104,15 +103,12 @@ public class MainActivityStats {
         put(RESEARCHERS_RATIO, researchersRatio);
         put(TEMPORARY_EMPLOYMENT_RATIO, temporaryEmploymentRatio);
         put(UNEMPLOYMENT_RATIO, unemploymentRatio);
-        put(WORKING_FLEXIBILITY_FULL_RATIO, flexibilityFullRatio);
-        put(WORKING_FLEXIBILITY_RESTRICTIVE_RATIO, flexibilityRestrictiveRatio);
-        put(WORKING_FLEXIBILITY_TOTAL_RATIO, flexibilityTotalRatio);
         put(WORKING_FLEXIBILITY_RATIO, workingFlexibilityRatio);
         put(WORKING_NIGHTS_RATIO, workingNightsRatio);
     }};
 
     public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{
-        put(AVG_WORK_HOURS, avgWorkHours);
+        put(AVG_WORKING_HOURS, avgWorkHours);
         put(EMPLOYMENT_RATIO, employmentRatio);
         put(INACTIVE_POPULATION_RATIO, inactivePopulationRatio);
         put(INVOLUNTARY_PART_TIME_RATIO, involuntaryPartTimeRatio);
@@ -145,14 +141,14 @@ public class MainActivityStats {
     }
 
     // Extract the number of working hours left for a person from a legal maximum of 12 hours/day
-    private static Map<String, Number> prepareAvgRemainedWorkHours() {
+    private static Map<String, Number> prepareavgRemainingWorkHours() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
-                Number value = MAX_LEGAL_WORK_HOURS - avgWorkHours.get(key).doubleValue();
+                Number value = MAX_LEGAL_WORKING_HOURS - avgWorkHours.get(key).doubleValue();
                 preparedMap.put(key, value);
             }
         }

@@ -116,10 +116,10 @@ public class SafetyStats {
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(CRIME_RATIO, crimeRatio);
         put(NON_PAYMENT_RATIO, nonPaymentRatio);
+        put(OFFENCES_RATIO, totalOffencesRatio);
         put(PENSION_PPS_RATIO, pensionPpsRatio);
         put(SOCIAL_PROTECTION_PPS_RATIO, socialProtectionPpsRatio);
         put(UNEXPECTED_RATIO, unexpectedRatio);
-        put(OFFENCES_RATIO, totalOffencesRatio);
     }};
 
     public static final Map<String, Map<String, Number>> baseIndicators = new HashMap<>() {{

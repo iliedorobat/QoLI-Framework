@@ -14,7 +14,7 @@ public class MainActivityParams {
             ParamsValues.WORKING_FLEXIBILITY.get("restrictiveDecision")
     };
 
-    public static final MultiValuedMap<String, String> AVG_WORK_HOURS_2007_PARAMS = new HashSetValuedHashMap<>() {{
+    public static final MultiValuedMap<String, String> AVG_WORKING_HOURS_2007_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.NACE_R1, "TOTAL");
         put(ParamsNames.SEX, "T");
@@ -23,7 +23,7 @@ public class MainActivityParams {
         put(ParamsNames.WORKING_STATUS, "EMP");
     }};
 
-    public static final MultiValuedMap<String, String> AVG_WORK_HOURS_2008_PARAMS = new HashSetValuedHashMap<>() {{
+    public static final MultiValuedMap<String, String> AVG_WORKING_HOURS_2008_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.NACE_R2, "TOTAL");
         put(ParamsNames.SEX, "T");
