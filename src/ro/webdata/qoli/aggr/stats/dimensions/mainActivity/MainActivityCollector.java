@@ -6,8 +6,8 @@ import ro.webdata.qoli.aggr.data.fetch.Fetcher;
 public class MainActivityCollector {
     public static void fetchData() {
         Fetcher.sleep(100);
-        FileUtils.writeToJSONFile(getAvgWorkHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORK_HOURS_2007_FILE_NAME);
-        FileUtils.writeToJSONFile(getAvgWorkHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORK_HOURS_2008_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkingHours2007(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORKING_HOURS_2007_FILE_NAME);
+        FileUtils.writeToJSONFile(getAvgWorkingHours2008(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.AVG_WORKING_HOURS_2008_FILE_NAME);
         FileUtils.writeToJSONFile(getEmploymentRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.EMPLOYMENT_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getInactivePopulationRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.INACTIVE_POPULATION_RATIO_FILE_NAME);
         FileUtils.writeToJSONFile(getInvoluntaryPartTimeRatio(), MainActivityPaths.MAIN_ACTIVITY_RAW_PATH, MainActivityPaths.INVOLUNTARY_PART_TIME_RATIO_FILE_NAME);
@@ -37,8 +37,8 @@ public class MainActivityCollector {
      *
      * @return
      */
-    private static StringBuilder getAvgWorkHours2007() {
-        return Fetcher.fetchData("lfsa_ewhuna", MainActivityParams.AVG_WORK_HOURS_2007_PARAMS);
+    private static StringBuilder getAvgWorkingHours2007() {
+        return Fetcher.fetchData("lfsa_ewhuna", MainActivityParams.AVG_WORKING_HOURS_2007_PARAMS);
     }
 
     /**
@@ -56,8 +56,8 @@ public class MainActivityCollector {
      *
      * @return
      */
-    private static StringBuilder getAvgWorkHours2008() {
-        return Fetcher.fetchData("lfsa_ewhun2", MainActivityParams.AVG_WORK_HOURS_2008_PARAMS);
+    private static StringBuilder getAvgWorkingHours2008() {
+        return Fetcher.fetchData("lfsa_ewhun2", MainActivityParams.AVG_WORKING_HOURS_2008_PARAMS);
     }
 
     /**
@@ -179,7 +179,7 @@ public class MainActivityCollector {
     /**
      * Total researchers full-time equivalent<br/>
      * FTE (Full-time equivalent) corresponds to one year's work by one person
-     * (for example, a person who devotes 40 % of his time to R&D is counted as 0.4 FTE<br/><br/>
+     * (for example, a person who devotes 40% of his time to R&D is counted as 0.4 FTE<br/><br/>
      *
      * Aggregation: country<br/>
      * Data type: count (number)<br/>

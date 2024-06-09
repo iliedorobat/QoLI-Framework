@@ -75,7 +75,7 @@ public class MergeUtils {
      * Check if the current iterated key-value pair ("localQueryKeys" and "localQueryValues") is included
      * in the list of key-value pairs used to fetch data ("params")
      *
-     * @param params List of parameters used to fetch data (E.g.: AVG_WORK_HOURS_2007_PARAMS, etc.)
+     * @param params List of parameters used to fetch data (E.g.: AVG_WORKING_HOURS_2007_PARAMS, etc.)
      * @param localQueryKeys List of local parameters (taken from data stored on disk)
      * @param localQueryValues List of local values (taken from data stored on disk)
      * @return True/False

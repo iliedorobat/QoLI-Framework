@@ -7,8 +7,8 @@ import java.util.Map;
 public class MainActivityAggrParams {
     public static final String MAIN_ACTIVITY = "mainActivity";
 
-    public static final String AVG_WORK_HOURS = MAIN_ACTIVITY + ":avgWorkHours";
-    public static final String AVG_REMAINED_WORK_HOURS = MAIN_ACTIVITY + ":avgRemainedWorkHours";
+    public static final String AVG_WORKING_HOURS = MAIN_ACTIVITY + ":avgWorkingHours";
+    public static final String AVG_REMAINING_WORKING_HOURS = MAIN_ACTIVITY + ":avgRemainingWorkingHours";
     public static final String EMPLOYMENT_RATIO = MAIN_ACTIVITY + ":employmentRatio";
     public static final String INACTIVE_POPULATION_RATIO = MAIN_ACTIVITY + ":inactivePopulationRatio";
     public static final String INVOLUNTARY_PART_TIME_RATIO = MAIN_ACTIVITY + ":involuntaryPartTimeRatio";
@@ -26,7 +26,7 @@ public class MainActivityAggrParams {
     public static final String WORKING_NIGHTS_RATIO = MAIN_ACTIVITY + ":workingNightsRatio";
 
     public static final Map<String, String> ALLOWED_PARAM_LABELS = new HashMap<>() {{
-        put(AVG_REMAINED_WORK_HOURS, "Average Remained Work Hours Ratio");
+        put(AVG_REMAINING_WORKING_HOURS, "Average Remaining Working Hours Ratio");
         put(EMPLOYMENT_RATIO, "Employment Ratio");
         put(INACTIVE_POPULATION_RATIO, "Inactive Population Ratio");
         put(INVOLUNTARY_PART_TIME_RATIO, "Involuntary Part-Time Ratio");
@@ -44,7 +44,7 @@ public class MainActivityAggrParams {
     public static final List<String> ALLOWED_PARAMS = List.copyOf(ALLOWED_PARAM_LABELS.keySet());
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
-        put(AVG_REMAINED_WORK_HOURS, false);
+        put(AVG_REMAINING_WORKING_HOURS, false);
         put(EMPLOYMENT_RATIO, false);
         put(INACTIVE_POPULATION_RATIO, true);
         put(INVOLUNTARY_PART_TIME_RATIO, true);

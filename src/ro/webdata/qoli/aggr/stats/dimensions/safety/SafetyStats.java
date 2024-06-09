@@ -116,31 +116,10 @@ public class SafetyStats {
     public static final HashMap<String, Map<String, Number>> preparedIndicators = new HashMap<>() {{
         put(CRIME_RATIO, crimeRatio);
         put(NON_PAYMENT_RATIO, nonPaymentRatio);
+        put(OFFENCES_RATIO, totalOffencesRatio);
         put(PENSION_PPS_RATIO, pensionPpsRatio);
         put(SOCIAL_PROTECTION_PPS_RATIO, socialProtectionPpsRatio);
         put(UNEXPECTED_RATIO, unexpectedRatio);
-
-        put(OFFENCES_ASSAULT, assaultOffences);
-        put(OFFENCES_ATTEMPTED_HOMICIDE, attemptedHomicideOffences);
-        put(OFFENCES_BRIBERY, briberyOffences);
-        put(OFFENCES_BURGLARY, burglaryOffences);
-        put(OFFENCES_BURGLARY_PRIVATE, burglaryPrivateOffences);
-        put(OFFENCES_COMPUTERS, computersOffences);
-        put(OFFENCES_CRIMINAL_GROUPS, criminalGroupsOffences);
-        put(OFFENCES_CORRUPTION, corruptionOffences);
-        put(OFFENCES_FRAUD, fraudOffences);
-        put(OFFENCES_HOMICIDE, homicideOffences);
-        put(OFFENCES_KIDNAPPING, kidnappingOffences);
-        put(OFFENCES_MONEY_LAUNDERING, moneyLaunderingOffences);
-        put(OFFENCES_NARCOTICS, narcoticsOffences);
-        put(OFFENCES_RAPE, rapeOffences);
-        put(OFFENCES_ROBBERY, robberyOffences);
-        put(OFFENCES_SEXUAL_ASSAULT, sexualAssaultOffences);
-        put(OFFENCES_SEXUAL_EXPLOITATION, sexualExploitationOffences);
-        put(OFFENCES_SEXUAL_VIOLENCE, sexualViolenceOffences);
-        put(OFFENCES_THEFT, theftOffences);
-        put(OFFENCES_THEFT_VEHICLE, theftVehicleOffences);
-        put(OFFENCES_RATIO, totalOffencesRatio);
     }};
 
     public static Map<String, Number> generateStats(List<String> aggrList, List<String> countryCodes, int startYear, int endYear) {
