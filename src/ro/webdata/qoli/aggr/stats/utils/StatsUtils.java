@@ -2,6 +2,7 @@ package ro.webdata.qoli.aggr.stats.utils;
 
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -77,6 +78,9 @@ public class StatsUtils {
 
         for (int year = startYear; year <= endYear; year++) {
             for (String code : countryCodes) {
+                if (code.equals("EE") && year == 2023) {
+                    System.out.println("EE: 2023");
+                }
                 String key = MapUtils.generateKey(code, year);
 
                 double product = 1;
@@ -182,6 +186,85 @@ public class StatsUtils {
         return seriesType.equals(Constants.SERIES_TYPE_REGION)
                 ? StatsUtils.aggregateRegions(entries, startYear, endYear)
                 : entries;
+    }
+
+    /**
+     * Consolidate the values using the geometric mean
+     * @param mapsList The list of maps
+     * @return The consolidated list of maps
+     */
+    public static Map<String, Number> calculateGeometricMean(List<Map<String, Number>> mapsList) {
+        return calculateGeometricMean(mapsList, 1.0);
+    }
+
+    /**
+     * Consolidate the values using the geometric mean
+     * @param mapsList The list of maps
+     * @param multiplicationFactor A value used to adjust the original value
+     *      - E.g.: population trust params must be multiplied by 10 to obtain values between 0 - 100.
+     * @return The consolidated list of maps
+     */
+    public static Map<String, Number> calculateGeometricMean(List<Map<String, Number>> mapsList, double multiplicationFactor) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : Constants.EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+                double product = 1;
+
+                for (Map<String, Number> map : mapsList) {
+                    double value = map.get(key).doubleValue() * multiplicationFactor;
+                    if (value == 0) {
+                        // FIXME: getting together with friends
+                        System.err.println(key + ": value = 0");
+                    }
+                    product *= value;
+                }
+
+                Number value = Math.pow(product, 1.0/mapsList.size());
+                consolidatedList.put(key, value);
+            }
+        }
+
+        return consolidatedList;
+    }
+
+    /**
+     * Consolidate the values by summing them up
+     * @param mapsList The list of maps
+     * @return The consolidated list of maps
+     */
+    public static Map<String, Number> calculateSum(List<Map<String, Number>> mapsList) {
+        return calculateSum(mapsList, 1.0);
+    }
+
+    /**
+     * Consolidate the values by summing them up
+     * @param mapsList The list of maps
+     * @param multiplicationFactor A value used to adjust the original value
+     *      - E.g.: health personnel params must be divided by 10 (multiplied by 1/10) to transform the value
+     *              expressed "per hundred thousand" inhabitants into "per million" inhabitants.
+     * @return The consolidated list of maps
+     */
+    public static Map<String, Number> calculateSum(List<Map<String, Number>> mapsList, double multiplicationFactor) {
+        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
+
+        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+            for (String code : Constants.EU28_MEMBERS) {
+                String key = MapUtils.generateKey(code, year);
+                double sum = 0;
+
+                for (Map<String, Number> map : mapsList) {
+                    double value = map.get(key).doubleValue();
+                    sum += value;
+                }
+
+                sum *= multiplicationFactor;
+                consolidatedList.put(key, sum);
+            }
+        }
+
+        return consolidatedList;
     }
 
     /**

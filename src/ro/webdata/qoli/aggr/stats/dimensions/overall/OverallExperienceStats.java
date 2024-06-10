@@ -2,17 +2,11 @@ package ro.webdata.qoli.aggr.stats.dimensions.overall;
 
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceAggrParams.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceParams.*;
@@ -28,7 +22,13 @@ public class OverallExperienceStats {
             happinessAlwaysRatio = Preparation.prepareData(initHappinessAlwaysRatio),
             happinessMostOfTheTimeRatio = Preparation.prepareData(initHappinessMostOfTheTimeRatio),
 
-            happinessRatio = prepareHappinessRatio(),
+            // Aggregate the proportion of population who declared they are happy always/most of the time
+            happinessRatio = StatsUtils.calculateSum(
+                    new ArrayList<>() {{
+                        add(happinessAlwaysRatio);
+                        add(happinessMostOfTheTimeRatio);
+                    }}
+            ),
             highSatisfactionRatio = Preparation.prepareData(initHighSatisfactionRatio);
 
     public static TreeMap<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
@@ -54,24 +54,5 @@ public class OverallExperienceStats {
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
         Print.printDataAvailability(rawIndicators, OVERALL_EXPERIENCE, targetYear, indStatus);
-    }
-
-    // Get the proportion of population who declared they are happy always/most of the time
-    private static Map<String, Number> prepareHappinessRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double alwaysHappy = happinessAlwaysRatio.get(key).doubleValue();
-                double mostOfTheTimeHappy = happinessMostOfTheTimeRatio.get(key).doubleValue();
-
-                Number value = alwaysHappy + mostOfTheTimeHappy;
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
     }
 }

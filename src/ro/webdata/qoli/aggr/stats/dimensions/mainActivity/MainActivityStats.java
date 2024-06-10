@@ -59,7 +59,7 @@ public class MainActivityStats {
             flexibilityRestrictiveRatio = Preparation.prepareData(initFlexibilityRestrictiveRatio),
             flexibilityTotalRatio = Preparation.prepareData(initFlexibilityTotalRatio),
 
-            avgRemainingWorkHours = prepareavgRemainingWorkHours(),
+            avgRemainingWorkHours = prepareAvgRemainingWorkHours(),
             employmentRatio = Preparation.prepareData(initEmploymentRatio),
             inactivePopulationRatio = Preparation.prepareData(initInactivePopulationRatio),
             involuntaryPartTimeRatio = Preparation.prepareData(initInvoluntaryPartTimeRatio),
@@ -120,7 +120,7 @@ public class MainActivityStats {
     }
 
     // Extract the number of working hours left for a person from a legal maximum of 12 hours/day
-    private static Map<String, Number> prepareavgRemainingWorkHours() {
+    private static Map<String, Number> prepareAvgRemainingWorkHours() {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
         for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {

@@ -2,17 +2,11 @@ package ro.webdata.qoli.aggr.stats.dimensions.materialLiving;
 
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingAggrParams.*;
 
@@ -42,7 +36,13 @@ public class MaterialLivingStats {
             endMeetInabilityGdRatio = Preparation.prepareData(initEndMeetInabilityGdRatio),
 
             dwellingIssuesRatio = Preparation.prepareData(initDwellingIssuesRatio),
-            endMeetInabilityRatio = prepareEndMeedInabilityRatio(),
+            // Aggregate the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
+            endMeetInabilityRatio = StatsUtils.calculateSum(
+                    new ArrayList<>() {{
+                        add(endMeetInabilityDRatio);
+                        add(endMeetInabilityGdRatio);
+                    }}
+            ),
             financialSatisfactionRatio = Preparation.prepareData(initFinancialSatisfactionRatio),
             gdpPerCapitaPpsRatio = Preparation.prepareData(initGdpPerCapitaPpsRatio),
             highIncomeRatio = Preparation.prepareData(initHighIncomeRatio),
@@ -100,27 +100,5 @@ public class MaterialLivingStats {
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
         Print.printDataAvailability(rawIndicators, LIVING_CONDITIONS, targetYear, indStatus);
-    }
-
-    // Get the proportion of population who can bear the expenses of basic needs with difficulty or with great difficulty
-    private static Map<String, Number> prepareEndMeedInabilityRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueDifficulty = endMeetInabilityDRatio.get(key).doubleValue();
-                double valueGreatDifficulty = endMeetInabilityGdRatio.get(key).doubleValue();
-
-                double value = 0
-                        + valueDifficulty
-                        + valueGreatDifficulty;
-
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
     }
 }

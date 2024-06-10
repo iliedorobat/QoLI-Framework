@@ -2,17 +2,11 @@ package ro.webdata.qoli.aggr.stats.dimensions.environment;
 
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentAggrParams.*;
 
@@ -41,7 +35,18 @@ public class EnvironmentStats {
             airPollutionPm2_5Ratio = Preparation.prepareData(initAirPollutionPm2_5Ratio),
             airPollutionPm10Ratio = Preparation.prepareData(initAirPollutionPm10Ratio),
 
-            airPollutionRatio = prepareAirPollutionRatio(),
+            // Aggregate the "Pollution Ratios" into a single ratio
+            airPollutionRatio = StatsUtils.calculateGeometricMean(
+                    new ArrayList<>() {{
+                        add(airPollutionCh4Ratio);
+                        add(airPollutionCoRatio);
+                        add(airPollutionNmvocRatio);
+                        add(airPollutionNh3Ratio);
+                        add(airPollutionNoxRatio);
+                        add(airPollutionPm2_5Ratio);
+                        add(airPollutionPm10Ratio);
+                    }}
+            ),
             noisePollutionRatio = Preparation.prepareData(initNoisePollutionRatio),
             pollutionRatio = Preparation.prepareData(initPollutionRatio),
             waterSupplyRatio = Preparation.prepareData(initWaterSupplyRatio);
@@ -83,38 +88,5 @@ public class EnvironmentStats {
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
         Print.printDataAvailability(rawIndicators, ENVIRONMENT, targetYear, indStatus);
-    }
-
-    // Aggregate the "Pollution Ratios" into a single ratio
-    private static Map<String, Number> prepareAirPollutionRatio() {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueCh4 = airPollutionCh4Ratio.get(key).doubleValue();
-                double valueCo = airPollutionCoRatio.get(key).doubleValue();
-                double valueNmvoc = airPollutionNmvocRatio.get(key).doubleValue();
-                double valueNh3 = airPollutionNh3Ratio.get(key).doubleValue();
-                double valueNox = airPollutionNoxRatio.get(key).doubleValue();
-                double valuePm2_5 = airPollutionPm2_5Ratio.get(key).doubleValue();
-                double valuePm10 = airPollutionPm10Ratio.get(key).doubleValue();
-
-                double product = 1
-                        * valueCh4
-                        * valueCo
-                        * valueNmvoc
-                        * valueNh3
-                        * valueNox
-                        * valuePm2_5
-                        * valuePm10;
-
-                Number value = Math.pow(product, 1.0/7);
-                preparedMap.put(key, value);
-            }
-        }
-
-        return preparedMap;
     }
 }
