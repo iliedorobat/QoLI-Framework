@@ -78,11 +78,7 @@ public class StatsUtils {
 
         for (int year = startYear; year <= endYear; year++) {
             for (String code : countryCodes) {
-                if (code.equals("EE") && year == 2023) {
-                    System.out.println("EE: 2023");
-                }
                 String key = MapUtils.generateKey(code, year);
-
                 double product = 1;
 
                 for (Map.Entry<String, Map<String, Number>> entry : preparedIndicators.entrySet()) {
@@ -213,11 +209,7 @@ public class StatsUtils {
                 double product = 1;
 
                 for (Map<String, Number> map : mapsList) {
-                    double value = map.get(key).doubleValue() * multiplicationFactor;
-                    if (value == 0) {
-                        // FIXME: getting together with friends
-                        System.err.println(key + ": value = 0");
-                    }
+                    double value = getProdSafeValue(map, code, year) * multiplicationFactor;
                     product *= value;
                 }
 
@@ -320,6 +312,35 @@ public class StatsUtils {
         }
 
         return consolidatedList;
+    }
+
+    /**
+     * Get the safe value. A safe value is considered to be either the neutral value (1)
+     * or a value greater than the neutral value.
+     * @param entries The map containing prepared data for a specific indicator
+     * @param code The country code for which the calculation is done
+     * @param year The year for which the calculation is done
+     * @return
+     */
+    private static double getProdSafeValue(Map<String, Number> entries, String code, int year) {
+        String inputKey = MapUtils.generateKey(code, year);
+        double value = entries.get(inputKey).doubleValue();
+        if (value != 0)
+            return value;
+
+        // Get the value recorded to the nearest year which is greater than 0.0 for cases where
+        // the datasets contain the value "0.0" instead of "null".
+        // This preparation prevents corruption of the result of the product of values.
+        // E.g.: "Getting together with friends" for the year 2022 (data retrieved on June 11, 2024)
+        for (int crrYear = year; crrYear >= EnvConst.MIN_YEAR; crrYear--) {
+            String key = MapUtils.generateKey(code, crrYear);
+            value = entries.get(key).doubleValue();
+
+            if (value != 0)
+                return value;
+        }
+
+        return 1;
     }
 
     /**
