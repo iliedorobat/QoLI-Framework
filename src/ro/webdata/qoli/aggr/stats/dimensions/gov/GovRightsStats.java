@@ -14,10 +14,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsAggrParams.*;
 
@@ -58,8 +55,24 @@ public class GovRightsStats {
             citizenship = Preparation.prepareData(initCitizenshipRatio),
             genderEmpGap = Preparation.prepareData(initGenderEmpGap),
             genderPayGap = Preparation.prepareData(initGenderPayGap),
-            populationTrustRatio = preparePopulationTrust(),
-            voterTurnout = prepareVoterTurnout();
+            // Aggregate the population trust ratios into a single index
+            populationTrustRatio = StatsUtils.calculateGeometricMean(
+                    new ArrayList<>() {{
+                        add(populationLegtstTrustRatio);
+                        add(populationOthersTrustRatio);
+                        add(populationPlctstTrustRatio);
+                        add(populationPlttstTrustRatio);
+                    }},
+                    10.0
+            ),
+            // Aggregate the voter turnout for different type of elections into a single index
+            voterTurnout = StatsUtils.calculateGeometricMean(
+                    new ArrayList<>() {{
+                        add(turnoutEuParliament);
+                        add(turnoutParliamentary);
+                        add(turnoutPresidential);
+                    }}
+            );
 
     public static Map<String, Map<String, Number>> rawIndicators = new TreeMap<>() {{
         put(CITIZENSHIP_RATIO, Preparation.filterMap(initCitizenshipRatio));
@@ -121,61 +134,6 @@ public class GovRightsStats {
                 String key = MapUtils.generateKey(code, year);
 
                 double value = MathUtils.reverseGenderGap(preparedData, key);
-                preparedMap.put(key, value);
-            }
-        }
-
-        return preparedMap;
-    }
-
-    // Aggregate the population trust ratios into a single index
-    private static Map<String, Number> preparePopulationTrust() {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueLegtst = populationLegtstTrustRatio.get(key).doubleValue();
-                double valueOthers = populationOthersTrustRatio.get(key).doubleValue();
-                double valuePlctst = populationPlctstTrustRatio.get(key).doubleValue();
-                double valuePlttst = populationPlttstTrustRatio.get(key).doubleValue();
-
-                double product = 1
-                        * valueLegtst
-                        * valueOthers
-                        * valuePlctst
-                        * valuePlttst;
-
-                Number value = Math.pow(product, 1.0/4);
-                // Transform the 1-10 notes into 10-100 notes
-                value = value.doubleValue() * 10;
-
-                preparedMap.put(key, value);
-            }
-        }
-
-        return preparedMap;
-    }
-
-    // Aggregate the voter turnout for different type of elections into a single index
-    private static Map<String, Number> prepareVoterTurnout() {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueEuParliamentary = turnoutEuParliament.get(key).doubleValue();
-                double valueParliament = turnoutParliamentary.get(key).doubleValue();
-                double valuePresidential = turnoutPresidential.get(key).doubleValue();
-
-                double product = 1
-                        * valueEuParliamentary
-                        * valueParliament
-                        * valuePresidential;
-
-                Number value = Math.pow(product, 1.0/3);
                 preparedMap.put(key, value);
             }
         }

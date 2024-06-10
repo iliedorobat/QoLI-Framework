@@ -2,18 +2,12 @@ package ro.webdata.qoli.aggr.stats.dimensions.health;
 
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
-import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryStats;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthAggrParams.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.health.HealthParams.*;
@@ -62,7 +56,14 @@ public class HealthStats {
             personnelPhysiotherapists = Preparation.prepareData(initPersonnelTherapists),
 
             bmiRatio = Preparation.prepareData(initBmiRatio),
-            depressiveRatio = prepareTotalDepressiveRatio(),
+            // Aggregate the share of population facing with depressive symptoms into a single indicator
+            depressiveRatio = StatsUtils.calculateSum(
+                    new ArrayList<>() {{
+                        add(depressiveNormalRatio);
+                        add(depressiveMajorRatio);
+                        add(depressiveOtherRatio);
+                    }}
+            ),
             healthyLifeRatio = Preparation.prepareData(initHealthyLifeRatio),
             healthyLifeYears = Preparation.prepareData(initHealthyLifeYears),
             hospitalBeds = Preparation.prepareData(initHospitalBeds),
@@ -70,7 +71,20 @@ public class HealthStats {
             longHealthIssuesRatio = Preparation.prepareData(initLongHealthIssuesRatio),
             nonAlcoholicRatio = Preparation.prepareData(initNonAlcoholicRatio),
             nonFruitsVegetablesRatio = Preparation.prepareData(initNonFruitsVegetablesRatio),
-            personnelTotal = prepareTotalPersonnelRatio(),
+            // Aggregate the health personnel into a single indicator representing the
+            // total personnel (excepting the caring personnel) per million inhabitants
+            personnelTotal = StatsUtils.calculateSum(
+                    new ArrayList<>() {{
+                        add(personnelDentists);
+                        add(personnelDoctors);
+                        add(personnelMidwives);
+                        add(personnelNurses);
+                        add(personnelPharmacists);
+                        add(personnelPhysiotherapists);
+                    }},
+                    // Transform "per hundred thousand" inhabitants into "per million" inhabitants
+                    1.0/10
+            ),
             physicalActivitiesRatio = Preparation.prepareData(initPhysicalActivitiesRatio),
             smokersRatio = Preparation.prepareData(initSmokersRatio),
             unmetDentalRatio = Preparation.prepareData(initUnmetDentalRatio),
@@ -170,71 +184,12 @@ public class HealthStats {
 
     // Transform hospital beds "per thousand" inhabitants into "per million" inhabitants
     private static Map<String, Number> prepareHospitalBedsRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
+        return StatsUtils.calculateSum(
+                new ArrayList<>() {{
+                    add(hospitalBeds);
+                }},
                 // Transform "per hundred thousand" inhabitants into "per million" inhabitants
-                double value = hospitalBeds.get(key).doubleValue() / 10;
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
-    }
-
-    // Aggregate the share of population facing with depressive symptoms into a single indicator
-    private static Map<String, Number> prepareTotalDepressiveRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueNormal = depressiveNormalRatio.get(key).doubleValue();
-                double valueMajor = depressiveMajorRatio.get(key).doubleValue();
-                double valueOther = depressiveOtherRatio.get(key).doubleValue();
-
-                Number value = valueNormal + valueMajor + valueOther;
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
-    }
-
-    // Aggregate the health personnel into a single indicator representing the
-    // total personnel (excepting the caring personnel) per million inhabitants
-    private static Map<String, Number> prepareTotalPersonnelRatio() {
-        Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double valueDentists = personnelDentists.get(key).doubleValue();
-                double valueDoctors = personnelDoctors.get(key).doubleValue();
-                double valueMidwives = personnelMidwives.get(key).doubleValue();
-                double valueNurses = personnelNurses.get(key).doubleValue();
-                double valuePharmacists = personnelPharmacists.get(key).doubleValue();
-                double valuePhysiotherapists = personnelPhysiotherapists.get(key).doubleValue();
-
-                double value = 0
-                        + valueDentists
-                        + valueDoctors
-                        + valueMidwives
-                        + valueNurses
-                        + valuePharmacists
-                        + valuePhysiotherapists;
-                // Transform "per hundred thousand" inhabitants into "per million" inhabitants
-                value = value / 10;
-
-                consolidatedList.put(key, value);
-            }
-        }
-
-        return consolidatedList;
+                1.0/10
+        );
     }
 }
