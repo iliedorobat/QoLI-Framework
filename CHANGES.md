@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added the server service.
 
 ## 2.0
+- "percentageSafetyDouble" and "reverseGenderGap" methods were removed and the gender pay/emp gap are calculated based on the "percentageReverseRatio" method.
 - Changed current indicators:
   - "Pupils Ratio" was reversed because it describes a negative state.
   - "Alcoholic Ratio" was changed to depict the "frequency of heavy episodic drinking" instead of the "daily alcohol consumption".
@@ -48,4 +49,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix the writer of regions.
 
 ## 1.0
-- First release.
+- First stable release.

@@ -22,19 +22,6 @@ public class MathUtils {
     }
 
     /**
-     * Returns the value of a specific square
-     *
-     * @param value The value of square extraction
-     * @param order The square order
-     * @return <b>double</b>
-     */
-    public static double getSquareValue(double value, double order) {
-        if (order == 0)
-            return Math.pow(value, 0);
-        return Math.pow(value, 1 / order);
-    }
-
-    /**
      * Round a value with "places" decimals
      *
      * @param value The input value
