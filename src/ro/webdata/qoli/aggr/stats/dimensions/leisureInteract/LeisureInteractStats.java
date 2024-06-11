@@ -100,8 +100,6 @@ public class LeisureInteractStats {
                         add(gettingTogetherFrdRatio);
                     }}
             ),
-            // FIXME: remove nonParticipationRatio because
-            //  there is incomplete data only for 2015
             // Aggregate the "Non Participation Ratios" into a single ratio
             nonParticipationRatio = StatsUtils.calculateGeometricMean(
                     new ArrayList<>() {{
