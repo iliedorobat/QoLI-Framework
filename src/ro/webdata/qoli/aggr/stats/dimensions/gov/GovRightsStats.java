@@ -89,8 +89,8 @@ public class GovRightsStats {
 
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, citizenship);
-        put(GENDER_EMP_GAP, prepareGenderGap(genderEmpGap));
-        put(GENDER_PAY_GAP, prepareGenderGap(genderPayGap));
+        put(GENDER_EMP_GAP, genderEmpGap);
+        put(GENDER_PAY_GAP, genderPayGap);
         put(POPULATION_TRUST, populationTrustRatio);
         put(VOTER_TURNOUT, voterTurnout);
     }};
@@ -123,22 +123,6 @@ public class GovRightsStats {
 
     public static void printDataAvailability(int targetYear, boolean indStatus) {
         Print.printDataAvailability(rawIndicators, GOVERNANCE, targetYear, indStatus);
-    }
-
-    // Reverse the value of the gender emp/pay gap
-    private static Map<String, Number> prepareGenderGap(Map<String, Number> preparedData) {
-        Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
-
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
-            for (String code : Constants.EU28_MEMBERS) {
-                String key = MapUtils.generateKey(code, year);
-
-                double value = MathUtils.reverseGenderGap(preparedData, key);
-                preparedMap.put(key, value);
-            }
-        }
-
-        return preparedMap;
     }
 
     // Convert the voter turnout data from csv into Java Map

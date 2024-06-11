@@ -99,7 +99,9 @@ public class StatsUtils {
                             continue;
                         }
                         boolean isReversed = reversedMap.get(indicatorName);
-                        product *= MathUtils.percentageSafetyDouble(values, key, isReversed);
+                        product *= isReversed
+                                ? MathUtils.percentageReverseRatio(values, key)
+                                : values.get(key).doubleValue();
                     }
                 }
 

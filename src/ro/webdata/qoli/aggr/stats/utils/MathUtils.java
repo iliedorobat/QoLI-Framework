@@ -1,7 +1,5 @@
 package ro.webdata.qoli.aggr.stats.utils;
 
-import ro.webdata.qoli.aggr.stats.constants.Constants;
-
 import java.util.Map;
 
 public class MathUtils {
@@ -54,73 +52,11 @@ public class MathUtils {
         return roundedValue / factor;
     }
 
-    /* ************** P E R C E N T A G E    O P E R A T I O N S ************** */
-    /**
-     * Get a safety value.<br/>
-     * <b>A safety value</b> is a value that neutralize the effect of the "0" value
-     * in the multiplication and division processes.<br/>
-     *
-     * E.g.:<br/>
-     * - value = 0     =>   safetyValue = 0 + 101 = 101<br/>
-     * - value = -100  =>   safetyValue = -100 + 101 = 1
-     *
-     * @param value The percentage value
-     * @return The safety value
-     */
-    public static double percentageSafetyDouble(double value) {
-        if (value < Constants.PERCENTAGE_MIN_VALUE) {
-            throw new Error("The value (" + value + ") is lower than " + Constants.PERCENTAGE_MIN_VALUE
-                    + " and the current safety threshold can not be applied.");
-        }
-
-        return value + Constants.PERCENTAGE_SAFETY_THRESHOLD;
-    }
-
-    /**
-     * Get a safety value.<br/>
-     * <b>A safety value</b> is a value that neutralize the effect of the "0" value
-     * in the multiplication and division processes.<br/>
-     *
-     * E.g.:<br/>
-     * - value = 0     =>   safetyValue = 0 + 101 = 101<br/>
-     * - value = -100  =>   safetyValue = -100 + 101 = 1
-     *
-     * @param map The related map
-     * @param key The key
-     * @return The safety value
-     */
-    public static double percentageSafetyDouble(Map<String, Number> map, String key) {
-        double value = map.get(key).doubleValue();
-        return percentageSafetyDouble(value);
-    }
-
-    /**
-     * Get a safety value.<br/>
-     * <b>A safety value</b> is a value that neutralize the effect of the "0" value
-     * in the multiplication and division processes.<br/>
-     *
-     * E.g.:<br/>
-     * - value = 0     =>   safetyValue = 0 + 101 = 101<br/>
-     * - value = -100  =>   safetyValue = -100 + 101 = 1
-     *
-     * @param map The related map
-     * @param key The key
-     * @param reversedImpact true/false specifying if the indicator has a negative impact
-     *                       (e.g.: dropoutRatio, pollutionRatio, etc.)
-     * @return The safety value
-     */
-    public static double percentageSafetyDouble(Map<String, Number> map, String key, boolean reversedImpact) {
-        if (reversedImpact) {
-            double reversedValue = MathUtils.percentageReverseRatio(map, key);
-            return percentageSafetyDouble(reversedValue);
-        }
-
-        return percentageSafetyDouble(map, key);
-    }
-
     /**
      * Get the differences between 100% and the current ratio.<br/>
      * E.g.: Dropout Ratio = 7%   =>   Graduating Ratio = 100% - 7% = 93%
+     * E.g.: Gender pay gap = -3%   =>   100% + 3% = 103% (women earn 103% of what men earn)
+     * E.g.: Gender pay gap = +8%   =>   100% - 8% = 92% (women earn 92% of what men earn)
      *
      * @param map The related map
      * @param key The key
@@ -133,27 +69,6 @@ public class MathUtils {
             : 0;
         return 100 - value;
     }
-
-    /**
-     * E.g.: Gender pay gap = -3%   =>   100% + 3% = 103% (women earn 103% of what men earn)
-     * E.g.: Gender pay gap = +8%   =>   100% - 8% = 92% (women earn 92% of what men earn)
-     *
-     * @param map The related map
-     * @param key The key
-     * @return The reversed ratio
-     */
-    public static double reverseGenderGap(Map<String, Number> map, String key) {
-        Number number = map.get(key);
-        if (number == null) {
-            return 0;
-        }
-
-        double value = number.doubleValue();
-        return value < 0
-                ? 100 + Math.abs(value)
-                : 100 - value;
-    }
-    /* ************** E O F    P E R C E N T A G E    O P E R A T I O N S ************** */
 
     /**
      * Transform the value into a value per hundred inhabitants
