@@ -32,8 +32,8 @@ public class GovRightsAggrParams {
 
     public static final Map<String, Boolean> IS_REVERSED = new HashMap<>() {{
         put(CITIZENSHIP_RATIO, false);
-        put(GENDER_EMP_GAP, false); // is already reversed through the means of MathUtils.reverseGenderGap
-        put(GENDER_PAY_GAP, false); // is already reversed through the means of MathUtils.reverseGenderGap
+        put(GENDER_EMP_GAP, true);
+        put(GENDER_PAY_GAP, true);
         put(POPULATION_TRUST, false);
         put(VOTER_TURNOUT, false);
     }};

@@ -18,14 +18,6 @@ public class Constants {
      * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied
      */
     public static final int PERCENTAGE_MIN_VALUE = -100;
-    /**
-     * A value that should be added to a percentage value in order to avoid the
-     * multiplication or division by 0<br/>
-     * E.g.:<br/>
-     *      * percent = 0 => output = 0 + 101 = 101
-     *      * percent = -100 => output = -100 + 101 = 1
-     */
-    public static final int PERCENTAGE_SAFETY_THRESHOLD = 101;
 
     public static final String[] EU_EASTERN_MEMBERS = {
             "BG", "CZ", "HU", "PL", "RO", "SK"
