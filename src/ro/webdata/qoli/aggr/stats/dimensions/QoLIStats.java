@@ -12,6 +12,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
 import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.aggr.stats.utils.MathUtils;
 
 import java.util.*;
 
@@ -51,7 +52,7 @@ public class QoLIStats {
                     }
                 }
 
-                Number value = Math.pow(product, 1.0/counter);
+                Number value = MathUtils.getLogValue(product);
                 consolidatedList.put(key, value);
             }
         }
