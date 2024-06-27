@@ -138,9 +138,13 @@ public class StatsUtils {
             for (int year = startYear; year <= endYear; year++) {
                 String key = code + "_" + year;
                 Number value = data.get(key);
-                itemStats.put(year, value);
+
+                if (value != null)
+                    itemStats.put(year, value);
             }
-            stats.put(code, itemStats);
+
+            if (!itemStats.isEmpty())
+                stats.put(code, itemStats);
         }
 
         return stats;
