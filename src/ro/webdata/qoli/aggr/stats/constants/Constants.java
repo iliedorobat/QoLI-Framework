@@ -98,6 +98,33 @@ public class Constants {
         EU28_MEMBERS_NAME.put("UK", "United Kingdom");
     }
 
+    public static final Map<String, String> NON_EU_MEMBERS_NAME = new TreeMap<>();
+    static {
+        NON_EU_MEMBERS_NAME.put("AL", "Albania");
+        NON_EU_MEMBERS_NAME.put("AD", "Andorra");
+        NON_EU_MEMBERS_NAME.put("AM", "Armenia");
+        NON_EU_MEMBERS_NAME.put("AZ", "Azerbaijan");
+        NON_EU_MEMBERS_NAME.put("BA", "Bosnia and Herzegovina");
+        NON_EU_MEMBERS_NAME.put("BY", "Belarus");
+        NON_EU_MEMBERS_NAME.put("CH", "Switzerland");
+        NON_EU_MEMBERS_NAME.put("FO", "Faroe Islands");
+        NON_EU_MEMBERS_NAME.put("GE", "Georgia");
+        NON_EU_MEMBERS_NAME.put("IS", "Iceland");
+        NON_EU_MEMBERS_NAME.put("KZ", "Kazakhstan");
+        NON_EU_MEMBERS_NAME.put("LI", "Liechtenstein");
+        NON_EU_MEMBERS_NAME.put("MC", "Monaco");
+        NON_EU_MEMBERS_NAME.put("MD", "Moldova");
+        NON_EU_MEMBERS_NAME.put("ME", "Montenegro");
+        NON_EU_MEMBERS_NAME.put("MK", "North Macedonia");
+        NON_EU_MEMBERS_NAME.put("NO", "Norway");
+        NON_EU_MEMBERS_NAME.put("RU", "Russian Federation");
+        NON_EU_MEMBERS_NAME.put("SM", "San Marino");
+        NON_EU_MEMBERS_NAME.put("RS", "Serbia");
+        NON_EU_MEMBERS_NAME.put("TR", "Türkiye");
+        NON_EU_MEMBERS_NAME.put("UA", "Ukraine");
+        NON_EU_MEMBERS_NAME.put("VA", "Vatican City");
+    }
+
     public static final String[] EU28_MEMBERS_EXTENDED = {
 //            "EU28", // European Union - 28 countries
             "AT", // Austria

@@ -4,9 +4,10 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ro.webdata.qoli.server.commons.Endpoint;
+import ro.webdata.qoli.server.endpoint.geo.GeoEndpoint;
+import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.collector.StatsCollectorEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.config.StatsConfigEndpoint;
-import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
 
 import java.net.URI;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ public class Server {
         // Due to constraint configuration problems the provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint will be ignored.
         // But it just works and according to stackoverflow this is a bug:
         // https://github.com/eclipse-ee4j/jersey/issues/3700
+        config.register(GeoEndpoint.class);
         config.register(StatsEndpoint.class);
         config.register(StatsCollectorEndpoint.class);
         config.register(StatsConfigEndpoint.class);
@@ -58,7 +60,10 @@ public class Server {
                     httpServer.shutdown();
                     System.out.println("Done, exit.");
                 } catch (Exception e) {
+                    Logger.getLogger(GeoEndpoint.class.getName()).log(Level.SEVERE, null, e);
                     Logger.getLogger(StatsEndpoint.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(StatsCollectorEndpoint.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(StatsConfigEndpoint.class.getName()).log(Level.SEVERE, null, e);
                 }
             }));
 
