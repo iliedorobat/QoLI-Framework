@@ -3,6 +3,8 @@ package ro.webdata.qoli.server;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import ro.webdata.qoli.server.auth.AuthFilter;
+import ro.webdata.qoli.server.auth.AuthService;
 import ro.webdata.qoli.server.commons.Endpoint;
 import ro.webdata.qoli.server.endpoint.geo.GeoEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
@@ -16,11 +18,13 @@ import java.util.logging.Logger;
 // https://mkyong.com/webservices/jax-rs/jersey-hello-world-example/
 public class Server {
     // Base URI the Grizzly HTTP server will listen on
-    private static final String BASE_URI = "http://%1$s:%2$s/";
+    private static final URI BASE_URI = URI.create(Endpoint.BASE_URI);
 
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     public static HttpServer startServer(boolean local) {
+        AuthService.init(".env");
+
         // Create a resource config that registers the QoLIEndpoint JAX-RS resource
         final ResourceConfig config = new ResourceConfig();
 
@@ -29,6 +33,7 @@ public class Server {
         // Due to constraint configuration problems the provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint will be ignored.
         // But it just works and according to stackoverflow this is a bug:
         // https://github.com/eclipse-ee4j/jersey/issues/3700
+        config.register(AuthFilter.class);
         config.register(GeoEndpoint.class);
         config.register(StatsEndpoint.class);
         config.register(StatsCollectorEndpoint.class);
@@ -43,11 +48,9 @@ public class Server {
 
         LOGGER.info("Starting server...");
 
-        URI uri = URI.create(String.format(BASE_URI, Endpoint.DOMAIN, Endpoint.PORT));
-
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(uri, config);
+        return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config);
     }
 
     public static void main(String[] args) {
