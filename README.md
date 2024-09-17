@@ -2,7 +2,7 @@
 
 
 
-## Local setup
+## Local Setup
 ### Requirements
 - JDK 11 or OpenJDK 11.
 
@@ -11,47 +11,45 @@
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
-2. Open the Terminal/Command Prompt and navigate to the root directory (`QoLI-Framework` directory).
-3. Register the environment variables:
-   1. QoLI Framework:
-    ```bash
-    export QOLI_PATH=`pwd`
-    export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/poi-5.2.0.jar:${QOLI_PATH}/lib/guava-22.0.jar:${QOLI_PATH}/lib/xmlbeans-5.0.3.jar:${QOLI_PATH}/lib/httpcore-4.4.11.jar:${QOLI_PATH}/lib/poi-ooxml-5.2.0.jar:${QOLI_PATH}/lib/protonpack-1.13.jar:${QOLI_PATH}/lib/guava-stream-1.0.jar:${QOLI_PATH}/lib/httpclient-4.5.9.jar:${QOLI_PATH}/lib/log4j-api-2.17.1.jar:${QOLI_PATH}/lib/commons-io-2.11.0.jar:${QOLI_PATH}/lib/log4j-core-2.17.1.jar:${QOLI_PATH}/lib/assertj-core-3.6.1.jar:${QOLI_PATH}/lib/assertj-json-1.0.0.jar:${QOLI_PATH}/lib/mockito-core-2.2.8.jar:${QOLI_PATH}/lib/commons-logging-1.2.jar:${QOLI_PATH}/lib/commons-math3-3.6.1.jar:${QOLI_PATH}/lib/jackson-core-2.15.3.jar:${QOLI_PATH}/lib/json-stat-java-0.2.2.jar:${QOLI_PATH}/lib/commons-compress-1.21.jar:${QOLI_PATH}/lib/commons-collections4-4.3.jar:${QOLI_PATH}/lib/jackson-databind-2.15.3.jar:${QOLI_PATH}/lib/jackson-annotations-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jdk8-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-guava-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jsr310-2.15.3.jar"
-    ```
-    2. QoLI Server:
-    ```bash
-    export QOLI_PATH=`pwd`
-    export CLASSPATH="${QOLI_PATH}/out/production/QoLI-Framework:${QOLI_PATH}/lib/poi-5.2.0.jar:${QOLI_PATH}/lib/guava-22.0.jar:${QOLI_PATH}/lib/xmlbeans-5.0.3.jar:${QOLI_PATH}/lib/httpcore-4.4.11.jar:${QOLI_PATH}/lib/poi-ooxml-5.2.0.jar:${QOLI_PATH}/lib/protonpack-1.13.jar:${QOLI_PATH}/lib/guava-stream-1.0.jar:${QOLI_PATH}/lib/httpclient-4.5.9.jar:${QOLI_PATH}/lib/log4j-api-2.17.1.jar:${QOLI_PATH}/lib/commons-io-2.11.0.jar:${QOLI_PATH}/lib/log4j-core-2.17.1.jar:${QOLI_PATH}/lib/assertj-core-3.6.1.jar:${QOLI_PATH}/lib/assertj-json-1.0.0.jar:${QOLI_PATH}/lib/mockito-core-2.2.8.jar:${QOLI_PATH}/lib/commons-logging-1.2.jar:${QOLI_PATH}/lib/commons-math3-3.6.1.jar:${QOLI_PATH}/lib/jackson-core-2.15.3.jar:${QOLI_PATH}/lib/json-stat-java-0.2.2.jar:${QOLI_PATH}/lib/commons-compress-1.21.jar:${QOLI_PATH}/lib/commons-collections4-4.3.jar:${QOLI_PATH}/lib/jackson-databind-2.15.3.jar:${QOLI_PATH}/lib/jackson-annotations-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jdk8-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-guava-2.15.3.jar:${QOLI_PATH}/lib/jackson-datatype-jsr310-2.15.3.jar"
-    export CLASSPATH="$CLASSPATH:${QOLI_PATH}/lib/grizzly-core-4.0.0.jar:${QOLI_PATH}/lib/grizzly-http-all-4.0.0.jar:${QOLI_PATH}/lib/grizzly-http-server-4.0.0.jar:${QOLI_PATH}/lib/hk2-api-3.0.3.jar:${QOLI_PATH}/lib/hk2-locator-3.0.3.jar:${QOLI_PATH}/lib/hk2-utils-3.0.3.jar:${QOLI_PATH}/lib/jackson-module-jakarta-xmlbind-annotations-2.15.3.jar:${QOLI_PATH}/lib/jakarta.annotation-api-2.1.1.jar:${QOLI_PATH}/lib/jakarta.inject-api-2.0.1.jar:${QOLI_PATH}/lib/jakarta.validation-api-3.0.2.jar:${QOLI_PATH}/lib/jakarta.ws.rs-api-3.1.0.jar:${QOLI_PATH}/lib/jakarta.xml.bind-api-4.0.0.jar:${QOLI_PATH}/lib/jersey-client.jar:${QOLI_PATH}/lib/jersey-common.jar:${QOLI_PATH}/lib/jersey-container-grizzly2-http-3.1.0.jar:${QOLI_PATH}/lib/jersey-entity-filtering-3.1.0.jar:${QOLI_PATH}/lib/jersey-hk2.jar:${QOLI_PATH}/lib/jersey-media-json-jackson-3.1.0.jar:${QOLI_PATH}/lib/jersey-server.jar"
-    ```
-4. Compile the project:
+2. Install deps & compile the project
 ```bash
-javac -d ./out/production/QoLI-Framework src/ro/webdata/qoli/aggr/BuildProject.java
-java ro/webdata/qoli/aggr/BuildProject
+mvn install
+mvn clean compile assembly:single
 ```
-5. Collect the datasets:
+3. Collect the datasets:
 ```bash
-java ro/webdata/qoli/aggr/Main --collect
+java -jar QoLI-Framework-2.1-jar-with-dependencies --collect
 ```
-6. Aggregate the datasets:
+4. Aggregate the datasets:
    1. Calculate the QoLI dimensions:
     ```bash
-    java ro/webdata/qoli/aggr/Main --calculate --calculateIndicators --direction=COLUMN
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --calculateIndicators --direction=COLUMN
     ```
     2. Calculate the QoLI based on a specific set of indicators:
     ```bash
-    java ro/webdata/qoli/aggr/Main --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
     ```
-7. Print the QoLI and the QoLI dimensions:
+
+### Print Data
+1. Print the QoLI and the QoLI dimensions:
+    ```bash
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+    ```
+2. Print specific indicators:
+    ```bash
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    ```
+   
+### Run Server
 ```bash
-java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+java -jar QoLI-Framework-2.1-jar-with-dependencies --server
 ```
-7. Print specific indicators:
-```bash
-java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-java ro/webdata/qoli/aggr/Main --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-```
+
+
+
+## Framework Info
 * List of dimensions:
   * [QoLIAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/QoLIAggrParams.java#L42)
 * List of indicators:
