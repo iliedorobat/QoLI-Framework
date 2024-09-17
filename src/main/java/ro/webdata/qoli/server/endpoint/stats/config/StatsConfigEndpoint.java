@@ -10,7 +10,7 @@ import ro.webdata.qoli.server.commons.ParamsValues;
 import ro.webdata.qoli.server.endpoint.stats.config.aggr.AggrQoLIConfig;
 import ro.webdata.qoli.server.endpoint.stats.config.base.BaseQoLIConfig;
 
-@Path("/api/v2/stats/config")
+@Path("/qoli/api/v2/stats/config")
 public class StatsConfigEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -18,12 +18,12 @@ public class StatsConfigEndpoint {
             @QueryParam("analysisType") String analysisType
     ) {
         switch (analysisType) {
-            // E.g.: http://localhost:3070/stats/config?analysisType=aggregate
+            // E.g.: http://localhost:3070/qoli/api/v2/stats/config?analysisType=aggregate
             case ParamsValues.AGGREGATED_ANALYSIS:
                 AggrQoLIConfig config = new AggrQoLIConfig();
                 return Response.ok().entity(config).build();
 
-            // E.g.: http://localhost:3070/stats/config?analysisType=individually
+            // E.g.: http://localhost:3070/qoli/api/v2/stats/config?analysisType=individually
             case ParamsValues.INDIVIDUALLY_ANALYSIS:
                 BaseQoLIConfig baseConfig = new BaseQoLIConfig();
                 return Response.ok().entity(baseConfig).build();

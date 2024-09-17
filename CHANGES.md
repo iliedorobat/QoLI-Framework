@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ---
 
+## 2.1.1
+- Added maven support
+- Added "/qoli" prefix to APIs
+
 ## 2.1
 - Added the server service.
 

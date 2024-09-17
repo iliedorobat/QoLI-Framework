@@ -14,14 +14,14 @@ import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
 import java.util.List;
 import java.util.Map;
 
-@Path("/api/v2/stats/collect")
+@Path("/qoli/api/v2/stats/collect")
 public class StatsCollectorEndpoint {
     @GET
     public Response collectData(
             @QueryParam("aggr") List<String> aggrList,
             @QueryParam("calculateIndicators") boolean calculateIndicators
     ) {
-        // http://localhost:3070/stats/collect
+        // http://localhost:3070/qoli/api/v2/stats/collect?username=YOUR_USERNAME&password=YOUR_PASSWORD
         try {
             DataCollector.collectData();
 
