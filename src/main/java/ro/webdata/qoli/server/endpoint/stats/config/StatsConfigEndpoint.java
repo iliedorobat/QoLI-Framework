@@ -18,12 +18,12 @@ public class StatsConfigEndpoint {
             @QueryParam("analysisType") String analysisType
     ) {
         switch (analysisType) {
-            // E.g.: http://localhost:3070/qoli/api/v2/stats/config?analysisType=aggregate
+            // E.g.: http://localhost:8080/qoli/api/v2/stats/config?analysisType=aggregate
             case ParamsValues.AGGREGATED_ANALYSIS:
                 AggrQoLIConfig config = new AggrQoLIConfig();
                 return Response.ok().entity(config).build();
 
-            // E.g.: http://localhost:3070/qoli/api/v2/stats/config?analysisType=individually
+            // E.g.: http://localhost:8080/qoli/api/v2/stats/config?analysisType=individually
             case ParamsValues.INDIVIDUALLY_ANALYSIS:
                 BaseQoLIConfig baseConfig = new BaseQoLIConfig();
                 return Response.ok().entity(baseConfig).build();

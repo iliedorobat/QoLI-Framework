@@ -28,13 +28,13 @@ public class StatsEndpoint {
         TreeMap<String, TreeMap<Integer, Number>> stats;
 
         switch (analysisType) {
-            // E.g.: http://localhost:3070/qoli/api/v2/stats?analysisType=aggregate&aggr=education:education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022
+            // E.g.: http://localhost:8080/qoli/api/v2/stats?analysisType=aggregate&aggr=education:education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022
             case ParamsValues.AGGREGATED_ANALYSIS:
                 entries = QoLIStats.generateAggrStats(aggrList, countryCodes, startYear, endYear);
                 stats = StatsUtils.filterStats(entries, Constants.EU28_MEMBERS, Constants.SERIES_TYPE_COUNTRY, startYear, endYear);
                 return Response.ok().entity(stats).build();
 
-            // E.g.: http://localhost:3070/qoli/api/v2/stats?analysisType=individually&aggr=education:education:dropoutRatio&startYear=2020&endYear=2022
+            // E.g.: http://localhost:8080/qoli/api/v2/stats?analysisType=individually&aggr=education:education:dropoutRatio&startYear=2020&endYear=2022
             case ParamsValues.INDIVIDUALLY_ANALYSIS:
                 if (aggrList.size() > 1) {
                     return Response.status(500).entity("aggr parameter should be unique.").build();

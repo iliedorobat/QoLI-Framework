@@ -21,7 +21,7 @@ public class StatsCollectorEndpoint {
             @QueryParam("aggr") List<String> aggrList,
             @QueryParam("calculateIndicators") boolean calculateIndicators
     ) {
-        // http://localhost:3070/qoli/api/v2/stats/collect?username=admin&password=admin1234
+        // E.g.: http://localhost:8080/qoli/api/v2/stats/collect?username=admin&password=admin1234
         try {
             DataCollector.collectData();
 
