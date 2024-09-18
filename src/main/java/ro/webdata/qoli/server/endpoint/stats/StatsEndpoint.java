@@ -13,7 +13,7 @@ import ro.webdata.qoli.server.commons.ParamsValues;
 
 import java.util.*;
 
-@Path("/qoli/api/v2/stats")
+@Path("/api/v2/stats")
 public class StatsEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)

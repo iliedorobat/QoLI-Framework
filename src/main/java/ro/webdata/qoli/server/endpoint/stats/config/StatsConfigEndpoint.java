@@ -10,7 +10,7 @@ import ro.webdata.qoli.server.commons.ParamsValues;
 import ro.webdata.qoli.server.endpoint.stats.config.aggr.AggrQoLIConfig;
 import ro.webdata.qoli.server.endpoint.stats.config.base.BaseQoLIConfig;
 
-@Path("/qoli/api/v2/stats/config")
+@Path("/api/v2/stats/config")
 public class StatsConfigEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -45,10 +45,9 @@ public class MergeUtils {
      */
     public static Map<String, Number> consolidateMap(MultiValuedMap<String, String> params, String filePath) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
-        String fullPath = System.getProperty("user.dir") + File.separator + filePath;
-        Map<List<String>, Number> entries = LocalParser.readJSONFile(fullPath);
+        Map<List<String>, Number> entries = LocalParser.readJSONFile(filePath);
 
-        ArrayList<String> localQueryKeys = LocalParser.getDimensionKeys(fullPath);
+        ArrayList<String> localQueryKeys = LocalParser.getDimensionKeys(filePath);
         int countryIndex = localQueryKeys.indexOf(ParamsNames.GEO);
         int yearIndex = localQueryKeys.indexOf(ParamsNames.TIME);
 

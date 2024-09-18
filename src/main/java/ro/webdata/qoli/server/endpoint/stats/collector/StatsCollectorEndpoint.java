@@ -14,7 +14,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
 import java.util.List;
 import java.util.Map;
 
-@Path("/qoli/api/v2/stats/collect")
+@Path("/api/v2/stats/collect")
 public class StatsCollectorEndpoint {
     @GET
     public Response collectData(

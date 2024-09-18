@@ -4,6 +4,9 @@ import java.util.Calendar;
 
 public class EnvConst {
     private static final int CRR_YEAR = Calendar.getInstance().get(Calendar.YEAR);
+    public static final String AUTH_USER = "admin";
+    public static final String AUTH_PASSWORD = "admin1234";
+    public static final boolean IS_PRODUCTION = true; // true;
     public static final boolean IS_TESTING = false;
 
     public static final boolean PRINT_DIMENSION_IFO = false;

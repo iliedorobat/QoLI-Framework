@@ -11,16 +11,20 @@
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
-2. Install deps & compile the project
+2. Update constants:
+- `EnvConst.IS_PRODUCTION` is `true` if the app is deployed on the production server
+- `EnvConst.AUTH_USER` and `EnvConst.AUTH_PASSWORD` stores the credentials used to update the datasets using `/api/v2/stats/collect` API
+- `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+3. Install deps & compile the project
 ```bash
 mvn install
 mvn clean compile assembly:single
 ```
-3. Collect the datasets:
+4. Collect the datasets:
 ```bash
 java -jar QoLI-Framework-2.1-jar-with-dependencies --collect
 ```
-4. Aggregate the datasets:
+5. Aggregate the datasets:
    1. Calculate the QoLI dimensions:
     ```bash
     java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --calculateIndicators --direction=COLUMN

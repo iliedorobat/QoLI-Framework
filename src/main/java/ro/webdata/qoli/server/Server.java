@@ -4,7 +4,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ro.webdata.qoli.server.auth.AuthFilter;
-import ro.webdata.qoli.server.auth.AuthService;
 import ro.webdata.qoli.server.commons.Endpoint;
 import ro.webdata.qoli.server.endpoint.geo.GeoEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
@@ -23,8 +22,6 @@ public class Server {
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     public static HttpServer startServer(boolean local) {
-        AuthService.init(".env");
-
         // Create a resource config that registers the QoLIEndpoint JAX-RS resource
         final ResourceConfig config = new ResourceConfig();
 
@@ -63,6 +60,7 @@ public class Server {
                     httpServer.shutdown();
                     System.out.println("Done, exit.");
                 } catch (Exception e) {
+                    Logger.getLogger(AuthFilter.class.getName()).log(Level.SEVERE, null, e);
                     Logger.getLogger(GeoEndpoint.class.getName()).log(Level.SEVERE, null, e);
                     Logger.getLogger(StatsEndpoint.class.getName()).log(Level.SEVERE, null, e);
                     Logger.getLogger(StatsCollectorEndpoint.class.getName()).log(Level.SEVERE, null, e);
