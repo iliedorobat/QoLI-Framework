@@ -12,10 +12,10 @@ public class Constants {
     public static final String XLS_EXTENSION = ".xls";
 
     public static final String BASE_PATH = EnvConst.IS_PRODUCTION
-            ? String.join(File.separator, "", "home", "idorobat", "workspace", "QoLI-Framework")
-            : System.getProperty("user.dir");
-    public static final String PREPARED_DATASET_PATH = String.join(File.separator, BASE_PATH, "files", "prepared");
-    public static final String RAW_DATASET_PATH = String.join(File.separator, BASE_PATH, "files", "raw", "json", "countries");
+            ? String.join(File.separator, "", "opt", "tomcat", "webapps", "qoli", "WEB-INF")
+            : String.join(File.separator, System.getProperty("user.dir"), "src", "main", "resources");
+    public static final String PREPARED_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "prepared");
+    public static final String RAW_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "raw", "json", "countries");
 
     /**
      * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied

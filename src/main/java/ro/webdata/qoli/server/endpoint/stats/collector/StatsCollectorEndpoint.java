@@ -21,7 +21,7 @@ public class StatsCollectorEndpoint {
             @QueryParam("aggr") List<String> aggrList,
             @QueryParam("calculateIndicators") boolean calculateIndicators
     ) {
-        // http://localhost:3070/qoli/api/v2/stats/collect?username=YOUR_USERNAME&password=YOUR_PASSWORD
+        // http://localhost:3070/qoli/api/v2/stats/collect?username=admin&password=admin1234
         try {
             DataCollector.collectData();
 
@@ -34,6 +34,7 @@ public class StatsCollectorEndpoint {
 
             return Response.ok().entity("Download successful!").build();
         } catch (Error e) {
+            e.printStackTrace();
             return Response.status(500).entity("Something went wrong getting data. Please contact the administrator.").build();
         }
     }
