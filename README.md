@@ -12,7 +12,7 @@
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
 2. Update constants:
-- `EnvConst.IS_PRODUCTION` is `true` if the app is deployed on the production server
+- `EnvConst.USE_TOMCAT_SERVER` is `true` if the app is deployed on Apache Tomcat
 - `EnvConst.AUTH_USER` and `EnvConst.AUTH_PASSWORD` stores the credentials used to update the datasets using `/api/v2/stats/collect` API
 - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
 3. Install deps & compile the project
