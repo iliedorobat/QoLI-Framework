@@ -14,7 +14,7 @@ import ro.webdata.qoli.server.endpoint.stats.config.base.BaseQoLIConfig;
 public class StatsConfigEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCHO(
+    public Response getConfig(
             @QueryParam("analysisType") String analysisType
     ) {
         switch (analysisType) {

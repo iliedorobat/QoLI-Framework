@@ -11,13 +11,16 @@ import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 import ro.webdata.qoli.server.commons.ParamsValues;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 @Path("/api/v2/stats")
 public class StatsEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCHO(
+    public Response getStats(
             @QueryParam("aggr") List<String> aggrList,
             @QueryParam("analysisType") String analysisType,
             @QueryParam("countryCode") List<String> countryCodes,

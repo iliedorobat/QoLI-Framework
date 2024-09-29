@@ -73,7 +73,7 @@ public class Server {
             // block and wait shut down signal, like CTRL+C
             Thread.currentThread().join();
         } catch (InterruptedException e) {
-            Logger.getLogger(StatsEndpoint.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
