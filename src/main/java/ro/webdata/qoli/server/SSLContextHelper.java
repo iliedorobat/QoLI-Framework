@@ -11,7 +11,8 @@ public class SSLContextHelper {
     public static SSLContext createSSLContext() throws Exception {
         // Load the KeyStore (assuming PKCS12 format)
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
-        try (FileInputStream keyStoreFile = new FileInputStream("/etc/letsencrypt/live/qoli.webdata.ro/keystore.p12")) {
+
+        try (FileInputStream keyStoreFile = new FileInputStream("/home/idorobat/workspace/keystore.p12")) {
             keyStore.load(keyStoreFile, "SunnyDay".toCharArray()); // keystorePassword
         }
 
