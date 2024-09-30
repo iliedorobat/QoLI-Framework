@@ -1,8 +1,11 @@
 package ro.webdata.qoli.server;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.NetworkListener;
+import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.server.auth.AuthFilter;
 import ro.webdata.qoli.server.commons.Endpoint;
 import ro.webdata.qoli.server.endpoint.geo.GeoEndpoint;
@@ -10,6 +13,7 @@ import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.collector.StatsCollectorEndpoint;
 import ro.webdata.qoli.server.endpoint.stats.config.StatsConfigEndpoint;
 
+import javax.net.ssl.SSLContext;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,11 +21,12 @@ import java.util.logging.Logger;
 // https://mkyong.com/webservices/jax-rs/jersey-hello-world-example/
 public class Server {
     // Base URI the Grizzly HTTP server will listen on
-    private static final URI BASE_URI = URI.create(Endpoint.BASE_URI);
-
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
-    public static HttpServer startServer(boolean local) {
+    public static HttpServer startServer(boolean local) throws Exception {
+        // Define the server URI and configure Grizzly with SSL
+        final URI BASE_URI = URI.create(Endpoint.BASE_URI);
+
         // Create a resource config that registers the QoLIEndpoint JAX-RS resource
         final ResourceConfig config = new ResourceConfig();
 
@@ -44,6 +49,30 @@ public class Server {
         config.property("jersey.config.server.wadl.disableWadl", true);
 
         LOGGER.info("Starting server...");
+
+        if (EnvConst.IS_PRODUCTION) {
+            // Create the SSLContext
+            SSLContext sslContext = SSLContextHelper.createSSLContext();
+
+            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config, false); // false to disable auto-start
+
+            // Configure SSL for the network listener
+            NetworkListener listener = new NetworkListener("secure-listener", BASE_URI.getHost(), BASE_URI.getPort());
+            // Create an SSLEngineConfigurator using the SSLContext
+            SSLEngineConfigurator sslEngineConfigurator = new SSLEngineConfigurator(sslContext)
+                    .setClientMode(false)    // Server mode
+                    .setNeedClientAuth(false);  // Set to true if mutual TLS is required
+            // Apply the SSLEngineConfigurator to the NetworkListener
+            listener.setSecure(true);
+            listener.setSSLEngineConfig(sslEngineConfigurator);
+
+            // Add the listener to the server
+            server.addListener(listener);
+
+            System.out.println("Secure server started at: " + BASE_URI);
+
+            return server;
+        }
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
@@ -72,7 +101,7 @@ public class Server {
 
             // block and wait shut down signal, like CTRL+C
             Thread.currentThread().join();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
     }
