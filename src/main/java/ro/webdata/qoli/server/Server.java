@@ -23,8 +23,7 @@ public class Server {
         config.addHttpHandler(new SimpleHttpHandler(), "/");
 
         // create a network listener that listens on port 8080.
-        final NetworkListener networkListener = new NetworkListener("secured-listener", NetworkListener.DEFAULT_NETWORK_HOST,
-                NetworkListener.DEFAULT_NETWORK_PORT);
+        final NetworkListener networkListener = new NetworkListener("secured-listener", NetworkListener.DEFAULT_NETWORK_HOST, 8443);
 
         // Enable SSL on the listener
         networkListener.setSecure(true);
