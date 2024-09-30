@@ -1,9 +1,12 @@
 package ro.webdata.qoli.server;
 
+import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.NetworkListener;
+import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ContainerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.server.auth.AuthFilter;
@@ -51,27 +54,34 @@ public class Server {
         LOGGER.info("Starting server...");
 
         if (EnvConst.IS_PRODUCTION) {
-            // Create the SSLContext
-            SSLContext sslContext = SSLContextHelper.createSSLContext();
+//            // Create the SSLContext
+//            SSLContext sslContext = SSLContextHelper.createSSLContext();
+//
+//            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config, false); // false to disable auto-start
+//
+//            // Configure SSL for the network listener
+//            NetworkListener listener = new NetworkListener("secure-listener", BASE_URI.getHost(), BASE_URI.getPort());
+//            // Create an SSLEngineConfigurator using the SSLContext
+//            SSLEngineConfigurator sslEngineConfigurator = new SSLEngineConfigurator(sslContext)
+//                    .setClientMode(false)    // Server mode
+//                    .setNeedClientAuth(false);  // Set to true if mutual TLS is required
+//            // Apply the SSLEngineConfigurator to the NetworkListener
+//            listener.setSecure(true);
+//            listener.setSSLEngineConfig(sslEngineConfigurator);
+//
+//            // Add the listener to the server
+//            server.addListener(listener);
+//
+//            System.out.println("Secure server started at: " + BASE_URI);
+//
+//            return server;
 
-            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config, false); // false to disable auto-start
-
-            // Configure SSL for the network listener
-            NetworkListener listener = new NetworkListener("secure-listener", BASE_URI.getHost(), BASE_URI.getPort());
-            // Create an SSLEngineConfigurator using the SSLContext
-            SSLEngineConfigurator sslEngineConfigurator = new SSLEngineConfigurator(sslContext)
-                    .setClientMode(false)    // Server mode
-                    .setNeedClientAuth(false);  // Set to true if mutual TLS is required
-            // Apply the SSLEngineConfigurator to the NetworkListener
-            listener.setSecure(true);
-            listener.setSSLEngineConfig(sslEngineConfigurator);
-
-            // Add the listener to the server
-            server.addListener(listener);
-
-            System.out.println("Secure server started at: " + BASE_URI);
-
-            return server;
+            return GrizzlyHttpServerFactory.createHttpServer(
+                    BASE_URI,
+                    config,
+                    true,
+                    getSSLEngine()
+            );
         }
 
         // create and start a new instance of grizzly http server
@@ -104,5 +114,16 @@ public class Server {
         } catch (Exception e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    // FIXME:
+    private static SSLEngineConfigurator getSSLEngine() {
+        SSLContextConfigurator sslConfig = new SSLContextConfigurator();
+        sslConfig.setKeyStoreFile("/home/idorobat/workspace/keystore.p12");
+        sslConfig.setKeyStorePass("SunnyDay");
+        SSLEngineConfigurator engine = new SSLEngineConfigurator(sslConfig);
+        engine.setNeedClientAuth(false);
+        engine.setClientMode(false);
+        return engine;
     }
 }

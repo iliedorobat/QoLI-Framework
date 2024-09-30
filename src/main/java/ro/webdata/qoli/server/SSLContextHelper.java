@@ -7,28 +7,29 @@ import java.io.FileInputStream;
 import java.security.KeyStore;
 
 public class SSLContextHelper {
-    private static final String KEY_STORE_PASSWORD = "SunnyDay"; // keystorePassword
+    private static final String KEYSTORE_PASSWORD = "SunnyDay"; // keystorePassword
+    private static final String KEYSTORE_FILE = "/home/idorobat/workspace/keystore.p12"; // keystorePassword
 
     // Load the keystore into the Java SSLContext
     public static SSLContext createSSLContext() throws Exception {
         // Load the KeyStore (assuming PKCS12 format)
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
 
-        try (FileInputStream keyStoreFile = new FileInputStream("/home/idorobat/workspace/keystore.p12")) {
-            keyStore.load(keyStoreFile, KEY_STORE_PASSWORD.toCharArray());
+        try (FileInputStream keystoreStream = new FileInputStream(KEYSTORE_FILE)) {
+            keyStore.load(keystoreStream, KEYSTORE_PASSWORD.toCharArray());
         }
 
         // Create a KeyManagerFactory
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-        keyManagerFactory.init(keyStore, KEY_STORE_PASSWORD.toCharArray());
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        kmf.init(keyStore, KEYSTORE_PASSWORD.toCharArray());
 
         // Create a TrustManagerFactory
-        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        trustManagerFactory.init(keyStore);
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(keyStore);
 
         // Create and initialize the SSLContext
         SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
+        sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
         return sslContext;
     }
