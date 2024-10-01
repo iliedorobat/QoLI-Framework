@@ -1,4 +1,4 @@
-package ro.webdata.qoli.server.endpoint.stats.config.aggr;
+package ro.webdata.qoli.server.endpoints.stats.config.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ro.webdata.qoli.aggr.stats.dimensions.education.EducationAggrParams;
@@ -13,10 +13,7 @@ import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyAggrParams;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
-public class AggrIndicatorConfig {
-    @JsonProperty("checked")
-    boolean checked = true;
-
+public class BaseIndicatorConfig {
     @JsonProperty("filename")
     String filename;
 
@@ -29,7 +26,7 @@ public class AggrIndicatorConfig {
     @JsonProperty("units")
     String units;
 
-    public AggrIndicatorConfig(String filename, String label) {
+    public BaseIndicatorConfig(String filename, String label) {
         this.filename = filename;
         this.label = label;
         this.negativeState = isReversed(filename);
@@ -38,45 +35,45 @@ public class AggrIndicatorConfig {
 
     private boolean isReversed(String indKey) {
         if (indKey.startsWith(EDUCATION))
-            return EducationAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return EducationAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(ENVIRONMENT))
-            return EnvironmentAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return EnvironmentAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(GOVERNANCE))
-            return GovRightsAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return GovRightsAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(HEALTH))
-            return HealthAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return HealthAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(LEISURE_INTERACT))
-            return LeisureInteractAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return LeisureInteractAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(MAIN_ACTIVITY))
-            return MainActivityAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return MainActivityAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(LIVING_CONDITIONS))
-            return MaterialLivingAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return MaterialLivingAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(OVERALL_EXPERIENCE))
-            return OverallExperienceAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return OverallExperienceAggrParams.IND_REVERSED_STATES.get(indKey);
         else if (indKey.startsWith(SAFETY))
-            return SafetyAggrParams.AGGR_REVERSED_STATES.get(indKey);
+            return SafetyAggrParams.IND_REVERSED_STATES.get(indKey);
         return false;
     }
 
     private String getUnits(String indKey) {
         if (indKey.startsWith(EDUCATION))
-            return EducationAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return EducationAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(ENVIRONMENT))
-            return EnvironmentAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return EnvironmentAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(GOVERNANCE))
-            return GovRightsAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return GovRightsAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(HEALTH))
-            return HealthAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return HealthAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(LEISURE_INTERACT))
-            return LeisureInteractAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return LeisureInteractAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(MAIN_ACTIVITY))
-            return MainActivityAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return MainActivityAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(LIVING_CONDITIONS))
-            return MaterialLivingAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return MaterialLivingAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(OVERALL_EXPERIENCE))
-            return OverallExperienceAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return OverallExperienceAggrParams.IND_PARAMS_UNITS.get(indKey);
         else if (indKey.startsWith(SAFETY))
-            return SafetyAggrParams.AGGR_PARAMS_UNITS.get(indKey);
+            return SafetyAggrParams.IND_PARAMS_UNITS.get(indKey);
         return "";
     }
 }

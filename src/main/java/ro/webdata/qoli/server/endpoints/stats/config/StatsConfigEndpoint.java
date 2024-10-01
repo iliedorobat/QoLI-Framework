@@ -1,4 +1,4 @@
-package ro.webdata.qoli.server.endpoint.stats.config;
+package ro.webdata.qoli.server.endpoints.stats.config;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -7,8 +7,8 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import ro.webdata.qoli.server.commons.ParamsValues;
-import ro.webdata.qoli.server.endpoint.stats.config.aggr.AggrQoLIConfig;
-import ro.webdata.qoli.server.endpoint.stats.config.base.BaseQoLIConfig;
+import ro.webdata.qoli.server.endpoints.stats.config.aggr.AggrQoLIConfig;
+import ro.webdata.qoli.server.endpoints.stats.config.base.BaseQoLIConfig;
 
 @Path("/api/v2/stats/config")
 public class StatsConfigEndpoint {

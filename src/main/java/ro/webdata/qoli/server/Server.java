@@ -5,10 +5,10 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import ro.webdata.qoli.server.auth.AuthFilter;
 import ro.webdata.qoli.server.commons.Endpoint;
-import ro.webdata.qoli.server.endpoint.geo.GeoEndpoint;
-import ro.webdata.qoli.server.endpoint.stats.StatsEndpoint;
-import ro.webdata.qoli.server.endpoint.stats.collector.StatsCollectorEndpoint;
-import ro.webdata.qoli.server.endpoint.stats.config.StatsConfigEndpoint;
+import ro.webdata.qoli.server.endpoints.geo.GeoEndpoint;
+import ro.webdata.qoli.server.endpoints.stats.StatsEndpoint;
+import ro.webdata.qoli.server.endpoints.stats.collector.StatsCollectorEndpoint;
+import ro.webdata.qoli.server.endpoints.stats.config.StatsConfigEndpoint;
 
 import java.net.URI;
 import java.util.logging.Level;

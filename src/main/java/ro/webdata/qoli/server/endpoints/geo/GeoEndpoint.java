@@ -1,4 +1,4 @@
-package ro.webdata.qoli.server.endpoint.geo;
+package ro.webdata.qoli.server.endpoints.geo;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

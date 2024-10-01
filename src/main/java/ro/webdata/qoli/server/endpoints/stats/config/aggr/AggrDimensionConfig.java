@@ -1,4 +1,4 @@
-package ro.webdata.qoli.server.endpoint.stats.config.aggr;
+package ro.webdata.qoli.server.endpoints.stats.config.aggr;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
