@@ -4,9 +4,9 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.data.fetch.DataCollector;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLICsvStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIJsonStats;
 import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
@@ -25,8 +25,8 @@ public class StatsCollectorEndpoint {
         try {
             DataCollector.collectData();
 
-            int startYear = EnvConst.MIN_YEAR;
-            int endYear = EnvConst.MAX_YEAR;
+            int startYear = EnvState.MIN_YEAR;
+            int endYear = EnvState.MAX_YEAR;
             Map<String, Map<String, Number>> dataByCountries = QoLIStats.prepareExtendedDimensions(aggrList, null, startYear, endYear);
 
             QoLICsvStats.writeDimensions(dataByCountries, Constants.DIRECTION_COLUMN, calculateIndicators, startYear, endYear);

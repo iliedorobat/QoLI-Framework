@@ -1,10 +1,10 @@
 package ro.webdata.qoli.aggr.data.stats;
 
-import ro.webdata.qoli.aggr.stats.MapOrder;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
-import ro.webdata.qoli.aggr.stats.utils.MapUtils;
-import ro.webdata.qoli.aggr.stats.constants.Constants;
 import org.apache.commons.collections4.MultiValuedMap;
+import ro.webdata.qoli.EnvState;
+import ro.webdata.qoli.aggr.stats.MapOrder;
+import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -108,7 +108,7 @@ public class Initializer {
         Map<String, Number> initMap = new TreeMap<>(new MapOrder());
 
         for (String code : countryCodes) {
-            for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
+            for (int year = EnvState.INIT_MAP_MIN_YEAR; year <= EnvState.INIT_MAP_MAX_YEAR; year++) {
                 initEmptyData(originalMap, initMap, code, year);
             }
         }

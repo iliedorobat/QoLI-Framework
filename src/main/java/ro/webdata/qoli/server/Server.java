@@ -18,30 +18,10 @@ import java.util.logging.Logger;
 public class Server {
     // Base URI the Grizzly HTTP server will listen on
     private static final URI BASE_URI = URI.create(Endpoint.BASE_URI);
-
     private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     public static HttpServer startServer(boolean local) {
-        // Create a resource config that registers the QoLIEndpoint JAX-RS resource
-        final ResourceConfig config = new ResourceConfig();
-
-        // Registering like this will give warnings like:
-        // WARNING: A provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime.
-        // Due to constraint configuration problems the provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint will be ignored.
-        // But it just works and according to stackoverflow this is a bug:
-        // https://github.com/eclipse-ee4j/jersey/issues/3700
-        config.register(AuthFilter.class);
-        config.register(GeoEndpoint.class);
-        config.register(StatsEndpoint.class);
-        config.register(StatsCollectorEndpoint.class);
-        config.register(StatsConfigEndpoint.class);
-
-        if (local) {
-            config.register(new CORSFilter());
-        }
-
-        // Disable wadl because I never asked for this.
-        config.property("jersey.config.server.wadl.disableWadl", true);
+        final ResourceConfig config = createConfig(local);
 
         LOGGER.info("Starting server...");
 
@@ -75,5 +55,30 @@ public class Server {
         } catch (InterruptedException e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    private static ResourceConfig createConfig(boolean local) {
+        // Create a resource config that registers the QoLIEndpoint JAX-RS resource
+        ResourceConfig config = new ResourceConfig();
+
+        // Registering like this will give warnings like:
+        // WARNING: A provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime.
+        // Due to constraint configuration problems the provider ro.webdata.qoli.server.endpoint.stats.StatsEndpoint will be ignored.
+        // But it just works and according to stackoverflow this is a bug:
+        // https://github.com/eclipse-ee4j/jersey/issues/3700
+        config.register(AuthFilter.class);
+        config.register(GeoEndpoint.class);
+        config.register(StatsEndpoint.class);
+        config.register(StatsCollectorEndpoint.class);
+        config.register(StatsConfigEndpoint.class);
+
+        if (local) {
+            config.register(new CORSFilter());
+        }
+
+        // Disable wadl because I never asked for this.
+        config.property("jersey.config.server.wadl.disableWadl", true);
+
+        return config;
     }
 }

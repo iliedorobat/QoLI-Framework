@@ -1,7 +1,7 @@
 package ro.webdata.qoli.aggr;
 
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,10 +76,10 @@ public class ParamsUtils {
         }
 
         if (comparator.equals("--startYear"))
-            return EnvConst.MIN_YEAR;
+            return EnvState.MIN_YEAR;
 
         if (comparator.equals("--endYear"))
-            return EnvConst.MAX_YEAR;
+            return EnvState.MAX_YEAR;
 
         return -1;
     }

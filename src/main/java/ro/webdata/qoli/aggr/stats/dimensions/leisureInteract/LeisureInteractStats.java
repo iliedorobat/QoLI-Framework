@@ -1,11 +1,11 @@
 package ro.webdata.qoli.aggr.stats.dimensions.leisureInteract;
 
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.StatsUtils;
 
@@ -211,7 +211,7 @@ public class LeisureInteractStats {
     private static Map<String, Number> calculateSum(Map<String, Number> map1, Map<String, Number> map2) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 double value = map1.get(key).doubleValue() + map2.get(key).doubleValue();
