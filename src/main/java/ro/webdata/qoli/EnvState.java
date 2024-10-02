@@ -13,7 +13,7 @@ public class EnvState {
 
     public static final String AUTH_USER = VALUES.get("AUTH_USER");
     public static final String AUTH_PASSWORD = VALUES.get("AUTH_PASSWORD");
-    public static final String HOST_NAME = VALUES.get("HOST_NAME");
+    public static final String HOST_ADDRESS = VALUES.get("HOST_ADDRESS");
     public static final boolean IS_PRODUCTION = VALUES.containsKey("IS_PRODUCTION") && VALUES.get("IS_PRODUCTION").equals("true");
     public static final boolean IS_TESTING = VALUES.containsKey("IS_TESTING") && VALUES.get("IS_TESTING").equals("true");
     public static final String KEY_STORE_FILE = VALUES.get("KEY_STORE_FILE");

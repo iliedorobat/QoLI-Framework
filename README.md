@@ -11,46 +11,66 @@
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
-2. Update environment constants:
-- `IS_PRODUCTION` is `true` if the app is deployed on the production server
-- `USE_TOMCAT_SERVER` is `true` if the app is deployed on Apache Tomcat
-- `AUTH_USER` and `AUTH_PASSWORD` stores the credentials used to update the datasets using `/api/v2/stats/collect` API
+
+2. Update environment variables:
+- `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
+- `HOST_ADDRESS`: the IP address of the host
+- `IS_PRODUCTION`: `true` if the app is deployed on the production server
+- `IS_TESTING`: `true` for downloading sample data instead of the full set
+- `KEY_STORE_FILE`: path to the `keystore.p12` file
+- `KEY_STORE_PASS`: password for the `keystore.p12` file
+- `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
+
 3. Update app constants:
 - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
-4. Install deps & compile the project
+
+4. Install deps & compile the project:
 ```bash
-mvn install
-mvn clean compile assembly:single
+mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY
 ```
+- ENV_TYPE **(OPTIONAL)** = `dev` or `prod`
+- DIRECTORY **(OPTIONAL)** = path to the target directory where the compiled files will be placed
+- E.g.:
+    ```bash
+    mvn clean install
+    ```
+    ```bash
+    mvn clean install -Denv.type=dev
+    ```
+    ```bash
+    mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workspace/QoLI-Framework/target
+    ```
+
 5. Collect the datasets:
 ```bash
-java -jar QoLI-Framework-2.1-jar-with-dependencies --collect
+java -jar qoli.jar --collect
 ```
+
 6. Aggregate the datasets:
-   1. Calculate the QoLI dimensions:
+   1. Calculate QoLI dimensions:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --calculateIndicators --direction=COLUMN
+    java -jar qoli.jar --calculate --calculateIndicators --direction=COLUMN
     ```
-    2. Calculate the QoLI based on a specific set of indicators:
+    2. Calculate QoLI based on a specific set of indicators:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    java -jar qoli.jar --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
     ```
 
 ### Print Data
-1. Print the QoLI and the QoLI dimensions:
+1. Print QoLI and QoLI dimensions:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+    java -jar qoli.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+    java -jar qoli.jar --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
     ```
 2. Print specific indicators:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar qoli.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar qoli.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
     ```
-   
+
 ### Run Server
 ```bash
-java -jar QoLI-Framework-2.1-jar-with-dependencies --server
+java -jar qoli.jar --server
 ```
 
 
