@@ -51,7 +51,11 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     ```
   
 5. Create the server daemon:
-    1. Create and start a background process:
+    1. [OPTIONAL] Remove the server daemon:
+    ```bash
+    pm2 delete qoli && pm2 flush qoli
+    ```
+    2. Create and start a background process:
     ```bash
     pm2 start src/main/bash/qoli.sh
     ```
