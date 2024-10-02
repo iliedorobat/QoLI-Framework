@@ -17,7 +17,9 @@ openssl pkcs12 -export \
 keytool -importkeystore \
   -srckeystore "$WORKSPACE_PATH/keystore.p12" \
   -srcstoretype PKCS12 \
+  -srcstorepass $KEYSTORE_PWD \
   -destkeystore "$WORKSPACE_PATH/keystore.jks" \
-  -deststoretype JKS
+  -deststoretype JKS \
+  -deststorepass $KEYSTORE_PWD
 
 sudo chown idorobat -R $WORKSPACE_PATH
