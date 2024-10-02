@@ -1,9 +1,11 @@
 #!/bin/bash
 DOMAIN="webdata.ro"
 CERT_PATH="/etc/letsencrypt/live/$DOMAIN"
-WORKSPACE_PATH="/home/idorobat/workspace"
+WORKSPACE_PATH="/home/idorobat/workspace/certs/$DOMAIN"
 PKCS12_PATH="$WORKSPACE_PATH/keystore.p12"
 KEYSTORE_PWD="SunnyDay"  # Password for the PKCS12 file
+
+mkdir -p $WORKSPACE_PATH
 
 openssl pkcs12 -export \
   -in "$CERT_PATH/fullchain.pem" \
@@ -18,4 +20,4 @@ keytool -importkeystore \
   -destkeystore "$WORKSPACE_PATH/keystore.jks" \
   -deststoretype JKS
 
-# sudo certbot renew --deploy-hook "$WORKSPACE_PATH/QoLI-Framework/src/main/bash/certbot_post_renewal_hook.sh"
+sudo chown idorobat -R $WORKSPACE_PATH
