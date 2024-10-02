@@ -49,13 +49,26 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     ```bash
     mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workspace/QoLI-Framework/target
     ```
+  
+5. Create the server daemon:
+    1. Create and start a background process:
+    ```bash
+    pm2 start src/main/bash/qoli.sh
+    ```
+    2. Check if the server is up and running:
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443"
+    ```
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
+    ```
 
-5. Collect the datasets:
+6. Collect the datasets:
 ```bash
 java -jar qoli.jar --collect
 ```
 
-6. Aggregate the datasets:
+7. Aggregate the datasets:
    1. Calculate QoLI dimensions:
     ```bash
     java -jar qoli.jar --calculate --calculateIndicators --direction=COLUMN

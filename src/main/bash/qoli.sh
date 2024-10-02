@@ -1,3 +1,4 @@
 #!/bin/bash
-#java -jar ~/workspace/projects/QoLI-Framework/target/qoli.jar --server
-java -jar ~/workspace/QoLI-Framework/target/qoli.jar --server
+WORKSPACE_PATH="/var/www/qoli.webdata.ro/server"
+
+java -jar $WORKSPACE_PATH/qoli.jar --server
