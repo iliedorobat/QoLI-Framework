@@ -16,9 +16,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-@Path("/api/v2/stats")
+@Path("/qoli")
 public class StatsEndpoint {
     @GET
+    @Path("/api/v2/stats")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStats(
             @QueryParam("aggr") List<String> aggrList,

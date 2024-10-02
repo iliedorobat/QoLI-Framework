@@ -10,9 +10,10 @@ import jakarta.ws.rs.core.Response;
 import static ro.webdata.qoli.aggr.stats.constants.Constants.EU28_MEMBERS_NAME;
 import static ro.webdata.qoli.aggr.stats.constants.Constants.NON_EU_MEMBERS_NAME;
 
-@Path("/api/v2/geo")
+@Path("/qoli")
 public class GeoEndpoint {
     @GET
+    @Path("/api/v2/geo")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGeo(
             @QueryParam("entityType") String entityType,

@@ -10,9 +10,10 @@ import ro.webdata.qoli.server.commons.ParamsValues;
 import ro.webdata.qoli.server.endpoints.stats.config.aggr.AggrQoLIConfig;
 import ro.webdata.qoli.server.endpoints.stats.config.base.BaseQoLIConfig;
 
-@Path("/api/v2/stats/config")
+@Path("/qoli")
 public class StatsConfigEndpoint {
     @GET
+    @Path("/api/v2/stats/config")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getConfig(
             @QueryParam("analysisType") String analysisType

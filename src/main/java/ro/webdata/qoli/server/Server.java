@@ -1,8 +1,11 @@
 package ro.webdata.qoli.server;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.ssl.SSLContextConfigurator;
+import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.server.auth.AuthFilter;
 import ro.webdata.qoli.server.commons.Endpoint;
 import ro.webdata.qoli.server.endpoints.geo.GeoEndpoint;
@@ -27,7 +30,9 @@ public class Server {
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config);
+        return EnvState.IS_PRODUCTION
+                ? GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config, true, getSSLEngine())
+                : GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config);
     }
 
     public static void main(String[] args) {
@@ -80,5 +85,17 @@ public class Server {
         config.property("jersey.config.server.wadl.disableWadl", true);
 
         return config;
+    }
+
+    private static SSLEngineConfigurator getSSLEngine() {
+        SSLContextConfigurator sslConfig = new SSLContextConfigurator();
+        sslConfig.setKeyStoreFile(EnvState.KEY_STORE_FILE);
+        sslConfig.setKeyStorePass(EnvState.KEY_STORE_PASS);
+
+        SSLEngineConfigurator engine = new SSLEngineConfigurator(sslConfig);
+        engine.setNeedClientAuth(false);
+        engine.setClientMode(false);
+
+        return engine;
     }
 }

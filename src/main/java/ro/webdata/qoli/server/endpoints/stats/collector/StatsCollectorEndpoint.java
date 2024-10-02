@@ -14,9 +14,10 @@ import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
 import java.util.List;
 import java.util.Map;
 
-@Path("/api/v2/stats/collect")
+@Path("/qoli")
 public class StatsCollectorEndpoint {
     @GET
+    @Path("/api/v2/stats/collect")
     public Response collectData(
             @QueryParam("aggr") List<String> aggrList,
             @QueryParam("calculateIndicators") boolean calculateIndicators

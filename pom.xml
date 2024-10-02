@@ -6,7 +6,7 @@
 
     <groupId>ro.webdata</groupId>
     <artifactId>QoLI-Framework</artifactId>
-    <version>2.1.1</version>
+    <version>2.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -15,7 +15,35 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <property>
+                    <name>env.type</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+            <properties>
+                <directory>${project.basedir}/target</directory>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <activation>
+                <property>
+                    <name>env.type</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <directory>/var/www/qoli.webdata.ro/server</directory>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
+        <directory>${directory}</directory>
         <finalName>qoli</finalName>
         <plugins>
             <plugin>
