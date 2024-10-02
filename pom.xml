@@ -24,6 +24,9 @@
                     <value>dev</value>
                 </property>
             </activation>
+            <build>
+                <directory>${directory}</directory>
+            </build>
             <properties>
                 <directory>${project.basedir}/target</directory>
             </properties>
@@ -36,6 +39,9 @@
                     <value>prod</value>
                 </property>
             </activation>
+            <build>
+                <directory>${directory}</directory>
+            </build>
             <properties>
                 <directory>/var/www/qoli.webdata.ro/server</directory>
             </properties>
@@ -43,7 +49,6 @@
     </profiles>
 
     <build>
-        <directory>${directory}</directory>
         <finalName>qoli</finalName>
         <plugins>
             <plugin>
