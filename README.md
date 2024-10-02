@@ -26,10 +26,10 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 
 4. Install deps & compile the project:
 ```bash
-mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY
+mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
 ```
 - ENV_TYPE **(OPTIONAL)** = `dev` or `prod`
-- DIRECTORY **(OPTIONAL)** = path to the target directory where the compiled files will be placed
+- DIRECTORY_PATH **(OPTIONAL)** = path to the target directory where the compiled files will be placed
 - E.g.:
     ```bash
     mvn clean install

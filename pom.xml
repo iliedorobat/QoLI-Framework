@@ -6,7 +6,7 @@
 
     <groupId>ro.webdata</groupId>
     <artifactId>QoLI-Framework</artifactId>
-    <version>2.1.1</version>
+    <version>2.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -25,7 +25,7 @@
                 </property>
             </activation>
             <properties>
-                <directory>target</directory>
+                <directory>${project.basedir}/target</directory>
             </properties>
         </profile>
         <profile>
