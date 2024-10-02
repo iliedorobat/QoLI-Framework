@@ -1,7 +1,7 @@
 #!/bin/bash
 DOMAIN="webdata.ro"
 CERT_PATH="/etc/letsencrypt/live/$DOMAIN"
-WORKSPACE_PATH="/var/www/qoli.webdata.ro/certs/$DOMAIN"
+WORKSPACE_PATH="/var/www/$DOMAIN/certs"
 PKCS12_PATH="$WORKSPACE_PATH/keystore.p12"
 KEYSTORE_PWD="SunnyDay"  # Password for the PKCS12 file
 

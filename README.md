@@ -12,7 +12,7 @@
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
 
-2. Update environment variables:
+2. Update environment variables and app constants:
 - `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
 - `HOST_ADDRESS`: the IP address of the host
 - `IS_PRODUCTION`: `true` if the app is deployed on the production server
@@ -21,8 +21,17 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 - `KEY_STORE_PASS`: password for the `keystore.p12` file
 - `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
 
-3. Update app constants:
 - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+
+3. [OPTIONAL] Run the following scripts on the production environment:
+   1. Create JKS certificate:
+    ```bash
+    src/main/bash/certbot_post_renewal_hook.sh
+    ```
+   2. Enroll renewal hook to certbot:
+    ```bash
+    src/main/bash/certbot_enroll_renewal_hook.sh
+    ```
 
 4. Install deps & compile the project:
 ```bash
