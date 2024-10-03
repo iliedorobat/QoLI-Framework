@@ -1,4 +1,4 @@
 #!/bin/bash
-WORKSPACE_PATH="/var/www/qoli.webdata.ro/server"
+WORKPLACE_PATH="/var/www/qoli.webdata.ro/server"
 
-java -jar $WORKSPACE_PATH/qoli.jar --server
+java -jar $WORKPLACE_PATH/qoli.jar --server

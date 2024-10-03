@@ -41,13 +41,10 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
 - DIRECTORY_PATH **(OPTIONAL)** = path to the target directory where the compiled files will be placed
 - E.g.:
     ```bash
-    mvn clean install
+    mvn clean install -Denv.type=prod
     ```
     ```bash
-    mvn clean install -Denv.type=dev
-    ```
-    ```bash
-    mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workspace/QoLI-Framework/target
+    mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workplace/QoLI-Framework/target
     ```
   
 5. Create the server daemon:
