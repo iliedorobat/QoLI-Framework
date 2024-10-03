@@ -64,6 +64,9 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats/config?analysisType=aggregate"
     ```
     ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
+    ```
+    ```bash
     curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
     ```
     ```bash
