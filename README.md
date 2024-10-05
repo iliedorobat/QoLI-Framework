@@ -32,6 +32,10 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```bash
     src/main/bash/certbot_enroll_renewal_hook.sh
     ```
+   3. Copy the startup script:
+    ```bash
+    src/main/bash/qoli_enroll_startup.sh
+    ```
 
 4. Install deps & compile the project:
 ```bash
@@ -54,7 +58,7 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     ```
     2. Create and start a background process:
     ```bash
-    pm2 start src/main/bash/qoli.sh
+    pm2 start ~/workplace/automation/qoli_startup.sh
     ```
     2. Check if the server is up and running:
     ```bash
