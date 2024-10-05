@@ -4,4 +4,4 @@ QOLI_FRAMEWORK_PATH="$WORKPLACE_PATH/QoLI-Framework"
 
 mkdir -p $AUTOMATION_PATH
 
-sudo cp $QOLI_FRAMEWORK_PATH/src/main/bash/qoli_startup.sh $AUTOMATION_PATH/qoli_startup.sh
+sudo cp $QOLI_FRAMEWORK_PATH/src/main/bash/elife_startup.sh $AUTOMATION_PATH/elife_startup.sh

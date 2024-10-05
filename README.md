@@ -1,4 +1,4 @@
-# eLIF: European Life Index Framework
+# eLife: European Life Index Service
 
 
 
@@ -34,7 +34,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```
    3. Copy the startup script:
     ```bash
-    src/main/bash/qoli_enroll_startup.sh
+    src/main/bash/elife_enroll_startup.sh
     ```
 
 4. Install deps & compile the project:
@@ -54,11 +54,11 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
 5. Create the server daemon:
     1. [OPTIONAL] Remove the server daemon:
     ```bash
-    pm2 delete qoli && pm2 flush qoli
+    pm2 delete elife && pm2 flush elife
     ```
     2. Create and start a background process:
     ```bash
-    pm2 start ~/workplace/automation/qoli_startup.sh --name=qoli
+    pm2 start ~/workplace/automation/elife_startup.sh --name=elife
     ```
     2. Check if the server is up and running:
     ```bash
@@ -79,34 +79,34 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
 
 6. Collect the datasets:
 ```bash
-java -jar qoli.jar --collect
+java -jar elife.jar --collect
 ```
 
 7. Aggregate the datasets:
    1. Calculate QoLI dimensions:
     ```bash
-    java -jar qoli.jar --calculate --calculateIndicators --direction=COLUMN
+    java -jar elife.jar --calculate --calculateIndicators --direction=COLUMN
     ```
     2. Calculate QoLI based on a specific set of indicators:
     ```bash
-    java -jar qoli.jar --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    java -jar elife.jar --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
     ```
 
 ### Print Data
 1. Print QoLI and QoLI dimensions:
     ```bash
-    java -jar qoli.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-    java -jar qoli.jar --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
     ```
 2. Print specific indicators:
     ```bash
-    java -jar qoli.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-    java -jar qoli.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
     ```
 
 ### Run Server
 ```bash
-java -jar qoli.jar --server
+java -jar elife.jar --server
 ```
 
 
