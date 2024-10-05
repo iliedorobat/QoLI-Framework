@@ -43,13 +43,13 @@
                 <directory>${directory}</directory>
             </build>
             <properties>
-                <directory>/var/www/qoli.webdata.ro/server</directory>
+                <directory>/var/www/elife.webdata.ro/server</directory>
             </properties>
         </profile>
     </profiles>
 
     <build>
-        <finalName>qoli</finalName>
+        <finalName>elife</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
