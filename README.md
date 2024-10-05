@@ -58,7 +58,7 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     ```
     2. Create and start a background process:
     ```bash
-    pm2 start ~/workplace/automation/qoli_startup.sh
+    pm2 start ~/workplace/automation/qoli_startup.sh --name=qoli
     ```
     2. Check if the server is up and running:
     ```bash
