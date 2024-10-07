@@ -56,7 +56,7 @@ mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
     ```
     2. Create and start a background process:
     ```bash
-    pm2 start ~/workplace/automation/elife_run.sh --name=elife
+    pm2 start ~/workplace/automation/elife_startup.sh --name=elife
     ```
     2. Check if the server is up and running:
     ```bash
