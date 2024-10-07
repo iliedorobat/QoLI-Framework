@@ -1,4 +1,7 @@
 #!/bin/bash
-WORKPLACE_PATH="/var/www/elife.webdata.ro/server"
 
-java -Xms512m -Xmx4096m -jar $WORKPLACE_PATH/elife.jar --server
+WORKPLACE_PATH="/home/idorobat/workplace"
+AUTOMATION_PATH="$WORKPLACE_PATH/automation"
+
+$AUTOMATION_PATH/elife_build.sh
+$AUTOMATION_PATH/elife_run.sh
