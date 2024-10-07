@@ -1,4 +1,5 @@
 #!/bin/bash
+
 DOMAIN="webdata.ro"
 CERT_PATH="/etc/letsencrypt/live/$DOMAIN"
 WORKPLACE_PATH="/var/www/$DOMAIN/certs"
