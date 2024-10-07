@@ -1,6 +1,4 @@
-# eLife: European Life Index Service
-
-
+# eLIF: European Life Index Framework
 
 ## Local Setup
 ### Requirements
