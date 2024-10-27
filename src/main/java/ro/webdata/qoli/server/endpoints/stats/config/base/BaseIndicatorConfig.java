@@ -1,6 +1,7 @@
 package ro.webdata.qoli.server.endpoints.stats.config.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ro.webdata.qoli.aggr.stats.dimensions.QoLIStats;
 import ro.webdata.qoli.aggr.stats.dimensions.education.EducationAggrParams;
 import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentAggrParams;
 import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsAggrParams;
@@ -10,6 +11,8 @@ import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityAggrParams
 import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingAggrParams;
 import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceAggrParams;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyAggrParams;
+
+import java.util.*;
 
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
@@ -23,14 +26,18 @@ public class BaseIndicatorConfig {
     @JsonProperty("negativeState")
     boolean negativeState;
 
+    @JsonProperty("timeRange")
+    ArrayList<Integer> timeRange;
+
     @JsonProperty("units")
     String units;
 
-    public BaseIndicatorConfig(String filename, String label) {
-        this.filename = filename;
+    public BaseIndicatorConfig(String dimKey, String key, String label) {
+        this.filename = key;
         this.label = label;
-        this.negativeState = isReversed(filename);
-        this.units = getUnits(filename);
+        this.negativeState = isReversed(key);
+        this.timeRange = extractTimeRange(dimKey, key);
+        this.units = getUnits(key);
     }
 
     private boolean isReversed(String indKey) {
@@ -75,5 +82,26 @@ public class BaseIndicatorConfig {
         else if (indKey.startsWith(SAFETY))
             return SafetyAggrParams.IND_PARAMS_UNITS.get(indKey);
         return "";
+    }
+
+    public static ArrayList<Integer> extractTimeRange(String dimKey, String indKey) {
+        Map<String, Number> rawIndicators = QoLIStats.rawIndicatorsMap.get(dimKey).get(indKey);
+        Set<Integer> set = new HashSet<>();
+
+        for (Map.Entry<String, Number> entry : rawIndicators.entrySet()) {
+           String key = entry.getKey();
+           Number value = entry.getValue();
+
+           if (value != null) {
+               String[] pair = key.split("_");
+               String year = pair[1];
+               set.add(Integer.parseInt(year));
+           }
+        }
+
+        ArrayList<Integer> timeRange = new ArrayList<>(set);
+        Collections.sort(timeRange);
+
+        return timeRange;
     }
 }
