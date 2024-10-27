@@ -100,6 +100,7 @@ public class BaseIndicatorConfig {
         }
 
         ArrayList<Integer> timeRange = new ArrayList<>(set);
+        Collections.sort(timeRange);
         Collections.reverse(timeRange);
 
         return timeRange;
