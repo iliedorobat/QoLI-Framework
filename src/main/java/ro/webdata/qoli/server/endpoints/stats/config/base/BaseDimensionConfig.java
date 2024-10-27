@@ -16,14 +16,14 @@ public class BaseDimensionConfig {
     @JsonProperty("aggregators")
     List<BaseIndicatorConfig> aggregators = new ArrayList<>();
 
-    public BaseDimensionConfig(String filename, String label, Map<String, String> allowedParams) {
-        this.filename = filename;
+    public BaseDimensionConfig(String key, String label, Map<String, String> allowedParams) {
+        this.filename = key;
         this.label = label;
 
         for (Map.Entry<String, String> param : allowedParams.entrySet()) {
             String indKey = param.getKey();
             String indLabel = param.getValue();
-            BaseIndicatorConfig indConfig = new BaseIndicatorConfig(indKey, indLabel);
+            BaseIndicatorConfig indConfig = new BaseIndicatorConfig(key, indKey, indLabel);
 
             aggregators.add(indConfig);
         }

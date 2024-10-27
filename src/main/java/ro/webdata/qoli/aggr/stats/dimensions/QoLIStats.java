@@ -2,14 +2,23 @@ package ro.webdata.qoli.aggr.stats.dimensions;
 
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
+import ro.webdata.qoli.aggr.stats.dimensions.education.EducationPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.education.EducationStats;
+import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.environment.EnvironmentStats;
+import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.gov.GovRightsStats;
+import ro.webdata.qoli.aggr.stats.dimensions.health.HealthPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.health.HealthStats;
+import ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.leisureInteract.LeisureInteractStats;
+import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.mainActivity.MainActivityStats;
+import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.materialLiving.MaterialLivingStats;
+import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperiencePaths;
 import ro.webdata.qoli.aggr.stats.dimensions.overall.OverallExperienceStats;
+import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyPaths;
 import ro.webdata.qoli.aggr.stats.dimensions.safety.SafetyStats;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
@@ -19,6 +28,18 @@ import java.util.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
 public class QoLIStats {
+    public static final Map<String, Map<String, Map<String, Number>>> rawIndicatorsMap = new HashMap<>() {{
+        put(EducationPaths.EDUCATION_FILE_NAME, EducationStats.rawIndicators);
+        put(EnvironmentPaths.ENVIRONMENT_FILE_NAME, EnvironmentStats.rawIndicators);
+        put(GovRightsPaths.GOVERNANCE_FILE_NAME, GovRightsStats.rawIndicators);
+        put(HealthPaths.HEALTH_FILE_NAME, HealthStats.rawIndicators);
+        put(LeisureInteractPaths.LEISURE_INTERACT_FILE_NAME, LeisureInteractStats.rawIndicators);
+        put(MainActivityPaths.MAIN_ACTIVITY_FILE_NAME, MainActivityStats.rawIndicators);
+        put(MaterialLivingPaths.LIVING_CONDITIONS_FILE_NAME, MaterialLivingStats.rawIndicators);
+        put(OverallExperiencePaths.OVERALL_EXPERIENCE_FILE_NAME, OverallExperienceStats.rawIndicators);
+        put(SafetyPaths.SAFETY_FILE_NAME, SafetyStats.rawIndicators);
+    }};
+
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         putAll(EducationStats.aggrIndicators);
         putAll(EnvironmentStats.aggrIndicators);
@@ -107,13 +128,13 @@ public class QoLIStats {
     }
 
     public static List<String> getAggrList(List<String> aggrs) {
-        return aggrs == null || aggrs.size() == 0
+        return aggrs == null || aggrs.isEmpty()
                 ? QoLIAggrParams.AGGR_PARAMS
                 : aggrs;
     }
 
     public static List<String> getCountryList(List<String> countryCodes) {
-        return countryCodes == null || countryCodes.size() == 0
+        return countryCodes == null || countryCodes.isEmpty()
                 ? Arrays.asList(Constants.EU28_MEMBERS)
                 : countryCodes;
     }

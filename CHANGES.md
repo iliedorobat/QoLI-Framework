@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added maven support
 - Added "/qoli" prefix to APIs
 - Added support for secured requests
+- Added timeRange property to the BaseIndicatorConfig
 
 ## 2.1
 - Added the server service.
