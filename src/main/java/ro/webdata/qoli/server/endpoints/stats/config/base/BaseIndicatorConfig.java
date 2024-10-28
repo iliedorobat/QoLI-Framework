@@ -32,11 +32,11 @@ public class BaseIndicatorConfig {
     @JsonProperty("units")
     String units;
 
-    public BaseIndicatorConfig(String dimKey, String key, String label) {
+    public BaseIndicatorConfig(String key, String label) {
         this.filename = key;
         this.label = label;
         this.negativeState = isReversed(key);
-        this.timeRange = extractTimeRange(dimKey, key);
+        this.timeRange = extractTimeRange(key);
         this.units = getUnits(key);
     }
 
@@ -84,8 +84,8 @@ public class BaseIndicatorConfig {
         return "";
     }
 
-    public static ArrayList<Integer> extractTimeRange(String dimKey, String indKey) {
-        Map<String, Number> rawIndicators = QoLIStats.rawIndicatorsMap.get(dimKey).get(indKey);
+    public static ArrayList<Integer> extractTimeRange(String indKey) {
+        Map<String, Number> rawIndicators = QoLIStats.rawIndicators.get(indKey);
         Set<Integer> set = new HashSet<>();
 
         for (Map.Entry<String, Number> entry : rawIndicators.entrySet()) {

@@ -23,7 +23,7 @@ public class BaseDimensionConfig {
         for (Map.Entry<String, String> param : allowedParams.entrySet()) {
             String indKey = param.getKey();
             String indLabel = param.getValue();
-            BaseIndicatorConfig indConfig = new BaseIndicatorConfig(key, indKey, indLabel);
+            BaseIndicatorConfig indConfig = new BaseIndicatorConfig(indKey, indLabel);
 
             aggregators.add(indConfig);
         }
