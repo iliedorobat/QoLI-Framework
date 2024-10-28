@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ---
 
+## 2.3
+- Reduce the time range list for individually analysis so that only the data for the existing years are displayed
+
 ## 2.2
 - Added maven support
 - Added "/qoli" prefix to APIs

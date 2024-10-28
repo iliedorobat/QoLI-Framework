@@ -31,6 +31,8 @@ public class QoLIStats {
         putAll(SafetyStats.rawIndicators);
     }};
 
+    public static final Map<String, ArrayList<Integer>> rawIndicatorsTimeRange = extractMultisetTimeRange(rawIndicators);
+
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         putAll(EducationStats.aggrIndicators);
         putAll(EnvironmentStats.aggrIndicators);
@@ -128,5 +130,36 @@ public class QoLIStats {
         return countryCodes == null || countryCodes.isEmpty()
                 ? Arrays.asList(Constants.EU28_MEMBERS)
                 : countryCodes;
+    }
+
+    public static Map<String, ArrayList<Integer>> extractMultisetTimeRange(Map<String, Map<String, Number>> entries) {
+        Map<String, ArrayList<Integer>> timeRanges = new HashMap<>();
+
+        for (Map.Entry<String, Map<String, Number>> entry : entries.entrySet()) {
+            timeRanges.put(entry.getKey(), extractTimeRange(entry.getValue()));
+        }
+
+        return timeRanges;
+    }
+
+    public static ArrayList<Integer> extractTimeRange(Map<String, Number> entries) {
+        Set<Integer> set = new HashSet<>();
+
+        for (Map.Entry<String, Number> entry : entries.entrySet()) {
+            String key = entry.getKey();
+            Number value = entry.getValue();
+
+            if (value != null) {
+                String[] pair = key.split("_");
+                String year = pair[1];
+                set.add(Integer.parseInt(year));
+            }
+        }
+
+        ArrayList<Integer> timeRange = new ArrayList<>(set);
+        Collections.sort(timeRange);
+        Collections.reverse(timeRange);
+
+        return timeRange;
     }
 }
