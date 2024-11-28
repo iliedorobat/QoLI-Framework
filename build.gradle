@@ -9,11 +9,11 @@ repositories {
     mavenCentral()
 }
 
-def useProdDir = project.hasProperty('useProdDir') && project.useProdDir.toBoolean()
-def buildDir = useProdDir ? file("/var/www/elife.webdata.ro/server") : buildDir
+def prodDir = file("/var/www/elife.webdata.ro/server")
 
 tasks.processResources {
     doLast {
+        delete prodDir
         copy {
             from sourceSets.main.resources.srcDirs
             into "$buildDir/resources/main"
@@ -27,6 +27,11 @@ tasks.processResources {
             into "$buildDir/src/main"
         }
     }
+}
+
+tasks.register('copyProd', Copy) {
+    from buildDir
+    into prodDir
 }
 
 jar {

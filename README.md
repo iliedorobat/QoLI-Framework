@@ -40,7 +40,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 6. Install deps & compile the project:
 - Production build:
     ```bash
-    ./gradlew clean build -PuseProdDir=true
+    ./gradlew clean build && ./gradlew copyProd
     ```
 - Dev build:
     ```bash
