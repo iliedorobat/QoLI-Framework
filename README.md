@@ -5,11 +5,14 @@
 
 ## Setup
 1. Download and install [JDK 11](https://www.oracle.com/nl/java/technologies/javase/jdk11-archive-downloads.html) or [OpenJDK 11](https://openjdk.org/install/) (or newer versions)
+
 2. Download and install [Maven 3.x](https://maven.apache.org/install.html)
+
 3. Clone the repository:
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
+
 4. Update environment variables and app constants:
 - `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
 - `HOST_ADDRESS`: the IP address of the host
@@ -19,6 +22,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 - `KEY_STORE_PASS`: password for the `keystore.p12` file
 - `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
 - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+
 5. [OPTIONAL] Run the following scripts on the production environment:
    1. Create JKS certificate:
     ```bash
@@ -36,13 +40,13 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 6. Install deps & compile the project:
 - Production build:
     ```bash
-    ./gradlew clean shadowJar
+    ./gradlew clean build && ./gradlew copyDeps
     ```
 - Dev build:
     ```bash
-    ./gradlew clean shadowJar -PuseDevDir=true
+    ./gradlew clean build -PuseDevDir=true && ./gradlew copyDeps -PuseDevDir=true
     ```
-  
+
 7. Create the server daemon:
     1. [OPTIONAL] Remove the server daemon:
     ```bash
@@ -52,7 +56,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```bash
     pm2 start ~/workplace/automation/elife_startup.sh --name=elife
     ```
-    2. Check if the server is up and running:
+    3. Check if the server is up and running:
     ```bash
     curl -i -X GET "https://webdata.ro:8443"
     ```
@@ -95,11 +99,6 @@ java -jar elife.jar --collect
     java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
     java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
     ```
-
-### Run Server
-```bash
-java -jar elife.jar --server
-```
 
 
 

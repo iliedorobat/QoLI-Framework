@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'ro.webdata.qoli'
@@ -12,17 +11,19 @@ repositories {
 
 def useDevDir = project.hasProperty('useDevDir') && project.useDevDir.toBoolean()
 
-shadowJar {
-    archiveClassifier.set('')
-
+jar {
     manifest {
         attributes(
                 'Manifest-Version': '2.3',
                 'Main-Class': 'ro.webdata.qoli.Main'
         )
     }
+    destinationDirectory = file(useDevDir ? "$buildDir" : "/var/www/elife.webdata.ro/server")
+}
 
-    destinationDirectory = file(useDevDir ? "$buildDir/libs" : "/var/www/elife.webdata.ro/server")
+task copyDeps(type: Copy) {
+    from configurations.runtimeClasspath
+    into useDevDir ? "$buildDir/libs" : "/var/www/elife.webdata.ro/server/libs"
 }
 
 dependencies {
