@@ -129,7 +129,7 @@ public class LeisureInteractCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: ilc_scp02<br/>
-     * Years: 2006; 2015<br/><br/>
+     * Years: 2015; 2022<br/><br/>
      *
      * Comments: NUTS 2 regions => ilc_scp01
      *
