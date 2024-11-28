@@ -9,7 +9,12 @@ repositories {
     mavenCentral()
 }
 
-def useDevDir = project.hasProperty('useDevDir') && project.useDevDir.toBoolean()
+def useProdDir = project.hasProperty('useProdDir') && project.useProdDir.toBoolean()
+def buildDir = useProdDir ? file("/var/www/elife.webdata.ro/server") : buildDir
+
+tasks.processResources {
+    destinationDir = file("$buildDir/resources/main")  // Explicitly set the destination
+}
 
 jar {
     manifest {
@@ -18,12 +23,17 @@ jar {
                 'Main-Class': 'ro.webdata.qoli.Main'
         )
     }
-    destinationDirectory = file(useDevDir ? "$buildDir" : "/var/www/elife.webdata.ro/server")
+    destinationDirectory = buildDir
 }
 
-task copyDeps(type: Copy) {
+tasks.register('copyDeps', Copy) {
     from configurations.runtimeClasspath
-    into useDevDir ? "$buildDir/libs" : "/var/www/elife.webdata.ro/server/libs"
+    into "$buildDir/libs"
+}
+
+tasks.register('copyEnvFile', Copy) {
+    from 'src/main/.env'
+    into "$buildDir/src/main"
 }
 
 dependencies {
