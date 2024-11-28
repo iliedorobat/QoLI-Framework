@@ -37,7 +37,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     src/main/bash/elife_enroll_startup.sh
     ```
 
-6. Install deps & compile the project:
+6. [OPTIONAL] Install deps & compile the project (this step is already done in the next step):
 - Production build:
     ```bash
     ./gradlew clean build && ./gradlew copyProd
@@ -50,7 +50,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 7. Create the server daemon:
     1. [OPTIONAL] Remove the server daemon:
     ```bash
-    pm2 delete elife && pm2 flush elife
+    pm2 flush elife && pm2 delete elife
     ```
     2. Create and start a background process:
     ```bash
