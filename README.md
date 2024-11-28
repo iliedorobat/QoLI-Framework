@@ -34,17 +34,13 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```
 
 6. Install deps & compile the project:
-```bash
-mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
-```
-- ENV_TYPE **(OPTIONAL)** = `dev` or `prod`
-- DIRECTORY_PATH **(OPTIONAL)** = path to the target directory where the compiled files will be placed
-- E.g.:
+- Production build:
     ```bash
-    mvn clean install -Denv.type=prod
+    ./gradlew clean shadowJar
     ```
+- Dev build:
     ```bash
-    mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workplace/QoLI-Framework/target
+    ./gradlew clean shadowJar -PuseDevDir=true
     ```
   
 7. Create the server daemon:
