@@ -40,11 +40,11 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 6. Install deps & compile the project:
 - Production build:
     ```bash
-    ./gradlew clean build -PuseProdDir=true && ./gradlew copyDeps -PuseProdDir=true && ./gradlew copyEnvFile -PuseProdDir=true
+    ./gradlew clean build -PuseProdDir=true
     ```
 - Dev build:
     ```bash
-    ./gradlew clean build && ./gradlew copyDeps && ./gradlew copyEnvFile
+    ./gradlew clean build
     ```
 
 7. Create the server daemon:
