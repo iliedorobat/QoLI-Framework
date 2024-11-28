@@ -13,7 +13,20 @@ def useProdDir = project.hasProperty('useProdDir') && project.useProdDir.toBoole
 def buildDir = useProdDir ? file("/var/www/elife.webdata.ro/server") : buildDir
 
 tasks.processResources {
-    destinationDir = file("$buildDir/resources/main")  // Explicitly set the destination
+    doLast {
+        copy {
+            from sourceSets.main.resources.srcDirs
+            into "$buildDir/resources/main"
+        }
+        copy {
+            from configurations.runtimeClasspath
+            into "$buildDir/libs"
+        }
+        copy {
+            from 'src/main/.env'
+            into "$buildDir/src/main"
+        }
+    }
 }
 
 jar {
@@ -24,16 +37,6 @@ jar {
         )
     }
     destinationDirectory = buildDir
-}
-
-tasks.register('copyDeps', Copy) {
-    from configurations.runtimeClasspath
-    into "$buildDir/libs"
-}
-
-tasks.register('copyEnvFile', Copy) {
-    from 'src/main/.env'
-    into "$buildDir/src/main"
 }
 
 dependencies {
