@@ -36,7 +36,7 @@ tasks.register('copyProd', Copy) {
 
 tasks.register('copyEnv', Copy) {
     from("$buildDir/src/main") {
-        include: ".env"
+        include ".env"
     }
     into "$prodDir/src/main"
 }
