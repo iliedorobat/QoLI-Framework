@@ -35,8 +35,10 @@ tasks.register('copyProd', Copy) {
 }
 
 tasks.register('copyEnv', Copy) {
-    from "$buildDir/src/main/.env"
-    into "$prodDir/src/main/.env"
+    from("$buildDir/src/main") {
+        include: ".env"
+    }
+    into "$prodDir/src/main"
 }
 
 jar {
