@@ -34,6 +34,13 @@ tasks.register('copyProd', Copy) {
     into prodDir
 }
 
+tasks.register('copyEnv', Copy) {
+    from("$buildDir/src/main") {
+        include ".env"
+    }
+    into "$rootDir/../automation/src/main"
+}
+
 jar {
     manifest {
         attributes(
