@@ -24,7 +24,15 @@ target/*
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.DS_STORE
 *.idea
 *.iml
 out/*
-.env
+
+# Gradle directories
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Maven directories
+target/
