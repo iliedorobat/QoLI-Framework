@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOMAIN="webdata.ro"
+DOMAIN="life-index.eu"
 CERT_PATH="/etc/letsencrypt/live/$DOMAIN"
 WORKPLACE_PATH="/var/www/$DOMAIN/certs"
 PKCS12_PATH="$WORKPLACE_PATH/keystore.p12"
