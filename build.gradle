@@ -1,0 +1,107 @@
+plugins {
+    id 'java'
+}
+
+group = 'ro.webdata.qoli'
+//version = '2.3'
+
+repositories {
+    mavenCentral()
+}
+
+def prodDir = file("/var/www/elife.webdata.ro/server")
+
+tasks.processResources {
+    doLast {
+        delete prodDir
+        copy {
+            from sourceSets.main.resources.srcDirs
+            into "$buildDir/resources/main"
+        }
+        copy {
+            from configurations.runtimeClasspath
+            into "$buildDir/libs"
+        }
+        copy {
+            from 'src/main/.env'
+            into "$buildDir/src/main"
+        }
+    }
+}
+
+tasks.register('copyProd', Copy) {
+    from buildDir
+    into prodDir
+}
+
+tasks.register('copyEnv', Copy) {
+    from("$buildDir/src/main") {
+        include ".env"
+    }
+    into "$rootDir/../automation/src/main"
+}
+
+jar {
+    manifest {
+        attributes(
+                'Manifest-Version': '2.3',
+                'Main-Class': 'ro.webdata.qoli.Main'
+        )
+    }
+    destinationDirectory = buildDir
+}
+
+dependencies {
+//    testImplementation platform('org.junit:junit-bom:5.10.0')
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.6.1'
+    testImplementation 'com.revinate:assertj-json:1.0.0'
+    implementation 'org.apache.commons:commons-collections4:4.3'
+    implementation 'org.apache.commons:commons-compress:1.21'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'commons-logging:commons-logging:1.2'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'org.glassfish.grizzly:grizzly-core:4.0.0'
+    implementation 'org.glassfish.grizzly:grizzly-http-all:4.0.0'
+    implementation 'org.glassfish.grizzly:grizzly-http-server:4.0.0'
+    implementation 'com.google.guava:guava:22.0'
+    implementation 'me.yanaga:guava-stream:1.0'
+    implementation 'org.glassfish.hk2:hk2-api:3.0.3'
+    implementation 'org.glassfish.hk2:hk2-locator:3.0.3'
+    implementation 'org.glassfish.hk2:hk2-utils:3.0.3'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.9'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.11'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.15.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.3'
+    implementation 'com.fasterxml.jackson.module:jackson-module-jakarta-xmlbind-annotations:2.15.3'
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.1.0'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    implementation 'org.glassfish.jersey.core:jersey-client:3.1.0'
+    implementation 'org.glassfish.jersey.core:jersey-common:3.1.0'
+    implementation 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:3.1.0'
+    implementation 'org.glassfish.jersey.ext:jersey-entity-filtering:3.1.0'
+    implementation 'org.glassfish.jersey.inject:jersey-hk2:3.1.0'
+    implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:3.1.0'
+    implementation 'org.glassfish.jersey.core:jersey-server:3.1.0'
+    implementation 'org.glassfish.jersey.containers:jersey-container-servlet:3.1.0'
+    implementation 'org.json:json:20231013'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    testImplementation 'org.mockito:mockito-core:2.2.8'
+    implementation 'org.apache.poi:poi:5.2.0'
+    implementation 'org.apache.poi:poi-ooxml:5.2.0'
+    implementation 'org.apache.poi:poi-ooxml:5.2.0'
+    implementation 'com.codepoetics:protonpack:1.13'
+    implementation 'org.apache.xmlbeans:xmlbeans:5.0.3'
+}
+
+//test {
+//    useJUnitPlatform()
+//}

@@ -32,7 +32,7 @@ public class MaterialLivingCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdho01<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2020; 2023<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

@@ -4,10 +4,7 @@ import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StatsUtils {
@@ -116,6 +113,7 @@ public class StatsUtils {
     /**
      * Filter the generated stats in a range.
      * @param entries The map containing prepared data for a specific dimension
+     * @param entriesTimeRange: [OPTIONAL] The list of allowed time range
      * @param membersList The list of countries/regions
      * @param seriesType The type of the aggregation (REGION or COUNTRY)
      * @param startYear The year the analysis starts
@@ -124,6 +122,7 @@ public class StatsUtils {
      */
     public static TreeMap<String, TreeMap<Integer, Number>> filterStats(
             Map<String, Number> entries,
+            ArrayList<Integer> entriesTimeRange,
             String[] membersList,
             String seriesType,
             int startYear,
@@ -136,11 +135,13 @@ public class StatsUtils {
             TreeMap<Integer, Number> itemStats = new TreeMap<>();
 
             for (int year = startYear; year <= endYear; year++) {
-                String key = code + "_" + year;
-                Number value = data.get(key);
+                if (entriesTimeRange == null || entriesTimeRange.contains(year)) {
+                    String key = code + "_" + year;
+                    Number value = data.get(key);
 
-                if (value != null)
-                    itemStats.put(year, value);
+                    if (value != null)
+                        itemStats.put(year, value);
+                }
             }
 
             if (!itemStats.isEmpty())

@@ -88,7 +88,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
      * Dataset: hlth_hlye<br/>
-     * Years: 2004-2021
+     * Years: 2004-2022
      *
      * @return
      */
@@ -244,7 +244,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: number<br/>
      * Dataset: hsw_mi07<br/>
-     * Years: 2008-2021<br/><br/>
+     * Years: 2008-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

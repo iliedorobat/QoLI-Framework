@@ -79,7 +79,7 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: env_wat_pop<br/>
-     * Years: 1990; 1995; 2000-2021<br/><br/>
+     * Years: 1990; 1995; 2000-2022<br/><br/>
      *
      * Comment: NUTS 2 regions => env_watpop_r2<br/>
      * <b>Lack of data: IT; LV; SI; UK</b>

@@ -86,23 +86,7 @@ public class BaseIndicatorConfig {
 
     public static ArrayList<Integer> extractTimeRange(String indKey) {
         Map<String, Number> rawIndicators = QoLIStats.rawIndicators.get(indKey);
-        Set<Integer> set = new HashSet<>();
 
-        for (Map.Entry<String, Number> entry : rawIndicators.entrySet()) {
-           String key = entry.getKey();
-           Number value = entry.getValue();
-
-           if (value != null) {
-               String[] pair = key.split("_");
-               String year = pair[1];
-               set.add(Integer.parseInt(year));
-           }
-        }
-
-        ArrayList<Integer> timeRange = new ArrayList<>(set);
-        Collections.sort(timeRange);
-        Collections.reverse(timeRange);
-
-        return timeRange;
+        return QoLIStats.extractTimeRange(rawIndicators);
     }
 }
