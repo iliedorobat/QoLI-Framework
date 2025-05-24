@@ -1,8 +1,8 @@
 package ro.webdata.qoli.aggr.stats.utils;
 
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 
 import java.util.Arrays;
 import java.util.List;
@@ -212,7 +212,7 @@ public class StatsUtils {
     public static Map<String, Number> calculateGeometricMean(List<Map<String, Number>> mapsList, double multiplicationFactor) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 double product = 1;
@@ -250,7 +250,7 @@ public class StatsUtils {
     public static Map<String, Number> calculateSum(List<Map<String, Number>> mapsList, double multiplicationFactor) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 double sum = 0;
@@ -341,7 +341,7 @@ public class StatsUtils {
         // the datasets contain the value "0.0" instead of "null".
         // This preparation prevents corruption of the result of the product of values.
         // E.g.: "Getting together with friends" for the year 2022 (data retrieved on June 11, 2024)
-        for (int crrYear = year; crrYear >= EnvConst.MIN_YEAR; crrYear--) {
+        for (int crrYear = year; crrYear >= EnvState.MIN_YEAR; crrYear--) {
             String key = MapUtils.generateKey(code, crrYear);
             value = entries.get(key).doubleValue();
 

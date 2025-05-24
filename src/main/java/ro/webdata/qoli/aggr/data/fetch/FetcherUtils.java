@@ -2,9 +2,9 @@ package ro.webdata.qoli.aggr.data.fetch;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.constants.ParamsNames;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
+import ro.webdata.qoli.EnvState;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,7 +86,7 @@ public class FetcherUtils {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>();
         params.put(ParamsNames.LANG, "en");
 
-        if (EnvConst.IS_TESTING) {
+        if (EnvState.IS_TESTING) {
             params.put(ParamsNames.GEO, "RO");
             params.put(ParamsNames.TIME, "2015");
         } else {

@@ -1,11 +1,11 @@
 package ro.webdata.qoli.aggr.stats.dimensions.safety;
 
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.data.stats.Initializer;
 import ro.webdata.qoli.aggr.data.stats.Preparation;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.Print;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.dimensions.auxiliary.AuxiliaryStats;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
@@ -170,7 +170,7 @@ public class SafetyStats {
     private static Map<String, Number> prepareOffences(Map<String, Number> offence) {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             double ukValue = 0;
 
             for (String code : Constants.EU28_MEMBERS_EXTENDED) {
@@ -196,7 +196,7 @@ public class SafetyStats {
     private static Map<String, Number> prepareOffencesRatio() {
         Map<String, Number> consolidatedList = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             double ukSum = 0;
 
             for (String code : Constants.EU28_MEMBERS_EXTENDED) {

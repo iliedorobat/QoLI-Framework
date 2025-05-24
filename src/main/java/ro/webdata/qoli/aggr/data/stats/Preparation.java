@@ -1,8 +1,8 @@
 package ro.webdata.qoli.aggr.data.stats;
 
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.stats.MapOrder;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 import ro.webdata.qoli.aggr.stats.utils.MathUtils;
 
@@ -69,7 +69,7 @@ public class Preparation {
         Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
         Map<String, Number> preparedMap = Preparation.prepareData(initMap);
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 Number value = MathUtils.generatePerThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
@@ -91,7 +91,7 @@ public class Preparation {
         Map<String, Number> generatedMap = new TreeMap<>(new MapOrder());
         Map<String, Number> preparedMap = prepareData(initMap);
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
                 Number value = MathUtils.generatePerTenThousandInhabitants(populationMap, key, preparedMap.get(key).doubleValue());
@@ -138,7 +138,7 @@ public class Preparation {
             Map<String, Number> preparedMap,
             String code
     ) {
-        for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
+        for (int year = EnvState.INIT_MAP_MIN_YEAR; year <= EnvState.INIT_MAP_MAX_YEAR; year++) {
             String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
             Double euAverage = calculateEuAverage(mainMap, year);
@@ -159,7 +159,7 @@ public class Preparation {
     public static Map<String, Number> preparePpsRatio(Map<String, Number> entries) {
         Map<String, Number> preparedMap = new TreeMap<>(new MapOrder());
 
-        for (int year = EnvConst.MIN_YEAR; year <= EnvConst.MAX_YEAR; year++) {
+        for (int year = EnvState.MIN_YEAR; year <= EnvState.MAX_YEAR; year++) {
             for (String code : Constants.EU28_MEMBERS) {
                 String key = MapUtils.generateKey(code, year);
 
@@ -258,7 +258,7 @@ public class Preparation {
     ) {
         Number prevValue = null;
 
-        for (int year = EnvConst.INIT_MAP_MIN_YEAR; year <= EnvConst.INIT_MAP_MAX_YEAR; year++) {
+        for (int year = EnvState.INIT_MAP_MIN_YEAR; year <= EnvState.INIT_MAP_MAX_YEAR; year++) {
             String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
@@ -305,7 +305,7 @@ public class Preparation {
     ) {
         Number nextValue = null;
 
-        for (int year = EnvConst.INIT_MAP_MAX_YEAR; year >= EnvConst.INIT_MAP_MIN_YEAR; year--) {
+        for (int year = EnvState.INIT_MAP_MAX_YEAR; year >= EnvState.INIT_MAP_MIN_YEAR; year--) {
             String key = MapUtils.generateKey(code, year);
             Number value = preparedMap.get(key);
 
@@ -328,7 +328,7 @@ public class Preparation {
         for (Map.Entry<String, Number> entry : preparedMap.entrySet()) {
             int year = MapUtils.getEntryYear(entry);
 
-            if (year >= EnvConst.MIN_YEAR & year <= EnvConst.MAX_YEAR) {
+            if (year >= EnvState.MIN_YEAR & year <= EnvState.MAX_YEAR) {
                 filteredMap.put(entry.getKey(), entry.getValue());
             }
         }

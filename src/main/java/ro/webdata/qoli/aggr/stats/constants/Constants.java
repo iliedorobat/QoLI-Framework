@@ -1,5 +1,7 @@
 package ro.webdata.qoli.aggr.stats.constants;
 
+import ro.webdata.qoli.EnvState;
+
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,8 +13,13 @@ public class Constants {
     public static final String KEY_SEPARATOR = "_";
     public static final String XLS_EXTENSION = ".xls";
 
-    public static final String PREPARED_DATASET_PATH = String.join(File.separator, "files", "prepared");
-    public static final String RAW_DATASET_PATH = String.join(File.separator, "files", "raw", "json", "countries");
+    public static final String BASE_PATH = EnvState.IS_PRODUCTION
+            ? EnvState.USE_TOMCAT_SERVER
+                ? File.separator + String.join(File.separator, "", "opt", "tomcat", "webapps", "qoli", "WEB-INF")
+                : File.separator + String.join(File.separator, "var", "www", "elife.webdata.ro", "server", "classes")
+            : String.join(File.separator, System.getProperty("user.dir"), "src", "main", "resources");
+    public static final String PREPARED_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "prepared");
+    public static final String RAW_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "raw", "json", "countries");
 
     /**
      * The minimum value for which the PERCENTAGE_SAFETY_THRESHOLD can be applied

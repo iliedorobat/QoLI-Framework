@@ -1,50 +1,108 @@
 # eLIF: European Life Index Framework
 
-
-
-## Local Setup
-### Requirements
+## Requirements
 - JDK 11 or OpenJDK 11.
 
-### Setup
-1. Clone the repository:
+## Setup
+1. Download and install [JDK 11](https://www.oracle.com/nl/java/technologies/javase/jdk11-archive-downloads.html) or [OpenJDK 11](https://openjdk.org/install/) (or newer versions)
+2. Download and install [Maven 3.x](https://maven.apache.org/install.html)
+3. Clone the repository:
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
-2. Install deps & compile the project
-```bash
-mvn install
-mvn clean compile assembly:single
-```
-3. Collect the datasets:
-```bash
-java -jar QoLI-Framework-2.1-jar-with-dependencies --collect
-```
-4. Aggregate the datasets:
-   1. Calculate the QoLI dimensions:
+4. Update environment variables and app constants:
+- `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
+- `HOST_ADDRESS`: the IP address of the host
+- `IS_PRODUCTION`: `true` if the app is deployed on the production server
+- `IS_TESTING`: `true` for downloading sample data instead of the full set
+- `KEY_STORE_FILE`: path to the `keystore.p12` file
+- `KEY_STORE_PASS`: password for the `keystore.p12` file
+- `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
+- `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+5. [OPTIONAL] Run the following scripts on the production environment:
+   1. Create JKS certificate:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --calculateIndicators --direction=COLUMN
+    src/main/bash/certbot_post_renewal_hook.sh
     ```
-    2. Calculate the QoLI based on a specific set of indicators:
+   2. Enroll renewal hook to certbot:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    src/main/bash/certbot_enroll_renewal_hook.sh
+    ```
+   3. Copy the startup script:
+    ```bash
+    src/main/bash/elife_enroll_startup.sh
     ```
 
-### Print Data
-1. Print the QoLI and the QoLI dimensions:
+6. Install deps & compile the project:
+```bash
+mvn clean install -Denv.type=ENV_TYPE -Ddirectory=DIRECTORY_PATH
+```
+- ENV_TYPE **(OPTIONAL)** = `dev` or `prod`
+- DIRECTORY_PATH **(OPTIONAL)** = path to the target directory where the compiled files will be placed
+- E.g.:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
+    mvn clean install -Denv.type=prod
+    ```
+    ```bash
+    mvn clean install -Denv.type=dev -Ddirectory=/home/my_user/workplace/QoLI-Framework/target
+    ```
+  
+7. Create the server daemon:
+    1. [OPTIONAL] Remove the server daemon:
+    ```bash
+    pm2 delete elife && pm2 flush elife
+    ```
+    2. Create and start a background process:
+    ```bash
+    pm2 start ~/workplace/automation/elife_startup.sh --name=elife
+    ```
+    2. Check if the server is up and running:
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443"
+    ```
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats/config?analysisType=aggregate"
+    ```
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
+    ```
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
+    ```
+    ```bash
+    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats/collect?username=admin&password=admin1234"
+    ```
+
+8. Collect the datasets:
+```bash
+java -jar elife.jar --collect
+```
+
+9. Aggregate the datasets:
+   1. Calculate QoLI dimensions:
+    ```bash
+    java -jar elife.jar --calculate --calculateIndicators --direction=COLUMN
+    ```
+    2. Calculate QoLI based on a specific set of indicators:
+    ```bash
+    java -jar elife.jar --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
+    ```
+
+## Print Data
+1. Print QoLI and QoLI dimensions:
+    ```bash
+    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
+    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
     ```
 2. Print specific indicators:
     ```bash
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-    java -jar QoLI-Framework-2.1-jar-with-dependencies --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
+    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
     ```
-   
+
 ### Run Server
 ```bash
-java -jar QoLI-Framework-2.1-jar-with-dependencies --server
+java -jar elife.jar --server
 ```
 
 

@@ -19,6 +19,18 @@ import java.util.*;
 import static ro.webdata.qoli.aggr.stats.dimensions.QoLIAggrParams.*;
 
 public class QoLIStats {
+    public static final Map<String, Map<String, Number>> rawIndicators = new HashMap<>() {{
+        putAll(EducationStats.rawIndicators);
+        putAll(EnvironmentStats.rawIndicators);
+        putAll(GovRightsStats.rawIndicators);
+        putAll(HealthStats.rawIndicators);
+        putAll(LeisureInteractStats.rawIndicators);
+        putAll(MainActivityStats.rawIndicators);
+        putAll(MaterialLivingStats.rawIndicators);
+        putAll(OverallExperienceStats.rawIndicators);
+        putAll(SafetyStats.rawIndicators);
+    }};
+
     public static final Map<String, Map<String, Number>> aggrIndicators = new HashMap<>() {{
         putAll(EducationStats.aggrIndicators);
         putAll(EnvironmentStats.aggrIndicators);
@@ -107,13 +119,13 @@ public class QoLIStats {
     }
 
     public static List<String> getAggrList(List<String> aggrs) {
-        return aggrs == null || aggrs.size() == 0
+        return aggrs == null || aggrs.isEmpty()
                 ? QoLIAggrParams.AGGR_PARAMS
                 : aggrs;
     }
 
     public static List<String> getCountryList(List<String> countryCodes) {
-        return countryCodes == null || countryCodes.size() == 0
+        return countryCodes == null || countryCodes.isEmpty()
                 ? Arrays.asList(Constants.EU28_MEMBERS)
                 : countryCodes;
     }
