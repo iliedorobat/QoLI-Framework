@@ -27,7 +27,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
    1. Set the same value for `KEY_STORE_PASS` in `src/main/bash/certbot_post_renewal_hook.sh` as the value of the environment variable with the same name
    2. Create JKS certificate:
     ```bash
-    src/main/bash/certbot_post_renewal_hook.sh
+    sudo src/main/bash/certbot_post_renewal_hook.sh
     ```
    3. Enroll renewal hook to certbot:
     ```bash
@@ -41,7 +41,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 6. [OPTIONAL] Install deps & compile the project (this step is already done in the next step):
 - Production build:
     ```bash
-    ./gradlew clean build && ./gradlew copyProd && ./gradlew copyEnv
+    sudo ./gradlew clean build && ./gradlew copyProd && ./gradlew copyEnv
     ```
 - Dev build:
     ```bash
@@ -55,7 +55,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```
     2. Create and start a background process:
     ```bash
-    pm2 start ~/workplace/automation/elife_startup.sh --name=elife
+    pm2 start ~/workplace/automation/elife_startup.sh --name=life-index
     ```
     3. Check if the server is up and running:
     ```bash
