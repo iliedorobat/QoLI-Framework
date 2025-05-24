@@ -4,7 +4,7 @@ DOMAIN="webdata.ro"
 CERT_PATH="/etc/letsencrypt/live/$DOMAIN"
 WORKPLACE_PATH="/var/www/$DOMAIN/certs"
 PKCS12_PATH="$WORKPLACE_PATH/keystore.p12"
-KEYSTORE_PWD="ADD_KEYSTORE_PASS"  # Password for the PKCS12 file
+KEYSTORE_PWD="KEY_STORE_PASS_VALUE"  # Password for the PKCS12 file
 
 mkdir -p $WORKPLACE_PATH
 
