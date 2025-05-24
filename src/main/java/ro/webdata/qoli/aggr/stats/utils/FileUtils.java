@@ -122,7 +122,7 @@ public class FileUtils {
             String readLine;
 
             while((readLine = br.readLine()) != null) {
-                if (readLine.trim().length() > 0)
+                if (!readLine.trim().isEmpty())
                     sb.append(readLine.trim()).append("\n");
             }
         } catch (FileNotFoundException e) {
@@ -131,15 +131,19 @@ public class FileUtils {
             System.err.println("Error at reading the file " + path + " from the disk.");
         } finally {
             try {
-                assert br != null : "The file " + path + " has already been closed.";
-                br.close();
+                if (br != null)
+                    br.close();
+                else
+                    System.out.println("The file " + path + " has already been closed.");
             } catch (IOException e) {
                 System.err.println("The file " + path + " could not be closed.");
             }
         }
 
-        // Remove the last new line
-        sb = sb.deleteCharAt(sb.length() - 1);
+        if (sb.length() > 0) {
+            // Remove the last new line
+            sb = sb.deleteCharAt(sb.length() - 1);
+        }
 
         return sb;
     }
@@ -168,8 +172,10 @@ public class FileUtils {
             e.printStackTrace();
         } finally {
             try {
-                assert fw != null : "The file " + fullPath +" has already been closed.";
-                fw.close();
+                if (fw != null)
+                    fw.close();
+                else
+                    System.out.println("The file " + fullPath +" has already been closed.");
             } catch (IOException e) {
                 System.err.println("The file " + fullPath +" could not be closed."
                         + "\n" + e.getMessage());

@@ -16,7 +16,7 @@ public class AuthFilter implements ContainerRequestFilter {
         String path = context.getUriInfo().getPath();
         MultivaluedMap<String, String> queryParams = context.getUriInfo().getQueryParameters();
 
-        if (method.equals("GET") && path.equals("api/v2/stats/collect")) {
+        if (method.equals("GET") && path.equals("qoli/api/v2/stats/collect")) {
             boolean isAuthorized = AuthService.isAuthorized(
                     queryParams.get("username"),
                     queryParams.get("password")

@@ -10,8 +10,8 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import ro.webdata.qoli.EnvState;
 import ro.webdata.qoli.aggr.stats.constants.Constants;
-import ro.webdata.qoli.aggr.stats.constants.EnvConst;
 import ro.webdata.qoli.aggr.stats.utils.MapUtils;
 
 import java.io.BufferedReader;
@@ -131,8 +131,8 @@ public class Fetcher {
                 .setPath(path)
                 .setParameter("format", URI_FORMAT)
                 .setParameter("lang", URI_LANG)
-                .setParameter("sinceTimePeriod", String.valueOf(EnvConst.MIN_YEAR))
-                .setParameter("untilTimePeriod", String.valueOf(EnvConst.MAX_YEAR));
+                .setParameter("sinceTimePeriod", String.valueOf(EnvState.MIN_YEAR))
+                .setParameter("untilTimePeriod", String.valueOf(EnvState.MAX_YEAR));
 
         ArrayList<String> keysList = MapUtils.getUniqueKeys(params);
         Map<String, Collection<String>> map = params.asMap();
