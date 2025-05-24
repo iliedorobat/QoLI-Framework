@@ -59,19 +59,19 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
     ```
     3. Check if the server is up and running:
     ```bash
-    curl -i -X GET "https://webdata.ro:8443"
+    curl -i -X GET "https://life-index.eu:8443"
     ```
     ```bash
-    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats/config?analysisType=aggregate"
+    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats/config?analysisType=aggregate"
     ```
     ```bash
-    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
+    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
     ```
     ```bash
-    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
+    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
     ```
     ```bash
-    curl -i -X GET "https://webdata.ro:8443/qoli/api/v2/stats/collect?username=admin&password=admin1234"
+    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats/collect?username=admin&password=admin1234"
     ```
 
 8. Collect the datasets:

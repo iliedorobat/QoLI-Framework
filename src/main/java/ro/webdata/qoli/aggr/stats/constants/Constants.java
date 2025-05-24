@@ -16,7 +16,7 @@ public class Constants {
     public static final String BASE_PATH = EnvState.IS_PRODUCTION
             ? EnvState.USE_TOMCAT_SERVER
                 ? File.separator + String.join(File.separator, "", "opt", "tomcat", "webapps", "qoli", "WEB-INF")
-                : File.separator + String.join(File.separator, "var", "www", "elife.webdata.ro", "server", "resources", "main")
+                : File.separator + String.join(File.separator, "var", "www", "life-index.eu", "server", "resources", "main")
             : String.join(File.separator, System.getProperty("user.dir"), "src", "main", "resources");
     public static final String PREPARED_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "prepared");
     public static final String RAW_DATASET_PATH = String.join(File.separator, BASE_PATH, "static", "raw", "json", "countries");
