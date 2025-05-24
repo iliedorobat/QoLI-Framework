@@ -71,7 +71,7 @@ public class SafetyCollector {
      * Aggregation: country<br/>
      * Data type: PPS per inhabitant (number)<br/>
      * Dataset: spr_exp_pens<br/>
-     * Years: 1990-2021
+     * Years: 1990-2022
      *
      * @return
      */
@@ -84,13 +84,13 @@ public class SafetyCollector {
      *
      * Aggregation: country<br/>
      * Data type: PPS per inhabitant (number)<br/>
-     * Dataset: spr_exp_sum<br/>
-     * Years: 1990-2021
+     * Dataset: spr_exp_type<br/>
+     * Years: 1990-2022
      *
      * @return
      */
     private static StringBuilder getSocialProtectionPps() {
-        return Fetcher.fetchData("spr_exp_sum", SafetyParams.SOCIAL_PROTECTION_PPS_PARAMS);
+        return Fetcher.fetchData("spr_exp_type", SafetyParams.SOCIAL_PROTECTION_PPS_PARAMS);
     }
 
     /**

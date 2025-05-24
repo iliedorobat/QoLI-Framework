@@ -64,7 +64,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: educ_uoe_enra21<br/>
-     * Years: 1998-2021<br/><br/>
+     * Years: 1998-2022<br/><br/>
      *
      * Comments: NUTS 2 regions => educ_uoe_enra22<br/><br/>
      *
@@ -146,7 +146,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: ratio of pupils to teachers (number)<br/>
      * Dataset: educ_uoe_perp04<br/>
-     * Years: 2013-2021<br/><br/>
+     * Years: 2013-2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

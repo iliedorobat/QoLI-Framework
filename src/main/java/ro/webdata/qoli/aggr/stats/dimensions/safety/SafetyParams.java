@@ -58,7 +58,7 @@ public class SafetyParams {
 
     public static final MultiValuedMap<String, String> SOCIAL_PROTECTION_PPS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.SPDEPS, "SPBENEFNOREROUTE");
+        put(ParamsNames.SPDEPS, "SPR");
         put(ParamsNames.UNIT, "PPS_HAB");
     }};
 
