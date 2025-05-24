@@ -24,15 +24,16 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
 
 5. [OPTIONAL] Run the following scripts on the production environment:
-   1. Create JKS certificate:
+   1. Set the same value for `KEY_STORE_PASS` in `src/main/bash/certbot_post_renewal_hook.sh` as the value of the environment variable with the same name
+   2. Create JKS certificate:
     ```bash
     src/main/bash/certbot_post_renewal_hook.sh
     ```
-   2. Enroll renewal hook to certbot:
+   3. Enroll renewal hook to certbot:
     ```bash
     src/main/bash/certbot_enroll_renewal_hook.sh
     ```
-   3. Copy the startup script:
+   4. Copy the startup script:
     ```bash
     src/main/bash/elife_enroll_startup.sh
     ```
