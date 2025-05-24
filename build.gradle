@@ -9,7 +9,7 @@ repositories {
     mavenCentral()
 }
 
-def prodDir = file("/var/www/elife.webdata.ro/server")
+def prodDir = file("/var/www/life-index.eu/server")
 
 tasks.processResources {
     doLast {
