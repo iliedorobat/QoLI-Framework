@@ -24,3 +24,4 @@ keytool -importkeystore \
   -deststorepass $KEY_STORE_PASS
 
 sudo chown "$USER" -R $WORKPLACE_PATH
+sudo chmod 644 -R $WORKPLACE_PATH
