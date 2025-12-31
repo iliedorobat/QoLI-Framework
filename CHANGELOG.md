@@ -3,8 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ---
 
+## 2.3.1
+- Updated the list of parameters for GDP
+- Updated the source datasets
+
 ## 2.3
-- Reduce the time range list for individually analysis so that only the data for the existing years are displayed
+- Reduced the time range list for individually analysis so that only the data for the existing years are displayed
 - Changed current indicators:
   - "Social protection expenditure level" dataset has been changed from spr_exp_sum to spr_exp_type as the former no longer exists
 - Added gradle support
