@@ -23,6 +23,7 @@ public class ParamsNames {
     public static final String INDIC_HE = "indic_he";
     public static final String INDIC_IL = "indic_il";
     public static final String INDIC_IS = "indic_is";
+    public static final String INDIC_PPP = "indic_ppp";
     public static final String INJURY = "injury";
     public static final String ISCED_11 = "isced11";
     public static final String LANG = "lang";
@@ -32,12 +33,11 @@ public class ParamsNames {
     public static final String MED_SPEC = "med_spec";
     public static final String N_LANG = "n_lang";
     public static final String N_PORTION = "n_portion";
-    public static final String NA_ITEM = "na_item";
     public static final String NACE_R1 = "nace_r1";
     public static final String NACE_R2 = "nace_r2";
     public static final String PERS_CAT = "pers_cat";
     public static final String PHYSICAL_ACTIVITY = "physact";
-    public static final String PPP_CAT = "ppp_cat";
+    public static final String PPP_CAT_18 = "ppp_cat18";
     public static final String PROF_POS = "prof_pos";
     public static final String QUANT_INC = "quant_inc";
     public static final String QUANTILE = "quantile";
