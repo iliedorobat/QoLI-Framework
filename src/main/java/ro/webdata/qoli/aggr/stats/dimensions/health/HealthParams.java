@@ -41,14 +41,14 @@ public class HealthParams {
         put(ParamsNames.AGE, "Y_GE16");
         put(ParamsNames.FREQ, "A");
         put(ParamsNames.LEVELS, "VG_G");
-        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.QUANT_INC, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> HEALTHY_LIFE_YEARS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INDIC_HE, "HLY_0"); // Healthy life years in absolute value at birth
+        put(ParamsNames.HLTH_HLE, "HLY_Y0"); // Healthy life years in absolute value at birth
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "YR");
     }};
@@ -70,7 +70,7 @@ public class HealthParams {
     public static final MultiValuedMap<String, String> LONG_HEALTH_ISSUE_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y_GE16");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.QUANTILE, "TOTAL");
+        put(ParamsNames.QUANT_INC, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
@@ -114,8 +114,8 @@ public class HealthParams {
     public static final MultiValuedMap<String, String> UNMET_DENTAL_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y_GE16");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.QUANTILE, "TOTAL");
-        put(ParamsNames.REASON, "TOOEFW");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.REASON, "TXP_TFAR_WLIST");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
@@ -123,8 +123,8 @@ public class HealthParams {
     public static final MultiValuedMap<String, String> UNMET_MEDICAL_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "Y_GE16");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.QUANTILE, "TOTAL");
-        put(ParamsNames.REASON, "TOOEFW");
+        put(ParamsNames.QUANT_INC, "TOTAL");
+        put(ParamsNames.REASON, "TXP_TFAR_WLIST");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};

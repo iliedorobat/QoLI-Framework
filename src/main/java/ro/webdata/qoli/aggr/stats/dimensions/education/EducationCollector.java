@@ -87,7 +87,7 @@ public class EducationCollector {
      * @return
      */
     private static StringBuilder getEducationRatio() {
-        return Fetcher.fetchData("edat_lfs_9903", EDUCATION_RATIO_PARAMS);
+        return Fetcher.fetchData("edat_lfse_03", EDUCATION_RATIO_PARAMS);
     }
 
     /**
@@ -161,13 +161,13 @@ public class EducationCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: trng_lfs_02<br/>
+     * Dataset: trng_lfse_03<br/>
      * Years: 2004-2023
      *
      * @return
      */
     private static StringBuilder getTrainingLastMonthRatio() {
-        return Fetcher.fetchData("trng_lfs_02", TRAINING_LAST_MONTH_RATIO_PARAMS);
+        return Fetcher.fetchData("trng_lfse_03", TRAINING_LAST_MONTH_RATIO_PARAMS);
     }
 
     /**

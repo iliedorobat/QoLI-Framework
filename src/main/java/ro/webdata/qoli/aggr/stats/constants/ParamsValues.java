@@ -131,13 +131,13 @@ public class ParamsValues {
         put("total", "T");
     }};
 
-    public static Map<String, String> SUBJNMON = new HashMap<>() {{
-        put("greatDifficulty", "EM_GD");    // Households making ends meet with great difficulty
-        put("difficulty", "EM_D");          // Households making ends meet with difficulty
-        put("someDifficulty", "EM_SD");     // Households making ends meet with some difficulty
-        put("fairlyEasily", "EM_FE");       // Households making ends meet fairly easily
-        put("easily", "EM_E");              // Households making ends meet easily
-        put("veryEasily", "EM_VE");         // Households making ends meet very easily
+    public static Map<String, String> LEV_DIFF = new HashMap<>() {{
+        put("greatDifficulty", "GRT");      // Households making ends meet with great difficulty
+        put("difficulty", "DIF");           // Households making ends meet with difficulty
+        put("someDifficulty", "SOME");      // Households making ends meet with some difficulty
+        put("fairlyEasily", "FEASY");       // Households making ends meet fairly easily
+        put("easily", "EASY");              // Households making ends meet easily
+        put("veryEasily", "VEASY");         // Households making ends meet very easily
     }};
 
     public static Map<String, String> WORKING_FLEXIBILITY = new HashMap<>() {{

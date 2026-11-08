@@ -15,8 +15,10 @@ public class ParamsNames {
     public static final String HEALTH_PROBLEMS = "hlth_pb";
     public static final String HH_COMP = "hhcomp";
     public static final String HHTYP = "hhtyp";
+    public static final String HLTH_HLE = "hlth_hle";
     public static final String ICCS = "iccs";
     public static final String INC_GRP = "incgrp";
+    public static final String INCOME = "income";
     public static final String IND_TYPE = "ind_type";
     public static final String INDIC_ED = "indic_ed";
     public static final String INDIC_EM = "indic_em";
@@ -27,6 +29,7 @@ public class ParamsNames {
     public static final String INJURY = "injury";
     public static final String ISCED_11 = "isced11";
     public static final String LANG = "lang";
+    public static final String LEV_DIFF = "lev_diff";
     public static final String LEV_SATIS = "lev_satis";
     public static final String LEVELS = "levels";
     public static final String LIFE_SAT = "life_sat";
@@ -42,6 +45,7 @@ public class ParamsNames {
     public static final String QUANT_INC = "quant_inc";
     public static final String QUANTILE = "quantile";
     public static final String REASON = "reason";
+    public static final String RSK_POV_TH = "rskpovth";
     public static final String SECT_PERF = "sectperf";
     public static final String SEVERITY = "severity";
     public static final String SEX = "sex";
@@ -50,6 +54,7 @@ public class ParamsNames {
     public static final String SPDEPB = "spdepb";
     public static final String SPDEPM = "spdepm";
     public static final String SPDEPS = "spdeps";
+    public static final String STAT_INFO = "statinfo";
     public static final String SUBJNMON = "subjnmon";
     public static final String TIME = "time";
     public static final String TRAINING = "training";

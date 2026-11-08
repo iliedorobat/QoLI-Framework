@@ -11,8 +11,8 @@ import java.util.HashMap;
 
 public class MaterialLivingParams {
     private static final String[] END_MEETS_DIFFICULTY_LEVELS = {
-            ParamsValues.SUBJNMON.get("greatDifficulty"),
-            ParamsValues.SUBJNMON.get("difficulty")
+            ParamsValues.LEV_DIFF.get("greatDifficulty"),
+            ParamsValues.LEV_DIFF.get("difficulty")
     };
 
     private static HashMap<String, String> QUINTILE_AGES = new HashMap<>() {{
@@ -24,16 +24,16 @@ public class MaterialLivingParams {
     public static final MultiValuedMap<String, String> DWELLING_ISSUES_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String>
             END_MEET_INABILITY_RATIO_PARAMS = getEndMeetInabilityParams(END_MEETS_DIFFICULTY_LEVELS),
-            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("difficulty")),
-            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.SUBJNMON.get("greatDifficulty"));
+            END_MEET_INABILITY_D_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.LEV_DIFF.get("difficulty")),
+            END_MEET_INABILITY_GD_RATIO_PARAMS = getEndMeetInabilityParams(ParamsValues.LEV_DIFF.get("greatDifficulty"));
 
     public static final MultiValuedMap<String, String> FINANCIAL_SATISFACTION_PARAMS = AuxiliaryParams.getSatisfactionParams(
             ParamsValues.SATISFACTION_LEVELS.get("high"),
@@ -49,7 +49,7 @@ public class MaterialLivingParams {
     public static final MultiValuedMap<String, String> HIGH_INCOME_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INDIC_IL, "LI_GE130MD");
+        put(ParamsNames.INCOME, "PC_GE130");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
@@ -59,8 +59,8 @@ public class MaterialLivingParams {
     public static final MultiValuedMap<String, String> LACK_OF_BATHS_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
@@ -77,7 +77,7 @@ public class MaterialLivingParams {
     public static final MultiValuedMap<String, String> MEDIAN_INCOME_PPS_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INDIC_IL, "MED_E");
+        put(ParamsNames.STAT_INFO, "MED_EI");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PPS");
     }};
@@ -85,22 +85,23 @@ public class MaterialLivingParams {
     public static final MultiValuedMap<String, String> OVER_OCCUPIED_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> POVERTY_RISK_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.INDIC_IL, "LI_R_MD60");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "B_60");
+        put(ParamsNames.STAT_INFO, "MED_EI");
         put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> UNDER_OCCUPIED_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.AGE, "TOTAL");
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.SEX, "T");
         put(ParamsNames.UNIT, "PC");
     }};
@@ -113,11 +114,11 @@ public class MaterialLivingParams {
     private static MultiValuedMap<String, String> getEndMeetInabilityParams(String[] levels) {
         MultiValuedMap<String, String> params = new HashSetValuedHashMap<>() {{
             put(ParamsNames.FREQ, "A");
-            put(ParamsNames.HHTYP, "TOTAL");
-            put(ParamsNames.INC_GRP, "TOTAL");
+            put(ParamsNames.HH_COMP, "TOTAL");
+            put(ParamsNames.RSK_POV_TH, "TOTAL");
             put(ParamsNames.UNIT, "PC");
         }};
-        FetcherUtils.addParams(params, ParamsNames.SUBJNMON, levels);
+        FetcherUtils.addParams(params, ParamsNames.LEV_DIFF, levels);
         return params;
     }
 
