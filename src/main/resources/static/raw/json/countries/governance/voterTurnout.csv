@@ -521,7 +521,7 @@ Brazil;BR;BRA;Presidential;1960-01-01;80.98%;12,586,354;15,543,332;33.43%;37,654
 Brazil;BR;BRA;Presidential;1955-01-01;59.68%;9,097,014;15,243,246;27.48%;33,100,650;60,183,000;5.20%;Yes
 Brazil;BR;BRA;Presidential;1950-01-01;72.06%;8,254,979;11,455,149;28.36%;29,106,560;51,976,000;4.30%;Yes
 Brazil;BR;BRA;Presidential;1945-01-01;83.12%;6,200,805;7,459,849;23.96%;25,880,400;46,215,000;5.30%;Yes
-Bulgaria;BG;BGR;Parliamentary;2026-04-19;49.28%;3,240,156;6,575,151;58.08%;5,578,693;6,693,714;;No
+Bulgaria;BG;BGR;Parliamentary;2026-04-19;49.28%;3,240,156;6,575,151;58.08%;5,578,693;6,693,714;3.87%;No
 Bulgaria;BG;BGR;Parliamentary;2024-10-27;38.94%;2,570,639;6,601,262;44.71%;5,624,101;6,782,659;2.01%;No
 Bulgaria;BG;BGR;Parliamentary;2024-06-09;34.41%;2,268,644;6,593,275;40.34%;5,624,101;6,782,659;2.82%;Yes
 Bulgaria;BG;BGR;Parliamentary;2023-04-02;39.11%;2,683,606;6,862,409;47.48%;5,651,653;6,827,736;1.66%;Yes
@@ -538,6 +538,7 @@ Bulgaria;BG;BGR;Parliamentary;2001-01-01;66.63%;4,608,289;6,916,151;72.10%;6,391
 Bulgaria;BG;BGR;Parliamentary;1997-01-01;58.87%;4,291,258;7,289,956;66.90%;6,414,519;8,330,544;0.80%;No
 Bulgaria;BG;BGR;Parliamentary;1994-01-01;75.23%;5,264,614;6,997,954;80.98%;6,501,110;8,443,000;1.20%;No
 Bulgaria;BG;BGR;Parliamentary;1991-01-01;83.87%;5,694,842;6,790,006;84.54%;6,736,500;8,982,000;2.70%;No
+Bulgaria;BG;BGR;Presidential;2026-10-25;22.98%;1,525,034;6,716,047;27.34%;5,578,693;6,693,714;0.21%;Yes
 Bulgaria;BG;BGR;Presidential;2021-11-21;34.64%;2,311,528;6,672,935;40.43%;5,717,150;6,919,180;0.17%;Yes
 Bulgaria;BG;BGR;Presidential;2021-11-14;38.45%;2,670,923;6,946,852;46.72%;5,717,150;6,919,180;0.42%;Yes
 Bulgaria;BG;BGR;Presidential;2016-11-13;50.44%;3,540,964;7,020,119;59.98%;5,903,575;7,144,653;1.86%;Yes
@@ -1718,7 +1719,7 @@ Iran, Islamic Republic of;IR;IRN;Parliamentary;2020-01-01;42.32%;24,512,000;57,9
 Iran, Islamic Republic of;IR;IRN;Parliamentary;2016-01-01;60.09%;33,000,000;54,915,024;55.29%;59,682,008;82,801,633;;No
 Iran, Islamic Republic of;IR;IRN;Parliamentary;2012-01-01;64.20%;31,001,408;48,288,799;61.81%;50,159,911;78,868,711;;No
 Iran, Islamic Republic of;IR;IRN;Parliamentary;2008-01-01;49.47%;24,240,269;49,000,000;54.08%;44,820,204;70,472,846;4.32%;No
-Iran, Islamic Republic of;IR;IRN;Parliamentary;2004-01-01;50.57%;23,439,700;46,351,032;52.77%;40,083,692;68,669,000;;No
+Iran, Islamic Republic of;IR;IRN;Parliamentary;2004-01-01;50.57%;;;52.77%;40,083,692;68,669,000;;No
 Iran, Islamic Republic of;IR;IRN;Parliamentary;2000-01-01;82.63%;32,000,000;38,726,386;76.52%;41,817,397;60,440,767;;No
 Iran, Islamic Republic of;IR;IRN;Parliamentary;1996-01-01;77.24%;24,716,692;32,000,000;73.07%;33,824,520;62,638,000;;No
 Iran, Islamic Republic of;IR;IRN;Parliamentary;1992-01-01;;18,803,158;;62.07%;30,291,090;57,153,000;1.47%;No
@@ -1926,7 +1927,7 @@ Kiribati;KI;KIR;Parliamentary;2024-08-19;57.99%;30,699;52,941;38.87%;78,988;116,
 Kiribati;KI;KIR;Parliamentary;2024-08-14;84.54%;44,758;52,941;56.66%;78,988;116,545;0.28%;No
 Kiribati;KI;KIR;Parliamentary;2020-04-14;75.67%;34,000;44,929;46.26%;73,495;111,796;;No
 Kiribati;KI;KIR;Parliamentary;2016-01-07;;;40,000;;67,481;106,925;;No
-Kiribati;KI;KIR;Parliamentary;2011-10-21;;;;;;;;No
+Kiribati;KI;KIR;Parliamentary;2011-10-21;;;;;60,121;100,912;;No
 Kiribati;KI;KIR;Parliamentary;2007-01-01;67.54%;29,166;43,184;44.80%;54,309;95,479;;No
 Kiribati;KI;KIR;Parliamentary;2003-01-01;;;;;48,918;89,701;;No
 Kiribati;KI;KIR;Parliamentary;2002-01-01;;;;;47,697;88,264;;No
@@ -1996,7 +1997,7 @@ Kuwait;KW;KWT;Parliamentary;2009-01-01;59.00%;;384,790;;1,632,584;2,489,004;;No
 Kuwait;KW;KWT;Parliamentary;2008-01-01;59.41%;214,886;361,684;12.29%;1,748,206;2,596,799;;No
 Kuwait;KW;KWT;Parliamentary;2006-01-01;;312,762;340,248;19.42%;1,610,292;2,418,393;0.60%;No
 Kuwait;KW;KWT;Parliamentary;2003-01-01;;;136,715;;1,423,080;2,183,161;;No
-Kuwait;KW;KWT;Parliamentary;1999-01-01;83.27%;;112,883;;;2,238,000;;No
+Kuwait;KW;KWT;Parliamentary;1999-01-01;83.27%;93,996;112,883;;;2,238,000;;No
 Kuwait;KW;KWT;Parliamentary;1996-01-01;80.00%;85,735;107,169;22.86%;375,120;1,563,000;;No
 Kuwait;KW;KWT;Parliamentary;1992-01-01;85.00%;69,224;81,440;18.45%;375,120;1,422,000;;No
 Kuwait;KW;KWT;Parliamentary;1985-01-01;84.59%;48,000;56,745;8.46%;567,600;1,720,000;;No
@@ -2759,7 +2760,7 @@ Panama;PA;PAN;Presidential;1948-01-01;70.86%;216,214;305,123;52.82%;409,320;758,
 Papua New Guinea;PG;PNG;Parliamentary;2017-01-01;81.30%;4,110,117;5,055,347;98.85%;4,158,119;6,909,701;;No
 Papua New Guinea;PG;PNG;Parliamentary;2012-01-01;76.89%;3,672,251;4,776,096;100.96%;3,637,394;6,310,129;;No
 Papua New Guinea;PG;PNG;Parliamentary;2007-01-01;75.92%;;3,938,839;94.61%;3,160,695;5,795,887;;No
-Papua New Guinea;PG;PNG;Parliamentary;2002-01-01;62.22%;;5,319,095;;2,765,931;5,049,055;;No
+Papua New Guinea;PG;PNG;Parliamentary;2002-01-01;62.22%;3,309,758;5,319,095;;2,765,931;5,049,055;;No
 Papua New Guinea;PG;PNG;Parliamentary;1997-01-01;65.74%;2,244,531;3,414,072;98.76%;2,272,626;4,250,935;;No
 Papua New Guinea;PG;PNG;Parliamentary;1992-01-01;81.20%;1,614,251;1,987,994;71.03%;2,272,626;3,847,000;;No
 Papua New Guinea;PG;PNG;Parliamentary;1987-01-01;73.54%;1,355,477;1,843,128;76.33%;1,775,820;3,482,000;;No
@@ -2844,7 +2845,7 @@ Philippines;PH;PHL;Parliamentary;2022-05-09;83.83%;55,114,084;65,745,512;78.70%;
 Philippines;PH;PHL;Parliamentary;2019-05-13;74.31%;47,296,442;63,643,263;71.91%;65,771,984;107,535,277;13.24%;No
 Philippines;PH;PHL;Parliamentary;2016-05-09;81.95%;44,549,212;54,363,844;72.17%;61,728,990;102,624,209;;No
 Philippines;PH;PHL;Parliamentary;2013-05-13;77.31%;40,214,324;52,014,648;69.45%;57,908,028;97,760,753;;No
-Philippines;PH;PHL;Parliamentary;2010-05-10;74.98%;38,162,985;50,896,164;69.93%;58,986,204;93,136,651;9.09%;No
+Philippines;PH;PHL;Parliamentary;2010-05-10;74.98%;38,162,985;50,896,164;69.93%;54,574,173;93,136,651;9.09%;No
 Philippines;PH;PHL;Parliamentary;2007-05-14;63.68%;28,945,710;45,453,236;54.87%;52,752,550;91,077,287;;No
 Philippines;PH;PHL;Parliamentary;2004-05-10;76.97%;33,510,092;43,536,028;68.77%;48,727,136;87,857,473;;No
 Philippines;PH;PHL;Parliamentary;2001-05-14;81.08%;27,709,510;34,176,376;64.75%;42,795,056;77,599,533;;No
@@ -3109,7 +3110,7 @@ São Tomé and Príncipe;ST;STP;Presidential;2006-01-01;64.95%;59,178;91,119;69.
 São Tomé and Príncipe;ST;STP;Presidential;2001-01-01;70.55%;47,535;67,374;70.42%;67,504;144,703;1.50%;No
 São Tomé and Príncipe;ST;STP;Presidential;1996-01-01;77.29%;38,841;50,256;63.65%;61,021;130,806;3.20%;No
 São Tomé and Príncipe;ST;STP;Presidential;1991-01-01;60.00%;30,966;51,610;54.45%;56,870;121,000;14.30%;No
-Senegal;SN;SEN;Parliamentary;2024-11-17;;3,649,959;;36.87%;9,900,727;18,847,519;;No
+Senegal;SN;SEN;Parliamentary;2024-11-17;49.72%;;;;9,900,727;18,847,519;;No
 Senegal;SN;SEN;Parliamentary;2022-01-01;46.64%;3,281,583;7,036,466;36.92%;8,888,302;16,445,897;0.63%;No
 Senegal;SN;SEN;Parliamentary;2017-01-01;53.66%;3,337,494;6,219,446;43.94%;7,596,246;14,668,522;0.81%;No
 Senegal;SN;SEN;Parliamentary;2012-01-01;36.67%;1,968,852;5,368,783;30.27%;6,504,093;12,969,606;0.35%;No
@@ -3354,7 +3355,7 @@ Suriname;SR;SUR;Parliamentary;1991-05-25;64.31%;158,809;246,926;67.77%;234,320;4
 Suriname;SR;SUR;Parliamentary;1987-11-25;84.96%;177,025;208,356;83.17%;212,850;387,000;2.00%;No
 Suriname;SR;SUR;Parliamentary;1977-10-31;77.77%;123,720;159,082;87.63%;141,180;362,000;;No
 Suriname;SR;SUR;Parliamentary;1973-11-19;76.03%;122,711;161,400;78.66%;156,000;400,000;;No
-Suriname;SR;SUR;Parliamentary;1969-10-24;;204,041;;145.33%;;;;No
+Suriname;SR;SUR;Parliamentary;1969-10-24;;;;;;360,000;;
 Suriname;SR;SUR;Parliamentary;1969-01-01;;;;;;;;
 Suriname;SR;SUR;Parliamentary;1967-03-15;;207,119;;144.33%;143,500;350,000;;No
 Suriname;SR;SUR;Parliamentary;1967-01-01;;;;;;;;
@@ -3529,7 +3530,7 @@ Togo;TG;TGO;Parliamentary;1994-02-06;65.12%;1,302,400;2,000,000;69.08%;1,885,440
 Togo;TG;TGO;Parliamentary;1990-03-04;78.67%;1,197,754;1,522,491;69.23%;1,730,190;3,531,000;;No
 Togo;TG;TGO;Parliamentary;1990-01-01;;;;;;;;
 Togo;TG;TGO;Parliamentary;1985-03-24;78.62%;1,036,975;1,318,979;69.89%;1,483,720;3,028,000;;No
-Togo;TG;TGO;Presidential;2025-05-03;0.00%;0.0;0.0;0.00%;0.0;0.0;;No
+Togo;TG;TGO;Presidential;2025-05-03;0.00%;;0.0;0.00%;0.0;0.0;;No
 Togo;TG;TGO;Presidential;2020-02-22;92.28%;3,449,989;3,738,786;74.27%;4,645,140;8,608,444;27.93%;No
 Togo;TG;TGO;Presidential;2015-04-25;60.94%;2,138,438;3,509,258;53.21%;4,019,183;7,552,318;2.75%;No
 Togo;TG;TGO;Presidential;2010-03-04;64.68%;2,119,829;3,277,492;65.79%;3,222,000;6,291,000;3.74%;No
@@ -3903,7 +3904,7 @@ Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Parliamentary;1996-01-01;53.29
 Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Parliamentary;1993-01-01;67.39%;4,983,606;7,394,772;65.11%;7,654,050;10,485,000;5.50%;No
 Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Presidential;2004-01-01;48.69%;3,180,682;6,532,263;48.34%;6,448,799;7,463,157;1.30%;No
 Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Presidential;2003-01-01;38.79%;2,523,889;6,506,505;42.21%;5,979,859;7,480,591;3.40%;No
-Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Presidential;2002-01-01;45.16%;2,946,716;6,525,760;56.52%;6,434,760;;2.70%;No
+Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Presidential;2002-01-01;45.16%;2,946,716;6,525,760;56.52%;6,434,760;;;No
 Yugoslavia, FR/Union of Serbia and Montenegro;CS;;Presidential;2000-01-01;71.55%;4,916,920;6,871,595;;;;2.80%;No
 Yugoslavia, SFR (1943-1992);YU;;Parliamentary;1992-01-01;56.07%;4,080,465;7,277,471;54.26%;7,520,400;10,445,000;11.00%;No
 Yugoslavia, SFR (1943-1992);YU;;Parliamentary;1953-01-01;89.37%;9,455,980;10,580,648;84.32%;11,214,060;16,991,000;;No
