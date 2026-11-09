@@ -48,7 +48,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: hours (number)<br/>
      * Dataset: lfsa_ewhun2<br/>
-     * Years: 2008-2023<br/><br/>
+     * Years: 2008-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfe2ehour<br/><br/>
      *
@@ -66,7 +66,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of people aged from 15 to 64 years (%)<br/>
      * Dataset: lfsa_ergaed<br/>
-     * Years: 1983-2023<br/><br/>
+     * Years: 1983-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfe2emprt
      *
@@ -82,7 +82,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the population aged 15-64 years who were economically inactive (%)<br/>
      * Dataset: lfsa_ipga<br/>
-     * Years: 1983-2023<br/><br/>
+     * Years: 1983-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -99,7 +99,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the total part-time employment aged 15-64 years (%)<br/>
      * Dataset: lfsa_eppgai<br/>
-     * Years: 1983-2023<br/><br/>
+     * Years: 1983-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -130,7 +130,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of labour force aged 15-74 years (%)<br/>
      * Dataset: une_ltu_a<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfu2ltu<br/><br/>
      *
@@ -148,7 +148,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of employees earning two thirds or less of national median earnings (%)<br/>
      * Dataset: earn_ses_pub1a<br/>
-     * Years: 2006; 2010; 2014; 2018<br/><br/>
+     * Years: 2006; 2010; 2014; 2018; 2022<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -164,7 +164,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: proportion of total population aged 0 to 59 years (%)<br/>
      * Dataset: ilc_lvhl11<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => ilc_lvhl21<br/><br/>
      *
@@ -184,7 +184,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: count (number)<br/>
      * Dataset: rd_p_persocc<br/>
-     * Years: 1980-2022
+     * Years: 1980-2024
      *
      * @return
      */
@@ -198,7 +198,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of total employment (%)<br/>
      * Dataset: lfsi_pt_a<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -214,7 +214,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of labour force aged 15-74 years (%)<br/>
      * Dataset: lfsa_urgaed<br/>
-     * Years: 1983-2023<br/><br/>
+     * Years: 1983-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => lfst_r_lfu3rt<br/><br/>
      *
@@ -246,7 +246,7 @@ public class MainActivityCollector {
      * Aggregation: country<br/>
      * Data type: percentage of the total employment aged from 15 to 64 years (%)<br/>
      * Dataset: lfsa_ewpnig<br/>
-     * Years: 1992-2023<br/><br/>
+     * Years: 1992-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

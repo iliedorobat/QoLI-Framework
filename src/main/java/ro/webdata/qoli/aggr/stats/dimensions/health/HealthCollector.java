@@ -59,7 +59,7 @@ public class HealthCollector {
      * Aggregation: NUTS 2 regions<br/>
      * Dataset: hlth_rs_prs2<br/>
      * Value type: per hundred thousand inhabitants (number)<br/>
-     * Years: 1960-2022
+     * Years: 1960-2024
      *
      * @return
      */
@@ -73,7 +73,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_10<br/>
-     * Years: 2005-2023
+     * Years: 2005-2025
      *
      * @return
      */
@@ -88,7 +88,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: year (number)<br/>
      * Dataset: hlth_hlye<br/>
-     * Years: 2004-2022
+     * Years: 2004-2024
      *
      * @return
      */
@@ -104,7 +104,7 @@ public class HealthCollector {
      * Dataset: hlth_rs_bds1<br/>
      * Note: Hospital beds provide information on health care capacities,
      *      i.e. on the maximum number of patients who can be treated by hospitals<br/>
-     * Years: 1960-2022<br/><br/>
+     * Years: 1960-2024<br/><br/>
      *
      * @return
      */
@@ -119,7 +119,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: years (number)<br/>
      * Dataset: demo_mlexpec<br/>
-     * Years: 1960-2023<br/><br/>
+     * Years: 1960-2024<br/><br/>
      *
      * Comments: NUTS 2 regions => demo_r_mlifexp
      *
@@ -135,7 +135,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_11<br/>
-     * Years: 2008-2023<br/><br/>
+     * Years: 2008-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -211,7 +211,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_09<br/>
-     * Years: 2008-2023<br/><br/>
+     * Years: 2008-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -228,7 +228,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: hlth_silc_08<br/>
-     * Years: 2008-2023<br/><br/>
+     * Years: 2008-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -244,7 +244,7 @@ public class HealthCollector {
      * Aggregation: country<br/>
      * Data type: number<br/>
      * Dataset: hsw_mi07<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2024<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

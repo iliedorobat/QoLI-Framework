@@ -61,7 +61,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: tesem060<br/>
-     * Years: 2005-2023<br/><br/>
+     * Years: 2005-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -78,7 +78,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: earn_gr_gpgr2<br/>
-     * Years: 2007-2022<br/><br/>
+     * Years: 2007-2024<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -108,7 +108,7 @@ public class GovRightsCollector {
      * Aggregation: country<br/>
      * Data type: rating (number between 0-10)<br/>
      * Dataset: ilc_pw03<br/>
-     * Years: 2013; 2018; 2021-2023
+     * Years: 2013; 2018; 2021-2025
      *
      * @return
      */

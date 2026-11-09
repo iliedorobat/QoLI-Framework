@@ -28,7 +28,7 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: Kilograms per capita<br/>
      * Dataset: env_ac_ainah_r2<br/>
-     * Years: 1995-2022<br/><br/>
+     * Years: 1995-2024<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -79,7 +79,7 @@ public class EnvironmentCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: env_wat_pop<br/>
-     * Years: 1990; 1995; 2000-2022<br/><br/>
+     * Years: 1990; 1995; 2000-2024<br/><br/>
      *
      * Comment: NUTS 2 regions => env_watpop_r2<br/>
      * <b>Lack of data: IT; LV; SI; UK</b>
