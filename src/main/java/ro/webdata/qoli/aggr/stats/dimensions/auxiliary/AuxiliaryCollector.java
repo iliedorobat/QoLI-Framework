@@ -16,7 +16,7 @@ public class AuxiliaryCollector {
      * Aggregation: country<br/>
      * Data type: count (number)<br/>
      * Dataset: demo_pjan<br/>
-     * Years: 1960-2023
+     * Years: 1960-2025
      *
      * @return
      */

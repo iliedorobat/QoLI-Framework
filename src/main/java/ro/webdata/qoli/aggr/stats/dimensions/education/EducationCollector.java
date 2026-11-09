@@ -30,7 +30,7 @@ public class EducationCollector {
      * Note: The digital skills indicapotr methodology has changed substantially to reflect the
      *      Digital Competence Framework 2.0. As a consequence, 2021 is the beginning of a new
      *      time series. https://ec.europa.eu/eurostat/cache/metadata/en/sdg_04_70_esmsip2.htm
-     * Years: 2021; 2023
+     * Years: 2021; 2023; 2025
      *
      * @return
      */
@@ -44,7 +44,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_14<br/>
-     * Years: 1992-2023<br/><br/>
+     * Years: 1992-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_16<br/><br/>
      *
@@ -64,7 +64,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: educ_uoe_enra21<br/>
-     * Years: 1998-2022<br/><br/>
+     * Years: 1998-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => educ_uoe_enra22<br/><br/>
      *
@@ -80,14 +80,14 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
      * Dataset: edat_lfse_03<br/>
-     * Years: 1992-2023<br/><br/>
+     * Years: 1992-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_04
      *
      * @return
      */
     private static StringBuilder getEducationRatio() {
-        return Fetcher.fetchData("edat_lfs_9903", EDUCATION_RATIO_PARAMS);
+        return Fetcher.fetchData("edat_lfse_03", EDUCATION_RATIO_PARAMS);
     }
 
     /**
@@ -96,7 +96,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: NEET rates (%)<br/>
      * Dataset: edat_lfse_20<br/>
-     * Years: 2000-2023<br/><br/>
+     * Years: 2000-2025<br/><br/>
      *
      * Comments: NUTS 2 regions => edat_lfse_22<br/><br/>
      *
@@ -146,7 +146,7 @@ public class EducationCollector {
      * Aggregation: country<br/>
      * Data type: ratio of pupils to teachers (number)<br/>
      * Dataset: educ_uoe_perp04<br/>
-     * Years: 2013-2022<br/><br/>
+     * Years: 2013-2024<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -161,13 +161,13 @@ public class EducationCollector {
      *
      * Aggregation: country<br/>
      * Data type: percentage (%)<br/>
-     * Dataset: trng_lfs_02<br/>
-     * Years: 2004-2023
+     * Dataset: trng_lfse_03<br/>
+     * Years: 2004-2025
      *
      * @return
      */
     private static StringBuilder getTrainingLastMonthRatio() {
-        return Fetcher.fetchData("trng_lfs_02", TRAINING_LAST_MONTH_RATIO_PARAMS);
+        return Fetcher.fetchData("trng_lfse_03", TRAINING_LAST_MONTH_RATIO_PARAMS);
     }
 
     /**

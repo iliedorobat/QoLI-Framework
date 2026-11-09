@@ -30,15 +30,15 @@ public class EnvironmentParams {
 
     public static final MultiValuedMap<String, String> NOISE_POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.UNIT, "PC");
     }};
 
     public static final MultiValuedMap<String, String> POLLUTION_RATIO_PARAMS = new HashSetValuedHashMap<>() {{
         put(ParamsNames.FREQ, "A");
-        put(ParamsNames.HHTYP, "TOTAL");
-        put(ParamsNames.INC_GRP, "TOTAL");
+        put(ParamsNames.HH_COMP, "TOTAL");
+        put(ParamsNames.RSK_POV_TH, "TOTAL");
         put(ParamsNames.UNIT, "PC");
     }};
 

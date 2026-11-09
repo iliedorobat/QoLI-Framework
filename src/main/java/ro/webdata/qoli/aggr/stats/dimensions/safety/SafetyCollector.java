@@ -39,7 +39,7 @@ public class SafetyCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdes05<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -55,7 +55,7 @@ public class SafetyCollector {
      * Aggregation: country<br/>
      * Data type: count (number)<br/>
      * Dataset: crim_off_cat<br/>
-     * Years: 2008-2022<br/><br/>
+     * Years: 2008-2024<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *
@@ -71,7 +71,7 @@ public class SafetyCollector {
      * Aggregation: country<br/>
      * Data type: PPS per inhabitant (number)<br/>
      * Dataset: spr_exp_pens<br/>
-     * Years: 1990-2022
+     * Years: 1990-2024
      *
      * @return
      */
@@ -85,7 +85,7 @@ public class SafetyCollector {
      * Aggregation: country<br/>
      * Data type: PPS per inhabitant (number)<br/>
      * Dataset: spr_exp_type<br/>
-     * Years: 1990-2022
+     * Years: 1990-2024
      *
      * @return
      */
@@ -100,7 +100,7 @@ public class SafetyCollector {
      * Data type: percentage (%)<br/>
      * Dataset: ilc_mdes04<br/>
      * Note: EU-SILC survey<br/>
-     * Years: 2003-2023<br/><br/>
+     * Years: 2003-2025<br/><br/>
      *
      * <b>GREATER IS WORSE!</b>
      *

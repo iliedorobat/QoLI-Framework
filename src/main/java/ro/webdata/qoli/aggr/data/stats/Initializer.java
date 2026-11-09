@@ -64,7 +64,12 @@ public class Initializer {
             MultiValuedMap<String, String> params,
             String filePath
     ) {
-        return initConsolidatedMap(params, filePath, Constants.EU28_MEMBERS);
+        try {
+            return initConsolidatedMap(params, filePath, Constants.EU28_MEMBERS);
+        } catch (Exception e) {
+            System.err.println("Error: " + filePath + "\n" + params);
+            return null;
+        }
     }
 
     /**

@@ -28,6 +28,7 @@ hs_err_pid*
 *.idea
 *.iml
 out/*
+bin/*
 
 # Gradle directories
 .gradle
@@ -36,3 +37,6 @@ build/
 
 # Maven directories
 target/
+
+# Environment variables
+.env

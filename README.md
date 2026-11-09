@@ -14,14 +14,19 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
 ```
 
 4. Update environment variables and app constants:
-- `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
-- `HOST_ADDRESS`: the IP address of the host
-- `IS_PRODUCTION`: `true` if the app is deployed on the production server
-- `IS_TESTING`: `true` for downloading sample data instead of the full set
-- `KEY_STORE_FILE`: path to the `keystore.p12` file
-- `KEY_STORE_PASS`: password for the `keystore.p12` file
-- `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
-- `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+    - Copy `.env.example` to `.env`:
+      ```bash
+      cp .env.example .env
+      ```
+   - Edit `.env` with your configuration values:
+      - `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
+      - `HOST_ADDRESS`: the IP address of the host
+      - `IS_PRODUCTION`: `true` if the app is deployed on the production server
+      - `IS_TESTING`: `true` for downloading sample data instead of the full set
+      - `KEY_STORE_FILE`: path to the `keystore.p12` file
+      - `KEY_STORE_PASS`: password for the `keystore.p12` file
+      - `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
+   - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
 
 5. [OPTIONAL] Run the following scripts on the production environment:
    1. Set the same value for `KEY_STORE_PASS` in `src/main/bash/certbot_post_renewal_hook.sh` as the value of the environment variable with the same name
