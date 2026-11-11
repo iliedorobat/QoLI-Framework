@@ -38,10 +38,9 @@ PREPARED_DATASET_PATH = os.path.join(BASE_PATH, "static", "prepared")
 # This file is at: QoLI-Framework/framework/collector/constants/constants.py
 CURRENT_FILE_PATH = Path(__file__).resolve()
 FRAMEWORK_DIR = CURRENT_FILE_PATH.parents[2]  # Go up 3 levels to 'framework' directory
-PROJECT_ROOT = FRAMEWORK_DIR.parent  # Go up 1 more level to 'QoLI-Framework'
 
 # Build the raw dataset path using absolute paths
-RAW_DATASET_PATH = str(PROJECT_ROOT / "src" / "main" / "resources" / "static" / "raw" / "json" / "countries")
+RAW_DATASET_PATH = str(FRAMEWORK_DIR / "src" / "main" / "resources" / "static" / "raw" / "json" / "countries")
 
 # Optional: Validate the path exists
 if not os.path.exists(RAW_DATASET_PATH):
