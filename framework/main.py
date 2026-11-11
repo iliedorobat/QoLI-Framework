@@ -4,6 +4,7 @@ from framework.constants.constants import RAW_DATASET_PATH
 from framework.processing.local_parser import read_json_file, get_dimension_keys
 from framework.stats.auxiliary.auxiliary_collector import fetch_auxiliary_data
 from framework.stats.education.education_collector import fetch_education_data
+from framework.stats.environment.environment_collector import fetch_environment_data
 
 
 def main():
@@ -19,6 +20,7 @@ def collect_data():
     # TODO:
     fetch_auxiliary_data()
     fetch_education_data()
+    fetch_environment_data()
 
     print("\nThe data collection process has been successfully completed!")
 
