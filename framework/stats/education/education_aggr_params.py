@@ -1,4 +1,4 @@
-from framework.constants.param_units import ParamUnits
+from framework.common.param_units import ParamUnits
 
 EDUCATION = "education"
 

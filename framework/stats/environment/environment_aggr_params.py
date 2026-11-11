@@ -2,7 +2,7 @@
 Aggregation parameters for environment-related quality of life indicators.
 """
 
-from framework.constants.param_units import ParamUnits
+from framework.common.param_units import ParamUnits
 
 
 ENVIRONMENT = "environment"

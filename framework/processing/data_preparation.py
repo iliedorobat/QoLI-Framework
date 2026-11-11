@@ -2,7 +2,7 @@
 from collections import OrderedDict
 from typing import Dict, List, Optional, Union
 
-from framework.constants.constants import EU28_MEMBERS, KEY_SEPARATOR
+from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
 from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR, INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
 from framework.processing.map_utils import generate_key, get_entry_year
 from framework.processing.math_utils import MathUtils

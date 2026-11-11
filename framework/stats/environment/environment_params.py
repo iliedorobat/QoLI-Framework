@@ -2,9 +2,9 @@
 Parameters for fetching environment-related data from Eurostat.
 """
 
-from framework.constants.param_names import ParamNames
+from framework.common.param_names import ParamNames
+from framework.common.param_values import AIR_POL
 from framework.fetching.fetch_utils import add_params
-from framework.constants.param_values import AIR_POL
 
 # Air pollution types
 AIR_POL_TYPES = [

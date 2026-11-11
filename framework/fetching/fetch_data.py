@@ -5,7 +5,7 @@ from urllib.parse import quote
 import requests
 
 from framework.fetching.fetch_utils import consolidate_http_params, MIN_YEAR, MAX_YEAR
-from framework.constants.constants import EU28_MEMBERS
+from framework.common.constants import EU28_MEMBERS
 
 # Constants
 ENCODING_SCHEME = "UTF-8"

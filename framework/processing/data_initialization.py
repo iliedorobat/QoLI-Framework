@@ -4,7 +4,7 @@ Basic methods for initializing lists (add "null" value for the missing keys)
 
 from typing import Dict, List, Any
 
-from framework.constants.constants import EU28_MEMBERS
+from framework.common.constants import EU28_MEMBERS
 from framework.fetching.fetch_utils import INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
 from framework.processing.data_consolidation import MergeUtils
 from framework.processing.map_utils import generate_key

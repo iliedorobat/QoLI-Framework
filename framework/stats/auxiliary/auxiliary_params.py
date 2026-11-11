@@ -4,7 +4,7 @@ Auxiliary parameters for statistical dimensions
 
 from typing import Dict, List, Optional
 
-from framework.constants.param_names import ParamNames
+from framework.common.param_names import ParamNames
 
 
 LOW_WORK_INTENSITY_RATIO_PARAMS = {

@@ -1,4 +1,4 @@
-from framework.constants.param_names import ParamNames
+from framework.common.param_names import ParamNames
 
 DIGITAL_SKILLS_PARAMS = {
     ParamNames.FREQ: ["A"],

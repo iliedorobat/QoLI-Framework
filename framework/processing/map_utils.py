@@ -4,7 +4,7 @@ Utility methods for map operations.
 
 from typing import List, Dict
 
-from framework.constants.constants import KEY_SEPARATOR
+from framework.common.constants import KEY_SEPARATOR
 
 
 def get_unique_keys(params: Dict[str, List[str]]) -> List[str]:
