@@ -1,4 +1,4 @@
-class ParamsUnits:
+class ParamUnits:
     HOURS = "hours"
     KG_PER_CAPITA = "kilograms per capita"
     NUMBER = "number"

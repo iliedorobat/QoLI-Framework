@@ -1,0 +1,89 @@
+from framework.constants.param_units import ParamUnits
+
+EDUCATION = "education"
+
+DIGITAL_SKILLS_RATIO = EDUCATION + ":digitalSkillsRatio"
+DROPOUT_RATIO = EDUCATION + ":dropoutRatio"
+EARLY_EDU_RATIO = EDUCATION + ":earlyEducationRatio"
+EDUCATION_RATIO = EDUCATION + ":educationRatio"
+INACTIVE_YOUNG_RATIO = EDUCATION + ":inactiveYoungRatio"
+NO_FOREIGN_LANG_KNOWN_RATIO = EDUCATION + ":noKnownForeignLangRatio"
+PUPILS_RATIO = EDUCATION + ":pupilsRatio"
+TRAINING_LAST_MONTH_RATIO = EDUCATION + ":trainingLastMonthRatio"
+TRAINING_LAST_YEAR_RATIO = EDUCATION + ":trainingLastYearRatio"
+
+AGGR_PARAMS_LABELS = {
+    DIGITAL_SKILLS_RATIO: "Digital Skills Ratio",
+    DROPOUT_RATIO: "Dropout Ratio",
+    EARLY_EDU_RATIO: "Early Education Ratio",
+    EDUCATION_RATIO: "Education Ratio",
+    INACTIVE_YOUNG_RATIO: "Inactive Young People Ratio",
+    NO_FOREIGN_LANG_KNOWN_RATIO: "No Foreign Language Known Ratio",
+    PUPILS_RATIO: "Pupils Ratio",
+    TRAINING_LAST_MONTH_RATIO: "Training Ratio (last 4 weeks)",
+    TRAINING_LAST_YEAR_RATIO: "Training Ratio (last year)",
+}
+
+AGGR_PARAMS_UNITS = {
+    DIGITAL_SKILLS_RATIO: ParamUnits.PERCENT,
+    DROPOUT_RATIO: ParamUnits.PERCENT,
+    EARLY_EDU_RATIO: ParamUnits.PERCENT,
+    EDUCATION_RATIO: ParamUnits.PERCENT,
+    INACTIVE_YOUNG_RATIO: ParamUnits.PERCENT,
+    NO_FOREIGN_LANG_KNOWN_RATIO: ParamUnits.PERCENT,
+    PUPILS_RATIO: ParamUnits.PUPILS_PER_TEACHER,
+    TRAINING_LAST_MONTH_RATIO: ParamUnits.PERCENT,
+    TRAINING_LAST_YEAR_RATIO: ParamUnits.PERCENT,
+}
+
+AGGR_PARAMS = list(AGGR_PARAMS_LABELS.keys())
+
+AGGR_REVERSED_STATES = {
+    DIGITAL_SKILLS_RATIO: False,
+    DROPOUT_RATIO: True,
+    EARLY_EDU_RATIO: False,
+    EDUCATION_RATIO: False,
+    INACTIVE_YOUNG_RATIO: True,
+    NO_FOREIGN_LANG_KNOWN_RATIO: True,
+    PUPILS_RATIO: True,
+    TRAINING_LAST_MONTH_RATIO: False,
+    TRAINING_LAST_YEAR_RATIO: False,
+}
+
+IND_PARAMS_LABELS = {
+    DIGITAL_SKILLS_RATIO: "Digital Skills Ratio",
+    DROPOUT_RATIO: "Dropout Ratio",
+    EARLY_EDU_RATIO: "Early Education Ratio",
+    EDUCATION_RATIO: "Education Ratio",
+    INACTIVE_YOUNG_RATIO: "Inactive Young People Ratio",
+    NO_FOREIGN_LANG_KNOWN_RATIO: "No Foreign Language Known Ratio",
+    PUPILS_RATIO: "Pupils Ratio",
+    TRAINING_LAST_MONTH_RATIO: "Training Ratio (last 4 weeks)",
+    TRAINING_LAST_YEAR_RATIO: "Training Ratio (last year)",
+}
+
+IND_PARAMS_UNITS = {
+    DIGITAL_SKILLS_RATIO: ParamUnits.PERCENT,
+    DROPOUT_RATIO: ParamUnits.PERCENT,
+    EARLY_EDU_RATIO: ParamUnits.PERCENT,
+    EDUCATION_RATIO: ParamUnits.PERCENT,
+    INACTIVE_YOUNG_RATIO: ParamUnits.PERCENT,
+    NO_FOREIGN_LANG_KNOWN_RATIO: ParamUnits.PERCENT,
+    PUPILS_RATIO: ParamUnits.PUPILS_PER_TEACHER,
+    TRAINING_LAST_MONTH_RATIO: ParamUnits.PERCENT,
+    TRAINING_LAST_YEAR_RATIO: ParamUnits.PERCENT,
+}
+
+IND_PARAMS = list(IND_PARAMS_LABELS.keys())
+
+IND_REVERSED_STATES = {
+    DIGITAL_SKILLS_RATIO: False,
+    DROPOUT_RATIO: True,
+    EARLY_EDU_RATIO: False,
+    EDUCATION_RATIO: False,
+    INACTIVE_YOUNG_RATIO: True,
+    NO_FOREIGN_LANG_KNOWN_RATIO: True,
+    PUPILS_RATIO: True,
+    TRAINING_LAST_MONTH_RATIO: False,
+    TRAINING_LAST_YEAR_RATIO: False,
+}
