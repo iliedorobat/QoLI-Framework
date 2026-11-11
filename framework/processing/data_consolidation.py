@@ -3,7 +3,7 @@ from typing import Dict, List, Any
 from framework.constants.constants import KEY_SEPARATOR, EU28_MEMBERS
 from framework.fetching.fetch_utils import ParamsNames, filter_params_keys
 from framework.processing.local_parser import read_json_file, get_dimension_keys
-from framework.processing.map_utils import MapUtils, sort_key, get_entry_code
+from framework.processing.map_utils import sort_key, get_entry_code
 
 
 class MergeUtils:
