@@ -1,0 +1,19 @@
+from enum import Enum
+
+
+class ParamsUnits(Enum):
+    HOURS = "hours"
+    KG_PER_CAPITA = "kilograms per capita"
+    NUMBER = "number"
+    PER_HUNDRED_INHABITANTS = "per hundred inhabitants"
+    PER_MILLION_INHABITANTS = "per million inhabitants"
+    PER_HUNDRED_THOUSAND_INHABITANTS = "per hundred thousand inhabitants"
+    PER_TEN_THOUSAND_INHABITANTS = "per ten thousand inhabitants"
+    PER_THOUSAND_INHABITANTS = "per thousand inhabitants"
+    PERCENT = "%"
+    PPS = "PPS"
+    PPS_PER_INHABITANT = "PPS per inhabitant"
+    PUPILS_PER_TEACHER = "pupils per teacher"
+    SCORE_1_10 = "Scores between 1 - 10"
+    SCORE_10_100 = "Scores between 10 - 100"
+    YEARS = "years"
