@@ -7,7 +7,7 @@ from typing import Dict, List, Union
 # from config import EnvState, Constants
 # For now, using placeholder values
 IS_TESTING = False
-MIN_YEAR = 2010
+MIN_YEAR = 2004
 # TODO: check
 MAX_YEAR = date.today().year - 1
 INIT_MAP_MIN_YEAR = MIN_YEAR
