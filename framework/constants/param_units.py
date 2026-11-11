@@ -1,7 +1,4 @@
-from enum import Enum
-
-
-class ParamsUnits(Enum):
+class ParamsUnits:
     HOURS = "hours"
     KG_PER_CAPITA = "kilograms per capita"
     NUMBER = "number"

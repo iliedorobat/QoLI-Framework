@@ -1,7 +1,4 @@
-from enum import Enum
-
-
-class ParamsNames(Enum):
+class ParamNames:
     ACL_00 = "acl00"
     AGE = "age"
     AIR_POL = "airpol"

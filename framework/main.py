@@ -2,6 +2,7 @@ import os
 
 from framework.constants.constants import RAW_DATASET_PATH
 from framework.processing.local_parser import read_json_file, get_dimension_keys
+from framework.stats.auxiliary.auxiliary_collector import AuxiliaryCollector
 
 
 def main():
@@ -11,6 +12,14 @@ def main():
     test = read_json_file(file_path)
     print()
 
+def collect_data():
+    print("Starting the data collection process...\n")
+
+    # TODO:
+    AuxiliaryCollector.fetch_data()
+
+    print("\nThe data collection process has been successfully completed!")
+
 
 if __name__ == "__main__":
-    main()
+    collect_data()

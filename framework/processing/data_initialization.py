@@ -2,17 +2,16 @@
 Basic methods for initializing lists (add "null" value for the missing keys)
 """
 
-from collections import OrderedDict
 from typing import Dict, List, Any
 
 from framework.constants.constants import EU28_MEMBERS
 from framework.fetching.fetch_utils import INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
-from framework.processing.map_utils import generate_key
 from framework.processing.data_consolidation import MergeUtils
+from framework.processing.map_utils import generate_key
 
 
 class Initializer:
-    """Utility class for initializing maps with missing keys."""
+    """Basic methods for initializing maps with default values for missing keys."""
 
     @staticmethod
     def init_map(original_map: Dict[str, Any], country_codes: List[str] = None) -> Dict[str, Any]:
@@ -26,7 +25,7 @@ class Initializer:
         A key is composed by the country code and the year (e.g.: AT_2010; RO_2015 etc.)
 
         Args:
-            original_map: The input map
+            original_map: The original input map
             country_codes: The list of country codes (defaults to EU28_MEMBERS)
 
         Returns:
@@ -35,13 +34,13 @@ class Initializer:
         if country_codes is None:
             country_codes = EU28_MEMBERS
 
-        init_map = OrderedDict()
+        init_map = {}
 
         for code in country_codes:
             for year in range(INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR + 1):
                 Initializer._init_empty_data(original_map, init_map, code, year)
 
-        return init_map
+        return dict(sorted(init_map.items()))
 
     @staticmethod
     def init_consolidated_maps(maps_list: List[Dict[str, Any]]) -> Dict[str, Any]:

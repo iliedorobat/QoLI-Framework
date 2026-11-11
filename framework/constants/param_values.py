@@ -3,10 +3,8 @@ Parameter values mapping for QoLI Framework.
 Contains enums that map friendly names to their corresponding codes.
 """
 
-from enum import Enum
 
-
-class ACL00(Enum):
+class ACL00:
     """Civic and leisure activities"""
     CITIZENSHIP = "AC43A"      # Active citizenship
     FORMAL = "AC41A"           # Formal voluntary activities
@@ -17,7 +15,7 @@ class ACL00(Enum):
     SPORTS = "AC525"
 
 
-class AIR_POL(Enum):
+class AIR_POL:
     """Air pollutants"""
     AMMONIA = "NH3"                        # Ammonia
     CARBON_MONOXIDE = "CO"                 # Carbon monoxide (Ozone precursor)
@@ -28,7 +26,7 @@ class AIR_POL(Enum):
     PM10 = "PM10"
 
 
-class DOMAIN(Enum):
+class DOMAIN:
     """Domain categories"""
     LEGAL = "LEG"
     OTHER = "OTH"
@@ -36,7 +34,7 @@ class DOMAIN(Enum):
     POLITIC = "POLIT"
 
 
-class HAPPINESS_LEVELS(Enum):
+class HAPPINESS_LEVELS:
     """Happiness levels"""
     ALWAYS = "ALW"          # Always
     MOST = "MOST"           # Most of the time
@@ -46,14 +44,14 @@ class HAPPINESS_LEVELS(Enum):
     UNKNOWN = "UNK"         # Unknown
 
 
-class HEALTH_PROBLEMS(Enum):
+class HEALTH_PROBLEMS:
     """Health problems"""
     DEPRESSIVE = "DPR"
     MAJOR_DEPRESSIVE = "DPR_MJR"
     OTHER_DEPRESSIVE = "DPR_OTH"
 
 
-class ICCS(Enum):
+class ICCS:
     """ICCS crime classifications"""
     ASSAULT = "ICCS020111"                  # Serious Assault
     ATTEMPTED_HOMICIDE = "ICCS0102"         # Attempted intentional homicide
@@ -77,7 +75,7 @@ class ICCS(Enum):
     THEFT_VEHICLE = "ICCS05021"             # Theft of a motorized land vehicle
 
 
-class ISCED_11(Enum):
+class ISCED_11:
     """ISCED-11 education levels"""
     ED_0_2 = "ED0-2"                        # Less than primary, primary and lower secondary (0-2)
     ED_3_8 = "ED3-8"                        # Upper secondary, post-secondary and tertiary (3-8)
@@ -87,7 +85,7 @@ class ISCED_11(Enum):
     ED_5_8 = "ED5-8"                        # Tertiary education (5-8)
 
 
-class MED_SPEC(Enum):
+class MED_SPEC:
     """Medical specialties"""
     CARING_PERSONAL = "PER_CARE"
     DENTISTS = "DENT"
@@ -98,20 +96,20 @@ class MED_SPEC(Enum):
     PHYSIOTHERAPISTS = "PHYSIO"
 
 
-class PERS_CAT(Enum):
+class PERS_CAT:
     """Personal categories"""
     FAMILY = "FAM_REL"
     FRIENDS = "FRD"
 
 
-class SATISFACTION_LEVELS(Enum):
+class SATISFACTION_LEVELS:
     """Satisfaction levels"""
     HIGH = "HIGH"
     LOW = "LOW"
     MEDIUM = "MED"
 
 
-class SATISFACTION_TYPES(Enum):
+class SATISFACTION_TYPES:
     """Satisfaction types"""
     ACCOMMODATION = "ACCOM"
     COMMUTING_TIME = "COM"
@@ -124,7 +122,7 @@ class SATISFACTION_TYPES(Enum):
     TIME_SPENT = "TIME"
 
 
-class SOCIAL_ACTIVITIES_NP_REASON(Enum):
+class SOCIAL_ACTIVITIES_NP_REASON:
     """Social activities non-participation reasons"""
     AWAY = "NACT_NB"            # None in the neighbourhood
     FINANCIAL = "FIN"           # Financial reasons
@@ -132,21 +130,21 @@ class SOCIAL_ACTIVITIES_NP_REASON(Enum):
     UNINTERESTED = "NINT"       # No interest
 
 
-class VOLUNTARY_ACTIVITIES_NP_REASON(Enum):
+class VOLUNTARY_ACTIVITIES_NP_REASON:
     """Voluntary activities non-participation reasons"""
     TIME = "NTIME"              # Time
     NO_INTEREST = "NINT"        # No interest
     OTHER = "OTH"               # Other
 
 
-class SEX(Enum):
+class SEX:
     """Gender categories"""
     FEMALE = "F"
     MALE = "M"
     TOTAL = "T"
 
 
-class LEV_DIFF(Enum):
+class LEV_DIFF:
     """Level of difficulty making ends meet"""
     GREAT_DIFFICULTY = "GRT"        # Households making ends meet with great difficulty
     DIFFICULTY = "DIF"              # Households making ends meet with difficulty
@@ -156,7 +154,7 @@ class LEV_DIFF(Enum):
     VERY_EASILY = "VEASY"           # Households making ends meet very easily
 
 
-class WORKING_FLEXIBILITY(Enum):
+class WORKING_FLEXIBILITY:
     """Working flexibility categories"""
     NO_RESPONSE = "NRP"                     # No response
     EMPLOYER_DECISION = "EMPL_MAIN"         # Employer or organisation mainly decides
