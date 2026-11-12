@@ -10,6 +10,7 @@ from framework.stats.health.health_collector import fetch_health_data
 from framework.stats.leisure_interaction.leisure_interaction_collector import fetch_leisure_interaction_data
 from framework.stats.main_activity.main_activity_collector import fetch_main_activity_data
 from framework.stats.material_living.material_living_collector import fetch_material_living_data
+from framework.stats.overall_experience.overall_experience_collector import fetch_overall_experience_data
 
 
 def main():
@@ -31,6 +32,7 @@ def collect_data():
     fetch_leisure_interaction_data()
     fetch_main_activity_data()
     fetch_material_living_data()
+    fetch_overall_experience_data()
 
     print("\nThe data collection process has been successfully completed!")
 
