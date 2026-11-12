@@ -8,6 +8,7 @@ from framework.stats.environment.environment_collector import fetch_environment_
 from framework.stats.gov_rights.gov_rights_collector import fetch_gov_rights_data
 from framework.stats.health.health_collector import fetch_health_data
 from framework.stats.leisure_interaction.leisure_interaction_collector import fetch_leisure_interaction_data
+from framework.stats.main_activity.main_activity_collector import fetch_main_activity_data
 
 
 def main():
@@ -27,6 +28,7 @@ def collect_data():
     fetch_gov_rights_data()
     fetch_health_data()
     fetch_leisure_interaction_data()
+    fetch_main_activity_data()
 
     print("\nThe data collection process has been successfully completed!")
 
