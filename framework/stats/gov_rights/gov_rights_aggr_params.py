@@ -1,0 +1,111 @@
+from framework.common.param_units import ParamUnits
+
+
+GOVERNANCE = "governance"
+
+CITIZENSHIP_RATIO = f"{GOVERNANCE}:citizenshipRatio"
+GENDER_EMP_GAP = f"{GOVERNANCE}:genderEmpGap"
+GENDER_PAY_GAP = f"{GOVERNANCE}:genderPayGap"
+POPULATION_TRUST = f"{GOVERNANCE}:populationTrustRatio"
+POPULATION_TRUST_LEGAL = f"{GOVERNANCE}:populationTrustLegtstRatio"
+POPULATION_TRUST_OTHER = f"{GOVERNANCE}:populationTrustOthersRatio"
+POPULATION_TRUST_POLICE = f"{GOVERNANCE}:populationTrustPlctstRatio"
+POPULATION_TRUST_POLITIC = f"{GOVERNANCE}:populationTrustPlttstRatio"
+VOTER_TURNOUT = f"{GOVERNANCE}:voterTurnout"
+VOTER_TURNOUT_EU_PARLIAMENT = f"{GOVERNANCE}:voterTurnoutEuParliament"
+VOTER_TURNOUT_PARLIAMENTARY = f"{GOVERNANCE}:voterTurnoutParliamentary"
+VOTER_TURNOUT_PRESIDENTIAL = f"{GOVERNANCE}:voterTurnoutPresidential"
+
+
+AGGR_PARAMS_LABELS = {
+    CITIZENSHIP_RATIO: "Citizenship Ratio",
+    GENDER_EMP_GAP: "Gender Employment Gap",
+    GENDER_PAY_GAP: "Gender Pay Gap",
+    POPULATION_TRUST: "Population Trust Ratio",
+    VOTER_TURNOUT: "Voter Turnout",
+}
+
+AGGR_PARAMS_UNITS = {
+    CITIZENSHIP_RATIO: ParamUnits.PERCENT,
+    GENDER_EMP_GAP: ParamUnits.PERCENT,
+    GENDER_PAY_GAP: ParamUnits.PERCENT,
+    POPULATION_TRUST: ParamUnits.SCORE_10_100,
+    VOTER_TURNOUT: ParamUnits.PERCENT,
+}
+
+AGGR_PARAMS = tuple(AGGR_PARAMS_LABELS)
+
+AGGR_REVERSED_STATES = {
+    CITIZENSHIP_RATIO: False,
+    GENDER_EMP_GAP: True,
+    GENDER_PAY_GAP: True,
+    POPULATION_TRUST: False,
+    VOTER_TURNOUT: False,
+}
+
+
+IND_PARAMS_LABELS = {
+    CITIZENSHIP_RATIO: "Citizenship Ratio",
+    GENDER_EMP_GAP: "Gender Employment Gap",
+    GENDER_PAY_GAP: "Gender Pay Gap",
+    POPULATION_TRUST_LEGAL: "Population Trust in The Legal System",
+    POPULATION_TRUST_OTHER: "Population Trust in Others",
+    POPULATION_TRUST_POLICE: "Population Trust in The Police",
+    POPULATION_TRUST_POLITIC: "Population Trust in The Political System",
+    VOTER_TURNOUT_EU_PARLIAMENT: "Voter Turnout in The Elections For The European Parliament",
+    VOTER_TURNOUT_PARLIAMENTARY: "Voter Turnout in The Elections For The National Parliament",
+    VOTER_TURNOUT_PRESIDENTIAL: "Voter Turnout in The Elections For The National President",
+}
+
+IND_PARAMS_UNITS = {
+    CITIZENSHIP_RATIO: ParamUnits.PERCENT,
+    GENDER_EMP_GAP: ParamUnits.PERCENT,
+    GENDER_PAY_GAP: ParamUnits.PERCENT,
+    POPULATION_TRUST_LEGAL: ParamUnits.SCORE_1_10,
+    POPULATION_TRUST_OTHER: ParamUnits.SCORE_1_10,
+    POPULATION_TRUST_POLICE: ParamUnits.SCORE_1_10,
+    POPULATION_TRUST_POLITIC: ParamUnits.SCORE_1_10,
+    VOTER_TURNOUT_EU_PARLIAMENT: ParamUnits.PERCENT,
+    VOTER_TURNOUT_PARLIAMENTARY: ParamUnits.PERCENT,
+    VOTER_TURNOUT_PRESIDENTIAL: ParamUnits.PERCENT,
+}
+
+IND_PARAMS = tuple(IND_PARAMS_LABELS)
+
+IND_REVERSED_STATES = {
+    CITIZENSHIP_RATIO: False,
+    GENDER_EMP_GAP: True,
+    GENDER_PAY_GAP: True,
+    POPULATION_TRUST_LEGAL: False,
+    POPULATION_TRUST_OTHER: False,
+    POPULATION_TRUST_POLICE: False,
+    POPULATION_TRUST_POLITIC: False,
+    VOTER_TURNOUT_EU_PARLIAMENT: False,
+    VOTER_TURNOUT_PARLIAMENTARY: False,
+    VOTER_TURNOUT_PRESIDENTIAL: False,
+}
+
+
+__all__ = [
+    "GOVERNANCE",
+    "CITIZENSHIP_RATIO",
+    "GENDER_EMP_GAP",
+    "GENDER_PAY_GAP",
+    "POPULATION_TRUST",
+    "POPULATION_TRUST_LEGAL",
+    "POPULATION_TRUST_OTHER",
+    "POPULATION_TRUST_POLICE",
+    "POPULATION_TRUST_POLITIC",
+    "VOTER_TURNOUT",
+    "VOTER_TURNOUT_EU_PARLIAMENT",
+    "VOTER_TURNOUT_PARLIAMENTARY",
+    "VOTER_TURNOUT_PRESIDENTIAL",
+    "AGGR_PARAMS_LABELS",
+    "AGGR_PARAMS_UNITS",
+    "AGGR_PARAMS",
+    "AGGR_REVERSED_STATES",
+    "IND_PARAMS_LABELS",
+    "IND_PARAMS_UNITS",
+    "IND_PARAMS",
+    "IND_REVERSED_STATES",
+]

@@ -37,7 +37,7 @@ AGGR_PARAMS_UNITS = {
 }
 
 # List of aggregated parameters
-AGGR_PARAMS = list(AGGR_PARAMS_LABELS.keys())
+AGGR_PARAMS = tuple(AGGR_PARAMS_LABELS.keys())
 
 # Reversed states for aggregated parameters
 # (True = higher values are worse, False = higher values are better)
@@ -77,7 +77,7 @@ IND_PARAMS_UNITS = {
 }
 
 # List of individual parameters
-IND_PARAMS = list(IND_PARAMS_LABELS.keys())
+IND_PARAMS = tuple(IND_PARAMS_LABELS.keys())
 
 # Reversed states for individual parameters
 IND_REVERSED_STATES = {

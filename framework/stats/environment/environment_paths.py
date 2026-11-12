@@ -2,6 +2,7 @@ import os
 
 from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
 
+
 ENVIRONMENT_FILE_NAME = "environment"
 
 AIR_POLLUTION_RATIO_FILE_NAME = "airPollutionRatio"
