@@ -23,32 +23,30 @@ CITIZENSHIP_RATIO_PARAMS = get_active_people_params(ACTIVITIES)
 
 
 GENDER_EMP_GAP_PARAMS = {
-    ParamNames.AGE: {"Y20-64"},
-    ParamNames.INDIC_EM: {"EMP_LFS"},  # Total employment (resident population concept - LFS)
-    ParamNames.FREQ: {"A"},
-    ParamNames.UNIT: {"PC_POP"},
+    ParamNames.AGE: ["Y20-64"],
+    ParamNames.INDIC_EM: ["EMP_LFS"],  # Total employment (resident population concept - LFS)
+    ParamNames.FREQ: ["A"],
+    ParamNames.UNIT: ["PC_POP"],
 }
 
 
 GENDER_PAY_GAP_PARAMS = {
-    ParamNames.FREQ: {"A"},
-    ParamNames.NACE_R2: {"B-S_X_O"},
-    ParamNames.UNIT: {"PC"},
+    ParamNames.FREQ: ["A"],
+    ParamNames.NACE_R2: ["B-S_X_O"],
+    ParamNames.UNIT: ["PC"],
 }
 
 
-def _get_population_trust_params(
-        trust_systems: str | List[str],
-) -> dict[str, set[str]]:
+def _get_population_trust_params(trust_systems: str | List[str]):
     if isinstance(trust_systems, str):
-        trust_systems = (trust_systems,)
+        trust_systems = [trust_systems]
 
     params = {
-        ParamNames.AGE: {"Y_GE16"},
-        ParamNames.FREQ: {"A"},
-        ParamNames.ISCED_11: {"TOTAL"},
-        ParamNames.SEX: {"T"},
-        ParamNames.UNIT: {"RTG"},
+        ParamNames.AGE: ["Y_GE16"],
+        ParamNames.FREQ: ["A"],
+        ParamNames.ISCED_11: ["TOTAL"],
+        ParamNames.SEX: ["T"],
+        ParamNames.UNIT: ["RTG"],
     }
 
     params.setdefault(ParamNames.DOMAIN, set()).update(trust_systems)

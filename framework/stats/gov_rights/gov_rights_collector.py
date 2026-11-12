@@ -9,11 +9,8 @@ import time
 from framework.common.constants import XLS_EXTENSION
 from framework.fetching.fetch_data import fetch_data
 from framework.fetching.file_utils import write_to_json_file, download_excel_file, convert_xls_to_csv
-from framework.stats.gov_rights.gov_rights_params import CITIZENSHIP_RATIO_PARAMS, GENDER_EMP_GAP_PARAMS, \
-    GENDER_PAY_GAP_PARAMS, POPULATION_TRUST_PARAMS, POPULATION_TRUST_OTHER_PARAMS
-from framework.stats.gov_rights.gov_rights_paths import GOV_RIGHTS_RAW_PATH, CITIZENSHIP_RATIO_FILE_NAME, \
-    GENDER_EMP_GAP_FILE_NAME, GENDER_PAY_GAP_FILE_NAME, POPULATION_TRUST_FILE_NAME, POPULATION_TRUST_OTHER_FILE_NAME, \
-    VOTER_TURNOUT_FILE_NAME
+from framework.stats.gov_rights.gov_rights_params import *
+from framework.stats.gov_rights.gov_rights_paths import *
 
 
 def fetch_gov_rights_data() -> None:
