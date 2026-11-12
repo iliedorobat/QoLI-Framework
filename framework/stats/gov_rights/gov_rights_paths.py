@@ -19,10 +19,7 @@ GOV_RIGHTS_RAW_PATH = os.path.join(
 
 
 def _generate_path(file_name: str) -> str:
-    return os.path.join(
-        GOV_RIGHTS_RAW_PATH,
-        f"{file_name}{JSON_EXTENSION}",
-    )
+    return os.path.join(GOV_RIGHTS_RAW_PATH, f"{file_name}{JSON_EXTENSION}")
 
 
 CITIZENSHIP_RATIO_PATH = _generate_path(CITIZENSHIP_RATIO_FILE_NAME)

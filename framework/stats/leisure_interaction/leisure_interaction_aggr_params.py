@@ -1,0 +1,196 @@
+from framework.common.param_units import ParamUnits
+
+LEISURE_INTERACT = "leisureInteractions"
+
+AREA_SATISFACTION_RATIO = f"{LEISURE_INTERACT}:areaSatisfactionRatio"
+ASKING_RATIO = f"{LEISURE_INTERACT}:askingRatio"
+DISCUSSION_RATIO = f"{LEISURE_INTERACT}:discussionRatio"
+FORMAL_VOLUNTARY_ACTIVITIES_RATIO = f"{LEISURE_INTERACT}:formalVoluntaryActivitiesRatio"
+FREQUENCY_CONTACT_FAM_RATIO = f"{LEISURE_INTERACT}:frequencyContactFamRatio"
+FREQUENCY_CONTACT_FRD_RATIO = f"{LEISURE_INTERACT}:frequencyContactFrdRatio"
+FREQUENCY_CONTACT_RATIO = f"{LEISURE_INTERACT}:frequencyContactRatio"
+GETTING_TOGETHER_FAM_RATIO = f"{LEISURE_INTERACT}:gettingTogetherFamRatio"
+GETTING_TOGETHER_FRD_RATIO = f"{LEISURE_INTERACT}:gettingTogetherFrdRatio"
+GETTING_TOGETHER_RATIO = f"{LEISURE_INTERACT}:gettingTogetherRatio"
+INFORMAL_VOLUNTARY_ACTIVITIES_RATIO = f"{LEISURE_INTERACT}:informalVoluntaryActivitiesRatio"
+NP_FIN_CINEMA_RATIO = f"{LEISURE_INTERACT}:npFinCinemaRatio"
+NP_FIN_CULTURE_RATIO = f"{LEISURE_INTERACT}:npFinCultureRatio"
+NP_FIN_LIVE_RATIO = f"{LEISURE_INTERACT}:npFinLiveRatio"
+NP_FIN_SPORT_RATIO = f"{LEISURE_INTERACT}:npFinSportRatio"
+NP_NNB_CINEMA_RATIO = f"{LEISURE_INTERACT}:npNnbCinemaRatio"
+NP_NNB_CULTURE_RATIO = f"{LEISURE_INTERACT}:npNnbCultureRatio"
+NP_NNB_LIVE_RATIO = f"{LEISURE_INTERACT}:npNnbLiveRatio"
+NP_NNB_SPORT_RATIO = f"{LEISURE_INTERACT}:npNnbSportRatio"
+NP_NO_INTEREST_FORMAL_RATIO = f"{LEISURE_INTERACT}:npNoInterestFormalRatio"
+NP_NO_INTEREST_INFORMAL_RATIO = f"{LEISURE_INTERACT}:npNoInterestInformalRatio"
+NP_TIME_FORMAL_RATIO = f"{LEISURE_INTERACT}:npTimeFormalRatio"
+NP_TIME_INFORMAL_RATIO = f"{LEISURE_INTERACT}:npTimeInformalRatio"
+NP_RATIO = f"{LEISURE_INTERACT}:npRatio"
+PARTICIPATION_RATIO = f"{LEISURE_INTERACT}:participationRatio"
+RELATIONSHIPS_SATISFACTION_RATIO = f"{LEISURE_INTERACT}:relationshipsSatisfactionRatio"
+SOCIAL_ACTIVITIES_RATIO = f"{LEISURE_INTERACT}:socialActivitiesRatio"
+TIME_SPENT_SATISFACTION = f"{LEISURE_INTERACT}:timeSpentSatisfaction"
+
+
+AGGR_PARAMS_LABELS = {
+    AREA_SATISFACTION_RATIO: "Green Areas Satisfaction Ratio",
+    ASKING_RATIO: "Asking Ratio",
+    DISCUSSION_RATIO: "Discussion Ratio",
+    FREQUENCY_CONTACT_RATIO: "Frequency Contact Ratio",
+    GETTING_TOGETHER_RATIO: "Getting Together Ratio",
+    NP_RATIO: "Non-Participation in Social Activities & Voluntaries Activities Ratio",
+    PARTICIPATION_RATIO: "Participation Ratio",
+    RELATIONSHIPS_SATISFACTION_RATIO: "Relationships Satisfaction Ratio",
+    TIME_SPENT_SATISFACTION: "Time Satisfaction Ratio",
+}
+
+AGGR_PARAMS_UNITS = {
+    AREA_SATISFACTION_RATIO: ParamUnits.PERCENT,
+    ASKING_RATIO: ParamUnits.PERCENT,
+    DISCUSSION_RATIO: ParamUnits.PERCENT,
+    FREQUENCY_CONTACT_RATIO: ParamUnits.PERCENT,
+    GETTING_TOGETHER_RATIO: ParamUnits.PERCENT,
+    NP_RATIO: ParamUnits.PERCENT,
+    PARTICIPATION_RATIO: ParamUnits.PERCENT,
+    RELATIONSHIPS_SATISFACTION_RATIO: ParamUnits.PERCENT,
+    TIME_SPENT_SATISFACTION: ParamUnits.PERCENT,
+}
+
+AGGR_PARAMS = tuple(AGGR_PARAMS_LABELS)
+
+AGGR_REVERSED_STATES = {
+    AREA_SATISFACTION_RATIO: False,
+    ASKING_RATIO: False,
+    DISCUSSION_RATIO: False,
+    FREQUENCY_CONTACT_RATIO: False,
+    GETTING_TOGETHER_RATIO: False,
+    NP_RATIO: True,
+    PARTICIPATION_RATIO: False,
+    RELATIONSHIPS_SATISFACTION_RATIO: False,
+    TIME_SPENT_SATISFACTION: False,
+}
+
+
+IND_PARAMS_LABELS = {
+    AREA_SATISFACTION_RATIO: "Green Areas Satisfaction Ratio",
+    ASKING_RATIO: "Asking Ratio",
+    DISCUSSION_RATIO: "Discussion Ratio",
+    FORMAL_VOLUNTARY_ACTIVITIES_RATIO: "Formal Voluntary Ratio",
+    FREQUENCY_CONTACT_FAM_RATIO: "Frequency Contact Ratio (Family)",
+    FREQUENCY_CONTACT_FRD_RATIO: "Frequency Contact Ratio (Friends)",
+    GETTING_TOGETHER_FAM_RATIO: "Getting Together Ratio (Family)",
+    GETTING_TOGETHER_FRD_RATIO: "Getting Together Ratio (Friends)",
+    INFORMAL_VOLUNTARY_ACTIVITIES_RATIO: "Informal Voluntary Ratio",
+    NP_FIN_CINEMA_RATIO: "Non-Participation in Cinema for financial reasons",
+    NP_FIN_CULTURE_RATIO: "Non-Participation in Cultural Sites for financial reasons",
+    NP_FIN_LIVE_RATIO: "Non-Participation in Live Performances for financial reasons",
+    NP_FIN_SPORT_RATIO: "Non-Participation in Sports Events for financial reasons",
+    NP_NNB_CINEMA_RATIO: "Non-Participation in Cinema due to lack of interest",
+    NP_NNB_CULTURE_RATIO: "Non-Participation in Cultural Sites due to lack of interest",
+    NP_NNB_LIVE_RATIO: "Non-Participation in Live Performances due to lack of interest",
+    NP_NNB_SPORT_RATIO: "Non-Participation in Sports Events due to lack of interest",
+    NP_NO_INTEREST_FORMAL_RATIO: "Non-Participation in Formal Voluntary Activities due to lack of interest",
+    NP_NO_INTEREST_INFORMAL_RATIO: "Non-Participation in Informal Voluntary Activities due to lack of interest",
+    NP_TIME_FORMAL_RATIO: "Non-Participation in Formal Voluntary Activities due to lack of time",
+    NP_TIME_INFORMAL_RATIO: "Non-Participation in Informal Voluntary Activities due to lack of time",
+    RELATIONSHIPS_SATISFACTION_RATIO: "Relationships Satisfaction Ratio",
+    SOCIAL_ACTIVITIES_RATIO: "Social Activities Ratio",
+    TIME_SPENT_SATISFACTION: "Time Satisfaction Ratio",
+}
+
+IND_PARAMS_UNITS = {
+    AREA_SATISFACTION_RATIO: ParamUnits.PERCENT,
+    ASKING_RATIO: ParamUnits.PERCENT,
+    DISCUSSION_RATIO: ParamUnits.PERCENT,
+    FORMAL_VOLUNTARY_ACTIVITIES_RATIO: ParamUnits.PERCENT,
+    FREQUENCY_CONTACT_FAM_RATIO: ParamUnits.PERCENT,
+    FREQUENCY_CONTACT_FRD_RATIO: ParamUnits.PERCENT,
+    GETTING_TOGETHER_FAM_RATIO: ParamUnits.PERCENT,
+    GETTING_TOGETHER_FRD_RATIO: ParamUnits.PERCENT,
+    INFORMAL_VOLUNTARY_ACTIVITIES_RATIO: ParamUnits.PERCENT,
+    NP_FIN_CINEMA_RATIO: ParamUnits.PERCENT,
+    NP_FIN_CULTURE_RATIO: ParamUnits.PERCENT,
+    NP_FIN_LIVE_RATIO: ParamUnits.PERCENT,
+    NP_FIN_SPORT_RATIO: ParamUnits.PERCENT,
+    NP_NNB_CINEMA_RATIO: ParamUnits.PERCENT,
+    NP_NNB_CULTURE_RATIO: ParamUnits.PERCENT,
+    NP_NNB_LIVE_RATIO: ParamUnits.PERCENT,
+    NP_NNB_SPORT_RATIO: ParamUnits.PERCENT,
+    NP_NO_INTEREST_FORMAL_RATIO: ParamUnits.PERCENT,
+    NP_NO_INTEREST_INFORMAL_RATIO: ParamUnits.PERCENT,
+    NP_TIME_FORMAL_RATIO: ParamUnits.PERCENT,
+    NP_TIME_INFORMAL_RATIO: ParamUnits.PERCENT,
+    RELATIONSHIPS_SATISFACTION_RATIO: ParamUnits.PERCENT,
+    SOCIAL_ACTIVITIES_RATIO: ParamUnits.PERCENT,
+    TIME_SPENT_SATISFACTION: ParamUnits.PERCENT,
+}
+
+IND_PARAMS = tuple(IND_PARAMS_LABELS)
+
+IND_REVERSED_STATES = {
+    AREA_SATISFACTION_RATIO: False,
+    ASKING_RATIO: False,
+    DISCUSSION_RATIO: False,
+    FORMAL_VOLUNTARY_ACTIVITIES_RATIO: False,
+    FREQUENCY_CONTACT_FAM_RATIO: False,
+    FREQUENCY_CONTACT_FRD_RATIO: False,
+    GETTING_TOGETHER_FAM_RATIO: False,
+    GETTING_TOGETHER_FRD_RATIO: False,
+    INFORMAL_VOLUNTARY_ACTIVITIES_RATIO: False,
+    NP_FIN_CINEMA_RATIO: True,
+    NP_FIN_CULTURE_RATIO: True,
+    NP_FIN_LIVE_RATIO: True,
+    NP_FIN_SPORT_RATIO: True,
+    NP_NNB_CINEMA_RATIO: True,
+    NP_NNB_CULTURE_RATIO: True,
+    NP_NNB_LIVE_RATIO: True,
+    NP_NNB_SPORT_RATIO: True,
+    NP_NO_INTEREST_FORMAL_RATIO: True,
+    NP_NO_INTEREST_INFORMAL_RATIO: True,
+    NP_TIME_FORMAL_RATIO: True,
+    NP_TIME_INFORMAL_RATIO: True,
+    RELATIONSHIPS_SATISFACTION_RATIO: False,
+    SOCIAL_ACTIVITIES_RATIO: False,
+    TIME_SPENT_SATISFACTION: False,
+}
+
+
+__all__ = [
+    "LEISURE_INTERACT",
+    "AREA_SATISFACTION_RATIO",
+    "ASKING_RATIO",
+    "DISCUSSION_RATIO",
+    "FORMAL_VOLUNTARY_ACTIVITIES_RATIO",
+    "FREQUENCY_CONTACT_FAM_RATIO",
+    "FREQUENCY_CONTACT_FRD_RATIO",
+    "FREQUENCY_CONTACT_RATIO",
+    "GETTING_TOGETHER_FAM_RATIO",
+    "GETTING_TOGETHER_FRD_RATIO",
+    "GETTING_TOGETHER_RATIO",
+    "INFORMAL_VOLUNTARY_ACTIVITIES_RATIO",
+    "NP_FIN_CINEMA_RATIO",
+    "NP_FIN_CULTURE_RATIO",
+    "NP_FIN_LIVE_RATIO",
+    "NP_FIN_SPORT_RATIO",
+    "NP_NNB_CINEMA_RATIO",
+    "NP_NNB_CULTURE_RATIO",
+    "NP_NNB_LIVE_RATIO",
+    "NP_NNB_SPORT_RATIO",
+    "NP_NO_INTEREST_FORMAL_RATIO",
+    "NP_NO_INTEREST_INFORMAL_RATIO",
+    "NP_TIME_FORMAL_RATIO",
+    "NP_TIME_INFORMAL_RATIO",
+    "NP_RATIO",
+    "PARTICIPATION_RATIO",
+    "RELATIONSHIPS_SATISFACTION_RATIO",
+    "SOCIAL_ACTIVITIES_RATIO",
+    "TIME_SPENT_SATISFACTION",
+    "AGGR_PARAMS_LABELS",
+    "AGGR_PARAMS_UNITS",
+    "AGGR_PARAMS",
+    "AGGR_REVERSED_STATES",
+    "IND_PARAMS_LABELS",
+    "IND_PARAMS_UNITS",
+    "IND_PARAMS",
+    "IND_REVERSED_STATES",
+]

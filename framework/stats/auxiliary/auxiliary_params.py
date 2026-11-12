@@ -2,10 +2,7 @@
 Auxiliary parameters for statistical dimensions
 """
 
-from typing import Dict, List, Optional
-
 from framework.common.param_names import ParamNames
-
 
 LOW_WORK_INTENSITY_RATIO_PARAMS = {
     ParamNames.AGE: ["Y_LT60"],
@@ -21,7 +18,7 @@ POPULATION_PARAMS = {
     ParamNames.UNIT: ["NR"]
 }
 
-def get_active_people_params(activities: List[str]) -> Optional[Dict[str, List[str]]]:
+def get_active_people_params(activities: list[str]) -> dict[str, list[str]] | None:
     """
     Get parameters for active people.
 
@@ -53,7 +50,7 @@ def get_active_people_params(activities: List[str]) -> Optional[Dict[str, List[s
         print(f"Error: {e}")
         return None
 
-def get_satisfaction_params(satisfaction_level: str, satisfaction_type: str) -> Dict[str, List[str]]:
+def get_satisfaction_params(satisfaction_level: str, satisfaction_type: str) -> dict[str, list[str]]:
     """
     Get parameters for satisfaction measurements.
 

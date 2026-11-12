@@ -2,7 +2,6 @@ import os
 
 from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
 
-
 ENVIRONMENT_FILE_NAME = "environment"
 
 AIR_POLLUTION_RATIO_FILE_NAME = "airPollutionRatio"
@@ -14,7 +13,7 @@ ENVIRONMENT_RAW_PATH = os.path.join(RAW_DATASET_PATH, ENVIRONMENT_FILE_NAME)
 
 
 def generate_path(file_name: str) -> str:
-    return ENVIRONMENT_RAW_PATH + os.sep + file_name + JSON_EXTENSION
+    return os.path.join(ENVIRONMENT_RAW_PATH, f"{file_name}{JSON_EXTENSION}")
 
 
 AIR_POLLUTION_RATIO_PATH = generate_path(AIR_POLLUTION_RATIO_FILE_NAME)

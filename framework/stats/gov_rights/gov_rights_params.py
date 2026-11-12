@@ -1,5 +1,3 @@
-from typing import List
-
 from framework.common.param_names import ParamNames
 from framework.common.param_values import ACL00, DOMAIN
 from framework.stats.auxiliary.auxiliary_params import get_active_people_params
@@ -37,7 +35,7 @@ GENDER_PAY_GAP_PARAMS = {
 }
 
 
-def _get_population_trust_params(trust_systems: str | List[str]):
+def _get_population_trust_params(trust_systems: str | list[str]) -> dict[str, list[str]]:
     if isinstance(trust_systems, str):
         trust_systems = [trust_systems]
 

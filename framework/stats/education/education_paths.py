@@ -2,7 +2,6 @@ import os
 
 from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
 
-
 EDUCATION_FILE_NAME = "education"
 
 DIGITAL_SKILLS_RATIO_FILE_NAME = "digitalSkillsRatio"

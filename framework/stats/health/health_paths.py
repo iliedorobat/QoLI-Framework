@@ -2,7 +2,6 @@ import os
 
 from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
 
-
 HEALTH_FILE_NAME = "health"
 
 BMI_FILE_NAME = "bodyMassIndex"
@@ -29,10 +28,7 @@ HEALTH_RAW_PATH = os.path.join(
 
 
 def _generate_path(file_name: str) -> str:
-    return os.path.join(
-        HEALTH_RAW_PATH,
-        f"{file_name}{JSON_EXTENSION}",
-    )
+    return os.path.join(HEALTH_RAW_PATH, f"{file_name}{JSON_EXTENSION}")
 
 
 BMI_PATH = _generate_path(BMI_FILE_NAME)

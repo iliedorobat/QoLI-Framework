@@ -1,6 +1,5 @@
 from framework.common.param_units import ParamUnits
 
-
 GOVERNANCE = "governance"
 
 CITIZENSHIP_RATIO = f"{GOVERNANCE}:citizenshipRatio"

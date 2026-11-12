@@ -3,7 +3,6 @@ import os
 
 from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
 
-
 AUXILIARY_FILE_NAME = "auxiliary"
 POPULATION_FILE_NAME = "population"
 

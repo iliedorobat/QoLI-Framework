@@ -1,21 +1,13 @@
-from typing import List
-
 from framework.common.param_names import ParamNames
 from framework.common.param_values import HEALTH_PROBLEMS, MED_SPEC
 from framework.fetching.fetch_utils import add_params
 
 
-def _add_params(
-        params: dict[str, list[str]],
-        param_name: str,
-        param_values: List[str],
-) -> None:
+def _add_params(params: dict[str, list[str]], param_name: str, param_values: list[str]) -> None:
     add_params(params, param_name, param_values)
 
 
-def _get_health_personnel_params(
-        roles: str | List[str],
-) -> dict[str, list[str]]:
+def _get_health_personnel_params(roles: str | list[str]) -> dict[str, list[str]]:
     if isinstance(roles, str):
         roles = [roles]
 
@@ -29,9 +21,7 @@ def _get_health_personnel_params(
     return params
 
 
-def _get_depressive_params(
-        health_problems: str | List[str],
-) -> dict[str, list[str]]:
+def _get_depressive_params(health_problems: str | list[str]) -> dict[str, list[str]]:
     if isinstance(health_problems, str):
         health_problems = [health_problems]
 
