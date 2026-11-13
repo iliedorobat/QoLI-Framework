@@ -5,7 +5,6 @@ Parse JSON-stat v2 datasets from local files.
 import json
 from itertools import product
 from typing import Any
-from typing import Union
 
 from pyjstat import pyjstat
 
@@ -61,7 +60,7 @@ def dataset_to_map(dataset: pyjstat.Dataset) -> dict[tuple, float]:
     return result
 
 
-def print_json_entries(entries_map: dict[tuple, Union[float, str]]) -> None:
+def print_json_entries(entries_map: dict[tuple, float | str]) -> None:
     """
     Print JSON entries to console.
 

@@ -1,11 +1,10 @@
 import time
-from typing import Dict, List, Optional
 from urllib.parse import quote
 
 import requests
 
-from framework.fetching.fetch_utils import consolidate_http_params, MIN_YEAR, MAX_YEAR
 from framework.common.constants import EU28_MEMBERS
+from framework.fetching.fetch_utils import consolidate_http_params, MIN_YEAR, MAX_YEAR
 
 # Constants
 ENCODING_SCHEME = "UTF-8"
@@ -18,7 +17,7 @@ URI_LANG = "en"
 URI_SEPARATOR = "/"
 
 
-def build_uri(dataset: str, params: Dict[str, List[str]]) -> str:
+def build_uri(dataset: str, params: dict[str, list[str]]) -> str:
     """
     Generate the URI used to extract data.
     
@@ -70,8 +69,11 @@ def build_uri(dataset: str, params: Dict[str, List[str]]) -> str:
     return f"{base_url}?{query_string}"
 
 
-def fetch_data(dataset: str, input_params: Dict[str, List[str]],
-               country_codes: Optional[List[str]] = None) -> str:
+def fetch_data(
+        dataset: str,
+        input_params: dict[str, list[str]],
+        country_codes: list[str] | None = None
+) -> str:
     """
     Fetch the Eurostat data.
     
@@ -98,7 +100,7 @@ def fetch_data(dataset: str, input_params: Dict[str, List[str]],
         return ""
 
 
-def fetch_satisfaction_ratio(params: Dict[str, List[str]]) -> str:
+def fetch_satisfaction_ratio(params: dict[str, list[str]]) -> str:
     """
     Percentage of the population rating their satisfaction as high, medium or low.
     
@@ -116,7 +118,7 @@ def fetch_satisfaction_ratio(params: Dict[str, List[str]]) -> str:
     return fetch_data("ilc_pw05b", params)
 
 
-def fetch_active_people_ratio(params: Dict[str, List[str]]) -> str:
+def fetch_active_people_ratio(params: dict[str, list[str]]) -> str:
     """
     Participation in formal or informal voluntary activities or active citizenship.
     People aged 16 years or over.

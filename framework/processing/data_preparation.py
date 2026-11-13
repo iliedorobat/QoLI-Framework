@@ -1,6 +1,4 @@
-
 from collections import OrderedDict
-from typing import Dict, List, Optional, Union
 
 from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
 from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR, INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
@@ -12,7 +10,10 @@ class Preparation:
     """Data preparation utilities for handling null values and transformations."""
 
     @staticmethod
-    def prepare_data(main_map: Dict[str, Union[int, float]], country_codes: Optional[List[str]] = None) -> Dict[str, Union[int, float]]:
+    def prepare_data(
+            main_map: dict[str, int | float],
+            country_codes: list[str] | None = None
+    ) -> dict[str, int | float]:
         """
         Add values for the years that have null values.
 
@@ -41,9 +42,9 @@ class Preparation:
 
     @staticmethod
     def prepare_per_thousand_inhabitant(
-            population_map: Dict[str, Union[int, float]],
-            init_map: Dict[str, Union[int, float]]
-    ) -> Dict[str, Union[int, float]]:
+            population_map: dict[str, int | float],
+            init_map: dict[str, int | float]
+    ) -> dict[str, int | float]:
         """
         Transform all values into values per thousand inhabitants.
 
@@ -69,9 +70,9 @@ class Preparation:
 
     @staticmethod
     def prepare_per_ten_thousand_inhabitants(
-            population_map: Dict[str, Union[int, float]],
-            init_map: Dict[str, Union[int, float]]
-    ) -> Dict[str, Union[int, float]]:
+            population_map: dict[str, int | float],
+            init_map: dict[str, int | float]
+    ) -> dict[str, int | float]:
         """
         Transform all values into values per ten thousand inhabitants.
 
@@ -96,7 +97,9 @@ class Preparation:
         return generated_map
 
     @staticmethod
-    def prepare_pps_ratio(entries: Dict[str, Union[int, float]]) -> Dict[str, Union[int, float]]:
+    def prepare_pps_ratio(
+            entries: dict[str, int | float]
+    ) -> dict[str, int | float]:
         """
         Calculate the share of PPS compared to EU average.
 
@@ -117,7 +120,9 @@ class Preparation:
         return prepared_map
 
     @staticmethod
-    def calculate_eu_average(main_map: Dict[str, Union[int, float]], year: int) -> Optional[float]:
+    def calculate_eu_average(
+            main_map: dict[str, int | float], year: int
+    ) -> float | None:
         """
         Calculate the average of the EU for a specific year.
 
@@ -144,7 +149,9 @@ class Preparation:
         return total / count if count > 0 else None
 
     @staticmethod
-    def filter_map(prepared_map: Dict[str, Union[int, float]]) -> Dict[str, Union[int, float]]:
+    def filter_map(
+            prepared_map: dict[str, int | float]
+    ) -> dict[str, int | float]:
         """
         Fill the output map only with data for the analyzed period.
 
@@ -165,8 +172,8 @@ class Preparation:
 
     @staticmethod
     def _fill_null_values(
-            main_map: Dict[str, Union[int, float]],
-            prepared_map: Dict[str, Union[int, float]],
+            main_map: dict[str, int | float],
+            prepared_map: dict[str, int | float],
             code: str
     ) -> None:
         """
@@ -187,7 +194,9 @@ class Preparation:
         Preparation._fill_left_null_values(prepared_map, code)
 
     @staticmethod
-    def _fill_right_null_values(prepared_map: Dict[str, Union[int, float]], code: str) -> None:
+    def _fill_right_null_values(
+            prepared_map: dict[str, int | float], code: str
+    ) -> None:
         """
         Add values for next years that have null values for a specified country code.
         Fills forward with the last known value.
@@ -208,7 +217,9 @@ class Preparation:
                 prev_value = value
 
     @staticmethod
-    def _fill_left_null_values(prepared_map: Dict[str, Union[int, float]], code: str) -> None:
+    def _fill_left_null_values(
+            prepared_map: dict[str, int | float], code: str
+    ) -> None:
         """
         Add values for previous years that have null values for a specified country code.
         Fills backward with the next known value.
@@ -230,10 +241,10 @@ class Preparation:
 
     @staticmethod
     def _add_key_value(
-            map_dict: Dict[str, Union[int, float]],
+            map_dict: dict[str, int | float],
             key: str,
-            value: Optional[Union[int, float]],
-            saved_value: Optional[Union[int, float]]
+            value: int | float | None = None,
+            saved_value: int | float | None = None
     ) -> None:
         """
         Add an entry to the map if it's missing (None).
@@ -251,7 +262,9 @@ class Preparation:
                 map_dict[key] = saved_value
 
     @staticmethod
-    def _calculate_pps_ratio(entries: Dict[str, Union[int, float]], code: str, year: int) -> Optional[float]:
+    def _calculate_pps_ratio(
+            entries: dict[str, int | float], code: str, year: int
+    ) -> float | None:
         """
         Calculate the share of PPS compared to EU average.
 

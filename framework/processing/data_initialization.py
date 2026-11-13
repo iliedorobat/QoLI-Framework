@@ -2,7 +2,7 @@
 Basic methods for initializing lists (add "null" value for the missing keys)
 """
 
-from typing import Dict, List, Any
+from typing import Any
 
 from framework.common.constants import EU28_MEMBERS
 from framework.fetching.fetch_utils import INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
@@ -14,7 +14,10 @@ class Initializer:
     """Basic methods for initializing maps with default values for missing keys."""
 
     @staticmethod
-    def init_map(original_map: Dict[str, Any], country_codes: List[str] = None) -> Dict[str, Any]:
+    def init_map(
+            original_map: dict[str, Any],
+            country_codes: list[str] = None
+    ) -> dict[str, Any]:
         """
         Create a new sorted map with values for all the possible keys for a LEVERAGE PERIOD
         OF TIME.
@@ -43,7 +46,7 @@ class Initializer:
         return dict(sorted(init_map.items()))
 
     @staticmethod
-    def init_consolidated_maps(maps_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def init_consolidated_maps(maps_list: list[dict[str, Any]]) -> dict[str, Any]:
         """
         Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
         PERIOD OF TIME.
@@ -64,10 +67,10 @@ class Initializer:
 
     @staticmethod
     def init_consolidated_map(
-            params: Dict[str, List[str]],
+            params: dict[str, list[str]],
             file_path: str,
-            country_codes: List[str] = None
-    ) -> Dict[str, Any]:
+            country_codes: list[str] = None
+    ) -> dict[str, Any] | None:
         """
         Create a new sorted consolidated map with values for all the possible keys for a LEVERAGE
         PERIOD OF TIME.
@@ -96,8 +99,8 @@ class Initializer:
 
     @staticmethod
     def _init_empty_data(
-            original_map: Dict[str, Any],
-            init_map: Dict[str, Any],
+            original_map: dict[str, Any],
+            init_map: dict[str, Any],
             code: str,
             year: int
     ) -> None:

@@ -10,7 +10,10 @@ class MergeUtils:
     """Utility class for merging and consolidating data maps."""
 
     @staticmethod
-    def consolidate_map(params: dict[str, list[str]], file_path: str) -> dict[str, Any]:
+    def consolidate_map(
+            params: dict[str, list[str]],
+            file_path: str
+    ) -> dict[str, Any]:
         """
         Prepare data based on a set of parameters values (change the key name).
 
@@ -65,9 +68,11 @@ class MergeUtils:
         return dict(sorted(consolidated_list.items(), key=sort_key))
 
     @staticmethod
-    def _is_param_included(params: dict[str, list[str]],
-                           local_query_keys: list[str],
-                           local_query_values: list[str]) -> bool:
+    def _is_param_included(
+            params: dict[str, list[str]],
+            local_query_keys: list[str],
+            local_query_values: list[str]
+    ) -> bool:
         """
         Check if the current iterated key-value pair (local_query_keys and local_query_values)
         is included in the list of key-value pairs used to fetch data (params).

@@ -14,7 +14,11 @@ import requests
 from framework.common.constants import XLS_EXTENSION, CSV_EXTENSION, CSV_SEPARATOR, JSON_EXTENSION
 
 
-def convert_xls_to_csv(file_path: str, file_name: str, extension: str) -> None:
+def convert_xls_to_csv(
+        file_path: str,
+        file_name: str,
+        extension: str
+) -> None:
     """
     Convert an XLS file to CSV.
 
@@ -62,7 +66,12 @@ def convert_xls_to_csv(file_path: str, file_name: str, extension: str) -> None:
     except Exception as e:
         print(f"Error converting XLS to CSV: {e}")
 
-def download_excel_file(http_link: str, file_path: str, file_name: str, extension: str) -> None:
+def download_excel_file(
+        http_link: str,
+        file_path: str,
+        file_name: str,
+        extension: str
+) -> None:
     """
     Download an Excel file from an HTTP URL.
 
@@ -115,7 +124,12 @@ def read_file(path: str) -> str:
         print(f"Error: Error reading the file {path} from the disk. {e}")
         return ""
 
-def write_to_file(content: str, file_path: str, file_name: str, extension: str) -> None:
+def write_to_file(
+        content: str,
+        file_path: str,
+        file_name: str,
+        extension: str
+) -> None:
     """
     Write the data to disk.
 
@@ -138,7 +152,11 @@ def write_to_file(content: str, file_path: str, file_name: str, extension: str) 
     except IOError as e:
         print(f"Error: The file {full_path} could not be written. {e}")
 
-def write_to_json_file(content: str, file_path: str, file_name: str) -> None:
+def write_to_json_file(
+        content: str,
+        file_path: str,
+        file_name: str
+) -> None:
     """
     Export the data to a JSON file.
 

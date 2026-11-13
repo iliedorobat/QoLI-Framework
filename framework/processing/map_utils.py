@@ -2,12 +2,10 @@
 Utility methods for map operations.
 """
 
-from typing import List, Dict
-
 from framework.common.constants import KEY_SEPARATOR
 
 
-def get_unique_keys(params: Dict[str, List[str]]) -> List[str]:
+def get_unique_keys(params: dict[str, list[str]]) -> list[str]:
     """
     Get the unique keys of a multi-dimensional value map.
 

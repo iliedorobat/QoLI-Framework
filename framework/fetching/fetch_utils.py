@@ -1,6 +1,4 @@
 from datetime import date
-from typing import Dict, List, Union
-
 
 # FIXME: .env
 # These would need to be imported from your environment/config modules
@@ -20,8 +18,11 @@ class ParamsNames:
     TIME = "time"
 
 
-def add_params(params: Dict[str, List[str]], property_name: str,
-               values: Union[List[str], tuple]) -> None:
+def add_params(
+        params: dict[str, list[str]],
+        property_name: str,
+        values: list[str] | tuple
+) -> None:
     """
     Add new parameters to the params dictionary.
 
@@ -38,8 +39,11 @@ def add_params(params: Dict[str, List[str]], property_name: str,
             params[property_name].append(value)
 
 
-def add_params_from_dict(params: Dict[str, List[str]], property_name: str,
-                         values_map: Dict[str, str]) -> None:
+def add_params_from_dict(
+        params: dict[str, list[str]],
+        property_name: str,
+        values_map: dict[str, str]
+) -> None:
     """
     Add new parameters to the params dictionary from a dictionary's values.
 
@@ -52,7 +56,7 @@ def add_params_from_dict(params: Dict[str, List[str]], property_name: str,
     add_params(params, property_name, values)
 
 
-def filter_params_keys(params: Dict[str, List[str]]) -> List[str]:
+def filter_params_keys(params: dict[str, list[str]]) -> list[str]:
     """
     Filter the parameter keys and return a list of unique keys.
 
@@ -69,7 +73,7 @@ def filter_params_keys(params: Dict[str, List[str]]) -> List[str]:
     return filtered_keys
 
 
-def prepare_main_http_params(countries: List[str]) -> Dict[str, List[str]]:
+def prepare_main_http_params(countries: list[str]) -> dict[str, list[str]]:
     """
     Prepare the main params ('geo' for production and 'geo' & 'time' for testing).
 
@@ -90,7 +94,10 @@ def prepare_main_http_params(countries: List[str]) -> Dict[str, List[str]]:
     return params
 
 
-def consolidate_http_params(indicator_params: Dict[str, List[str]], country_codes: List[str]) -> Dict[str, List[str]]:
+def consolidate_http_params(
+        indicator_params: dict[str, list[str]],
+        country_codes: list[str]
+) -> dict[str, list[str]]:
     """
     Consolidate the main parameters and the query parameters specific to the analyzed indicator.
 

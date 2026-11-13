@@ -1,5 +1,5 @@
 import math
-from typing import Dict, Union
+
 
 class MathUtils:
     """
@@ -56,7 +56,10 @@ class MathUtils:
         return rounded_value / factor
 
     @staticmethod
-    def percentage_reverse_ratio(map_data: Dict[str, Union[int, float]], key: str) -> float:
+    def percentage_reverse_ratio(
+            map_data: dict[str, int | float],
+            key: str
+    ) -> float:
         """
         Get the differences between 100% and the current ratio.
         Examples:
@@ -77,7 +80,7 @@ class MathUtils:
 
     @staticmethod
     def generate_per_hundred_inhabitants(
-            population_map: Dict[str, Union[int, float]],
+            population_map: dict[str, int | float],
             key: str,
             value: float
     ) -> float:
@@ -97,7 +100,7 @@ class MathUtils:
 
     @staticmethod
     def generate_per_thousand_inhabitants(
-            population_map: Dict[str, Union[int, float]],
+            population_map: dict[str, int | float],
             key: str,
             value: float
     ) -> float:
@@ -117,7 +120,7 @@ class MathUtils:
 
     @staticmethod
     def generate_per_ten_thousand_inhabitants(
-            population_map: Dict[str, Union[int, float]],
+            population_map: dict[str, int | float],
             key: str,
             value: float
     ) -> float:
@@ -137,7 +140,7 @@ class MathUtils:
 
     @staticmethod
     def generate_per_hundred_thousand_inhabitants(
-            population_map: Dict[str, Union[int, float]],
+            population_map: dict[str, int | float],
             key: str,
             value: float
     ) -> float:
