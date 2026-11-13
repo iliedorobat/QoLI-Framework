@@ -66,20 +66,18 @@ def get_entry_year(entry: str) -> int | None:
 
     return None
 
-def sort_key(item) -> tuple[str, int]:
+def sort_key(entry: tuple[str, float | None]) -> tuple[str, int]:
     """
     Extract sortable key from a (key, value) tuple.
     Sorts by country code, then by year.
 
     Args:
-        item: A tuple of (key, value) where key is like "AT_2015"
+        entry: A tuple of (key, value) where key is like "AT_2015"
 
     Returns:
         A tuple (country_code, year) for proper sorting
     """
-    key = item[0]  # e.g., "AT_2015"
-    parts = key.split(KEY_SEPARATOR)  # Split on "_"
-    country = parts[0]
-    year = int(parts[1])
+    key = entry[0]  # e.g., "AT_2015"
+    code, year = key.split(KEY_SEPARATOR)  # Split on "_"
 
-    return country, year
+    return code, int(year)

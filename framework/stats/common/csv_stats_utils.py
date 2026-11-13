@@ -4,8 +4,8 @@ from framework.common.constants import EU28_MEMBERS, DIRECTION_ROW, CSV_SEPARATO
 from framework.fetching.file_utils import write_to_file
 from framework.processing.map_utils import get_entry_code
 from framework.processing.math_utils import MathUtils
-from framework.stats.common.qoli_paths import get_series_directory
 from framework.stats.common.stats_utils import StatsUtils
+from framework.stats.qoli_paths import get_series_directory
 
 _ROUNDING_PLACES = 2
 
