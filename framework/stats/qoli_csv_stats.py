@@ -4,18 +4,18 @@ from numbers import Number
 from framework.common.constants import SERIES_TYPE_COUNTRY, SERIES_TYPE_REGION, EU28_MEMBERS, EU28_REGIONS
 from framework.stats.common.csv_stats_utils import write_chart_data
 from framework.stats.common.print_utils import print_chart_data_for_entries
-from framework.stats.education.education_paths import EDUCATION_FILE_NAME
-from framework.stats.education.education_stats import EducationStats
-from framework.stats.environment.environment_paths import ENVIRONMENT_FILE_NAME
-from framework.stats.gov_rights.gov_rights_paths import GOVERNANCE_FILE_NAME
-from framework.stats.health.health_paths import HEALTH_FILE_NAME
-from framework.stats.leisure_interaction.leisure_interaction_paths import LEISURE_INTERACT_FILE_NAME
-from framework.stats.main_activity.main_activity_paths import MAIN_ACTIVITY_FILE_NAME
-from framework.stats.material_living.material_living_paths import LIVING_CONDITIONS_FILE_NAME
-from framework.stats.overall_experience.overall_experience_paths import OVERALL_EXPERIENCE_FILE_NAME
-from framework.stats.qoli_aggr_params import *
-from framework.stats.qoli_paths import QOLI_FILE_NAME
-from framework.stats.safety.safety_paths import SAFETY_FILE_NAME
+from framework.stats.dimensions.education.education_paths import EDUCATION_FILE_NAME
+from framework.stats.dimensions.education.education_stats import EducationStats
+from framework.stats.dimensions.environment.environment_paths import ENVIRONMENT_FILE_NAME
+from framework.stats.dimensions.gov_rights.gov_rights_paths import GOVERNANCE_FILE_NAME
+from framework.stats.dimensions.health.health_paths import HEALTH_FILE_NAME
+from framework.stats.dimensions.leisure_interaction.leisure_interaction_paths import LEISURE_INTERACT_FILE_NAME
+from framework.stats.dimensions.main_activity.main_activity_paths import MAIN_ACTIVITY_FILE_NAME
+from framework.stats.dimensions.material_living.material_living_paths import LIVING_CONDITIONS_FILE_NAME
+from framework.stats.dimensions.overall_experience.overall_experience_paths import OVERALL_EXPERIENCE_FILE_NAME
+from framework.stats.dimensions.qoli_aggr_params import *
+from framework.stats.dimensions.qoli_paths import QOLI_FILE_NAME
+from framework.stats.dimensions.safety.safety_paths import SAFETY_FILE_NAME
 
 
 class QoLICsvStats:

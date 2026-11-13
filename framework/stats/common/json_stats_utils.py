@@ -4,7 +4,7 @@ import os
 from framework.common.constants import PREPARED_DATASET_PATH, JSON_EXTENSION
 from framework.fetching.file_utils import write_to_file
 from framework.stats.common.stats_utils import StatsUtils
-from framework.stats.qoli_paths import get_series_directory
+from framework.stats.dimensions.qoli_paths import get_series_directory
 
 
 def write_json_data(

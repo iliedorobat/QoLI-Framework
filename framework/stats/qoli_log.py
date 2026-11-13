@@ -1,17 +1,17 @@
 from framework.common.constants import DIRECTION_ROW, SERIES_TYPE_COUNTRY
 from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
-from framework.stats.education.education_stats import EducationStats
-from framework.stats.environment.environment_stats import EnvironmentStats
-from framework.stats.gov_rights.gov_rights_stats import GovRightsStats
-from framework.stats.health.health_stats import HealthStats
-from framework.stats.leisure_interaction.leisure_interaction_stats import LeisureInteractStats
-from framework.stats.main_activity.main_activity_stats import MainActivityStats
-from framework.stats.material_living.material_living_stats import MaterialLivingStats
-from framework.stats.overall_experience.overall_experience_stats import OverallExperienceStats
+from framework.stats.dimensions.education.education_stats import EducationStats
+from framework.stats.dimensions.environment.environment_stats import EnvironmentStats
+from framework.stats.dimensions.gov_rights.gov_rights_stats import GovRightsStats
+from framework.stats.dimensions.health.health_stats import HealthStats
+from framework.stats.dimensions.leisure_interaction.leisure_interaction_stats import LeisureInteractStats
+from framework.stats.dimensions.main_activity.main_activity_stats import MainActivityStats
+from framework.stats.dimensions.material_living.material_living_stats import MaterialLivingStats
+from framework.stats.dimensions.overall_experience.overall_experience_stats import OverallExperienceStats
+from framework.stats.dimensions.qoli_paths import QOLI_FILE_NAME
+from framework.stats.dimensions.qoli_stats import QoLIStats
+from framework.stats.dimensions.safety.safety_stats import SafetyStats
 from framework.stats.qoli_csv_stats import QoLICsvStats
-from framework.stats.qoli_paths import QOLI_FILE_NAME
-from framework.stats.qoli_stats import QoLIStats
-from framework.stats.safety.safety_stats import SafetyStats
 
 
 def log_dimensions(
