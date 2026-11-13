@@ -19,7 +19,6 @@ from framework.stats.safety.safety_paths import SAFETY_FILE_NAME
 
 
 class QoLICsvStats:
-
     @staticmethod
     def print_dimensions(
             args: Sequence[str],
