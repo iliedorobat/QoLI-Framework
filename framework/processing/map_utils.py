@@ -51,7 +51,7 @@ def get_entry_code(entry: tuple[str, int | float]) -> str | None:
 
     return None
 
-def get_entry_year(entry: tuple[str, int | float]) -> int | None:
+def get_entry_year(entry: str) -> int | None:
     """
     Extract the year part from a map entry key.
 
@@ -61,15 +61,14 @@ def get_entry_year(entry: tuple[str, int | float]) -> int | None:
     Returns:
         The year as an integer or None if key format is invalid
     """
-    key, _ = entry
-    key_list = key.split(KEY_SEPARATOR)
+    key_list = entry.split(KEY_SEPARATOR)
 
     if len(key_list) == 2:
         return int(key_list[1])
 
     return None
 
-def sort_key(item):
+def sort_key(item) -> tuple[str, int]:
     """
     Extract sortable key from a (key, value) tuple.
     Sorts by country code, then by year.
@@ -84,4 +83,5 @@ def sort_key(item):
     parts = key.split(KEY_SEPARATOR)  # Split on "_"
     country = parts[0]
     year = int(parts[1])
+
     return country, year

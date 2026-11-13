@@ -1,8 +1,8 @@
-from typing import Dict, List, Any
+from typing import Any
 
 from framework.common.constants import KEY_SEPARATOR, EU28_MEMBERS
-from framework.fetching.fetch_utils import ParamsNames, filter_params_keys
-from framework.processing.local_parser import read_json_file, get_dimension_keys
+from framework.fetching.fetch_utils import filter_params_keys, ParamsNames
+from framework.processing.local_parser import read_json_file, dataset_to_map
 from framework.processing.map_utils import sort_key, get_entry_code
 
 
@@ -10,50 +10,51 @@ class MergeUtils:
     """Utility class for merging and consolidating data maps."""
 
     @staticmethod
-    def consolidate_map(params: Dict[str, List[str]], file_path: str) -> Dict[str, Any]:
+    def consolidate_map(params: dict[str, list[str]], file_path: str) -> dict[str, Any]:
         """
         Prepare data based on a set of parameters values (change the key name).
 
         E.g.:
+            Input:
             {
-                [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2015]: 64,
-                [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2016]: 65,
-                [I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2017]: 67,
-                [I_DSK_BAB, IND_TOTAL, PC_IND, BE, 2015]: 60,
+                (I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2015): 64,
+                (I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2016): 65,
+                (I_DSK_BAB, IND_TOTAL, PC_IND, AT, 2017): 67,
+                (I_DSK_BAB, IND_TOTAL, PC_IND, BE, 2015): 60,
                 ...
             }
 
-        will be processed to:
+            Output:
             {
-                AT_2015: 64,
-                AT_2016: 65,
-                AT_2017: 67,
-                BE_2015: 60,
+                "AT_2015": 64,
+                "AT_2016": 65,
+                "AT_2017": 67,
+                "BE_2015": 60,
                 ...
             }
 
         Args:
-            params: The global allowed query values (the allowed query values
-                    excepting the year and the country code)
-            file_path: The full access path to the desired file
+            params: The parameters used to fetch data (e.g., AVG_WORKING_HOURS_2007_PARAMS).
+                    Only entries matching all specified parameter values are included.
+            file_path: The full access path to the JSON file
 
         Returns:
-            Sorted dict with COUNTRY-CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
+            Sorted dict with COUNTRY_CODE_YEAR as key (e.g.: AT_2010; RO_2015 etc.)
         """
         consolidated_list = {}
-        entries = read_json_file(file_path)
+        dataset = read_json_file(file_path)
+        json_data = dataset_to_map(dataset)
 
-        local_query_keys = get_dimension_keys(file_path)
+        local_query_keys = dataset.get("id")
         country_index = local_query_keys.index(ParamsNames.GEO)
         year_index = local_query_keys.index(ParamsNames.TIME)
 
-        for entry_key, value in entries.items():
+        for entry_key, value in json_data.items():
             # entry_values = the queried values for parameters
             # Example:
             #      parameters: [unit, sex, isced11, age, geo, time]
             #      query_entries: [PC, T, ED5-8, Y15-64, UK, 2017]
             local_query_values = list(entry_key)
-
             country = local_query_values[country_index]
             year = int(local_query_values[year_index])
 
@@ -64,9 +65,9 @@ class MergeUtils:
         return dict(sorted(consolidated_list.items(), key=sort_key))
 
     @staticmethod
-    def _is_param_included(params: Dict[str, List[str]],
-                           local_query_keys: List[str],
-                           local_query_values: List[str]) -> bool:
+    def _is_param_included(params: dict[str, list[str]],
+                           local_query_keys: list[str],
+                           local_query_values: list[str]) -> bool:
         """
         Check if the current iterated key-value pair (local_query_keys and local_query_values)
         is included in the list of key-value pairs used to fetch data (params).
@@ -92,7 +93,7 @@ class MergeUtils:
         return True
 
     @staticmethod
-    def consolidate_maps(maps_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def consolidate_maps(maps_list: list[dict[str, Any]]) -> dict[str, Any]:
         """
         Consolidate a list of maps into a single one.
 
