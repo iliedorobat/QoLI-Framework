@@ -5,6 +5,8 @@ Parse JSON-stat v2 datasets from local files.
 import json
 from typing import Dict, List, Any, Union
 
+from pyjstat import pyjstat
+
 
 def read_json_file(file_path: str) -> Dict[tuple, Union[float, str]]:
     """
@@ -16,7 +18,11 @@ def read_json_file(file_path: str) -> Dict[tuple, Union[float, str]]:
     Returns:
         JSON-stat v2 dataset as a dictionary with tuple keys
     """
+    from framework.stats.education.education_paths import DROPOUT_RATIO_PATH
+    if file_path == DROPOUT_RATIO_PATH:
+        print()
     dataset = get_dataset(file_path)
+    test = pyjstat.Dataset.read(file_path)
     return as_map(dataset)
 
 
@@ -42,7 +48,8 @@ def as_map(dataset: Dict[str, Any]) -> Dict[tuple, Union[float, str]]:
     dim_ids = dataset['id']
 
     # Build the result map
-    for idx, value in enumerate(values):
+    for idx, key in enumerate(values):
+        value = values[key]
         if value is None:
             continue
 
