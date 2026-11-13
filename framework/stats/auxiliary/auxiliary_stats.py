@@ -1,7 +1,7 @@
-from auxiliary_paths import POPULATION_FILE_NAME, POPULATION_PATH
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
 from framework.stats.auxiliary.auxiliary_params import POPULATION_PARAMS
+from framework.stats.auxiliary.auxiliary_paths import POPULATION_PATH, POPULATION_FILE_NAME
 
 
 class AuxiliaryStats:

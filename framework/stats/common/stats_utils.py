@@ -195,22 +195,9 @@ class StatsUtils:
         )
 
     @staticmethod
-    def calculate_geometric_mean(maps_list: list[dict[str, Any]]) -> dict[str, Any]:
-        """
-        Consolidate the values using the geometric mean.
-
-        Args:
-            maps_list: The list of maps
-
-        Returns:
-            The consolidated list of maps
-        """
-        return StatsUtils.calculate_geometric_mean_with_factor(maps_list, 1.0)
-
-    @staticmethod
-    def calculate_geometric_mean_with_factor(
+    def calculate_geometric_mean(
             maps_list: list[dict[str, Any]],
-            multiplication_factor: float
+            multiplication_factor: float=1.0
     ) -> dict[str, Any]:
         """
         Consolidate the values using the geometric mean.
@@ -239,22 +226,9 @@ class StatsUtils:
         return consolidated_list
 
     @staticmethod
-    def calculate_sum(maps_list: list[dict[str, Any]]) -> dict[str, Any]:
-        """
-        Consolidate the values by summing them up.
-
-        Args:
-            maps_list: The list of maps
-
-        Returns:
-            The consolidated list of maps
-        """
-        return StatsUtils.calculate_sum_with_factor(maps_list, 1.0)
-
-    @staticmethod
-    def calculate_sum_with_factor(
+    def calculate_sum(
             maps_list: list[dict[str, Any]],
-            multiplication_factor: float
+            multiplication_factor: float=1.0
     ) -> dict[str, Any]:
         """
         Consolidate the values by summing them up.
