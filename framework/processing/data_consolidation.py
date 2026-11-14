@@ -114,7 +114,7 @@ class MergeUtils:
         for code in EU28_MEMBERS:
             for map_item in maps_list:
                 for entry_key, entry_value in map_item.items():
-                    entry_code = get_entry_code((entry_key, entry_value))
+                    entry_code = get_entry_code(entry_key)
 
                     if code == entry_code and entry_key not in prepared_map:
                         prepared_map[entry_key] = entry_value

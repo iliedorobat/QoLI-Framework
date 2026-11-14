@@ -31,17 +31,16 @@ def generate_key(code: str, year: int | float) -> str:
     """
     return f"{code}{KEY_SEPARATOR}{year}"
 
-def get_entry_code(entry: tuple[str, int | float]) -> str | None:
+def get_entry_code(key: str) -> str | None:
     """
     Extract the code part from a map entry key.
 
     Args:
-        entry: A tuple of (key, value)
+        key: The key to look up
 
     Returns:
         The code part or None if key format is invalid
     """
-    key, _ = entry
     key_list = key.split(KEY_SEPARATOR)
 
     if len(key_list) == 2:

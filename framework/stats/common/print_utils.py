@@ -46,17 +46,15 @@ def print_chart_data_for_entries(
 def print_entries(entries: dict[str, float], print_null: bool) -> None:
     prev_code = None
 
-    for key, value in entries.items():
-        entry = (key, value)
-
+    for key, _ in entries.items():
         # Print an empty line if the country code is different than the previous one.
-        code = get_entry_code(entry)
+        code = get_entry_code(key)
 
         if prev_code is not None and prev_code != code:
             print()
 
         prev_code = code
-        print_entry(entry, print_null)
+        print_entry(key, print_null)
 
 
 def print_entry(entry: tuple[str, float | None], print_null: bool) -> None:

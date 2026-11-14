@@ -36,11 +36,11 @@ def generate_variation(
         # Start from second record
         for j in range(1, len(entries)):
             entry = entries[j]
-            entry_code = get_entry_code(entry)
+            entry_code = get_entry_code(entry[0])
             entry_value = entry[1]
 
             prev_entry = entries[j - 1]
-            prev_entry_code = get_entry_code(prev_entry)
+            prev_entry_code = get_entry_code(prev_entry[0])
             prev_entry_value = prev_entry[1]
 
             if entry_code == code and prev_entry_code == code:
