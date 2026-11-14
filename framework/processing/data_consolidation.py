@@ -120,3 +120,8 @@ class MergeUtils:
                         prepared_map[entry_key] = entry_value
 
         return dict(sorted(prepared_map.items(), key=sort_key))
+
+
+__all__ = [
+    "MergeUtils",
+]

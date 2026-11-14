@@ -14,3 +14,8 @@ class ParamUnits:
     SCORE_1_10 = "Scores between 1 - 10"
     SCORE_10_100 = "Scores between 10 - 100"
     YEARS = "years"
+
+
+__all__ = [
+    "ParamUnits",
+]

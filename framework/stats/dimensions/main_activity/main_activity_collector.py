@@ -230,4 +230,6 @@ def _get_working_nights_ratio() -> str:
     return fetch_data("lfsa_ewpnig", WORKING_NIGHTS_RATIO_PARAMS)
 
 
-__all__ = ["fetch_main_activity_data"]
+__all__ = [
+    "fetch_main_activity_data",
+]

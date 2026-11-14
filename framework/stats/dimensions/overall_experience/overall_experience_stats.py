@@ -112,3 +112,8 @@ class OverallExperienceStats:
             target_year,
             ind_status,
         )
+
+
+__all__ = [
+    "OverallExperienceStats",
+]

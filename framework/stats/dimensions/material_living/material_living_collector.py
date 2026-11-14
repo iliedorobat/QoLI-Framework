@@ -212,4 +212,6 @@ def _get_under_occupied_ratio() -> str:
     return fetch_data("ilc_lvho50a", UNDER_OCCUPIED_RATIO_PARAMS)
 
 
-__all__ = ["fetch_material_living_data"]
+__all__ = [
+    "fetch_material_living_data",
+]

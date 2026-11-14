@@ -6,6 +6,8 @@ from time import sleep
 
 from framework.fetching.fetch_data import fetch_data
 from framework.fetching.file_utils import write_to_json_file
+from framework.stats.dimensions.education.education_params import *
+from framework.stats.dimensions.education.education_paths import *
 
 
 def fetch_education_data() -> None:

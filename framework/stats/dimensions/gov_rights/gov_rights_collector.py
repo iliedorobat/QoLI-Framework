@@ -1,8 +1,3 @@
-"""
-Collector for factors which influence the life of the population from
-the perspective of governing, law making and equality of opportunity.
-"""
-
 import os
 import time
 

@@ -62,3 +62,10 @@ def log_data_availability(status_year: int = MAX_YEAR, show_ind_level: bool = Fa
     MaterialLivingStats.print_data_availability(status_year, show_ind_level)
     OverallExperienceStats.print_data_availability(status_year, show_ind_level)
     SafetyStats.print_data_availability(status_year, show_ind_level)
+
+
+__all__ = [
+    "log_dimensions",
+    "log_aggr_indicators",
+    "log_data_availability",
+]

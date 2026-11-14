@@ -143,3 +143,8 @@ class QoLIStats:
     @staticmethod
     def get_country_list(country_codes: list[str] | None) -> list[str]:
         return country_codes if country_codes else EU28_MEMBERS
+
+
+__all__ = [
+    "QoLIStats",
+]

@@ -157,4 +157,6 @@ def _get_voluntary_activities_ratio() -> str:
     return fetch_active_people_ratio(VOLUNTARY_RATIO_PARAMS)
 
 
-__all__ = ["fetch_leisure_interaction_data"]
+__all__ = [
+    "fetch_leisure_interaction_data",
+]

@@ -17,7 +17,7 @@ URI_LANG = "en"
 URI_SEPARATOR = "/"
 
 
-def build_uri(dataset: str, params: dict[str, list[str]]) -> str:
+def _build_uri(dataset: str, params: dict[str, list[str]]) -> str:
     """
     Generate the URI used to extract data.
     
@@ -89,7 +89,7 @@ def fetch_data(
         country_codes = EU28_MEMBERS
 
     params = consolidate_http_params(input_params, country_codes)
-    uri = build_uri(dataset, params)
+    uri = _build_uri(dataset, params)
 
     try:
         response = requests.get(uri, timeout=30)
@@ -149,7 +149,8 @@ def sleep(sleep_time: int) -> None:
 
 
 __all__ = [
-    'fetch_satisfaction_ratio',
-    'fetch_active_people_ratio',
-    'fetch_data'
+    "fetch_active_people_ratio",
+    "fetch_data",
+    "fetch_satisfaction_ratio",
+    "sleep",
 ]

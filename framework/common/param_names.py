@@ -61,3 +61,8 @@ class ParamNames:
     WORK_TIME = "worktime"
     WORKING_STATUS = "wstatus"
     WORKING_TIME_FLEX = "wtflex"
+
+
+__all__ = [
+    "ParamNames",
+]

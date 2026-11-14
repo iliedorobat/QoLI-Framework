@@ -222,4 +222,6 @@ def _get_work_accidents() -> str:
     return fetch_data("hsw_mi07", WORK_ACCIDENTS_PARAMS)
 
 
-__all__ = ["fetch_health_data"]
+__all__ = [
+    "fetch_health_data",
+]

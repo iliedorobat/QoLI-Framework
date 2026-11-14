@@ -1,11 +1,9 @@
-"""
-Collector for environment-related statistical data from Eurostat.
-"""
-
 from time import sleep
 
 from framework.fetching.fetch_data import fetch_data
 from framework.fetching.file_utils import write_to_json_file
+from framework.stats.dimensions.environment.environment_params import *
+from framework.stats.dimensions.environment.environment_paths import *
 
 
 def fetch_environment_data() -> None:
@@ -98,5 +96,5 @@ def _get_water_supply_ratio() -> str:
 
 
 __all__ = [
-    'fetch_environment_data',
+    "fetch_environment_data",
 ]

@@ -284,3 +284,8 @@ class Preparation:
             raise ValueError("The 'eu_average' variable is None.")
 
         return (value / eu_average) * 100 if value is not None else None
+
+
+__all__ = [
+    "Preparation",
+]

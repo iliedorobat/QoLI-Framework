@@ -157,3 +157,8 @@ class EducationStats:
     def print_data_availability(target_year: int, ind_status: bool) -> None:
         """Print data availability for the education dimension"""
         print_data_availability(EducationStats.raw_indicators, EDUCATION, target_year, ind_status)
+
+
+__all__ = [
+    "EducationStats",
+]

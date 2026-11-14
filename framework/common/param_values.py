@@ -161,3 +161,23 @@ class WORKING_FLEXIBILITY:
     PERSON_DECISION = "PER_FUL"             # Person can fully decide
     RESTRICTIVE_DECISION = "PER_RSTR"       # Person can decide with restrictions
     TOTAL = "TOTAL"                         # Total
+
+
+__all__ = [
+    "ACL00",
+    "AIR_POL",
+    "DOMAIN",
+    "HAPPINESS_LEVELS",
+    "HEALTH_PROBLEMS",
+    "ICCS",
+    "ISCED_11",
+    "LEV_DIFF",
+    "MED_SPEC",
+    "PERS_CAT",
+    "SATISFACTION_LEVELS",
+    "SATISFACTION_TYPES",
+    "SEX",
+    "SOCIAL_ACTIVITIES_NP_REASON",
+    "VOLUNTARY_ACTIVITIES_NP_REASON",
+    "WORKING_FLEXIBILITY",
+]

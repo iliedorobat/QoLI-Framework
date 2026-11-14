@@ -23,3 +23,8 @@ class AuxiliaryStats:
     aggr_indicators = {
         POPULATION_FILE_NAME: population
     }
+
+
+__all__ = [
+    "AuxiliaryStats",
+]

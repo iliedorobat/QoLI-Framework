@@ -167,3 +167,8 @@ class EnvironmentStats:
             target_year,
             ind_status,
         )
+
+
+__all__ = [
+    "EnvironmentStats",
+]

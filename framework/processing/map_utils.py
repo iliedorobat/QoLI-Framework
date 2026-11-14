@@ -5,19 +5,6 @@ Utility methods for map operations.
 from framework.common.constants import KEY_SEPARATOR
 
 
-def get_unique_keys(params: dict[str, list[str]]) -> list[str]:
-    """
-    Get the unique keys of a multi-dimensional value map.
-
-    Args:
-        params: The multi-dimensional value map
-
-    Returns:
-        The list of unique keys
-    """
-    unique_keys = set(params.keys())
-    return list(unique_keys)
-
 def generate_key(code: str, year: int | float) -> str:
     """
     Generate a composite key from code and year.
@@ -80,3 +67,11 @@ def sort_key(entry: tuple[str, float | None]) -> tuple[str, int]:
     code, year = key.split(KEY_SEPARATOR)  # Split on "_"
 
     return code, int(year)
+
+
+__all__ = [
+    "generate_key",
+    "get_entry_code",
+    "get_entry_year",
+    "sort_key",
+]

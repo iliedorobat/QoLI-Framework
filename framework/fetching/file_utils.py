@@ -166,3 +166,12 @@ def write_to_json_file(
         file_name: The name of the output file
     """
     write_to_file(content, file_path, file_name, JSON_EXTENSION)
+
+
+__all__ = [
+    "download_excel_file",
+    "convert_xls_to_csv",
+    "read_file",
+    "write_to_file",
+    "write_to_json_file",
+]

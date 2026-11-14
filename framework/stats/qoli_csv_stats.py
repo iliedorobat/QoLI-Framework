@@ -127,5 +127,5 @@ class QoLICsvStats:
 
 
 __all__ = [
-    "QoLICsvStats"
+    "QoLICsvStats",
 ]

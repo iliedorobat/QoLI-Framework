@@ -114,13 +114,14 @@ def consolidate_http_params(
 
 
 __all__ = [
-    'add_params',
-    'add_params_from_dict',
-    'consolidate_http_params',
-    'filter_params_keys',
-    'ParamsNames',
-    'MIN_YEAR',
-    'MAX_YEAR',
-    'INIT_MAP_MIN_YEAR',
-    'INIT_MAP_MAX_YEAR'
+    "MIN_YEAR",
+    "MAX_YEAR",
+    "INIT_MAP_MIN_YEAR",
+    "INIT_MAP_MAX_YEAR",
+
+    "add_params",
+    "add_params_from_dict",
+    "consolidate_http_params",
+    "filter_params_keys",
+    "ParamsNames",
 ]

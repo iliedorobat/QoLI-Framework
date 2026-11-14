@@ -318,3 +318,8 @@ class LeisureInteractStats:
             target_year,
             ind_status,
         )
+
+
+__all__ = [
+    "LeisureInteractStats",
+]

@@ -99,6 +99,7 @@ IND_REVERSED_STATES = {
 
 __all__ = [
     "QOLI",
+
     "EDUCATION",
     "ENVIRONMENT",
     "GOVERNANCE",
@@ -108,6 +109,7 @@ __all__ = [
     "LIVING_CONDITIONS",
     "OVERALL_EXPERIENCE",
     "SAFETY",
+
     "AGGR_PARAMS_LABELS",
     "AGGR_PARAMS",
     "AGGR_DIMENSION_LABELS",

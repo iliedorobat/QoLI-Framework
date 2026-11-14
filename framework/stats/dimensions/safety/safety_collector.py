@@ -100,4 +100,6 @@ def _get_unexpected_ratio() -> str:
     return fetch_data("ilc_mdes04", UNEXPECTED_RATIO_PARAMS)
 
 
-__all__ = ["fetch_safety_data"]
+__all__ = [
+    "fetch_safety_data",
+]

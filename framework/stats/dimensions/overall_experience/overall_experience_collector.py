@@ -2,6 +2,7 @@ import time
 
 from framework.fetching.fetch_data import fetch_data, fetch_satisfaction_ratio
 from framework.fetching.file_utils import write_to_json_file
+from framework.stats.dimensions.overall_experience.overall_experience_params import *
 from framework.stats.dimensions.overall_experience.overall_experience_paths import *
 
 
@@ -35,4 +36,6 @@ def _get_high_satisfaction_ratio() -> str:
     return fetch_satisfaction_ratio(HIGH_SATISFACTION_RATIO_PARAMS)
 
 
-__all__ = ["fetch_overall_experience_data"]
+__all__ = [
+    "fetch_overall_experience_data",
+]

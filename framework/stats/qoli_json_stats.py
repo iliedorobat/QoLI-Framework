@@ -183,3 +183,8 @@ class QoLIJsonStats:
             start_year,
             end_year,
         )
+
+
+__all__ = [
+    "QoLIJsonStats",
+]

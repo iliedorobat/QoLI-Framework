@@ -232,3 +232,8 @@ class GovRightsStats:
             target_year,
             ind_status,
         )
+
+
+__all__ = [
+    "GovRightsStats",
+]

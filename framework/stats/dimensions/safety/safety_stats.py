@@ -403,3 +403,8 @@ class SafetyStats:
             target_year,
             ind_status,
         )
+
+
+__all__ = [
+    "SafetyStats",
+]
