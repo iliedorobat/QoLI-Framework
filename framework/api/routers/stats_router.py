@@ -9,7 +9,7 @@ from framework.stats.dimensions.qoli_stats import QoLIStats
 
 router = APIRouter(
     prefix="/qoli/api/v2/stats",
-    responses={404: {"description": "Not found"}}
+    responses={404: {"description": "Not found"}},
 )
 
 class AnalysisType(Enum):

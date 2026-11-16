@@ -6,8 +6,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from framework.api.routers.stats_schema_router import router as stats_schema_router
+from framework.api.routers.collector_router import router as collector_router
 from framework.api.routers.stats_router import router as stats_router
+from framework.api.routers.stats_schema_router import router as stats_schema_router
 from framework.config.endpoint import Endpoint
 from framework.config.env_state import EnvState
 
@@ -56,6 +57,7 @@ def create_app() -> FastAPI:
         )
 
     # Register routers
+    server.include_router(collector_router)
     server.include_router(stats_router)
     server.include_router(stats_schema_router)
 
