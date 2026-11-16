@@ -4,7 +4,8 @@ Fetch population data and write to JSON file
 
 from framework.fetching.fetch_data import fetch_data
 from framework.fetching.file_utils import write_to_json_file
-from framework.stats.dimensions.auxiliary import AUXILIARY_RAW_PATH, POPULATION_FILE_NAME, POPULATION_PARAMS
+from framework.stats.dimensions.auxiliary.auxiliary_params import POPULATION_PARAMS
+from framework.stats.dimensions.auxiliary.auxiliary_paths import AUXILIARY_RAW_PATH, POPULATION_FILE_NAME
 
 
 def fetch_auxiliary_data():

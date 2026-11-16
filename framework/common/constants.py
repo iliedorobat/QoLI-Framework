@@ -40,7 +40,7 @@ _CURRENT_FILE_PATH = Path(__file__).resolve()
 _FRAMEWORK_DIR = _CURRENT_FILE_PATH.parents[2]  # Go up 3 levels to 'framework' directory
 
 # Build the raw dataset path using absolute paths
-RAW_DATASET_PATH = str(_FRAMEWORK_DIR / "src" / "main" / "resources" / "static" / "raw" / "json" / "countries")
+RAW_DATASET_PATH = os.path.join(os.sep, _FRAMEWORK_DIR, "src", "main", "resources", "static", "raw", "json", "countries")
 
 # Optional: Validate the path exists
 if not os.path.exists(RAW_DATASET_PATH):
