@@ -1,5 +1,5 @@
 from framework.common.constants import DIRECTION_ROW, SERIES_TYPE_COUNTRY
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.stats.dimensions.education.education_stats import EducationStats
 from framework.stats.dimensions.environment.environment_stats import EnvironmentStats
 from framework.stats.dimensions.gov_rights.gov_rights_stats import GovRightsStats
@@ -20,7 +20,7 @@ def log_dimensions(
         direction: str=DIRECTION_ROW
 ):
     """Log the QoLI and the QoLI dimensions values"""
-    data_by_countries = QoLIStats.prepare_extended_dimensions(dimensions, None, MIN_YEAR, MAX_YEAR)
+    data_by_countries = QoLIStats.prepare_extended_dimensions(dimensions, None, EnvState.MIN_YEAR, EnvState.MAX_YEAR)
 
     QoLICsvStats.print_dimensions(
         [f"--dimension={QOLI_FILE_NAME}"],
@@ -51,7 +51,7 @@ def log_aggr_indicators(
     SafetyStats.print_aggr_indicators(aggr_list, series_type, direction)
 
 
-def log_data_availability(status_year: int = MAX_YEAR, show_ind_level: bool = False):
+def log_data_availability(status_year: int = EnvState.MAX_YEAR, show_ind_level: bool = False):
     """Print the data inconsistencies (available dataset and expected dataset)"""
     EducationStats.print_data_availability(status_year, show_ind_level)
     EnvironmentStats.print_data_availability(status_year, show_ind_level)

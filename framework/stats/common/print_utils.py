@@ -1,5 +1,5 @@
 from framework.common.constants import KEY_SEPARATOR
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.map_utils import get_entry_code, get_entry_year
 from framework.stats.common.csv_stats_utils import generate_chart_data
 
@@ -37,8 +37,8 @@ def print_chart_data_for_entries(
         series_type,
         directory_name,
         direction,
-        MIN_YEAR,
-        MAX_YEAR,
+        EnvState.MIN_YEAR,
+        EnvState.MAX_YEAR,
     )
     print(output)
 

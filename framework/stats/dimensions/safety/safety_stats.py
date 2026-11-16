@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
-from framework.common.constants import EU28_MEMBERS, EU28_MEMBERS_EXTENDED
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.common.constants import EU28_MEMBERS, EU28_MEMBERS_EXTENDED, KEY_SEPARATOR
+from framework.config.env_state import EnvState
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
 from framework.processing.math_utils import MathUtils
@@ -18,11 +18,11 @@ def _prepare_offences(
 ) -> dict[str, int | float | None]:
     consolidated_list = {}
 
-    for year in range(MIN_YEAR, MAX_YEAR + 1):
+    for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
         uk_value = 0
 
         for code in EU28_MEMBERS_EXTENDED:
-            key = f"{code}_{year}"
+            key = f"{code}{KEY_SEPARATOR}{year}"
             value = offence[key]
 
             if code in ("UKC-L", "UKM", "UKN"):
@@ -82,7 +82,7 @@ def _prepare_offences_ratio(
 
     consolidated_list = {}
 
-    for year in range(MIN_YEAR, MAX_YEAR + 1):
+    for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
         uk_sum = 0
 
         for code in EU28_MEMBERS_EXTENDED:

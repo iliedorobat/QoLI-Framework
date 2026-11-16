@@ -3,7 +3,7 @@ from collections import OrderedDict
 from typing import Optional, Any
 
 from framework.common.constants import *
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.map_utils import get_entry_code, get_entry_year, generate_key
 from framework.processing.math_utils import MathUtils
 
@@ -211,7 +211,7 @@ class StatsUtils:
         """
         consolidated_list = OrderedDict()
 
-        for year in range(MIN_YEAR, MAX_YEAR + 1):
+        for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
             for code in EU28_MEMBERS:
                 key = generate_key(code, year)
                 product = 1.0
@@ -242,7 +242,7 @@ class StatsUtils:
         """
         consolidated_list = OrderedDict()
 
-        for year in range(MIN_YEAR, MAX_YEAR + 1):
+        for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
             for code in EU28_MEMBERS:
                 key = generate_key(code, year)
                 total_sum = 0.0
@@ -342,7 +342,7 @@ class StatsUtils:
         # Get the value recorded to the nearest year which is greater than 0.0 for cases where
         # the datasets contain the value "0.0" instead of "null".
         # This preparation prevents corruption of the result of the product of values.
-        for crr_year in range(year, MIN_YEAR - 1, -1):
+        for crr_year in range(year, EnvState.MIN_YEAR - 1, -1):
             key = generate_key(code, crr_year)
             value = float(entries[key])
 

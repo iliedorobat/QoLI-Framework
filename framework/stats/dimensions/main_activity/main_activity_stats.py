@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.data_consolidation import MergeUtils
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
@@ -18,7 +18,7 @@ MAX_LEGAL_WORKING_HOURS = 12 * 7
 def _prepare_avg_remaining_work_hours(avg_work_hours: dict[str, int | float | None]) -> dict[str, int | float | None]:
     prepared_map = {}
 
-    for year in range(MIN_YEAR, MAX_YEAR + 1):
+    for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
         for code in EU28_MEMBERS:
             key = f"{code}{KEY_SEPARATOR}{year}"
             prepared_map[key] = MAX_LEGAL_WORKING_HOURS - avg_work_hours[key]
@@ -33,7 +33,7 @@ def _prepare_working_flexibility_ratio(
 ) -> dict[str, int | float | None]:
     prepared_map = {}
 
-    for year in range(MIN_YEAR, MAX_YEAR + 1):
+    for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
         for code in EU28_MEMBERS:
             key = f"{code}{KEY_SEPARATOR}{year}"
 

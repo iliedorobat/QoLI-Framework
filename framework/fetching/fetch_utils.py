@@ -1,17 +1,7 @@
-from datetime import date
-
-# FIXME: .env
-# These would need to be imported from your environment/config modules
-# from config import EnvState, Constants
-# For now, using placeholder values
-IS_TESTING = False
-MIN_YEAR = 2004
-# TODO: check
-MAX_YEAR = date.today().year - 1
-INIT_MAP_MIN_YEAR = MIN_YEAR
-INIT_MAP_MAX_YEAR = MAX_YEAR
-
 # Constants for parameter names
+from framework.config.env_state import EnvState
+
+
 class ParamsNames:
     LANG = "lang"
     GEO = "geo"
@@ -85,7 +75,7 @@ def prepare_main_http_params(countries: list[str]) -> dict[str, list[str]]:
     """
     params = {ParamsNames.LANG: ["en"]}
 
-    if IS_TESTING:
+    if EnvState.IS_TESTING:
         params[ParamsNames.GEO] = ["RO"]
         params[ParamsNames.TIME] = ["2015"]
     else:
@@ -114,11 +104,6 @@ def consolidate_http_params(
 
 
 __all__ = [
-    "MIN_YEAR",
-    "MAX_YEAR",
-    "INIT_MAP_MIN_YEAR",
-    "INIT_MAP_MAX_YEAR",
-
     "add_params",
     "add_params_from_dict",
     "consolidate_http_params",

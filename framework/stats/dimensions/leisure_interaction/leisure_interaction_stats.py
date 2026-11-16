@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
 from framework.stats.common.print_utils import print_chart_data, print_data_availability
@@ -18,7 +18,7 @@ def _calculate_sum(
     """Calculate the sum of two maps for every EU member and year."""
     consolidated_map = {}
 
-    for year in range(MIN_YEAR, MAX_YEAR + 1):
+    for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
         for code in EU28_MEMBERS:
             key = f"{code}{KEY_SEPARATOR}{year}"
             value = map1[key] + map2[key]

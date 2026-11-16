@@ -4,7 +4,8 @@ from urllib.parse import quote
 import requests
 
 from framework.common.constants import EU28_MEMBERS
-from framework.fetching.fetch_utils import consolidate_http_params, MIN_YEAR, MAX_YEAR
+from framework.config.env_state import EnvState
+from framework.fetching.fetch_utils import consolidate_http_params
 
 # Constants
 ENCODING_SCHEME = "UTF-8"
@@ -37,8 +38,8 @@ def _build_uri(dataset: str, params: dict[str, list[str]]) -> str:
     query_params = {
         "format": URI_FORMAT,
         "lang": URI_LANG,
-        "sinceTimePeriod": str(MIN_YEAR),
-        "untilTimePeriod": str(MAX_YEAR)
+        "sinceTimePeriod": str(EnvState.MIN_YEAR),
+        "untilTimePeriod": str(EnvState.MAX_YEAR)
     }
 
     # Add additional parameters

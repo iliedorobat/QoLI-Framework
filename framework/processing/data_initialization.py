@@ -5,7 +5,7 @@ Basic methods for initializing lists (add "null" value for the missing keys)
 from typing import Any
 
 from framework.common.constants import EU28_MEMBERS
-from framework.fetching.fetch_utils import INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.data_consolidation import MergeUtils
 from framework.processing.map_utils import generate_key
 
@@ -40,7 +40,7 @@ class Initializer:
         init_map = {}
 
         for code in country_codes:
-            for year in range(INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR + 1):
+            for year in range(EnvState.INIT_MAP_MIN_YEAR, EnvState.INIT_MAP_MAX_YEAR + 1):
                 Initializer._init_empty_data(original_map, init_map, code, year)
 
         return dict(sorted(init_map.items()))

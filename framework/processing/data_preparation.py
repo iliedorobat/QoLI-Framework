@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
-from framework.fetching.fetch_utils import MIN_YEAR, MAX_YEAR, INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR
+from framework.config.env_state import EnvState
 from framework.processing.map_utils import generate_key, get_entry_year
 from framework.processing.math_utils import MathUtils
 
@@ -58,7 +58,7 @@ class Preparation:
         generated_map = OrderedDict()
         prepared_map = Preparation.prepare_data(init_map)
 
-        for year in range(MIN_YEAR, MAX_YEAR + 1):
+        for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
             for code in EU28_MEMBERS:
                 key = generate_key(code, year)
                 value = prepared_map.get(key)
@@ -86,7 +86,7 @@ class Preparation:
         generated_map = OrderedDict()
         prepared_map = Preparation.prepare_data(init_map)
 
-        for year in range(MIN_YEAR, MAX_YEAR + 1):
+        for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
             for code in EU28_MEMBERS:
                 key = generate_key(code, year)
                 value = prepared_map.get(key)
@@ -111,7 +111,7 @@ class Preparation:
         """
         prepared_map = OrderedDict()
 
-        for year in range(MIN_YEAR, MAX_YEAR + 1):
+        for year in range(EnvState.MIN_YEAR, EnvState.MAX_YEAR + 1):
             for code in EU28_MEMBERS:
                 key = generate_key(code, year)
                 value = Preparation._calculate_pps_ratio(entries, code, year)
@@ -165,7 +165,7 @@ class Preparation:
 
         for key, value in prepared_map.items():
             year = get_entry_year(key)
-            if MIN_YEAR <= year <= MAX_YEAR:
+            if EnvState.MIN_YEAR <= year <= EnvState.MAX_YEAR:
                 filtered_map[key] = value
 
         return filtered_map
@@ -184,7 +184,7 @@ class Preparation:
             prepared_map: The prepared map containing all entries
             code: The country code for which the ratio is calculated
         """
-        for year in range(INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR + 1):
+        for year in range(EnvState.INIT_MAP_MIN_YEAR, EnvState.INIT_MAP_MAX_YEAR + 1):
             key = generate_key(code, year)
             value = prepared_map.get(key)
             eu_average = Preparation.calculate_eu_average(main_map, year)
@@ -207,7 +207,7 @@ class Preparation:
         """
         prev_value = None
 
-        for year in range(INIT_MAP_MIN_YEAR, INIT_MAP_MAX_YEAR + 1):
+        for year in range(EnvState.INIT_MAP_MIN_YEAR, EnvState.INIT_MAP_MAX_YEAR + 1):
             key = generate_key(code, year)
             value = prepared_map.get(key)
 
@@ -230,7 +230,7 @@ class Preparation:
         """
         next_value = None
 
-        for year in range(INIT_MAP_MAX_YEAR, INIT_MAP_MIN_YEAR - 1, -1):
+        for year in range(EnvState.INIT_MAP_MAX_YEAR, EnvState.INIT_MAP_MIN_YEAR - 1, -1):
             key = generate_key(code, year)
             value = prepared_map.get(key)
 
