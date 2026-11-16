@@ -46,7 +46,7 @@ _AGGR_REVERSED_STATES = {
 
 
 @dataclass
-class AggrIndicatorConfig:
+class AggrIndicatorSchema:
     filename: str
     label: str
     checked: bool = True

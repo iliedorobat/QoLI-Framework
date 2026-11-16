@@ -48,7 +48,7 @@ _IND_REVERSED_STATES = {
 
 
 @dataclass
-class BaseIndicatorConfig:
+class BaseIndicatorSchema:
     filename: str
     label: str
     negativeState: bool = False
