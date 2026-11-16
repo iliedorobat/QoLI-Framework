@@ -1,45 +1,83 @@
+import logging
 import os
+from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from framework.api.routers.stats_config_router import router as stats_config_router
 from framework.api.routers.stats_router import router as stats_router
+from framework.config.endpoint import Endpoint
+from framework.config.env_state import EnvState
 
-PORT = 8020
-app = FastAPI()
-
-# Configure CORS - equivalent to the Java CORSFilter
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Access-Control-Allow-Origin
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"],  # Access-Control-Allow-Methods
-    allow_headers=[
-        "Origin",
-        "Content-Type",
-        "Accept",
-        "access-control-allow-headers",
-        "access-control-allow-methods",
-        "access-control-allow-origin",
-    ],  # Access-Control-Allow-Headers
-    # allow_credentials=True,  # Uncomment if needed (can't use with allow_origins=["*"])
-)
-
-# Include the stats router
-app.include_router(stats_router)
+LOGGER = logging.getLogger(__name__)
 
 
-@app.get("/")
-def root():
-    print("Endpoint PID:", os.getpid())
-    return "Success!"
+@asynccontextmanager
+async def lifespan(server: FastAPI):
+    LOGGER.info("Starting eLIFE API...")
+    LOGGER.info("API endpoint: %s", Endpoint.BASE_URI)
+
+    yield
+
+    LOGGER.info("Shutting down eLIFE API...")
+
+
+def create_app() -> FastAPI:
+    server = FastAPI(
+        title="eLIFE API",
+        lifespan=lifespan,
+        docs_url=None,
+        redoc_url=None,
+        openapi_url=None,
+    )
+
+    # CORS configuration
+    if EnvState.CORS_ORIGINS:
+        server.add_middleware(
+            CORSMiddleware,
+            allow_origins=EnvState.CORS_ORIGINS,
+            allow_methods=[
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS",
+                "HEAD",
+            ],
+            allow_headers=[
+                "Origin",
+                "Content-Type",
+                "Accept",
+                "Authorization",
+            ],
+            allow_credentials=False,
+        )
+
+    # Register routers
+    server.include_router(stats_router)
+    server.include_router(stats_config_router)
+
+    @server.get("/")
+    async def root():
+        LOGGER.info("Endpoint PID: %s", os.getpid())
+        return "Success!"
+
+    return server
+
+
+app = create_app()
 
 
 if __name__ == "__main__":
-    print("Starting FastAPI")
+    logging.basicConfig(level=logging.INFO)
+
+    LOGGER.info("Starting FastAPI server...")
+
     uvicorn.run(
         "framework.api.server:app",
-        host="0.0.0.0",
-        reload=True,
-        port=PORT,
+        host=Endpoint.HOST,
+        port=Endpoint.PORT,
+        reload=not EnvState.IS_PRODUCTION,
     )

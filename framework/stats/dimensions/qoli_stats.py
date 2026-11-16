@@ -13,7 +13,7 @@ from framework.stats.dimensions.qoli_aggr_params import *
 from framework.stats.dimensions.safety.safety_stats import SafetyStats
 
 
-def _extract_time_range(entries: dict[str, float | None]) -> list[int]:
+def extract_time_range(entries: dict[str, float | None]) -> list[int]:
     time_range = {
         get_entry_year(key)
         for key, value in entries.items()
@@ -25,7 +25,7 @@ def _extract_multiset_time_range(
         entries: dict[str, dict[str, float | None]],
 ) -> dict[str, list[int]]:
     return {
-        key: _extract_time_range(values)
+        key: extract_time_range(values)
         for key, values in entries.items()
     }
 
@@ -44,7 +44,6 @@ class QoLIStats:
         **SafetyStats.raw_indicators,
     }
 
-    # TODO: check if raw_indicators_time_range is instantiated
     raw_indicators_time_range = _extract_multiset_time_range(raw_indicators)
 
     aggr_indicators = {
@@ -147,4 +146,5 @@ class QoLIStats:
 
 __all__ = [
     "QoLIStats",
+    "extract_time_range",
 ]

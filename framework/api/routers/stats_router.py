@@ -25,7 +25,7 @@ async def get_stats(
         country_code: Annotated[list[str] | None, Query(alias="countryCode")] = None,
 ):
     if analysis_type == AnalysisType.AGGREGATE:
-        # E.g.: http://localhost:8020/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022
+        # E.g.: http://localhost:8027/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022
         return StatsUtils.filter_stats(
             QoLIStats.generate_aggr_stats(aggr_list, country_code, start_year, end_year),
             None,
@@ -36,7 +36,7 @@ async def get_stats(
         )
 
     elif analysis_type == AnalysisType.INDIVIDUALLY:
-        # E.g.: http://localhost:8020/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022
+        # E.g.: http://localhost:8027/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022
         if aggr_list is None or len(aggr_list) == 0:
             raise HTTPException(
                 status_code=500,
