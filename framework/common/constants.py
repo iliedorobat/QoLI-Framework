@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from framework.config.env_state import EnvState
+
 # File extensions
 JSON_EXTENSION = ".json"
 CSV_EXTENSION = ".csv"
@@ -8,27 +10,10 @@ CSV_SEPARATOR = ";"
 KEY_SEPARATOR = "_"
 XLS_EXTENSION = ".xls"
 
-# FIXME: .env
-# Path configuration
-# Note: Python equivalent needs to check environment variables or a config module
-# For now, assuming IS_PRODUCTION and USE_TOMCAT_SERVER are defined elsewhere
-# You may need to import these from an env_state module if it exists
-
 def _get_base_path():
     """Determine the base path based on environment configuration."""
-    # This assumes you have an env_state module similar to Java's EnvState
-    try:
-        from env_state import IS_PRODUCTION, USE_TOMCAT_SERVER
-    except ImportError:
-        # Fallback: assume development mode
-        IS_PRODUCTION = False
-        USE_TOMCAT_SERVER = False
-
-    if IS_PRODUCTION:
-        if USE_TOMCAT_SERVER:
-            return os.path.join(os.sep, "opt", "tomcat", "webapps", "qoli", "WEB-INF")
-        else:
-            return os.path.join(os.sep, "var", "www", "life-index.eu", "server", "resources", "main")
+    if EnvState.IS_PRODUCTION:
+        return os.path.join(os.sep, "var", "www", "life-index.eu", "server", "resources", "main")
     else:
         return os.path.join(os.getcwd(), "../fetching/", "src", "main", "resources")
 
