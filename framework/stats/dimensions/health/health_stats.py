@@ -177,7 +177,6 @@ class HealthStats:
         DEPRESSIVE_RATIO: depressive_ratio,
         HEALTHY_LIFE_RATIO: healthy_life_ratio,
         HEALTHY_LIFE_YEARS: healthy_life_years,
-        # TODO: check aggr_indicators[HOSPITAL_BEDS]
         HOSPITAL_BEDS: _prepare_hospital_beds_ratio(hospital_beds),
         LIFE_EXPECTANCY: life_expectancy,
         LONG_HEALTH_ISSUES_RATIO: long_health_issues_ratio,
