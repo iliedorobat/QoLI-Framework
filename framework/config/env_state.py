@@ -32,12 +32,10 @@ class EnvState:
 
     # CORS configuration
     CORS_ORIGINS: list[str] = [
-        origin.strip()
-        for origin in os.getenv(
-            "CORS_ORIGINS",
-            "http://localhost:4200,http://localhost:3000,https://life-index.eu,https://www.life-index.eu"
-        ).split(",")
-        if origin.strip()
+        "http://localhost:4200",
+        "http://localhost:3000",
+        "https://life-index.eu",
+        "https://www.life-index.eu",
     ]
 
     # Temporal configuration
