@@ -1,47 +1,3 @@
-
-# ============================================================================
-# JAVA PROJECT
-# ============================================================================
-
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs
-hs_err_pid*
-
-# IDE
-.DS_STORE
-.idea/
-*.iml
-out/
-bin/
-
-# Gradle
-.gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-
-# Maven
-target/
-
 # ============================================================================
 # PYTHON PROJECT
 # ============================================================================
@@ -105,8 +61,13 @@ env/
 .python-version
 
 # IDEs
+.DS_STORE
 .vscode/
 .vim/
+.idea/
+*.iml
+out/
+bin/
 
 # ============================================================================
 # GENERAL
