@@ -16,7 +16,7 @@ class AnalysisType(Enum):
     AGGREGATE = "aggregate"
     INDIVIDUALLY = "individually"
 
-@router.get("/")
+@router.get("")
 async def get_stats(
         aggr_list: Annotated[list[str], Query(alias="aggr")],
         analysis_type: Annotated[AnalysisType, Query(alias="analysisType")],

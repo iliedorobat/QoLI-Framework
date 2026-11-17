@@ -9,7 +9,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/")
+@router.get("")
 async def get_geo(
         entity_type: Annotated[str, Query(alias="entityType")],
 ):
