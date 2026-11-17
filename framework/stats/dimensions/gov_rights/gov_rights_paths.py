@@ -1,6 +1,6 @@
 import os
 
-from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION, CSV_EXTENSION
+from framework.stats.common.file_utils import RAW_DATASET_PATH, JSON_EXTENSION, CSV_EXTENSION
 
 GOVERNANCE_FILE_NAME = "governance"
 

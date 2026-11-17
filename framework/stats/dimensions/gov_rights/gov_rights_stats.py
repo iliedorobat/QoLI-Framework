@@ -5,6 +5,7 @@ from collections import OrderedDict
 from framework.common.constants import EU28_MEMBERS
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
+from framework.stats.common.file_utils import KEY_SEPARATOR
 from framework.stats.common.print_utils import print_chart_data, print_data_availability
 from framework.stats.common.stats_utils import StatsUtils
 from framework.stats.dimensions.gov_rights.gov_rights_aggr_params import *
@@ -45,7 +46,7 @@ def _voter_turnout_csv_to_map() -> dict[str, dict[str, int | float | None]]:
                     continue
 
                 value = float(value_str)
-                key = f"{country_code}_{year}"
+                key = f"{country_code}{KEY_SEPARATOR}{year}"
 
                 if election_type == "eu parliament":
                     eu_parliamentary_map[key] = value

@@ -1,10 +1,11 @@
 from collections import OrderedDict
 
-from framework.common.constants import EU28_MEMBERS, EU28_MEMBERS_EXTENDED, KEY_SEPARATOR
+from framework.common.constants import EU28_MEMBERS, EU28_MEMBERS_EXTENDED
 from framework.config.env_state import EnvState
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
 from framework.processing.math_utils import MathUtils
+from framework.stats.common.file_utils import KEY_SEPARATOR
 from framework.stats.common.print_utils import print_chart_data, print_data_availability
 from framework.stats.common.stats_utils import StatsUtils
 from framework.stats.dimensions.auxiliary.auxiliary_stats import AuxiliaryStats
@@ -86,7 +87,7 @@ def _prepare_offences_ratio(
         uk_sum = 0
 
         for code in EU28_MEMBERS_EXTENDED:
-            key = f"{code}_{year}"
+            key = f"{code}{KEY_SEPARATOR}{year}"
             total = sum(offence[key] for offence in offence_maps)
 
             if code in ("UKC-L", "UKM", "UKN"):

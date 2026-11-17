@@ -1,9 +1,10 @@
 from typing import Any
 
-from framework.common.constants import KEY_SEPARATOR, EU28_MEMBERS
+from framework.common.constants import EU28_MEMBERS
 from framework.fetching.fetch_utils import filter_params_keys, ParamsNames
 from framework.processing.local_parser import read_json_file, dataset_to_map
 from framework.processing.map_utils import sort_key, get_entry_code
+from framework.stats.common.file_utils import KEY_SEPARATOR
 
 
 class MergeUtils:

@@ -1,6 +1,6 @@
 import os
 
-from framework.common.constants import RAW_DATASET_PATH, JSON_EXTENSION
+from framework.stats.common.file_utils import RAW_DATASET_PATH, JSON_EXTENSION
 
 LEISURE_INTERACT_FILE_NAME = "leisureInteractions"
 
@@ -23,10 +23,7 @@ LEISURE_INTERACT_RAW_PATH = os.path.join(
 
 
 def _generate_path(file_name: str) -> str:
-    return os.path.join(
-        LEISURE_INTERACT_RAW_PATH,
-        f"{file_name}{JSON_EXTENSION}",
-    )
+    return os.path.join(LEISURE_INTERACT_RAW_PATH, f"{file_name}{JSON_EXTENSION}")
 
 
 AREA_SATISFACTION_RATIO_PATH = _generate_path(AREA_SATISFACTION_RATIO_FILE_NAME)

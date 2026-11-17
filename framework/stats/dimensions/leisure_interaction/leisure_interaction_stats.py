@@ -1,9 +1,10 @@
 from collections import OrderedDict
 
-from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
+from framework.common.constants import EU28_MEMBERS
 from framework.config.env_state import EnvState
 from framework.processing.data_initialization import Initializer
 from framework.processing.data_preparation import Preparation
+from framework.stats.common.file_utils import KEY_SEPARATOR
 from framework.stats.common.print_utils import print_chart_data, print_data_availability
 from framework.stats.common.stats_utils import StatsUtils
 from framework.stats.dimensions.leisure_interaction.leisure_interaction_aggr_params import *

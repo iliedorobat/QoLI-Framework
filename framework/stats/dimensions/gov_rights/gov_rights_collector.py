@@ -1,9 +1,9 @@
 import os
 import time
 
-from framework.common.constants import XLS_EXTENSION
 from framework.fetching.fetch_data import fetch_data
 from framework.fetching.file_utils import write_to_json_file, download_excel_file, convert_xls_to_csv
+from framework.stats.common.file_utils import XLS_EXTENSION
 from framework.stats.dimensions.gov_rights.gov_rights_params import *
 from framework.stats.dimensions.gov_rights.gov_rights_paths import *
 

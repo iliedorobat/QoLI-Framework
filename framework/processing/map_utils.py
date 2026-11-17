@@ -1,8 +1,7 @@
 """
 Utility methods for map operations.
 """
-
-from framework.common.constants import KEY_SEPARATOR
+from framework.stats.common.file_utils import KEY_SEPARATOR
 
 
 def generate_key(code: str, year: int | float) -> str:

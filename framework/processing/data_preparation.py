@@ -1,9 +1,10 @@
 from collections import OrderedDict
 
-from framework.common.constants import EU28_MEMBERS, KEY_SEPARATOR
+from framework.common.constants import EU28_MEMBERS
 from framework.config.env_state import EnvState
 from framework.processing.map_utils import generate_key, get_entry_year
 from framework.processing.math_utils import MathUtils
+from framework.stats.common.file_utils import KEY_SEPARATOR
 
 
 class Preparation:

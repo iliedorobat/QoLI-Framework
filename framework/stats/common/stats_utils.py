@@ -6,6 +6,7 @@ from framework.common.constants import *
 from framework.config.env_state import EnvState
 from framework.processing.map_utils import get_entry_code, get_entry_year, generate_key
 from framework.processing.math_utils import MathUtils
+from framework.stats.common.file_utils import KEY_SEPARATOR
 
 
 class StatsUtils:
@@ -131,7 +132,7 @@ class StatsUtils:
 
             for year in range(start_year, end_year + 1):
                 if entries_time_range is None or year in entries_time_range:
-                    key = f"{code}_{year}"
+                    key = f"{code}{KEY_SEPARATOR}{year}"
                     value = data.get(key)
 
                     if value is not None:
@@ -156,7 +157,7 @@ class StatsUtils:
         Returns:
             Prepared value
         """
-        key = f"{code}_{year}"
+        key = f"{code}{KEY_SEPARATOR}{year}"
         value = entries.get(key)
 
         # Handle offences data

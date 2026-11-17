@@ -1,9 +1,8 @@
 import json
 import os
 
-from framework.common.constants import PREPARED_DATASET_PATH, JSON_EXTENSION
 from framework.fetching.file_utils import write_to_file
-from framework.stats.common.file_utils import get_series_directory
+from framework.stats.common.file_utils import get_series_directory, PREPARED_DATASET_PATH, JSON_EXTENSION
 from framework.stats.common.stats_utils import StatsUtils
 
 

@@ -1,10 +1,11 @@
 import os
 
-from framework.common.constants import EU28_MEMBERS, DIRECTION_ROW, CSV_SEPARATOR, PREPARED_DATASET_PATH, CSV_EXTENSION
+from framework.common.constants import EU28_MEMBERS, DIRECTION_ROW
 from framework.fetching.file_utils import write_to_file
 from framework.processing.map_utils import get_entry_code
 from framework.processing.math_utils import MathUtils
-from framework.stats.common.file_utils import get_series_directory
+from framework.stats.common.file_utils import get_series_directory, CSV_SEPARATOR, PREPARED_DATASET_PATH, CSV_EXTENSION, \
+    KEY_SEPARATOR
 from framework.stats.common.stats_utils import StatsUtils
 
 _ROUNDING_PLACES = 2
@@ -169,7 +170,7 @@ def _generate_chart_rows(
         line = [f"{year}{CSV_SEPARATOR}"]
 
         for i, code in enumerate(members_list):
-            key = f"{code}_{year}"
+            key = f"{code}{KEY_SEPARATOR}{year}"
             value = entries.get(key)
 
             line.append(str(value) if value is not None else "null")

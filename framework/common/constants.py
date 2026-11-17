@@ -1,36 +1,3 @@
-import os
-from pathlib import Path
-
-from framework.config.env_state import EnvState
-
-# File extensions
-JSON_EXTENSION = ".json"
-CSV_EXTENSION = ".csv"
-CSV_SEPARATOR = ";"
-KEY_SEPARATOR = "_"
-XLS_EXTENSION = ".xls"
-
-def _get_base_path():
-    """Determine the base path based on environment configuration."""
-    if EnvState.IS_PRODUCTION:
-        return os.path.join(os.sep, "var", "www", "life-index.eu", "server", "resources", "main")
-    else:
-        return os.path.join(os.getcwd(), "../fetching/", "src", "main", "resources")
-
-_BASE_PATH = _get_base_path()
-PREPARED_DATASET_PATH = os.path.join(_BASE_PATH, "static", "prepared")
-# Get the absolute path to the project root by traversing up from this file
-# This file is at: QoLI-Framework/framework/collector/constants/constants.py
-_CURRENT_FILE_PATH = Path(__file__).resolve()
-_FRAMEWORK_DIR = _CURRENT_FILE_PATH.parents[2]  # Go up 3 levels to 'framework' directory
-
-# Build the raw dataset path using absolute paths
-RAW_DATASET_PATH = os.path.join(os.sep, _FRAMEWORK_DIR, "src", "main", "resources", "static", "raw", "json", "countries")
-
-# Optional: Validate the path exists
-if not os.path.exists(RAW_DATASET_PATH):
-    raise RuntimeError(f"RAW_DATASET_PATH does not exist: {RAW_DATASET_PATH}")
-
 # Minimum value for percentage safety threshold
 PERCENTAGE_MIN_VALUE = -100
 
@@ -181,8 +148,6 @@ DIRECTION_ROW = "ROW"
 
 
 __all__ = [
-    "CSV_EXTENSION",
-    "CSV_SEPARATOR",
     "DIRECTION_COLUMN",
     "DIRECTION_ROW",
     "EU28_MEMBERS",
@@ -193,13 +158,8 @@ __all__ = [
     "EU_NORTHERN_MEMBERS",
     "EU_SOUTHERN_MEMBERS",
     "EU_WESTERN_MEMBERS",
-    "JSON_EXTENSION",
-    "KEY_SEPARATOR",
     "NON_EU_MEMBERS_NAME",
     "PERCENTAGE_MIN_VALUE",
-    "PREPARED_DATASET_PATH",
-    "RAW_DATASET_PATH",
     "SERIES_TYPE_COUNTRY",
     "SERIES_TYPE_REGION",
-    "XLS_EXTENSION",
 ]

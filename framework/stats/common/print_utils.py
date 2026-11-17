@@ -1,7 +1,7 @@
-from framework.common.constants import KEY_SEPARATOR
 from framework.config.env_state import EnvState
 from framework.processing.map_utils import get_entry_code, get_entry_year
 from framework.stats.common.csv_stats_utils import generate_chart_data
+from framework.stats.common.file_utils import KEY_SEPARATOR
 
 
 def print_chart_data(

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import requests
 
-from framework.common.constants import XLS_EXTENSION, CSV_EXTENSION, CSV_SEPARATOR, JSON_EXTENSION
+from framework.stats.common.file_utils import XLS_EXTENSION, CSV_EXTENSION, CSV_SEPARATOR, JSON_EXTENSION
 
 
 def convert_xls_to_csv(
