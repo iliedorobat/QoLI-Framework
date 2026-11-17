@@ -16,7 +16,7 @@ router = APIRouter(
     dependencies=[Depends(authenticate)],
 )
 
-@router.get("/")
+@router.get("")
 async def collect_data_api(
         aggr_list: Annotated[list[str] | None, Query(alias="aggr")] = None,
         calc_ind: Annotated[bool | None, Query(alias="calculateIndicators")] = False,

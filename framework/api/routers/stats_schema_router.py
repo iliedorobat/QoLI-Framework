@@ -12,7 +12,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/")
+@router.get("")
 async def get_config(
         analysis_type: Annotated[AnalysisType, Query(alias="analysisType")],
 ):
