@@ -1,4 +1,35 @@
 #!/bin/bash
-WORKPLACE_PATH="/var/www/life-index.eu/server"
 
-java -Xms512m -Xmx4096m -cp "$WORKPLACE_PATH/elife.jar:$WORKPLACE_PATH/libs/*" ro.webdata.qoli.Main --server
+set -e
+
+# Project configuration
+#TODO:
+#PROJECT_DIR="/var/www/life-index.eu/server"
+PROJECT_DIR="$HOME/workplace/test/QoLI-Framework"
+VENV_DIR="$PROJECT_DIR/.venv"
+PYTHON="$VENV_DIR/bin/python"
+SERVER_MODULE="framework.api.server"
+
+# Move to project directory
+cd "$PROJECT_DIR" || exit 1
+
+# Check virtual environment
+if [ ! -x "$PYTHON" ]; then
+    echo "ERROR: Python virtual environment not found: $VENV_DIR"
+    exit 1
+fi
+
+# Load environment variables, if available
+if [ -f "$PROJECT_DIR/.env" ]; then
+    set -a
+    source "$PROJECT_DIR/.env"
+    set +a
+fi
+
+# Start FastAPI
+echo "Starting eLIFE API..."
+
+exec "$PYTHON" -m uvicorn "$SERVER_MODULE:app" \
+    --host "${HOST:-127.0.0.1}" \
+    --port "${PORT:-8027}" \
+    --reload "${RELOAD:-false}"
