@@ -5,7 +5,7 @@ set -e
 # Project configuration
 #TODO:
 #PROJECT_DIR="/var/www/life-index.eu/server"
-PROJECT_DIR="$HOME/workplace/test/QoLI-Framework"
+PROJECT_DIR="$HOME/workplace/QoLI-Framework-test"
 VENV_DIR="$PROJECT_DIR/.venv"
 PYTHON="$VENV_DIR/bin/python"
 SERVER_MODULE="framework.api.server"
