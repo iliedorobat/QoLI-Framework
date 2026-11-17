@@ -1,4 +1,5 @@
 # eLIF: European Life Index Framework
+# --- DEPRECATED DOCUMENTATION ---
 
 ## Requirements
 - JDK 11 or OpenJDK 11.
@@ -32,7 +33,7 @@ git clone https://github.com/iliedorobat/QoLI-Framework.git
    1. Set the same value for `KEY_STORE_PASS` in `src/main/bash/certbot_post_renewal_hook.sh` as the value of the environment variable with the same name
    2. Create JKS certificate:
     ```bash
-    sudo src/main/bash/certbot_post_renewal_hook.sh
+    sudo src/main/bash/post_renewal_hook.sh
     ```
    3. Enroll renewal hook to certbot:
     ```bash

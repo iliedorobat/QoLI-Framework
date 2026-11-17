@@ -35,7 +35,7 @@ class EnvState:
         origin.strip()
         for origin in os.getenv(
             "CORS_ORIGINS",
-            "http://localhost:4200,http://localhost:3000"
+            "http://localhost:4200,http://localhost:3000,https://life-index.eu,https://www.life-index.eu"
         ).split(",")
         if origin.strip()
     ]
