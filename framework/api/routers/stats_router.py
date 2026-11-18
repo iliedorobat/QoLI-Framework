@@ -17,7 +17,7 @@ class AnalysisType(Enum):
     INDIVIDUALLY = "individually"
 
 @router.get("")
-async def get_stats(
+def get_stats(
         aggr_list: Annotated[list[str], Query(alias="aggr")],
         analysis_type: Annotated[AnalysisType, Query(alias="analysisType")],
         start_year: Annotated[int, Query(alias="startYear")],

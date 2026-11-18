@@ -64,7 +64,7 @@ def create_app() -> FastAPI:
     server.include_router(stats_schema_router)
 
     @server.get("")
-    async def root():
+    def root():
         LOGGER.info("Endpoint PID: %s", os.getpid())
         return "Success!"
 

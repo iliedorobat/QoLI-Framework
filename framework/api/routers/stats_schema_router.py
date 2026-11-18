@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 @router.get("")
-async def get_config(
+def get_config(
         analysis_type: Annotated[AnalysisType, Query(alias="analysisType")],
 ):
     if analysis_type == AnalysisType.AGGREGATE:
