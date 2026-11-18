@@ -1,113 +1,235 @@
-# eLIF: European Life Index Framework
-# --- DEPRECATED DOCUMENTATION ---
+# QoLI-Framework
+
+The **QoLI-Framework** is a data-driven framework for collecting, processing,
+aggregating, and analyzing European quality-of-life indicators. It provides
+the data processing infrastructure behind the [European Life Index platform](https://life-index.eu/).
+
+This repository contains the Python implementation of the QoLI-Framework,
+including its data processing components and REST API.
 
 ## Requirements
-- JDK 11 or OpenJDK 11.
+
+- Python 3.12 or newer
+- [uv](https://docs.astral.sh/uv/) (recommended for Python environment management)
+- [PM2](https://pm2.keymetrics.io/) (optional, for production process management)
+- Nginx (optional, for production deployments)
 
 ## Setup
-1. Download and install [JDK 11](https://www.oracle.com/nl/java/technologies/javase/jdk11-archive-downloads.html) or [OpenJDK 11](https://openjdk.org/install/) (or newer versions)
 
-2. Download and install [Maven 3.x](https://maven.apache.org/install.html)
+### 1. Clone the repository
 
-3. Clone the repository:
 ```bash
 git clone https://github.com/iliedorobat/QoLI-Framework.git
+cd QoLI-Framework
 ```
 
-4. Update environment variables and app constants:
-    - Copy `.env.example` to `.env`:
-      ```bash
-      cp .env.example .env
-      ```
-   - Edit `.env` with your configuration values:
-      - `AUTH_USER` and `AUTH_PASSWORD`: credentials used for updating the datasets (calling `/api/v2/stats/collect` API)
-      - `HOST_ADDRESS`: the IP address of the host
-      - `IS_PRODUCTION`: `true` if the app is deployed on the production server
-      - `IS_TESTING`: `true` for downloading sample data instead of the full set
-      - `KEY_STORE_FILE`: path to the `keystore.p12` file
-      - `KEY_STORE_PASS`: password for the `keystore.p12` file
-      - `USE_TOMCAT_SERVER`: `true` if the app is deployed on Apache Tomcat
-   - `Constants.BASE_PATH` contains the main path to the project. This path should be updated if the app is deployed on the production server.
+### 2. Create the Python environment
 
-5. [OPTIONAL] Run the following scripts on the production environment:
-   1. Set the same value for `KEY_STORE_PASS` in `src/main/bash/certbot_post_renewal_hook.sh` as the value of the environment variable with the same name
-   2. Create JKS certificate:
-    ```bash
-    sudo src/main/bash/post_renewal_hook.sh
-    ```
-   3. Enroll renewal hook to certbot:
-    ```bash
-    src/main/bash/certbot_enroll_renewal_hook.sh
-    ```
-   4. Copy the startup script:
-    ```bash
-    src/main/bash/elife_enroll_startup.sh
-    ```
+Create a virtual environment:
 
-6. [OPTIONAL] Install deps & compile the project (this step is already done in the next step):
-- Production build:
-    ```bash
-    sudo ./gradlew clean build && ./gradlew copyProd && ./gradlew copyEnv
-    ```
-- Dev build:
-    ```bash
-    ./gradlew clean build
-    ```
-
-7. Create the server daemon:
-    1. [OPTIONAL] Remove the server daemon:
-    ```bash
-    pm2 flush elife && pm2 delete elife
-    ```
-    2. Create and start a background process:
-    ```bash
-    pm2 start ~/workplace/automation/elife_startup.sh --name=life-index
-    ```
-    3. Check if the server is up and running:
-    ```bash
-    curl -i -X GET "https://life-index.eu:8443"
-    ```
-    ```bash
-    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats/config?analysisType=aggregate"
-    ```
-    ```bash
-    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
-    ```
-    ```bash
-    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
-    ```
-    ```bash
-    curl -i -X GET "https://life-index.eu:8443/qoli/api/v2/stats/collect?username=admin&password=admin1234"
-    ```
-
-8. Collect the datasets:
 ```bash
-java -jar elife.jar --collect
+uv venv
 ```
 
-9. Aggregate the datasets:
-   1. Calculate QoLI dimensions:
-    ```bash
-    java -jar elife.jar --calculate --calculateIndicators --direction=COLUMN
-    ```
-    2. Calculate QoLI based on a specific set of indicators:
-    ```bash
-    java -jar elife.jar --calculate --aggr=["discussionRatio","gettingTogetherFrdRatio"]
-    ```
+Activate it:
 
-## Print Data
-1. Print QoLI and QoLI dimensions:
-    ```bash
-    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=QOLI
-    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=QOLI
-    ```
-2. Print specific indicators:
-    ```bash
-    java -jar elife.jar --print --direction=COLUMN --seriesType=COUNTRY --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-    java -jar elife.jar --print --direction=COLUMN --seriesType=REGION --dimension=EDUCATION --indicator=DIGITAL_SKILLS_RATIO
-    ```
+```bash
+source .venv/bin/activate
+```
 
+Install the project dependencies:
 
+```bash
+uv sync
+```
+
+### 3. Configure environment variables
+
+Copy the example environment configuration:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and configure the application settings according to your environment.
+
+The configuration may include:
+
+| Variable | Description |
+|---|---|
+| `AUTH_USER` | Username used for protected data collection operations |
+| `AUTH_PASSWORD` | Password used for protected data collection operations |
+| `IS_PRODUCTION` | Enables production-specific application settings |
+| `IS_TESTING` | Enables testing mode, using sample datasets instead of the full datasets |
+
+Additional configuration options may be defined in `.env.example`.
+
+### 4. Run the API server
+
+The application uses FastAPI and Uvicorn.
+
+Start the development server:
+
+```bash
+uv run uvicorn framework.api.server:app \
+    --host 127.0.0.1 \
+    --port 8027 \
+    --reload
+```
+
+Alternatively, use the startup script:
+
+```bash
+./scripts/elife_start.sh
+```
+
+### 5. Production deployment
+
+For production deployments, the API can be managed using PM2.
+
+Start the application:
+
+```bash
+pm2 start scripts/elife_start.sh \
+    --name life-index \
+    --interpreter bash
+```
+
+Save the PM2 process configuration:
+
+```bash
+pm2 save
+```
+
+Check the application status:
+
+```bash
+pm2 status
+```
+
+View application logs:
+
+```bash
+pm2 logs life-index
+```
+
+The production deployment uses Nginx as a reverse proxy, handling 
+HTTPS termination and forwarding API requests to the Uvicorn server.
+
+SSL certificates are managed through Certbot. No Java keystore or 
+certificate conversion is required.
+
+### 6. Verify the API
+
+Once the server is running, verify the following endpoints.
+
+**API root:**
+
+```bash
+curl -i http://127.0.0.1:8027/
+```
+
+**QoLI configuration:**
+
+```bash
+curl -i -X GET \
+    "http://127.0.0.1:8027/qoli/api/v2/stats/config?analysisType=aggregate"
+```
+
+**Individual statistics:**
+
+```bash
+curl -i -X GET \
+    "http://127.0.0.1:8027/qoli/api/v2/stats?analysisType=individually&aggr=education:dropoutRatio&startYear=2020&endYear=2022"
+```
+
+**Aggregated statistics:**
+
+```bash
+curl -i -X GET \
+    "http://127.0.0.1:8027/qoli/api/v2/stats?analysisType=aggregate&aggr=education:dropoutRatio&aggr=health:health:bodyMassIndex&startYear=2020&endYear=2022"
+```
+
+For production deployments, replace the local URL with the public API address:
+
+```text
+https://life-index.eu/qoli/api/v2/stats
+```
+
+## Data Collection and Processing
+
+QoLI-Framework provides functionality for collecting and processing the datasets 
+used in the [European Life Index platform](https://life-index.eu/).
+
+The data processing workflow consists of the following stages:
+
+1. **Data collection** – retrieve the source datasets from their corresponding providers.
+2. **Data preparation** – clean, transform, and normalize the collected datasets.
+3. **Indicator calculation** – calculate the individual quality-of-life indicators.
+4. **Aggregation** – compute the QoLI dimensions and the overall Quality of Life Index.
+5. **Data serialization** – prepare the resulting statistics for API consumption.
+
+The framework exposes data collection and statistical processing functionality 
+through its Python modules and API endpoints.
+
+## API
+
+The REST API is implemented using FastAPI.
+
+The main API modules include:
+
+| Module | Description |
+|---|---|
+| `collector_router` | Dataset collection operations |
+| `geo_router` | Geographic information and related operations |
+| `stats_router` | Statistical data and QoLI results |
+| `stats_schema_router` | Statistical configuration and schema information |
+
+The main statistics endpoints are:
+
+| Endpoint | Description |
+|---|---|
+| `/qoli/api/v2/stats` | Retrieve individual or aggregated statistics |
+| `/qoli/api/v2/stats/config` | Retrieve statistical configuration |
+| `/qoli/api/v2/stats/collect` | Trigger dataset collection |
+
+Protected operations use HTTP authorization headers.
+
+## Project Structure
+
+```text
+QoLI-Framework/
+│
+├── framework/
+│   ├── api/
+│   │   └── server.py
+│   ├── ...
+│
+├── scripts/
+│   └── elife_start.sh
+│
+├── tests/
+│
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
+
+## Development
+
+Run the application in development mode:
+
+```bash
+uv run uvicorn framework.api.server:app \
+    --host 127.0.0.1 \
+    --port 8027 \
+    --reload
+```
+
+## License
+
+See the repository for licensing information.
 
 ## Framework Info
 * List of dimensions:
@@ -123,8 +245,6 @@ java -jar elife.jar --collect
   * Overall Experience of Life: [OverallExperienceAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/overall/OverallExperienceAggrParams.java#L20)
   * Productive or Main Activity: [MainActivityAggrParams.AGGR_PARAMS](https://github.com/iliedorobat/QoLI-Framework/blob/release/2.1/src/ro/webdata/qoli/aggr/stats/dimensions/mainActivity/MainActivityAggrParams.java#L44)
 
-
-
 ## Data Source
 ### Main Database
 https://ec.europa.eu/eurostat/data/database
@@ -134,8 +254,6 @@ https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ __dataset_n
 
 ### GUI
 https://ec.europa.eu/eurostat/databrowser/view/ __dataset_name__ /default/table?lang=en
-
-
 
 ## Publications:
 SYSMEA 2019: [eLIF: European Life Index Framework - An Analysis for the Case of European Union Countries](https://www.thinkmind.org/index.php?view=article&articleid=sysmea_v12_n34_2019_5)
