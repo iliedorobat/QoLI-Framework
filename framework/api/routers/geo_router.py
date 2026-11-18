@@ -10,7 +10,7 @@ router = APIRouter(
 )
 
 @router.get("")
-async def get_geo(
+def get_geo(
         entity_type: Annotated[str, Query(alias="entityType")],
 ):
     # E.g.: http://localhost:8027/qoli/api/v2/geo?entityType=EU
